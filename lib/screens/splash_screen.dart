@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 class SplashScreen extends StatefulWidget {
   static MaterialPage page() {
     return MaterialPage(
-      name: FooderlichPages.splashPath,
-      key: ValueKey(FooderlichPages.splashPath),
+      name: UpcartaPages.splashPath,
+      key: ValueKey(UpcartaPages.splashPath),
       child: const SplashScreen(),
     );
   }

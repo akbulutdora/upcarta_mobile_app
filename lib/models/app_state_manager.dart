@@ -5,6 +5,7 @@ class UpcartaTab {
   static const int explore = 0;
   static const int recipes = 1;
   static const int toBuy = 2;
+  static const int search = 3;
 }
 class AppStateManager extends ChangeNotifier {
   bool _initialized = false;

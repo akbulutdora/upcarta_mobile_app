@@ -5,8 +5,8 @@ import 'package:upcarta_mobile_app/models/models.dart';
 class HomeScreen extends StatelessWidget {
   static MaterialPage page(int currentTab) {
     return MaterialPage(
-      name: FooderlichPages.home,
-      key: ValueKey(FooderlichPages.home),
+      name: UpcartaPages.home,
+      key: ValueKey(UpcartaPages.home),
       child: HomeScreen(),
     );
   }

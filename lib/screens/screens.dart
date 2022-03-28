@@ -5,3 +5,4 @@ export 'profile_screen.dart';
 export 'onboarding_screen.dart';
 export 'login_screen.dart';
 export 'grocery_item_screen.dart';
+export 'search_screen.dart';

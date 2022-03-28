@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import'package:upcarta_mobile_app/models/models.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class SearchScreen extends StatelessWidget {
   static MaterialPage page() {
     return MaterialPage(
-      name: UpcartaPages.onboardingPath,
-      key: ValueKey(UpcartaPages.onboardingPath),
-      child: const OnboardingScreen(),
+      name: UpcartaPages.searchPath,
+      key: ValueKey(UpcartaPages.searchPath),
+      child: const SearchScreen(),
     );
   }
 
-  const OnboardingScreen({Key? key}) : super(key: key);
+  const SearchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +23,14 @@ class OnboardingScreen extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(100),
         child: MaterialButton(
-          color: Colors.red,
+          color: Colors.teal,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           child: const Text(
-            'Onboard and go to Home',
+            'Search',
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () async {
-            Provider.of<AppStateManager>(context, listen: false)
-                .completeOnboarding();
+
           },
         ),
       ),);

@@ -64,23 +64,26 @@ class AppRouter extends RouterDelegate
     );
   }
 
+  // called when the user triggers a system back button event
+  // such as tapping Back
   bool _handlePopPage(Route<dynamic> route, result) {
     if (!route.didPop(result)) {
       return false;
     }
 
-    if (route.settings.name == FooderlichPages.onboardingPath) {
+    // tapping back from onboarding results in logging out
+    if (route.settings.name == UpcartaPages.onboardingPath) {
       appStateManager.logout();
     }
-    if (route.settings.name == FooderlichPages.groceryItemDetails) {
+    if (route.settings.name == UpcartaPages.groceryItemDetails) {
       groceryManager.groceryItemTapped(-1);
     }
 
-    if (route.settings.name == FooderlichPages.profilePath) {
+    if (route.settings.name == UpcartaPages.profilePath) {
       profileManager.tapOnProfile(false);
     }
 
-    if (route.settings.name == FooderlichPages.raywenderlich) {
+    if (route.settings.name == UpcartaPages.raywenderlich) {
       profileManager.tapOnRaywenderlich(false);
     }
     return true;

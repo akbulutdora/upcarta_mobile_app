@@ -1,4 +1,4 @@
-class FooderlichPages {
+class UpcartaPages {
   static String splashPath = '/splash';
   static String loginPath = '/login';
   static String onboardingPath = '/onboarding';
@@ -7,4 +7,5 @@ class FooderlichPages {
   static String profilePath = '/profile';
   static String raywenderlich = '/raywenderlich';
   static String accountPath = '/account';
+  static String searchPath = '/search';
 }

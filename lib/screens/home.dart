@@ -4,6 +4,7 @@ import 'package:upcarta_mobile_app/models/models.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:upcarta_mobile_app/screens/screens.dart';
 
 import '../models/models.dart';
 import 'home_screen.dart';
@@ -13,8 +14,8 @@ import 'profile_screen.dart';
 class Home extends StatefulWidget {
   static MaterialPage page(int currentTab) {
     return MaterialPage(
-      name: FooderlichPages.home,
-      key: ValueKey(FooderlichPages.home),
+      name: UpcartaPages.home,
+      key: ValueKey(UpcartaPages.home),
       child: Home(
         currentTab: currentTab,
       ),
@@ -37,6 +38,7 @@ class _HomeState extends State<Home> {
     HomeScreen(),
     MyLibraryScreen(),
     ProfileScreen(user: User(darkMode: false, firstName: "a", lastName: "", points: 0, role: "",  profileImageUrl: "")),
+    SearchScreen(),
   ];
 
   @override
@@ -50,7 +52,7 @@ class _HomeState extends State<Home> {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              'Fooderlich',
+              'Upcarta',
               style: Theme.of(context).textTheme.headline6,
             ),
             actions: [
@@ -62,6 +64,8 @@ class _HomeState extends State<Home> {
             children: pages,
           ),
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.grey.shade700,
+            fixedColor: Colors.grey.shade400,
             selectedItemColor:
             Theme.of(context).textSelectionTheme.selectionColor,
             currentIndex: widget.currentTab,
@@ -81,6 +85,10 @@ class _HomeState extends State<Home> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.list),
                 label: 'Profile Screen',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: 'Search Screen',
               ),
             ],
           ),

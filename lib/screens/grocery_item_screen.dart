@@ -20,8 +20,8 @@ class GroceryItemScreen extends StatefulWidget {
     required Function(GroceryItem, int) onUpdate,
   }) {
     return MaterialPage(
-      name: FooderlichPages.groceryItemDetails,
-      key: ValueKey(FooderlichPages.groceryItemDetails),
+      name: UpcartaPages.groceryItemDetails,
+      key: ValueKey(UpcartaPages.groceryItemDetails),
       child: GroceryItemScreen(
         originalItem: item,
         index: index,

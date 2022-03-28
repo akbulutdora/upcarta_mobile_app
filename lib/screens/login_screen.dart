@@ -6,8 +6,8 @@ import 'package:upcarta_mobile_app/models/models.dart';
 class LoginScreen extends StatelessWidget {
   static MaterialPage page() {
     return MaterialPage(
-      name: FooderlichPages.loginPath,
-      key: ValueKey(FooderlichPages.loginPath),
+      name: UpcartaPages.loginPath,
+      key: ValueKey(UpcartaPages.loginPath),
       child: const LoginScreen(),
     );
   }
