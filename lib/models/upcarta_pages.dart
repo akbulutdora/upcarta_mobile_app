@@ -8,4 +8,6 @@ class UpcartaPages {
   static String raywenderlich = '/raywenderlich';
   static String accountPath = '/account';
   static String searchPath = '/search';
+  static String explorePath = '/explore';
+
 }

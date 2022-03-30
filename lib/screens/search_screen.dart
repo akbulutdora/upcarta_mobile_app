@@ -21,13 +21,14 @@ class SearchScreen extends StatelessWidget {
       width: 50,
       height: 50,
       child: Padding(
-        padding: EdgeInsets.all(100),
+        padding: EdgeInsets.all(5),
         child: MaterialButton(
+          padding:EdgeInsets.all(10),
           color: Colors.teal,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           child: const Text(
             'Search',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.red),
           ),
           onPressed: () async {
 

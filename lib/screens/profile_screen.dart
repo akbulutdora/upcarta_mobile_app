@@ -1,6 +1,7 @@
 // BERNA
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../components/circle_image.dart';
 
 import '../models/models.dart';
 
@@ -98,7 +99,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget buildProfile() {
     return Column(
       children: [
-        SizedBox(width: 120, height: 120,),
+        CircleImage(
+          imageProvider: AssetImage("images/mock.jpg"),//widget.user.profileImageUrl),
+          imageRadius: 60.0,
+        ),
         const SizedBox(height: 16.0),
         Text(
           widget.user.firstName,

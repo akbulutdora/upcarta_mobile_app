@@ -2,16 +2,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class UpcartaTab {
-  static const int explore = 0;
-  static const int recipes = 1;
-  static const int toBuy = 2;
-  static const int search = 3;
+  static const int home = 0;
+  static const int explore = 1;
+  static const int newAction = 2;
+  static const int library = 3;
+  static const int search = 4;
 }
 class AppStateManager extends ChangeNotifier {
   bool _initialized = false;
   bool _loggedIn = false;
   bool _onboardingComplete = false;
-  int _selectedTab = UpcartaTab.explore;
+  int _selectedTab = UpcartaTab.home;
 
   bool get isInitialized => _initialized;
   bool get isLoggedIn => _loggedIn;
@@ -40,10 +41,10 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void goToRecipes() {
+  /*void goToRecipes() {
     _selectedTab = UpcartaTab.recipes;
     notifyListeners();
-  }
+  }*/
 
   void logout() {
     _loggedIn = false;

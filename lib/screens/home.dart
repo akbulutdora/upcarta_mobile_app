@@ -36,8 +36,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   static List<Widget> pages = <Widget>[
     HomeScreen(),
+    MyExploreScreen(),
+    ProfileScreen(user: User(darkMode: false, firstName: "a", lastName: "",
+        points: 0, role: "",  profileImageUrl: "")),
     MyLibraryScreen(),
-    ProfileScreen(user: User(darkMode: false, firstName: "a", lastName: "", points: 0, role: "",  profileImageUrl: "")),
     SearchScreen(),
   ];
 
@@ -64,10 +66,11 @@ class _HomeState extends State<Home> {
             children: pages,
           ),
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Colors.grey.shade700,
-            fixedColor: Colors.grey.shade400,
+            backgroundColor: Colors.white,
+            fixedColor: Colors.black,
             selectedItemColor:
             Theme.of(context).textSelectionTheme.selectionColor,
+            unselectedItemColor: Colors.grey,
             currentIndex: widget.currentTab,
             onTap: (index) {
               Provider.of<AppStateManager>(context, listen: false)
@@ -75,16 +78,20 @@ class _HomeState extends State<Home> {
             },
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.explore),
+                icon: Icon(Icons.home),
                 label: 'Home Screen',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.book),
-                label: 'My Library Screen',
+                icon: Icon(Icons.explore),
+                label: 'Explore Screen',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.list),
-                label: 'Profile Screen',
+                icon: Icon(Icons.add),
+                label: 'New Action Screen',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.bookmark_border),
+                label: 'My Library  Screen',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.search),
@@ -99,12 +106,12 @@ class _HomeState extends State<Home> {
 
   Widget profileButton() {
     return Padding(
-      padding: const EdgeInsets.only(right: 16.0),
+      padding: const EdgeInsets.only(right: 32.0),
       child: GestureDetector(
         child: const CircleAvatar(
           backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage(
-            'assets/profile_pics/person_stef.jpeg',
+          foregroundImage: AssetImage(
+            'images/mock.jpg',
           ),
         ),
         onTap: () {
