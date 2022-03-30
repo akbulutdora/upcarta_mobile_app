@@ -44,20 +44,6 @@ class AppRouter extends RouterDelegate
           OnboardingScreen.page(),
         if (appStateManager.isOnboardingComplete)
           Home.page(appStateManager.getSelectedTab),
-        if (groceryManager.isCreatingNewItem)
-          GroceryItemScreen.page(
-              onCreate: (item) {
-                groceryManager.addItem(item);
-              },
-              onUpdate: (item, index) {}),
-        if (groceryManager.selectedIndex != -1)
-          GroceryItemScreen.page(
-              item: groceryManager.selectedGroceryItem,
-              index: groceryManager.selectedIndex,
-              onUpdate: (item, index) {
-                groceryManager.updateItem(item, index);
-              },
-              onCreate: (_) {}),
         if (profileManager.didSelectUser)
           ProfileScreen.page(profileManager.getUser),
       ],
@@ -70,21 +56,12 @@ class AppRouter extends RouterDelegate
     if (!route.didPop(result)) {
       return false;
     }
-
     // tapping back from onboarding results in logging out
     if (route.settings.name == UpcartaPages.onboardingPath) {
       appStateManager.logout();
     }
-    if (route.settings.name == UpcartaPages.groceryItemDetails) {
-      groceryManager.groceryItemTapped(-1);
-    }
-
     if (route.settings.name == UpcartaPages.profilePath) {
       profileManager.tapOnProfile(false);
-    }
-
-    if (route.settings.name == UpcartaPages.raywenderlich) {
-      profileManager.tapOnRaywenderlich(false);
     }
     return true;
   }

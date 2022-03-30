@@ -4,29 +4,22 @@ import 'models.dart';
 
 class ProfileManager extends ChangeNotifier {
   User get getUser => User(
-    firstName: 'Stef',
-    lastName: 'Patt',
+    firstName: 'Mana',
+    lastName: 'Irani',
     role: 'Flutterista',
-    profileImageUrl: 'assets/profile_pics/person_stef.jpeg',
+    profileImageUrl: 'images/mock.jpg',
     points: 100,
     darkMode: _darkMode,
   );
 
   bool get didSelectUser => _didSelectUser;
-  bool get didTapOnRaywenderlich => _tapOnRaywenderlich;
   bool get darkMode => _darkMode;
 
   var _didSelectUser = false;
-  var _tapOnRaywenderlich = false;
   var _darkMode = false;
 
   void set darkMode(bool darkMode) {
     _darkMode = darkMode;
-    notifyListeners();
-  }
-
-  void tapOnRaywenderlich(bool selected) {
-    _tapOnRaywenderlich = selected;
     notifyListeners();
   }
 

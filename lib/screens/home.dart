@@ -4,6 +4,7 @@ import 'package:upcarta_mobile_app/models/models.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:upcarta_mobile_app/screens/new_action_screen.dart';
 import 'package:upcarta_mobile_app/screens/screens.dart';
 
 import '../models/models.dart';
@@ -37,8 +38,7 @@ class _HomeState extends State<Home> {
   static List<Widget> pages = <Widget>[
     HomeScreen(),
     MyExploreScreen(),
-    ProfileScreen(user: User(darkMode: false, firstName: "a", lastName: "",
-        points: 0, role: "",  profileImageUrl: "")),
+    NewPostScreen(),
     MyLibraryScreen(),
     SearchScreen(),
   ];
