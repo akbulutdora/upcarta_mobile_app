@@ -4,9 +4,14 @@ import 'upcarta_theme.dart';
 import 'screens/screens.dart';
 import 'models/models.dart';
 import 'navigation/app_router.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(Welcome());
 }
 
@@ -16,15 +21,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Welcome() // const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: Welcome() // const MyHomePage(title: 'Flutter Demo Home Page'),
+        );
   }
 }
-
 
 class Welcome extends StatefulWidget {
   Welcome({Key? key}) : super(key: key);
@@ -34,7 +38,6 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-
   final _groceryManager = GroceryManager();
   final _profileManager = ProfileManager();
   final _appStateManager = AppStateManager();
@@ -60,7 +63,9 @@ class _WelcomeState extends State<Welcome> {
         ChangeNotifierProvider(
           create: (context) => _profileManager,
         ),
-        ChangeNotifierProvider(create: (context) => _appStateManager,),
+        ChangeNotifierProvider(
+          create: (context) => _appStateManager,
+        ),
       ],
       child: Consumer<ProfileManager>(
         builder: (context, profileManager, child) {
