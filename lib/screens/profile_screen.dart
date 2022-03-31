@@ -15,6 +15,7 @@ class ProfileScreen extends StatefulWidget {
   }
 
   final User user;
+
   const ProfileScreen({
     Key? key,
     required this.user,
@@ -37,17 +38,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           },
         ),
       ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 16.0),
-            buildProfile(),
-            Expanded(
-              child: buildMenu(),
-            )
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 16.0),
+          buildProfile(),
+          Expanded(
+            child: buildMenu(),
+          )
+        ],
       ),
     );
   }
@@ -90,18 +89,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget buildProfile() {
-    return Column(
-      children: [
+    return Container(
+
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
         CircleImage(
-          imageProvider: AssetImage("images/mock.jpg"),//widget.user.profileImageUrl),
+          imageProvider: AssetImage("images/mock.jpg"),
+          //widget.user.profileImageUrl),
           imageRadius: 60.0,
         ),
         const SizedBox(height: 16.0),
+
         Text(
           widget.user.firstName,
-          style: const TextStyle(fontSize: 21),
+          style: const TextStyle(fontSize: 20),
         ),
-        Text(widget.user.role),
+        Text(
+          '@${widget.user.username}',
+          style: const TextStyle(
+            fontSize: 15,
+            color: Colors.grey,
+          ),
+        ),
+        Text(
+          widget.user.role,
+          style: const TextStyle(
+            fontSize: 15,
+            color: Colors.grey,
+          ),
+        ),
         Text(
           '${widget.user.points} points',
           style: const TextStyle(
@@ -109,7 +126,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             color: Colors.green,
           ),
         ),
-      ],
+        Text(
+          widget.user.bio,
+          style: const TextStyle(
+            fontSize: 20,
+            color: Colors.grey,
+          ),
+        ),
+        ],
+      ),
     );
   }
 }
