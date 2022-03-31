@@ -1,8 +1,7 @@
 // DORA
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
-
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:upcarta_mobile_app/screens/new_action_screen.dart';
 import 'package:upcarta_mobile_app/screens/screens.dart';
@@ -37,20 +36,20 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   static List<Widget> pages = <Widget>[
     HomeScreen(),
-    MyExploreScreen(),
-    NewPostScreen(),
-    MyLibraryScreen(),
-    SearchScreen(),
+    const MyExploreScreen(),
+    const NewPostScreen(),
+    const MyLibraryScreen(),
+    const SearchScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Consumer<AppStateManager>(
       builder: (
-          context,
-          appStateManager,
-          child,
-          ) {
+        context,
+        appStateManager,
+        child,
+      ) {
         return Scaffold(
           appBar: AppBar(
             title: Text(
@@ -66,10 +65,8 @@ class _HomeState extends State<Home> {
             children: pages,
           ),
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Colors.white,
-            fixedColor: Colors.black,
             selectedItemColor:
-            Theme.of(context).textSelectionTheme.selectionColor,
+                Theme.of(context).textSelectionTheme.selectionColor,
             unselectedItemColor: Colors.grey,
             currentIndex: widget.currentTab,
             onTap: (index) {

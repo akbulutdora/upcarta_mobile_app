@@ -41,11 +41,6 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  /*void goToRecipes() {
-    _selectedTab = UpcartaTab.recipes;
-    notifyListeners();
-  }*/
-
   void logout() {
     _loggedIn = false;
     _onboardingComplete = false;
