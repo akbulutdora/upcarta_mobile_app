@@ -102,7 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         const SizedBox(height: 16.0),
 
         Text(
-          widget.user.firstName,
+          widget.user.name,
           style: const TextStyle(fontSize: 20),
         ),
         Text(
@@ -117,13 +117,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           style: const TextStyle(
             fontSize: 15,
             color: Colors.grey,
-          ),
-        ),
-        Text(
-          '${widget.user.points} points',
-          style: const TextStyle(
-            fontSize: 30,
-            color: Colors.green,
           ),
         ),
         Text(

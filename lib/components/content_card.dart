@@ -15,7 +15,6 @@ class ContentCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              leading: Text("id: " + content.id),//Icon(Icons.album),
               title: Text(content.title),
               subtitle: Text('Lorem ipsum dolor sit amet'),
               trailing: Text("Type: " + content.contentType.getString()),

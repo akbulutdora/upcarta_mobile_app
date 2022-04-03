@@ -1,20 +1,33 @@
 class User {
-  final String firstName;
-  final String lastName;
+  // so far only user attributes in the first section
+  final String name;
   final String username;
+  final String id;
+  final String email;
+  final String password_hash;
+  final String confirmation_sent_at;
+  final String confirmed_at;
+  final String confirmation_token;
+  final String reset_password_token;
+  final String reset_password_sent_at;
+  final String avatar;
   final String role;
-  final String profileImageUrl;
-  final int points;
   final String bio;
   final bool darkMode;
 
   User({
-    required this.firstName,
-    required this.lastName,
     required this.username,
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.password_hash,
+    required this.confirmation_sent_at,
+    required this.confirmed_at,
+    required this.confirmation_token,
+    required this.reset_password_token,
+    required this.reset_password_sent_at,
+    required this.avatar,
     required this.role,
-    required this.profileImageUrl,
-    required this.points,
     required this.bio,
     required this.darkMode,
   });

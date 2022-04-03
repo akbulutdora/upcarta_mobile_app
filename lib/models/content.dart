@@ -32,10 +32,24 @@ class Content {
   final String title;
   final String id;
   final ContentType contentType;
+  final String description;
+  final String created_at;
+  final String image;
+  final String link;
+  final String added_by_id; // (id of the user who added this content initially)
+  /*parent_id (you may include this self-referential association to keep track of multiple links referring to the same content)
+  featured_at (you can use it for featuring specific collections)
+  slug (slugified title for clean url sharing - you may leave it out of your scope)*/
+
 
   Content({
     required this.title,
     required this.id,
     required this.contentType,
+    required this.description,
+    required this.created_at,
+    required this.image,
+    required this.added_by_id,
+    required this.link,
   });
 }

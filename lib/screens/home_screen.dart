@@ -22,10 +22,42 @@ class HomeScreen extends StatelessWidget {
   }) : super(key: key);
 
   final List<Content> contents = <Content>[
-    Content(title: "podcast with bengisu", id: "1", contentType: ContentType.podcastEpisode),
-    Content(title: "book written by berna", id: "2", contentType: ContentType.book),
-    Content(title: "article of idil", id: "3", contentType: ContentType.article),
-    Content(title: "podcast about game-dev", id: "4", contentType: ContentType.podcast),
+    Content(
+        title: "podcast with bengisu",
+        id: "1",
+        contentType: ContentType.podcastEpisode,
+        added_by_id: '',
+        description: '',
+        created_at: '',
+        link: '',
+        image: ''),
+    Content(
+        title: "book written by berna",
+        id: "2",
+        contentType: ContentType.book,
+        added_by_id: '',
+        link: '',
+        description: '',
+        created_at: '',
+        image: ''),
+    Content(
+        title: "article of idil",
+        id: "3",
+        contentType: ContentType.article,
+        created_at: '',
+        description: '',
+        link: '',
+        added_by_id: '',
+        image: ''),
+    Content(
+        title: "podcast about game-dev",
+        id: "4",
+        contentType: ContentType.podcast,
+        description: '',
+        created_at: '',
+        link: '',
+        added_by_id: '',
+        image: ''),
   ];
 
   @override
@@ -48,16 +80,24 @@ class HomeScreen extends StatelessWidget {
                   TextButton(onPressed: () {}, child: Text("Explore"))
                 ],
               ),
-              Divider(thickness: 1,),
+              Divider(
+                thickness: 1,
+              ),
               Row(
                 children: [
                   MyDropDownButton(),
-                  SizedBox(width: 8,),
+                  SizedBox(
+                    width: 8,
+                  ),
                   MyDropDownButton(),
                 ],
               ),
-              Divider(thickness: 1,),
-              ContentList(contentList: contents,),
+              Divider(
+                thickness: 1,
+              ),
+              ContentList(
+                contentList: contents,
+              ),
             ],
           ),
         ),
@@ -94,6 +134,7 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
           child: Text(value),
         );
       }).toList(),
-    );;
+    );
+    ;
   }
 }
