@@ -8,4 +8,5 @@ class UpcartaPages {
   static String searchPath = '/search';
   static String explorePath = '/explore';
   static String newActionPath = '/new';
+  static String libraryPath = '/library';
 }
