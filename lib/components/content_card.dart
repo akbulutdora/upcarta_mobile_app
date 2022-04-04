@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 
@@ -21,19 +23,31 @@ class ContentCard extends StatelessWidget {
               Text(content.title),
               Row(children: [
                 Icon(Icons.local_movies_outlined),
-                Text(content.contentType.getString()),
+                Text(
+                  content.contentType.getString(),
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
                 Spacer(
                   flex: 1,
                 ),
-                Text("creator"),
+                Text(
+                  "creator",
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
                 Spacer(
                   flex: 1,
                 ),
-                Text("created date"),
+                Text(
+                  "created date",
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
                 Spacer(
                   flex: 1,
                 ),
-                Text("genre"),
+                Text(
+                  "genre",
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
                 Spacer(
                   flex: 3,
                 ),
@@ -51,11 +65,25 @@ class ContentCard extends StatelessWidget {
                         height: 72,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [Text("Description"), Text("URL")]),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                                style: Theme.of(context).textTheme.headlineSmall,
+                                textAlign: TextAlign.left,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 3,
+                              ),
+                              Text(
+                                "URL",
+                                style: Theme.of(context).textTheme.headlineSmall,
+                              )
+                            ]),
+                      ),
                     )
                   ],
                 ),
@@ -66,8 +94,16 @@ class ContentCard extends StatelessWidget {
                   Text("Recommenders number"),
                   Row(
                     children: [
-                      IconButton(onPressed: (){}, icon: Icon(Icons.bookmark), padding: EdgeInsets.all(0),),
-                      IconButton(onPressed: (){}, icon: Icon(Icons.more_horiz), padding: EdgeInsets.all(0),),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.bookmark),
+                        padding: EdgeInsets.all(0),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.more_horiz),
+                        padding: EdgeInsets.all(0),
+                      ),
                     ],
                   ),
                 ],
