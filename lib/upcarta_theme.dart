@@ -60,6 +60,8 @@ class UpcartaTheme {
 
   static ThemeData light() {
     return ThemeData(
+      primaryColor: Color(0xff4e89fd),
+      cardTheme: CardTheme(color: Color(0xfff8fbff)),
       brightness: Brightness.light,
       checkboxTheme:
           CheckboxThemeData(fillColor: MaterialStateColor.resolveWith((states) {
