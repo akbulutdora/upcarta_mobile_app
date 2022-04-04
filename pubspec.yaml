@@ -82,37 +82,44 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: SF Compact Text
-       fonts:
-         - asset: fonts/SFCompactText-Bold.ttf
-           style: bold
-         - asset: fonts/SFCompactText-BoldItalic.ttf
-           style: bold italic
+    - family: SFCompactText
+      fonts:
+        - asset: assets/fonts/SFCompactText-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/SFCompactText-BoldItalic.ttf
+          style: italic
+          weight: 700
 
-         - asset: fonts/SFCompactText-Heavy.ttf
-           style: heavy
-         - asset: fonts/SFCompactText-HeavyItalic.ttf
-           style: heavy italic
+        - asset: assets/fonts/SFCompactText-Heavy.ttf
+          weight: 800
+        - asset: assets/fonts/SFCompactText-HeavyItalic.ttf
+          style: italic
+          weight: 800
 
-         - asset: fonts/SFCompactText-Light.ttf
-           style: light
-         - asset: fonts/SFCompactText-LightItalic.ttf
-           style: light italic
+        - asset: assets/fonts/SFCompactText-Light.ttf
+          weight: 300
+        - asset: assets/fonts/SFCompactText-LightItalic.ttf
+          style: italic
+          weight: 300
 
-         - asset: fonts/SFCompactText-Medium.ttf
-           style: medium
-         - asset: fonts/SFCompactText-MediumItalic.ttf
-           style: medium italic
+        - asset: assets/fonts/SFCompactText-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/SFCompactText-MediumItalic.ttf
+          style: italic
+          weight: 500
 
-         - asset: fonts/SFCompactText-Regular.ttf
-           style: regular
-         - asset: fonts/SFCompactText-RegularItalic.ttf
-           style: regular italic
+        - asset: assets/fonts/SFCompactText-Regular.ttf
+          style: normal
+          weight: 400
+        - asset: assets/fonts/SFCompactText-RegularItalic.ttf
+          style: italic
+          weight: 400
 
-         - asset: fonts/SFCompactText-SemiBold.ttf
-           style: semibold
-         - asset: fonts/SFCompactText-SemiBoldItalic.ttf
-           style: semibold italic
-  #
+        - asset: assets/fonts/SFCompactText-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/SFCompactText-SemiBoldItalic.ttf
+          style: italic
+          weight: 600
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

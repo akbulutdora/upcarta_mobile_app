@@ -15,7 +15,7 @@ class ContentCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              title: Text(content.title),
+              title: Text(content.title, style: TextStyle(fontFamily: "SFCompactText",),),
               subtitle: Text('Lorem ipsum dolor sit amet'),
               trailing: Text("Type: " + content.contentType.getString()),
             ),
