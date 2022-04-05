@@ -149,8 +149,8 @@ class AppStateManager extends ChangeNotifier {
     initializeApp();
     notifyListeners();
   }
-}
   void follow(String s) {
 
   }
 }
+
