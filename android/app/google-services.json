@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "838181007011",
+    "firebase_url": "https://upcarta-77024-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "upcarta-77024",
+    "storage_bucket": "upcarta-77024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838181007011:android:7f9c3cfc8353a0dfa19916",
+        "android_client_info": {
+          "package_name": "com.upcarta.upcarta_mobile_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838181007011-97b0a9gk1jbcgenmsjpjufaef0pvufpo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa30_-u1oSi0ORrXfsVnjdJF2mot3Sozk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838181007011-97b0a9gk1jbcgenmsjpjufaef0pvufpo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "838181007011-570ica2df8p06873csimkj1ha42fc9dr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.upcarta.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
