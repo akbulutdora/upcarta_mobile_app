@@ -1,5 +1,5 @@
 // DORA
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'dart:io';
 
@@ -85,11 +85,96 @@ class HomeScreen extends StatelessWidget {
               ),
               Row(
                 children: [
-                  MyDropDownButton(),
+                  OutlinedButton(
+                    onPressed: () {
+                      // TODO: IMPLEMENT BUTTON BEHAVIOR
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          "Content Type",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          String.fromCharCode(
+                              Icons.keyboard_arrow_down_outlined.codePoint),
+                          style: TextStyle(
+                            inherit: false,
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w200,
+                            fontFamily:
+                                Icons.keyboard_arrow_down_outlined.fontFamily,
+                            package:
+                                Icons.keyboard_arrow_down_outlined.fontPackage,
+                          ),
+                        ),
+                      ],
+                    ),
+                    style: Theme.of(context).outlinedButtonTheme.style,
+                  ),
                   SizedBox(
                     width: 8,
                   ),
-                  MyDropDownButton(),
+                  OutlinedButton(
+                    onPressed: () {
+                      // TODO: IMPLEMENT BUTTON BEHAVIOR
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          "People",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          String.fromCharCode(
+                              Icons.keyboard_arrow_down_outlined.codePoint),
+                          style: TextStyle(
+                            inherit: false,
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w200,
+                            fontFamily:
+                            Icons.keyboard_arrow_down_outlined.fontFamily,
+                            package:
+                            Icons.keyboard_arrow_down_outlined.fontPackage,
+                          ),
+                        ),
+                      ],
+                    ),
+                    style: Theme.of(context).outlinedButtonTheme.style,
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  OutlinedButton(
+                    onPressed: () {
+                      // TODO: IMPLEMENT BUTTON BEHAVIOR
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          "Topic",
+                          style: Theme.of(context).textTheme.displaySmall,
+                        ),
+                        Text(
+                          String.fromCharCode(
+                              Icons.keyboard_arrow_down_outlined.codePoint),
+                          style: TextStyle(
+                            inherit: false,
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w200,
+                            fontFamily:
+                            Icons.keyboard_arrow_down_outlined.fontFamily,
+                            package:
+                            Icons.keyboard_arrow_down_outlined.fontPackage,
+                          ),
+                        ),
+                      ],
+                    ),
+                    style: Theme.of(context).outlinedButtonTheme.style,
+                  ),
                 ],
               ),
               Divider(
