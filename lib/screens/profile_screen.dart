@@ -1,4 +1,6 @@
 // BERNA
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/circle_image.dart';
@@ -90,25 +92,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget buildProfile() {
     return Container(
-
+      padding: const EdgeInsets.all(16.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CircleImage(
               imageProvider: AssetImage("images/mock.jpg"),
               //widget.user.profileImageUrl),
-              imageRadius: 60.0,
+              imageRadius: 55.0,
             ),
             MaterialButton(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               color: Colors.blue,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0)),
+                  borderRadius: BorderRadius.circular(3.0)),
               child: const Text(
                 'Follow',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(fontFamily: "SFCompactText",color: Colors.white, fontSize: 18),
               ),
               onPressed: () async {
                 Provider.of<AppStateManager>(context, listen: false)
@@ -116,51 +119,76 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             ),
           ]),
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 10.0),
           Text(
             widget.user.name,
-            style: const TextStyle(fontSize: 20),
+            style: TextStyle(
+              fontFamily: "SFCompactText", fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black,
+            ), // bold
           ),
           Text(
             '@${widget.user.username}',
-            style: const TextStyle(
-              fontSize: 15,
-              color: Colors.grey,
-            ),
+            style: Theme.of(context).textTheme.displaySmall,
           ),
-          Text(
-            widget.user.role,
-            style: const TextStyle(
-              fontSize: 15,
-              color: Colors.grey,
-            ),
-          ),
+          const SizedBox(height: 10.0),
           Text(
             widget.user.bio,
-            style: const TextStyle(
-              fontSize: 20,
-              color: Colors.grey,
-            ),
+            style: Theme.of(context).textTheme.displaySmall,
           ),
           Row(
             children: [
-              TextButton(onPressed: (){
-              }, child: Text(
-                '${widget.user.followers} following',
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
-                ),
-              ),),
-              TextButton(onPressed: (){
-              }, child: Text(
-                '${widget.user.following} following',
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
-                ),
-              ),)
+              TextButton(
+                  onPressed: () {},
+                  child: Row(children: [
+                    Text(
+                      '${widget.user.followers}',
+                      style: TextStyle(
+                        fontFamily: "SFCompactText",fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black,
+                      ),
+                    ),
+                     Text(
+                      ' followers',
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
+                  ]),
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 0, vertical: 8.0),
+                  )),
+              TextButton(
+                onPressed: () {},
+                child: Row(children: [
+                  Text(
+                    '${widget.user.following}',
+                    style:
+                      TextStyle(
+                        fontFamily: "SFCompactText",fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black,
+                      ),
+                  ),
+                   Text(
+                    ' following',
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                ]),
+              ),
             ],
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Row(
+              children: [
+                CircleImage(
+                  imageProvider: AssetImage("images/mock.jpg"),
+                  //widget.user.profileImageUrl),
+                  imageRadius: 20.0,
+                ),
+                Text(
+                  'Also followed by "mutualFollowed" and others',
+                  //this appears if there are mutuals and make others appear when there are more
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+              ],
+            ),
           ),
         ],
       ),
