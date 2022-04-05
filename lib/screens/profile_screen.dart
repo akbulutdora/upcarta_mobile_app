@@ -46,8 +46,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(height: 16.0),
           buildProfile(),
           Expanded(
-            child: buildMenu(),
-          )
+              //   child: buildMenu(),
+              child: buildTabController())
         ],
       ),
     );
@@ -90,6 +90,82 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  Widget buildTabController() {
+    return MaterialApp(
+        home: DefaultTabController(
+            length: 5,
+            child: Scaffold(
+                //put into the components
+                appBar: PreferredSize(
+                  preferredSize: Size.fromHeight(50.0),
+                  child: SafeArea(
+                    child: Column(
+                      children: [
+                        TabBar(
+                            unselectedLabelColor: Colors.black,
+                            isScrollable: true,
+                            labelColor: Colors.black,
+                            tabs: [
+                              Tab(text: "Overview"),
+                              Tab(text: "Content"),
+                              Tab(text: "Recs"),
+                              Tab(text: "Collections"),
+                              Tab(text: "Asks")
+                            ])
+                      ],
+                    ),
+                  ),
+                ),
+                body: TabBarView(
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "AYY",
+                          style: TextStyle(
+                              fontFamily: "SFCompactText",
+                              color: Colors.black,
+                              fontSize: 50),
+                        ),
+                        Text(
+                          "LMAO",
+                          style: TextStyle(
+                              fontFamily: "SFCompactText",
+                              color: Colors.black,
+                              fontSize: 50),
+                        ),
+                        Text(
+                          "LMAO",
+                          style: TextStyle(
+                              fontFamily: "SFCompactText",
+                              color: Colors.black,
+                              fontSize: 50),
+                        ),
+                        Text(
+                          "LMAO",
+                          style: TextStyle(
+                              fontFamily: "SFCompactText",
+                              color: Colors.black,
+                              fontSize: 50),
+                        ),
+                        Text(
+                          "LMAO",
+                          style: TextStyle(
+                              fontFamily: "SFCompactText",
+                              color: Colors.black,
+                              fontSize: 50),
+                        ),
+                      ],
+                    ),
+                    Column(),
+                    Column(),
+                    Column(),
+                    Column(),
+                  ],
+                ))),
+        debugShowCheckedModeBanner: false);
+  }
+
   Widget buildProfile() {
     return Container(
       padding: const EdgeInsets.all(16.0),
@@ -111,7 +187,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   borderRadius: BorderRadius.circular(3.0)),
               child: const Text(
                 'Follow',
-                style: TextStyle(fontFamily: "SFCompactText",color: Colors.white, fontSize: 18),
+                style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    color: Colors.white,
+                    fontSize: 18),
               ),
               onPressed: () async {
                 Provider.of<AppStateManager>(context, listen: false)
@@ -123,7 +202,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Text(
             widget.user.name,
             style: TextStyle(
-              fontFamily: "SFCompactText", fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black,
+              fontFamily: "SFCompactText",
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.black,
             ), // bold
           ),
           Text(
@@ -143,10 +225,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Text(
                       '${widget.user.followers}',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black,
+                        fontFamily: "SFCompactText",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: Colors.black,
                       ),
                     ),
-                     Text(
+                    Text(
                       ' followers',
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
@@ -160,12 +245,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(children: [
                   Text(
                     '${widget.user.following}',
-                    style:
-                      TextStyle(
-                        fontFamily: "SFCompactText",fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black,
-                      ),
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: Colors.black,
+                    ),
                   ),
-                   Text(
+                  Text(
                     ' following',
                     style: Theme.of(context).textTheme.displaySmall,
                   ),

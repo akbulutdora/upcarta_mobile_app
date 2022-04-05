@@ -13,7 +13,6 @@ class User {
   final String reset_password_token;
   final String reset_password_sent_at;
   final String avatar;
-  final String role;
   final String bio;
   final bool darkMode;
 
@@ -31,7 +30,6 @@ class User {
     required this.reset_password_token,
     required this.reset_password_sent_at,
     required this.avatar,
-    required this.role,
     required this.bio,
     required this.darkMode,
   });
