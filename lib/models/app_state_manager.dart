@@ -150,3 +150,7 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 }
+  void follow(String s) {
+
+  }
+}
