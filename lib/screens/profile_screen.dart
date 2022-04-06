@@ -117,76 +117,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
   ];
 
   Widget buildTabController() {
-    return MaterialApp(
-        home: DefaultTabController(
-            length: 5,
-            child: Scaffold(
-                //put into the components
-                appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(50.0),
-                  child: SafeArea(
-                    child: Column(
-                      children: [
-                        TabBar(
-                            unselectedLabelColor: Colors.black,
-                            isScrollable: true,
-                            labelColor: Colors.black,
-                            tabs: [
-                              Tab(text: "Overview"),
-                              Tab(text: "Content"),
-                              Tab(text: "Recs"),
-                              Tab(text: "Collections"),
-                              Tab(text: "Asks")
-                            ])
-                      ],
-                    ),
-                  ),
-                ),
-                body: TabBarView(
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          "AYY",
-                          style: TextStyle(
-                              fontFamily: "SFCompactText",
-                              color: Colors.black,
-                              fontSize: 50),
-                        ),
-                        Text(
-                          "LMAO",
-                          style: TextStyle(
-                              fontFamily: "SFCompactText",
-                              color: Colors.black,
-                              fontSize: 50),
-                        ),
-                        Text(
-                          "LMAO",
-                          style: TextStyle(
-                              fontFamily: "SFCompactText",
-                              color: Colors.black,
-                              fontSize: 50),
-                        ),
-                        Text(
-                          "LMAO",
-                          style: TextStyle(
-                              fontFamily: "SFCompactText",
-                              color: Colors.black,
-                              fontSize: 50),
-                        ),
-                        Text(
-                          "LMAO",
-                          style: TextStyle(
-                              fontFamily: "SFCompactText",
-                              color: Colors.black,
-                              fontSize: 50),
-                        ),
-                      ],
-                    ),
-                    Column(),
-                    Column(),
-                    Column(),
-                    Column(),
+    return Scaffold(
+      body: DefaultTabController(
+        length: 5,
+        child: NestedScrollView(
+          headerSliverBuilder: (context, value) {
+            return [
+              SliverAppBar(
+                floating: true,
+                pinned: true,
+                bottom: TabBar(
+                  labelColor: Colors.black,
+                  unselectedLabelColor: Colors.black,
+                  labelPadding: EdgeInsets.only(right:5, left:5),
+                  labelStyle: TextStyle(fontSize: 14),
+                  tabs: [
+                    Tab(text: "Overview"),
+                    Tab(text: "Content"),
                     Tab(text: "Recs"),
                     Tab(text: "Collections"),
                     Tab(text: "Asks")
