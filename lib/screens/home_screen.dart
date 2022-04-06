@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({
     Key? key,
   }) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
