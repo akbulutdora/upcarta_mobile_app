@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/circle_image.dart';
-
+import 'package:upcarta_mobile_app/components/content_list.dart';
 import '../models/models.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -43,11 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16.0),
-          buildProfile(),
-          Expanded(
-              //   child: buildMenu(),
-              child: buildTabController())
+          Expanded(child: SizedBox(child: buildTabController()))
         ],
       ),
     );
@@ -89,6 +85,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
+  final List<Content> contents = <Content>[
+    Content(
+        title: "podcast with bengisu",
+        id: "1",
+        contentType: ContentType.podcastEpisode,
+        added_by_id: '',
+        description: '',
+        created_at: '',
+        link: '',
+        image: ''),
+    Content(
+        title: "book written by berna",
+        id: "2",
+        contentType: ContentType.book,
+        added_by_id: '',
+        link: '',
+        description: '',
+        created_at: '',
+        image: ''),
+    Content(
+        title: "podcast about game-dev",
+        id: "4",
+        contentType: ContentType.podcast,
+        description: '',
+        created_at: '',
+        link: '',
+        added_by_id: '',
+        image: ''),
+  ];
 
   Widget buildTabController() {
     return MaterialApp(
@@ -161,9 +187,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(),
                     Column(),
                     Column(),
+                    Tab(text: "Recs"),
+                    Tab(text: "Collections"),
+                    Tab(text: "Asks")
                   ],
-                ))),
-        debugShowCheckedModeBanner: false);
+                ),
+                expandedHeight: 375,
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.pin,
+                  background: buildProfile(),
+
+                  // This is where you build the profile part
+                ),
+              ),
+
+            ];
+          },
+          body: TabBarView(
+            children: [
+              Column(
+                children: [
+                  ContentList(
+                    contentList: contents,
+                  ),
+                ],
+              ),
+              Column(),
+              Column(),
+              Column(),
+              Column(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget buildProfile() {
@@ -277,6 +334,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
+          const SizedBox(height: 20.0),
         ],
       ),
     );
