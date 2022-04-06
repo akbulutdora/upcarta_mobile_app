@@ -23,7 +23,7 @@ User mockUser = User(
   reset_password_token: '',
   confirmation_sent_at: '',
   password_hash: '',
-  confirmation_token: '',
+  confirmation_token: '', following: 12, followers: 10,
 );
 
 class Home extends StatefulWidget {
