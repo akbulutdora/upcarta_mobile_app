@@ -4,6 +4,8 @@ class User {
   final String username;
   final String id;
   final String email;
+  final int followers;
+  final int following;
   final String password_hash;
   final String confirmation_sent_at;
   final String confirmed_at;
@@ -20,6 +22,8 @@ class User {
     required this.id,
     required this.name,
     required this.email,
+    required this.followers,
+    required this.following,
     required this.password_hash,
     required this.confirmation_sent_at,
     required this.confirmed_at,

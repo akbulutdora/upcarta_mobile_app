@@ -14,6 +14,8 @@ class ProfileManager extends ChangeNotifier {
         darkMode: _darkMode,
         id: '12345',
         email: 'mana@gmail.com',
+        followers: 666,
+        following: 666,
         confirmed_at: '',
         reset_password_sent_at: '',
         reset_password_token: '',

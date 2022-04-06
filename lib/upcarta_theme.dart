@@ -79,6 +79,25 @@ class UpcartaTheme {
           CheckboxThemeData(fillColor: MaterialStateColor.resolveWith((states) {
         return Colors.black;
       })),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.transparent),
+          padding: MaterialStateProperty.all(
+            EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+          ),
+          side: MaterialStateProperty.all(
+            BorderSide(
+              color: Color(0xffdedede),
+              width: 0.5,
+            ),
+          ),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+      ),
       appBarTheme: const AppBarTheme(
         foregroundColor: Colors.black,
         backgroundColor: Colors.white,
