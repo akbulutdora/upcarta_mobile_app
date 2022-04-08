@@ -90,13 +90,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget buildProfile() {
     return Container(
-
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CircleImage(
               imageProvider: AssetImage("images/mock.jpg"),
               //widget.user.profileImageUrl),
@@ -144,22 +141,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           Row(
             children: [
-              TextButton(onPressed: (){
-              }, child: Text(
-                '${widget.user.followers} following',
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  '${widget.user.followers} following',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.grey,
+                  ),
                 ),
-              ),),
-              TextButton(onPressed: (){
-              }, child: Text(
-                '${widget.user.following} following',
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  '${widget.user.following} following',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.grey,
+                  ),
                 ),
-              ),)
+              )
             ],
           ),
         ],
