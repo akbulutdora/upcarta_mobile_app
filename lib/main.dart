@@ -7,6 +7,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:upcarta_mobile_app/blocs/navigation/constants/nav_bar_items.dart';
+import 'package:upcarta_mobile_app/blocs/navigation/navigation_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -41,7 +44,6 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  final _groceryManager = GroceryManager();
   final _profileManager = ProfileManager();
   final _appStateManager = AppStateManager();
   late AppRouter _appRouter;
@@ -51,7 +53,6 @@ class _WelcomeState extends State<Welcome> {
     super.initState();
     _appRouter = AppRouter(
       appStateManager: _appStateManager,
-      groceryManager: _groceryManager,
       profileManager: _profileManager,
     );
   }
@@ -60,8 +61,8 @@ class _WelcomeState extends State<Welcome> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => _groceryManager,
+        BlocProvider<NavigationCubit>(
+          create: (context) => NavigationCubit(),
         ),
         ChangeNotifierProvider(
           create: (context) => _profileManager,

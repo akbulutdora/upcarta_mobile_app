@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/screens/home.dart';
-
 import '../models/models.dart';
-import '../screens/screens.dart';
+import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 
 class AppRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
@@ -10,23 +8,19 @@ class AppRouter extends RouterDelegate
   final GlobalKey<NavigatorState> navigatorKey;
 
   final AppStateManager appStateManager;
-  final GroceryManager groceryManager;
   final ProfileManager profileManager;
 
   AppRouter({
     required this.appStateManager,
-    required this.groceryManager,
     required this.profileManager,
   }) : navigatorKey = GlobalKey<NavigatorState>() {
     appStateManager.addListener(notifyListeners);
-    groceryManager.addListener(notifyListeners);
     profileManager.addListener(notifyListeners);
   }
 
   @override
   void dispose() {
     appStateManager.removeListener(notifyListeners);
-    groceryManager.removeListener(notifyListeners);
     profileManager.removeListener(notifyListeners);
     super.dispose();
   }

@@ -1,9 +1,8 @@
 // BERNA
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../components/circle_image.dart';
-
-import '../models/models.dart';
+import 'package:upcarta_mobile_app/components/circle_image.dart';
+import 'package:upcarta_mobile_app/models/models.dart';
 
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page(User user) {
@@ -90,13 +89,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget buildProfile() {
     return Container(
-
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CircleImage(
               imageProvider: AssetImage("images/mock.jpg"),
               //widget.user.profileImageUrl),
@@ -144,22 +140,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           Row(
             children: [
-              TextButton(onPressed: (){
-              }, child: Text(
-                '${widget.user.followers} following',
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  '${widget.user.followers} following',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.grey,
+                  ),
                 ),
-              ),),
-              TextButton(onPressed: (){
-              }, child: Text(
-                '${widget.user.following} following',
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  '${widget.user.following} following',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.grey,
+                  ),
                 ),
-              ),)
+              )
             ],
           ),
         ],
