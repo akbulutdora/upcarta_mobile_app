@@ -62,34 +62,22 @@ class _LatestScreenState extends State<LatestScreen> {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(bottom: 8.0, right: 8, left: 8),
         child: Column(
           children: [
-            Consumer<AppStateManager>(
-              builder: (context, appState, _) => Authentication(
-                email: appState.email,
-                loginState: appState.loginState,
-                startLoginFlow: appState.startLoginFlow,
-                verifyEmail: appState.verifyEmail,
-                signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
-                cancelRegistration: appState.cancelRegistration,
-                registerAccount: appState.registerAccount,
-                signOut: appState.signOut,
-              ),
-            ),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Text("Latest"),
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                TextButton(
-                    onPressed: () {}, child: Text("Logout (will be moved)"))
-              ],
-            ),
+            // BU RSVP FIREBASE LOGIN İÇİN AMA YERİ BURASI DEĞİL
+            // Consumer<AppStateManager>(
+            //   builder: (context, appState, _) => Authentication(
+            //     email: appState.email,
+            //     loginState: appState.loginState,
+            //     startLoginFlow: appState.startLoginFlow,
+            //     verifyEmail: appState.verifyEmail,
+            //     signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
+            //     cancelRegistration: appState.cancelRegistration,
+            //     registerAccount: appState.registerAccount,
+            //     signOut: appState.signOut,
+            //   ),
+            // ),
             Divider(
               thickness: 1,
             ),
