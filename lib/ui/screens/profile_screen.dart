@@ -1,9 +1,8 @@
 // BERNA
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../components/circle_image.dart';
-
-import '../models/models.dart';
+import 'package:upcarta_mobile_app/components/circle_image.dart';
+import 'package:upcarta_mobile_app/models/models.dart';
 
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page(User user) {

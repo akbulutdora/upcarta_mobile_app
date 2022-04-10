@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/components/content_list.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:upcarta_mobile_app/screens/latest_screen.dart';
 import 'package:upcarta_mobile_app/src/authentication.dart';
 import 'package:provider/provider.dart';
+import 'screens.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -46,7 +46,9 @@ class HomeScreen extends StatelessWidget {
                       flex: 3,
                       child: TabBar(
                         isScrollable: true,
-                        labelPadding: EdgeInsets.only(right: 8, bottom: 2),  //çizginin mesafesini ayarlıyor
+                        labelPadding: EdgeInsets.only(
+                            right: 8,
+                            bottom: 2), //çizginin mesafesini ayarlıyor
                         indicatorPadding: EdgeInsets.only(right: 8),
                         padding: EdgeInsets.only(left: 16),
                         indicatorSize: TabBarIndicatorSize.label,

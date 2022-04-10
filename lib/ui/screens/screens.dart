@@ -7,3 +7,5 @@ export 'login_screen.dart';
 export 'search_screen.dart';
 export 'explore_screen.dart';
 export 'new_action_screen.dart';
+export 'latest_screen.dart';
+export 'home.dart';

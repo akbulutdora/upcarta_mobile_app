@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:provider/provider.dart';
-import 'package:upcarta_mobile_app/screens/new_action_screen.dart';
-import 'package:upcarta_mobile_app/screens/screens.dart';
+import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 
-import '../models/models.dart';
-import 'home_screen.dart';
-import 'my_library_screen.dart';
-import 'profile_screen.dart';
+import 'package:upcarta_mobile_app/blocs/navigation/constants/nav_bar_items.dart';
+import 'package:upcarta_mobile_app/blocs/navigation/navigation_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Home extends StatefulWidget {
   static MaterialPage page(int currentTab) {
@@ -44,34 +42,40 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppStateManager>(
-      builder: (
-        context,
-        appStateManager,
-        child,
-      ) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Upcarta',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            actions: [
-              profileButton(),
-            ],
-          ),
-          body: IndexedStack(
-            index: widget.currentTab,
-            children: pages,
-          ),
-          bottomNavigationBar: BottomNavigationBar(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Upcarta',
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        actions: [
+          profileButton(),
+        ],
+      ),
+      bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
+        builder: (context, state) {
+          return BottomNavigationBar(
             selectedItemColor:
                 Theme.of(context).textSelectionTheme.selectionColor,
             unselectedItemColor: Colors.grey,
             currentIndex: widget.currentTab,
             onTap: (index) {
-              Provider.of<AppStateManager>(context, listen: false)
-                  .goToTab(index);
+              if (index == 0) {
+                BlocProvider.of<NavigationCubit>(context)
+                    .getNavBarItem(NavbarItem.home);
+              } else if (index == 1) {
+                BlocProvider.of<NavigationCubit>(context)
+                    .getNavBarItem(NavbarItem.explore);
+              } else if (index == 2) {
+                BlocProvider.of<NavigationCubit>(context)
+                    .getNavBarItem(NavbarItem.newItem);
+              } else if (index == 3) {
+                BlocProvider.of<NavigationCubit>(context)
+                    .getNavBarItem(NavbarItem.myLibrary);
+              } else if (index == 4) {
+                BlocProvider.of<NavigationCubit>(context)
+                    .getNavBarItem(NavbarItem.search);
+              }
             },
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
@@ -95,9 +99,25 @@ class _HomeState extends State<Home> {
                 label: 'Search Screen',
               ),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
+      body: BlocBuilder<NavigationCubit, NavigationState>(
+        builder: (context, state) {
+          if (state.navbarItem == NavbarItem.home) {
+            return HomeScreen();
+          } else if (state.navbarItem == NavbarItem.explore) {
+            return MyExploreScreen();
+          } else if (state.navbarItem == NavbarItem.newItem) {
+            return NewPostScreen();
+          } else if (state.navbarItem == NavbarItem.myLibrary) {
+            return MyLibraryScreen();
+          } else if (state.navbarItem == NavbarItem.search) {
+            return SearchScreen();
+          }
+          return Container();
+        },
+      ),
     );
   }
 
