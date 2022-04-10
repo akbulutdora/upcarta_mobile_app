@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
             return BottomNavigationBar(
               selectedItemColor: Colors.black,
               unselectedItemColor: Colors.black,
-              currentIndex: widget.currentTab,
+              currentIndex: state.index,
               onTap: (index) {
                 if (index == 0) {
                   BlocProvider.of<NavigationCubit>(context)
