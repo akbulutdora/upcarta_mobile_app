@@ -79,35 +79,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-class MyDropDownButton extends StatefulWidget {
-  const MyDropDownButton({Key? key}) : super(key: key);
-
-  @override
-  State<MyDropDownButton> createState() => _MyDropDownButtonState();
-}
-
-class _MyDropDownButtonState extends State<MyDropDownButton> {
-  String dropdownValue = 'One';
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      borderRadius: BorderRadius.circular(2),
-      icon: const Icon(Icons.arrow_downward),
-      onChanged: (String? newValue) {
-        setState(() {
-          dropdownValue = newValue!;
-        });
-      },
-      items: <String>['One', 'Two', 'Free', 'Four']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
-  }
-}
