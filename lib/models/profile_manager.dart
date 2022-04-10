@@ -23,6 +23,7 @@ class ProfileManager extends ChangeNotifier {
         password_hash: '',
         confirmation_token: '',
       );
+  // User set setUser(User user);
 
   bool get didSelectUser => _didSelectUser;
 
