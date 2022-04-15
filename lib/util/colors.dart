@@ -8,6 +8,7 @@ class AppColors {
   static Color lightText = const Color(0xffc4c4c4);
   static Color contentText = const Color(0xff949494);
   static Color contentBoxFill = const Color(0xfff8fbff);
+  static Color edgeColor = const Color(0xffC4C4C4);
 
   // TODO: ADD OTHER COLORS
 

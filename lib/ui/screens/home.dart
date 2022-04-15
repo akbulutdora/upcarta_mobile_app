@@ -1,13 +1,14 @@
 // DORA
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 import 'package:upcarta_mobile_app/blocs/navigation/constants/nav_bar_items.dart';
 import 'package:upcarta_mobile_app/blocs/navigation/navigation_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 User mockUser = User(
   name: 'Mana',
@@ -72,9 +73,11 @@ class _HomeState extends State<Home> {
     ) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(
+          titleSpacing:1,
+          leading: Icon(Icons.pause_circle),
+          title: const Text(
             'Upcarta',
-            style: Theme.of(context).textTheme.headline6,
+            style: kAppBarTextStyle,
           ),
           actions: [
             profileButton(),
