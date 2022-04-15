@@ -50,10 +50,13 @@ dependencies:
   cloud_firestore:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
+  auto_route: ^3.2.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  auto_route_generator: any
+  build_runner: ^2.1.9
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
