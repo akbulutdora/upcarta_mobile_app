@@ -3,9 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../components/circle_image.dart';
 import '../../models/user.dart';
-import '../components/circle_image.dart';
+import 'package:upcarta_mobile_app/components/circle_image.dart';
 import 'package:upcarta_mobile_app/components/content_list.dart';
 
 class ProfileScreen extends StatefulWidget {
