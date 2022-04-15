@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:upcarta_mobile_app/components/circle_image.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
+import 'package:auto_route/auto_route.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page(User user) {
@@ -58,10 +60,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title: const Text('Log out'),
           onTap: () {
             // 1
-            Provider.of<ProfileManager>(context, listen: false)
-                .tapOnProfile(false);
+            // Provider.of<ProfileManager>(context, listen: false)
+            //     .tapOnProfile(false);
             // 2
-            Provider.of<AppStateManager>(context, listen: false).logout();
+            // Provider.of<AppStateManager>(context, listen: false).logout();
           },
         )
       ],
@@ -107,8 +109,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () async {
-                Provider.of<AppStateManager>(context, listen: false)
-                    .follow('followUsername');
+                // Provider.of<AppStateManager>(context, listen: false)
+                //     .follow('followUsername');
               },
             ),
           ]),

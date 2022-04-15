@@ -3,6 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import'package:upcarta_mobile_app/models/models.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/navigation/routes.dart';
+
+import '../../navigation/routes.gr.dart';
+
 
 class OnboardingScreen extends StatelessWidget {
   static MaterialPage page() {
@@ -30,8 +35,9 @@ class OnboardingScreen extends StatelessWidget {
             style: TextStyle(color: Colors.white),
           ),
           onPressed: () async {
-            Provider.of<AppStateManager>(context, listen: false)
-                .completeOnboarding();
+            // Provider.of<AppStateManager>(context, listen: false)
+            //     .completeOnboarding();
+            context.router.push(HomeRoute());
           },
         ),
       ),);

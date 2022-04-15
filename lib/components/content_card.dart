@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 class ContentCard extends StatelessWidget {
   final Content content;
@@ -62,6 +63,16 @@ class ContentCard extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                       child: Image.network(
                         content.image,
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
+                          return Container(
+                              padding: EdgeInsets.all(8),
+                              width: 100,
+                              child: const Text(
+                                'Could not find image 😢',
+                                style: kTextStyle11,
+                              ));
+                        },
                         height: 72,
                       ),
                     ),

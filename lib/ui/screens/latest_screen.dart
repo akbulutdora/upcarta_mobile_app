@@ -4,6 +4,8 @@ import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/src/authentication.dart';
 import 'package:provider/provider.dart';
+import 'package:auto_route/auto_route.dart';
+
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final List<Content> contents = <Content>[

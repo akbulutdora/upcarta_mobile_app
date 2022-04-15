@@ -3,9 +3,11 @@ class UpcartaPages {
   static String loginPath = '/login';
   static String onboardingPath = '/onboarding';
   static String home = '/';
+  static String feedPath = '/feed';
   static String profilePath = '/profile';
   static String accountPath = '/account';
   static String searchPath = '/search';
   static String explorePath = '/explore';
   static String newActionPath = '/new';
+  static String myLibraryPath = "/myLibrary";
 }
