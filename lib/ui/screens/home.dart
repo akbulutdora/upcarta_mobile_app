@@ -6,8 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
-import 'package:upcarta_mobile_app/blocs/navigation/constants/nav_bar_items.dart';
-import 'package:upcarta_mobile_app/blocs/navigation/navigation_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
@@ -44,13 +42,7 @@ class _HomeState extends State<Home> {
     return
       // return Scaffold(
       //   appBar: AppBar(
-      //     elevation: 0,
-      //     titleSpacing:1,
-      //     leading: Icon(Icons.pause_circle),
-      //     title: const Text(
-      //       'Upcarta',
-      //       style: kAppBarTextStyle,
-      //     ),
+
       //     actions: [
       //       profileButton(),
       //     ],
@@ -133,12 +125,16 @@ class _HomeState extends State<Home> {
       // );
        AutoTabsScaffold(
          appBarBuilder: (_, tabsRouter) => AppBar(
-           backgroundColor: AppColors.primary,
-           title: const Text('Upcarta'),
-           centerTitle: true,
-           leading: const AutoBackButton(),
+               elevation: 0,
+               titleSpacing:0.0,
+               leading: Icon(Icons.pause_circle, size: 30, color: AppColors.primary,),
+               title: const Text(
+                 'Upcarta',
+                 style: kAppBarTextStyle,
+               ),
+           backgroundColor: Colors.white,
          ),
-        routes: [
+        routes: const [
           FeedScreenRoute(),
           ExploreScreenRoute(),
           NewPostScreenRoute(),

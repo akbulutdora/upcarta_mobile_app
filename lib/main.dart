@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'upcarta_theme.dart';
-import 'models/models.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:upcarta_mobile_app/blocs/navigation/constants/nav_bar_items.dart';
-import 'package:upcarta_mobile_app/blocs/navigation/navigation_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/navigation//routes.gr.dart';
 

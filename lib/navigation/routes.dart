@@ -9,23 +9,15 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
         initial: true,
         path: '/splash',
         page: SplashScreen,
-        children: [
-          RedirectRoute(path: '*', redirectTo: ''),
-        ],
+
       ),
       AutoRoute(
         path: '/login',
         page: LoginScreen,
-        children: [
-          RedirectRoute(path: '*', redirectTo: ''),
-        ],
       ),
       AutoRoute(
         path: '/onboarding',
         page: OnboardingScreen,
-        children: [
-          RedirectRoute(path: '*', redirectTo: ''),
-        ],
       ),
       groupTabRouter,
       // AutoRoute(
@@ -47,8 +39,9 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 class $AppRouter {}
 
 const groupTabRouter = AutoRoute(
-  path: '/',
+  path: '/home',
   page: Home,
+  initial: false,
   children: [
     AutoRoute(
       path: 'feed',

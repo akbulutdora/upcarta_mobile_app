@@ -60,30 +60,12 @@ class AppRouter extends _i2.RootStackRouter {
 
   @override
   List<_i2.RouteConfig> get routes => [
-        _i2.RouteConfig(SplashScreenRoute.name, path: '/splash', children: [
-          _i2.RouteConfig('*#redirect',
-              path: '*',
-              parent: SplashScreenRoute.name,
-              redirectTo: '',
-              fullMatch: true)
-        ]),
-        _i2.RouteConfig(LoginScreenRoute.name, path: '/login', children: [
-          _i2.RouteConfig('*#redirect',
-              path: '*',
-              parent: LoginScreenRoute.name,
-              redirectTo: '',
-              fullMatch: true)
-        ]),
-        _i2.RouteConfig(OnboardingScreenRoute.name,
-            path: '/onboarding',
-            children: [
-              _i2.RouteConfig('*#redirect',
-                  path: '*',
-                  parent: OnboardingScreenRoute.name,
-                  redirectTo: '',
-                  fullMatch: true)
-            ]),
-        _i2.RouteConfig(HomeRoute.name, path: '/', children: [
+        _i2.RouteConfig('/#redirect',
+            path: '/', redirectTo: '/splash', fullMatch: true),
+        _i2.RouteConfig(SplashScreenRoute.name, path: '/splash'),
+        _i2.RouteConfig(LoginScreenRoute.name, path: '/login'),
+        _i2.RouteConfig(OnboardingScreenRoute.name, path: '/onboarding'),
+        _i2.RouteConfig(HomeRoute.name, path: '/home', children: [
           _i2.RouteConfig(FeedScreenRoute.name,
               path: 'feed', parent: HomeRoute.name),
           _i2.RouteConfig(ExploreScreenRoute.name,
@@ -108,9 +90,7 @@ class AppRouter extends _i2.RootStackRouter {
 /// generated route for
 /// [_i1.SplashScreen]
 class SplashScreenRoute extends _i2.PageRouteInfo<void> {
-  const SplashScreenRoute({List<_i2.PageRouteInfo>? children})
-      : super(SplashScreenRoute.name,
-            path: '/splash', initialChildren: children);
+  const SplashScreenRoute() : super(SplashScreenRoute.name, path: '/splash');
 
   static const String name = 'SplashScreenRoute';
 }
@@ -118,8 +98,7 @@ class SplashScreenRoute extends _i2.PageRouteInfo<void> {
 /// generated route for
 /// [_i1.LoginScreen]
 class LoginScreenRoute extends _i2.PageRouteInfo<void> {
-  const LoginScreenRoute({List<_i2.PageRouteInfo>? children})
-      : super(LoginScreenRoute.name, path: '/login', initialChildren: children);
+  const LoginScreenRoute() : super(LoginScreenRoute.name, path: '/login');
 
   static const String name = 'LoginScreenRoute';
 }
@@ -127,9 +106,8 @@ class LoginScreenRoute extends _i2.PageRouteInfo<void> {
 /// generated route for
 /// [_i1.OnboardingScreen]
 class OnboardingScreenRoute extends _i2.PageRouteInfo<void> {
-  const OnboardingScreenRoute({List<_i2.PageRouteInfo>? children})
-      : super(OnboardingScreenRoute.name,
-            path: '/onboarding', initialChildren: children);
+  const OnboardingScreenRoute()
+      : super(OnboardingScreenRoute.name, path: '/onboarding');
 
   static const String name = 'OnboardingScreenRoute';
 }
@@ -138,7 +116,7 @@ class OnboardingScreenRoute extends _i2.PageRouteInfo<void> {
 /// [_i1.Home]
 class HomeRoute extends _i2.PageRouteInfo<void> {
   const HomeRoute({List<_i2.PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/', initialChildren: children);
+      : super(HomeRoute.name, path: '/home', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }

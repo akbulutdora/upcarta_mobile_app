@@ -23,12 +23,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // comment out next line if you wanna stay on splash screen page more than 2 seconds
-    // Provider.of<AppStateManager>(context, listen: false).initializeApp();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   // comment out next line if you wanna stay on splash screen page more than 2 seconds
+  //   // Provider.of<AppStateManager>(context, listen: false).initializeApp();
+  // }
 
   @override
   Widget build(BuildContext context) {
