@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 
+import '../util/colors.dart';
+import '../util/styles.dart';
+
 class ContentCard extends StatelessWidget {
   final Content content;
 
@@ -10,46 +13,129 @@ class ContentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 240,
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: AppColors.edgeColor)),
+      // height: 240,
       child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text(content.title),
+              Row(
+                children: [
+                  Icon(
+                    Icons.thumb_up_alt_outlined,
+                    size: 15,
+                    color: Color(0xff949494),
+                  ),
+                  SizedBox(width: 6),
+                  Text(
+                    "Recommended by",
+                    style: TextStyle(
+                        fontFamily: "SF Compact Text",
+                        fontWeight: FontWeight.normal,
+                        fontSize: 10,
+                        color: Color(0xff949494)),
+                  ),
+                ],
+              ),
+              Divider(),
+              SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(content.title, style: contentCardTitleStyle),
+                  Container(
+                    height: 20,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          iconSize: 20,
+                          onPressed: () {},
+                          icon: Icon(Icons.bookmark),
+                          padding: EdgeInsets.all(0),
+                        ),
+                        IconButton(
+                          iconSize: 20,
+                          onPressed: () {},
+                          icon: Icon(Icons.more_horiz),
+                          padding: EdgeInsets.all(0),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               Row(children: [
-                Icon(Icons.local_movies_outlined),
+                Icon(
+                  Icons.local_movies_outlined,
+                  size: 20,
+                  color: AppColors.primary,
+                ),
+                SizedBox(
+                  width: 2,
+                ),
                 Text(
                   content.contentType.getString(),
-                  style: Theme.of(context).textTheme.displaySmall,
+                  style: TextStyle(
+                      fontFamily: "SF Compact Text",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 10,
+                      color: AppColors.primary),
                 ),
-                Spacer(
-                  flex: 1,
+                SizedBox(
+                  width: 6,
+                ),
+                Text("\u00B7"),
+                SizedBox(
+                  width: 6,
                 ),
                 Text(
-                  "creator",
-                  style: Theme.of(context).textTheme.displaySmall,
+                  "By creator",
+                  style: TextStyle(
+                      fontFamily: "SF Compact Text",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 10,
+                      color: AppColors.secondary),
                 ),
-                Spacer(
-                  flex: 1,
+                SizedBox(
+                  width: 6,
+                ),
+                Text("\u00B7"),
+                SizedBox(
+                  width: 6,
                 ),
                 Text(
                   "created date",
-                  style: Theme.of(context).textTheme.displaySmall,
+                  style: TextStyle(
+                      fontFamily: "SF Compact Text",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 10,
+                      color: AppColors.secondary),
                 ),
-                Spacer(
-                  flex: 1,
+                SizedBox(
+                  width: 6,
+                ),
+                Text("\u00B7"),
+                SizedBox(
+                  width: 6,
                 ),
                 Text(
                   "genre",
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
-                Spacer(
-                  flex: 3,
+                  style: TextStyle(
+                      fontFamily: "SF Compact Text",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 10,
+                      color: AppColors.secondary),
                 ),
               ]),
               Container(
@@ -73,16 +159,18 @@ class ContentCard extends StatelessWidget {
                             children: [
                               Text(
                                 content.description,
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall,
+                                style: contentCardDescriptionStyle,
                                 textAlign: TextAlign.left,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 3,
                               ),
                               Text(
                                 content.link,
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall,
+                                style: TextStyle(
+                                    fontFamily: "SF Compact Text",
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 10,
+                                    color: AppColors.primary),
                               )
                             ]),
                       ),
@@ -90,23 +178,20 @@ class ContentCard extends StatelessWidget {
                   ],
                 ),
               ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Recommenders number"),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.bookmark),
-                        padding: EdgeInsets.all(0),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.more_horiz),
-                        padding: EdgeInsets.all(0),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
+                    child: Text(
+                      "10 recommenders",
+                      style: TextStyle(
+                          fontFamily: "SF Compact Text",
+                          fontWeight: FontWeight.normal,
+                          fontSize: 10,
+                          color: AppColors.secondary),
+                    ),
                   ),
                 ],
               ),
