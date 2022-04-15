@@ -3,24 +3,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../components/circle_image.dart';
+import '../../models/user.dart';
 import '../components/circle_image.dart';
 import 'package:upcarta_mobile_app/components/content_list.dart';
-import '../models/models.dart';
 
 class ProfileScreen extends StatefulWidget {
-  static MaterialPage page(User user) {
+  static MaterialPage page() {
     return MaterialPage(
-      name: UpcartaPages.profilePath,
-      key: ValueKey(UpcartaPages.profilePath),
-      child: ProfileScreen(user: user),
+      child: ProfileScreen(),
     );
   }
 
-  final User user;
+  //final User user;
 
   const ProfileScreen({
     Key? key,
-    required this.user,
+    //required this.user,
   }) : super(key: key);
 
   @override
@@ -35,8 +34,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () {
-            Provider.of<ProfileManager>(context, listen: false)
-                .tapOnProfile(false);
+            //Provider.of<ProfileManager>(context, listen: false)
+            //    .tapOnProfile(false);
           },
         ),
       ),
@@ -48,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
+/*
   Widget buildMenu() {
     return ListView(
       children: [
@@ -66,7 +65,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ],
     );
   }
-
+*/
+  /*
   Widget buildDarkModeRow() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -77,15 +77,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Switch(
             value: widget.user.darkMode,
             onChanged: (value) {
-              Provider.of<ProfileManager>(context, listen: false).darkMode =
-                  value;
+             // Provider.of<ProfileManager>(context, listen: false).darkMode =
+             //     value;
             },
           )
         ],
       ),
     );
   }
+  */
 
+/*
   final List<Content> contents = <Content>[
     Content(
         title: "podcast with bengisu",
@@ -115,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         added_by_id: '',
         image: ''),
   ];
-
+*/
   Widget buildTabController() {
     return Scaffold(
       body: DefaultTabController(
@@ -154,9 +156,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Column(
                 children: [
-                  ContentList(
-                    contentList: contents,
-                  ),
+                  //ContentList(
+                    //contentList: contents,
+                  //),
                 ],
               ),
               Column(),
@@ -179,7 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CircleImage(
-              imageProvider: AssetImage("images/mock.jpg"),
+              imageProvider: AssetImage("assets/images/mock.jpg"),
               //widget.user.profileImageUrl),
               imageRadius: 55.0,
             ),
@@ -197,14 +199,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     fontSize: 18),
               ),
               onPressed: () async {
-                Provider.of<AppStateManager>(context, listen: false)
-                    .follow('followUsername');
+                //Provider.of<AppStateManager>(context, listen: false)
+                //    .follow('followUsername');
               },
             ),
           ]),
           const SizedBox(height: 10.0),
           Text(
-            widget.user.name,
+            //widget.user.name,
+            "Idil",
             style: TextStyle(
               fontFamily: "SFCompactText",
               fontWeight: FontWeight.bold,
@@ -213,12 +216,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ), // bold
           ),
           Text(
-            '@${widget.user.username}',
+            //'@${widget.user.username}',
+            "lidl",
             style: Theme.of(context).textTheme.displaySmall,
           ),
           const SizedBox(height: 10.0),
           Text(
-            widget.user.bio,
+            //widget.user.bio,
+            "loremipsum",
             style: Theme.of(context).textTheme.displaySmall,
           ),
           Row(
@@ -227,7 +232,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () {},
                   child: Row(children: [
                     Text(
-                      '${widget.user.followers}',
+                      //'${widget.user.followers}',
+                      "666",
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.bold,
@@ -248,7 +254,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () {},
                 child: Row(children: [
                   Text(
-                    '${widget.user.following}',
+                    //'${widget.user.following}',
+                    "666",
                     style: TextStyle(
                       fontFamily: "SFCompactText",
                       fontWeight: FontWeight.bold,
