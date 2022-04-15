@@ -29,8 +29,6 @@ User user = User(
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page() {
     return MaterialPage(
-      name: UpcartaPages.profilePath,
-      key: ValueKey(UpcartaPages.profilePath),
       child: ProfileScreen(),
     );
   }
@@ -109,7 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CircleImage(
-              imageProvider: AssetImage("images/mock.jpg"),
+              imageProvider: AssetImage("assets/images/mock.jpg"),
               //widget.user.profileImageUrl),
               imageRadius: 60.0,
             ),

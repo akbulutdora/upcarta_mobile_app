@@ -12,8 +12,6 @@ import '../../navigation/routes.gr.dart';
 class OnboardingScreen extends StatelessWidget {
   static MaterialPage page() {
     return MaterialPage(
-      name: UpcartaPages.onboardingPath,
-      key: ValueKey(UpcartaPages.onboardingPath),
       child: const OnboardingScreen(),
     );
   }

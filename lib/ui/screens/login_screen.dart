@@ -11,8 +11,6 @@ import '../../navigation/routes.gr.dart';
 class LoginScreen extends StatelessWidget {
   static MaterialPage page() {
     return MaterialPage(
-      name: UpcartaPages.loginPath,
-      key: ValueKey(UpcartaPages.loginPath),
       child: const LoginScreen(),
     );
   }

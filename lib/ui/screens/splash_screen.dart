@@ -10,8 +10,6 @@ import '../../navigation/routes.gr.dart';
 class SplashScreen extends StatefulWidget {
   static MaterialPage page() {
     return MaterialPage(
-      name: UpcartaPages.splashPath,
-      key: ValueKey(UpcartaPages.splashPath),
       child: const SplashScreen(),
     );
   }

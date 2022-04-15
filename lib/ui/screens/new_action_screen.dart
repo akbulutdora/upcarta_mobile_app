@@ -7,8 +7,6 @@ import 'package:auto_route/auto_route.dart';
 class NewPostScreen extends StatelessWidget {
   static MaterialPage page() {
     return MaterialPage(
-      name: UpcartaPages.loginPath,
-      key: ValueKey(UpcartaPages.loginPath),
       child: const NewPostScreen(),
     );
   }
