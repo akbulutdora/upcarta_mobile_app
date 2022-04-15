@@ -1,37 +1,27 @@
 // BERNA
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:upcarta_mobile_app/components/circle_image.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:auto_route/auto_route.dart';
-
-User user = User(
-  name: 'Mana',
-  username: 'manaira',
-  //how to put @ before?
-  role: 'Flutterista',
-  avatar: 'assets/images/mock.jpg',
-  bio:
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum, a id nunc, odio augue enim. Viverra nullam pulvinar volutpat ultricies hendrerit sed. Morbi eget a nisi nulla vulputate vestibulum purus sodales.',
-  darkMode: false,
-  id: '12345',
-  email: 'mana@gmail.com',
-  confirmed_at: '',
-  reset_password_sent_at: '',
-  reset_password_token: '',
-  confirmation_sent_at: '',
-  password_hash: '',
-  confirmation_token: '',
-  following: 12,
-  followers: 10,
-);
+import '../components/circle_image.dart';
+import 'package:upcarta_mobile_app/components/content_list.dart';
+import '../models/models.dart';
 
 class ProfileScreen extends StatefulWidget {
-  static MaterialPage page() {
+  static MaterialPage page(User user) {
     return MaterialPage(
-      child: ProfileScreen(),
+      name: UpcartaPages.profilePath,
+      key: ValueKey(UpcartaPages.profilePath),
+      child: ProfileScreen(user: user),
     );
   }
+
+  final User user;
+
+  const ProfileScreen({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -53,11 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 16.0),
-          buildProfile(),
-          Expanded(
-            child: buildMenu(),
-          )
+          Expanded(child: SizedBox(child: buildTabController()))
         ],
       ),
     );
@@ -71,10 +57,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title: const Text('Log out'),
           onTap: () {
             // 1
-            // Provider.of<ProfileManager>(context, listen: false)
-            //     .tapOnProfile(false);
+            Provider.of<ProfileManager>(context, listen: false)
+                .tapOnProfile(false);
             // 2
-            // Provider.of<AppStateManager>(context, listen: false).logout();
+            Provider.of<AppStateManager>(context, listen: false).logout();
           },
         )
       ],
@@ -89,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           const Text('Dark Mode'),
           Switch(
-            value: user.darkMode,
+            value: widget.user.darkMode,
             onChanged: (value) {
               Provider.of<ProfileManager>(context, listen: false).darkMode =
                   value;
@@ -100,81 +86,202 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  final List<Content> contents = <Content>[
+    Content(
+        title: "podcast with bengisu",
+        id: "1",
+        contentType: ContentType.podcastEpisode,
+        added_by_id: '',
+        description: '',
+        created_at: '',
+        link: '',
+        image: ''),
+    Content(
+        title: "book written by berna",
+        id: "2",
+        contentType: ContentType.book,
+        added_by_id: '',
+        link: '',
+        description: '',
+        created_at: '',
+        image: ''),
+    Content(
+        title: "podcast about game-dev",
+        id: "4",
+        contentType: ContentType.podcast,
+        description: '',
+        created_at: '',
+        link: '',
+        added_by_id: '',
+        image: ''),
+  ];
+
+  Widget buildTabController() {
+    return Scaffold(
+      body: DefaultTabController(
+        length: 5,
+        child: NestedScrollView(
+          headerSliverBuilder: (context, value) {
+            return [
+              SliverAppBar(
+                floating: true,
+                pinned: true,
+                bottom: TabBar(
+                  labelColor: Colors.black,
+                  unselectedLabelColor: Colors.black,
+                  labelPadding: EdgeInsets.only(right:5, left:5),
+                  labelStyle: TextStyle(fontSize: 14),
+                  tabs: [
+                    Tab(text: "Overview"),
+                    Tab(text: "Content"),
+                    Tab(text: "Recs"),
+                    Tab(text: "Collections"),
+                    Tab(text: "Asks")
+                  ],
+                ),
+                expandedHeight: 375,
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.pin,
+                  background: buildProfile(),
+
+                  // This is where you build the profile part
+                ),
+              ),
+
+            ];
+          },
+          body: TabBarView(
+            children: [
+              Column(
+                children: [
+                  ContentList(
+                    contentList: contents,
+                  ),
+                ],
+              ),
+              Column(),
+              Column(),
+              Column(),
+              Column(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget buildProfile() {
     return Container(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CircleImage(
-              imageProvider: AssetImage("assets/images/mock.jpg"),
+              imageProvider: AssetImage("images/mock.jpg"),
               //widget.user.profileImageUrl),
-              imageRadius: 60.0,
+              imageRadius: 55.0,
             ),
             MaterialButton(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               color: Colors.blue,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0)),
+                  borderRadius: BorderRadius.circular(3.0)),
               child: const Text(
                 'Follow',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    color: Colors.white,
+                    fontSize: 18),
               ),
               onPressed: () async {
-                // Provider.of<AppStateManager>(context, listen: false)
-                //     .follow('followUsername');
+                Provider.of<AppStateManager>(context, listen: false)
+                    .follow('followUsername');
               },
             ),
           ]),
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 10.0),
           Text(
-            user.name,
-            style: const TextStyle(fontSize: 20),
-          ),
-          Text(
-            '@${user.username}',
-            style: const TextStyle(
-              fontSize: 15,
-              color: Colors.grey,
-            ),
-          ),
-          Text(
-            user.role,
-            style: const TextStyle(
-              fontSize: 15,
-              color: Colors.grey,
-            ),
-          ),
-          Text(
-            user.bio,
-            style: const TextStyle(
+            widget.user.name,
+            style: TextStyle(
+              fontFamily: "SFCompactText",
+              fontWeight: FontWeight.bold,
               fontSize: 20,
-              color: Colors.grey,
-            ),
+              color: Colors.black,
+            ), // bold
+          ),
+          Text(
+            '@${widget.user.username}',
+            style: Theme.of(context).textTheme.displaySmall,
+          ),
+          const SizedBox(height: 10.0),
+          Text(
+            widget.user.bio,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
           Row(
             children: [
               TextButton(
-                onPressed: () {},
-                child: Text(
-                  '${user.followers} following',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
+                  onPressed: () {},
+                  child: Row(children: [
+                    Text(
+                      '${widget.user.followers}',
+                      style: TextStyle(
+                        fontFamily: "SFCompactText",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      ' followers',
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
+                  ]),
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 0, vertical: 8.0),
+                  )),
               TextButton(
                 onPressed: () {},
-                child: Text(
-                  '${user.following} following',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.grey,
+                child: Row(children: [
+                  Text(
+                    '${widget.user.following}',
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-              )
+                  Text(
+                    ' following',
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                ]),
+              ),
             ],
           ),
+          TextButton(
+            onPressed: () {},
+            child: Row(
+              children: [
+                CircleImage(
+                  imageProvider: AssetImage("images/mock.jpg"),
+                  //widget.user.profileImageUrl),
+                  imageRadius: 20.0,
+                ),
+                Text(
+                  'Also followed by "mutualFollowed" and others',
+                  //this appears if there are mutuals and make others appear when there are more
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20.0),
         ],
       ),
     );
