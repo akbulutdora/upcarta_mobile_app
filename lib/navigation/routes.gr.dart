@@ -12,7 +12,6 @@
 
 import 'package:auto_route/auto_route.dart' as _i2;
 import 'package:flutter/material.dart' as _i3;
-import 'package:upcarta_mobile_app/models/models.dart' as _i4;
 import 'package:upcarta_mobile_app/ui/screens/screens.dart' as _i1;
 
 class AppRouter extends _i2.RootStackRouter {
@@ -38,10 +37,8 @@ class AppRouter extends _i2.RootStackRouter {
           routeData: routeData, child: const _i1.Home());
     },
     FeedScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<FeedScreenRouteArgs>(
-          orElse: () => const FeedScreenRouteArgs());
       return _i2.AdaptivePage<dynamic>(
-          routeData: routeData, child: _i1.FeedScreen(key: args.key));
+          routeData: routeData, child: _i1.FeedScreen());
     },
     ExploreScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
@@ -56,17 +53,13 @@ class AppRouter extends _i2.RootStackRouter {
           routeData: routeData, child: const _i1.MyLibraryScreen());
     },
     ProfileScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<ProfileScreenRouteArgs>();
       return _i2.AdaptivePage<dynamic>(
-          routeData: routeData,
-          child: _i1.ProfileScreen(key: args.key, user: args.user));
+          routeData: routeData, child: _i1.ProfileScreen());
     }
   };
 
   @override
   List<_i2.RouteConfig> get routes => [
-        _i2.RouteConfig('/#redirect',
-            path: '/', redirectTo: '/splash', fullMatch: true),
         _i2.RouteConfig(SplashScreenRoute.name, path: '/splash', children: [
           _i2.RouteConfig('*#redirect',
               path: '*',
@@ -90,7 +83,7 @@ class AppRouter extends _i2.RootStackRouter {
                   redirectTo: '',
                   fullMatch: true)
             ]),
-        _i2.RouteConfig(HomeRoute.name, path: '/home', children: [
+        _i2.RouteConfig(HomeRoute.name, path: '/', children: [
           _i2.RouteConfig(FeedScreenRoute.name,
               path: 'feed', parent: HomeRoute.name),
           _i2.RouteConfig(ExploreScreenRoute.name,
@@ -106,7 +99,9 @@ class AppRouter extends _i2.RootStackRouter {
               parent: HomeRoute.name,
               redirectTo: '',
               fullMatch: true)
-        ])
+        ]),
+        _i2.RouteConfig('*#redirect',
+            path: '*', redirectTo: '', fullMatch: true)
       ];
 }
 
@@ -143,30 +138,17 @@ class OnboardingScreenRoute extends _i2.PageRouteInfo<void> {
 /// [_i1.Home]
 class HomeRoute extends _i2.PageRouteInfo<void> {
   const HomeRoute({List<_i2.PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/home', initialChildren: children);
+      : super(HomeRoute.name, path: '/', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
 
 /// generated route for
 /// [_i1.FeedScreen]
-class FeedScreenRoute extends _i2.PageRouteInfo<FeedScreenRouteArgs> {
-  FeedScreenRoute({_i3.Key? key})
-      : super(FeedScreenRoute.name,
-            path: 'feed', args: FeedScreenRouteArgs(key: key));
+class FeedScreenRoute extends _i2.PageRouteInfo<void> {
+  const FeedScreenRoute() : super(FeedScreenRoute.name, path: 'feed');
 
   static const String name = 'FeedScreenRoute';
-}
-
-class FeedScreenRouteArgs {
-  const FeedScreenRouteArgs({this.key});
-
-  final _i3.Key? key;
-
-  @override
-  String toString() {
-    return 'FeedScreenRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for
@@ -196,24 +178,8 @@ class MyLibraryScreenRoute extends _i2.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i1.ProfileScreen]
-class ProfileScreenRoute extends _i2.PageRouteInfo<ProfileScreenRouteArgs> {
-  ProfileScreenRoute({_i3.Key? key, required _i4.User user})
-      : super(ProfileScreenRoute.name,
-            path: 'profile',
-            args: ProfileScreenRouteArgs(key: key, user: user));
+class ProfileScreenRoute extends _i2.PageRouteInfo<void> {
+  const ProfileScreenRoute() : super(ProfileScreenRoute.name, path: 'profile');
 
   static const String name = 'ProfileScreenRoute';
-}
-
-class ProfileScreenRouteArgs {
-  const ProfileScreenRouteArgs({this.key, required this.user});
-
-  final _i3.Key? key;
-
-  final _i4.User user;
-
-  @override
-  String toString() {
-    return 'ProfileScreenRouteArgs{key: $key, user: $user}';
-  }
 }

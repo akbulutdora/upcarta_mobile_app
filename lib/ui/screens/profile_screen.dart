@@ -5,22 +5,35 @@ import 'package:upcarta_mobile_app/components/circle_image.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:auto_route/auto_route.dart';
 
+User user = User(
+  name: 'Mana',
+  username: 'manaira',
+  //how to put @ before?
+  role: 'Flutterista',
+  avatar: 'assets/images/mock.jpg',
+  bio:
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum, a id nunc, odio augue enim. Viverra nullam pulvinar volutpat ultricies hendrerit sed. Morbi eget a nisi nulla vulputate vestibulum purus sodales.',
+  darkMode: false,
+  id: '12345',
+  email: 'mana@gmail.com',
+  confirmed_at: '',
+  reset_password_sent_at: '',
+  reset_password_token: '',
+  confirmation_sent_at: '',
+  password_hash: '',
+  confirmation_token: '',
+  following: 12,
+  followers: 10,
+);
 
 class ProfileScreen extends StatefulWidget {
-  static MaterialPage page(User user) {
+  static MaterialPage page() {
     return MaterialPage(
       name: UpcartaPages.profilePath,
       key: ValueKey(UpcartaPages.profilePath),
-      child: ProfileScreen(user: user),
+      child: ProfileScreen(),
     );
   }
-
-  final User user;
-
-  const ProfileScreen({
-    Key? key,
-    required this.user,
-  }) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -78,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           const Text('Dark Mode'),
           Switch(
-            value: widget.user.darkMode,
+            value: user.darkMode,
             onChanged: (value) {
               Provider.of<ProfileManager>(context, listen: false).darkMode =
                   value;
@@ -116,25 +129,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]),
           const SizedBox(height: 16.0),
           Text(
-            widget.user.name,
+            user.name,
             style: const TextStyle(fontSize: 20),
           ),
           Text(
-            '@${widget.user.username}',
+            '@${user.username}',
             style: const TextStyle(
               fontSize: 15,
               color: Colors.grey,
             ),
           ),
           Text(
-            widget.user.role,
+            user.role,
             style: const TextStyle(
               fontSize: 15,
               color: Colors.grey,
             ),
           ),
           Text(
-            widget.user.bio,
+            user.bio,
             style: const TextStyle(
               fontSize: 20,
               color: Colors.grey,
@@ -145,7 +158,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  '${widget.user.followers} following',
+                  '${user.followers} following',
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.grey,
@@ -155,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  '${widget.user.following} following',
+                  '${user.following} following',
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.grey,

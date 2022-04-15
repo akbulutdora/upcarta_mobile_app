@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 
-
 @AdaptiveAutoRouter(
     replaceInRouteName: 'Page,Route,Screen',
     routes: <AutoRoute>[
@@ -10,14 +9,18 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
         initial: true,
         path: '/splash',
         page: SplashScreen,
-        children: [RedirectRoute(path: '*', redirectTo: ''),],
-      ), AutoRoute(
+        children: [
+          RedirectRoute(path: '*', redirectTo: ''),
+        ],
+      ),
+      AutoRoute(
         path: '/login',
         page: LoginScreen,
         children: [
           RedirectRoute(path: '*', redirectTo: ''),
         ],
-      ), AutoRoute(
+      ),
+      AutoRoute(
         path: '/onboarding',
         page: OnboardingScreen,
         children: [
@@ -39,12 +42,12 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
       //     RedirectRoute(path: '*', redirectTo: 'profile'),
       //   ],
       // ),
-    ]
-)
+      RedirectRoute(path: '*', redirectTo: ''),
+    ])
 class $AppRouter {}
 
 const groupTabRouter = AutoRoute(
-  path: '/home',
+  path: '/',
   page: Home,
   children: [
     AutoRoute(

@@ -9,22 +9,17 @@ import 'package:upcarta_mobile_app/src/authentication.dart';
 import 'package:provider/provider.dart';
 import 'screens.dart';
 import 'package:auto_route/auto_route.dart';
+import '../../navigation/routes.gr.dart';
 
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class FeedScreen extends StatelessWidget {
-  static MaterialPage page(int currentTab) {
+  static MaterialPage page() {
     return MaterialPage(
-      name: UpcartaPages.home,
-      key: ValueKey(UpcartaPages.home),
       child: FeedScreen(),
     );
   }
-
-  FeedScreen({
-    Key? key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -9,30 +9,12 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 import 'package:upcarta_mobile_app/blocs/navigation/constants/nav_bar_items.dart';
 import 'package:upcarta_mobile_app/blocs/navigation/navigation_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 
-User mockUser = User(
-  name: 'Mana',
-  username: 'manaira',
-  //how to put @ before?
-  role: 'Flutterista',
-  avatar: 'assets/images/mock.jpg',
-  bio:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum, a id nunc, odio augue enim. Viverra nullam pulvinar volutpat ultricies hendrerit sed. Morbi eget a nisi nulla vulputate vestibulum purus sodales.',
-  darkMode: false,
-  id: '12345',
-  email: 'mana@gmail.com',
-  confirmed_at: '',
-  reset_password_sent_at: '',
-  reset_password_token: '',
-  confirmation_sent_at: '',
-  password_hash: '',
-  confirmation_token: '',
-  following: 12,
-  followers: 10,
-);
+
 
 class Home extends StatefulWidget {
   static MaterialPage page(int currentTab) {
@@ -58,7 +40,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    user = mockUser;
     AutoRouter.of(context);
     return
       // return Scaffold(
@@ -151,12 +132,18 @@ class _HomeState extends State<Home> {
       //   ),
       // );
        AutoTabsScaffold(
+         appBarBuilder: (_, tabsRouter) => AppBar(
+           backgroundColor: AppColors.primary,
+           title: const Text('Upcarta'),
+           centerTitle: true,
+           leading: const AutoBackButton(),
+         ),
         routes: [
           FeedScreenRoute(),
           ExploreScreenRoute(),
           NewPostScreenRoute(),
           MyLibraryScreenRoute(),
-          ProfileScreenRoute(user: user)
+          ProfileScreenRoute()
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
           return BottomNavigationBar(
