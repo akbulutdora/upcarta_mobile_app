@@ -7,4 +7,81 @@ final lHeadingTextStyle = TextStyle(
   fontWeight: FontWeight.w400,
 );
 
+const kAppBarTextStyle = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.w600,
+    fontSize: 20,
+    color: Colors.black);
+
+const kTextStyle1 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 34,
+    color: Colors.black);
+
+const kTextStyle2 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 28,
+    color: Colors.black);
+
+const kTextStyle3 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 22,
+    color: Colors.black);
+
+const kTextStyle4 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 20,
+    color: Colors.black);
+
+const contentCardTitleStyle = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.w600,
+    fontSize: 17,
+    color: Colors.black);
+
+const kTextStyle6 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 17,
+    color: Colors.black);
+
+const kTextStyle7 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 16,
+    color: Colors.black);
+
+const kTextStyle8 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 15,
+    color: Colors.black);
+
+const kTextStyle9 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 13,
+    color: Colors.black);
+
+const kTextStyle10 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 12,
+    color: Colors.black);
+
+const kTextStyle11 = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 11,
+    color: Colors.black);
+
+final contentCardDescriptionStyle = TextStyle(fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.w300,
+    fontSize: 10,
+    color: AppColors.contentText);
+
 // TODO: ADD OTHER STYLES FOR BUTTONS AND TEXTS
