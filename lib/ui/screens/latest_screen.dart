@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/components/content_list.dart';
+import 'package:upcarta_mobile_app/components/feed_content_list.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/src/authentication.dart';
