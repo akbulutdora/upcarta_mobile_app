@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
     HomeScreen(),
     const MyExploreScreen(),
     const NewPostScreen(),
-    const MyLibraryScreen(),
+    MyLibraryScreen(),
     const SearchScreen(),
   ];
 
