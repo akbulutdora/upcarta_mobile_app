@@ -1,4 +1,7 @@
 import "package:flutter/material.dart";
+import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:auto_route/auto_route.dart';
+
 
 List<Map> topics = [
   {
@@ -24,60 +27,50 @@ class UserOnboarding4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+
     return Column(
-      children: <Widget>[
-        Container(
-          height: 57,
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.fromLTRB(17, 18, 17, 10),
-          child: const Text(
-            "Follow Topics",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: width * 0.05, top: height * 0.015),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Follow 5 or More Topic", style: TextStyle(fontWeight: FontWeight.w500, fontSize: height * 0.02),),
+              const Divider(thickness: 2, color: Colors.blue, height: 10),
+              SizedBox(height: height * 0.01),
+            ],
           ),
         ),
-        const Divider(thickness: 1, color: Colors.black),
         Expanded(
           child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               children: List<Widget>.generate(topics.length, (index) => Topics(title: topics[index]["topic"], topicList: topics[index]["choices"]),)
           ),
         ),
-        SizedBox(
-          height: 101,
-          child: Column(
+        Padding(
+          padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.02, width * 0.05, height * 0.05),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Divider(thickness: 1, color: Colors.black, height: 0),
-              Padding(
-                padding: const EdgeInsets.only(right: 33.5, top: 10, left: 33.5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        print("Back");
-                      },
-                      child: const Text(
-                        "Back",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF667080),
-                            fontSize: 18),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        print("Next");
-                      },
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(116, 36),
-                        primary: Colors.blue,
-                      ),
-                    ),
-                  ],
+              OutlinedButton(
+                onPressed: () {
+                  // context.router.push(UserOnboarding3Route());
+                },
+                child: const  Text(
+                  "Skip",
+                  style: TextStyle(color: Color(0xFF949494), fontSize: 18),
+                ),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  context.router.push(const HomeRoute());
+                },
+                child: const Text(
+                  "Next",
+                  style: TextStyle(color: Color(0xFF4E89FD), fontSize: 18),
                 ),
               ),
             ],
@@ -96,30 +89,86 @@ class Topics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: const TextStyle(color: Colors.grey, fontSize: 20, fontWeight: FontWeight.bold)),
+        Text(
+            title,
+            style: TextStyle(
+              color: Colors.transparent,
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.2,
+              decoration: TextDecoration.underline,
+              decorationColor: Color(0xFF4E89FD),
+              decorationStyle: TextDecorationStyle.solid,
+              decorationThickness: 1,
+              shadows: [Shadow(offset: Offset(0, - height * 0.007), color: Colors.black)],
+            ),),
         Container(height:10),
         Wrap(
             spacing: 10,
             children: List<Widget>.generate(
               topicList.length,
-                  (int index) {
-                return Chip(
-                    label: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(topicList[index]),
-                        Icon(Icons.add, color: Colors.blue,)
-                      ],
-                    ),
-                    backgroundColor: Colors.white,
-                    side: const BorderSide(width: 0.3, color: Colors.grey));},)
+                  (int index) => CustomChip(label: topicList[index]),
+            )
         ),
         Container(height: 25)
       ],
     );
   }
 }
+
+class CustomChip extends StatefulWidget {
+  const CustomChip({Key? key, required this.label, this.isSelected = false}) : super(key: key);
+
+  final String label;
+  final bool isSelected;
+
+  @override
+  State<CustomChip> createState() => _CustomChipState();
+}
+
+class _CustomChipState extends State<CustomChip> {
+
+    bool isSelected = false;
+
+    @override
+  void initState() {
+      isSelected = widget.isSelected;
+      super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FilterChip(
+        selected: isSelected,
+        label: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(widget.label, style: TextStyle(fontSize: 14, color: Colors.black)),
+            SizedBox(width: 5),
+            isSelected?
+              Icon(Icons.check, color: Colors.white, size: 18)
+                :
+              Icon(Icons.add, color: Colors.blue, size: 18)
+          ],
+        ),
+        selectedColor: Colors.blue[100],
+        backgroundColor: Colors.white,
+        showCheckmark: false,
+        side: const BorderSide(width: 0.3, color: Colors.grey),
+        onSelected: (val) {
+          setState(() {
+            isSelected = val;
+          });
+        }
+    );
+  }
+}
+
 

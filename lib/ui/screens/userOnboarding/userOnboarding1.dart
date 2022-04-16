@@ -52,7 +52,8 @@ class UserOnboarding1 extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(top: 32),
           child: ElevatedButton(
-            onPressed: () {context.router.push(UserOnboarding2Route());
+            onPressed: () {
+              context.router.push(UserOnboarding2Route());
             },
             child: Text(
               "Connect Your Twitter",
@@ -71,12 +72,14 @@ class UserOnboarding1 extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.only(bottom: height * 0.05, right: width * 0.05),
+              padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.02, width * 0.05, height * 0.05),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   OutlinedButton(
-                    onPressed: (){},
+                    onPressed: () {
+                      context.router.push(UserOnboarding3Route());
+                    },
                     child: Text(
                       "Skip",
                       style: TextStyle(color: Colors.grey, fontSize: 18),

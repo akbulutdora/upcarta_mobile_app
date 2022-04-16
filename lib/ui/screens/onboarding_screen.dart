@@ -1,14 +1,8 @@
 // İDİL
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
-
-
-
-
 import '../../navigation/routes.gr.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -24,19 +18,11 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  // List<Widget> Pages = [
-  //   UserOnboarding1(),
-  //   UserOnboarding2(),
-  //   UserOnboarding3(),
-  //   UserOnboarding4(),
-  // ];
-  //
-  // int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
 
-    final double width = MediaQuery.of(context).size.width;
+    // final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -59,6 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ],
         ),
       ),
+      // body: UserOnboarding2(),
       body: AutoRouter(),
 
 

@@ -1,50 +1,70 @@
 import "package:flutter/material.dart";
+import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:auto_route/auto_route.dart';
+import 'dart:math';
 
 class Person extends StatelessWidget {
   const Person({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 110,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        padding: EdgeInsets.all(30),
-                        decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey),
-                      ),
-                      Text("Person A", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
+    final double width = MediaQuery.of(context).size.width;
+    // final double height = MediaQuery.of(context).size.height;
 
-                    ],
-                  ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: width * 0.05, vertical: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(width * 0.03),
+          border: Border.all(
+              color: const Color(0xFFC4C4C4),
+              width: 1
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: min(32, width * 0.08),
+                backgroundColor: Colors.grey,
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Person A", style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500)),
+                        OutlinedButton(
+                          onPressed: () {
+                            print("Follow");
+                          },
+                          child: const Text("Follow", style: TextStyle(fontSize: 14)),
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: Size.zero,
+                            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 0),
+                    const Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl.",
+                      maxLines: 2,
+                      style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            overflow: TextOverflow.ellipsis,
+                        ),
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    print("pressed");
-                  },
-                  child: const Text(
-                    "Follow",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(100, 36),
-                    primary: Colors.blue,
-                  ),
-                ),
-              ],
-            ),
-            const Text("Neque nisl quam arcu elementum eu nibh.", style: TextStyle(color: Colors.grey, fontSize: 14))
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -56,18 +76,22 @@ class UserOnboarding3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+
     return Column(
-      children: <Widget>[
-        Container(
-          height: 57,
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.fromLTRB(17, 18, 17, 10),
-          child: const Text(
-            "Follow 5 (or more) People",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: width * 0.05, top: height * 0.015),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Follow 5 or More People From Upcarta", style: TextStyle(fontWeight: FontWeight.w500, fontSize: height * 0.02),),
+              const Divider(thickness: 2, color: Colors.blue, height: 10),
+              SizedBox(height: height * 0.01),
+            ],
           ),
         ),
-        const Divider(thickness: 1, color: Colors.black),
         Expanded(
           child: ListView.builder(
             itemCount: 10,
@@ -75,42 +99,27 @@ class UserOnboarding3 extends StatelessWidget {
               return const Person();
             },),
         ),
-        SizedBox(
-          height: 101,
-          child: Column(
+        Padding(
+          padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.02, width * 0.05, height * 0.05),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Divider(thickness: 1, color: Colors.black, height: 0),
-              Padding(
-                padding: const EdgeInsets.only(right: 33.5, top: 10, left: 33.5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        print("Back");
-                      },
-                      child: const Text(
-                        "Back",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF667080),
-                            fontSize: 18),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        print("Next");
-                      },
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: Size(116, 36),
-                        primary: Colors.blue,
-                      ),
-                    ),
-                  ],
+              OutlinedButton(
+                onPressed: () {
+                  // context.router.push(UserOnboarding3Route());
+                },
+                child: const  Text(
+                  "Skip",
+                  style: TextStyle(color: Color(0xFF949494), fontSize: 18),
+                ),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  context.router.push(const UserOnboarding4Route());
+                },
+                child: const Text(
+                  "Next",
+                  style: TextStyle(color: Color(0xFF4E89FD), fontSize: 18),
                 ),
               ),
             ],
