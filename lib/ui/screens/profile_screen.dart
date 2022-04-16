@@ -29,15 +29,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () {
-            //Provider.of<ProfileManager>(context, listen: false)
-            //    .tapOnProfile(false);
-          },
-        ),
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -125,6 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           headerSliverBuilder: (context, value) {
             return [
               SliverAppBar(
+                backgroundColor: Colors.white,
                 floating: true,
                 pinned: true,
                 bottom: TabBar(
@@ -216,14 +208,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           Text(
             //'@${widget.user.username}',
-            "lidl",
-            style: Theme.of(context).textTheme.displaySmall,
+            "@lidl",
+            style: TextStyle(
+          fontFamily: "SFCompactText",
+          fontWeight: FontWeight.normal,
+          fontSize: 14,
+          color: Colors.grey,
+          ),
           ),
           const SizedBox(height: 10.0),
           Text(
             //widget.user.bio,
             "loremipsum",
-            style: Theme.of(context).textTheme.displaySmall,
+            style: TextStyle(
+              fontFamily: "SFCompactText",
+              fontWeight: FontWeight.normal,
+              fontSize: 14,
+              color: Colors.black,
+            ),
           ),
           Row(
             children: [
@@ -235,16 +237,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       "666",
                       style: TextStyle(
                         fontFamily: "SFCompactText",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
                         color: Colors.black,
                       ),
                     ),
                     Text(
                       ' followers',
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: TextStyle(
+                          fontFamily: "SFCompactText",
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12,
+                          color: Colors.black,
                     ),
-                  ]),
+                    )]),
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 0, vertical: 8.0),
@@ -257,14 +263,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     "666",
                     style: TextStyle(
                       fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12,
                       color: Colors.black,
                     ),
                   ),
                   Text(
                     ' following',
-                    style: Theme.of(context).textTheme.displaySmall,
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 12,
+                      color: Colors.black,
+                    ),
                   ),
                 ]),
               ),
@@ -282,7 +293,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Text(
                   'Also followed by "mutualFollowed" and others',
                   //this appears if there are mutuals and make others appear when there are more
-                  style: Theme.of(context).textTheme.displaySmall,
+                  style: TextStyle(
+                  fontFamily: "SFCompactText",
+                  fontWeight: FontWeight.normal,
+                  fontSize: 12,
+                  color: Colors.black,
+                ),
                 ),
               ],
             ),
