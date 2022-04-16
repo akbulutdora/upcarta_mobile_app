@@ -2,12 +2,15 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/navigation/routes.dart';
+
+import '../../navigation/routes.gr.dart';
+
 
 class LoginScreen extends StatelessWidget {
   static MaterialPage page() {
     return MaterialPage(
-      name: UpcartaPages.loginPath,
-      key: ValueKey(UpcartaPages.loginPath),
       child: const LoginScreen(),
     );
   }
@@ -28,8 +31,9 @@ class LoginScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () async {
-          Provider.of<AppStateManager>(context, listen: false)
-              .login('mockUsername', 'mockPassword');
+          // Provider.of<AppStateManager>(context, listen: false)
+          //     .login('mockUsername', 'mockPassword');
+          context.router.push(OnboardingScreenRoute());
         },
       ),
     ),);

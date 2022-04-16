@@ -4,6 +4,9 @@ import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/src/authentication.dart';
 import 'package:provider/provider.dart';
+import 'package:auto_route/auto_route.dart';
+
+import '../../util/styles.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final List<Content> contents = <Content>[
@@ -66,20 +69,20 @@ class _LatestScreenState extends State<LatestScreen> {
             //     signOut: appState.signOut,
             //   ),
             // ),
-            Divider(
+            const Divider(
               thickness: 1,
             ),
             Row(
               children: [
                 OutlinedButton(
                   onPressed: () {
-// TODO: IMPLEMENT BUTTON BEHAVIOR
+                    // TODO: IMPLEMENT BUTTON BEHAVIOR
                   },
                   child: Row(
                     children: [
-                      Text(
+                      const Text(
                         "Content Type",
-                        style: Theme.of(context).textTheme.displaySmall,
+                        style: kTextStyle9,
                       ),
                       Text(
                         String.fromCharCode(
@@ -97,20 +100,20 @@ class _LatestScreenState extends State<LatestScreen> {
                       ),
                     ],
                   ),
-                  style: Theme.of(context).outlinedButtonTheme.style,
+                  style: outlinedButtonStyle,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 OutlinedButton(
                   onPressed: () {
-// TODO: IMPLEMENT BUTTON BEHAVIOR
+                    // TODO: IMPLEMENT BUTTON BEHAVIOR
                   },
                   child: Row(
                     children: [
-                      Text(
+                      const Text(
                         "People",
-                        style: Theme.of(context).textTheme.displaySmall,
+                        style: kTextStyle9,
                       ),
                       Text(
                         String.fromCharCode(
@@ -128,20 +131,20 @@ class _LatestScreenState extends State<LatestScreen> {
                       ),
                     ],
                   ),
-                  style: Theme.of(context).outlinedButtonTheme.style,
+                  style: outlinedButtonStyle,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 OutlinedButton(
                   onPressed: () {
-// TODO: IMPLEMENT BUTTON BEHAVIOR
+                    // TODO: IMPLEMENT BUTTON BEHAVIOR
                   },
                   child: Row(
                     children: [
-                      Text(
+                      const Text(
                         "Topic",
-                        style: Theme.of(context).textTheme.displaySmall,
+                        style: kTextStyle9,
                       ),
                       Text(
                         String.fromCharCode(
@@ -159,11 +162,11 @@ class _LatestScreenState extends State<LatestScreen> {
                       ),
                     ],
                   ),
-                  style: Theme.of(context).outlinedButtonTheme.style,
+                  style: outlinedButtonStyle,
                 ),
               ],
             ),
-            Divider(
+            const Divider(
               thickness: 1,
             ),
             ContentList(

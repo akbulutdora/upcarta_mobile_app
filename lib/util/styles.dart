@@ -79,9 +79,27 @@ const kTextStyle11 = TextStyle(
     fontSize: 11,
     color: Colors.black);
 
-final contentCardDescriptionStyle = TextStyle(fontFamily: "SF Compact Text",
+final contentCardDescriptionStyle = TextStyle(
+    fontFamily: "SF Compact Text",
     fontWeight: FontWeight.w300,
     fontSize: 10,
     color: AppColors.contentText);
 
+final outlinedButtonStyle = ButtonStyle(
+  backgroundColor: MaterialStateProperty.all(Colors.transparent),
+  padding: MaterialStateProperty.all(
+    EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+  ),
+  side: MaterialStateProperty.all(
+    const BorderSide(
+      color: Color(0xffdedede),
+      width: 0.5,
+    ),
+  ),
+  shape: MaterialStateProperty.all(
+    RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10),
+    ),
+  ),
+);
 // TODO: ADD OTHER STYLES FOR BUTTONS AND TEXTS

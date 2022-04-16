@@ -87,7 +87,7 @@ class UpcartaTheme {
           ),
           side: MaterialStateProperty.all(
             BorderSide(
-              color: Color(0xffdedede),
+              color: Colors.red,
               width: 0.5,
             ),
           ),

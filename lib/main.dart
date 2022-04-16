@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'upcarta_theme.dart';
-import 'models/models.dart';
-import 'navigation/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:upcarta_mobile_app/blocs/navigation/constants/nav_bar_items.dart';
-import 'package:upcarta_mobile_app/blocs/navigation/navigation_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/navigation//routes.gr.dart';
+
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -19,25 +15,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // runApp(Home(currentTab: 0));
   runApp(Welcome());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: Welcome() // const MyHomePage(title: 'Flutter Demo Home Page'),
-        );
-  }
-}
-
 class Welcome extends StatefulWidget {
+
   Welcome({Key? key}) : super(key: key);
 
   @override
@@ -45,52 +28,59 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  final _profileManager = ProfileManager();
-  final _appStateManager = AppStateManager();
-  late AppRouter _appRouter;
+  // final _profileManager = ProfileManager();
+  // final _appStateManager = AppStateManager();
+  final _appRouter = AppRouter();
 
-  @override
-  void initState() {
-    super.initState();
-    _appRouter = AppRouter(
-      appStateManager: _appStateManager,
-      profileManager: _profileManager,
-    );
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _appRouter = AppRouter(
+  //     // appStateManager: _appStateManager,
+  //     // profileManager: _profileManager,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        BlocProvider<NavigationCubit>(
-          create: (context) => NavigationCubit(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => _profileManager,
-        ),
-        ChangeNotifierProvider(
-          create: (context) => _appStateManager,
-        ),
-      ],
-      child: Consumer<ProfileManager>(
-        builder: (context, profileManager, child) {
-          ThemeData theme;
-          if (profileManager.darkMode) {
-            theme = UpcartaTheme.dark();
-          } else {
-            theme = UpcartaTheme.light();
-          }
-
-          return MaterialApp(
-            theme: theme,
-            title: 'Upcarta',
-            home: Router(
-              routerDelegate: _appRouter,
-              backButtonDispatcher: RootBackButtonDispatcher(),
-            ),
-          );
-        },
-      ),
+    return MaterialApp.router(
+      title: 'Upcarta',
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: _appRouter.delegate(),
+      theme: ThemeData.light(),
+      builder: (context, router) => router!,
     );
+    // return MultiProvider(
+    //   providers: [
+    //     BlocProvider<NavigationCubit>(
+    //       create: (context) => NavigationCubit(),
+    //     ),
+    //     ChangeNotifierProvider(
+    //       create: (context) => _profileManager,
+    //     ),
+    //     ChangeNotifierProvider(
+    //       create: (context) => _appStateManager,
+    //     ),
+    //   ],
+    //   child: Consumer<ProfileManager>(
+    //     builder: (context, profileManager, child) {
+    //       ThemeData theme;
+    //       if (profileManager.darkMode) {
+    //         theme = UpcartaTheme.dark();
+    //       } else {
+    //         theme = UpcartaTheme.light();
+    //       }
+    //
+    //       return MaterialApp(
+    //         theme: theme,
+    //         title: 'Upcarta',
+    //         home: Router(
+    //           routerDelegate: _appRouter,
+    //           backButtonDispatcher: RootBackButtonDispatcher(),
+    //         ),
+    //       );
+    //     },
+    //   ),
+    // );
   }
 }
