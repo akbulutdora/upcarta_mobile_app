@@ -80,7 +80,7 @@ class UserOnboarding1 extends StatelessWidget {
                     onPressed: () {
                       context.router.push(UserOnboarding3Route());
                     },
-                    child: Text(
+                    child: const Text(
                       "Skip",
                       style: TextStyle(color: Colors.grey, fontSize: 18),
                     ),

@@ -3,74 +3,6 @@ import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'dart:math';
 
-class Person extends StatelessWidget {
-  const Person({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    // final double height = MediaQuery.of(context).size.height;
-
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: width * 0.05, vertical: 5),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(width * 0.03),
-          border: Border.all(
-              color: const Color(0xFFC4C4C4),
-              width: 1
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: min(32, width * 0.08),
-                backgroundColor: Colors.grey,
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("Person A", style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500)),
-                        OutlinedButton(
-                          onPressed: () {
-                            print("Follow");
-                          },
-                          child: const Text("Follow", style: TextStyle(fontSize: 14)),
-                          style: OutlinedButton.styleFrom(
-                            minimumSize: Size.zero,
-                            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 0),
-                    const Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl.",
-                      maxLines: 2,
-                      style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                            overflow: TextOverflow.ellipsis,
-                        ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class UserOnboarding3 extends StatelessWidget {
   const UserOnboarding3({Key? key}) : super(key: key);
 
@@ -126,6 +58,74 @@ class UserOnboarding3 extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class Person extends StatelessWidget {
+  const Person({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    // final double height = MediaQuery.of(context).size.height;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: width * 0.05, vertical: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(width * 0.03),
+          border: Border.all(
+              color: const Color(0xFFC4C4C4),
+              width: 1
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: min(32, width * 0.08),
+                backgroundColor: Colors.grey,
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Person A", style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500)),
+                        OutlinedButton(
+                          onPressed: () {
+                            print("Follow");
+                          },
+                          child: const Text("Follow", style: TextStyle(fontSize: 14)),
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: Size.zero,
+                            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 0),
+                    const Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl.",
+                      maxLines: 2,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
-
 List<Map> topics = [
   {
     "topic": "Decision Making Topics",

@@ -7,8 +7,8 @@ import '../../navigation/routes.gr.dart';
 
 class OnboardingScreen extends StatefulWidget {
   static MaterialPage page() {
-    return MaterialPage(
-      child: const OnboardingScreen(),
+    return const MaterialPage(
+      child: OnboardingScreen(),
     );
   }
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -30,8 +30,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       appBar: AppBar(
         actions: [
           TextButton(
-            onPressed: () {context.router.replace(HomeRoute());},
-            child: Text("Go To Home Screen"),
+            onPressed: () {context.router.replace(const HomeRoute());},
+            child: const Text("Go To Home Screen"),
           ),
         ],
         backgroundColor: Colors.white,
@@ -46,31 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
       // body: UserOnboarding2(),
-      body: AutoRouter(),
-
-
-
-      // body: Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: [
-      //     Padding(
-      //       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 50),
-      //       child: Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //         children: [
-      //           OutlinedButton(
-      //               onPressed: null,
-      //               child: Text("Skip"),
-      //           ),
-      //           OutlinedButton(
-      //               onPressed: null,
-      //               child: Text("Next"),
-      //           )
-      //         ],
-      //       ),
-      //     ),
-      //   ],
-      // ),
+      body: const AutoRouter(),
     );
   }
 }
