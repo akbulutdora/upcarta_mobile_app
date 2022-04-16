@@ -8,3 +8,7 @@ export 'explore_screen.dart';
 export 'new_action_screen.dart';
 export 'latest_screen.dart';
 export 'home.dart';
+export 'userOnboarding/userOnboarding1.dart';
+export 'userOnboarding/userOnboarding2.dart';
+export 'userOnboarding/userOnboarding3.dart';
+export 'userOnboarding/userOnboarding4.dart';

@@ -18,6 +18,29 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
       AutoRoute(
         path: '/onboarding',
         page: OnboardingScreen,
+        children: [
+          AutoRoute(
+            path: '',
+            name: 'UserOnboarding1Route',
+            page: UserOnboarding1,
+          ),
+          AutoRoute(
+            path: 'userOnboarding2',
+            name: 'UserOnboarding2Route',
+            page: UserOnboarding2,
+          ),
+          AutoRoute(
+            path: 'userOnboarding3',
+            name: 'UserOnboarding3Route',
+            page: UserOnboarding3,
+          ),
+          AutoRoute(
+            path: 'userOnboarding4',
+            name: 'UserOnboarding4Route',
+            page: UserOnboarding4,
+          ),
+          RedirectRoute(path: '*', redirectTo: ''),
+        ],
       ),
       groupTabRouter,
       // AutoRoute(

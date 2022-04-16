@@ -36,6 +36,22 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.Home());
     },
+    UserOnboarding1Route.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.UserOnboarding1());
+    },
+    UserOnboarding2Route.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.UserOnboarding2());
+    },
+    UserOnboarding3Route.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.UserOnboarding3());
+    },
+    UserOnboarding4Route.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.UserOnboarding4());
+    },
     FeedScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: _i1.FeedScreen());
@@ -54,7 +70,7 @@ class AppRouter extends _i2.RootStackRouter {
     },
     ProfileScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
-          routeData: routeData, child: _i1.ProfileScreen());
+          routeData: routeData, child: const _i1.ProfileScreen());
     }
   };
 
@@ -64,7 +80,23 @@ class AppRouter extends _i2.RootStackRouter {
             path: '/', redirectTo: '/splash', fullMatch: true),
         _i2.RouteConfig(SplashScreenRoute.name, path: '/splash'),
         _i2.RouteConfig(LoginScreenRoute.name, path: '/login'),
-        _i2.RouteConfig(OnboardingScreenRoute.name, path: '/onboarding'),
+        _i2.RouteConfig(OnboardingScreenRoute.name,
+            path: '/onboarding',
+            children: [
+              _i2.RouteConfig(UserOnboarding1Route.name,
+                  path: '', parent: OnboardingScreenRoute.name),
+              _i2.RouteConfig(UserOnboarding2Route.name,
+                  path: 'userOnboarding2', parent: OnboardingScreenRoute.name),
+              _i2.RouteConfig(UserOnboarding3Route.name,
+                  path: 'userOnboarding3', parent: OnboardingScreenRoute.name),
+              _i2.RouteConfig(UserOnboarding4Route.name,
+                  path: 'userOnboarding4', parent: OnboardingScreenRoute.name),
+              _i2.RouteConfig('*#redirect',
+                  path: '*',
+                  parent: OnboardingScreenRoute.name,
+                  redirectTo: '',
+                  fullMatch: true)
+            ]),
         _i2.RouteConfig(HomeRoute.name, path: '/home', children: [
           _i2.RouteConfig(FeedScreenRoute.name,
               path: 'feed', parent: HomeRoute.name),
@@ -106,8 +138,9 @@ class LoginScreenRoute extends _i2.PageRouteInfo<void> {
 /// generated route for
 /// [_i1.OnboardingScreen]
 class OnboardingScreenRoute extends _i2.PageRouteInfo<void> {
-  const OnboardingScreenRoute()
-      : super(OnboardingScreenRoute.name, path: '/onboarding');
+  const OnboardingScreenRoute({List<_i2.PageRouteInfo>? children})
+      : super(OnboardingScreenRoute.name,
+            path: '/onboarding', initialChildren: children);
 
   static const String name = 'OnboardingScreenRoute';
 }
@@ -119,6 +152,41 @@ class HomeRoute extends _i2.PageRouteInfo<void> {
       : super(HomeRoute.name, path: '/home', initialChildren: children);
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [_i1.UserOnboarding1]
+class UserOnboarding1Route extends _i2.PageRouteInfo<void> {
+  const UserOnboarding1Route() : super(UserOnboarding1Route.name, path: '');
+
+  static const String name = 'UserOnboarding1Route';
+}
+
+/// generated route for
+/// [_i1.UserOnboarding2]
+class UserOnboarding2Route extends _i2.PageRouteInfo<void> {
+  const UserOnboarding2Route()
+      : super(UserOnboarding2Route.name, path: 'userOnboarding2');
+
+  static const String name = 'UserOnboarding2Route';
+}
+
+/// generated route for
+/// [_i1.UserOnboarding3]
+class UserOnboarding3Route extends _i2.PageRouteInfo<void> {
+  const UserOnboarding3Route()
+      : super(UserOnboarding3Route.name, path: 'userOnboarding3');
+
+  static const String name = 'UserOnboarding3Route';
+}
+
+/// generated route for
+/// [_i1.UserOnboarding4]
+class UserOnboarding4Route extends _i2.PageRouteInfo<void> {
+  const UserOnboarding4Route()
+      : super(UserOnboarding4Route.name, path: 'userOnboarding4');
+
+  static const String name = 'UserOnboarding4Route';
 }
 
 /// generated route for
