@@ -9,7 +9,6 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
         initial: true,
         path: '/splash',
         page: SplashScreen,
-
       ),
       AutoRoute(
         path: '/login',
