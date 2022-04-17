@@ -10,6 +10,14 @@ class AppColors {
   static Color contentBoxFill = const Color(0xfff8fbff);
   static Color edgeColor = const Color(0xffC4C4C4);
 
-  // TODO: ADD OTHER COLORS
+
+  //Library screen colors
+  static Color tabBarColor = const Color(0xffFFFFFF);
+  static Color selected= const Color(0xff4E89FD);
+  static Color tabBar_selected_text= const Color(0xff000000);
+  static Color tabBar_other_text= const Color(0xff667080);
+  static Color chip = const Color(0xffFFFFFF);
+
+// TODO: ADD OTHER COLORS
 
 }
