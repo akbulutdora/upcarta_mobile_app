@@ -67,6 +67,24 @@ const kTextStyle9 = TextStyle(
     fontSize: 13,
     color: Colors.black);
 
+const searchBarText = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 13,
+    color: Color(0xff949494));
+
+const searchButtonText = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 13,
+    color: Color(0xff4E89FD));
+
+const libraryTabBar = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+);
+
 const kTextStyle10 = TextStyle(
     fontFamily: "SF Compact Text",
     fontWeight: FontWeight.normal,
