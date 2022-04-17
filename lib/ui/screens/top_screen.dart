@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/components/feed_content_list.dart';
+// import 'package:upcarta_mobile_app/components/feed_content_list.dart';
+import 'package:upcarta_mobile_app/components/content_list.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/src/authentication.dart';
@@ -49,122 +50,37 @@ class TopScreen extends StatefulWidget {
 }
 
 class _TopScreenState extends State<TopScreen> {
+  int _value = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
         padding: const EdgeInsets.only(bottom: 8.0, right: 8, left: 8),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // BU RSVP FIREBASE LOGIN İÇİN AMA YERİ BURASI DEĞİL
-            // Consumer<AppStateManager>(
-            //   builder: (context, appState, _) => Authentication(
-            //     email: appState.email,
-            //     loginState: appState.loginState,
-            //     startLoginFlow: appState.startLoginFlow,
-            //     verifyEmail: appState.verifyEmail,
-            //     signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
-            //     cancelRegistration: appState.cancelRegistration,
-            //     registerAccount: appState.registerAccount,
-            //     signOut: appState.signOut,
-            //   ),
-            // ),
             const Divider(
               thickness: 1,
             ),
-            Row(
-              children: [
-                OutlinedButton(
-                  onPressed: () {
-                    // TODO: IMPLEMENT BUTTON BEHAVIOR
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Wrap(
+                alignment: WrapAlignment.start,
+                children: List<Widget>.generate(
+                  3,
+                      (int index) {
+                    return ChoiceChip(
+                      label: Text('Item $index'),
+                      selected: _value == index,
+                      onSelected: (bool selected) {
+                        setState(() {
+                          _value = selected ? index : 1;
+                        });
+                      },
+                    );
                   },
-                  child: Row(
-                    children: [
-                      const Text(
-                        "Content Type",
-                        style: kTextStyle9,
-                      ),
-                      Text(
-                        String.fromCharCode(
-                            Icons.keyboard_arrow_down_outlined.codePoint),
-                        style: TextStyle(
-                          inherit: false,
-                          color: Colors.black,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w200,
-                          fontFamily:
-                              Icons.keyboard_arrow_down_outlined.fontFamily,
-                          package:
-                              Icons.keyboard_arrow_down_outlined.fontPackage,
-                        ),
-                      ),
-                    ],
-                  ),
-                  style: outlinedButtonStyle,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                OutlinedButton(
-                  onPressed: () {
-                    // TODO: IMPLEMENT BUTTON BEHAVIOR
-                  },
-                  child: Row(
-                    children: [
-                      const Text(
-                        "People",
-                        style: kTextStyle9,
-                      ),
-                      Text(
-                        String.fromCharCode(
-                            Icons.keyboard_arrow_down_outlined.codePoint),
-                        style: TextStyle(
-                          inherit: false,
-                          color: Colors.black,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w200,
-                          fontFamily:
-                              Icons.keyboard_arrow_down_outlined.fontFamily,
-                          package:
-                              Icons.keyboard_arrow_down_outlined.fontPackage,
-                        ),
-                      ),
-                    ],
-                  ),
-                  style: outlinedButtonStyle,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                OutlinedButton(
-                  onPressed: () {
-                    // TODO: IMPLEMENT BUTTON BEHAVIOR
-                  },
-                  child: Row(
-                    children: [
-                      const Text(
-                        "Topic",
-                        style: kTextStyle9,
-                      ),
-                      Text(
-                        String.fromCharCode(
-                            Icons.keyboard_arrow_down_outlined.codePoint),
-                        style: TextStyle(
-                          inherit: false,
-                          color: Colors.black,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w200,
-                          fontFamily:
-                              Icons.keyboard_arrow_down_outlined.fontFamily,
-                          package:
-                              Icons.keyboard_arrow_down_outlined.fontPackage,
-                        ),
-                      ),
-                    ],
-                  ),
-                  style: outlinedButtonStyle,
-                ),
-              ],
+                ).toList(),
+              ),
             ),
             const Divider(
               thickness: 1,
