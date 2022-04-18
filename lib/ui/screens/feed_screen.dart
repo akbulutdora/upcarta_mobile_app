@@ -11,7 +11,6 @@ import 'screens.dart';
 import 'package:auto_route/auto_route.dart';
 import '../../navigation/routes.gr.dart';
 
-
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class FeedScreen extends StatelessWidget {
@@ -36,9 +35,8 @@ class FeedScreen extends StatelessWidget {
                   flex: 3,
                   child: TabBar(
                     isScrollable: true,
-                    labelPadding: EdgeInsets.only(
-                        right: 8,
-                        bottom: 2), //çizginin mesafesini ayarlıyor
+                    labelPadding: EdgeInsets.only(right: 8, bottom: 2),
+                    //çizginin mesafesini ayarlıyor
                     indicatorPadding: EdgeInsets.only(right: 8),
                     padding: EdgeInsets.only(left: 16),
                     indicatorSize: TabBarIndicatorSize.label,
@@ -57,9 +55,7 @@ class FeedScreen extends StatelessWidget {
           body: TabBarView(
             children: <Widget>[
               LatestScreen(),
-              Column(
-                children: <Widget>[Text("Cart Page")],
-              )
+              TopScreen(),
             ],
           ),
         ),

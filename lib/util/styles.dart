@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
@@ -61,11 +62,41 @@ const kTextStyle8 = TextStyle(
     fontSize: 15,
     color: Colors.black);
 
+const sectionStyle = TextStyle(
+  fontFamily: "SF Compact Text",
+  fontWeight: FontWeight.w600,
+  shadows: [Shadow(color: Colors.black, offset: Offset(0, -5))],
+  fontSize: 15,
+  color: Colors.transparent,
+  decoration: TextDecoration.underline,
+  decorationColor: Colors.blue,
+  decorationStyle: TextDecorationStyle.solid,
+  decorationThickness: 4,
+);
+
 const kTextStyle9 = TextStyle(
     fontFamily: "SF Compact Text",
     fontWeight: FontWeight.normal,
     fontSize: 13,
     color: Colors.black);
+
+const searchBarText = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 13,
+    color: Color(0xff949494));
+
+const searchButtonText = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.normal,
+    fontSize: 13,
+    color: Color(0xff4E89FD));
+
+const libraryTabBar = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+);
 
 const kTextStyle10 = TextStyle(
     fontFamily: "SF Compact Text",
