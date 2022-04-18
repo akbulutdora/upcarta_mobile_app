@@ -286,7 +286,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Row(
               children: [
                 CircleImage(
-                  imageProvider: AssetImage("images/mock.jpg"),
+                  imageProvider: AssetImage("assets/images/mock.jpg"),
                   //widget.user.profileImageUrl),
                   imageRadius: 20.0,
                 ),

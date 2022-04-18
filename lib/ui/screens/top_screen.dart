@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-// import 'package:upcarta_mobile_app/components/feed_content_list.dart';
-import 'package:upcarta_mobile_app/components/content_list.dart';
+
+import 'package:upcarta_mobile_app/components/feed_content_list.dart';
+import 'package:upcarta_mobile_app/components/collection_card.dart';
+
+// import 'package:upcarta_mobile_app/components/content_list.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/src/authentication.dart';
 import 'package:provider/provider.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/util/colors.dart';
 
 import '../../util/styles.dart';
 
@@ -50,46 +54,79 @@ class TopScreen extends StatefulWidget {
 }
 
 class _TopScreenState extends State<TopScreen> {
-  int _value = 1;
+  int _value = 0;
+  List<String> names = ["Week", "Month", "Year", "All"];
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 8.0, right: 8, left: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Divider(
-              thickness: 1,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0, right: 8, left: 8),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Divider(
+            thickness: 1,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0),
+            child: Wrap(
+              spacing: 4,
+              alignment: WrapAlignment.start,
+              children: List<Widget>.generate(
+                4,
+                (int index) {
+                  return ChoiceChip(
+                    disabledColor: Colors.white,
+                    selectedColor: AppColors.primary,
+                    backgroundColor: Colors.white,
+                    side: BorderSide(color: AppColors.boxFrame),
+                    label: Text(
+                      names[index],
+                      style: TextStyle(
+                        color: _value == index ? Colors.white : Colors.black,
+                      ),
+                    ),
+                    selected: _value == index,
+                    onSelected: (bool selected) {
+                      setState(() {
+                        _value = selected ? index : 0;
+                      });
+                    },
+                  );
+                },
+              ).toList(),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Wrap(
-                alignment: WrapAlignment.start,
-                children: List<Widget>.generate(
-                  3,
-                      (int index) {
-                    return ChoiceChip(
-                      label: Text('Item $index'),
-                      selected: _value == index,
-                      onSelected: (bool selected) {
-                        setState(() {
-                          _value = selected ? index : 1;
-                        });
-                      },
-                    );
-                  },
-                ).toList(),
-              ),
+          ),
+          const Divider(
+            thickness: 1,
+          ),
+          const SizedBox(height: 12),
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text("Collections and Asks", style: sectionStyle),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.all(8),
+              itemCount: topContents.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CollectionCard(content: topContents[index]);
+              },
             ),
-            const Divider(
-              thickness: 1,
-            ),
-            ContentList(
-              contentList: topContents,
-            ),
-          ],
-        ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text("Contents", style: sectionStyle),
+          ),
+          ContentList(
+            contentList: topContents,
+          ),
+        ],
       ),
     );
   }
