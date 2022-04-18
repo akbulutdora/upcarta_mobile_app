@@ -26,6 +26,7 @@ class FeedScreen extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(40),
             child: Column(

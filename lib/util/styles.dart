@@ -65,14 +65,20 @@ const kTextStyle8 = TextStyle(
 const sectionStyle = TextStyle(
   fontFamily: "SF Compact Text",
   fontWeight: FontWeight.w600,
-  shadows: [Shadow(color: Colors.black, offset: Offset(0, -5))],
   fontSize: 15,
+  shadows: [
+    Shadow(
+      color: Colors.black,
+      offset: Offset(0, -4),
+    )
+  ],
   color: Colors.transparent,
   decoration: TextDecoration.underline,
+  decorationThickness: 2,
   decorationColor: Colors.blue,
   decorationStyle: TextDecorationStyle.solid,
-  decorationThickness: 4,
 );
+
 
 const kTextStyle9 = TextStyle(
     fontFamily: "SF Compact Text",
@@ -93,9 +99,9 @@ const searchButtonText = TextStyle(
     color: Color(0xff4E89FD));
 
 const libraryTabBar = TextStyle(
-    fontFamily: "SF Compact Text",
-    fontWeight: FontWeight.w600,
-    fontSize: 16,
+  fontFamily: "SF Compact Text",
+  fontWeight: FontWeight.w600,
+  fontSize: 16,
 );
 
 const kTextStyle10 = TextStyle(
@@ -118,9 +124,9 @@ final contentCardDescriptionStyle = TextStyle(
 
 final outlinedButtonStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.all(Colors.transparent),
-  padding: MaterialStateProperty.all(
-    EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-  ),
+  // padding: MaterialStateProperty.all(
+  //   EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+  // ),
   side: MaterialStateProperty.all(
     const BorderSide(
       color: Color(0xffdedede),
@@ -129,7 +135,7 @@ final outlinedButtonStyle = ButtonStyle(
   ),
   shape: MaterialStateProperty.all(
     RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(15),
     ),
   ),
 );

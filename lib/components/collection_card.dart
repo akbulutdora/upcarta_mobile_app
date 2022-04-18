@@ -18,81 +18,84 @@ class CollectionCard extends StatelessWidget {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(10.0),
         side: BorderSide(color: AppColors.edgeColor),
       ),
       child: Container(
-        height: 130,
-        padding: const EdgeInsets.fromLTRB(12, 8, 12, 15),
+        padding: EdgeInsets.all(8),
+        width: 318,
+        // padding: const EdgeInsets.fromLTRB(10, 6, 10, 13),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(content.title, style: contentCardTitleStyle),
-                SizedBox(
-                  height: 20,
-                  child: Row(
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(content.title, style: contentCardTitleStyle),
+                  Row(
                     children: [
                       IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
                         iconSize: 20,
                         onPressed: () {},
                         icon: Icon(Icons.bookmark),
-                        padding: EdgeInsets.all(0),
                       ),
                       IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
                         iconSize: 20,
                         onPressed: () {},
                         icon: Icon(Icons.more_horiz),
-                        padding: EdgeInsets.all(0),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 4,),
-            Divider(color: Colors.red, thickness: 100,),
-            SizedBox(
-              height: 2,
-            ),
-            SizedBox(
-              height: 2,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              child: Row(
-                children: [
-                  CircleAvatar(radius: 55,),
-                  Container(
-                    width: 200,
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            content.description,
-                            style: contentCardDescriptionStyle,
-                            textAlign: TextAlign.left,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                          ),
-                          Text(
-                            content.link,
-                            style: TextStyle(
-                                fontFamily: "SF Compact Text",
-                                fontWeight: FontWeight.w300,
-                                fontSize: 10,
-                                color: AppColors.primary),
-                          )
-                        ]),
-                  )
                 ],
               ),
             ),
+            Divider(height: 0,
+              color: AppColors.edgeColor,
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 55 / 2,
+                ),
+                SizedBox(width: 4),
+                Expanded(
+                  // color: Colors.white,
+                  // width: 200,
+                  // padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Owner", style: kTextStyle10,),
+                        Text(
+                          content.description,
+                          style: contentCardDescriptionStyle,
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                        ),
+                        Text(
+                          content.link,
+                          style: TextStyle(
+                              fontFamily: "SF Compact Text",
+                              fontWeight: FontWeight.w300,
+                              fontSize: 10,
+                              color: AppColors.primary),
+                        )
+                      ]),
+                )
+              ],
+            )
           ],
         ),
       ),
