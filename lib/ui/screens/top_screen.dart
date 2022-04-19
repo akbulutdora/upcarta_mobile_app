@@ -216,6 +216,7 @@ class _TopScreenState extends State<TopScreen> {
               ],
             ),
           ),
+          // CollectionCard(content: topContents[0]),
           Expanded(
             child: ListView.builder(
               // shrinkWrap: true,
@@ -227,6 +228,7 @@ class _TopScreenState extends State<TopScreen> {
               },
             ),
           ),
+          // ),
         ],
       ),
     );
