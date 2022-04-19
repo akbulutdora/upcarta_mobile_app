@@ -6,7 +6,7 @@ import 'package:upcarta_mobile_app/src/authentication.dart';
 import 'package:provider/provider.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../util/styles.dart';
+import '../../../util/styles.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final List<Content> contents = <Content>[
@@ -41,14 +41,14 @@ final List<Content> contents = <Content>[
       image: 'https://static-cdn.jtvnw.net/ttv-boxart/105451_IGDB-272x380.jpg'),
 ];
 
-class LatestScreen extends StatefulWidget {
-  const LatestScreen({Key? key}) : super(key: key);
+class LatestView extends StatefulWidget {
+  const LatestView({Key? key}) : super(key: key);
 
   @override
-  State<LatestScreen> createState() => _LatestScreenState();
+  State<LatestView> createState() => _LatestViewState();
 }
 
-class _LatestScreenState extends State<LatestScreen> {
+class _LatestViewState extends State<LatestView> {
   @override
   Widget build(BuildContext context) {
     return Container(
