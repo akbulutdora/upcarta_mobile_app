@@ -1,4 +1,4 @@
-import 'package:upcarta_mobile_app/components/content_list.dart';
+import 'package:upcarta_mobile_app/ui/components/content_list.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 
 class FeedLatestScreenRepository {

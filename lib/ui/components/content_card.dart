@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 
-import '../util/colors.dart';
-import '../util/styles.dart';
+import 'package:upcarta_mobile_app/util/colors.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 class ContentCard extends StatelessWidget {
   final Content content;

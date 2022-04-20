@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/components/content_card.dart';
+import 'package:upcarta_mobile_app/ui/components/content_card.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 
-import '../util/colors.dart';
+import 'package:upcarta_mobile_app/util/colors.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 class ContentList extends StatefulWidget {
   final List<Content> contentList;

@@ -1,15 +1,15 @@
-// DORA
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/components/content_list.dart';
+import 'package:upcarta_mobile_app/ui/components/content_list.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/src/authentication.dart';
 import 'package:provider/provider.dart';
-import 'screens.dart';
+import '../screens.dart';
 import 'package:auto_route/auto_route.dart';
-import '../../navigation/routes.gr.dart';
+import '../../../navigation/routes.gr.dart';
+
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -26,6 +26,7 @@ class FeedScreen extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(40),
             child: Column(
@@ -54,8 +55,8 @@ class FeedScreen extends StatelessWidget {
           ),
           body: TabBarView(
             children: <Widget>[
-              LatestScreen(),
-              TopScreen(),
+              LatestView(),
+              TopView(),
             ],
           ),
         ),
