@@ -2,8 +2,8 @@ library top_view;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/components/feed_content_list.dart';
-import 'package:upcarta_mobile_app/components/collection_card.dart';
+import 'package:upcarta_mobile_app/ui/components/feed_content_list.dart';
+import 'package:upcarta_mobile_app/ui/components/collection_card.dart';
 
 // import 'package:upcarta_mobile_app/components/content_list.dart';
 import 'package:upcarta_mobile_app/models/models.dart';

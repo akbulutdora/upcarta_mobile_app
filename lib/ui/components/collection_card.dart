@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/components/circle_image.dart';
+import 'package:upcarta_mobile_app/ui/components/circle_image.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 
-import '../util/colors.dart';
-import '../util/styles.dart';
+import 'package:upcarta_mobile_app/util/colors.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 class CollectionCard extends StatelessWidget {
   final Content content;

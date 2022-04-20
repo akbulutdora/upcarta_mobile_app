@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/components/content_card.dart';
+import 'package:upcarta_mobile_app/ui/components/content_card.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 
 class ContentList extends StatefulWidget {

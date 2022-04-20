@@ -4,8 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/user.dart';
-import 'package:upcarta_mobile_app/components/circle_image.dart';
-import 'package:upcarta_mobile_app/components/content_list.dart';
+import 'package:upcarta_mobile_app/ui/components/circle_image.dart';
+import 'package:upcarta_mobile_app/ui/components/content_list.dart';
 
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page() {
