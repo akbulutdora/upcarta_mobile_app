@@ -8,27 +8,18 @@ import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 
-class myLibrarySavedScreen extends StatefulWidget {
-  const myLibrarySavedScreen({Key? key}) : super(key: key);
+class myLibraryRecommendsScreen extends StatefulWidget {
+  const myLibraryRecommendsScreen({Key? key}) : super(key: key);
 
   @override
-  State<myLibrarySavedScreen> createState() => _myLibrarySavedScreenState();
+  State<myLibraryRecommendsScreen> createState() => _myLibraryRecommendsScreenState();
 }
-class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
-  late List<String> selectedChips = ['All'];
-  bool isAllSelected= true;
+
+class _myLibraryRecommendsScreenState extends State<myLibraryRecommendsScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(height: 16.0),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: catChips(),
-          ),
-        ),
         SizedBox(height: 16.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,49 +78,4 @@ class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
       ],
     );
   }
-
-  List<Widget> catChips() {
-    List<Widget> chips = [];
-    for (int i = 0; i < _catList.length; i++) {
-      Widget item = FilterChip(
-        label: Text(_catList[i].label,
-            style: TextStyle(
-                color: _catList[i].isSelected
-                    ? AppColors.chip
-                    : AppColors.secondary)),
-        //avatar: _catList[i].icon,
-        labelStyle: kTextStyle9,
-        backgroundColor: Colors.transparent,
-        shape: StadiumBorder(side: BorderSide(color: Color(0xffDEDEDE))),
-        disabledColor: AppColors.chip,
-        selectedColor: AppColors.selected,
-        showCheckmark: false,
-        selected: _catList[i].isSelected,
-        onSelected: (bool value) {
-          setState(() {
-            if(value && !selectedChips.contains(_catList[i].label)){
-              selectedChips.add(_catList[i].label);
-            }
-            else if(!value && selectedChips.contains(_catList[i].label)){
-              selectedChips.remove(_catList[i].label);
-            }
-            _catList[i].isSelected = value;
-          });
-        },
-
-      );
-
-      chips.add(item);
-      chips.add(SizedBox(width: 8.0));
-    }
-    print(selectedChips);
-    return chips;
-  }
-
-  final List<Category> _catList = [
-    Category("All", true), //Icon(Icons.format_list_bulleted_rounded)
-    Category("Contents", false), //, Icon(Icons.menu_book)
-    Category("Collections", false), //, Icon(Icons.videocam_outlined)
-    Category("Asks", false), //, Icon(Icons.podcasts)
-  ];
 }

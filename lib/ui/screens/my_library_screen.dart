@@ -3,7 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/ui/components/content_list.dart';
+import 'package:upcarta_mobile_app/ui/screens/myLibrary/libraryCollectionsScreen.dart';
 import 'package:upcarta_mobile_app/ui/screens/myLibrary/librarySavedScreen.dart';
+import 'package:upcarta_mobile_app/ui/screens/myLibrary/myLibraryCompletedScreen.dart';
+import 'package:upcarta_mobile_app/ui/screens/myLibrary/myLibraryRecommendsScreen.dart';
 
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
@@ -100,15 +103,9 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
         body: const TabBarView(
           children: <Widget>[
             myLibrarySavedScreen(),
-            Center(
-              child: Text("Completed page"),
-            ),
-            Center(
-              child: Text("Collections page"),
-            ),
-            Center(
-              child: Text("Recommendations page"),
-            ),
+            myLibraryCompletedScreen(),
+            myLibraryCollectionsScreen(),
+            myLibraryRecommendsScreen(),
           ],
         ),
       ),
