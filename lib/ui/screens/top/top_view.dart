@@ -22,33 +22,33 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final List<Content> topContents = <Content>[
   Content(
       title: "TOP SCREEN",
-      id: "2",
+      id: 2,
       contentType: ContentType.book,
       added_by_id: '',
       link: 'www.google.com',
       description: 'berna',
       created_at: '',
       image:
-          'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg'),
+          'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg', author_id: ''),
   Content(
       title: "article of idil",
-      id: "3",
+      id: 4,
       contentType: ContentType.article,
       created_at: '',
       description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et do",
       link: 'https://lmgtfy.app/?q=dora+the+explorer',
       added_by_id: '',
-      image: 'https://images.gamebanana.com/img/ico/sprays/5c8d6b4f8f5ba.png'),
+      image: 'https://images.gamebanana.com/img/ico/sprays/5c8d6b4f8f5ba.png', author_id: ''),
   Content(
       title: "podcast about game-dev",
-      id: "4",
+      id: 4,
       contentType: ContentType.podcast,
       description: 'it\'s about game dev',
       created_at: '',
       link: 'URL',
       added_by_id: '',
-      image: 'https://static-cdn.jtvnw.net/ttv-boxart/105451_IGDB-272x380.jpg'),
+      image: 'https://static-cdn.jtvnw.net/ttv-boxart/105451_IGDB-272x380.jpg', author_id: ''),
 ];
 
 class TopView extends StatefulWidget {

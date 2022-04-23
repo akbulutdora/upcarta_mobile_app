@@ -10,7 +10,7 @@ class ProfileManager extends ChangeNotifier {
         bio:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum, a id nunc, odio augue enim. Viverra nullam pulvinar volutpat ultricies hendrerit sed. Morbi eget a nisi nulla vulputate vestibulum purus sodales.',
         darkMode: _darkMode,
-        id: '12345',
+        id: 12345,
         email: 'mana@gmail.com',
         followers: 666,
         following: 666,

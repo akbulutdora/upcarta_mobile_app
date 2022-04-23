@@ -49,31 +49,31 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
   final List<Content> contents = <Content>[
     Content(
         title: "podcast with bengisu",
-        id: "1",
+        id: 1,
         contentType: ContentType.podcastEpisode,
         added_by_id: '',
         description: '',
         created_at: '',
         link: '',
-        image: ''),
+        image: '', author_id: ''),
     Content(
         title: "book written by berna",
-        id: "2",
+        id: 2,
         contentType: ContentType.book,
         added_by_id: '',
         link: '',
         description: '',
         created_at: '',
-        image: ''),
+        image: '', author_id: ''),
     Content(
         title: "podcast about game-dev",
-        id: "4",
+        id: 4,
         contentType: ContentType.podcast,
         description: '',
         created_at: '',
         link: '',
         added_by_id: '',
-        image: ''),
+        image: '', author_id: ''),
   ];
 
   @override

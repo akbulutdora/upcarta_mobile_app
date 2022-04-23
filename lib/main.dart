@@ -16,7 +16,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // runApp(Home(currentTab: 0));
-  runApp(Welcome());
+  runApp(MyFirebaseApp());
 }
 
 class Welcome extends StatefulWidget {
@@ -28,18 +28,8 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  // final _profileManager = ProfileManager();
-  // final _appStateManager = AppStateManager();
-  final _appRouter = AppRouter();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _appRouter = AppRouter(
-  //     // appStateManager: _appStateManager,
-  //     // profileManager: _profileManager,
-  //   );
-  // }
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -50,37 +40,26 @@ class _WelcomeState extends State<Welcome> {
       theme: ThemeData.light(),
       builder: (context, router) => router!,
     );
-    // return MultiProvider(
-    //   providers: [
-    //     BlocProvider<NavigationCubit>(
-    //       create: (context) => NavigationCubit(),
-    //     ),
-    //     ChangeNotifierProvider(
-    //       create: (context) => _profileManager,
-    //     ),
-    //     ChangeNotifierProvider(
-    //       create: (context) => _appStateManager,
-    //     ),
-    //   ],
-    //   child: Consumer<ProfileManager>(
-    //     builder: (context, profileManager, child) {
-    //       ThemeData theme;
-    //       if (profileManager.darkMode) {
-    //         theme = UpcartaTheme.dark();
-    //       } else {
-    //         theme = UpcartaTheme.light();
-    //       }
-    //
-    //       return MaterialApp(
-    //         theme: theme,
-    //         title: 'Upcarta',
-    //         home: Router(
-    //           routerDelegate: _appRouter,
-    //           backButtonDispatcher: RootBackButtonDispatcher(),
-    //         ),
-    //       );
-    //     },
-    //   ),
-    // );
+
+  }
+}
+
+class MyFirebaseApp extends StatelessWidget {
+
+  final Future<FirebaseApp> _init = Firebase.initializeApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _init,
+      builder: (context, snapshot) {
+        if(snapshot.hasError) {
+          return const Scaffold(body: Center(child: Text("Error"),),);
+        }
+        if(snapshot.connectionState == ConnectionState.done) {
+          return Welcome();
+        }
+        return const Scaffold(body: Center(child: Text("Waiting"),),);
+      },);
   }
 }

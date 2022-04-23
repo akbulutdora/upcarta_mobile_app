@@ -1,8 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part "user.g.dart";
+@JsonSerializable()
 class User {
-  // so far only user attributes in the first section
+  final int id;
   final String name;
   final String username;
-  final String id;
   final String email;
   final int followers;
   final int following;
@@ -23,14 +26,17 @@ class User {
     required this.email,
     required this.followers,
     required this.following,
-    required this.password_hash,
-    required this.confirmation_sent_at,
-    required this.confirmed_at,
-    required this.confirmation_token,
-    required this.reset_password_token,
-    required this.reset_password_sent_at,
+    this.password_hash = "",
+    this.confirmation_sent_at = "",
+    this.confirmed_at = "",
+    this.confirmation_token = "",
+    this.reset_password_token = "",
+    this.reset_password_sent_at = "",
     required this.avatar,
     required this.bio,
     required this.darkMode,
   });
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }
