@@ -7,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/navigation//routes.gr.dart';
 
-
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 void main() async {
@@ -20,7 +19,6 @@ void main() async {
 }
 
 class Welcome extends StatefulWidget {
-
   Welcome({Key? key}) : super(key: key);
 
   @override
@@ -28,7 +26,6 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-
   final _appRouter = AppRouter();
 
   @override
@@ -40,12 +37,10 @@ class _WelcomeState extends State<Welcome> {
       theme: ThemeData.light(),
       builder: (context, router) => router!,
     );
-
   }
 }
 
 class MyFirebaseApp extends StatelessWidget {
-
   final Future<FirebaseApp> _init = Firebase.initializeApp();
 
   @override
@@ -53,13 +48,22 @@ class MyFirebaseApp extends StatelessWidget {
     return FutureBuilder(
       future: _init,
       builder: (context, snapshot) {
-        if(snapshot.hasError) {
-          return const Scaffold(body: Center(child: Text("Error"),),);
+        if (snapshot.hasError) {
+          return const Scaffold(
+            body: Center(
+              child: Text("Error"),
+            ),
+          );
         }
-        if(snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.done) {
           return Welcome();
         }
-        return const Scaffold(body: Center(child: Text("Waiting"),),);
-      },);
+        return const Scaffold(
+          body: Center(
+            child: Text("Waiting"),
+          ),
+        );
+      },
+    );
   }
 }
