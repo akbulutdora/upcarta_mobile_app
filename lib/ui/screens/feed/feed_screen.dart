@@ -10,6 +10,9 @@ import '../screens.dart';
 import 'package:auto_route/auto_route.dart';
 import '../../../navigation/routes.gr.dart';
 
+import 'package:upcarta_mobile_app/util/colors.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
+
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -20,6 +23,39 @@ class FeedScreen extends StatelessWidget {
     );
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.tabBarColor,
+          elevation: 0,
+          toolbarHeight: 0,
+          //titleTextStyle: libraryTabBar,
+          bottom: const TabBar(
+              isScrollable: true,
+              tabs: <Widget>[
+                Tab(text: 'Latest'),
+                Tab(text: 'Top'),
+              ],
+              unselectedLabelColor: Color(0xffC4C4C4),
+              unselectedLabelStyle: libraryTabBar,
+              labelColor: Color(0xff4E89FD),
+              labelStyle: libraryTabBar),
+        ),
+        body: const TabBarView(
+          children: <Widget>[
+            LatestView(),
+            TopView()
+          ],
+        ),
+      ),
+    );
+  }
+
+  /*
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -63,4 +99,5 @@ class FeedScreen extends StatelessWidget {
       ),
     );
   }
+  */
 }
