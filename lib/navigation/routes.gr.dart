@@ -28,6 +28,26 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.LoginScreen());
     },
+    LoginScreen2Route.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.LoginScreen2());
+    },
+    ResetPasswordRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.resetPassword());
+    },
+    ResetPasswordNewRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.resetPasswordNew());
+    },
+    MyRegisterRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.myRegister());
+    },
+    MyRegisterConfirmRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.myRegisterConfirm());
+    },
     OnboardingScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.OnboardingScreen());
@@ -80,6 +100,11 @@ class AppRouter extends _i2.RootStackRouter {
             path: '/', redirectTo: '/splash', fullMatch: true),
         _i2.RouteConfig(SplashScreenRoute.name, path: '/splash'),
         _i2.RouteConfig(LoginScreenRoute.name, path: '/login'),
+        _i2.RouteConfig(LoginScreen2Route.name, path: '/login2'),
+        _i2.RouteConfig(ResetPasswordRoute.name, path: '/forgot'),
+        _i2.RouteConfig(ResetPasswordNewRoute.name, path: '/forgot_new'),
+        _i2.RouteConfig(MyRegisterRoute.name, path: '/register'),
+        _i2.RouteConfig(MyRegisterConfirmRoute.name, path: '/register_confirm'),
         _i2.RouteConfig(OnboardingScreenRoute.name,
             path: '/onboarding',
             children: [
@@ -133,6 +158,48 @@ class LoginScreenRoute extends _i2.PageRouteInfo<void> {
   const LoginScreenRoute() : super(LoginScreenRoute.name, path: '/login');
 
   static const String name = 'LoginScreenRoute';
+}
+
+/// generated route for
+/// [_i1.LoginScreen2]
+class LoginScreen2Route extends _i2.PageRouteInfo<void> {
+  const LoginScreen2Route() : super(LoginScreen2Route.name, path: '/login2');
+
+  static const String name = 'LoginScreen2Route';
+}
+
+/// generated route for
+/// [_i1.resetPassword]
+class ResetPasswordRoute extends _i2.PageRouteInfo<void> {
+  const ResetPasswordRoute() : super(ResetPasswordRoute.name, path: '/forgot');
+
+  static const String name = 'ResetPasswordRoute';
+}
+
+/// generated route for
+/// [_i1.resetPasswordNew]
+class ResetPasswordNewRoute extends _i2.PageRouteInfo<void> {
+  const ResetPasswordNewRoute()
+      : super(ResetPasswordNewRoute.name, path: '/forgot_new');
+
+  static const String name = 'ResetPasswordNewRoute';
+}
+
+/// generated route for
+/// [_i1.myRegister]
+class MyRegisterRoute extends _i2.PageRouteInfo<void> {
+  const MyRegisterRoute() : super(MyRegisterRoute.name, path: '/register');
+
+  static const String name = 'MyRegisterRoute';
+}
+
+/// generated route for
+/// [_i1.myRegisterConfirm]
+class MyRegisterConfirmRoute extends _i2.PageRouteInfo<void> {
+  const MyRegisterConfirmRoute()
+      : super(MyRegisterConfirmRoute.name, path: '/register_confirm');
+
+  static const String name = 'MyRegisterConfirmRoute';
 }
 
 /// generated route for
