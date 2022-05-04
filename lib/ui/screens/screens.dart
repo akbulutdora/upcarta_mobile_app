@@ -14,3 +14,8 @@ export 'userOnboarding/userOnboarding3.dart';
 export 'userOnboarding/userOnboarding4.dart';
 export 'top/top_view.dart';
 export 'myLibrary/librarySavedScreen.dart';
+export 'register_screen.dart';
+export 'forgotpass_screen.dart';
+export 'login_screen2.dart';
+export 'forgotpass_screen_new.dart';
+export 'register_confirm.dart';
