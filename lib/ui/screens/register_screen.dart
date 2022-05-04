@@ -10,6 +10,7 @@ import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/service/auth_service.dart';
 
 class myRegister extends StatefulWidget {
   const myRegister({Key? key}) : super(key: key);
@@ -19,14 +20,12 @@ class myRegister extends StatefulWidget {
 }
 
 class _myRegisterState extends State<myRegister> {
-  final myController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _usernameController = TextEditingController();
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
-  }
+  AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -73,7 +72,7 @@ class _myRegisterState extends State<myRegister> {
                               fontWeight: FontWeight.bold)),
                       SizedBox(height: height * 0.025),
                       TextField(
-                        controller: myController,
+                        controller: _emailController,
                         decoration: InputDecoration(
                           labelText: 'Email',
                           fillColor: Colors.transparent,
@@ -87,6 +86,7 @@ class _myRegisterState extends State<myRegister> {
                       ),
                       SizedBox(height: height * 0.025),
                       TextField(
+                        controller: _nameController,
                         decoration: InputDecoration(
                           fillColor: Colors.transparent,
                           filled: true,
@@ -101,6 +101,7 @@ class _myRegisterState extends State<myRegister> {
                       ),
                       SizedBox(height: height * 0.025),
                       TextField(
+                        controller: _usernameController,
                         decoration: InputDecoration(
                           fillColor: Colors.transparent,
                           filled: true,
@@ -115,6 +116,7 @@ class _myRegisterState extends State<myRegister> {
                       ),
                       SizedBox(height: height * 0.025),
                       TextField(
+                        controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           fillColor: Colors.transparent,
@@ -138,18 +140,17 @@ class _myRegisterState extends State<myRegister> {
                           children: [
                             OutlinedButton(
                               onPressed: () async {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      // Retrieve the text the that user has entered by using the
-                                      // TextEditingController.
-                                      content: Text(myController.text),
-                                    );
-                                  },
-                                );
-                      context.router.push(MyRegisterConfirmRoute());
-                      },
+                                _authService
+                                    .createPerson(
+                                        _nameController.text,
+                                        _emailController.text,
+                                        _passwordController.text,
+                                        _usernameController.text)
+                                    .then((value) {
+                                  return context.router
+                                      .push(MyRegisterConfirmRoute());
+                                });
+                              },
                               style: OutlinedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12)),
@@ -160,7 +161,9 @@ class _myRegisterState extends State<myRegister> {
                               child: Text(
                                 'Sign Up',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: height / 50, fontWeight: FontWeight.bold),
+                                    color: Colors.white,
+                                    fontSize: height / 50,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],

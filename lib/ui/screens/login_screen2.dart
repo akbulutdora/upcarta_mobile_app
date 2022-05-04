@@ -10,6 +10,7 @@ import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/service/auth_service.dart';
 
 class LoginScreen2 extends StatefulWidget {
   @override
@@ -26,6 +27,9 @@ class LoginScreen2 extends StatefulWidget {
 
 class _LoginScreen2 extends State<LoginScreen2> {
   final _formKey = GlobalKey<FormState>();
+  AuthService _authService = AuthService();
+  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -72,6 +76,7 @@ class _LoginScreen2 extends State<LoginScreen2> {
                               fontWeight: FontWeight.bold)),
                       SizedBox(height: height * 0.025),
                       TextField(
+                        controller: _emailController,
                         decoration: InputDecoration(
                           labelText: 'Email',
                           fillColor: Colors.transparent,
@@ -85,6 +90,7 @@ class _LoginScreen2 extends State<LoginScreen2> {
                       ),
                       SizedBox(height: height * 0.025),
                       TextField(
+                        controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           fillColor: Colors.transparent,
@@ -107,7 +113,15 @@ class _LoginScreen2 extends State<LoginScreen2> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             OutlinedButton(
-                              onPressed: () {context.router.push(OnboardingScreenRoute());},
+                              onPressed: () {
+                                _authService
+                                    .signIn(_emailController.text,
+                                        _passwordController.text)
+                                    .then((value) {
+                                  return context.router
+                                      .push(OnboardingScreenRoute());
+                                });
+                              },
                               style: OutlinedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12)),
@@ -118,7 +132,9 @@ class _LoginScreen2 extends State<LoginScreen2> {
                               child: Text(
                                 'Sign In',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: height / 50, fontWeight: FontWeight.bold),
+                                    color: Colors.white,
+                                    fontSize: height / 50,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                             SizedBox(height: height * 0.025),
@@ -140,9 +156,6 @@ class _LoginScreen2 extends State<LoginScreen2> {
                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
-
-
-
                           ],
                         ),
                       ),
