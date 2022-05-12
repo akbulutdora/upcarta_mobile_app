@@ -5,7 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import '../screens.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import '../../../navigation/routes.gr.dart';
+
+import 'package:upcarta_mobile_app/util/colors.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
+
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -130,4 +134,5 @@ class _FeedScreenState extends State<FeedScreen> {
       // ),
     );
   }
+  */
 }
