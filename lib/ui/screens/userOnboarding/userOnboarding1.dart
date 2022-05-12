@@ -8,17 +8,17 @@ class UserOnboarding1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(vertical: height * 0.05),
-          color: Colors.grey,
-          height: width * 0.85,
-          width: width * 0.85,
+          margin: EdgeInsets.symmetric(vertical: height * 0.03),
+          height: min(width * 0.85, height * 0.4),
+          child: AspectRatio(
+              aspectRatio: 1,
+              child: Image.asset("assets/images/onboardingImage.png")),
         ),
         SizedBox(
           width: width * 0.6,
@@ -28,43 +28,51 @@ class UserOnboarding1 extends StatelessWidget {
               style: const TextStyle(color: Colors.black),
               children: [
                 TextSpan(
-                  text: "Welcome to Upcarta\n",
+                  text: "\tWelcome to Upcarta\t",
                   style: TextStyle(
                     color: Colors.transparent,
-                    fontSize: height * 0.024,
+                    fontSize: min(width * 0.055, 24),
                     fontWeight: FontWeight.w600,
-                    letterSpacing: 0.2,
+                    letterSpacing: -0.2,
                     decoration: TextDecoration.underline,
                     decorationColor: Colors.blue[400],
                     decorationStyle: TextDecorationStyle.solid,
                     decorationThickness: 2,
-                    shadows: [Shadow(offset: Offset(0, - height * 0.007), color: Colors.black)],
+                    shadows: [
+                      Shadow(
+                          offset: Offset(0, -height * 0.007),
+                          color: Colors.black)
+                    ],
                   ),
                 ),
                 TextSpan(
-                  text: "Connect your account and follow the people on your twitter.",
-                  style: TextStyle(fontSize: height * 0.016, fontWeight: FontWeight.normal, height: height * 0.0015),
+                  text:
+                      "Connect your account and follow the people on your twitter.",
+                  style: TextStyle(
+                      fontSize: min(width * 0.037, 15),
+                      fontWeight: FontWeight.normal,
+                      height: 1.2),
                 ),
               ],
             ),
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(top: 32),
+          margin: EdgeInsets.only(top: height * 0.05),
           child: ElevatedButton(
             onPressed: () {
               context.router.push(UserOnboarding2Route());
             },
             child: Text(
               "Connect Your Twitter",
-              style: TextStyle(color: Colors.white, fontSize: height * 0.02),
+              style: TextStyle(
+                  color: Colors.white, fontSize: min(16, width * 0.043)),
             ),
             style: ElevatedButton.styleFrom(
-              fixedSize: Size(width * 0.75, min(height * 0.06, width * 0.12)),
+              fixedSize: Size(min(288, width * 0.78), min(48, width * 0.13)),
               primary: Colors.blue[400],
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)
-              ),
+                  borderRadius: BorderRadius.circular(12)),
             ),
           ),
         ),
@@ -72,7 +80,8 @@ class UserOnboarding1 extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.02, width * 0.05, height * 0.05),
+              padding: EdgeInsets.fromLTRB(
+                  width * 0.05, height * 0.02, width * 0.05, height * 0.05),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

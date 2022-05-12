@@ -15,17 +15,38 @@ List<Map> users = [
   {"fullName": "Person I", "userName": "personi"},
 ];
 
-class UserOnboarding2 extends StatelessWidget {
+class UserOnboarding2 extends StatefulWidget {
   const UserOnboarding2({Key? key}) : super(key: key);
+
+  @override
+  State<UserOnboarding2> createState() => _UserOnboarding2State();
+}
+
+class _UserOnboarding2State extends State<UserOnboarding2> {
+  late int suggestionNumber = users.length;
+  bool isAllSelected = false;
+  List<Map> selectedUsers = [];
+
+  void selectAll() {
+    setState(() {
+      isAllSelected = true;
+    });
+    selectedUsers = users;
+  }
+
+  void deselectAll() {
+    if (isAllSelected) {
+      setState(() {
+        isAllSelected = false;
+      });
+    }
+    selectedUsers = [];
+  }
 
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
-
-    late int suggestionNumber = 128;
-    bool isAllSelected = false;
-    List<String> selectedUsers = [];
 
     return Column(
       children: [
@@ -49,12 +70,14 @@ class UserOnboarding2 extends StatelessWidget {
                   ),
                   const SizedBox(width: 12),
                   CustomRadioButton(
-                    selected: () {
+                    isSelected: isAllSelected,
+                    select: () {
                       print("Add all");
+                      selectAll();
                     },
-                    deselected: () {
-                      // selectedUsers = [];
+                    deselect: () {
                       print("Remove All");
+                      deselectAll();
                     },
                   ),
                 ],
@@ -63,52 +86,57 @@ class UserOnboarding2 extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: ListView(
-              children: List<Widget>.generate(
-                users.length,
-                (index) => FollowWithRadio(
-                  fullName: users[index]["fullName"],
-                  userName: users[index]["userName"],
-                  onSelect: () {
-                    selectedUsers.add(users[index]["fullName"]);
-                  },
-                  onDeselect: () {
-                    selectedUsers.removeWhere(
-                        (element) => element == users[index]["fullName"]);
-                  },
-                ),
+          child: ListView(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            children: List<Widget>.generate(
+              users.length,
+              (index) => FollowWithRadio(
+                isSelected: isAllSelected,
+                fullName: users[index]["fullName"],
+                userName: users[index]["userName"],
+                onSelect: () {
+                  selectedUsers.add(users[index]);
+                },
+                onDeselect: () {
+                  selectedUsers
+                      .removeWhere((element) => element == users[index]);
+                },
               ),
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(
-              width * 0.05, height * 0.02, width * 0.05, height * 0.05),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              OutlinedButton(
-                onPressed: () {
-                  // context.router.push(UserOnboarding3Route());
-                },
-                child: const Text(
-                  "Skip",
-                  style: TextStyle(color: Color(0xFF949494), fontSize: 18),
+        Container(
+          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(
+                offset: Offset(0, 0), blurRadius: 10, color: Colors.black12)
+          ]),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(
+                width * 0.05, height * 0.02, width * 0.05, height * 0.05),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    // context.router.push(UserOnboarding3Route());
+                  },
+                  child: const Text(
+                    "Skip",
+                    style: TextStyle(color: Color(0xFF949494), fontSize: 18),
+                  ),
                 ),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  print(selectedUsers);
-                  context.router.push(const UserOnboarding3Route());
-                },
-                child: const Text(
-                  "Next",
-                  style: TextStyle(color: Color(0xFF4E89FD), fontSize: 18),
+                OutlinedButton(
+                  onPressed: () {
+                    print(selectedUsers);
+                    context.router.push(const UserOnboarding3Route());
+                  },
+                  child: const Text(
+                    "Next",
+                    style: TextStyle(color: Color(0xFF4E89FD), fontSize: 18),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
@@ -116,20 +144,27 @@ class UserOnboarding2 extends StatelessWidget {
   }
 }
 
-class FollowWithRadio extends StatelessWidget {
-  const FollowWithRadio(
+class FollowWithRadio extends StatefulWidget {
+  FollowWithRadio(
       {Key? key,
       required this.fullName,
       required this.userName,
       required this.onSelect,
-      required this.onDeselect})
+      required this.onDeselect,
+      this.isSelected = false})
       : super(key: key);
 
   final String fullName;
   final String userName;
   final VoidCallback onSelect;
   final VoidCallback onDeselect;
+  bool isSelected;
 
+  @override
+  State<FollowWithRadio> createState() => _FollowWithRadioState();
+}
+
+class _FollowWithRadioState extends State<FollowWithRadio> {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -159,12 +194,12 @@ class FollowWithRadio extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(fullName,
+                        Text(widget.fullName,
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold)),
-                        Text("@$userName",
+                        Text("@${widget.userName}",
                             style: const TextStyle(
                                 color: Color(0xFF949494), fontSize: 16))
                       ],
@@ -174,8 +209,9 @@ class FollowWithRadio extends StatelessWidget {
               ),
               CustomRadioButton(
                 radius: 12,
-                selected: onSelect,
-                deselected: onDeselect,
+                select: widget.onSelect,
+                deselect: widget.onDeselect,
+                isSelected: widget.isSelected,
               ),
             ],
           ),
@@ -185,43 +221,35 @@ class FollowWithRadio extends StatelessWidget {
   }
 }
 
-void foo() {}
-
 class CustomRadioButton extends StatefulWidget {
-  const CustomRadioButton(
+  CustomRadioButton(
       {Key? key,
       this.radius = 10,
-      required this.selected,
-      required this.deselected})
+      required this.select,
+      required this.deselect,
+      this.isSelected = false})
       : super(key: key);
 
-  final bool isSelected = false;
+  bool isSelected;
   final double radius;
 
-  final VoidCallback selected;
-  final VoidCallback deselected;
+  final VoidCallback select;
+  final VoidCallback deselect;
 
   @override
   State<CustomRadioButton> createState() => _CustomRadioButtonState();
 }
 
 class _CustomRadioButtonState extends State<CustomRadioButton> {
-  late bool isSelected;
-
-  @override
-  void initState() {
-    isSelected = widget.isSelected;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    print(widget.isSelected);
     return GestureDetector(
       onTap: () {
         setState(() {
-          isSelected = !isSelected;
-          isSelected ? widget.selected() : widget.deselected();
+          widget.isSelected = !widget.isSelected;
         });
+        widget.isSelected ? widget.select() : {widget.deselect()};
       },
       child: Container(
         width: widget.radius * 2,
@@ -240,7 +268,7 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: isSelected ? Colors.blue : Colors.transparent,
+              color: widget.isSelected ? Colors.blue : Colors.transparent,
               borderRadius: BorderRadius.circular(widget.radius),
             ),
           ),
@@ -249,3 +277,15 @@ class _CustomRadioButtonState extends State<CustomRadioButton> {
     );
   }
 }
+
+// class _CustomRadioButtonState extends State<CustomRadioButton> {
+//   late bool isSelected;
+//
+//   // @override
+//   // void initState() {
+//   //   isSelected = widget.isSelected;
+//   //   super.initState();
+//   // }
+//
+//
+// }
