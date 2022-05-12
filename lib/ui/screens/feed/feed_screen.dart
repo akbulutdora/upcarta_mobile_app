@@ -73,66 +73,7 @@ class _FeedScreenState extends State<FeedScreen> {
         },
       ),
 
-      // DefaultTabController(
-      //   length: 2,
-      //   child: Scaffold(
-      //     backgroundColor: Colors.white,
-      //     appBar: PreferredSize(
-      //       preferredSize: Size.fromHeight(40),
-      //       child: Column(
-      //         crossAxisAlignment: CrossAxisAlignment.start,
-      //         children: <Widget>[
-      //           AppBar(
-      //             leading: Image.asset(
-      //               "assets/images/upcarta-logo-small.png",
-      //               width: 30,
-      //               height: 30,
-      //             ),
-      //             backgroundColor: Colors.white,
-      //             elevation: 0,
-      //             titleSpacing: 0.0,
-      //             title: const Text(
-      //               'Explore',
-      //               style: TextStyle(
-      //                   fontFamily: "SFCompactText-Medium",
-      //                   color: Colors.black,
-      //                   fontWeight: FontWeight.w500,
-      //                   fontSize: 22),
-      //             ),
-      //           ),
-      //           SizedBox(
-      //             height: 20,
-      //           ),
-      //           Expanded(
-      //             flex: 3,
-      //             child: TabBar(
-      //               isScrollable: true,
-      //               labelPadding: EdgeInsets.only(right: 8, bottom: 2),
-      //               //çizginin mesafesini ayarlıyor
-      //               indicatorPadding: EdgeInsets.only(right: 8),
-      //               padding: EdgeInsets.only(left: 16),
-      //               indicatorSize: TabBarIndicatorSize.label,
-      //               tabs: [
-      //                 Text(
-      //                   "Latest",
-      //                   style: TextStyle(color: Colors.blue),
-      //                 ),
-      //                 Text("Top", style: TextStyle(color: Colors.blue))
-      //               ],
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //     body: TabBarView(
-      //       children: <Widget>[
-      //         LatestView(),
-      //         TopView(),
-      //       ],
-      //     ),
-      //   ),
-      // ),
     );
   }
-  
+
 }
