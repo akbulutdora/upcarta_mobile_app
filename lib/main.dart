@@ -14,7 +14,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // runApp(Home(currentTab: 0));
+  //runApp(Welcome());
   runApp(MyFirebaseApp());
 }
 
@@ -58,8 +58,8 @@ class MyFirebaseApp extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return Welcome();
         }
-        return const Scaffold(
-          body: Center(
+        return const MaterialApp(
+          home: Center(
             child: Text("Waiting"),
           ),
         );

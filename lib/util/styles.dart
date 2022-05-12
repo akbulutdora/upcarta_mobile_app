@@ -31,6 +31,11 @@ const kTextStyle3 = TextStyle(
     fontWeight: FontWeight.normal,
     fontSize: 22,
     color: Colors.black);
+const kTextStyle3b = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.bold,
+    fontSize: 22,
+    color: Colors.black);
 
 const kTextStyle4 = TextStyle(
     fontFamily: "SF Compact Text",
@@ -78,7 +83,6 @@ const sectionStyle = TextStyle(
   decorationColor: Colors.blue,
   decorationStyle: TextDecorationStyle.solid,
 );
-
 
 const kTextStyle9 = TextStyle(
     fontFamily: "SF Compact Text",

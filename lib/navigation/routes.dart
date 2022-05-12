@@ -15,6 +15,26 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
         page: LoginScreen,
       ),
       AutoRoute(
+        path: '/login2',
+        page: LoginScreen2,
+      ),
+      AutoRoute(
+        path: '/forgot',
+        page: resetPassword,
+      ),
+      AutoRoute(
+        path: '/forgot_new',
+        page: resetPasswordNew,
+      ),
+      AutoRoute(
+        path: '/register',
+        page: myRegister,
+      ),
+      AutoRoute(
+        path: '/register_confirm',
+        page: myRegisterConfirm,
+      ),
+      AutoRoute(
         path: '/onboarding',
         page: OnboardingScreen,
         children: [
@@ -69,6 +89,19 @@ const groupTabRouter = AutoRoute(
       path: 'feed',
       name: 'FeedScreenRoute',
       page: FeedScreen,
+      children: [
+        AutoRoute(
+          path: 'latest',
+          initial: true,
+          name: 'LatestScreenRoute',
+          page: LatestView,
+        ),
+        AutoRoute(
+          path: 'top',
+          name: 'TopScreenRoute',
+          page: TopView,
+        ),
+      ],
     ),
     AutoRoute(
       path: 'explore',

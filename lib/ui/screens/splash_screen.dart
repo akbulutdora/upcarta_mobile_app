@@ -30,12 +30,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.purple,
-      child: TextButton(
-        child: Text("GO TO NEXT"),
-        onPressed: () {context.router.push(LoginScreenRoute());
-        },
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Container(
+            color: Colors.purple,
+            child: TextButton(
+              child: Text("GO TO NEXT"),
+              onPressed: () {
+                context.router.push(LoginScreenRoute());
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
