@@ -79,7 +79,6 @@ const sectionStyle = TextStyle(
   decorationStyle: TextDecorationStyle.solid,
 );
 
-
 const kTextStyle9 = TextStyle(
     fontFamily: "SF Compact Text",
     fontWeight: FontWeight.normal,
