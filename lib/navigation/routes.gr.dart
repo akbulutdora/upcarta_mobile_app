@@ -91,6 +91,14 @@ class AppRouter extends _i2.RootStackRouter {
     ProfileScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.ProfileScreen());
+    },
+    LatestScreenRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.LatestView());
+    },
+    TopScreenRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.TopView());
     }
   };
 
@@ -124,7 +132,19 @@ class AppRouter extends _i2.RootStackRouter {
             ]),
         _i2.RouteConfig(HomeRoute.name, path: '/home', children: [
           _i2.RouteConfig(FeedScreenRoute.name,
-              path: 'feed', parent: HomeRoute.name),
+              path: 'feed',
+              parent: HomeRoute.name,
+              children: [
+                _i2.RouteConfig('#redirect',
+                    path: '',
+                    parent: FeedScreenRoute.name,
+                    redirectTo: 'latest',
+                    fullMatch: true),
+                _i2.RouteConfig(LatestScreenRoute.name,
+                    path: 'latest', parent: FeedScreenRoute.name),
+                _i2.RouteConfig(TopScreenRoute.name,
+                    path: 'top', parent: FeedScreenRoute.name)
+              ]),
           _i2.RouteConfig(ExploreScreenRoute.name,
               path: 'explore', parent: HomeRoute.name),
           _i2.RouteConfig(NewPostScreenRoute.name,
@@ -259,7 +279,8 @@ class UserOnboarding4Route extends _i2.PageRouteInfo<void> {
 /// generated route for
 /// [_i1.FeedScreen]
 class FeedScreenRoute extends _i2.PageRouteInfo<void> {
-  const FeedScreenRoute() : super(FeedScreenRoute.name, path: 'feed');
+  const FeedScreenRoute({List<_i2.PageRouteInfo>? children})
+      : super(FeedScreenRoute.name, path: 'feed', initialChildren: children);
 
   static const String name = 'FeedScreenRoute';
 }
@@ -295,4 +316,20 @@ class ProfileScreenRoute extends _i2.PageRouteInfo<void> {
   const ProfileScreenRoute() : super(ProfileScreenRoute.name, path: 'profile');
 
   static const String name = 'ProfileScreenRoute';
+}
+
+/// generated route for
+/// [_i1.LatestView]
+class LatestScreenRoute extends _i2.PageRouteInfo<void> {
+  const LatestScreenRoute() : super(LatestScreenRoute.name, path: 'latest');
+
+  static const String name = 'LatestScreenRoute';
+}
+
+/// generated route for
+/// [_i1.TopView]
+class TopScreenRoute extends _i2.PageRouteInfo<void> {
+  const TopScreenRoute() : super(TopScreenRoute.name, path: 'top');
+
+  static const String name = 'TopScreenRoute';
 }

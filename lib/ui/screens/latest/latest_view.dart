@@ -58,9 +58,6 @@ class _LatestViewState extends State<LatestView> {
         padding: const EdgeInsets.only(bottom: 8.0, right: 8, left: 8),
         child: Column(
           children: [
-            const Divider(
-              thickness: 1,
-            ),
             FutureBuilder<List<Content>>(
                 future: getPosts(),
                 builder: (context, snapshot) {
@@ -80,81 +77,81 @@ class _LatestViewState extends State<LatestView> {
   }
 
   Future<List<Content>> getPosts() async {
-    const List<Map<String, dynamic>> arr = [
-      {
-        "id": 1,
-        "title":
-            "title 0title 0title 0title 0title 0title 0title 0title 0title 0title 0title 0",
-        "description":
-            "description 1description 1description 1description 1description 1description 1description 1description 1description 1description 1description 1",
-        "contentType": 3,
-        "created_at": "2022/01/01",
-        "image": "https://www.w3schools.com/w3images/lights.jpg",
-        "link": "link 1",
-        "added_by_id": "added by id 1",
-        "author_id": "author id 1"
-      },
-      {
-        "id": 2,
-        "title":
-            "title 2title 2title 2title 2title 2title 2title 2title 2title 2title 2title 2",
-        "description":
-            "description 2description 2description 2description 2description 2description 2description 2description 2description 2description 2description 2",
-        "contentType": 6,
-        "created_at": "2022/01/02",
-        "image": "https://www.w3schools.com/w3images/lights.jpg",
-        "link": "link 2",
-        "added_by_id": "added by id 2",
-        "author_id": "author id 2"
-      },
-      {
-        "id": 3,
-        "title":
-            "title 3title 3title 3title 3title 3title 3title 3title 3title 3title 3title 3",
-        "description":
-            "description 3description 3description 3description 3description 3description 3description 3description 3description 3description 3description 3",
-        "contentType": 2,
-        "created_at": "2022/01/03",
-        "image": "https://www.w3schools.com/w3images/lights.jpg",
-        "link": "link 3",
-        "added_by_id": "added by id 3",
-        "author_id": "author id 3"
-      },
-      {
-        "id": 4,
-        "title":
-            "title 4title 4title 4title 4title 4title 4title 4title 4title 4title 4title 4",
-        "description":
-            "description 4description 4description 4description 4description 4description 4description 4description 4description 4description 4description 4",
-        "contentType": 4,
-        "created_at": "2022/01/04",
-        "image": "https://www.w3schools.com/w3images/lights.jpg",
-        "link": "link 4",
-        "added_by_id": "added by id 4",
-        "author_id": "author id 4"
-      }
-    ];
-    // var responseList = jsonDecode(arr) as List;
-    // print(responseList);
-    List<Content> contents =
-        arr.map((content) => Content.fromJson(content)).toList();
-    // print(contents[0]);
-    // print(contents);
-    return contents;
+    //   const List<Map<String, dynamic>> arr = [
+    //     {
+    //       "id": 1,
+    //       "title":
+    //           "title 0title 0title 0title 0title 0title 0title 0title 0title 0title 0title 0",
+    //       "description":
+    //           "description 1description 1description 1description 1description 1description 1description 1description 1description 1description 1description 1",
+    //       "contentType": 3,
+    //       "created_at": "2022/01/01",
+    //       "image": "https://www.w3schools.com/w3images/lights.jpg",
+    //       "link": "link 1",
+    //       "added_by_id": "added by id 1",
+    //       "author_id": "author id 1"
+    //     },
+    //     {
+    //       "id": 2,
+    //       "title":
+    //           "title 2title 2title 2title 2title 2title 2title 2title 2title 2title 2title 2",
+    //       "description":
+    //           "description 2description 2description 2description 2description 2description 2description 2description 2description 2description 2description 2",
+    //       "contentType": 6,
+    //       "created_at": "2022/01/02",
+    //       "image": "https://www.w3schools.com/w3images/lights.jpg",
+    //       "link": "link 2",
+    //       "added_by_id": "added by id 2",
+    //       "author_id": "author id 2"
+    //     },
+    //     {
+    //       "id": 3,
+    //       "title":
+    //           "title 3title 3title 3title 3title 3title 3title 3title 3title 3title 3title 3",
+    //       "description":
+    //           "description 3description 3description 3description 3description 3description 3description 3description 3description 3description 3description 3",
+    //       "contentType": 2,
+    //       "created_at": "2022/01/03",
+    //       "image": "https://www.w3schools.com/w3images/lights.jpg",
+    //       "link": "link 3",
+    //       "added_by_id": "added by id 3",
+    //       "author_id": "author id 3"
+    //     },
+    //     {
+    //       "id": 4,
+    //       "title":
+    //           "title 4title 4title 4title 4title 4title 4title 4title 4title 4title 4title 4",
+    //       "description":
+    //           "description 4description 4description 4description 4description 4description 4description 4description 4description 4description 4description 4",
+    //       "contentType": 4,
+    //       "created_at": "2022/01/04",
+    //       "image": "https://www.w3schools.com/w3images/lights.jpg",
+    //       "link": "link 4",
+    //       "added_by_id": "added by id 4",
+    //       "author_id": "author id 4"
+    //     }
+    //   ];
+    //   // var responseList = jsonDecode(arr) as List;
+    //   // print(responseList);
+    //   List<Content> contents =
+    //       arr.map((content) => Content.fromJson(content)).toList();
+    //   // print(contents[0]);
+    //   // print(contents);
+    //   return contents;
+    // }
+    final url = Uri.parse(
+        "https://my-json-server.typicode.com/cankrmn/upcarta_test/posts"); // API.allUsers
+    final response = await http.get(Uri.https(url.authority, url.path));
+
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      var responseList = jsonDecode(response.body) as List;
+      // print(responseList);
+      List<Content> contents =
+          responseList.map((content) => Content.fromJson(content)).toList();
+      // print(contents[0]);
+      // print(contents);
+      return contents;
+    }
+    return <Content>[];
   }
-  //   final url = Uri.parse(
-  //       "https://my-json-server.typicode.com/cankrmn/upcarta_test/posts"); // API.allUsers
-  //   final response = await http.get(Uri.https(url.authority, url.path));
-  //
-  //   if (response.statusCode >= 200 && response.statusCode < 300) {
-  //     var responseList = jsonDecode(response.body) as List;
-  //     // print(responseList);
-  //     List<Content> contents =
-  //         responseList.map((content) => Content.fromJson(content)).toList();
-  //     // print(contents[0]);
-  //     // print(contents);
-  //     return contents;
-  //   }
-  //   return <Content>[];
-  // }
 }

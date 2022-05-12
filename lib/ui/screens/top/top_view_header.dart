@@ -15,16 +15,13 @@ class _TopViewHeaderState extends State<TopViewHeader> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Divider(
+        children: const [
+          DateRangePickerChips(),
+          ContentTypePickerChips(),
+          Divider(
             thickness: 1,
           ),
-          const DateRangePickerChips(),
-          const ContentTypePickerChips(),
-          const Divider(
-            thickness: 1,
-          ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           HorizontalContentList(),
           // ),
         ],

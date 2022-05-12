@@ -59,7 +59,7 @@ class _LoginScreen2 extends State<LoginScreen2> {
             centerTitle: true,
             backgroundColor: Colors.white,
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Stack(
@@ -104,9 +104,8 @@ class _LoginScreen2 extends State<LoginScreen2> {
                           ),
                         ),
                       ),
-                      SizedBox(height: height * 0.45),
+                      SizedBox(height: height * 0.2),
                       Container(
-                        height: height * 0.2,
                         width: width,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -89,6 +89,19 @@ const groupTabRouter = AutoRoute(
       path: 'feed',
       name: 'FeedScreenRoute',
       page: FeedScreen,
+      children: [
+        AutoRoute(
+          path: 'latest',
+          initial: true,
+          name: 'LatestScreenRoute',
+          page: LatestView,
+        ),
+        AutoRoute(
+          path: 'top',
+          name: 'TopScreenRoute',
+          page: TopView,
+        ),
+      ],
     ),
     AutoRoute(
       path: 'explore',

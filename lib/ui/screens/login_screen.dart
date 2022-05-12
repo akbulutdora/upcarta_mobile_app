@@ -87,7 +87,7 @@ class _LoginScreen extends State<LoginScreen> {
                       ),
                       SizedBox(height: height * .10),
                       Container(
-                        height: height * 0.07,
+                        //height: height * 0.07,
                         width: width,
                         child: OutlinedButton(
                           onPressed: () {},
@@ -106,7 +106,7 @@ class _LoginScreen extends State<LoginScreen> {
                       ),
                       SizedBox(height: height * .025),
                       Container(
-                        height: height * 0.07,
+                        //height: height * 0.07,
                         width: width,
                         child: OutlinedButton(
                           onPressed: () {},
@@ -125,7 +125,7 @@ class _LoginScreen extends State<LoginScreen> {
                       ),
                       SizedBox(height: height * .025),
                       Container(
-                        height: height * 0.07,
+                        //height: height * 0.07,
                         width: width,
                         child: OutlinedButton(
                           onPressed: () {},
@@ -152,7 +152,7 @@ class _LoginScreen extends State<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        SizedBox(height: height * .025),
+                        SizedBox(height: height * .03),
                         Row(
                           children: [
                             Expanded(
@@ -165,7 +165,7 @@ class _LoginScreen extends State<LoginScreen> {
                                 ],
                               ),
                             ),
-                            Text("     OR     "),
+                            const Text("     OR     "),
                             Expanded(
                               child: Column(
                                 children: [
@@ -178,9 +178,9 @@ class _LoginScreen extends State<LoginScreen> {
                             )
                           ],
                         ),
-                        SizedBox(height: height * .015),
+                        SizedBox(height: height * .01),
                         Container(
-                          height: height * 0.07,
+                          //height: height * 0.07,
                           width: width * 1,
                           child: OutlinedButton(
                             onPressed: () async {
@@ -227,7 +227,7 @@ class _LoginScreen extends State<LoginScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(height: height * .2),
+                        //SizedBox(height: height * .2),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

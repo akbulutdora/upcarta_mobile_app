@@ -55,7 +55,8 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
         description: '',
         created_at: '',
         link: '',
-        image: '', author_id: ''),
+        image: '',
+        author_id: ''),
     Content(
         title: "book written by berna",
         id: 2,
@@ -64,7 +65,8 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
         link: '',
         description: '',
         created_at: '',
-        image: '', author_id: ''),
+        image: '',
+        author_id: ''),
     Content(
         title: "podcast about game-dev",
         id: 4,
@@ -73,7 +75,8 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
         created_at: '',
         link: '',
         added_by_id: '',
-        image: '', author_id: ''),
+        image: '',
+        author_id: ''),
   ];
 
   @override
@@ -83,9 +86,22 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.tabBarColor,
+          backgroundColor: Colors.white,
+          titleSpacing: 0.0,
+          title: const Text(
+            'Explore',
+            style: TextStyle(
+                fontFamily: "SFCompactText-Medium",
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                fontSize: 22),
+          ),
+          leading: Image.asset(
+            "assets/images/upcarta-logo-small.png",
+            width: 30,
+            height: 30,
+          ),
           elevation: 0,
-          toolbarHeight: 0,
           //titleTextStyle: libraryTabBar,
           bottom: const TabBar(
               isScrollable: true,

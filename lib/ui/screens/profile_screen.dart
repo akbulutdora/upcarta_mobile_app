@@ -29,11 +29,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: Image.asset(
+          "assets/images/upcarta-logo-small.png",
+          width: 30,
+          height: 30,
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        titleSpacing: 0.0,
+        title: const Text(
+          'Explore',
+          style: TextStyle(
+              fontFamily: "SFCompactText-Medium",
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: 22),
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: SizedBox(child: buildTabController()))
-        ],
+        children: [Expanded(child: SizedBox(child: buildTabController()))],
       ),
     );
   }
@@ -122,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 bottom: TabBar(
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.black,
-                  labelPadding: EdgeInsets.only(right:5, left:5),
+                  labelPadding: EdgeInsets.only(right: 5, left: 5),
                   labelStyle: TextStyle(fontSize: 14),
                   tabs: [
                     Tab(text: "Overview"),
@@ -140,7 +156,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   // This is where you build the profile part
                 ),
               ),
-
             ];
           },
           body: TabBarView(
@@ -148,7 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Column(
                 children: [
                   //ContentList(
-                    //contentList: contents,
+                  //contentList: contents,
                   //),
                 ],
               ),
@@ -210,11 +225,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //'@${widget.user.username}',
             "@lidl",
             style: TextStyle(
-          fontFamily: "SFCompactText",
-          fontWeight: FontWeight.normal,
-          fontSize: 14,
-          color: Colors.grey,
-          ),
+              fontFamily: "SFCompactText",
+              fontWeight: FontWeight.normal,
+              fontSize: 14,
+              color: Colors.grey,
+            ),
           ),
           const SizedBox(height: 10.0),
           Text(
@@ -245,12 +260,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Text(
                       ' followers',
                       style: TextStyle(
-                          fontFamily: "SFCompactText",
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12,
-                          color: Colors.black,
-                    ),
-                    )]),
+                        fontFamily: "SFCompactText",
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12,
+                        color: Colors.black,
+                      ),
+                    )
+                  ]),
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 0, vertical: 8.0),
@@ -294,11 +310,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   'Also followed by "mutualFollowed" and others',
                   //this appears if there are mutuals and make others appear when there are more
                   style: TextStyle(
-                  fontFamily: "SFCompactText",
-                  fontWeight: FontWeight.normal,
-                  fontSize: 12,
-                  color: Colors.black,
-                ),
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.normal,
+                    fontSize: 12,
+                    color: Colors.black,
+                  ),
                 ),
               ],
             ),
