@@ -34,29 +34,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     AutoRouter.of(context);
     return AutoTabsScaffold(
-      appBarBuilder: (_, tabsRouter) => AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.notifications_none_outlined,
-                color: AppColors.secondary,
-                size: 30,
-              ))
-        ],
-        elevation: 0,
-        titleSpacing: 0.0,
-        leading: Icon(
-          Icons.pause_circle,
-          size: 30,
-          color: AppColors.primary,
-        ),
-        title: const Text(
-          'Upcarta',
-          style: kAppBarTextStyle,
-        ),
-        backgroundColor: Colors.white,
-      ),
+      appBarBuilder: (_, tabsRouter) =>
+          PreferredSize(child: Container(), preferredSize: Size(0.0, 0.0)),
       routes: const [
         FeedScreenRoute(),
         ExploreScreenRoute(),

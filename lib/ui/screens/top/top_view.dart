@@ -15,6 +15,7 @@ import 'package:upcarta_mobile_app/ui/screens/top/widgets/content_type_picker_ch
 import 'package:upcarta_mobile_app/ui/screens/top/widgets/date_range_picker_chips.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import '../../../util/styles.dart';
+import '../../components/horizontal_content_list.dart';
 
 part "top_view_header.dart";
 
@@ -29,7 +30,8 @@ final List<Content> topContents = <Content>[
       description: 'berna',
       created_at: '',
       image:
-          'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg', author_id: ''),
+          'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg',
+      author_id: ''),
   Content(
       title: "article of idil",
       id: 4,
@@ -39,7 +41,8 @@ final List<Content> topContents = <Content>[
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et do",
       link: 'https://lmgtfy.app/?q=dora+the+explorer',
       added_by_id: '',
-      image: 'https://images.gamebanana.com/img/ico/sprays/5c8d6b4f8f5ba.png', author_id: ''),
+      image: 'https://images.gamebanana.com/img/ico/sprays/5c8d6b4f8f5ba.png',
+      author_id: ''),
   Content(
       title: "podcast about game-dev",
       id: 4,
@@ -48,7 +51,8 @@ final List<Content> topContents = <Content>[
       created_at: '',
       link: 'URL',
       added_by_id: '',
-      image: 'https://static-cdn.jtvnw.net/ttv-boxart/105451_IGDB-272x380.jpg', author_id: ''),
+      image: 'https://static-cdn.jtvnw.net/ttv-boxart/105451_IGDB-272x380.jpg',
+      author_id: ''),
 ];
 
 class TopView extends StatefulWidget {

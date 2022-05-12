@@ -32,10 +32,21 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.purple,
-      child: TextButton(
-        child: Text("GO TO NEXT"),
-        onPressed: () {context.router.push(LoginScreenRoute());
-        },
+      child: Column(
+        children: [
+          TextButton(
+            onPressed: () {
+              context.router.replace(const HomeRoute());
+            },
+            child: const Text("Go To Home Screen"),
+          ),
+          TextButton(
+            child: Text("GO TO NEXT"),
+            onPressed: () {
+              context.router.push(LoginScreenRoute());
+            },
+          ),
+        ],
       ),
     );
   }
