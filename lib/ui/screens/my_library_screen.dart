@@ -89,7 +89,7 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
           backgroundColor: Colors.white,
           titleSpacing: 0.0,
           title: const Text(
-            'Explore',
+            'Your Library',
             style: TextStyle(
                 fontFamily: "SFCompactText-Medium",
                 color: Colors.black,
