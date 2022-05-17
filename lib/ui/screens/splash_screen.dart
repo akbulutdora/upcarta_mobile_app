@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/ui/screens/home.dart';
 
 import '../../navigation/routes.gr.dart';
 
@@ -39,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Text("GO TO NEXT"),
               onPressed: () {
                 context.router.push(LoginScreenRoute());
+                // context.router.push(HomeRoute());
               },
             ),
           ),
