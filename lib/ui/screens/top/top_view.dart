@@ -15,7 +15,7 @@ import 'package:upcarta_mobile_app/ui/screens/top/widgets/content_type_picker_ch
 import 'package:upcarta_mobile_app/ui/screens/top/widgets/date_range_picker_chips.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import '../../../util/styles.dart';
-import '../../components/horizontal_content_list.dart';
+import '../../components/horizontal_content_list__collectons_and_asks.dart';
 
 part "top_view_header.dart";
 

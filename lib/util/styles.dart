@@ -46,7 +46,7 @@ const kTextStyle4 = TextStyle(
 const contentCardTitleStyle = TextStyle(
     fontFamily: "SF Compact Text",
     fontWeight: FontWeight.w600,
-    fontSize: 17,
+    fontSize: 13,
     color: Colors.black);
 
 const kTextStyle6 = TextStyle(

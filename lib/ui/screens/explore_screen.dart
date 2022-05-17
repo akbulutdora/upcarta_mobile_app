@@ -1,10 +1,19 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/ui/components/horizontal_content_list.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__collectons_and_asks.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__content_archive.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__featured_collections.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__inspiring_creators.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__popular_topics.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__recent_asks.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
+
+import '../../chips/WrappedSinglChip.dart';
 
 class ExploreScreen extends StatefulWidget {
   static MaterialPage page(int currentTab) {
@@ -19,64 +28,77 @@ class ExploreScreen extends StatefulWidget {
 
 class Cat {
   String label = "";
-
   //Icon icon=Icon(Icons.person);
   bool isSelected = false;
-
   Cat(this.label, this.isSelected); //, this.icon
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
   late User user;
+
   final List<Cat> _catList = [
-    Cat("All", true), //Icon(Icons.format_list_bulleted_rounded)
-    Cat("Collections", false), //, Icon(Icons.menu_book)
-    Cat("People", false), //, Icon(Icons.videocam_outlined)
+    Cat("All", false),
+    Cat("Collections", false),
+    Cat("People", false),
     Cat("Topics", false),
-    Cat("Asks", false), //, Icon(Icons.podcasts)
+    Cat("Asks", false),
     Cat("Contents", false),
   ];
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: Image.asset(
-            "assets/images/upcarta-logo-small.png",
-            width: 30,
-            height: 30,
-          ),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          titleSpacing: 0.0,
-          title: const Text(
-            'Explore',
-            style: TextStyle(
-                fontFamily: "SFCompactText-Medium",
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 22),
-          ),
+      appBar: AppBar(
+        leading: Image.asset(
+          "assets/images/upcarta-logo-small.png",
+          width: 30,
+          height: 30,
         ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Column(
-            children: [
-              SizedBox(height: 32, child: buildSearchBar()),
-              SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: catChips(),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        titleSpacing: 0.0,
+        title: const Text(
+          'Explore',
+          style: TextStyle(
+              fontFamily: "SFCompactText-Medium",
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: 22),
+        ),
+      ),
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 32, child: buildSearchBar()),
+            SizedBox(height: 16),
+            Container(
+              alignment: Alignment.topLeft,
+              child: WrappedSingleChip(),
+            ),
+            SizedBox(height: 20),
+            SingleChildScrollView(
+              child: Container(
+                height: 490,
+                child: Expanded(
+                  child: ListView(children: <Widget>[
+                    Container(
+                        child: HorizontalContentList__FeaturedCollection()),
+                    Container(
+                        child: HorizontalContentList__InspiringCreators()),
+                    Container(child: HorizontalContentList__Popular_Topics()),
+                    Container(child: HorizontalContentList__RecentAsks()),
+                    Container(child: HorizontalContentList__ContentArchive()),
+                  ]),
                 ),
               ),
-              SizedBox(height: 20),
-              HorizontalContentList(),
-            ],
-          ),
-        ));
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   Widget buildSearchBar() => const TextField(
@@ -95,19 +117,23 @@ class _ExploreScreenState extends State<ExploreScreen> {
         ),
       );
 
-
-
   List<Widget> catChips() {
     List<Widget> chips = [];
     for (int i = 0; i < _catList.length; i++) {
       Widget item = FilterChip(
-        label: Text(_catList[i].label,
-            style: TextStyle(
-                color: _catList[i].isSelected
-                    ? AppColors.chip
-                    : AppColors.secondary)),
+        label: SizedBox(
+          height: 24,
+          child: Text(_catList[i].label,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 13,
+                  fontFamily: "SFCompactText-Regular",
+                  color: _catList[i].isSelected
+                      ? AppColors.chip
+                      : AppColors.secondary)),
+        ),
         //avatar: _catList[i].icon,
-        labelStyle: kTextStyle9,
+        padding: EdgeInsets.all(0.5),
         backgroundColor: Colors.transparent,
         shape: StadiumBorder(side: BorderSide(color: Color(0xffDEDEDE))),
         disabledColor: AppColors.chip,
@@ -121,9 +147,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         },
       );
       chips.add(item);
-      chips.add(SizedBox(width: 8.0));
     }
     return chips;
   }
 }
-
