@@ -14,6 +14,7 @@ import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
 import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart' as _i2;
 import 'package:upcarta_mobile_app/ui/screens/screens.dart' as _i1;
+import 'package:upcarta_mobile_app/ui/screens/settings.dart' as _i2;
 
 class AppRouter extends _i3.RootStackRouter {
   AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
@@ -52,6 +53,10 @@ class AppRouter extends _i3.RootStackRouter {
     EditProfileRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i2.EditProfileScreen());
+    },
+    SettingsRoute.name: (routeData) {
+      return _i3.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i2.Settings());
     },
     OnboardingScreenRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
@@ -119,6 +124,7 @@ class AppRouter extends _i3.RootStackRouter {
         _i3.RouteConfig(MyRegisterRoute.name, path: '/register'),
         _i3.RouteConfig(MyRegisterConfirmRoute.name, path: '/register_confirm'),
         _i3.RouteConfig(EditProfileRoute.name, path: '/edit_profile'),
+        _i3.RouteConfig(SettingsRoute.name, path: '/settings'),
         _i3.RouteConfig(OnboardingScreenRoute.name,
             path: '/onboarding',
             children: [
@@ -235,6 +241,15 @@ class EditProfileRoute extends _i3.PageRouteInfo<void> {
       : super(EditProfileRoute.name, path: '/edit_profile');
 
   static const String name = 'EditProfileRoute';
+}
+
+/// generated route for
+/// [_i2.Settings]
+class SettingsRoute extends _i3.PageRouteInfo<void> {
+  const SettingsRoute()
+      : super(SettingsRoute.name, path: '/settings');
+
+  static const String name = 'SettingsRoute';
 }
 
 /// generated route for

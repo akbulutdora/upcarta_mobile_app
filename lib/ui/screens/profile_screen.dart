@@ -3,12 +3,11 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart';
-import '../../models/user.dart';
+import '../../models/content.dart';
 import 'package:upcarta_mobile_app/ui/components/circle_image.dart';
-import 'package:upcarta_mobile_app/ui/components/content_list.dart';
+import '../components/content_list.dart';
+import '../components/recommended_by.dart';
 
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -25,9 +24,43 @@ class ProfileScreen extends StatefulWidget {
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-bool isMyProfile = true;
-
 class _ProfileScreenState extends State<ProfileScreen> {
+  final List<Content> contents = <Content>[
+    Content(
+        title: "book written by berna",
+        id: 2,
+        contentType: ContentType.book,
+        added_by_id: '',
+        link: 'www.google.com',
+        description: 'berna',
+        created_at: '',
+        image:
+            'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg',
+        author_id: ''),
+    Content(
+        title: "article of idil",
+        id: 3,
+        contentType: ContentType.article,
+        created_at: '',
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        link: 'https://lmgtfy.app/?q=dora+the+explorer',
+        added_by_id: '',
+        image: 'https://images.gamebanana.com/img/ico/sprays/5c8d6b4f8f5ba.png',
+        author_id: ''),
+    Content(
+        title: "podcast about game-dev",
+        id: 4,
+        contentType: ContentType.podcast,
+        description: 'it\'s about game dev',
+        created_at: '',
+        link: 'URL',
+        added_by_id: '',
+        image:
+            'https://static-cdn.jtvnw.net/ttv-boxart/105451_IGDB-272x380.jpg',
+        author_id: ''),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,10 +84,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           IconButton(
             icon: Icon(
               Icons.settings,
-              color: Colors.black26,
+              color: Colors.black54,
             ),
-            onPressed: () {
-              context.router.replace(const EditProfileRoute());
+            onPressed: () async {
+              context.router.push(const SettingsRoute());
             },
           )
         ],
@@ -66,27 +99,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
-  /*
-  Widget buildDarkModeRow() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text('Dark Mode'),
-          Switch(
-            value: widget.user.darkMode,
-            onChanged: (value) {
-             // Provider.of<ProfileManager>(context, listen: false).darkMode =
-             //     value;
-            },
-          )
-        ],
-      ),
-    );
-  }
-  */
 
   Widget buildTabController() {
     return Scaffold(
@@ -105,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 bottom: TabBar(
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.black,
-                  labelPadding: EdgeInsets.only(right: 5, left: 5),
+                  labelPadding: EdgeInsets.only(right: 3, left: 3),
                   labelStyle: TextStyle(fontSize: 14),
                   tabs: [
                     Tab(text: "Overview"),
@@ -115,7 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Tab(text: "Asks")
                   ],
                 ),
-                expandedHeight: 375,
+                expandedHeight: 300,
                 flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
                   background: buildProfile(),
@@ -129,15 +141,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Column(
                 children: [
-                  //ContentList(
-                  //contentList: contents,
-                  //),
+                  ContentList(
+                    contentList: contents,
+                  ),
                 ],
               ),
-              Column(),
-              Column(),
-              Column(),
-              Column(),
+              Column(
+                children: [
+                  ContentList(
+                    contentList: contents,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  ContentList(
+                    contentList: contents,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  ContentList(
+                    contentList: contents,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  ContentList(
+                    contentList: contents,
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -146,38 +182,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget buildProfile() {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    bool isMyProfile = true;
+
     return Container(
+      alignment: Alignment.center,
       padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            CircleImage(
-              imageProvider: AssetImage("assets/images/mock.jpg"),
-              //widget.user.profileImageUrl),
-              imageRadius: 55.0,
-            ),
-            MaterialButton(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-              color: Colors.blue,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(3.0)),
-              child: const Text(
-                'Follow',
-                style: TextStyle(
-                    fontFamily: "SFCompactText",
-                    color: Colors.white,
-                    fontSize: 18),
-              ),
-              onPressed: () async {
-                //Provider.of<AppStateManager>(context, listen: false)
-                //    .follow('followUsername');
-              },
-            ),
-          ]),
-          const SizedBox(height: 10.0),
+          CircleImage(
+            imageProvider: AssetImage("assets/images/mock.jpg"),
+            //widget.user.profileImageUrl),
+            imageRadius: 45.0,
+          ),
           Text(
             //widget.user.name,
             "Idil",
@@ -198,7 +218,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
               color: Colors.grey,
             ),
           ),
-          const SizedBox(height: 10.0),
+          isMyProfile
+              ? MaterialButton(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  color: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(3.0)),
+                  child: const Text(
+                    'Edit Profile',
+                    style: TextStyle(
+                        fontFamily: "SFCompactText",
+                        color: Colors.white,
+                        fontSize: 18),
+                  ),
+                  onPressed: () async {
+                    context.router.push(const EditProfileRoute());
+                  },
+                )
+              : MaterialButton(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  color: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(3.0)),
+                  child: const Text(
+                    'Follow',
+                    style: TextStyle(
+                        fontFamily: "SFCompactText",
+                        color: Colors.white,
+                        fontSize: 18),
+                  ),
+                  onPressed: () async {
+                    //follow functionality
+                  },
+                ),
           Text(
             //widget.user.bio,
             "loremipsum",
@@ -210,7 +264,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              TextButton(
+                onPressed: () {},
+                child: Row(children: [
+                  Text(
+                    //'${widget.user.following}',
+                    "666",
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text(
+                    ' Recommendations',
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 12,
+                      color: Colors.black,
+                    ),
+                  ),
+                ]),
+              ),
               TextButton(
                   onPressed: () {},
                   child: Row(children: [
@@ -225,7 +304,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     Text(
-                      ' followers',
+                      ' Followers',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
@@ -252,7 +331,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Text(
-                    ' following',
+                    ' Following',
                     style: TextStyle(
                       fontFamily: "SFCompactText",
                       fontWeight: FontWeight.normal,
@@ -262,31 +341,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ]),
               ),
+
             ],
           ),
-          TextButton(
-            onPressed: () {},
-            child: Row(
-              children: [
-                CircleImage(
-                  imageProvider: AssetImage("assets/images/mock.jpg"),
-                  //widget.user.profileImageUrl),
-                  imageRadius: 20.0,
-                ),
-                Text(
-                  'Also followed by "mutualFollowed" and others',
-                  //this appears if there are mutuals and make others appear when there are more
-                  style: TextStyle(
-                    fontFamily: "SFCompactText",
-                    fontWeight: FontWeight.normal,
-                    fontSize: 12,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 20.0),
+          SizedBox(height: height * 0.020),
         ],
       ),
     );

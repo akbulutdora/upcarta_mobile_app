@@ -3,6 +3,8 @@ import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart';
 
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 
+import '../ui/screens/settings.dart';
+
 @AdaptiveAutoRouter(
     replaceInRouteName: 'Page,Route,Screen',
     routes: <AutoRoute>[
@@ -34,11 +36,6 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
       AutoRoute(
         path: '/register_confirm',
         page: myRegisterConfirm,
-      ),
-      AutoRoute(
-        path: '/edit_profile',
-        name: "EditProfileRoute",
-        page: EditProfileScreen,
       ),
       AutoRoute(
         path: '/onboarding',
@@ -128,6 +125,16 @@ const groupTabRouter = AutoRoute(
       path: 'profile',
       name: 'ProfileScreenRoute',
       page: ProfileScreen,
+    ),
+    AutoRoute(
+      path: 'edit_profile',
+      name: "EditProfileRoute",
+      page: EditProfileScreen,
+    ),
+    AutoRoute(
+      path: 'settings',
+      name: "SettingsRoute",
+      page: Settings,
     ),
     RedirectRoute(path: '*', redirectTo: ''),
   ],
