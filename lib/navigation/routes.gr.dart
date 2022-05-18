@@ -52,6 +52,14 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.OnboardingScreen());
     },
+    NotificationsScreenRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.NotificationsScreen());
+    },
+    LandingPageRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.LandingPage());
+    },
     HomeRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.Home());
@@ -130,6 +138,8 @@ class AppRouter extends _i2.RootStackRouter {
                   redirectTo: '',
                   fullMatch: true)
             ]),
+        _i2.RouteConfig(NotificationsScreenRoute.name, path: '/notifications'),
+        _i2.RouteConfig(LandingPageRoute.name, path: '/landing_page'),
         _i2.RouteConfig(HomeRoute.name, path: '/home', children: [
           _i2.RouteConfig(FeedScreenRoute.name,
               path: 'feed',
@@ -230,6 +240,24 @@ class OnboardingScreenRoute extends _i2.PageRouteInfo<void> {
             path: '/onboarding', initialChildren: children);
 
   static const String name = 'OnboardingScreenRoute';
+}
+
+/// generated route for
+/// [_i1.NotificationsScreen]
+class NotificationsScreenRoute extends _i2.PageRouteInfo<void> {
+  const NotificationsScreenRoute()
+      : super(NotificationsScreenRoute.name, path: '/notifications');
+
+  static const String name = 'NotificationsScreenRoute';
+}
+
+/// generated route for
+/// [_i1.LandingPage]
+class LandingPageRoute extends _i2.PageRouteInfo<void> {
+  const LandingPageRoute()
+      : super(LandingPageRoute.name, path: '/landing_page');
+
+  static const String name = 'LandingPageRoute';
 }
 
 /// generated route for
