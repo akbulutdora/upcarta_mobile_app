@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:upcarta_mobile_app/util/constants.dart';
 import '../../util/colors.dart';
 import '../../util/styles.dart';
 import '../screens/top/top_view.dart';
@@ -47,9 +47,9 @@ class HorizontalContentList__Popular_Topics extends StatelessWidget {
               // shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.only(top: 16),
-              itemCount: topContents.length,
+              itemCount: contents.length,
               itemBuilder: (BuildContext context, int index) {
-                return CollectionCard(content: topContents[index]);
+                return CollectionCard(content: contents[index]);
               },
             ),
           ),

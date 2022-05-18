@@ -11,7 +11,6 @@ import 'package:upcarta_mobile_app/ui/screens/top/widgets/date_range_picker_chip
 import '../../../util/styles.dart';
 import '../../components/horizontal_content_list__collectons_and_asks.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
-import '../../components/horizontal_content_list.dart';
 
 part "top_view_header.dart";
 

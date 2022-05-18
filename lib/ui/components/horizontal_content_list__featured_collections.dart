@@ -4,6 +4,7 @@ import '../../util/colors.dart';
 import '../../util/styles.dart';
 import '../screens/top/top_view.dart';
 import 'collection_card.dart';
+import 'package:upcarta_mobile_app/util/constants.dart';
 
 class HorizontalContentList__FeaturedCollection extends StatelessWidget {
   const HorizontalContentList__FeaturedCollection({Key? key}) : super(key: key);
@@ -47,9 +48,9 @@ class HorizontalContentList__FeaturedCollection extends StatelessWidget {
               // shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.only(top: 16),
-              itemCount: topContents.length,
+              itemCount: contents.length,
               itemBuilder: (BuildContext context, int index) {
-                return CollectionCard(content: topContents[index]);
+                return CollectionCard(content: contents[index]);
               },
             ),
           ),
