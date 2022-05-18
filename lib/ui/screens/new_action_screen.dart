@@ -3,30 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:auto_route/auto_route.dart';
 
-
 class NewPostScreen extends StatelessWidget {
-  static MaterialPage page() {
-    return MaterialPage(
-      child: const NewPostScreen(),
-    );
-  }
-  const NewPostScreen({Key? key}) : super(key: key);
 
   @override
+
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(color: Colors.amber,
-        width: 100,
-        height: 50,
-        child: const Center(
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              'New Post',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ),),
+    return Scaffold(
+      body: Center(
+        child: Column(
+mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [(TextButton(onPressed: () {}, child: Text("Recommended Content", style: TextStyle(
+              color: Colors.grey, fontSize: 18)))),
+            (TextButton(onPressed: () {}, child: Text("Create New Collection", style: TextStyle(
+                color: Colors.grey, fontSize: 18)))),
+            (TextButton(onPressed: () {}, child: Text("Recommendation By Expert", style: TextStyle(
+                color: Colors.grey, fontSize: 18)))),
+            (TextButton(onPressed: () {}, child: Text("Collection By Expert", style: TextStyle(
+                color: Colors.grey, fontSize: 18)))),
+            (TextButton(onPressed: () {}, child: Text("Ask By Expert", style: TextStyle(
+                color: Colors.grey, fontSize: 18)))),],
+        ),
+      ),
     );
   }
 }

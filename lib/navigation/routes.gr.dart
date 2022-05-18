@@ -82,7 +82,7 @@ class AppRouter extends _i2.RootStackRouter {
     },
     NewPostScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.NewPostScreen());
+          routeData: routeData, child: _i1.NewPostScreen());
     },
     MyLibraryScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
