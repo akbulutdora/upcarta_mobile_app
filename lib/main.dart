@@ -6,16 +6,26 @@ import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/navigation//routes.gr.dart';
+import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
+import 'app/app.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+Future<void> main() async {
+  return BlocOverrides.runZoned(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      final authRepository = AuthRepository();
+      // await authRepository.user.first;
+      runApp(App(
+        authRepository: authRepository,
+      ));
+    },
+    blocObserver: AppBlocObserver(),
   );
-  //runApp(Welcome());
-  runApp(MyFirebaseApp());
 }
 
 class Welcome extends StatefulWidget {
