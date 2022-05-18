@@ -14,9 +14,10 @@ class myLibrarySavedScreen extends StatefulWidget {
   @override
   State<myLibrarySavedScreen> createState() => _myLibrarySavedScreenState();
 }
+
 class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
   late List<String> selectedChips = ['All'];
-  bool isAllSelected= true;
+  bool isAllSelected = true;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,14 +39,15 @@ class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 16.0),
-                  height: 22,
+                  height: 24,
                   width: 185,
                   child: TextFormField(
-                    cursorHeight: 12,
+                    cursorHeight: 16,
                     decoration: const InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       prefixIcon: Icon(
                         Icons.search,
+                        size: 16,
                       ),
                       labelText: 'Search...',
                       labelStyle: searchBarText,
@@ -55,7 +57,7 @@ class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
                 ),
                 SizedBox(width: 4.0),
                 Container(
-                  height: 22.0,
+                  height: 24.0,
                   child: OutlinedButton(
                     onPressed: () {
                       debugPrint('Received click');
@@ -73,7 +75,7 @@ class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
                 Icon(Icons.person_outline_outlined),
                 SizedBox(width: 6.0),
                 Icon(Icons.tag),
-                SizedBox(width: 6.0),
+                SizedBox(width: 16.0),
               ],
             ),
           ],
@@ -107,16 +109,14 @@ class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
         selected: _catList[i].isSelected,
         onSelected: (bool value) {
           setState(() {
-            if(value && !selectedChips.contains(_catList[i].label)){
+            if (value && !selectedChips.contains(_catList[i].label)) {
               selectedChips.add(_catList[i].label);
-            }
-            else if(!value && selectedChips.contains(_catList[i].label)){
+            } else if (!value && selectedChips.contains(_catList[i].label)) {
               selectedChips.remove(_catList[i].label);
             }
             _catList[i].isSelected = value;
           });
         },
-
       );
 
       chips.add(item);

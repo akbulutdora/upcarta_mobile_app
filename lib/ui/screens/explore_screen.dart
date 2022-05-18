@@ -13,7 +13,7 @@ import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__recent
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 
-import '../../chips/WrappedSinglChip.dart';
+import '../../chips/WrappedSinglChip__Explore.dart';
 
 class ExploreScreen extends StatefulWidget {
   static MaterialPage page(int currentTab) {

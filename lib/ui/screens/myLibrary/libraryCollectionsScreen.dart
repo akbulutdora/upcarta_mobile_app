@@ -12,10 +12,12 @@ class myLibraryCollectionsScreen extends StatefulWidget {
   const myLibraryCollectionsScreen({Key? key}) : super(key: key);
 
   @override
-  State<myLibraryCollectionsScreen> createState() => _myLibraryCollectionsScreenState();
+  State<myLibraryCollectionsScreen> createState() =>
+      _myLibraryCollectionsScreenState();
 }
 
-class _myLibraryCollectionsScreenState extends State<myLibraryCollectionsScreen> {
+class _myLibraryCollectionsScreenState
+    extends State<myLibraryCollectionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,14 +31,15 @@ class _myLibraryCollectionsScreenState extends State<myLibraryCollectionsScreen>
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 16.0),
-                  height: 22,
+                  height: 24,
                   width: 185,
                   child: TextFormField(
-                    cursorHeight: 12,
+                    cursorHeight: 16,
                     decoration: const InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       prefixIcon: Icon(
                         Icons.search,
+                        size: 16,
                       ),
                       labelText: 'Search...',
                       labelStyle: searchBarText,
@@ -46,7 +49,7 @@ class _myLibraryCollectionsScreenState extends State<myLibraryCollectionsScreen>
                 ),
                 SizedBox(width: 4.0),
                 Container(
-                  height: 22.0,
+                  height: 24.0,
                   child: OutlinedButton(
                     onPressed: () {
                       debugPrint('Received click');
@@ -59,8 +62,12 @@ class _myLibraryCollectionsScreenState extends State<myLibraryCollectionsScreen>
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: const [
-                Icon(Icons.tag),
+                Icon(Icons.dashboard_outlined),
                 SizedBox(width: 6.0),
+                Icon(Icons.person_outline_outlined),
+                SizedBox(width: 6.0),
+                Icon(Icons.tag),
+                SizedBox(width: 16.0),
               ],
             ),
           ],
@@ -74,7 +81,4 @@ class _myLibraryCollectionsScreenState extends State<myLibraryCollectionsScreen>
       ],
     );
   }
-
 }
-
-

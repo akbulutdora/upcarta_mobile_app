@@ -12,7 +12,8 @@ class myLibraryCompletedScreen extends StatefulWidget {
   const myLibraryCompletedScreen({Key? key}) : super(key: key);
 
   @override
-  State<myLibraryCompletedScreen> createState() => _myLibraryCompletedScreenState();
+  State<myLibraryCompletedScreen> createState() =>
+      _myLibraryCompletedScreenState();
 }
 
 class _myLibraryCompletedScreenState extends State<myLibraryCompletedScreen> {
@@ -29,14 +30,15 @@ class _myLibraryCompletedScreenState extends State<myLibraryCompletedScreen> {
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 16.0),
-                  height: 22,
+                  height: 24,
                   width: 185,
                   child: TextFormField(
-                    cursorHeight: 12,
+                    cursorHeight: 16,
                     decoration: const InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       prefixIcon: Icon(
                         Icons.search,
+                        size: 16,
                       ),
                       labelText: 'Search...',
                       labelStyle: searchBarText,
@@ -46,7 +48,7 @@ class _myLibraryCompletedScreenState extends State<myLibraryCompletedScreen> {
                 ),
                 SizedBox(width: 4.0),
                 Container(
-                  height: 22.0,
+                  height: 24.0,
                   child: OutlinedButton(
                     onPressed: () {
                       debugPrint('Received click');
@@ -64,7 +66,7 @@ class _myLibraryCompletedScreenState extends State<myLibraryCompletedScreen> {
                 Icon(Icons.person_outline_outlined),
                 SizedBox(width: 6.0),
                 Icon(Icons.tag),
-                SizedBox(width: 6.0),
+                SizedBox(width: 16.0),
               ],
             ),
           ],

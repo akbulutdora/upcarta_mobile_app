@@ -104,17 +104,28 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
           elevation: 0,
           //titleTextStyle: libraryTabBar,
           bottom: const TabBar(
-              isScrollable: true,
-              tabs: <Widget>[
-                Tab(text: 'Saved'),
-                Tab(text: 'Completed'),
-                Tab(text: 'Collections'),
-                Tab(text: 'Recommends'),
-              ],
-              unselectedLabelColor: Color(0xffC4C4C4),
-              unselectedLabelStyle: libraryTabBar,
-              labelColor: Color(0xff4E89FD),
-              labelStyle: libraryTabBar),
+            indicatorWeight: 2.25,
+            indicatorSize: TabBarIndicatorSize.label,
+            labelPadding: EdgeInsetsDirectional.fromSTEB(6, 0, 6, 0),
+            indicatorPadding: EdgeInsets.all(0),
+            isScrollable: true,
+            tabs: <Widget>[
+              Tab(text: 'Saved'),
+              Tab(text: 'Completed'),
+              Tab(text: 'Collections'),
+              Tab(text: 'Recommends'),
+            ],
+            unselectedLabelColor: Color(0xffC4C4C4),
+            unselectedLabelStyle: TextStyle(
+                fontFamily: 'SFCompactText-SemiBold.ttf',
+                fontSize: 17,
+                fontWeight: FontWeight.w500),
+            labelColor: Color(0xff4E89FD),
+            labelStyle: TextStyle(
+                fontFamily: 'SFCompactText-SemiBold.ttf',
+                fontSize: 17,
+                fontWeight: FontWeight.w500),
+          ),
         ),
         body: const TabBarView(
           children: <Widget>[

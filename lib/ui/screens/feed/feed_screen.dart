@@ -10,7 +10,6 @@ import '../../../navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 
-
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class FeedScreen extends StatefulWidget {
@@ -54,17 +53,26 @@ class _FeedScreenState extends State<FeedScreen> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: TabBar(
-                      isScrollable: true,
-                      indicatorSize: TabBarIndicatorSize.label,
-                      controller: controller,
-                      tabs: <Widget>[
-                        Tab(text: 'Latest'),
-                        Tab(text: 'Top'),
-                      ],
-                      unselectedLabelColor: Color(0xffC4C4C4),
-                      unselectedLabelStyle: libraryTabBar,
-                      labelColor: Color(0xff4E89FD),
-                      labelStyle: libraryTabBar),
+                    isScrollable: true,
+                    indicatorWeight: 2.25,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    labelPadding: EdgeInsets.only(left: 8, right: 8),
+                    controller: controller,
+                    tabs: <Widget>[
+                      Tab(text: 'Latest'),
+                      Tab(text: 'Top'),
+                    ],
+                    unselectedLabelColor: Color(0xffC4C4C4),
+                    unselectedLabelStyle: TextStyle(
+                        fontFamily: 'SFCompactText-SemiBold.ttf',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600),
+                    labelColor: Color(0xff4E89FD),
+                    labelStyle: TextStyle(
+                        fontFamily: 'SFCompactText-SemiBold.ttf',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
               ),
             ),
@@ -72,8 +80,6 @@ class _FeedScreenState extends State<FeedScreen> {
           );
         },
       ),
-
     );
   }
-
 }
