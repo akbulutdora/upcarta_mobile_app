@@ -99,6 +99,10 @@ class AppRouter extends _i2.RootStackRouter {
     TopScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.TopView());
+    },
+    EditProfileRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.EditProfile());
     }
   };
 
@@ -113,6 +117,7 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(ResetPasswordNewRoute.name, path: '/forgot_new'),
         _i2.RouteConfig(MyRegisterRoute.name, path: '/register'),
         _i2.RouteConfig(MyRegisterConfirmRoute.name, path: '/register_confirm'),
+        _i2.RouteConfig(EditProfileRoute.name, path: '/edit_profile'),
         _i2.RouteConfig(OnboardingScreenRoute.name,
             path: '/onboarding',
             children: [
@@ -332,4 +337,13 @@ class TopScreenRoute extends _i2.PageRouteInfo<void> {
   const TopScreenRoute() : super(TopScreenRoute.name, path: 'top');
 
   static const String name = 'TopScreenRoute';
+}
+//LATER REPLACE THIS WITH SETTINGS ROUTE
+
+/// generated route for
+/// [_i1.EditProfile]
+class EditProfileRoute extends _i2.PageRouteInfo<void> {
+  const EditProfileRoute() : super(EditProfileRoute.name, path: 'edit_profile');
+
+  static const String name = 'EditProfileRoute';
 }

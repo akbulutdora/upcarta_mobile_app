@@ -1,8 +1,10 @@
 // BERNA
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart';
 import '../../models/user.dart';
 import 'package:upcarta_mobile_app/ui/components/circle_image.dart';
 import 'package:upcarta_mobile_app/ui/components/content_list.dart';
@@ -14,15 +16,50 @@ class ProfileScreen extends StatefulWidget {
     );
   }
 
-  //final User user;
-
   const ProfileScreen({
     Key? key,
-    //required this.user,
   }) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
+}
+bool isMyProfile = true;
+
+class MyFirebaseApp extends StatefulWidget {
+  const MyFirebaseApp({Key? key}) : super(key: key);
+
+  @override
+  _MyFirebaseAppState createState() => _MyFirebaseAppState();
+}
+
+class _MyFirebaseAppState extends State<MyFirebaseApp> {
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot){
+        if(snapshot.hasError) {
+          return MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: Text('No Firebase Connection: ${snapshot.error.toString()}'),
+              ),
+            ),
+          );
+        }
+        if(snapshot.connectionState == ConnectionState.done) {
+          return MaterialApp(
+            home: MyApp(),
+          );
+        }
+        return MaterialApp(
+          home: Center(
+            child: Text('Connecting to Firebase'),
+          ),
+        );
+      },);
+  }
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
@@ -30,48 +67,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset(
-          "assets/images/upcarta-logo-small.png",
-          width: 30,
-          height: 30,
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        titleSpacing: 0.0,
-        title: const Text(
-          'Explore',
-          style: TextStyle(
-              fontFamily: "SFCompactText-Medium",
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-              fontSize: 22),
-        ),
+          backgroundColor: Colors.white,
+          titleSpacing: 0.0,
+          title: const Text(
+            ,
+            style: TextStyle(
+                fontFamily: "SFCompactText-Medium",
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                fontSize: 22),
+          ),
+          leading: Image.asset(
+            "assets/images/upcarta-logo-small.png",
+            width: 30,
+            height: 30,
+          ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.settings,
+              color: Colors.black26,
+            ),
+            onPressed: () {
+              context.router.replace(const EditProfileRoute());
+            },
+          )
+        ],
       ),
+      //),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [Expanded(child: SizedBox(child: buildTabController()))],
       ),
     );
   }
-/*
-  Widget buildMenu() {
-    return ListView(
-      children: [
-        buildDarkModeRow(),
-        ListTile(
-          title: const Text('Log out'),
-          onTap: () {
-            // 1
-            Provider.of<ProfileManager>(context, listen: false)
-                .tapOnProfile(false);
-            // 2
-            Provider.of<AppStateManager>(context, listen: false).logout();
-          },
-        )
-      ],
-    );
-  }
-*/
+
   /*
   Widget buildDarkModeRow() {
     return Padding(
@@ -93,40 +123,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
   */
 
-/*
-  final List<Content> contents = <Content>[
-    Content(
-        title: "podcast with bengisu",
-        id: "1",
-        contentType: ContentType.podcastEpisode,
-        added_by_id: '',
-        description: '',
-        created_at: '',
-        link: '',
-        image: ''),
-    Content(
-        title: "book written by berna",
-        id: "2",
-        contentType: ContentType.book,
-        added_by_id: '',
-        link: '',
-        description: '',
-        created_at: '',
-        image: ''),
-    Content(
-        title: "podcast about game-dev",
-        id: "4",
-        contentType: ContentType.podcast,
-        description: '',
-        created_at: '',
-        link: '',
-        added_by_id: '',
-        image: ''),
-  ];
-*/
   Widget buildTabController() {
     return Scaffold(
       body: DefaultTabController(
+        initialIndex: 0,
         length: 5,
         child: NestedScrollView(
           headerSliverBuilder: (context, value) {
@@ -135,6 +135,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 backgroundColor: Colors.white,
                 floating: true,
                 pinned: true,
+                automaticallyImplyLeading: false,
+                //remove the default back button
                 bottom: TabBar(
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.black,
