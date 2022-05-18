@@ -47,13 +47,6 @@ enum ContentType {
   tvEpisode
 }
 
-// IS IT BETTER TO MAKE TYPE ENUM (will implement a function for getting string) OR STRING?
-extension ParseToString on ContentType {
-  String getString() {
-    return toString().split('.').last;
-  }
-}
-
 @JsonSerializable()
 class Content {
   final String title;

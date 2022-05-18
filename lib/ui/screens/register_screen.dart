@@ -10,6 +10,12 @@ import 'package:upcarta_mobile_app/service/auth_service.dart';
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
 
+  static MaterialPage page() {
+    return MaterialPage(
+      child: const MyRegister(),
+    );
+  }
+
   @override
   _MyRegisterState createState() => _MyRegisterState();
 }
