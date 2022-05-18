@@ -10,6 +10,7 @@ import '../../../navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 
+
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class FeedScreen extends StatefulWidget {
@@ -45,18 +46,6 @@ class _FeedScreenState extends State<FeedScreen> {
                 width: 30,
                 height: 30,
               ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: IconButton(
-                      onPressed: () {
-                        context.router.push(NotificationsScreenRoute());
-                      }, //TODO: open notification page
-                      icon: Icon(Icons.notifications_none_outlined),
-                      color: Colors.black,
-                      iconSize: 30),
-                )
-              ],
               backgroundColor: Colors.white,
               titleSpacing: 0.0,
               //leading: AutoLeadingButton(),
@@ -83,6 +72,8 @@ class _FeedScreenState extends State<FeedScreen> {
           );
         },
       ),
+
     );
   }
+
 }
