@@ -108,6 +108,12 @@ const libraryTabBar = TextStyle(
   fontSize: 16,
 );
 
+const splashTitleStyle = TextStyle(
+  fontFamily: "SF Compact Text",
+  fontWeight: FontWeight.w600,
+  fontSize: 40,
+);
+
 const kTextStyle10 = TextStyle(
     fontFamily: "SF Compact Text",
     fontWeight: FontWeight.normal,

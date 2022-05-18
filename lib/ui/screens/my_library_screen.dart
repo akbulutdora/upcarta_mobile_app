@@ -10,8 +10,7 @@ import 'package:upcarta_mobile_app/ui/screens/myLibrary/myLibraryRecommendsScree
 
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/util/constants.dart';
 
 //void main() => runApp(const MyLibraryScreen());
 
@@ -44,39 +43,6 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
     Category("Contents", false), //, Icon(Icons.menu_book)
     Category("Collections", false), //, Icon(Icons.videocam_outlined)
     Category("Asks", false), //, Icon(Icons.podcasts)
-  ];
-
-  final List<Content> contents = <Content>[
-    Content(
-        title: "podcast with bengisu",
-        id: 1,
-        contentType: ContentType.podcastEpisode,
-        added_by_id: '',
-        description: '',
-        created_at: '',
-        link: '',
-        image: '',
-        author_id: ''),
-    Content(
-        title: "book written by berna",
-        id: 2,
-        contentType: ContentType.book,
-        added_by_id: '',
-        link: '',
-        description: '',
-        created_at: '',
-        image: '',
-        author_id: ''),
-    Content(
-        title: "podcast about game-dev",
-        id: 4,
-        contentType: ContentType.podcast,
-        description: '',
-        created_at: '',
-        link: '',
-        added_by_id: '',
-        image: '',
-        author_id: ''),
   ];
 
   @override

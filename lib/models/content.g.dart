@@ -8,15 +8,20 @@ part of 'content.dart';
 
 Content _$ContentFromJson(Map<String, dynamic> json) => Content(
       title: json['title'] as String,
-      id: json['id'] as int,
+      id: json['id'] as String,
       contentType: $enumDecode(_$ContentTypeEnumMap, json['contentType']),
       description:
           json['description'] as String? ?? "This content has no description.",
-      created_at: json['created_at'] as String,
+      createDate: DateTime.parse(json['createDate'] as String),
       image: json['image'] as String,
-      added_by_id: json['added_by_id'] as String,
+      posterID: json['posterID'] as String,
       link: json['link'] as String,
-      author_id: json['author_id'] as String,
+      creatorID: json['creatorID'] as String,
+      contentTopic: json['contentTopic'] as String,
+      recommendationText: json['recommendationText'] as String,
+      recommendersIDs: (json['recommendersIDs'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$ContentToJson(Content instance) => <String, dynamic>{
@@ -24,11 +29,14 @@ Map<String, dynamic> _$ContentToJson(Content instance) => <String, dynamic>{
       'id': instance.id,
       'contentType': _$ContentTypeEnumMap[instance.contentType],
       'description': instance.description,
-      'created_at': instance.created_at,
+      'createDate': instance.createDate.toIso8601String(),
       'image': instance.image,
       'link': instance.link,
-      'added_by_id': instance.added_by_id,
-      'author_id': instance.author_id,
+      'posterID': instance.posterID,
+      'creatorID': instance.creatorID,
+      'contentTopic': instance.contentTopic,
+      'recommendersIDs': instance.recommendersIDs,
+      'recommendationText': instance.recommendationText,
     };
 
 const _$ContentTypeEnumMap = {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../util/colors.dart';
 import '../../util/styles.dart';
 import '../screens/top/top_view.dart';
+import 'package:upcarta_mobile_app/util/constants.dart';
 import 'collection_card.dart';
 
 class HorizontalContentList extends StatelessWidget {
@@ -45,10 +46,11 @@ class HorizontalContentList extends StatelessWidget {
             child: ListView.builder(
               // shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.only(top: 16),
-              itemCount: topContents.length,
+                            padding: const EdgeInsets.only(top: 16),
+
+              itemCount: contents.length,
               itemBuilder: (BuildContext context, int index) {
-                return CollectionCard(content: topContents[index]);
+                return CollectionCard(content: contents[index]);
               },
             ),
           ),

@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:provider/provider.dart';
-import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
@@ -12,20 +7,20 @@ import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/service/auth_service.dart';
 
-class myRegister extends StatefulWidget {
-  const myRegister({Key? key}) : super(key: key);
+class MyRegister extends StatefulWidget {
+  const MyRegister({Key? key}) : super(key: key);
 
   @override
-  _myRegisterState createState() => _myRegisterState();
+  _MyRegisterState createState() => _MyRegisterState();
 }
 
-class _myRegisterState extends State<myRegister> {
+class _MyRegisterState extends State<MyRegister> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _usernameController = TextEditingController();
 
-  AuthService _authService = AuthService();
+  final AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -95,7 +90,7 @@ class _myRegisterState extends State<myRegister> {
                         labelText: 'Name',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.white,
                           ),
                         ),
@@ -148,8 +143,9 @@ class _myRegisterState extends State<myRegister> {
                                       _passwordController.text,
                                       _usernameController.text)
                                   .then((value) {
-                                return context.router
-                                    .push(MyRegisterConfirmRoute());
+                                // return context.router
+                                //     .push(MyRegisterConfirmRoute());
+                                return context.router.push(HomeRoute());
                               });
                             },
                             style: OutlinedButton.styleFrom(
