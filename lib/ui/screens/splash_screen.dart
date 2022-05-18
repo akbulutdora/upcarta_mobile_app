@@ -67,6 +67,13 @@ class _SplashScreenState extends State<SplashScreen> {
                   },
                 ),
                 TextButton(
+                  child: Text("GO LANDING PAGE"),
+                  onPressed: () {
+                    context.router.push(LandingPageRoute());
+                    // context.router.push(HomeRoute());
+                  },
+                ),
+                TextButton(
                   child: Text("GO HOME"),
                   onPressed: () {
                     // context.router.push(LoginScreenRoute());
