@@ -21,9 +21,6 @@ class _LatestViewState extends State<LatestView> {
       padding: const EdgeInsets.only(bottom: 8.0, right: 8, left: 8),
       child: Column(
         children: [
-          const Divider(
-            thickness: 1,
-          ),
           FutureBuilder<QuerySnapshot>(
             future: _firestore.collection("postsTest2").get(),
             builder:
