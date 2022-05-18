@@ -21,7 +21,13 @@ class NotificationSettings extends StatefulWidget {
 
 class _NotificationSettingsState extends State<NotificationSettings> {
   bool darkMode = false;
-
+  bool pauseAll = false;
+  bool contents = false;
+  bool collections = false;
+  bool asks = false;
+  bool topics = false;
+  bool activity = false;
+  bool messages = false;
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -41,7 +47,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             leading: IconButton(
               icon: const Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black26,
+                color: Colors.black54,
               ),
               onPressed: () {
                 context.router.pop();
@@ -79,10 +85,10 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                         color: Colors.black,
                       ),
                     ),
-                    value: darkMode,
+                    value: pauseAll,
                     onChanged: (bool value) {
                       setState(() {
-                        darkMode = value;
+                        pauseAll = value;
                       });
                     },
                   ),
@@ -101,10 +107,10 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                         color: Colors.black,
                       ),
                     ),
-                    value: darkMode,
+                    value: contents,
                     onChanged: (bool value) {
                       setState(() {
-                        darkMode = value;
+                        contents = value;
                       });
                     },
                   ),
@@ -123,10 +129,10 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                         color: Colors.black,
                       ),
                     ),
-                    value: darkMode,
+                    value: collections,
                     onChanged: (bool value) {
                       setState(() {
-                        darkMode = value;
+                        collections = value;
                       });
                     },
                   ),
@@ -145,10 +151,10 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                         color: Colors.black,
                       ),
                     ),
-                    value: darkMode,
+                    value: asks,
                     onChanged: (bool value) {
                       setState(() {
-                        darkMode = value;
+                        asks = value;
                       });
                     },
                   ),
@@ -167,10 +173,10 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                         color: Colors.black,
                       ),
                     ),
-                    value: darkMode,
+                    value: topics,
                     onChanged: (bool value) {
                       setState(() {
-                        darkMode = value;
+                        topics = value;
                       });
                     },
                   ),
@@ -189,10 +195,10 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                         color: Colors.black,
                       ),
                     ),
-                    value: darkMode,
+                    value: activity,
                     onChanged: (bool value) {
                       setState(() {
-                        darkMode = value;
+                        activity = value;
                       });
                     },
                   ),
@@ -211,10 +217,10 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                         color: Colors.black,
                       ),
                     ),
-                    value: darkMode,
+                    value: messages,
                     onChanged: (bool value) {
                       setState(() {
-                        darkMode = value;
+                        messages = value;
                       });
                     },
                   ),

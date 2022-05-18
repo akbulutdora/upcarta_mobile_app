@@ -266,6 +266,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           Container(
+            padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.blue,

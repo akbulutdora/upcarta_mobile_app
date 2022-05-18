@@ -41,7 +41,7 @@ class _SettingsState extends State<Settings> {
             leading: IconButton(
               icon: const Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black26,
+                color: Colors.black54,
               ),
               onPressed: () {
                 context.router.pop();
