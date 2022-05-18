@@ -51,8 +51,8 @@ extension on firebase_auth.User {
     return AuthUser(
       id: uid,
       email: email!,
-      name: displayName!,
-      photoURL: photoURL!,
+      name: displayName,
+      photoURL: photoURL,
     );
   }
 }

@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import '../screens.dart';
 import 'package:auto_route/auto_route.dart';
@@ -9,7 +11,6 @@ import '../../../navigation/routes.gr.dart';
 
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
-
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -35,10 +36,19 @@ class _FeedScreenState extends State<FeedScreen> {
           TopScreenRoute(),
         ],
         builder: (context, child, controller) {
+          final user = context.select((AppBloc bloc) => bloc.state.user);
           return Scaffold(
             appBar: AppBar(
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.logout),
+                  onPressed: () {
+                    context.read<AppBloc>().add(AppLogoutRequested());
+                  },
+                )
+              ],
               title: Text(
-                "Upcarta",
+                user.email!,
                 style: kTextStyle3b,
               ),
               leading: Image.asset(
@@ -72,8 +82,6 @@ class _FeedScreenState extends State<FeedScreen> {
           );
         },
       ),
-
     );
   }
-
 }

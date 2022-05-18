@@ -9,8 +9,6 @@ import 'package:upcarta_mobile_app/navigation//routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'app/app.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
-
 Future<void> main() async {
   return BlocOverrides.runZoned(
     () async {
@@ -33,6 +31,12 @@ class Welcome extends StatefulWidget {
 
   @override
   State<Welcome> createState() => _WelcomeState();
+
+  static MaterialPage page() {
+    return MaterialPage(
+      child: Welcome(),
+    );
+  }
 }
 
 class _WelcomeState extends State<Welcome> {
