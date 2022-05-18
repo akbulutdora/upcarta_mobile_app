@@ -2,9 +2,15 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 
+import '../ui/screens/horizontal_contentList_see_all/see_all_featured_collections.dart';
+
 @AdaptiveAutoRouter(
     replaceInRouteName: 'Page,Route,Screen',
     routes: <AutoRoute>[
+      AutoRoute(
+        path: 'see_all_featured_collections',
+        page: SeeAll_FeaturedCollections,
+      ),
       AutoRoute(
         initial: true,
         path: '/splash',

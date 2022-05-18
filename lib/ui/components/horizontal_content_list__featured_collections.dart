@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 
 import '../../util/colors.dart';
 import '../../util/styles.dart';
@@ -28,7 +30,9 @@ class HorizontalContentList__FeaturedCollection extends StatelessWidget {
                   width: 70,
                   child: OutlinedButton(
                     style: outlinedButtonStyle,
-                    onPressed: () {},
+                    onPressed: () {
+                      context.router.push(SeeAll_FeaturedCollectionsRoute());
+                    },
                     child: Text(
                       "View all",
                       style: TextStyle(
