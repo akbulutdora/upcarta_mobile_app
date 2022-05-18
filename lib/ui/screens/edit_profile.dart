@@ -54,6 +54,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           children: [
             const Text(
               "Connect Accounts",
+              style: TextStyle(
+                fontFamily: "SFCompactText",
+                fontWeight: FontWeight.w700,
+                fontSize: 20,
+                color: Colors.black,
+              ),
             ),
             const Divider(
               color: Colors.grey,
@@ -65,10 +71,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                     backgroundColor: Colors.lightBlue,
-                    padding: EdgeInsets.all(height * 0.03)),
+                    padding: EdgeInsets.all(height * 0.02)),
                 child: Text(
                   'Connect to Twitter',
-                  style: TextStyle(color: Colors.white, fontSize: height / 60),
+                  style: TextStyle(color: Colors.white, fontSize: height / 50),
                 ),
               ),
               OutlinedButton(
@@ -76,26 +82,38 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
-                    backgroundColor: Colors.lightBlue,
-                    padding: EdgeInsets.all(height * 0.03)),
+                    side: BorderSide(color: Colors.black),
+                    padding: EdgeInsets.all(height * 0.02)),
                 child: Text(
                   'Connect to Google',
-                  style: TextStyle(color: Colors.white, fontSize: height / 60),
+                  style: TextStyle(color: Colors.black, fontSize: height / 50),
                 ),
               ),
             ]),
             const Divider(
               color: Colors.grey,
             ),
-            SizedBox(height: height * 0.016),
+            SizedBox(height: height * 0.012),
             const Text(
               "Credentials",
+              style: TextStyle(
+                fontFamily: "SFCompactText",
+                fontWeight: FontWeight.w700,
+                fontSize: 20,
+                color: Colors.black,
+              ),
             ),
             const Divider(
               color: Colors.grey,
             ),
             const Text(
               "Profile Image",
+              style: TextStyle(
+                fontFamily: "SFCompactText",
+                fontWeight: FontWeight.normal,
+                fontSize: 16,
+                color: Colors.black,
+              ),
             ),
             CircleImage(
               imageProvider: AssetImage("assets/images/mock.jpg"),
@@ -104,6 +122,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             const Text(
               "Name",
+              style: TextStyle(
+                fontFamily: "SFCompactText",
+                fontWeight: FontWeight.normal,
+                fontSize: 16,
+                color: Colors.black,
+              ),
             ),
             TextField(
               decoration: InputDecoration(
@@ -121,6 +145,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             const Text(
               "Username",
+              style: TextStyle(
+                fontFamily: "SFCompactText",
+                fontWeight: FontWeight.normal,
+                fontSize: 16,
+                color: Colors.black,
+              ),
             ),
             TextField(
               decoration: InputDecoration(
@@ -138,6 +168,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             const Text(
               "Bio",
+              style: TextStyle(
+                fontFamily: "SFCompactText",
+                fontWeight: FontWeight.normal,
+                fontSize: 16,
+                color: Colors.black,
+              ),
             ),
             TextField(
               decoration: InputDecoration(
@@ -152,17 +188,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     )),
               ),
             ),
-            SizedBox(height: height * 0.016),
-            OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  backgroundColor: Colors.lightBlue,
-                  padding: EdgeInsets.all(height * 0.03)),
-              child: Text(
-                'Save',
-                style: TextStyle(color: Colors.white, fontSize: height / 50),
+            SizedBox(height: height * 0.012),
+            Container(
+              alignment: Alignment.centerRight,
+              child: OutlinedButton(
+                onPressed: () {},
+                style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    backgroundColor: Colors.lightBlue,
+                    padding: EdgeInsets.all(height * 0.02)),
+                child: Text(
+                  'Save',
+                  style: TextStyle(color: Colors.white, fontSize: height / 50),
+                ),
               ),
             ),
           ],

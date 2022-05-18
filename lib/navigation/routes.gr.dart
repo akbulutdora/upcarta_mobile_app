@@ -15,6 +15,8 @@ import 'package:flutter/material.dart' as _i4;
 import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart' as _i2;
 import 'package:upcarta_mobile_app/ui/screens/screens.dart' as _i1;
 import 'package:upcarta_mobile_app/ui/screens/settings.dart' as _i2;
+import 'package:upcarta_mobile_app/ui/screens/notification_settings.dart' as _i2;
+
 
 class AppRouter extends _i3.RootStackRouter {
   AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
@@ -109,6 +111,10 @@ class AppRouter extends _i3.RootStackRouter {
     TopScreenRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.TopView());
+    },
+    NotificationSettingsRoute.name: (routeData) {
+      return _i3.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i2.NotificationSettings());
     }
   };
 
@@ -125,6 +131,7 @@ class AppRouter extends _i3.RootStackRouter {
         _i3.RouteConfig(MyRegisterConfirmRoute.name, path: '/register_confirm'),
         _i3.RouteConfig(EditProfileRoute.name, path: '/edit_profile'),
         _i3.RouteConfig(SettingsRoute.name, path: '/settings'),
+        _i3.RouteConfig(NotificationSettingsRoute.name, path: '/notification_settings'),
         _i3.RouteConfig(OnboardingScreenRoute.name,
             path: '/onboarding',
             children: [
@@ -362,4 +369,12 @@ class TopScreenRoute extends _i3.PageRouteInfo<void> {
   const TopScreenRoute() : super(TopScreenRoute.name, path: 'top');
 
   static const String name = 'TopScreenRoute';
+}
+
+/// generated route for
+/// [_i1.NotificationSettings]
+class NotificationSettingsRoute extends _i3.PageRouteInfo<void> {
+  const NotificationSettingsRoute() : super(NotificationSettingsRoute.name, path: 'notification_settings');
+
+  static const String name = 'NotificationSettingsRoute';
 }

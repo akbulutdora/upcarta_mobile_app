@@ -84,7 +84,9 @@ class _SettingsState extends State<Settings> {
                             )))),
                 Card(
                     child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.router.push(const NotificationSettingsRoute());
+                        },
                         child: const ListTile(
                             title: Text('Notifications',
                                 style: TextStyle(
@@ -100,7 +102,13 @@ class _SettingsState extends State<Settings> {
                 Card(
                     child: InkWell(
                   child: SwitchListTile(
-                    title: const Text('Dark Mode'),
+                    title: const Text('Dark Mode',
+                      style: TextStyle(
+                        fontFamily: "SFCompactText",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),),
                     value: darkMode,
                     onChanged: (bool value) {
                       setState(() {

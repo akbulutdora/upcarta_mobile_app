@@ -101,6 +101,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget buildTabController() {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: DefaultTabController(
         initialIndex: 0,
@@ -127,7 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Tab(text: "Asks")
                   ],
                 ),
-                expandedHeight: 300,
+                expandedHeight: height / 2,
                 flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
                   background: buildProfile(),
@@ -222,15 +224,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ? MaterialButton(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 30.0, vertical: 10.0),
-                  color: Colors.blue,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(3.0)),
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: Colors.blue)),
                   child: const Text(
                     'Edit Profile',
                     style: TextStyle(
                         fontFamily: "SFCompactText",
-                        color: Colors.white,
-                        fontSize: 18),
+                        color: Colors.blue,
+                        fontSize: 15),
                   ),
                   onPressed: () async {
                     context.router.push(const EditProfileRoute());
@@ -263,34 +265,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
               color: Colors.black,
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: Row(children: [
-                  Text(
-                    //'${widget.user.following}',
-                    "666",
-                    style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12,
-                      color: Colors.black,
+          Container(
+            decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Row(children: [
+                    Text(
+                      //'${widget.user.following}',
+                      "666",
+                      style: TextStyle(
+                        fontFamily: "SFCompactText",
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                  Text(
-                    ' Recommendations',
-                    style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.normal,
-                      fontSize: 12,
-                      color: Colors.black,
+                    Text(
+                      ' Recommendations',
+                      style: TextStyle(
+                        fontFamily: "SFCompactText",
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                ]),
-              ),
-              TextButton(
+                  ]),
+                ),
+                SizedBox(
+                  height: 22,
+                  child: VerticalDivider(color: Colors.blue),
+                ),
+                TextButton(
                   onPressed: () {},
                   child: Row(children: [
                     Text(
@@ -313,36 +325,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     )
                   ]),
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 0, vertical: 8.0),
-                  )),
-              TextButton(
-                onPressed: () {},
-                child: Row(children: [
-                  Text(
-                    //'${widget.user.following}',
-                    "666",
-                    style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12,
-                      color: Colors.black,
+                ),
+                SizedBox(
+                  height: 22,
+                  child: VerticalDivider(color: Colors.blue),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Row(children: [
+                    Text(
+                      //'${widget.user.following}',
+                      "666",
+                      style: TextStyle(
+                        fontFamily: "SFCompactText",
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                  Text(
-                    ' Following',
-                    style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.normal,
-                      fontSize: 12,
-                      color: Colors.black,
+                    Text(
+                      ' Following',
+                      style: TextStyle(
+                        fontFamily: "SFCompactText",
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                ]),
-              ),
-
-            ],
+                  ]),
+                ),
+              ],
+            ),
           ),
           SizedBox(height: height * 0.020),
         ],

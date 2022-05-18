@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart';
+import 'package:upcarta_mobile_app/ui/screens/notification_settings.dart';
 
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 
@@ -135,6 +136,13 @@ const groupTabRouter = AutoRoute(
       path: 'settings',
       name: "SettingsRoute",
       page: Settings,
+      children: [
+        AutoRoute(
+          path: 'notification_settings',
+          name: 'NotificationSettingsRoute',
+          page: NotificationSettings,
+        ),
+      ],
     ),
     RedirectRoute(path: '*', redirectTo: ''),
   ],
