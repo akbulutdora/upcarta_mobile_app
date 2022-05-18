@@ -2,6 +2,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fireAuth;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:upcarta_mobile_app/service/auth_service.dart';
@@ -29,6 +30,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final AuthService _authService = AuthService();
+  final fireAuth.FirebaseAuth _auth = fireAuth.FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +188,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget buildProfile() {
     return FutureBuilder(
       future: getUser(),
-      builder: ((context, snapshot) {
+      builder: ((context, AsyncSnapshot snapshot) {
         User thisUser = User.empty(
           asksIDs: [],
           collectionsIDs: [],
@@ -193,11 +196,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
           followingIDs: [],
           joinDate: DateTime.now(),
         );
-        if (snapshot.hasData) {
-          thisUser = snapshot.data! as User;
-        } else {
-          print("NODATA");
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return Text(
+            "ERROR",
+            style: TextStyle(color: Colors.red),
+          );
         }
+        thisUser = snapshot.data! as User;
         return Container(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -242,7 +251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Text(
                 //'@${widget.user.username}',
-                "@lidl",
+                thisUser.username,
                 style: TextStyle(
                   fontFamily: "SFCompactText",
                   fontWeight: FontWeight.normal,
@@ -253,7 +262,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 10.0),
               Text(
                 //widget.user.bio,
-                "loremipsum",
+                thisUser.bio,
                 style: TextStyle(
                   fontFamily: "SFCompactText",
                   fontWeight: FontWeight.normal,
@@ -268,7 +277,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Row(children: [
                         Text(
                           //'${widget.user.followers}',
-                          "666",
+                          thisUser.followers.toString(),
                           style: TextStyle(
                             fontFamily: "SFCompactText",
                             fontWeight: FontWeight.w700,
@@ -295,7 +304,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Row(children: [
                       Text(
                         //'${widget.user.following}',
-                        "666",
+                        thisUser.following.toString(),
                         style: TextStyle(
                           fontFamily: "SFCompactText",
                           fontWeight: FontWeight.w700,
@@ -347,8 +356,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<User?> getUser() async {
-    final docRef =
-        _firestore.collection("Person").doc("EucJrVWuoigiDvWESJhMxTUiZPm1");
+    final docRef = _firestore.collection("Person").doc(_auth.currentUser!.uid);
     Future<User?> myUser = docRef.get().then(
       (res) {
         print("Successfully completed" + res.data()!.toString());

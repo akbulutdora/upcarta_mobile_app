@@ -57,28 +57,31 @@ extension ParseToString on ContentType {
 @JsonSerializable()
 class Content {
   final String title;
-  final int id;
+  final String id;
   final ContentType contentType;
   final String description;
-  final String created_at;
+  final DateTime createDate;
   final String image;
   final String link;
-  final String added_by_id; // (id of the user who added this content initially)
-  final String author_id;
-  /*parent_id (you may include this self-referential association to keep track of multiple links referring to the same content)
-  featured_at (you can use it for featuring specific collections)
-  slug (slugified title for clean url sharing - you may leave it out of your scope)*/
+  final String posterID; // (id of the user who added this content initially)
+  final String creatorID;
+  final String contentTopic;
+  List<String> recommendersIDs;
+  final String recommendationText;
 
   Content({
     required this.title,
     required this.id,
     required this.contentType,
     this.description = "This content has no description.",
-    required this.created_at,
+    required this.createDate,
     required this.image,
-    required this.added_by_id,
+    required this.posterID,
     required this.link,
-    required this.author_id,
+    required this.creatorID,
+    required this.contentTopic,
+    required this.recommendationText,
+    required this.recommendersIDs,
   });
 
   factory Content.fromJson(Map<String, dynamic> json) =>

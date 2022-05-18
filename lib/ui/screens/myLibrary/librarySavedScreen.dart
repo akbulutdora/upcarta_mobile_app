@@ -7,6 +7,7 @@ import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+import 'package:upcarta_mobile_app/util/constants.dart';
 
 class myLibrarySavedScreen extends StatefulWidget {
   const myLibrarySavedScreen({Key? key}) : super(key: key);
@@ -14,9 +15,10 @@ class myLibrarySavedScreen extends StatefulWidget {
   @override
   State<myLibrarySavedScreen> createState() => _myLibrarySavedScreenState();
 }
+
 class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
   late List<String> selectedChips = ['All'];
-  bool isAllSelected= true;
+  bool isAllSelected = true;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -107,16 +109,14 @@ class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
         selected: _catList[i].isSelected,
         onSelected: (bool value) {
           setState(() {
-            if(value && !selectedChips.contains(_catList[i].label)){
+            if (value && !selectedChips.contains(_catList[i].label)) {
               selectedChips.add(_catList[i].label);
-            }
-            else if(!value && selectedChips.contains(_catList[i].label)){
+            } else if (!value && selectedChips.contains(_catList[i].label)) {
               selectedChips.remove(_catList[i].label);
             }
             _catList[i].isSelected = value;
           });
         },
-
       );
 
       chips.add(item);

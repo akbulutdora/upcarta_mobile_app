@@ -28,7 +28,7 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
       ),
       AutoRoute(
         path: '/register',
-        page: myRegister,
+        page: MyRegister,
       ),
       AutoRoute(
         path: '/register_confirm',

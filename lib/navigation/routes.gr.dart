@@ -42,7 +42,7 @@ class AppRouter extends _i2.RootStackRouter {
     },
     MyRegisterRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.myRegister());
+          routeData: routeData, child: const _i1.MyRegister());
     },
     MyRegisterConfirmRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
@@ -206,7 +206,7 @@ class ResetPasswordNewRoute extends _i2.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.myRegister]
+/// [_i1.MyRegister]
 class MyRegisterRoute extends _i2.PageRouteInfo<void> {
   const MyRegisterRoute() : super(MyRegisterRoute.name, path: '/register');
 
