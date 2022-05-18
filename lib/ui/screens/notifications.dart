@@ -15,48 +15,48 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final models.Notification notif = models.Notification(
-        text: "Hello1",
-        image: "a",
-        username: "Can1",
-        contentID: "1",
-        date: myDate);
-    final models.Notification notif2 = models.Notification(
-        text: "Hello2",
-        image: "a",
-        username: "Can2",
-        contentID: "2",
-        date: myDate2);
-    final models.Notification notif3 = models.Notification(
-        text: "Hello3",
-        image: "a",
-        username: "Can3",
-        contentID: "3",
-        date: myDate3);
-    final models.Notification notif4 = models.Notification(
-        text: "Hello4",
-        image: "a",
-        username: "Can4",
-        contentID: "4",
-        date: myDate4);
-    final models.Notification notif5 = models.Notification(
-        text: "Hello5",
-        image: "a",
-        username: "Can5",
-        contentID: "5",
-        date: myDate5);
+    // final models.Notification notif = models.Notification(
+    //     text: "Hello1",
+    //     image: "a",
+    //     username: "Can1",
+    //     contentID: "1",
+    //     date: myDate);
+    // final models.Notification notif2 = models.Notification(
+    //     text: "Hello2",
+    //     image: "a",
+    //     username: "Can2",
+    //     contentID: "2",
+    //     date: myDate2);
+    // final models.Notification notif3 = models.Notification(
+    //     text: "Hello3",
+    //     image: "a",
+    //     username: "Can3",
+    //     contentID: "3",
+    //     date: myDate3);
+    // final models.Notification notif4 = models.Notification(
+    //     text: "Hello4",
+    //     image: "a",
+    //     username: "Can4",
+    //     contentID: "4",
+    //     date: myDate4);
+    // final models.Notification notif5 = models.Notification(
+    //     text: "Hello5",
+    //     image: "a",
+    //     username: "Can5",
+    //     contentID: "5",
+    //     date: myDate5);
 
-    final myList = [notif, notif2, notif3, notif4, notif5];
+    // final myList = [notif, notif2, notif3, notif4, notif5];
 
-    final todayList = myList.where((item) {
-      return DateTime.now().difference(item.date).inDays == 0;
-    }).toList();
-    final yesterdayList = myList.where((item) {
-      return DateTime.now().difference(item.date).inDays == 1;
-    }).toList();
-    final earlierList = myList.where((item) {
-      return DateTime.now().difference(item.date).inDays > 1;
-    }).toList();
+    // final todayList = myList.where((item) {
+    //   return DateTime.now().difference(item.date).inDays == 0;
+    // }).toList();
+    // final yesterdayList = myList.where((item) {
+    //   return DateTime.now().difference(item.date).inDays == 1;
+    // }).toList();
+    // final earlierList = myList.where((item) {
+    //   return DateTime.now().difference(item.date).inDays > 1;
+    // }).toList();
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -74,59 +74,59 @@ class NotificationsScreen extends StatelessWidget {
         body: ListView(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             children: [
-              NotificationsGroup(listOfItems: todayList, when: "Today"),
-              SizedBox(height: 40),
-              NotificationsGroup(listOfItems: yesterdayList, when: "Yesterday"),
-              SizedBox(height: 40),
-              NotificationsGroup(listOfItems: earlierList, when: "Earlier"),
+              // NotificationsGroup(listOfItems: todayList, when: "Today"),
+              // SizedBox(height: 40),
+              // NotificationsGroup(listOfItems: yesterdayList, when: "Yesterday"),
+              // SizedBox(height: 40),
+              // NotificationsGroup(listOfItems: earlierList, when: "Earlier"),
             ]));
   }
 }
 
-class NotificationsGroup extends StatelessWidget {
-  const NotificationsGroup(
-      {Key? key, required this.listOfItems, required this.when})
-      : super(key: key);
+// class NotificationsGroup extends StatelessWidget {
+//   const NotificationsGroup(
+//       {Key? key, required this.listOfItems, required this.when})
+//       : super(key: key);
 
-  final List<models.Notification> listOfItems;
-  final String when;
+//   final List<models.Notification> listOfItems;
+//   final String when;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(when,
-              style: TextStyle(
-                  color: Colors.transparent,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.2,
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.blue[400],
-                  decorationStyle: TextDecorationStyle.solid,
-                  decorationThickness: 2,
-                  shadows: const [
-                    Shadow(offset: Offset(0, -5), color: Colors.black)
-                  ])),
-          SizedBox(height: 10),
-          ...listOfItems.map((item) {
-            return Column(
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(radius: 24, backgroundColor: Colors.blue),
-                    Text(" ${item.username}",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 24)),
-                    Text(" ${item.text}", style: TextStyle(fontSize: 24)),
-                  ],
-                ),
-                Divider(thickness: 1),
-              ],
-            );
-          }).toList(),
-        ]);
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//         mainAxisSize: MainAxisSize.min,
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Text(when,
+//               style: TextStyle(
+//                   color: Colors.transparent,
+//                   fontSize: 24,
+//                   fontWeight: FontWeight.w600,
+//                   letterSpacing: -0.2,
+//                   decoration: TextDecoration.underline,
+//                   decorationColor: Colors.blue[400],
+//                   decorationStyle: TextDecorationStyle.solid,
+//                   decorationThickness: 2,
+//                   shadows: const [
+//                     Shadow(offset: Offset(0, -5), color: Colors.black)
+//                   ])),
+//           SizedBox(height: 10),
+//           ...listOfItems.map((item) {
+//             return Column(
+//               children: [
+//                 Row(
+//                   children: [
+//                     CircleAvatar(radius: 24, backgroundColor: Colors.blue),
+//                     Text(" ${item.username}",
+//                         style: TextStyle(
+//                             fontWeight: FontWeight.bold, fontSize: 24)),
+//                     Text(" ${item.text}", style: TextStyle(fontSize: 24)),
+//                   ],
+//                 ),
+//                 Divider(thickness: 1),
+//               ],
+//             );
+//           }).toList(),
+//         ]);
+//   }
+// }

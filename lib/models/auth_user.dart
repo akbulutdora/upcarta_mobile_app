@@ -27,8 +27,8 @@ class AuthUser extends Equatable {
   bool get isEmpty => this == AuthUser.empty;
   bool get isNotEmpty => this != AuthUser.empty;
 
-  factory AuthUser.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  // factory AuthUser.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  // Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
   List<Object?> get props => [

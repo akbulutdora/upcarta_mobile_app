@@ -73,7 +73,7 @@ class ContentCard extends StatelessWidget {
                       width: 2,
                     ),
                     Text(
-                      content.contentType.toString(),
+                      content.contentType.getString(),
                       style: TextStyle(
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,

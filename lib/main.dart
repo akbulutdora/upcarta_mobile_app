@@ -26,7 +26,31 @@ Future<void> main() async {
     },
     blocObserver: AppBlocObserver(),
   );
+  //runApp(Welcome());
+  runApp(MyFirebaseApp());
 }
+
+// class Welcome extends StatefulWidget {
+//   Welcome({Key? key}) : super(key: key);
+
+//   @override
+//   State<Welcome> createState() => _WelcomeState();
+// }
+
+// class _WelcomeState extends State<Welcome> {
+//   final _appRouter = AppRouter();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp.router(
+//       title: 'Upcarta',
+//       routeInformationParser: _appRouter.defaultRouteParser(),
+//       routerDelegate: _appRouter.delegate(),
+//       theme: ThemeData.light(),
+//       builder: (context, router) => router!,
+//     );
+//   }
+// }
 
 class Welcome extends StatefulWidget {
   Welcome({Key? key}) : super(key: key);
