@@ -4,6 +4,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart';
 import '../../models/user.dart';
 import 'package:upcarta_mobile_app/ui/components/circle_image.dart';
@@ -23,65 +24,29 @@ class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
+
 bool isMyProfile = true;
-
-class MyFirebaseApp extends StatefulWidget {
-  const MyFirebaseApp({Key? key}) : super(key: key);
-
-  @override
-  _MyFirebaseAppState createState() => _MyFirebaseAppState();
-}
-
-class _MyFirebaseAppState extends State<MyFirebaseApp> {
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _initialization,
-      builder: (context, snapshot){
-        if(snapshot.hasError) {
-          return MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: Text('No Firebase Connection: ${snapshot.error.toString()}'),
-              ),
-            ),
-          );
-        }
-        if(snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(
-            home: MyApp(),
-          );
-        }
-        return MaterialApp(
-          home: Center(
-            child: Text('Connecting to Firebase'),
-          ),
-        );
-      },);
-  }
-}
 
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.white,
-          titleSpacing: 0.0,
-          title: const Text(
-            ,
-            style: TextStyle(
-                fontFamily: "SFCompactText-Medium",
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 22),
-          ),
-          leading: Image.asset(
-            "assets/images/upcarta-logo-small.png",
-            width: 30,
-            height: 30,
-          ),
+        backgroundColor: Colors.white,
+        titleSpacing: 0.0,
+        title: const Text(
+          "Upcarta",
+          style: TextStyle(
+              fontFamily: "SFCompactText-Medium",
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: 22),
+        ),
+        leading: Image.asset(
+          "assets/images/upcarta-logo-small.png",
+          width: 30,
+          height: 30,
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
