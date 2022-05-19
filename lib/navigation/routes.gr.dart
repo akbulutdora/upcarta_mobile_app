@@ -48,14 +48,6 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.myRegisterConfirm());
     },
-    LandingPageRoute.name: (routeData) {
-      return _i2.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.LandingPage());
-    },
-    NotificationsScreenRoute.name: (routeData) {
-      return _i2.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.NotificationsScreen());
-    },
     OnboardingScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.OnboardingScreen());
@@ -121,8 +113,6 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(ResetPasswordNewRoute.name, path: '/forgot_new'),
         _i2.RouteConfig(MyRegisterRoute.name, path: '/register'),
         _i2.RouteConfig(MyRegisterConfirmRoute.name, path: '/register_confirm'),
-        _i2.RouteConfig(LandingPageRoute.name, path: '/landing_page'),
-        _i2.RouteConfig(NotificationsScreenRoute.name, path: '/notifications'),
         _i2.RouteConfig(OnboardingScreenRoute.name,
             path: '/onboarding',
             children: [
@@ -230,24 +220,6 @@ class MyRegisterConfirmRoute extends _i2.PageRouteInfo<void> {
       : super(MyRegisterConfirmRoute.name, path: '/register_confirm');
 
   static const String name = 'MyRegisterConfirmRoute';
-}
-
-/// generated route for
-/// [_i1.LandingPage]
-class LandingPageRoute extends _i2.PageRouteInfo<void> {
-  const LandingPageRoute()
-      : super(LandingPageRoute.name, path: '/landing_page');
-
-  static const String name = 'LandingPageRoute';
-}
-
-/// generated route for
-/// [_i1.NotificationsScreen]
-class NotificationsScreenRoute extends _i2.PageRouteInfo<void> {
-  const NotificationsScreenRoute()
-      : super(NotificationsScreenRoute.name, path: '/notifications');
-
-  static const String name = 'NotificationsScreenRoute';
 }
 
 /// generated route for

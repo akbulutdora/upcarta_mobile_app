@@ -35,14 +35,6 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
         page: myRegisterConfirm,
       ),
       AutoRoute(
-        path: '/landing_page',
-        page: LandingPage,
-      ),
-      AutoRoute(
-        path: '/notifications',
-        page: NotificationsScreen,
-      ),
-      AutoRoute(
         path: '/onboarding',
         page: OnboardingScreen,
         children: [

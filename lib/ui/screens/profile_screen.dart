@@ -158,13 +158,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return FutureBuilder(
       future: getUser(),
       builder: ((context, AsyncSnapshot snapshot) {
-        User thisUser = User.empty(
-          asksIDs: [],
-          collectionsIDs: [],
-          followerIDs: [],
-          followingIDs: [],
-          joinDate: DateTime.now(),
-        );
+        User thisUser = User.empty;
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(),

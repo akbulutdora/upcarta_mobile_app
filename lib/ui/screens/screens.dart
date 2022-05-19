@@ -19,5 +19,3 @@ export 'forgotpass_screen.dart';
 export 'login_screen2.dart';
 export 'forgotpass_screen_new.dart';
 export 'register_confirm.dart';
-export 'notifications.dart';
-export 'landing_page.dart';
