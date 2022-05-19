@@ -69,7 +69,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
   @override
   void initState() {
     super.initState();
-    this._dispatchEvent(
+    _dispatchEvent(
         context); // This will dispatch the navigateToHomeScreen event.
   }
 
@@ -97,14 +97,14 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
             ],
           ),
           TextButton(
-            child: Text("GO LOGIN"),
+            child: const Text("GO LOGIN"),
             onPressed: () {
               context.router.push(LoginScreenRoute());
               // context.router.push(HomeRoute());
             },
           ),
           TextButton(
-            child: Text("GO HOME"),
+            child: const Text("GO HOME"),
             onPressed: () {
               // context.router.push(LoginScreenRoute());
               context.router.push(HomeRoute());

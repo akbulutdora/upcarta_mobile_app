@@ -45,7 +45,7 @@ class _LoginScreen2 extends State<LoginScreen2> {
         appBar: AppBar(
           actions: [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.logout,
                 color: Colors.black,
               ),
@@ -66,7 +66,7 @@ class _LoginScreen2 extends State<LoginScreen2> {
           title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(
               user.email!,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
             Icon(
               Icons.pause_circle,
@@ -82,103 +82,8 @@ class _LoginScreen2 extends State<LoginScreen2> {
           padding: const EdgeInsets.all(8.0),
           child: BlocProvider(
             create: (context) => LoginCubit(context.read<AuthRepository>()),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  LoginForm(),
-                  SizedBox(height: height * 0.05),
-                  Text("Sign in with email",
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: height / 30,
-                          fontWeight: FontWeight.bold)),
-                  SizedBox(height: height * 0.025),
-                  TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      fillColor: Colors.transparent,
-                      filled: true,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: const BorderSide(
-                            color: Colors.white,
-                          )),
-                    ),
-                  ),
-                  SizedBox(height: height * 0.025),
-                  TextField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      fillColor: Colors.transparent,
-                      filled: true,
-                      labelText: 'Password',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: height * 0.2),
-                  Container(
-                    width: width,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        OutlinedButton(
-                          onPressed: () {
-                            _authService
-                                .signIn(_emailController.text,
-                                    _passwordController.text)
-                                .then((value) {
-                              return context.router
-                                  .push(OnboardingScreenRoute());
-                            });
-                          },
-                          style: OutlinedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                            backgroundColor: Colors.indigoAccent,
-                            padding:
-                                EdgeInsets.symmetric(vertical: height * 0.03),
-                          ),
-                          child: Text(
-                            'Sign In',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: height / 50,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        SizedBox(height: height * 0.025),
-                        TextButton(
-                          onPressed: () async {
-                            context.router.push(ResetPasswordRoute());
-                          },
-                          child: const Text(
-                            'Forgot password?',
-                            style: const TextStyle(color: Colors.black),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () async {
-                            context.router.push(LoginScreenRoute());
-                          },
-                          child: const Text(
-                            "Resend Verification Email?",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            child: const SingleChildScrollView(
+              child: LoginForm(),
             ),
           ),
         ),
@@ -210,21 +115,50 @@ class LoginForm extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Image.asset(
                 "assets/images/upcarta-logo-small.png",
                 height: 120,
               ),
+
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              Text("Sign in with email",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: MediaQuery.of(context).size.height / 30,
+                      fontWeight: FontWeight.bold)),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+
               const SizedBox(height: 16),
               _EmailInput(),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               _PasswordInput(),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               _LoginButton(),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               // _GoogleLoginButton(),
               // const SizedBox(height: 4),
               _SignUpButton(),
+              TextButton(
+                onPressed: () async {
+                  context.router.push(ResetPasswordRoute());
+                },
+                child: const Text(
+                  'Forgot password?',
+                  style: const TextStyle(color: Colors.black),
+                ),
+              ),
+              TextButton(
+                onPressed: () async {
+                  context.router.push(LoginScreenRoute());
+                },
+                child: const Text(
+                  "Resend Verification Email?",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
             ],
           ),
         ),
@@ -243,10 +177,15 @@ class _EmailInput extends StatelessWidget {
           key: const Key('loginForm_emailInput_textField'),
           onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            labelText: 'email',
-            helperText: '',
-            // errorText: state.email.invalid ? 'invalid email' : null,
+          decoration: InputDecoration(
+            labelText: 'Email',
+            fillColor: Colors.transparent,
+            filled: true,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: const BorderSide(
+                  color: Colors.white,
+                )),
           ),
         );
       },
@@ -265,10 +204,15 @@ class _PasswordInput extends StatelessWidget {
           onChanged: (password) =>
               context.read<LoginCubit>().passwordChanged(password),
           obscureText: true,
-          decoration: const InputDecoration(
-            labelText: 'password',
-            helperText: '',
-            // errorText: state.password.invalid ? 'invalid password' : null,
+          decoration: InputDecoration(
+            labelText: 'Email',
+            fillColor: Colors.transparent,
+            filled: true,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: const BorderSide(
+                  color: Colors.white,
+                )),
           ),
         );
       },
@@ -284,18 +228,26 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status == LoginStatus.submitting
             ? const CircularProgressIndicator()
-            : ElevatedButton(
-                key: const Key('loginForm_continue_raisedButton'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  primary: const Color(0xFFFFD600),
-                ),
+            : OutlinedButton(
                 onPressed: () {
                   context.read<LoginCubit>().logInWithCredential();
+                  AutoRouter.of(context).push(const HomeRoute());
                 },
-                child: const Text('LOGIN'),
+                key: const Key('loginForm_continue_raisedButton'),
+                style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  backgroundColor: Colors.indigoAccent,
+                  padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.height * 0.03),
+                ),
+                child: Text(
+                  'Sign In',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: MediaQuery.of(context).size.height / 50,
+                      fontWeight: FontWeight.bold),
+                ),
               );
       },
     );
@@ -330,7 +282,7 @@ class _SignUpButton extends StatelessWidget {
     final theme = Theme.of(context);
     return TextButton(
       key: const Key('loginForm_createAccount_flatButton'),
-      onPressed: () => Navigator.of(context).push(MyRegister.route()),
+      onPressed: () => AutoRouter.of(context).push(const MyRegisterRoute()),
       child: Text(
         'CREATE ACCOUNT',
         style: TextStyle(color: theme.primaryColor),

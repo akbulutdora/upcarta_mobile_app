@@ -22,6 +22,8 @@ class AuthRepository {
   Future<void> signup({
     required String email,
     required String password,
+    required String name,
+    required String username,
   }) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(

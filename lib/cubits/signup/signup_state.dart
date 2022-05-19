@@ -6,10 +6,14 @@ class SignupState extends Equatable {
   final String email;
   final String password;
   final SignupStatus status;
+  final String username;
+  final String name;
   const SignupState({
     required this.email,
     required this.password,
     required this.status,
+    required this.username,
+    required this.name,
   });
 
   factory SignupState.initial() {
@@ -17,19 +21,25 @@ class SignupState extends Equatable {
       email: "",
       password: "",
       status: SignupStatus.initial,
+      username: "",
+      name: "",
     );
   }
   SignupState copyWith({
     String? email,
     String? password,
+    String? username,
+    String? name,
     SignupStatus? status,
   }) {
     return SignupState(
         email: email ?? this.email,
         password: password ?? this.password,
-        status: status ?? this.status);
+        status: status ?? this.status,
+        name: name ?? this.name,
+        username: username ?? this.username);
   }
 
   @override
-  List<Object> get props => [email, password, status];
+  List<Object> get props => [email, password, username, name, status];
 }

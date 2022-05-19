@@ -8,7 +8,7 @@ import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 
 class Home extends StatefulWidget {
   static MaterialPage page(int currentTab) {
-    return MaterialPage(
+    return const MaterialPage(
       child: Home(),
     );
   }

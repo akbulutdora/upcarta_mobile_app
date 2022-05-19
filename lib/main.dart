@@ -18,8 +18,14 @@ Future<void> main() async {
       );
       final authRepository = AuthRepository();
       // await authRepository.user.first;
-      runApp(App(
-        authRepository: authRepository,
+      runApp(RepositoryProvider.value(
+        value: authRepository,
+        child: BlocProvider(
+          create: (_) => AppBloc(
+            authRepository: authRepository,
+          ),
+          child: Welcome(),
+        ),
       ));
     },
     blocObserver: AppBlocObserver(),
@@ -54,30 +60,30 @@ class _WelcomeState extends State<Welcome> {
   }
 }
 
-class MyFirebaseApp extends StatelessWidget {
-  final Future<FirebaseApp> _init = Firebase.initializeApp();
+// class MyFirebaseApp extends StatelessWidget {
+//   final Future<FirebaseApp> _init = Firebase.initializeApp();
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _init,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return const Scaffold(
-            body: Center(
-              child: Text("Error"),
-            ),
-          );
-        }
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Welcome();
-        }
-        return const MaterialApp(
-          home: Center(
-            child: Text("Waiting"),
-          ),
-        );
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return FutureBuilder(
+//       future: _init,
+//       builder: (context, snapshot) {
+//         if (snapshot.hasError) {
+//           return const Scaffold(
+//             body: Center(
+//               child: Text("Error"),
+//             ),
+//           );
+//         }
+//         if (snapshot.connectionState == ConnectionState.done) {
+//           return Welcome();
+//         }
+//         return const MaterialApp(
+//           home: Center(
+//             child: Text("Waiting"),
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }

@@ -1,18 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/models/user.dart' as user_model;
+import 'package:uuid/uuid.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  String uid = "";
-  String get userId => uid;
 
   // SIGN IN
   Future<User?> signIn(String email, String password) async {
     var user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
-    uid = user.user!.uid;
     return user.user;
   }
 
@@ -24,12 +22,13 @@ class AuthService {
   // CREATE USER THROUGH THE FIREBASE AUTH AND FIRESTORE
   Future<User?> createPerson(
       String name, String email, String password, String username) async {
-    // CREATE USER THROUGH THE FIREBASE AUTH
     var user = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
 
-    // CREATE THE INITIALLY EMPTY SAVED COLLECTION FOR THE USER
     String savesID;
+    String recomID;
+
+    // CREATE THE INITIALLY EMPTY SAVED COLzzzzz
     final savedCollection = <String, dynamic>{
       "collectionType": "saved",
       "ownerID": user.user!.uid,
@@ -55,15 +54,11 @@ class AuthService {
       "isAsk": false,
       "contentTypes": ""
     };
-
-    // CREATE THE INITIALLY EMPTY RECOMMEDNATIONS COLLECTION FOR THE USER
-    String recomID;
     recomID = await _firestore
         .collection("collections")
         .add(recommendationsCollection)
         .then((DocumentReference doc) => doc.id);
 
-    // ADD THE USER TO FIRESTORE
     final thisUser = user_model.User(
       id: user.user!.uid,
       username: username,
@@ -87,7 +82,17 @@ class AuthService {
         .collection("Person")
         .doc(user.user!.uid)
         .set(thisUser.toJson());
-    uid = user.user!.uid;
+
     return user.user;
+  }
+
+  String get userID {
+    // var user = await _auth.
+    var user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return user.uid;
+    } else {
+      return "-1";
+    }
   }
 }

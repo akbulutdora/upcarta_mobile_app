@@ -100,37 +100,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
   */
 
-/*
-  final List<Content> contents = <Content>[
-    Content(
-        title: "podcast with bengisu",
-        id: "1",
-        contentType: ContentType.podcastEpisode,
-        added_by_id: '',
-        description: '',
-        created_at: '',
-        link: '',
-        image: ''),
-    Content(
-        title: "book written by berna",
-        id: "2",
-        contentType: ContentType.book,
-        added_by_id: '',
-        link: '',
-        description: '',
-        created_at: '',
-        image: ''),
-    Content(
-        title: "podcast about game-dev",
-        id: "4",
-        contentType: ContentType.podcast,
-        description: '',
-        created_at: '',
-        link: '',
-        added_by_id: '',
-        image: ''),
-  ];
-*/
   Widget buildTabController() {
     return Scaffold(
       body: DefaultTabController(

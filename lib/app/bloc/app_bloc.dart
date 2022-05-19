@@ -36,7 +36,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   //       _authRepository.user.listen((user) => add(AppUserChanged(user)));
   // }
 
-  Future<void> _onAppInitialized(
+  void _onAppInitialized(
       NavigateToHomeScreenEvent event, Emitter<AppState> emit) async {
     emit(const AppState.loading());
     await Future.delayed(const Duration(seconds: 2));

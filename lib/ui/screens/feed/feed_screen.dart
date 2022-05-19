@@ -41,9 +41,13 @@ class _FeedScreenState extends State<FeedScreen> {
             appBar: AppBar(
               actions: [
                 IconButton(
-                  icon: Icon(Icons.logout),
+                  icon: Icon(
+                    Icons.logout,
+                    color: Colors.black,
+                  ),
                   onPressed: () {
                     context.read<AppBloc>().add(AppLogoutRequested());
+                    AutoRouter.of(context).push(LoginScreenRoute());
                   },
                 )
               ],
