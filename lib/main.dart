@@ -34,10 +34,8 @@ Future<void> main() async {
 
 class Welcome extends StatefulWidget {
   Welcome({Key? key}) : super(key: key);
-
   @override
   State<Welcome> createState() => _WelcomeState();
-
   static MaterialPage page() {
     return MaterialPage(
       child: Welcome(),
@@ -47,7 +45,6 @@ class Welcome extends StatefulWidget {
 
 class _WelcomeState extends State<Welcome> {
   final _appRouter = AppRouter();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
