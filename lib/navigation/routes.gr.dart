@@ -48,17 +48,17 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.myRegisterConfirm());
     },
-    OnboardingScreenRoute.name: (routeData) {
+    LandingPageRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.OnboardingScreen());
+          routeData: routeData, child: const _i1.LandingPage());
     },
     NotificationsScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.NotificationsScreen());
     },
-    LandingPageRoute.name: (routeData) {
+    OnboardingScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.LandingPage());
+          routeData: routeData, child: const _i1.OnboardingScreen());
     },
     HomeRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
@@ -121,6 +121,8 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(ResetPasswordNewRoute.name, path: '/forgot_new'),
         _i2.RouteConfig(MyRegisterRoute.name, path: '/register'),
         _i2.RouteConfig(MyRegisterConfirmRoute.name, path: '/register_confirm'),
+        _i2.RouteConfig(LandingPageRoute.name, path: '/landing_page'),
+        _i2.RouteConfig(NotificationsScreenRoute.name, path: '/notifications'),
         _i2.RouteConfig(OnboardingScreenRoute.name,
             path: '/onboarding',
             children: [
@@ -138,8 +140,6 @@ class AppRouter extends _i2.RootStackRouter {
                   redirectTo: '',
                   fullMatch: true)
             ]),
-        _i2.RouteConfig(NotificationsScreenRoute.name, path: '/notifications'),
-        _i2.RouteConfig(LandingPageRoute.name, path: '/landing_page'),
         _i2.RouteConfig(HomeRoute.name, path: '/home', children: [
           _i2.RouteConfig(FeedScreenRoute.name,
               path: 'feed',
@@ -233,13 +233,12 @@ class MyRegisterConfirmRoute extends _i2.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.OnboardingScreen]
-class OnboardingScreenRoute extends _i2.PageRouteInfo<void> {
-  const OnboardingScreenRoute({List<_i2.PageRouteInfo>? children})
-      : super(OnboardingScreenRoute.name,
-            path: '/onboarding', initialChildren: children);
+/// [_i1.LandingPage]
+class LandingPageRoute extends _i2.PageRouteInfo<void> {
+  const LandingPageRoute()
+      : super(LandingPageRoute.name, path: '/landing_page');
 
-  static const String name = 'OnboardingScreenRoute';
+  static const String name = 'LandingPageRoute';
 }
 
 /// generated route for
@@ -252,12 +251,13 @@ class NotificationsScreenRoute extends _i2.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.LandingPage]
-class LandingPageRoute extends _i2.PageRouteInfo<void> {
-  const LandingPageRoute()
-      : super(LandingPageRoute.name, path: '/landing_page');
+/// [_i1.OnboardingScreen]
+class OnboardingScreenRoute extends _i2.PageRouteInfo<void> {
+  const OnboardingScreenRoute({List<_i2.PageRouteInfo>? children})
+      : super(OnboardingScreenRoute.name,
+            path: '/onboarding', initialChildren: children);
 
-  static const String name = 'LandingPageRoute';
+  static const String name = 'OnboardingScreenRoute';
 }
 
 /// generated route for
