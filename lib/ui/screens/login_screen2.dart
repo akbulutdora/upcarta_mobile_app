@@ -205,7 +205,7 @@ class _PasswordInput extends StatelessWidget {
               context.read<LoginCubit>().passwordChanged(password),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'Email',
+            labelText: 'Password',
             fillColor: Colors.transparent,
             filled: true,
             border: OutlineInputBorder(

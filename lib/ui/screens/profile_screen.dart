@@ -3,9 +3,10 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fireAuth;
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:upcarta_mobile_app/service/auth_service.dart';
+// import 'packageta_mobile_app/service/auth_service.dart';
 import '../../models/user.dart';
 import 'package:upcarta_mobile_app/ui/components/circle_image.dart';
 import 'package:upcarta_mobile_app/ui/components/content_list.dart';
@@ -30,7 +31,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final AuthService _authService = AuthService();
+  // final AuthService _authService = AuthService();
   final fireAuth.FirebaseAuth _auth = fireAuth.FirebaseAuth.instance;
 
   @override
@@ -178,7 +179,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 CircleImage(
-                  imageProvider: AssetImage("assets/images/mock.jpg"),
+                  imageProvider: NetworkImage(thisUser.avatar),
                   //widget.user.profileImageUrl),
                   imageRadius: 55.0,
                 ),
@@ -319,17 +320,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<User?> getUser() async {
+    String url = await FirebaseStorage.instance
+        .ref()
+        .child('Amadeo Modigliani - Ritratto di Paul Guillaume 1916.jpg')
+        .getDownloadURL();
+    print("URL IS HERE $url");
+
     final docRef = _firestore.collection("Person").doc(_auth.currentUser!.uid);
     Future<User?> myUser = docRef.get().then(
       (res) {
         print("Successfully completed" + res.data()!.toString());
         if (res.data() != null) {
           User myUser = User.fromJson(res.data()!);
+          myUser.avatar = url;
           return myUser;
         }
       },
       onError: (e) => print("Error completing: $e"),
     );
+
     return myUser;
   }
 }

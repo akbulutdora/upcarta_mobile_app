@@ -11,7 +11,7 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   final AuthRepository _authRepository;
   late StreamSubscription<AppStatus> _appStatusSubscription;
-  // StreamSubscription<AuthUser>? _userSubscription;
+  StreamSubscription<AuthUser>? _userSubscription;
 
   @override
   AppState get initialState => const AppState.uninitialized();
@@ -21,11 +21,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         super(const AppState.uninitialized()) {
     on<AppStatusChanged>(_onAppStatusChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
+    on<AppUserChanged>(_onAppUserChanged);
     _appStatusSubscription = _authRepository.status.listen(
       (status) => add(AppStatusChanged(status)),
     );
-    /* _userSubscription =
-        _authRepository.user.listen((user) => add(AppUserChanged(user))); */
+    _userSubscription =
+        _authRepository.user.listen((user) => add(AppUserChanged(user)));
   }
 
   // AppBloc({required AuthRepository authRepository})
@@ -40,18 +41,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   //       _authRepository.user.listen((user) => add(AppUserChanged(user)));
   // }
 
-  /* void _onAppInitialized(AppStarted event, Emitter<AppState> emit) async {
-    await Future.delayed(const Duration(seconds: 2));
-    final isSignedIn = _authRepository.currentUser.isNotEmpty;
-
-    try {
-      emit(isSignedIn
-          ? AppState.authenticated(_authRepository.currentUser)
-          : const AppState.unauthenticated());
-    } catch (_) {
-      emit(const AppState.unauthenticated());
-    }
-  } */
+  FutureOr<void> _onAppUserChanged(
+      AppUserChanged event, Emitter<AppState> emit) async {
+    emit(event.user.isNotEmpty
+        ? AppState.authenticated(event.user)
+        : const AppState.unauthenticated());
+  }
 
   void _onAppStatusChanged(
     AppStatusChanged event,
@@ -68,9 +63,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       default:
         return emit(const AppState.uninitialized());
     }
-    /* emit(event.user.isNotEmpty
-        ? AppState.authenticated(event.user)
-        : const AppState.unauthenticated()); */
   }
 
   void _onLogoutRequested(
@@ -84,13 +76,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   Future<void> close() {
     _appStatusSubscription.cancel();
     _authRepository.dispose();
-    // _userSubscription?.cancel();
+    _userSubscription?.cancel();
     return super.close();
   }
 
   Future<AuthUser?> _tryGetUser() async {
     try {
       final user = await _authRepository.currentUser;
+      print("INSIDE APPBLOC" + user.email!);
       return user;
     } catch (_) {
       return null;

@@ -37,6 +37,7 @@ class _FeedScreenState extends State<FeedScreen> {
         ],
         builder: (context, child, controller) {
           final user = context.select((AppBloc bloc) => bloc.state.user);
+          print("HERE" + user.email!);
           return Scaffold(
             appBar: AppBar(
               actions: [

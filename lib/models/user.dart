@@ -13,7 +13,7 @@ class User extends Equatable {
   final int following;
   final List<int>? followerIDs;
   final List<int>? followingIDs;
-  final String avatar;
+  String avatar;
   final String bio;
   final int recommendationCount;
   final String recommendationsID;
@@ -22,7 +22,7 @@ class User extends Equatable {
   final List<int>? asksIDs;
   final DateTime? joinDate;
 
-  const User({
+  User({
     required this.username,
     required this.id,
     required this.name,
@@ -41,7 +41,7 @@ class User extends Equatable {
     this.asksIDs,
   });
 
-  static const empty = User(
+  static final empty = User(
     id: "",
     name: "",
     username: "",

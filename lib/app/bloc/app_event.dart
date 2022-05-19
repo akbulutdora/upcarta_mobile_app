@@ -16,3 +16,11 @@ class AppStatusChanged extends AppEvent {
   @override
   List<Object> get props => [status];
 }
+
+class AppUserChanged extends AppEvent {
+  const AppUserChanged(this.user);
+  final AuthUser user;
+
+  @override
+  List<Object> get props => [user];
+}

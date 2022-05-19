@@ -61,6 +61,7 @@ class EntryPoint extends StatelessWidget {
   Widget build(BuildContext context) {
     AutoRouter.of(context);
     return BlocListener<AppBloc, AppState>(
+      child: const SplashScreen(),
       listener: (context, state) {
         switch (state.status) {
           case AppStatus.authenticated:
