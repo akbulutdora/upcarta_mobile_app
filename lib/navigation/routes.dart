@@ -1,12 +1,19 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/main.dart';
 
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+
+import '../app/app.dart';
 
 @AdaptiveAutoRouter(
     replaceInRouteName: 'Page,Route,Screen',
     routes: <AutoRoute>[
       AutoRoute(
         initial: true,
+        path: '/entry',
+        page: EntryPoint,
+      ),
+      AutoRoute(
         path: '/splash',
         page: SplashScreen,
       ),
@@ -61,68 +68,52 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
           RedirectRoute(path: '*', redirectTo: ''),
         ],
       ),
-      groupTabRouter,
-      // AutoRoute(
-      //   path: '/',
-      //   page: Home,
-      //   children: [
-      //     AutoRoute(path: '/feed', page: FeedScreen),
-      //     AutoRoute(path: '/explore', page: ExploreScreen),
-      //     AutoRoute(path: '/myLibrary', page: MyLibraryScreen),
-      //     AutoRoute(path: '/my', page: NewPostScreen),
-      //     AutoRoute(path: '/profile', page: ProfileScreen),
-      //     groupTabRouter,
-      //     // redirect all other paths
-      //     RedirectRoute(path: '*', redirectTo: 'profile'),
-      //   ],
-      // ),
+      AutoRoute(
+        path: '/home',
+        page: Home,
+        initial: false,
+        children: [
+          AutoRoute(
+            path: 'feed',
+            name: 'FeedScreenRoute',
+            page: FeedScreen,
+            children: [
+              AutoRoute(
+                path: 'latest',
+                initial: true,
+                name: 'LatestScreenRoute',
+                page: LatestView,
+              ),
+              AutoRoute(
+                path: 'top',
+                name: 'TopScreenRoute',
+                page: TopView,
+              ),
+            ],
+          ),
+          AutoRoute(
+            path: 'explore',
+            name: 'ExploreScreenRoute',
+            page: ExploreScreen,
+          ),
+          AutoRoute(
+            path: 'new',
+            name: 'NewPostScreenRoute',
+            page: NewPostScreen,
+          ),
+          AutoRoute(
+            path: 'myLibrary',
+            name: 'MyLibraryScreenRoute',
+            page: MyLibraryScreen,
+          ),
+          AutoRoute(
+            path: 'profile',
+            name: 'ProfileScreenRoute',
+            page: ProfileScreen,
+          ),
+          RedirectRoute(path: '*', redirectTo: ''),
+        ],
+      ),
       RedirectRoute(path: '*', redirectTo: ''),
     ])
 class $AppRouter {}
-
-const groupTabRouter = AutoRoute(
-  path: '/home',
-  page: Home,
-  initial: false,
-  children: [
-    AutoRoute(
-      path: 'feed',
-      name: 'FeedScreenRoute',
-      page: FeedScreen,
-      children: [
-        AutoRoute(
-          path: 'latest',
-          initial: true,
-          name: 'LatestScreenRoute',
-          page: LatestView,
-        ),
-        AutoRoute(
-          path: 'top',
-          name: 'TopScreenRoute',
-          page: TopView,
-        ),
-      ],
-    ),
-    AutoRoute(
-      path: 'explore',
-      name: 'ExploreScreenRoute',
-      page: ExploreScreen,
-    ),
-    AutoRoute(
-      path: 'new',
-      name: 'NewPostScreenRoute',
-      page: NewPostScreen,
-    ),
-    AutoRoute(
-      path: 'myLibrary',
-      name: 'MyLibraryScreenRoute',
-      page: MyLibraryScreen,
-    ),
-    AutoRoute(
-      path: 'profile',
-      name: 'ProfileScreenRoute',
-      page: ProfileScreen,
-    ),
-    RedirectRoute(path: '*', redirectTo: ''),
-  ],
-);

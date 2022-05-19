@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/models/user.dart' as user_model;
+import 'package:upcarta_mobile_app/service/firestore_service.dart';
 import 'package:uuid/uuid.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   // SIGN IN
   Future<User?> signIn(String email, String password) async {
     var user = await _auth.signInWithEmailAndPassword(

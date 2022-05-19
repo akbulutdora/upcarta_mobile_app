@@ -1,9 +1,23 @@
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:upcarta_mobile_app/models/auth_user.dart';
+import 'package:upcarta_mobile_app/service/firestore_service.dart';
+
+enum AppStatus { authenticated, unauthenticated, uninitialized }
 
 class AuthRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  final _controller = StreamController<AppStatus>();
+
+  Stream<AppStatus> get status async* {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    yield AppStatus.unauthenticated;
+    yield* _controller.stream;
+  }
 
   AuthRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
@@ -26,8 +40,10 @@ class AuthRepository {
     required String username,
   }) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      FireStoreService fireStoreService = FireStoreService();
+      var user = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+      fireStoreService.createPerson(user, username, name, email);
     } catch (_) {}
   }
 
@@ -38,14 +54,21 @@ class AuthRepository {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+      await Future.delayed(
+        const Duration(milliseconds: 300),
+        () => _controller.add(AppStatus.authenticated),
+      );
     } catch (_) {}
   }
 
   Future<void> logOut() async {
     try {
       await Future.wait([_firebaseAuth.signOut()]);
+      _controller.add(AppStatus.unauthenticated);
     } catch (_) {}
   }
+
+  void dispose() => _controller.close();
 }
 
 extension on firebase_auth.User {

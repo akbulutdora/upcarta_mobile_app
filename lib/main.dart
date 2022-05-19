@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 import 'firebase_options.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,15 +20,19 @@ Future<void> main() async {
       );
       final authRepository = AuthRepository();
       // await authRepository.user.first;
-      runApp(RepositoryProvider.value(
-        value: authRepository,
-        child: BlocProvider(
-          create: (_) => AppBloc(
-            authRepository: authRepository,
+      runApp(
+        RepositoryProvider.value(
+          value: authRepository,
+          child: BlocProvider(
+            create: (_) => AppBloc(
+              authRepository: authRepository,
+            ),
+            child: App(
+              authRepository: authRepository,
+            ),
           ),
-          child: Welcome(),
         ),
-      ));
+      );
     },
     blocObserver: AppBlocObserver(),
   );
@@ -34,10 +40,8 @@ Future<void> main() async {
 
 class Welcome extends StatefulWidget {
   Welcome({Key? key}) : super(key: key);
-
   @override
   State<Welcome> createState() => _WelcomeState();
-
   static MaterialPage page() {
     return MaterialPage(
       child: Welcome(),
@@ -47,7 +51,6 @@ class Welcome extends StatefulWidget {
 
 class _WelcomeState extends State<Welcome> {
   final _appRouter = AppRouter();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

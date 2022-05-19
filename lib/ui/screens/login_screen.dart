@@ -19,9 +19,13 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   static MaterialPage page() {
-    return MaterialPage(
-      child: const LoginScreen(),
+    return const MaterialPage(
+      child: LoginScreen(),
     );
+  }
+
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => const LoginScreen());
   }
 }
 

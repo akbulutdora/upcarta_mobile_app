@@ -139,7 +139,7 @@ class SignupForm extends StatelessWidget {
     return BlocListener<SignupCubit, SignupState>(
       listener: (context, state) {
         if (state.status == SignupStatus.success) {
-          Navigator.of(context).pop();
+          AutoRouter.of(context).push(const HomeRoute());
         } else if (state.status == SignupStatus.error) {
           // ERROR
           // ScaffoldMessenger.of(context)
@@ -311,7 +311,7 @@ class _PasswordInput extends StatelessWidget {
 class _SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final AuthService _authService = AuthService();
+    //final AuthService _authService = AuthService(); OLD
     return BlocBuilder<SignupCubit, SignupState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
@@ -328,7 +328,6 @@ class _SignUpButton extends StatelessWidget {
                   //   //     .push(MyRegisterConfirmRoute());
                   //   return context.router.push(HomeRoute());
                   // });
-                  AutoRouter.of(context).push(const HomeRoute());
                 },
                 key: const Key('signUpForm_continue_raisedButton'),
                 style: OutlinedButton.styleFrom(

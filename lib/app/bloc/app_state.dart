@@ -1,17 +1,15 @@
 part of 'app_bloc.dart';
 
-enum AppStatus { authenticated, unauthenticated, initial, loading }
-
 class AppState extends Equatable {
   final AppStatus status;
   final AuthUser user;
+
   const AppState._({
-    required this.status,
+    this.status = AppStatus.uninitialized,
     this.user = AuthUser.empty,
   });
 
-  const AppState.initial() : this._(status: AppStatus.initial);
-  const AppState.loading() : this._(status: AppStatus.loading);
+  const AppState.uninitialized() : this._();
 
   const AppState.authenticated(AuthUser user)
       : this._(

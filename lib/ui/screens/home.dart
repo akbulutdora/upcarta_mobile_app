@@ -13,6 +13,10 @@ class Home extends StatefulWidget {
     );
   }
 
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => const Home());
+  }
+
   const Home({
     Key? key,
   }) : super(key: key);
@@ -28,8 +32,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     AutoRouter.of(context);
     return AutoTabsScaffold(
-      appBarBuilder: (_, tabsRouter) =>
-          PreferredSize(child: Container(), preferredSize: Size(0.0, 0.0)),
       routes: const [
         FeedScreenRoute(),
         ExploreScreenRoute(),
