@@ -8,14 +8,14 @@ class Notification {
   final String image;
   final String username;
   final String contentID;
+  final DateTime date;
 
-  Notification({
-    required this.text,
-    required this.image,
-    required this.username,
-    required this.contentID,
-    required DateTime date,
-  });
+  Notification(
+      {required this.text,
+      required this.image,
+      required this.username,
+      required this.contentID,
+      required this.date});
 
   factory Notification.fromJson(Map<String, dynamic> json) =>
       _$NotificationFromJson(json);
