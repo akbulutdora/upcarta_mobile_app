@@ -27,23 +27,8 @@ class MyLibraryScreen extends StatefulWidget {
   State<MyLibraryScreen> createState() => _MyLibraryScreenState();
 }
 
-class Category {
-  String label = "";
-
-  //Icon icon=Icon(Icons.person);
-  bool isSelected = false;
-
-  Category(this.label, this.isSelected); //, this.icon
-}
-
 class _MyLibraryScreenState extends State<MyLibraryScreen> {
   bool selected = false;
-  final List<Category> _catList = [
-    Category("All", true), //Icon(Icons.format_list_bulleted_rounded)
-    Category("Contents", false), //, Icon(Icons.menu_book)
-    Category("Collections", false), //, Icon(Icons.videocam_outlined)
-    Category("Asks", false), //, Icon(Icons.podcasts)
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +57,7 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
           bottom: const TabBar(
             indicatorWeight: 2.25,
             indicatorSize: TabBarIndicatorSize.label,
-            labelPadding: EdgeInsetsDirectional.fromSTEB(6, 0, 6, 0),
+            labelPadding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
             indicatorPadding: EdgeInsets.all(0),
             isScrollable: true,
             tabs: <Widget>[
@@ -84,12 +69,12 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
             unselectedLabelColor: Color(0xffC4C4C4),
             unselectedLabelStyle: TextStyle(
                 fontFamily: 'SFCompactText-SemiBold.ttf',
-                fontSize: 17,
+                fontSize: 16,
                 fontWeight: FontWeight.w500),
             labelColor: Color(0xff4E89FD),
             labelStyle: TextStyle(
                 fontFamily: 'SFCompactText-SemiBold.ttf',
-                fontSize: 17,
+                fontSize: 16,
                 fontWeight: FontWeight.w500),
           ),
         ),
@@ -103,34 +88,5 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
         ),
       ),
     );
-  }
-
-  List<Widget> catChips() {
-    List<Widget> chips = [];
-    for (int i = 0; i < _catList.length; i++) {
-      Widget item = FilterChip(
-        label: Text(_catList[i].label,
-            style: TextStyle(
-                color: _catList[i].isSelected
-                    ? AppColors.chip
-                    : AppColors.secondary)),
-        //avatar: _catList[i].icon,
-        labelStyle: kTextStyle9,
-        backgroundColor: Colors.transparent,
-        shape: StadiumBorder(side: BorderSide(color: Color(0xffDEDEDE))),
-        disabledColor: AppColors.chip,
-        selectedColor: AppColors.selected,
-        showCheckmark: false,
-        selected: _catList[i].isSelected,
-        onSelected: (bool value) {
-          setState(() {
-            _catList[i].isSelected = value;
-          });
-        },
-      );
-      chips.add(item);
-      chips.add(SizedBox(width: 8.0));
-    }
-    return chips;
   }
 }

@@ -31,7 +31,7 @@ class _TopViewState extends State<TopView> {
         return [
           SliverAppBar(
             toolbarHeight: 0,
-            leading: new Container(),
+            leading: Container(),
             automaticallyImplyLeading: false,
             expandedHeight: 400,
             // collapsedHeight: 75,

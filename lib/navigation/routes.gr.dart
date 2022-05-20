@@ -80,6 +80,14 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.Home());
     },
+    LatestViewRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.LatestView());
+    },
+    TopViewRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.TopView());
+    },
     UserOnboarding1Route.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.UserOnboarding1());
@@ -131,7 +139,18 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig('/#redirect',
             path: '/', redirectTo: '/splash', fullMatch: true),
         _i2.RouteConfig(SeeAll_CollectionsAndAsksRoute.name,
-            path: 'see_all_collections_and_asks'),
+            path: 'see_all_collections_and_asks',
+            children: [
+              _i2.RouteConfig('#redirect',
+                  path: '',
+                  parent: SeeAll_CollectionsAndAsksRoute.name,
+                  redirectTo: 'recent',
+                  fullMatch: true),
+              _i2.RouteConfig(LatestViewRoute.name,
+                  path: 'recent', parent: SeeAll_CollectionsAndAsksRoute.name),
+              _i2.RouteConfig(TopViewRoute.name,
+                  path: 'popular', parent: SeeAll_CollectionsAndAsksRoute.name)
+            ]),
         _i2.RouteConfig(SeeAll_ContentArchiveRoute.name,
             path: 'see_all_content_archive'),
         _i2.RouteConfig(SeeAll_RecentAsksRoute.name,
@@ -203,9 +222,9 @@ class AppRouter extends _i2.RootStackRouter {
 /// generated route for
 /// [_i1.SeeAll_CollectionsAndAsks]
 class SeeAll_CollectionsAndAsksRoute extends _i2.PageRouteInfo<void> {
-  const SeeAll_CollectionsAndAsksRoute()
+  const SeeAll_CollectionsAndAsksRoute({List<_i2.PageRouteInfo>? children})
       : super(SeeAll_CollectionsAndAsksRoute.name,
-            path: 'see_all_collections_and_asks');
+            path: 'see_all_collections_and_asks', initialChildren: children);
 
   static const String name = 'SeeAll_CollectionsAndAsksRoute';
 }
@@ -332,6 +351,22 @@ class HomeRoute extends _i2.PageRouteInfo<void> {
       : super(HomeRoute.name, path: '/home', initialChildren: children);
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [_i1.LatestView]
+class LatestViewRoute extends _i2.PageRouteInfo<void> {
+  const LatestViewRoute() : super(LatestViewRoute.name, path: 'recent');
+
+  static const String name = 'LatestViewRoute';
+}
+
+/// generated route for
+/// [_i1.TopView]
+class TopViewRoute extends _i2.PageRouteInfo<void> {
+  const TopViewRoute() : super(TopViewRoute.name, path: 'popular');
+
+  static const String name = 'TopViewRoute';
 }
 
 /// generated route for

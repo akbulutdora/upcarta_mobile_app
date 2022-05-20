@@ -5,9 +5,19 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
     replaceInRouteName: 'Page,Route,Screen',
     routes: <AutoRoute>[
       AutoRoute(
-        path: 'see_all_collections_and_asks',
-        page: SeeAll_CollectionsAndAsks,
-      ),
+          path: 'see_all_collections_and_asks',
+          page: SeeAll_CollectionsAndAsks,
+          children: [
+            AutoRoute(
+              path: 'recent',
+              initial: true,
+              page: LatestView,
+            ),
+            AutoRoute(
+              path: 'popular',
+              page: TopView,
+            ),
+          ]),
       AutoRoute(
         path: 'see_all_content_archive',
         page: SeeAll_ContentArchive,

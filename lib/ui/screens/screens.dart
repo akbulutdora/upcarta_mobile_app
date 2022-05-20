@@ -24,4 +24,6 @@ export 'see_all_horizontal_content_list/see_all_featured_collections.dart';
 export 'see_all_horizontal_content_list/see_all_inspiring_creators.dart';
 export 'see_all_horizontal_content_list/see_all_popular_topics.dart';
 export 'see_all_horizontal_content_list/see_all_recent_asks.dart';
-export 'see_all_horizontal_content_list/see_all_collections_and_asks.dart';
+export 'see_all_horizontal_content_list/see_all_collections_and_asks/see_all_collections_and_asks.dart';
+export 'see_all_horizontal_content_list/see_all_collections_and_asks/sub_pages/collections_and_asks_recent.dart';
+export 'see_all_horizontal_content_list/see_all_collections_and_asks/sub_pages/collections_and_asks_popular.dart';
