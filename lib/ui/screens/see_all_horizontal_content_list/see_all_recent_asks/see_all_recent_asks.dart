@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/ui/components/search_bars/search_bar_collections_and_asks.dart';
-import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+import 'package:upcarta_mobile_app/ui/components/search_bars/search_bar_asks.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_recent_asks/sub_pages/recent_asks_popular.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_recent_asks/sub_pages/recent_asks_recent.dart';
 
-class SeeAll_CollectionsAndAsks extends StatefulWidget {
-  const SeeAll_CollectionsAndAsks({Key? key}) : super(key: key);
+class SeeAll_RecentAsks extends StatefulWidget {
+  const SeeAll_RecentAsks({Key? key}) : super(key: key);
 
   @override
-  State<SeeAll_CollectionsAndAsks> createState() =>
-      _SeeAll_CollectionsAndAsksState();
+  State<SeeAll_RecentAsks> createState() => _SeeAll_RecentAsksState();
 }
 
-class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
+class _SeeAll_RecentAsksState extends State<SeeAll_RecentAsks> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,24 +29,23 @@ class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
           elevation: 0,
           titleSpacing: 0.0,
           title: const Text(
-            'Collections and Asks',
+            'Explore Asks',
             style: TextStyle(
                 fontFamily: "SFCompactText-Medium.ttf",
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
                 fontSize: 18),
           ),
-          bottom: PreferredSize(
+          bottom: const PreferredSize(
             preferredSize: Size.fromHeight(36),
             child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child:
-                  SizedBox(height: 32, child: SearchBar_CollectionsAndAsks()),
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: SizedBox(height: 32, child: SearchBar_Asks()),
             ),
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
           child: Column(
             children: const [
               PreferredSize(
@@ -76,10 +75,7 @@ class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
               SizedBox(
                 height: 580,
                 child: TabBarView(
-                  children: <Widget>[
-                    CollectionsAndAsks_Recent(),
-                    CollectionsAndAsks_Popular()
-                  ],
+                  children: <Widget>[RecentAsks_Recent(), RecentAsks_Popular()],
                 ),
               )
             ],

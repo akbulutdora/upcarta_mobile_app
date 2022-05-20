@@ -29,12 +29,12 @@ class _WrappedSingleChip__YourLibraryState
           source: options, value: (i, v) => i, label: (i, String v) => v),
       wrapped: true,
       spacing: 6,
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       choiceStyle: C2ChoiceStyle(
         labelStyle:
-            TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
-        margin: EdgeInsets.all(0),
-        padding: EdgeInsets.fromLTRB(-3, 0, -3, 0),
+            const TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
+        margin: const EdgeInsets.all(0),
+        padding: const EdgeInsets.fromLTRB(-3, 0, -3, 0),
         showCheckmark: false,
         color: Colors.black,
         backgroundColor: Colors.white,
@@ -42,12 +42,13 @@ class _WrappedSingleChip__YourLibraryState
       ),
       choiceActiveStyle: C2ChoiceStyle(
         labelStyle:
-            TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
-        margin: EdgeInsets.all(0),
-        padding: EdgeInsets.fromLTRB(-3, 0, -3, 0),
+            const TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
+        margin: const EdgeInsets.all(0),
+        padding: const EdgeInsets.fromLTRB(-3, 0, -3, 0),
         showCheckmark: false,
         color: Colors.white,
         backgroundColor: Colors.blueAccent,
+        borderColor: Colors.grey[300],
       ),
     );
   }

@@ -1,5 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_collections_and_asks/see_all_collections_and_asks.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_content_archive/sub_pages/content_archive_recent.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_featured_collections/sub_pages/featured_collections_popular.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_featured_collections/sub_pages/featured_collections_recently_featured.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_inspiring_people/sub_pages/inspiring_people_community.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_inspiring_people/sub_pages/inspiring_people_creators.dart';
+import '../ui/screens/see_all_horizontal_content_list/see_all_content_archive/sub_pages/content_archive_most_recommended.dart';
+import '../ui/screens/see_all_horizontal_content_list/see_all_featured_collections/see_all_featured_collections.dart';
+import '../ui/screens/see_all_horizontal_content_list/see_all_recent_asks/sub_pages/recent_asks_popular.dart';
+import '../ui/screens/see_all_horizontal_content_list/see_all_recent_asks/sub_pages/recent_asks_recent.dart';
 
 @AdaptiveAutoRouter(
     replaceInRouteName: 'Page,Route,Screen',
@@ -11,33 +21,73 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
             AutoRoute(
               path: 'recent',
               initial: true,
-              page: LatestView,
+              page: CollectionsAndAsks_Recent,
             ),
             AutoRoute(
               path: 'popular',
-              page: TopView,
+              page: CollectionsAndAsks_Popular,
             ),
           ]),
       AutoRoute(
-        path: 'see_all_content_archive',
-        page: SeeAll_ContentArchive,
-      ),
+          path: 'see_all_content_archive',
+          page: SeeAll_ContentArchive,
+          children: [
+            AutoRoute(
+              path: 'most_recommended',
+              initial: true,
+              page: ContentArchive_MostRecommended,
+            ),
+            AutoRoute(
+              path: 'recent',
+              page: ContentArchive_Recent,
+            ),
+          ]),
       AutoRoute(
-        path: 'see_all_recent_asks',
-        page: SeeAll_RecentAsks,
-      ),
+          path: 'see_all_recent_asks',
+          page: SeeAll_RecentAsks,
+          children: [
+            AutoRoute(
+              path: 'recent',
+              initial: true,
+              page: RecentAsks_Recent,
+            ),
+            AutoRoute(
+              path: 'popular',
+              page: RecentAsks_Popular,
+            ),
+          ]),
       AutoRoute(
         path: 'see_all_popular_topics',
         page: SeeAll_PopularTopics,
       ),
       AutoRoute(
-        path: 'see_all_inspiring_creators',
-        page: SeeAll_InspiringCreators,
-      ),
+          path: 'see_all_inspiring_people',
+          page: SeeAll_InspiringPeople,
+          children: [
+            AutoRoute(
+              path: 'creators',
+              initial: true,
+              page: InspiringPeople_Creators,
+            ),
+            AutoRoute(
+              path: 'community',
+              page: InspiringPeople_Community,
+            ),
+          ]),
       AutoRoute(
-        path: 'see_all_featured_collections',
-        page: SeeAll_FeaturedCollections,
-      ),
+          path: 'see_all_featured_collections',
+          page: SeeAll_FeaturedCollections,
+          children: [
+            AutoRoute(
+              path: 'recently_featured',
+              initial: true,
+              page: FeaturedCollections_RecentlyFeatured,
+            ),
+            AutoRoute(
+              path: 'popular',
+              page: FeaturedCollections_Popular,
+            ),
+          ]),
       AutoRoute(
         initial: true,
         path: '/splash',

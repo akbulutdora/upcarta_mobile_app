@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui/components/collection_card.dart';
-import 'package:upcarta_mobile_app/ui/components/search_bar.dart';
+import 'package:upcarta_mobile_app/ui/components/search_bars/search_bar_topics.dart';
 
 import '../../../util/constants.dart';
 
@@ -18,7 +18,7 @@ class _SeeAll_PopularTopicsState extends State<SeeAll_PopularTopics> {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Color(0xFFC4C4C4),
             ),
@@ -38,8 +38,8 @@ class _SeeAll_PopularTopicsState extends State<SeeAll_PopularTopics> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(children: [
-          SizedBox(height: 32, child: SearchBar()),
-          SizedBox(height: 12),
+          const SizedBox(height: 32, child: SearchBar_Topics()),
+          const SizedBox(height: 12),
           SingleChildScrollView(
             child: Container(
               height: 600,

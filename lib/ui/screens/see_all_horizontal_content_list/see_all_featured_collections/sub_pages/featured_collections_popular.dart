@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui/components/collection_card.dart';
 import '../../../../../util/constants.dart';
 
-class CollectionsAndAsks_Popular extends StatefulWidget {
-  const CollectionsAndAsks_Popular({Key? key}) : super(key: key);
+class FeaturedCollections_Popular extends StatefulWidget {
+  const FeaturedCollections_Popular({Key? key}) : super(key: key);
 
   @override
-  State<CollectionsAndAsks_Popular> createState() =>
-      _CollectionsAndAsks_PopularState();
+  State<FeaturedCollections_Popular> createState() =>
+      _FeaturedCollections_PopularState();
 }
 
-class _CollectionsAndAsks_PopularState
-    extends State<CollectionsAndAsks_Popular> {
+class _FeaturedCollections_PopularState
+    extends State<FeaturedCollections_Popular> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

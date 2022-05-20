@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui/components/collection_card.dart';
-import 'package:upcarta_mobile_app/ui/components/search_bar.dart';
 
 import '../../../../../util/constants.dart';
 

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/ui/components/search_bars/search_bar_collections_and_asks.dart';
-import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+import 'package:upcarta_mobile_app/ui/components/search_bars/search_bar_collections.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_featured_collections/sub_pages/featured_collections_popular.dart';
+import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_featured_collections/sub_pages/featured_collections_recently_featured.dart';
 
-class SeeAll_CollectionsAndAsks extends StatefulWidget {
-  const SeeAll_CollectionsAndAsks({Key? key}) : super(key: key);
+class SeeAll_FeaturedCollections extends StatefulWidget {
+  const SeeAll_FeaturedCollections({Key? key}) : super(key: key);
 
   @override
-  State<SeeAll_CollectionsAndAsks> createState() =>
-      _SeeAll_CollectionsAndAsksState();
+  State<SeeAll_FeaturedCollections> createState() =>
+      _SeeAll_FeaturedCollectionsState();
 }
 
-class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
+class _SeeAll_FeaturedCollectionsState
+    extends State<SeeAll_FeaturedCollections> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,19 +31,18 @@ class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
           elevation: 0,
           titleSpacing: 0.0,
           title: const Text(
-            'Collections and Asks',
+            'Explore Collections',
             style: TextStyle(
                 fontFamily: "SFCompactText-Medium.ttf",
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
                 fontSize: 18),
           ),
-          bottom: PreferredSize(
+          bottom: const PreferredSize(
             preferredSize: Size.fromHeight(36),
             child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child:
-                  SizedBox(height: 32, child: SearchBar_CollectionsAndAsks()),
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: SizedBox(height: 32, child: SearchBar_Collections()),
             ),
           ),
         ),
@@ -59,7 +60,10 @@ class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
                     labelPadding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                     indicatorPadding: EdgeInsets.all(0),
                     isScrollable: true,
-                    tabs: <Widget>[Tab(text: 'Recent'), Tab(text: 'Popular')],
+                    tabs: <Widget>[
+                      Tab(text: 'Recently Featured'),
+                      Tab(text: 'Popular')
+                    ],
                     unselectedLabelColor: Color(0xffC4C4C4),
                     unselectedLabelStyle: TextStyle(
                         fontFamily: 'SFCompactText-SemiBold.ttf',
@@ -77,8 +81,8 @@ class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
                 height: 580,
                 child: TabBarView(
                   children: <Widget>[
-                    CollectionsAndAsks_Recent(),
-                    CollectionsAndAsks_Popular()
+                    FeaturedCollections_RecentlyFeatured(),
+                    FeaturedCollections_Popular()
                   ],
                 ),
               )

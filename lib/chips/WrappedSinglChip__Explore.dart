@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +48,7 @@ class _WrappedSingleChipState extends State<WrappedSingleChip> {
         showCheckmark: false,
         color: Colors.white,
         backgroundColor: Colors.blueAccent,
+        borderColor: Colors.grey[300],
       ),
     );
   }

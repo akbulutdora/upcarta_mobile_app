@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/ui/components/horizontal_content_list/horizontal_content_list__collectons_and_asks.dart';
 import 'package:upcarta_mobile_app/ui/components/horizontal_content_list/horizontal_content_list__featured_collections.dart';
-import 'package:upcarta_mobile_app/ui/components/horizontal_content_list/horizontal_content_list__inspiring_creators.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list/horizontal_content_list__inspiring_people.dart';
 import 'package:upcarta_mobile_app/ui/components/horizontal_content_list/horizontal_content_list__recent_asks.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
-import 'package:upcarta_mobile_app/util/styles.dart';
 
 import '../../chips/WrappedSinglChip__Explore.dart';
 import '../components/horizontal_content_list/horizontal_content_list__content_archive.dart';
@@ -71,19 +67,19 @@ class _ExploreScreenState extends State<ExploreScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 32, child: buildSearchBar()),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Container(
               alignment: Alignment.topLeft,
-              child: WrappedSingleChip(),
+              child: const WrappedSingleChip(),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 height: 490,
                 child: Expanded(
                   child: ListView(children: const <Widget>[
                     HorizontalContentList__FeaturedCollection(),
-                    HorizontalContentList__InspiringCreators(),
+                    HorizontalContentList__InspiringPeople(),
                     HorizontalContentList__Popular_Topics(),
                     HorizontalContentList__RecentAsks(),
                     HorizontalContentList__ContentArchive(),
