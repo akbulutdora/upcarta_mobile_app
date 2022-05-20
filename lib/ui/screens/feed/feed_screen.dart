@@ -46,16 +46,14 @@ class _FeedScreenState extends State<FeedScreen> {
                 height: 30,
               ),
               actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: IconButton(
-                      onPressed: () {
-                        context.router.push(NotificationsScreenRoute());
-                      }, //TODO: open notification page
-                      icon: Icon(Icons.notifications_none_outlined),
-                      color: Colors.black,
-                      iconSize: 30),
-                )
+                IconButton(
+                    onPressed: () {
+                      context.router.push(NotificationsScreenRoute());
+                    },
+                    padding: EdgeInsets.only(right: 16),
+                    color: Colors.black,
+                    iconSize: 30,
+                    icon: Icon(Icons.notifications_none_outlined))
               ],
               backgroundColor: Colors.white,
               titleSpacing: 0.0,
