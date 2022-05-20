@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__collectons_and_asks.dart';
-import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__content_archive.dart';
-import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__featured_collections.dart';
-import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__inspiring_creators.dart';
-import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__popular_topics.dart';
-import 'package:upcarta_mobile_app/ui/components/horizontal_content_list__recent_asks.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list/horizontal_content_list__collectons_and_asks.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list/horizontal_content_list__featured_collections.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list/horizontal_content_list__inspiring_creators.dart';
+import 'package:upcarta_mobile_app/ui/components/horizontal_content_list/horizontal_content_list__recent_asks.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 
 import '../../chips/WrappedSinglChip__Explore.dart';
+import '../components/horizontal_content_list/horizontal_content_list__content_archive.dart';
+import '../components/horizontal_content_list/horizontal_content_list__popular_topics.dart';
 
 class ExploreScreen extends StatefulWidget {
   static MaterialPage page(int currentTab) {
@@ -83,14 +83,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
               child: Container(
                 height: 490,
                 child: Expanded(
-                  child: ListView(children: <Widget>[
-                    Container(
-                        child: HorizontalContentList__FeaturedCollection()),
-                    Container(
-                        child: HorizontalContentList__InspiringCreators()),
-                    Container(child: HorizontalContentList__Popular_Topics()),
-                    Container(child: HorizontalContentList__RecentAsks()),
-                    Container(child: HorizontalContentList__ContentArchive()),
+                  child: ListView(children: const <Widget>[
+                    HorizontalContentList__FeaturedCollection(),
+                    HorizontalContentList__InspiringCreators(),
+                    HorizontalContentList__Popular_Topics(),
+                    HorizontalContentList__RecentAsks(),
+                    HorizontalContentList__ContentArchive(),
                   ]),
                 ),
               ),

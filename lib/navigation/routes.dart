@@ -1,12 +1,29 @@
 import 'package:auto_route/auto_route.dart';
-
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
-
-import '../ui/screens/horizontal_contentList_see_all/see_all_featured_collections.dart';
 
 @AdaptiveAutoRouter(
     replaceInRouteName: 'Page,Route,Screen',
     routes: <AutoRoute>[
+      AutoRoute(
+        path: 'see_all_collections_and_asks',
+        page: SeeAll_CollectionsAndAsks,
+      ),
+      AutoRoute(
+        path: 'see_all_content_archive',
+        page: SeeAll_ContentArchive,
+      ),
+      AutoRoute(
+        path: 'see_all_recent_asks',
+        page: SeeAll_RecentAsks,
+      ),
+      AutoRoute(
+        path: 'see_all_popular_topics',
+        page: SeeAll_PopularTopics,
+      ),
+      AutoRoute(
+        path: 'see_all_inspiring_creators',
+        page: SeeAll_InspiringCreators,
+      ),
       AutoRoute(
         path: 'see_all_featured_collections',
         page: SeeAll_FeaturedCollections,

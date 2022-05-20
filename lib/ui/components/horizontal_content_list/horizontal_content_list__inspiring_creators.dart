@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
-import '../../util/colors.dart';
-import '../../util/styles.dart';
-import '../screens/top/top_view.dart';
-import 'collection_card.dart';
+import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+import '../../../navigation/routes.gr.dart';
+import '../../../util/colors.dart';
+import '../../../util/styles.dart';
+import '../../screens/top/top_view.dart';
+import '../collection_card.dart';
 
 class HorizontalContentList__InspiringCreators extends StatelessWidget {
   const HorizontalContentList__InspiringCreators({Key? key}) : super(key: key);
@@ -27,7 +30,9 @@ class HorizontalContentList__InspiringCreators extends StatelessWidget {
                   width: 70,
                   child: OutlinedButton(
                     style: outlinedButtonStyle,
-                    onPressed: () {},
+                    onPressed: () {
+                      context.router.push(SeeAll_InspiringCreatorsRoute());
+                    },
                     child: Text(
                       "View all",
                       style: TextStyle(

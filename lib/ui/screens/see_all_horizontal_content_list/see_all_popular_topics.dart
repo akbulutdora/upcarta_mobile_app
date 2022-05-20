@@ -4,16 +4,14 @@ import 'package:upcarta_mobile_app/ui/components/search_bar.dart';
 
 import '../../../util/constants.dart';
 
-class SeeAll_FeaturedCollections extends StatefulWidget {
-  const SeeAll_FeaturedCollections({Key? key}) : super(key: key);
+class SeeAll_PopularTopics extends StatefulWidget {
+  const SeeAll_PopularTopics({Key? key}) : super(key: key);
 
   @override
-  State<SeeAll_FeaturedCollections> createState() =>
-      _SeeAll_FeaturedCollectionsState();
+  State<SeeAll_PopularTopics> createState() => _SeeAll_PopularTopicsState();
 }
 
-class _SeeAll_FeaturedCollectionsState
-    extends State<SeeAll_FeaturedCollections> {
+class _SeeAll_PopularTopicsState extends State<SeeAll_PopularTopics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +27,7 @@ class _SeeAll_FeaturedCollectionsState
         elevation: 0,
         titleSpacing: 0.0,
         title: const Text(
-          'Featured Collections',
+          'Explore Topics',
           style: TextStyle(
               fontFamily: "SFCompactText-Medium.ttf",
               color: Colors.black,

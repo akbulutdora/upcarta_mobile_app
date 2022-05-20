@@ -1,12 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
-import '../../util/colors.dart';
-import '../../util/styles.dart';
-import '../screens/top/top_view.dart';
-import 'collection_card.dart';
+import '../../../navigation/routes.gr.dart';
+import '../../../util/colors.dart';
+import '../../../util/styles.dart';
+import '../../screens/top/top_view.dart';
+import '../collection_card.dart';
 
-class HorizontalContentList__Popular_Topics extends StatelessWidget {
-  const HorizontalContentList__Popular_Topics({Key? key}) : super(key: key);
+class HorizontalContentList__RecentAsks extends StatelessWidget {
+  const HorizontalContentList__RecentAsks({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +24,15 @@ class HorizontalContentList__Popular_Topics extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Popular Topics", style: sectionStyle),
+                const Text("Recent Asks", style: sectionStyle),
                 SizedBox(
                   height: 25,
                   width: 70,
                   child: OutlinedButton(
                     style: outlinedButtonStyle,
-                    onPressed: () {},
+                    onPressed: () {
+                      context.router.push(SeeAll_RecentAsksRoute());
+                    },
                     child: Text(
                       "View all",
                       style: TextStyle(

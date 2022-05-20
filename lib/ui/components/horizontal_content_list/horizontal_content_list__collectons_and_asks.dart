@@ -1,20 +1,20 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 
-import '../../util/colors.dart';
-import '../../util/styles.dart';
-import '../screens/top/top_view.dart';
-import 'collection_card.dart';
+import '../../../navigation/routes.gr.dart';
+import '../../../util/colors.dart';
+import '../../../util/styles.dart';
+import '../../screens/top/top_view.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
+import '../collection_card.dart';
 
-class HorizontalContentList__FeaturedCollection extends StatelessWidget {
-  const HorizontalContentList__FeaturedCollection({Key? key}) : super(key: key);
+class HorizontalContentList extends StatelessWidget {
+  const HorizontalContentList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
+    return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,14 +24,14 @@ class HorizontalContentList__FeaturedCollection extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Featured Collections", style: sectionStyle),
+                const Text("Collections and Asks", style: sectionStyle),
                 SizedBox(
                   height: 25,
                   width: 70,
                   child: OutlinedButton(
                     style: outlinedButtonStyle,
                     onPressed: () {
-                      context.router.push(SeeAll_FeaturedCollectionsRoute());
+                      context.router.push(SeeAll_CollectionsAndAsksRoute());
                     },
                     child: Text(
                       "View all",
@@ -52,6 +52,7 @@ class HorizontalContentList__FeaturedCollection extends StatelessWidget {
               // shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.only(top: 16),
+
               itemCount: contents.length,
               itemBuilder: (BuildContext context, int index) {
                 return CollectionCard(content: contents[index]);
