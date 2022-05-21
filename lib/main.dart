@@ -6,16 +6,57 @@ import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/navigation//routes.gr.dart';
+import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
+import 'app/app.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
+<<<<<<< HEAD
+Future<void> main() async {
+  return BlocOverrides.runZoned(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      final authRepository = AuthRepository();
+      // await authRepository.user.first;
+      runApp(App(
+        authRepository: authRepository,
+      ));
+    },
+    blocObserver: AppBlocObserver(),
+=======
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+>>>>>>> parent of 6c4e009 (commit)
   );
   //runApp(Welcome());
   runApp(MyFirebaseApp());
+}
+
+class Welcome extends StatefulWidget {
+  Welcome({Key? key}) : super(key: key);
+
+  @override
+  State<Welcome> createState() => _WelcomeState();
+}
+
+class _WelcomeState extends State<Welcome> {
+  final _appRouter = AppRouter();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      title: 'Upcarta',
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: _appRouter.delegate(),
+      theme: ThemeData.light(),
+      builder: (context, router) => router!,
+    );
+  }
 }
 
 class Welcome extends StatefulWidget {

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 
 @AdaptiveAutoRouter(
@@ -35,14 +34,6 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
         page: myRegisterConfirm,
       ),
       AutoRoute(
-        path: '/landing_page',
-        page: LandingPage,
-      ),
-      AutoRoute(
-        path: '/notifications',
-        page: NotificationsScreen,
-      ),
-      AutoRoute(
         path: '/onboarding',
         page: OnboardingScreen,
         children: [
@@ -68,6 +59,14 @@ import 'package:upcarta_mobile_app/ui/screens/screens.dart';
           ),
           RedirectRoute(path: '*', redirectTo: ''),
         ],
+      ),
+      AutoRoute(
+        path: '/notifications',
+        page: NotificationsScreen,
+      ),
+      AutoRoute(
+        path: '/landing_page',
+        page: LandingPage,
       ),
       groupTabRouter,
       // AutoRoute(

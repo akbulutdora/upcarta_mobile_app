@@ -67,18 +67,18 @@ class _SplashScreenState extends State<SplashScreen> {
                   },
                 ),
                 TextButton(
-                  child: Text("GO LANDING PAGE"),
-                  onPressed: () {
-                    context.router.push(LandingPageRoute());
-                    // context.router.push(HomeRoute());
-                  },
-                ),
-                TextButton(
                   child: Text("GO HOME"),
                   onPressed: () {
                     // context.router.push(LoginScreenRoute());
                     _authService.signIn("bbgisu@gmail.com", "doradostumdur");
                     context.router.push(HomeRoute());
+                  },
+                ),
+                TextButton(
+                  child: Text("GO LANDING PAGE"),
+                  onPressed: () {
+                    // context.router.push(LoginScreenRoute());
+                    context.router.push(LandingPageRoute());
                   },
                 ),
               ],
