@@ -1,12 +1,18 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/ui/screens/initial_screen.dart';
 
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @AdaptiveAutoRouter(
     replaceInRouteName: 'Page,Route,Screen',
     routes: <AutoRoute>[
       AutoRoute(
         initial: true,
+        path: '/initial',
+        page: InitialScreen,
+      ),
+      AutoRoute(
         path: '/splash',
         page: SplashScreen,
       ),
