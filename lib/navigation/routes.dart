@@ -21,6 +21,21 @@ import '../ui/screens/settings.dart';
     replaceInRouteName: 'Page,Route,Screen',
     routes: <AutoRoute>[
       AutoRoute(
+        path: 'edit_profile',
+        name: "EditProfileRoute",
+        page: EditProfileScreen,
+      ),
+      AutoRoute(
+        path: 'settings',
+        name: "SettingsRoute",
+        page: Settings,
+      ),
+      AutoRoute(
+        path: 'notification_settings',
+        name: 'NotificationSettingsRoute',
+        page: NotificationSettings,
+      ),
+      AutoRoute(
           path: 'see_all_collections_and_asks',
           page: SeeAll_CollectionsAndAsks,
           children: [
@@ -219,23 +234,6 @@ const groupTabRouter = AutoRoute(
       path: 'profile',
       name: 'ProfileScreenRoute',
       page: ProfileScreen,
-    ),
-    AutoRoute(
-      path: 'edit_profile',
-      name: "EditProfileRoute",
-      page: EditProfileScreen,
-    ),
-    AutoRoute(
-      path: 'settings',
-      name: "SettingsRoute",
-      page: Settings,
-      children: [
-        AutoRoute(
-          path: 'notification_settings',
-          name: 'NotificationSettingsRoute',
-          page: NotificationSettings,
-        ),
-      ],
     ),
     RedirectRoute(path: '*', redirectTo: ''),
   ],
