@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/ui/screens/initial_screen.dart';
 
 import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart';
 import 'package:upcarta_mobile_app/ui/screens/notification_settings.dart';
 
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_collections_and_asks/see_all_collections_and_asks.dart';
 import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_content_archive/sub_pages/content_archive_recent.dart';
 import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_featured_collections/sub_pages/featured_collections_popular.dart';
@@ -111,6 +113,10 @@ import '../ui/screens/settings.dart';
           ]),
       AutoRoute(
         initial: true,
+        path: '/initial',
+        page: InitialScreen,
+      ),
+      AutoRoute(
         path: '/splash',
         page: SplashScreen,
       ),
