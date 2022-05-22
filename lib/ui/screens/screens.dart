@@ -25,3 +25,8 @@ export 'see_all_horizontal_content_list/see_all_popular_topics.dart';
 export 'see_all_horizontal_content_list/see_all_recent_asks/see_all_recent_asks.dart';
 export 'see_all_horizontal_content_list/see_all_collections_and_asks/sub_pages/collections_and_asks_recent.dart';
 export 'see_all_horizontal_content_list/see_all_collections_and_asks/sub_pages/collections_and_asks_popular.dart';
+export 'notifications.dart';
+export 'landing_page.dart';
+export 'settings.dart';
+export 'edit_profile.dart';
+export 'notification_settings.dart';
