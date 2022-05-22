@@ -107,71 +107,87 @@ class AppRouter extends _i2.RootStackRouter {
     TopScreenRoute.name: (routeData) {
       return _i2.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.TopView());
+    },
+    EditProfileRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.EditProfileScreen());
+    },
+    SettingsRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.Settings());
+    },
+
+    NotificationSettingsRoute.name: (routeData) {
+      return _i2.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.NotificationSettings());
     }
   };
 
   @override
   List<_i2.RouteConfig> get routes => [
-        _i2.RouteConfig('/#redirect',
-            path: '/', redirectTo: '/splash', fullMatch: true),
-        _i2.RouteConfig(SplashScreenRoute.name, path: '/splash'),
-        _i2.RouteConfig(LoginScreenRoute.name, path: '/login'),
-        _i2.RouteConfig(LoginScreen2Route.name, path: '/login2'),
-        _i2.RouteConfig(ResetPasswordRoute.name, path: '/forgot'),
-        _i2.RouteConfig(ResetPasswordNewRoute.name, path: '/forgot_new'),
-        _i2.RouteConfig(MyRegisterRoute.name, path: '/register'),
-        _i2.RouteConfig(MyRegisterConfirmRoute.name, path: '/register_confirm'),
-        _i2.RouteConfig(LandingPageRoute.name, path: '/landing_page'),
-        _i2.RouteConfig(NotificationsScreenRoute.name, path: '/notifications'),
-        _i2.RouteConfig(OnboardingScreenRoute.name,
-            path: '/onboarding',
-            children: [
-              _i2.RouteConfig(UserOnboarding1Route.name,
-                  path: '', parent: OnboardingScreenRoute.name),
-              _i2.RouteConfig(UserOnboarding2Route.name,
-                  path: 'userOnboarding2', parent: OnboardingScreenRoute.name),
-              _i2.RouteConfig(UserOnboarding3Route.name,
-                  path: 'userOnboarding3', parent: OnboardingScreenRoute.name),
-              _i2.RouteConfig(UserOnboarding4Route.name,
-                  path: 'userOnboarding4', parent: OnboardingScreenRoute.name),
-              _i2.RouteConfig('*#redirect',
-                  path: '*',
-                  parent: OnboardingScreenRoute.name,
-                  redirectTo: '',
-                  fullMatch: true)
-            ]),
-        _i2.RouteConfig(HomeRoute.name, path: '/home', children: [
-          _i2.RouteConfig(FeedScreenRoute.name,
-              path: 'feed',
-              parent: HomeRoute.name,
-              children: [
-                _i2.RouteConfig('#redirect',
-                    path: '',
-                    parent: FeedScreenRoute.name,
-                    redirectTo: 'latest',
-                    fullMatch: true),
-                _i2.RouteConfig(LatestScreenRoute.name,
-                    path: 'latest', parent: FeedScreenRoute.name),
-                _i2.RouteConfig(TopScreenRoute.name,
-                    path: 'top', parent: FeedScreenRoute.name)
-              ]),
-          _i2.RouteConfig(ExploreScreenRoute.name,
-              path: 'explore', parent: HomeRoute.name),
-          _i2.RouteConfig(NewPostScreenRoute.name,
-              path: 'new', parent: HomeRoute.name),
-          _i2.RouteConfig(MyLibraryScreenRoute.name,
-              path: 'myLibrary', parent: HomeRoute.name),
-          _i2.RouteConfig(ProfileScreenRoute.name,
-              path: 'profile', parent: HomeRoute.name),
+    _i2.RouteConfig('/#redirect',
+        path: '/', redirectTo: '/splash', fullMatch: true),
+    _i2.RouteConfig(SplashScreenRoute.name, path: '/splash'),
+    _i2.RouteConfig(LoginScreenRoute.name, path: '/login'),
+    _i2.RouteConfig(LoginScreen2Route.name, path: '/login2'),
+    _i2.RouteConfig(ResetPasswordRoute.name, path: '/forgot'),
+    _i2.RouteConfig(ResetPasswordNewRoute.name, path: '/forgot_new'),
+    _i2.RouteConfig(MyRegisterRoute.name, path: '/register'),
+    _i2.RouteConfig(MyRegisterConfirmRoute.name, path: '/register_confirm'),
+    _i2.RouteConfig(LandingPageRoute.name, path: '/landing_page'),
+    _i2.RouteConfig(NotificationsScreenRoute.name, path: '/notifications'),
+    _i2.RouteConfig(EditProfileRoute.name, path: '/edit_profile'),
+    _i2.RouteConfig(SettingsRoute.name, path: '/settings'),
+    _i2.RouteConfig(NotificationSettingsRoute.name, path: '/notification_settings'),
+    _i2.RouteConfig(OnboardingScreenRoute.name,
+        path: '/onboarding',
+        children: [
+          _i2.RouteConfig(UserOnboarding1Route.name,
+              path: '', parent: OnboardingScreenRoute.name),
+          _i2.RouteConfig(UserOnboarding2Route.name,
+              path: 'userOnboarding2', parent: OnboardingScreenRoute.name),
+          _i2.RouteConfig(UserOnboarding3Route.name,
+              path: 'userOnboarding3', parent: OnboardingScreenRoute.name),
+          _i2.RouteConfig(UserOnboarding4Route.name,
+              path: 'userOnboarding4', parent: OnboardingScreenRoute.name),
           _i2.RouteConfig('*#redirect',
               path: '*',
-              parent: HomeRoute.name,
+              parent: OnboardingScreenRoute.name,
               redirectTo: '',
               fullMatch: true)
         ]),
-        _i2.RouteConfig('*#redirect',
-            path: '*', redirectTo: '', fullMatch: true)
-      ];
+    _i2.RouteConfig(HomeRoute.name, path: '/home', children: [
+      _i2.RouteConfig(FeedScreenRoute.name,
+          path: 'feed',
+          parent: HomeRoute.name,
+          children: [
+            _i2.RouteConfig('#redirect',
+                path: '',
+                parent: FeedScreenRoute.name,
+                redirectTo: 'latest',
+                fullMatch: true),
+            _i2.RouteConfig(LatestScreenRoute.name,
+                path: 'latest', parent: FeedScreenRoute.name),
+            _i2.RouteConfig(TopScreenRoute.name,
+                path: 'top', parent: FeedScreenRoute.name)
+          ]),
+      _i2.RouteConfig(ExploreScreenRoute.name,
+          path: 'explore', parent: HomeRoute.name),
+      _i2.RouteConfig(NewPostScreenRoute.name,
+          path: 'new', parent: HomeRoute.name),
+      _i2.RouteConfig(MyLibraryScreenRoute.name,
+          path: 'myLibrary', parent: HomeRoute.name),
+      _i2.RouteConfig(ProfileScreenRoute.name,
+          path: 'profile', parent: HomeRoute.name),
+      _i2.RouteConfig('*#redirect',
+          path: '*',
+          parent: HomeRoute.name,
+          redirectTo: '',
+          fullMatch: true)
+    ]),
+    _i2.RouteConfig('*#redirect',
+        path: '*', redirectTo: '', fullMatch: true)
+  ];
 }
 
 /// generated route for
@@ -255,7 +271,7 @@ class NotificationsScreenRoute extends _i2.PageRouteInfo<void> {
 class OnboardingScreenRoute extends _i2.PageRouteInfo<void> {
   const OnboardingScreenRoute({List<_i2.PageRouteInfo>? children})
       : super(OnboardingScreenRoute.name,
-            path: '/onboarding', initialChildren: children);
+      path: '/onboarding', initialChildren: children);
 
   static const String name = 'OnboardingScreenRoute';
 }
@@ -360,4 +376,29 @@ class TopScreenRoute extends _i2.PageRouteInfo<void> {
   const TopScreenRoute() : super(TopScreenRoute.name, path: 'top');
 
   static const String name = 'TopScreenRoute';
+}
+
+/// [_i1.EditProfileScreen]
+class EditProfileRoute extends _i2.PageRouteInfo<void> {
+  const EditProfileRoute()
+      : super(EditProfileRoute.name, path: '/edit_profile');
+
+  static const String name = 'EditProfileRoute';
+}
+
+/// generated route for
+/// [_i1.Settings]
+class SettingsRoute extends _i2.PageRouteInfo<void> {
+  const SettingsRoute()
+      : super(SettingsRoute.name, path: '/settings');
+
+  static const String name = 'SettingsRoute';
+}
+
+/// generated route for
+/// [_i1.NotificationSettings]
+class NotificationSettingsRoute extends _i2.PageRouteInfo<void> {
+  const NotificationSettingsRoute() : super(NotificationSettingsRoute.name, path: 'notification_settings');
+
+  static const String name = 'NotificationSettingsRoute';
 }

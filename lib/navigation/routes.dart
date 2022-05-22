@@ -1,6 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart';
+import 'package:upcarta_mobile_app/ui/screens/notification_settings.dart';
 
 import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+
+import '../ui/screens/settings.dart';
 
 @AdaptiveAutoRouter(
     replaceInRouteName: 'Page,Route,Screen',
@@ -130,6 +134,23 @@ const groupTabRouter = AutoRoute(
       path: 'profile',
       name: 'ProfileScreenRoute',
       page: ProfileScreen,
+    ),
+    AutoRoute(
+      path: 'edit_profile',
+      name: "EditProfileRoute",
+      page: EditProfileScreen,
+    ),
+    AutoRoute(
+      path: 'settings',
+      name: "SettingsRoute",
+      page: Settings,
+      children: [
+        AutoRoute(
+          path: 'notification_settings',
+          name: 'NotificationSettingsRoute',
+          page: NotificationSettings,
+        ),
+      ],
     ),
     RedirectRoute(path: '*', redirectTo: ''),
   ],
