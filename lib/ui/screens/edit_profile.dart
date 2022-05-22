@@ -47,7 +47,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           )),
       //),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(height * 0.016),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,

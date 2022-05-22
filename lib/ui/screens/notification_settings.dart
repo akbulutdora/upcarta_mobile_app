@@ -55,7 +55,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             )),
         //),
         body: Container(
-            padding: EdgeInsets.all(height * 0.020),
+            padding: EdgeInsets.all(height * 0.016),
             child: ListView(
               children: <Widget>[
                 const InkWell(
