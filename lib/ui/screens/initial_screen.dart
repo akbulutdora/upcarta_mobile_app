@@ -30,22 +30,23 @@ class _InitialScreenState extends State<InitialScreen> {
   //   // comment out next line if you wanna stay on splash screen page more than 2 seconds
   //   // Provider.of<AppStateManager>(context, listen: false).initializeApp();
   // }
-  String uEmail = "";
-  String uPass = "";
+  late String? uEmail;
+  late String? uPass;
   final AuthService _authService = AuthService();
-getStatus() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  setState(() {
-    uEmail = prefs.getString("uEmail")!;
-    uPass = prefs.getString("uPass")!;
+  getStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      uEmail = prefs.getString("uEmail");
+      uPass = prefs.getString("uPass");
+    });
+  }
 
-  });
-}
   @override
   void initState() {
-  super.initState();
-  getStatus();
+    super.initState();
+    getStatus();
   }
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -72,25 +73,18 @@ getStatus() async {
                   ],
                 ),
                 TextButton(
-                  child: Text("GO LOGIN"),
-                  onPressed: () {
-                    context.router.push(LoginScreenRoute());
+                  child: Text("GO"),
+                  onPressed: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    if (prefs.getBool("landingCompleted") == null ||
+                        (prefs.getBool("landingCompleted")! == false)) {
+                      // print(prefs.getBool("landingCompleted"));
+                      context.router.push(LandingPageRoute());
+                    } else {
+                      context.router.push(LoginScreenRoute());
+                    }
                     // context.router.push(HomeRoute());
-                  },
-                ),
-                TextButton(
-                  child: Text("GO HOME"),
-                  onPressed: () {
-                    // context.router.push(LoginScreenRoute());
-                    _authService.signIn("bbgisu@gmail.com", "doradostumdur");
-                    context.router.push(HomeRoute());
-                  },
-                ),
-                TextButton(
-                  child: Text("GO HOME ALREADY LOGGED IN"),
-                  onPressed: () {
-                    _authService.signIn(uEmail, uPass);
-                    context.router.push(HomeRoute());
                   },
                 ),
               ],

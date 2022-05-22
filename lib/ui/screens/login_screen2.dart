@@ -31,13 +31,13 @@ class _LoginScreen2 extends State<LoginScreen2> {
   AuthService _authService = AuthService();
   final _passwordController = TextEditingController();
   final _emailController = TextEditingController();
-  @override
+
   void setLoginState(String inp1, String inp2) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString("uEmail", inp1);
     prefs.setString("uPass", inp2);
-
   }
+
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -125,8 +125,8 @@ class _LoginScreen2 extends State<LoginScreen2> {
                                     .signIn(_emailController.text,
                                         _passwordController.text)
                                     .then((value) {
-                                      setLoginState(_emailController.text,
-                                          _passwordController.text);
+                                  setLoginState(_emailController.text,
+                                      _passwordController.text);
                                   return context.router
                                       .push(OnboardingScreenRoute());
                                 });
