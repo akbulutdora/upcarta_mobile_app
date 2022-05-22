@@ -21,3 +21,6 @@ export 'forgotpass_screen_new.dart';
 export 'register_confirm.dart';
 export 'notifications.dart';
 export 'landing_page.dart';
+export 'settings.dart';
+export 'edit_profile.dart';
+export 'notification_settings.dart';
