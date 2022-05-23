@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../navigation/routes.gr.dart';
 
 void main() {
@@ -143,7 +144,9 @@ class Page3 extends StatelessWidget {
         ),
         SizedBox(height: 50),
         ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setBool("landingCompleted", true);
               context.router.replace(LoginScreenRoute());
             },
             child: const Text("Let's Go", style: TextStyle(fontSize: 17)),

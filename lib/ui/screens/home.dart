@@ -41,11 +41,14 @@ class _HomeState extends State<Home> {
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          iconSize: 24,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.black,
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           showSelectedLabels: false,
+          showUnselectedLabels: false,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
@@ -55,15 +58,16 @@ class _HomeState extends State<Home> {
               label: 'Home Screen',
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-                color: Colors.grey,
+              icon: Icon(Icons.search),
+              activeIcon: ImageIcon(
+                AssetImage("assets/images/Vector.png"),
+                size: 20,
               ),
-              activeIcon: Icon(Icons.search),
               label: 'Explore Screen',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.add_circle_outline),
+              activeIcon: Icon(Icons.add_circle),
               label: 'New Action Screen',
             ),
             BottomNavigationBarItem(

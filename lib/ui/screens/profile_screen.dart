@@ -8,8 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'packageta_mobile_app/service/auth_service.dart';
 import '../../models/user.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import '../../models/content.dart';
 import 'package:upcarta_mobile_app/ui/components/circle_image.dart';
-import 'package:upcarta_mobile_app/ui/components/content_list.dart';
+import '../components/content_list.dart';
+import '../components/recommended_by.dart';
 
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -18,11 +23,8 @@ class ProfileScreen extends StatefulWidget {
     );
   }
 
-  //final User user;
-
   const ProfileScreen({
     Key? key,
-    //required this.user,
   }) : super(key: key);
 
   @override
@@ -38,72 +40,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset(
-          "assets/images/upcarta-logo-small.png",
-          width: 30,
-          height: 30,
-        ),
         backgroundColor: Colors.white,
-        elevation: 0,
         titleSpacing: 0.0,
         title: const Text(
-          'Explore',
+          "Upcarta",
           style: TextStyle(
               fontFamily: "SFCompactText-Medium",
               color: Colors.black,
               fontWeight: FontWeight.w500,
               fontSize: 22),
         ),
+        leading: Image.asset(
+          "assets/images/upcarta-logo-small.png",
+          width: 30,
+          height: 30,
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.settings,
+              color: Colors.black54,
+            ),
+            onPressed: () async {
+              context.router.push(const SettingsRoute());
+            },
+          )
+        ],
       ),
+      //),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [Expanded(child: SizedBox(child: buildTabController()))],
       ),
     );
   }
-/*
-  Widget buildMenu() {
-    return ListView(
-      children: [
-        buildDarkModeRow(),
-        ListTile(
-          title: const Text('Log out'),
-          onTap: () {
-            // 1
-            Provider.of<ProfileManager>(context, listen: false)
-                .tapOnProfile(false);
-            // 2
-            Provider.of<AppStateManager>(context, listen: false).logout();
-          },
-        )
-      ],
-    );
-  }
-*/
-  /*
-  Widget buildDarkModeRow() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text('Dark Mode'),
-          Switch(
-            value: widget.user.darkMode,
-            onChanged: (value) {
-             // Provider.of<ProfileManager>(context, listen: false).darkMode =
-             //     value;
-            },
-          )
-        ],
-      ),
-    );
-  }
-  */
 
   Widget buildTabController() {
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: DefaultTabController(
+        initialIndex: 0,
         length: 5,
         child: NestedScrollView(
           headerSliverBuilder: (context, value) {
@@ -112,10 +89,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 backgroundColor: Colors.white,
                 floating: true,
                 pinned: true,
+                automaticallyImplyLeading: false,
+                //remove the default back button
                 bottom: TabBar(
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.black,
-                  labelPadding: EdgeInsets.only(right: 5, left: 5),
+                  labelPadding: EdgeInsets.only(right: 3, left: 3),
                   labelStyle: TextStyle(fontSize: 14),
                   tabs: [
                     Tab(text: "Overview"),
@@ -125,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Tab(text: "Asks")
                   ],
                 ),
-                expandedHeight: 375,
+                expandedHeight: height / 2,
                 flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
                   background: buildProfile(),
@@ -137,13 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           },
           body: TabBarView(
             children: [
-              Column(
-                children: [
-                  //ContentList(
-                  //contentList: contents,
-                  //),
-                ],
-              ),
+              Column(),
               Column(),
               Column(),
               Column(),
@@ -157,166 +130,195 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget buildProfile() {
     return FutureBuilder(
-      future: getUser(),
-      builder: ((context, AsyncSnapshot snapshot) {
-        User thisUser = User.empty;
-        if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (snapshot.hasError) {
-          return Text(
-            "ERROR",
-            style: TextStyle(color: Colors.red),
-          );
-        }
-        thisUser = snapshot.data! as User;
-        return Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        future: getUser(),
+        builder: ((context, AsyncSnapshot snapshot) {
+          User thisUser = User.empty;
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Text(
+              "ERROR",
+              style: TextStyle(color: Colors.red),
+            );
+          }
+          thisUser = snapshot.data! as User;
+
+          final double width = MediaQuery.of(context).size.width;
+          final double height = MediaQuery.of(context).size.height;
+          bool isMyProfile = true;
+
+          return Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
                 CircleImage(
                   imageProvider: NetworkImage(thisUser.avatar),
                   //widget.user.profileImageUrl),
                   imageRadius: 55.0,
                 ),
-                MaterialButton(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
-                  color: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(3.0)),
-                  child: const Text(
-                    'Follow',
-                    style: TextStyle(
-                        fontFamily: "SFCompactText",
-                        color: Colors.white,
-                        fontSize: 18),
+                Text(
+                  //widget.user.name,
+                  thisUser.name,
+                  style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.black,
+                  ), // bold
+                ),
+                Text(
+                  '@${thisUser.username}',
+                  style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14,
+                    color: Colors.grey,
                   ),
-                  onPressed: () async {
-                    //Provider.of<AppStateManager>(context, listen: false)
-                    //    .follow('followUsername');
-                  },
                 ),
-              ]),
-              const SizedBox(height: 10.0),
-              Text(
-                //widget.user.name,
-                thisUser.name,
-                style: TextStyle(
-                  fontFamily: "SFCompactText",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.black,
-                ), // bold
-              ),
-              Text(
-                //'@${widget.user.username}',
-                thisUser.username,
-                style: TextStyle(
-                  fontFamily: "SFCompactText",
-                  fontWeight: FontWeight.normal,
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 10.0),
-              Text(
-                //widget.user.bio,
-                thisUser.bio,
-                style: TextStyle(
-                  fontFamily: "SFCompactText",
-                  fontWeight: FontWeight.normal,
-                  fontSize: 14,
-                  color: Colors.black,
-                ),
-              ),
-              Row(
-                children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: Row(children: [
-                        Text(
-                          //'${widget.user.followers}',
-                          thisUser.followers.toString(),
-                          style: TextStyle(
-                            fontFamily: "SFCompactText",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          ' followers',
-                          style: TextStyle(
-                            fontFamily: "SFCompactText",
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12,
-                            color: Colors.black,
-                          ),
-                        )
-                      ]),
-                      style: TextButton.styleFrom(
+                isMyProfile
+                    ? MaterialButton(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 0, vertical: 8.0),
-                      )),
-                  TextButton(
-                    onPressed: () {},
-                    child: Row(children: [
-                      Text(
-                        //'${widget.user.following}',
-                        thisUser.following.toString(),
-                        style: TextStyle(
-                          fontFamily: "SFCompactText",
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12,
-                          color: Colors.black,
+                            horizontal: 30.0, vertical: 10.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            side: BorderSide(color: Colors.blue)),
+                        child: const Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                              fontFamily: "SFCompactText",
+                              color: Colors.blue,
+                              fontSize: 15),
                         ),
-                      ),
-                      Text(
-                        ' following',
-                        style: TextStyle(
-                          fontFamily: "SFCompactText",
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12,
-                          color: Colors.black,
+                        onPressed: () async {
+                          context.router.push(const EditProfileRoute());
+                        },
+                      )
+                    : MaterialButton(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 10.0),
+                        color: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(3.0)),
+                        child: const Text(
+                          'Follow',
+                          style: TextStyle(
+                              fontFamily: "SFCompactText",
+                              color: Colors.white,
+                              fontSize: 18),
                         ),
+                        onPressed: () async {
+                          //follow functionality
+                        },
                       ),
-                    ]),
+                Text(
+                  thisUser.bio,
+                  style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14,
+                    color: Colors.black,
                   ),
-                ],
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    CircleImage(
-                      imageProvider: AssetImage("assets/images/mock.jpg"),
-                      //widget.user.profileImageUrl),
-                      imageRadius: 20.0,
-                    ),
-                    Text(
-                      'Also followed by "mutualFollowed" and others',
-                      //this appears if there are mutuals and make others appear when there are more
-                      style: TextStyle(
-                        fontFamily: "SFCompactText",
-                        fontWeight: FontWeight.normal,
-                        fontSize: 12,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
                 ),
-              ),
-              const SizedBox(height: 20.0),
-            ],
-          ),
-        );
-      }),
-    );
+                Container(
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.blue,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: Row(children: [
+                            Text(
+                              //'${widget.user.following}',
+                              thisUser.recommendationCount.toString(),
+                              style: TextStyle(
+                                fontFamily: "SFCompactText",
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              ' Recommendations',
+                              style: TextStyle(
+                                fontFamily: "SFCompactText",
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ]),
+                        ),
+                        SizedBox(
+                          height: 22,
+                          child: VerticalDivider(color: Colors.blue),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Row(children: [
+                            Text(
+                              thisUser.followers.toString(),
+                              style: TextStyle(
+                                fontFamily: "SFCompactText",
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              ' Followers',
+                              style: TextStyle(
+                                fontFamily: "SFCompactText",
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                                color: Colors.black,
+                              ),
+                            )
+                          ]),
+                        ),
+                        SizedBox(
+                          height: 22,
+                          child: VerticalDivider(color: Colors.blue),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Row(children: [
+                            Text(
+                              thisUser.following.toString(),
+                              style: TextStyle(
+                                fontFamily: "SFCompactText",
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              ' Following',
+                              style: TextStyle(
+                                fontFamily: "SFCompactText",
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
+                                color: Colors.black,
+                              ),
+                            )
+                          ]),
+                        ),
+                      ]),
+                ),
+                SizedBox(height: height * 0.020),
+              ],
+            ),
+          );
+        }));
   }
 
   Future<User?> getUser() async {
