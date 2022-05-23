@@ -9,7 +9,7 @@ class AppState extends Equatable {
     this.user = AuthUser.empty,
   });
 
-  const AppState.uninitialized() : this._();
+  const AppState.uninitialized() : this._(status: AppStatus.uninitialized);
 
   const AppState.authenticated(AuthUser user)
       : this._(

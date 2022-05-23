@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
-import 'package:upcarta_mobile_app/ui/screens/screens.dart';
+import 'package:upcarta_mobile_app/util/view_paths.dart';
 
 class App extends StatelessWidget {
   const App({

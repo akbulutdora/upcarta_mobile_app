@@ -1,11 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:upcarta_mobile_app/ui/screens/screens.dart';
 import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:upcarta_mobile_app/navigation//routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'app/app.dart';
 
@@ -34,56 +30,26 @@ Future<void> main() async {
     },
     blocObserver: AppBlocObserver(),
   );
-  //runApp(Welcome());
-  //runApp(MyFirebaseApp());
 }
 
-class Welcome extends StatefulWidget {
-  Welcome({Key? key}) : super(key: key);
+// class Welcome extends StatefulWidget {
+//   const Welcome({Key? key}) : super(key: key);
 
-  @override
-  State<Welcome> createState() => _WelcomeState();
-}
+//   @override
+  // State<Welcome> createState() => _WelcomeState();
+// }
 
-class _WelcomeState extends State<Welcome> {
-  final _appRouter = AppRouter();
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Upcarta',
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      routerDelegate: _appRouter.delegate(),
-      theme: ThemeData.light(),
-      builder: (context, router) => router!,
-    );
-  }
-}
-
-// class MyFirebaseApp extends StatelessWidget {
-//   final Future<FirebaseApp> _init = Firebase.initializeApp();
+// class _WelcomeState extends State<Welcome> {
+//   final _appRouter = AppRouter();
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return FutureBuilder(
-//       future: _init,
-//       builder: (context, snapshot) {
-//         if (snapshot.hasError) {
-//           return const Scaffold(
-//             body: Center(
-//               child: Text("Error"),
-//             ),
-//           );
-//         }
-//         if (snapshot.connectionState == ConnectionState.done) {
-//           return Welcome();
-//         }
-//         return const MaterialApp(
-//           home: Center(
-//             child: Text("Waiting"),
-//           ),
-//         );
-//       },
+//     return MaterialApp.router(
+//       title: 'Upcarta',
+//       routeInformationParser: _appRouter.defaultRouteParser(),
+//       routerDelegate: _appRouter.delegate(),
+//       theme: ThemeData.light(),
+//       builder: (context, router) => router!,
 //     );
 //   }
 // }
