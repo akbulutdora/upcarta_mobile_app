@@ -35,7 +35,7 @@ Future<void> main() async {
     blocObserver: AppBlocObserver(),
   );
   //runApp(Welcome());
-  runApp(MyFirebaseApp());
+  //runApp(MyFirebaseApp());
 }
 
 class Welcome extends StatefulWidget {
