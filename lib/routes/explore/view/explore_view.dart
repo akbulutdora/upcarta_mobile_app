@@ -4,8 +4,6 @@ import 'package:upcarta_mobile_app/ui_components/components.dart';
 
 import 'package:upcarta_mobile_app/util/colors.dart';
 
-import '../../../chips/WrappedSinglChip__Explore.dart';
-
 class ExploreScreen extends StatefulWidget {
   static MaterialPage page(int currentTab) {
     return MaterialPage(child: ExploreScreen());

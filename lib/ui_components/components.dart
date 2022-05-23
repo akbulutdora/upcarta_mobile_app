@@ -18,3 +18,6 @@ export 'search_bars/search_bar_contents.dart';
 export 'search_bars/search_bar_general.dart';
 export 'search_bars/search_bar_people.dart';
 export 'search_bars/search_bar_topics.dart';
+
+export 'chips/WrappedSinglChip__Explore.dart';
+export 'chips/WrappedSingleChip__YourLibrary.dart';

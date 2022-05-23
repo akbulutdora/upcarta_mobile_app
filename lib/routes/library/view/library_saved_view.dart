@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/chips/WrappedSingleChip__YourLibrary.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
