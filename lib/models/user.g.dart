@@ -13,20 +13,25 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       email: json['email'] as String,
       followers: json['followers'] as int,
       following: json['following'] as int,
-      joinDate: DateTime.parse(json['joinDate'] as String),
+      joinDate: json['joinDate'] == null
+          ? null
+          : DateTime.parse(json['joinDate'] as String),
       avatar: json['avatar'] as String,
       bio: json['bio'] as String,
-      followerIDs:
-          (json['followerIDs'] as List<dynamic>).map((e) => e as int).toList(),
-      followingIDs:
-          (json['followingIDs'] as List<dynamic>).map((e) => e as int).toList(),
+      followerIDs: (json['followerIDs'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
+      followingIDs: (json['followingIDs'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
       recommendationCount: json['recommendationCount'] as int,
       recommendationsID: json['recommendationsID'] as String,
       savesID: json['savesID'] as String,
-      collectionsIDs: (json['collectionsIDs'] as List<dynamic>)
-          .map((e) => e as int)
+      collectionsIDs: (json['collectionsIDs'] as List<dynamic>?)
+          ?.map((e) => e as int)
           .toList(),
-      asksIDs: (json['asksIDs'] as List<dynamic>).map((e) => e as int).toList(),
+      asksIDs:
+          (json['asksIDs'] as List<dynamic>?)?.map((e) => e as int).toList(),
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -45,5 +50,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'savesID': instance.savesID,
       'collectionsIDs': instance.collectionsIDs,
       'asksIDs': instance.asksIDs,
-      'joinDate': instance.joinDate.toIso8601String(),
+      'joinDate': instance.joinDate?.toIso8601String(),
     };

@@ -1,27 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/ui/screens/initial_screen.dart';
-
-import 'package:upcarta_mobile_app/ui/screens/edit_profile.dart';
-import 'package:upcarta_mobile_app/ui/screens/notification_settings.dart';
-
-import 'package:upcarta_mobile_app/ui/screens/screens.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_collections_and_asks/see_all_collections_and_asks.dart';
-import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_content_archive/sub_pages/content_archive_recent.dart';
-import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_featured_collections/sub_pages/featured_collections_popular.dart';
-import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_featured_collections/sub_pages/featured_collections_recently_featured.dart';
-import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_inspiring_people/sub_pages/inspiring_people_community.dart';
-import 'package:upcarta_mobile_app/ui/screens/see_all_horizontal_content_list/see_all_inspiring_people/sub_pages/inspiring_people_creators.dart';
-import '../ui/screens/see_all_horizontal_content_list/see_all_content_archive/sub_pages/content_archive_most_recommended.dart';
-import '../ui/screens/see_all_horizontal_content_list/see_all_featured_collections/see_all_featured_collections.dart';
-import '../ui/screens/see_all_horizontal_content_list/see_all_recent_asks/sub_pages/recent_asks_popular.dart';
-import '../ui/screens/see_all_horizontal_content_list/see_all_recent_asks/sub_pages/recent_asks_recent.dart';
-
-import '../ui/screens/settings.dart';
+import 'package:upcarta_mobile_app/util/view_paths.dart';
+import '../app/app.dart';
 
 @AdaptiveAutoRouter(
     replaceInRouteName: 'Page,Route,Screen',
     routes: <AutoRoute>[
+      AutoRoute(
+        path: 'landing',
+        name: "LandingRoute",
+        page: LandingPage,
+      ),
       AutoRoute(
         path: 'edit_profile',
         name: "EditProfileRoute",
@@ -113,6 +101,10 @@ import '../ui/screens/settings.dart';
           ]),
       AutoRoute(
         initial: true,
+        path: '/entry',
+        page: EntryPoint,
+      ),
+      AutoRoute(
         path: '/initial',
         page: InitialScreen,
       ),
@@ -145,14 +137,6 @@ import '../ui/screens/settings.dart';
         page: myRegisterConfirm,
       ),
       AutoRoute(
-        path: '/landing_page',
-        page: LandingPage,
-      ),
-      AutoRoute(
-        path: '/notifications',
-        page: NotificationsScreen,
-      ),
-      AutoRoute(
         path: '/onboarding',
         page: OnboardingScreen,
         children: [
@@ -179,68 +163,52 @@ import '../ui/screens/settings.dart';
           RedirectRoute(path: '*', redirectTo: ''),
         ],
       ),
-      groupTabRouter,
-      // AutoRoute(
-      //   path: '/',
-      //   page: Home,
-      //   children: [
-      //     AutoRoute(path: '/feed', page: FeedScreen),
-      //     AutoRoute(path: '/explore', page: ExploreScreen),
-      //     AutoRoute(path: '/myLibrary', page: MyLibraryScreen),
-      //     AutoRoute(path: '/my', page: NewPostScreen),
-      //     AutoRoute(path: '/profile', page: ProfileScreen),
-      //     groupTabRouter,
-      //     // redirect all other paths
-      //     RedirectRoute(path: '*', redirectTo: 'profile'),
-      //   ],
-      // ),
+      AutoRoute(
+        path: '/home',
+        page: Home,
+        initial: false,
+        children: [
+          AutoRoute(
+            path: 'feed',
+            name: 'FeedScreenRoute',
+            page: FeedScreen,
+            children: [
+              AutoRoute(
+                path: 'latest',
+                initial: true,
+                name: 'LatestScreenRoute',
+                page: LatestView,
+              ),
+              AutoRoute(
+                path: 'top',
+                name: 'TopScreenRoute',
+                page: TopView,
+              ),
+            ],
+          ),
+          AutoRoute(
+            path: 'explore',
+            name: 'ExploreScreenRoute',
+            page: ExploreScreen,
+          ),
+          AutoRoute(
+            path: 'new',
+            name: 'NewPostScreenRoute',
+            page: NewPostScreen,
+          ),
+          AutoRoute(
+            path: 'myLibrary',
+            name: 'MyLibraryScreenRoute',
+            page: MyLibraryScreen,
+          ),
+          AutoRoute(
+            path: 'profile',
+            name: 'ProfileScreenRoute',
+            page: ProfileScreen,
+          ),
+          RedirectRoute(path: '*', redirectTo: ''),
+        ],
+      ),
       RedirectRoute(path: '*', redirectTo: ''),
     ])
 class $AppRouter {}
-
-const groupTabRouter = AutoRoute(
-  path: '/home',
-  page: Home,
-  initial: false,
-  children: [
-    AutoRoute(
-      path: 'feed',
-      name: 'FeedScreenRoute',
-      page: FeedScreen,
-      children: [
-        AutoRoute(
-          path: 'latest',
-          initial: true,
-          name: 'LatestScreenRoute',
-          page: LatestView,
-        ),
-        AutoRoute(
-          path: 'top',
-          name: 'TopScreenRoute',
-          page: TopView,
-        ),
-      ],
-    ),
-    AutoRoute(
-      path: 'explore',
-      name: 'ExploreScreenRoute',
-      page: ExploreScreen,
-    ),
-    AutoRoute(
-      path: 'new',
-      name: 'NewPostScreenRoute',
-      page: NewPostScreen,
-    ),
-    AutoRoute(
-      path: 'myLibrary',
-      name: 'MyLibraryScreenRoute',
-      page: MyLibraryScreen,
-    ),
-    AutoRoute(
-      path: 'profile',
-      name: 'ProfileScreenRoute',
-      page: ProfileScreen,
-    ),
-    RedirectRoute(path: '*', redirectTo: ''),
-  ],
-);
