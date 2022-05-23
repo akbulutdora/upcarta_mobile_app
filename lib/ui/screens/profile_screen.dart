@@ -35,7 +35,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final AuthService _authService = AuthService();
   final fireAuth.FirebaseAuth _auth = fireAuth.FirebaseAuth.instance;
 
-  bool bioExists = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,9 +103,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Tab(text: "Asks")
                   ],
                 ),
-                expandedHeight: bioExists?
-                height / 2
-                : height / 2.7,
+                expandedHeight: height / 2,
                 flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
                   background: buildProfile(),
@@ -223,19 +220,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //follow functionality
                         },
                       ),
-                bioExists
-                    ? Text(
-                        thisUser.bio,
-                        style: TextStyle(
-                          fontFamily: "SFCompactText",
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
-                      )
-                    : SizedBox(
-                        height: 2,
-                      ),
+                Text(
+                  thisUser.bio,
+                  style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14,
+                    color: Colors.black,
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.all(0),
                   decoration: BoxDecoration(
@@ -324,6 +317,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             )
                           ]),
                         ),
+
                       ]),
                 ),
                 SizedBox(height: height * 0.020),
