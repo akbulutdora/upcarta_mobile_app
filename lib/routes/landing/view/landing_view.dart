@@ -226,9 +226,9 @@ class CirclePageIndicator extends StatefulWidget {
     this.borderWidth = 0,
     this.borderColor,
     this.selectedBorderColor,
-  })  : this.dotColor = dotColor ??
+  })  : dotColor = dotColor ??
             ((selectedDotColor?.withAlpha(150)) ?? _defaultDotColor),
-        this.selectedDotColor = selectedDotColor ?? _defaultSelectedDotColor,
+        selectedDotColor = selectedDotColor ?? _defaultSelectedDotColor,
         assert(borderWidth < size,
             'Border width cannot be bigger than dot size, duh!'),
         super(key: key);

@@ -132,6 +132,8 @@ class SignupForm extends StatelessWidget {
         if (state.status == SignupStatus.success) {
           // AutoRouter.of(context).push(const HomeRoute());
           AutoRouter.of(context).replaceAll([const OnboardingScreenRoute()]);
+          // AutoRouter.of(context).push(const OnboardingScreenRoute());
+
         } else if (state.status == SignupStatus.error) {
           // ERROR
           // ScaffoldMessenger.of(context)

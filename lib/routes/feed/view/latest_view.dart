@@ -39,7 +39,7 @@ class _LatestViewState extends State<LatestView> {
                     .map((content) => Content.fromJson(
                         content.data() as Map<String, dynamic>))
                     .toList();
-                return ContentList(contentList: contents as List<Content>);
+                return FeedContentList(contentList: contents as List<Content>);
               }
 
               return const Text("loading");
