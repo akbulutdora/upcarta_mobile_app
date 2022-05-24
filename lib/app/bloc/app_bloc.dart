@@ -52,6 +52,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     Emitter<AppState> emit,
   ) async {
     switch (event.status) {
+      case AppStatus.prelanded:
+        return emit(const AppState.prelanded());
       case AppStatus.unauthenticated:
         return emit(const AppState.unauthenticated());
       case AppStatus.authenticated:

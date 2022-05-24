@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/models/auth_user.dart';
 import 'package:upcarta_mobile_app/service/firestore_service.dart';
 
-enum AppStatus { authenticated, unauthenticated, uninitialized }
+enum AppStatus { authenticated, unauthenticated, uninitialized, prelanded }
 
 class AuthRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
@@ -13,11 +13,13 @@ class AuthRepository {
   final _controller = StreamController<AppStatus>();
 
   Stream<AppStatus> get status async* {
-    await Future<void>.delayed(const Duration(seconds: 1));
+    // await Future<void>.delayed(const Duration(seconds: 1));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // print("\nisNULL ${prefs.getBool("authenticated") == null}\n");
     // print("\nisAuthenticated ${!prefs.getBool("authenticated")!}\n");
-    if (prefs.getBool("authenticated") == null ||
+    if (prefs.getBool("landed") == null || !prefs.getBool("landed")!) {
+      yield AppStatus.prelanded;
+    } else if (prefs.getBool("authenticated") == null ||
         !prefs.getBool("authenticated")!) {
       yield AppStatus.unauthenticated;
     } else {
@@ -70,7 +72,7 @@ class AuthRepository {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       await Future.delayed(
-        const Duration(milliseconds: 300),
+        const Duration(milliseconds: 500),
         () => _controller.add(AppStatus.authenticated),
       );
       SharedPreferences prefs = await SharedPreferences.getInstance();

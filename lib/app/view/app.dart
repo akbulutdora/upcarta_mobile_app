@@ -64,16 +64,20 @@ class EntryPoint extends StatelessWidget {
     return BlocListener<AppBloc, AppState>(
       child: const SplashScreen(),
       listener: (context, state) {
-        // TODO: IMPLEMENT APP RUNNING (REOPENING AFTER SPLASH IS VIEWED)
+        // DONE: IMPLEMENT APP RUNNING (REOPENING AFTER SPLASH IS VIEWED)
         // TODO: APP SPENDS SO MUCH TIME BLACK SCREEN
-        // TODO: IMPLEMENT APP INITIALIZED (LANDING VIEWED) WITH SHARED PREF
-        // TODO: IMPLEMENT LOGGED IN WITH SHARED PREF
-        // TODO: IMPLEMENT ONBOARDING AFTER REGISTER
+        // DONE: IMPLEMENT APP INITIALIZED (LANDING VIEWED) WITH SHARED PREF
+        // DONE: IMPLEMENT LOGGED IN WITH SHARED PREF
+        // DONE: IMPLEMENT ONBOARDING AFTER REGISTER
         // TODO: IMPLEMENT ONBOARDING COMPLETED (TALK TO OTHERS ABOUT WHAT IF ONBOARDING LEFT IN HALF)
+        // TODO: IMPLEMENT EXITING APP AFTER BACK BUTTON IN HOME
         switch (state.status) {
           case AppStatus.authenticated:
             // print("\n\n\nAUTHENTICATED");
             AutoRouter.of(context).replace(const HomeRoute());
+            break;
+          case AppStatus.prelanded:
+            AutoRouter.of(context).replace(const LandingRoute());
             break;
           case AppStatus.unauthenticated:
             // print("\n\n\nNOT AUTHENTICATED");

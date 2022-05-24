@@ -101,7 +101,9 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state.status == LoginStatus.error) {
+        if (state.status == LoginStatus.success) {
+          AutoRouter.of(context).replace(const HomeRoute());
+        } else if (state.status == LoginStatus.error) {
           // HANDLE ERROR
           // ScaffoldMessenger.of(context)
           //   ..hideCurrentSnackBar()
@@ -145,7 +147,7 @@ class LoginForm extends StatelessWidget {
               _SignUpButton(),
               TextButton(
                 onPressed: () async {
-                  context.router.push(const ResetPasswordRoute());
+                  context.router.push(const ResetPasswordViewRoute());
                 },
                 child: const Text(
                   'Forgot password?',
@@ -177,7 +179,9 @@ class _EmailInput extends StatelessWidget {
       builder: (context, state) {
         return TextField(
           key: const Key('loginForm_emailInput_textField'),
-          onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
+          onChanged: (email) {
+            context.read<LoginCubit>().emailChanged(email);
+          },
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             labelText: 'Email',
@@ -233,7 +237,6 @@ class _LoginButton extends StatelessWidget {
             : OutlinedButton(
                 onPressed: () {
                   context.read<LoginCubit>().logInWithCredential();
-                  AutoRouter.of(context).push(const HomeRoute());
                 },
                 key: const Key('loginForm_continue_raisedButton'),
                 style: OutlinedButton.styleFrom(

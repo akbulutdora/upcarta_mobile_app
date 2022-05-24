@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:upcarta_mobile_app/app/app.dart';
+import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import '../../../navigation/routes.gr.dart';
 
 void main() {
@@ -128,34 +131,44 @@ class Page3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset("assets/images/Upcarta_Share.png", height: 300),
-        const Text("Share",
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34)),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          child: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 17)),
-        ),
-        const SizedBox(height: 50),
-        ElevatedButton(
-            onPressed: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setBool("landingCompleted", true);
-              context.router.replace(const LoginScreenRoute());
-            },
-            child: const Text("Let's Go", style: TextStyle(fontSize: 17)),
-            style: ElevatedButton.styleFrom(
-                primary: const Color(0xFF4E89FD),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15))))
-      ],
+    return BlocListener<AppBloc, AppState>(
+      listener: (context, state) async {
+        // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
+        if (state == const AppState.unauthenticated()) {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setBool("landed", true);
+          context.router.replace(const LoginScreenRoute());
+        }
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset("assets/images/Upcarta_Share.png", height: 300),
+          const Text("Share",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34)),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Text(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 17)),
+          ),
+          const SizedBox(height: 50),
+          ElevatedButton(
+              onPressed: () async {
+                context
+                    .read<AppBloc>()
+                    .add(const AppStatusChanged(AppStatus.unauthenticated));
+              },
+              child: const Text("Let's Go", style: TextStyle(fontSize: 17)),
+              style: ElevatedButton.styleFrom(
+                  primary: const Color(0xFF4E89FD),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15))))
+        ],
+      ),
     );
   }
 }
