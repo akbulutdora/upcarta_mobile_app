@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/service/auth_service.dart';
 import 'package:upcarta_mobile_app/routes/login/login.dart';
 
 class LoginScreen2 extends StatefulWidget {
@@ -25,10 +24,10 @@ class LoginScreen2 extends StatefulWidget {
 }
 
 class _LoginScreen2 extends State<LoginScreen2> {
-  final _formKey = GlobalKey<FormState>();
-  AuthService _authService = AuthService();
-  final _passwordController = TextEditingController();
-  final _emailController = TextEditingController();
+  // final _formKey = GlobalKey<FormState>();
+  // AuthService _authService = AuthService();
+  // final _passwordController = TextEditingController();
+  // final _emailController = TextEditingController();
 
   void setLoginState(String inp1, String inp2) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -146,16 +145,16 @@ class LoginForm extends StatelessWidget {
               _SignUpButton(),
               TextButton(
                 onPressed: () async {
-                  context.router.push(ResetPasswordRoute());
+                  context.router.push(const ResetPasswordRoute());
                 },
                 child: const Text(
                   'Forgot password?',
-                  style: const TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
               TextButton(
                 onPressed: () async {
-                  context.router.push(LoginScreenRoute());
+                  context.router.push(const LoginScreenRoute());
                 },
                 child: const Text(
                   "Resend Verification Email?",

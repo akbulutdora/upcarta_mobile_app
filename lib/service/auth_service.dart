@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upcarta_mobile_app/models/user.dart' as user_model;
-import 'package:upcarta_mobile_app/service/firestore_service.dart';
-import 'package:uuid/uuid.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -43,7 +41,6 @@ class AuthService {
         .collection("collections")
         .add(savedCollection)
         .then((DocumentReference doc) => doc.id);
-    print(savesID);
     final recommendationsCollection = <String, dynamic>{
       "collectionType": "recommendation",
       "ownerID": user.user!.uid,
@@ -66,8 +63,8 @@ class AuthService {
       name: name,
       bio: "",
       joinDate: DateTime.now(),
-      followerIDs: [],
-      followingIDs: [],
+      followerIDs: const [],
+      followingIDs: const [],
       followers: 0,
       following: 0,
       avatar:
@@ -75,8 +72,8 @@ class AuthService {
       recommendationCount: 0,
       recommendationsID: recomID,
       savesID: savesID,
-      collectionsIDs: [],
-      asksIDs: [],
+      collectionsIDs: const [],
+      asksIDs: const [],
     );
     await _firestore
         .collection("Person")

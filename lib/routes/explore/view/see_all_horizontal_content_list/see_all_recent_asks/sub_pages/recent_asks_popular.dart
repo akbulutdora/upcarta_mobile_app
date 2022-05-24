@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 
-class RecentAsks_Popular extends StatefulWidget {
-  const RecentAsks_Popular({Key? key}) : super(key: key);
+class RecentAsksPopular extends StatefulWidget {
+  const RecentAsksPopular({Key? key}) : super(key: key);
 
   @override
-  State<RecentAsks_Popular> createState() => _RecentAsks_PopularState();
+  State<RecentAsksPopular> createState() => _RecentAsksPopularState();
 }
 
-class _RecentAsks_PopularState extends State<RecentAsks_Popular> {
+class _RecentAsksPopularState extends State<RecentAsksPopular> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

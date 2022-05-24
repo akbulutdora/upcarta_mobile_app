@@ -1,12 +1,6 @@
-// CAN
-
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:provider/provider.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/routes/home/view/home_view.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
-import 'package:upcarta_mobile_app/service/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../navigation/routes.gr.dart';
 
@@ -32,7 +26,6 @@ class _InitialScreenState extends State<InitialScreen> {
   // }
   late String? uEmail;
   late String? uPass;
-  final AuthService _authService = AuthService();
   getStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -47,6 +40,7 @@ class _InitialScreenState extends State<InitialScreen> {
     getStatus();
   }
 
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -73,7 +67,7 @@ class _InitialScreenState extends State<InitialScreen> {
                   ],
                 ),
                 TextButton(
-                  child: Text("GO"),
+                  child: const Text("GO"),
                   onPressed: () async {
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();

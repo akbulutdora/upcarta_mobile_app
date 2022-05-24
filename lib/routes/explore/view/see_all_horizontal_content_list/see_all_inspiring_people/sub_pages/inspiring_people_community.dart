@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 
-class InspiringPeople_Community extends StatefulWidget {
-  const InspiringPeople_Community({Key? key}) : super(key: key);
+class InspiringPeopleCommunity extends StatefulWidget {
+  const InspiringPeopleCommunity({Key? key}) : super(key: key);
 
   @override
-  State<InspiringPeople_Community> createState() =>
-      _InspiringPeople_CommunityState();
+  State<InspiringPeopleCommunity> createState() =>
+      _InspiringPeopleCommunityState();
 }
 
-class _InspiringPeople_CommunityState extends State<InspiringPeople_Community> {
+class _InspiringPeopleCommunityState extends State<InspiringPeopleCommunity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

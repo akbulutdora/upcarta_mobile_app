@@ -25,8 +25,9 @@ class SignupCubit extends Cubit<SignupState> {
   }
 
   Future<void> signupFormSubmitted() async {
-    if (state.status == SignupStatus.submitting)
-      return; //to avoid sending multiple reqs at the same time
+    if (state.status == SignupStatus.submitting) {
+      return;
+    } //to avoid sending multiple reqs at the same time
     emit(state.copyWith(status: SignupStatus.submitting));
     try {
       await _authRepository.signup(

@@ -3,14 +3,14 @@ import 'package:upcarta_mobile_app/ui_components/components.dart';
 
 import 'package:upcarta_mobile_app/util/constants.dart';
 
-class SeeAll_PopularTopics extends StatefulWidget {
-  const SeeAll_PopularTopics({Key? key}) : super(key: key);
+class SeeAllPopularTopics extends StatefulWidget {
+  const SeeAllPopularTopics({Key? key}) : super(key: key);
 
   @override
-  State<SeeAll_PopularTopics> createState() => _SeeAll_PopularTopicsState();
+  State<SeeAllPopularTopics> createState() => _SeeAllPopularTopicsState();
 }
 
-class _SeeAll_PopularTopicsState extends State<SeeAll_PopularTopics> {
+class _SeeAllPopularTopicsState extends State<SeeAllPopularTopics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +37,10 @@ class _SeeAll_PopularTopicsState extends State<SeeAll_PopularTopics> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(children: [
-          const SizedBox(height: 32, child: SearchBar_Topics()),
+          const SizedBox(height: 32, child: SearchBarTopics()),
           const SizedBox(height: 12),
           SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               height: 600,
               child: Expanded(
                 child: ListView.builder(

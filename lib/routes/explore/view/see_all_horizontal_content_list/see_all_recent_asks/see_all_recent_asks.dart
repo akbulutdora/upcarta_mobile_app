@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
 
-class SeeAll_RecentAsks extends StatefulWidget {
-  const SeeAll_RecentAsks({Key? key}) : super(key: key);
+class SeeAllRecentAsks extends StatefulWidget {
+  const SeeAllRecentAsks({Key? key}) : super(key: key);
 
   @override
-  State<SeeAll_RecentAsks> createState() => _SeeAll_RecentAsksState();
+  State<SeeAllRecentAsks> createState() => _SeeAllRecentAsksState();
 }
 
-class _SeeAll_RecentAsksState extends State<SeeAll_RecentAsks> {
+class _SeeAllRecentAsksState extends State<SeeAllRecentAsks> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -39,7 +39,7 @@ class _SeeAll_RecentAsksState extends State<SeeAll_RecentAsks> {
             preferredSize: Size.fromHeight(36),
             child: Padding(
               padding: EdgeInsets.only(left: 16, right: 16),
-              child: SizedBox(height: 32, child: SearchBar_Asks()),
+              child: SizedBox(height: 32, child: SearchBarAsks()),
             ),
           ),
         ),
@@ -74,7 +74,7 @@ class _SeeAll_RecentAsksState extends State<SeeAll_RecentAsks> {
               SizedBox(
                 height: 580,
                 child: TabBarView(
-                  children: <Widget>[RecentAsks_Recent(), RecentAsks_Popular()],
+                  children: <Widget>[RecentAsksRecent(), RecentAsksPopular()],
                 ),
               )
             ],

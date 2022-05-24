@@ -17,8 +17,9 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> logInWithCredential() async {
-    if (state.status == LoginStatus.submitting)
-      return; //to avoid sending multiple reqs at the same time
+    if (state.status == LoginStatus.submitting) {
+      return;
+    } //to avoid sending multiple reqs at the same time
     emit(state.copyWith(status: LoginStatus.submitting));
     try {
       await _authRepository.logInWithEmailAndPassword(

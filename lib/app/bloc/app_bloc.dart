@@ -13,7 +13,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   late StreamSubscription<AppStatus> _appStatusSubscription;
   StreamSubscription<AuthUser>? _userSubscription;
 
-  @override
   AppState get initialState => const AppState.uninitialized();
 
   AppBloc({required AuthRepository authRepository})
@@ -82,8 +81,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   Future<AuthUser?> _tryGetUser() async {
     try {
-      final user = await _authRepository.currentUser;
-      print("INSIDE APPBLOC" + user.email!);
+      final user = _authRepository.currentUser;
+      // print("INSIDE APPBLOC" + user.email!);
       return user;
     } catch (_) {
       return null;

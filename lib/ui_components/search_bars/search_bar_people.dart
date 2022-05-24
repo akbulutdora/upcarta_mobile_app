@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class SearchBar_People extends StatefulWidget {
-  const SearchBar_People({Key? key}) : super(key: key);
+class SearchBarPeople extends StatefulWidget {
+  const SearchBarPeople({Key? key}) : super(key: key);
 
   @override
-  State<SearchBar_People> createState() => _SearchBar_PeopleState();
+  State<SearchBarPeople> createState() => _SearchBarPeopleState();
 }
 
-class _SearchBar_PeopleState extends State<SearchBar_People> {
+class _SearchBarPeopleState extends State<SearchBarPeople> {
   @override
   Widget build(BuildContext context) {
-    return buildSearchBar_People();
+    return buildSearchBarPeople();
   }
 }
 
 @override
-Widget buildSearchBar_People() => const TextField(
+Widget buildSearchBarPeople() => const TextField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
         hintText: 'Search for people',

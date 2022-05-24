@@ -21,7 +21,7 @@ class ProfileManager extends ChangeNotifier {
   var _didSelectUser = false;
   var _darkMode = false;
 
-  void set darkMode(bool darkMode) {
+  set darkMode(bool darkMode) {
     _darkMode = darkMode;
     notifyListeners();
   }

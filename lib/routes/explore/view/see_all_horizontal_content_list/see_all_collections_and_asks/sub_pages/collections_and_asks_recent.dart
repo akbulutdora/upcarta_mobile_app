@@ -2,38 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 
-class CollectionsAndAsks_Recent extends StatefulWidget {
-  const CollectionsAndAsks_Recent({Key? key}) : super(key: key);
+class CollectionsAndAsksRecentView extends StatefulWidget {
+  const CollectionsAndAsksRecentView({Key? key}) : super(key: key);
 
   @override
-  State<CollectionsAndAsks_Recent> createState() =>
-      _CollectionsAndAsks_RecentState();
+  State<CollectionsAndAsksRecentView> createState() =>
+      _CollectionsAndAsksRecentViewState();
 }
 
-class _CollectionsAndAsks_RecentState extends State<CollectionsAndAsks_Recent> {
+class _CollectionsAndAsksRecentViewState
+    extends State<CollectionsAndAsksRecentView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(children: [
-          SingleChildScrollView(
-            child: Container(
-              height: 580,
-              child: Expanded(
-                child: ListView.builder(
-                  // shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  padding: const EdgeInsets.only(top: 16),
-                  itemCount: contents.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CollectionCard(content: contents[index]);
-                  },
-                ),
+      body: Column(children: [
+        SingleChildScrollView(
+          child: SizedBox(
+            height: 580,
+            child: Expanded(
+              child: ListView.builder(
+                // shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                padding: const EdgeInsets.only(top: 16),
+                itemCount: contents.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return CollectionCard(content: contents[index]);
+                },
               ),
             ),
           ),
-        ]),
-      ),
+        ),
+      ]),
     );
   }
 }

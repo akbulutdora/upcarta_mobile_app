@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 
-import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 
-class myLibraryRecommendsScreen extends StatefulWidget {
-  const myLibraryRecommendsScreen({Key? key}) : super(key: key);
+class LibraryRecommendsView extends StatefulWidget {
+  const LibraryRecommendsView({Key? key}) : super(key: key);
 
   @override
-  State<myLibraryRecommendsScreen> createState() =>
-      _myLibraryRecommendsScreenState();
+  State<LibraryRecommendsView> createState() => _LibraryRecommendsViewState();
 }
 
-class _myLibraryRecommendsScreenState extends State<myLibraryRecommendsScreen> {
+class _LibraryRecommendsViewState extends State<LibraryRecommendsView> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -47,8 +42,8 @@ class _myLibraryRecommendsScreenState extends State<myLibraryRecommendsScreen> {
                     ),
                   ),
                 ),
-                SizedBox(width: 4.0),
-                Container(
+                const SizedBox(width: 4.0),
+                SizedBox(
                   height: 24.0,
                   child: OutlinedButton(
                     onPressed: () {

@@ -5,7 +5,6 @@ import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/service/auth_service.dart';
 import 'package:upcarta_mobile_app/routes/signup/signup.dart';
 
 class MyRegister extends StatefulWidget {
@@ -26,12 +25,6 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _usernameController = TextEditingController();
-
-  final AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;

@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 class RecommendedBy extends StatelessWidget {
-  RecommendedBy({Key? key, required this.recommenders}) : super(key: key);
+  const RecommendedBy({Key? key, required this.recommenders}) : super(key: key);
   final List<Map<String, String>> recommenders;
 
   // final List<Map<String, String>> arr = [
@@ -28,7 +28,7 @@ class RecommendedBy extends StatelessWidget {
               clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
-                Container(
+                SizedBox(
                   width: recommenders.length < 3
                       ? recommenders.length < 2
                           ? 40
@@ -50,11 +50,9 @@ class RecommendedBy extends StatelessWidget {
                 }).toList(),
               ]),
         ),
-        Container(
-          child: Text(
-            "Also recommended by ${recommenders[0]["username"]} ${recommenders.length > 1 ? recommenders.length > 2 ? "and " + (recommenders.length - 1).toString() + " others" : "and " + recommenders[1]["username"]! : ""}",
-            style: TextStyle(fontSize: 12),
-          ),
+        Text(
+          "Also recommended by ${recommenders[0]["username"]} ${recommenders.length > 1 ? recommenders.length > 2 ? "and " + (recommenders.length - 1).toString() + " others" : "and " + recommenders[1]["username"]! : ""}",
+          style: const TextStyle(fontSize: 12),
         )
       ],
     );

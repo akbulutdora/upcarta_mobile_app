@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-class SearchBar_CollectionsAndAsks extends StatefulWidget {
-  const SearchBar_CollectionsAndAsks({Key? key}) : super(key: key);
+class SearchBarCollectionsAndAsks extends StatefulWidget {
+  const SearchBarCollectionsAndAsks({Key? key}) : super(key: key);
 
   @override
-  State<SearchBar_CollectionsAndAsks> createState() =>
-      _SearchBar_CollectionsAndAsksState();
+  State<SearchBarCollectionsAndAsks> createState() =>
+      _SearchBarCollectionsAndAsksState();
 }
 
-class _SearchBar_CollectionsAndAsksState
-    extends State<SearchBar_CollectionsAndAsks> {
+class _SearchBarCollectionsAndAsksState
+    extends State<SearchBarCollectionsAndAsks> {
   @override
   Widget build(BuildContext context) {
-    return buildSearchBar_CollectionsAndAsks();
+    return buildSearchBarCollectionsAndAsks();
   }
 }
 
 @override
-Widget buildSearchBar_CollectionsAndAsks() => const TextField(
+Widget buildSearchBarCollectionsAndAsks() => const TextField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
         hintText: 'Search for asks',

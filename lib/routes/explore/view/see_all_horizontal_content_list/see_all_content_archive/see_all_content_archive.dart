@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
 
-class SeeAll_ContentArchive extends StatefulWidget {
-  const SeeAll_ContentArchive({Key? key}) : super(key: key);
+class SeeAllContentArchiveView extends StatefulWidget {
+  const SeeAllContentArchiveView({Key? key}) : super(key: key);
 
   @override
-  State<SeeAll_ContentArchive> createState() => _SeeAll_ContentArchiveState();
+  State<SeeAllContentArchiveView> createState() =>
+      _SeeAllContentArchiveViewState();
 }
 
-class _SeeAll_ContentArchiveState extends State<SeeAll_ContentArchive> {
+class _SeeAllContentArchiveViewState extends State<SeeAllContentArchiveView> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -39,7 +40,7 @@ class _SeeAll_ContentArchiveState extends State<SeeAll_ContentArchive> {
             preferredSize: Size.fromHeight(36),
             child: Padding(
               padding: EdgeInsets.only(left: 16, right: 16),
-              child: SizedBox(height: 32, child: SearchBar_Contents()),
+              child: SizedBox(height: 32, child: SearchBarContents()),
             ),
           ),
         ),
@@ -78,8 +79,8 @@ class _SeeAll_ContentArchiveState extends State<SeeAll_ContentArchive> {
                 height: 580,
                 child: TabBarView(
                   children: <Widget>[
-                    ContentArchive_MostRecommended(),
-                    ContentArchive_Recent()
+                    ContentArchiveMostRecommendedView(),
+                    ContentArchiveRecent()
                   ],
                 ),
               )

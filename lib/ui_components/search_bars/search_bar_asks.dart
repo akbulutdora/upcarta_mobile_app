@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class SearchBar_Asks extends StatefulWidget {
-  const SearchBar_Asks({Key? key}) : super(key: key);
+class SearchBarAsks extends StatefulWidget {
+  const SearchBarAsks({Key? key}) : super(key: key);
 
   @override
-  State<SearchBar_Asks> createState() => _SearchBar_AsksState();
+  State<SearchBarAsks> createState() => _SearchBarAsksState();
 }
 
-class _SearchBar_AsksState extends State<SearchBar_Asks> {
+class _SearchBarAsksState extends State<SearchBarAsks> {
   @override
   Widget build(BuildContext context) {
-    return buildSearchBar_Asks();
+    return buildSearchBarAsks();
   }
 }
 
 @override
-Widget buildSearchBar_Asks() => const TextField(
+Widget buildSearchBarAsks() => const TextField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
         hintText: 'Search for asks',

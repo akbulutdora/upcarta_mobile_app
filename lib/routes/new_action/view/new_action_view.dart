@@ -1,10 +1,5 @@
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
-import 'package:upcarta_mobile_app/util/styles.dart';
 
 import '../../../navigation/routes.gr.dart';
 
@@ -27,8 +22,8 @@ class _NewPostScreenState extends State<NewPostScreen> {
     'Collection By Expert',
     'Ask By Expert',
   ];
-  @override
   _NewPostScreenState createState() => _NewPostScreenState();
+  @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
@@ -71,7 +66,8 @@ class _NewPostScreenState extends State<NewPostScreen> {
                       value: items,
                       child: Text(
                         items,
-                        style: TextStyle(color: Colors.grey, fontSize: 18),
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 18),
                       ));
                 }).toList(),
                 // After selecting the desired option,it will
@@ -97,10 +93,11 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         color: Colors.white,
                       ),
                     ),
-                    labelStyle: TextStyle(color: Colors.grey, fontSize: 18)),
+                    labelStyle:
+                        const TextStyle(color: Colors.grey, fontSize: 18)),
               ),
               SizedBox(height: height * .05),
-              _popUpDialog(),
+              const _PopUpDialog(),
             ],
           ),
         ),
@@ -109,8 +106,8 @@ class _NewPostScreenState extends State<NewPostScreen> {
   }
 }
 
-class _popUpDialog extends StatelessWidget {
-  const _popUpDialog({Key? key}) : super(key: key);
+class _PopUpDialog extends StatelessWidget {
+  const _PopUpDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +128,7 @@ class _popUpDialog extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               onPressed: () async {
-                context.router.push(HomeRoute());
+                context.router.push(const HomeRoute());
               },
               child: const Text('OK'),
             ),

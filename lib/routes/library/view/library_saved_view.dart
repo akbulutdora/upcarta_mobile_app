@@ -3,27 +3,27 @@ import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 
-class myLibrarySavedScreen extends StatefulWidget {
-  const myLibrarySavedScreen({Key? key}) : super(key: key);
+class MyLibrarySavedScreen extends StatefulWidget {
+  const MyLibrarySavedScreen({Key? key}) : super(key: key);
 
   @override
-  State<myLibrarySavedScreen> createState() => _myLibrarySavedScreenState();
+  State<MyLibrarySavedScreen> createState() => _MyLibrarySavedScreenState();
 }
 
-class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
+class _MyLibrarySavedScreenState extends State<MyLibrarySavedScreen> {
   late List<String> selectedChips = ['All'];
   bool isAllSelected = true;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         Container(
           padding: const EdgeInsets.only(left: 16.0),
           alignment: Alignment.topLeft,
-          child: WrappedSingleChip__YourLibrary(),
+          child: const WrappedSingleChipLibrary(),
         ),
-        SizedBox(height: 16.0),
+        const SizedBox(height: 16.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -49,7 +49,7 @@ class _myLibrarySavedScreenState extends State<myLibrarySavedScreen> {
                   ),
                 ),
                 const SizedBox(width: 4.0),
-                Container(
+                SizedBox(
                   height: 24.0,
                   child: OutlinedButton(
                     onPressed: () {

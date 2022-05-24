@@ -4,7 +4,7 @@ import 'components.dart';
 
 class ContentList extends StatefulWidget {
   final List<Content> contentList;
-  ContentList({required this.contentList});
+  const ContentList({Key? key, required this.contentList}) : super(key: key);
 
   @override
   State<ContentList> createState() => _ContentListState();

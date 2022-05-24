@@ -320,17 +320,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .ref()
         .child('Amadeo Modigliani - Ritratto di Paul Guillaume 1916.jpg')
         .getDownloadURL();
-    print("URL IS HERE $url");
 
     final docRef = _firestore.collection("Person").doc(_auth.currentUser!.uid);
     Future<User?> myUser = docRef.get().then(
       (res) {
-        print("Successfully completed" + res.data()!.toString());
         if (res.data() != null) {
           User myUser = User.fromJson(res.data()!);
           myUser.avatar = url;
           return myUser;
         }
+        return null;
       },
       onError: (e) => print("Error completing: $e"),
     );

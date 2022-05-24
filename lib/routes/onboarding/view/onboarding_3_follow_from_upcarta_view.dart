@@ -65,7 +65,7 @@ class _UserOnboarding3State extends State<UserOnboarding3> {
         ),
         Expanded(
           child: ListView.builder(
-            padding: EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(bottom: 10),
             itemCount: users.length,
             itemBuilder: (BuildContext context, int index) {
               return Person(
@@ -82,7 +82,7 @@ class _UserOnboarding3State extends State<UserOnboarding3> {
           ),
         ),
         Container(
-          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(
                 offset: Offset(0, 0), blurRadius: 10, color: Colors.black12)
           ]),

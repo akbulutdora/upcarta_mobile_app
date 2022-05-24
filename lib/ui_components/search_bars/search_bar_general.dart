@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class SearchBar_General extends StatefulWidget {
-  const SearchBar_General({Key? key}) : super(key: key);
+class SearchBarGeneral extends StatefulWidget {
+  const SearchBarGeneral({Key? key}) : super(key: key);
 
   @override
-  State<SearchBar_General> createState() => _SearchBar_GeneralState();
+  State<SearchBarGeneral> createState() => _SearchBarGeneralState();
 }
 
-class _SearchBar_GeneralState extends State<SearchBar_General> {
+class _SearchBarGeneralState extends State<SearchBarGeneral> {
   @override
   Widget build(BuildContext context) {
-    return buildSearchBar_General();
+    return buildSearchBarGeneral();
   }
 }
 
 @override
-Widget buildSearchBar_General() => const TextField(
+Widget buildSearchBarGeneral() => const TextField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
         hintText: 'Content, people, topic, collection, or ask',

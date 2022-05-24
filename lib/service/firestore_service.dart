@@ -66,7 +66,6 @@ class FireStoreService {
         .collection("collections")
         .add(savedCollection)
         .then((DocumentReference doc) => doc.id);
-    print(savesID);
     final recommendationsCollection = <String, dynamic>{
       "collectionType": "recommendation",
       "ownerID": user.user!.uid,
@@ -89,8 +88,8 @@ class FireStoreService {
       name: name,
       bio: "",
       joinDate: DateTime.now(),
-      followerIDs: [],
-      followingIDs: [],
+      followerIDs: const [],
+      followingIDs: const [],
       followers: 0,
       following: 0,
       avatar:
@@ -98,8 +97,8 @@ class FireStoreService {
       recommendationCount: 0,
       recommendationsID: recomID,
       savesID: savesID,
-      collectionsIDs: [],
-      asksIDs: [],
+      collectionsIDs: const [],
+      asksIDs: const [],
     );
     await _firestore
         .collection("Person")

@@ -81,7 +81,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
-                    side: BorderSide(color: Colors.black),
+                    side: const BorderSide(color: Colors.black),
                     padding: EdgeInsets.all(height * 0.02)),
                 child: Text(
                   'Connect to Google',
@@ -114,7 +114,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 color: Colors.black,
               ),
             ),
-            CircleImage(
+            const CircleImage(
               imageProvider: AssetImage("assets/images/mock.jpg"),
               //widget.user.profileImageUrl),
               imageRadius: 45.0,

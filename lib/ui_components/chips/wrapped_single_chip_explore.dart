@@ -1,22 +1,21 @@
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 
-class WrappedSingleChip extends StatefulWidget {
-  const WrappedSingleChip({Key? key}) : super(key: key);
+class WrappedSingleChipLibrary extends StatefulWidget {
+  const WrappedSingleChipLibrary({Key? key}) : super(key: key);
 
   @override
-  State<WrappedSingleChip> createState() => _WrappedSingleChipState();
+  State<WrappedSingleChipLibrary> createState() =>
+      _WrappedSingleChipLibraryState();
 }
 
-class _WrappedSingleChipState extends State<WrappedSingleChip> {
+class _WrappedSingleChipLibraryState extends State<WrappedSingleChipLibrary> {
   int tag = 1;
   List<String> options = [
     '   All   ',
-    'Collections',
-    'People',
-    'Topics',
-    ' Asks ',
     'Contents',
+    'Collections',
+    ' Asks ',
   ];
 
   @override
@@ -29,12 +28,12 @@ class _WrappedSingleChipState extends State<WrappedSingleChip> {
           source: options, value: (i, v) => i, label: (i, String v) => v),
       wrapped: true,
       spacing: 6,
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       choiceStyle: C2ChoiceStyle(
         labelStyle:
-            TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
-        margin: EdgeInsets.all(0),
-        padding: EdgeInsets.fromLTRB(-3, 0, -3, 0),
+            const TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
+        margin: const EdgeInsets.all(0),
+        padding: const EdgeInsets.fromLTRB(-3, 0, -3, 0),
         showCheckmark: false,
         color: Colors.black,
         backgroundColor: Colors.white,
@@ -42,9 +41,9 @@ class _WrappedSingleChipState extends State<WrappedSingleChip> {
       ),
       choiceActiveStyle: C2ChoiceStyle(
         labelStyle:
-            TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
-        margin: EdgeInsets.all(0),
-        padding: EdgeInsets.fromLTRB(-3, 0, -3, 0),
+            const TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
+        margin: const EdgeInsets.all(0),
+        padding: const EdgeInsets.fromLTRB(-3, 0, -3, 0),
         showCheckmark: false,
         color: Colors.white,
         backgroundColor: Colors.blueAccent,

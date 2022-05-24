@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flow_builder/flow_builder.dart';
+// import 'package:flow_builder/flow_builder.dart'; MAYBE WE SWITCH TI THIS
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
@@ -22,7 +22,7 @@ class App extends StatelessWidget {
       value: _authRepository,
       child: BlocProvider(
         create: (_) => AppBloc(
-          authRepository: _authRepository,
+          authRepository: RepositoryProvider.of<AuthRepository>(context),
         ),
         child: const AppView(),
       ),
@@ -37,8 +37,9 @@ class AppView extends StatefulWidget {
   State<AppView> createState() => _AppViewState();
 }
 
-final _navigatorKey = GlobalKey<NavigatorState>();
-NavigatorState get _navigator => _navigatorKey.currentState!;
+// OUR NAVIGATION WORKS DIFFERENT SOOO WE MAYBE USE THE FOLLOWING LATER
+// final _navigatorKey = GlobalKey<NavigatorState>();
+// NavigatorState get _navigator => _navigatorKey.currentState!;
 
 class _AppViewState extends State<AppView> {
   final _appRouter = AppRouter();
@@ -59,26 +60,24 @@ class EntryPoint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AutoRouter.of(context);
+    //AutoRouter.of(context);
     return BlocListener<AppBloc, AppState>(
       child: const SplashScreen(),
       listener: (context, state) {
+        // TODO: IMPLEMENT APP RUNNING (REOPENING AFTER SPLASH IS VIEWED)
+        // TODO: APP SPENDS SO MUCH TIME BLACK SCREEN
+        // TODO: IMPLEMENT APP INITIALIZED (LANDING VIEWED) WITH SHARED PREF
+        // TODO: IMPLEMENT LOGGED IN WITH SHARED PREF
+        // TODO: IMPLEMENT ONBOARDING AFTER REGISTER
+        // TODO: IMPLEMENT ONBOARDING COMPLETED (TALK TO OTHERS ABOUT WHAT IF ONBOARDING LEFT IN HALF)
         switch (state.status) {
           case AppStatus.authenticated:
-            // _navigator.pushAndRemoveUntil<void>(
-            //   Home.route(),
-            //   (route) => false,
-            // );
-            print("\n\n\nAUTHENTICATED");
-            AutoRouter.of(context).push(const HomeRoute());
+            // print("\n\n\nAUTHENTICATED");
+            AutoRouter.of(context).replace(const HomeRoute());
             break;
           case AppStatus.unauthenticated:
-            // _navigator.pushAndRemoveUntil<void>(
-            //   LoginScreen.route(),
-            //   (route) => false,
-            // );
-            print("\n\n\nNOT AUTHENTICATED");
-            AutoRouter.of(context).push(const LoginScreenRoute());
+            // print("\n\n\nNOT AUTHENTICATED");
+            AutoRouter.of(context).replace(const LoginScreenRoute());
             break;
           default:
             break;

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
-import '../../../navigation/routes.gr.dart';
 
 class SplashScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -53,19 +51,6 @@ class _SplashScreenState extends State<SplashScreen> {
                       style: splashTitleStyle,
                     )
                   ],
-                ),
-                TextButton(
-                  child: const Text("GO LOGIN"),
-                  onPressed: () {
-                    context.router.push(LoginScreenRoute());
-                    // context.router.push(HomeRoute());
-                  },
-                ),
-                TextButton(
-                  child: const Text("GO HOME"),
-                  onPressed: () {
-                    context.router.push(HomeRoute());
-                  },
                 ),
               ],
             ),

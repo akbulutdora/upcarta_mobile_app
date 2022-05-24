@@ -1,16 +1,15 @@
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/material.dart';
 
-class WrappedSingleChip__YourLibrary extends StatefulWidget {
-  const WrappedSingleChip__YourLibrary({Key? key}) : super(key: key);
+class WrappedSingleChipLibrary extends StatefulWidget {
+  const WrappedSingleChipLibrary({Key? key}) : super(key: key);
 
   @override
-  State<WrappedSingleChip__YourLibrary> createState() =>
-      _WrappedSingleChip__YourLibraryState();
+  State<WrappedSingleChipLibrary> createState() =>
+      _WrappedSingleChipLibraryState();
 }
 
-class _WrappedSingleChip__YourLibraryState
-    extends State<WrappedSingleChip__YourLibrary> {
+class _WrappedSingleChipLibraryState extends State<WrappedSingleChipLibrary> {
   int tag = 1;
   List<String> options = [
     '   All   ',

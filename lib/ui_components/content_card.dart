@@ -31,14 +31,12 @@ class ContentCard extends StatelessWidget {
                   Row(
                     children: [
                       Flexible(
-                        child: Container(
-                          child: Text(
-                            content.title,
-                            style: contentCardTitleStyle,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            softWrap: false,
-                          ),
+                        child: Text(
+                          content.title,
+                          style: contentCardTitleStyle,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
                         ),
                       ),
                       IconButton(

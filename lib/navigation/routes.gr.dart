@@ -37,29 +37,30 @@ class AppRouter extends _i3.RootStackRouter {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.NotificationSettings());
     },
-    SeeAll_CollectionsAndAsksRoute.name: (routeData) {
+    SeeAllCollectionsAndAsksRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.SeeAll_CollectionsAndAsks());
+          routeData: routeData,
+          child: const _i1.SeeAllCollectionsAndAsksView());
     },
-    SeeAll_ContentArchiveRoute.name: (routeData) {
+    SeeAllContentArchiveRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.SeeAll_ContentArchive());
+          routeData: routeData, child: const _i1.SeeAllContentArchiveView());
     },
     SeeAll_RecentAsksRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.SeeAll_RecentAsks());
+          routeData: routeData, child: const _i1.SeeAllRecentAsks());
     },
     SeeAll_PopularTopicsRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.SeeAll_PopularTopics());
+          routeData: routeData, child: const _i1.SeeAllPopularTopics());
     },
     SeeAll_InspiringPeopleRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.SeeAll_InspiringPeople());
+          routeData: routeData, child: const _i1.SeeAllInspiringPeople());
     },
-    SeeAll_FeaturedCollectionsRoute.name: (routeData) {
+    SeeAllFeaturedCollectionsRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.SeeAll_FeaturedCollections());
+          routeData: routeData, child: const _i1.SeeAllFeaturedCollections());
     },
     EntryPointRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
@@ -83,11 +84,11 @@ class AppRouter extends _i3.RootStackRouter {
     },
     ResetPasswordRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.resetPassword());
+          routeData: routeData, child: const _i1.ResetPasswordView());
     },
     ResetPasswordNewRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.resetPasswordNew());
+          routeData: routeData, child: const _i1.ResetPasswordNew());
     },
     MyRegisterRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
@@ -95,7 +96,7 @@ class AppRouter extends _i3.RootStackRouter {
     },
     MyRegisterConfirmRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.myRegisterConfirm());
+          routeData: routeData, child: const _i1.ConfirmRegisterView());
     },
     OnboardingScreenRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
@@ -107,45 +108,47 @@ class AppRouter extends _i3.RootStackRouter {
     },
     CollectionsAndAsks_RecentRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.CollectionsAndAsks_Recent());
+          routeData: routeData,
+          child: const _i1.CollectionsAndAsksRecentView());
     },
     CollectionsAndAsks_PopularRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.CollectionsAndAsks_Popular());
+          routeData: routeData,
+          child: const _i1.CollectionsAndAsksPopularView());
     },
     ContentArchive_MostRecommendedRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData,
-          child: const _i1.ContentArchive_MostRecommended());
+          child: const _i1.ContentArchiveMostRecommendedView());
     },
     ContentArchive_RecentRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.ContentArchive_Recent());
+          routeData: routeData, child: const _i1.ContentArchiveRecent());
     },
     RecentAsks_RecentRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.RecentAsks_Recent());
+          routeData: routeData, child: const _i1.RecentAsksRecent());
     },
     RecentAsks_PopularRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.RecentAsks_Popular());
+          routeData: routeData, child: const _i1.RecentAsksPopular());
     },
     InspiringPeople_CreatorsRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.InspiringPeople_Creators());
+          routeData: routeData, child: const _i1.InspiringPeopleCreators());
     },
     InspiringPeople_CommunityRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.InspiringPeople_Community());
+          routeData: routeData, child: const _i1.InspiringPeopleCommunity());
     },
     FeaturedCollections_RecentlyFeaturedRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData,
-          child: const _i1.FeaturedCollections_RecentlyFeatured());
+          child: const _i1.FeaturedCollectionsRecentlyFeatured());
     },
     FeaturedCollections_PopularRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.FeaturedCollections_Popular());
+          routeData: routeData, child: const _i1.FeaturedCollectionsPopular());
     },
     UserOnboarding1Route.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
@@ -202,32 +205,32 @@ class AppRouter extends _i3.RootStackRouter {
         _i3.RouteConfig(SettingsRoute.name, path: 'settings'),
         _i3.RouteConfig(NotificationSettingsRoute.name,
             path: 'notification_settings'),
-        _i3.RouteConfig(SeeAll_CollectionsAndAsksRoute.name,
+        _i3.RouteConfig(SeeAllCollectionsAndAsksRoute.name,
             path: 'see_all_collections_and_asks',
             children: [
               _i3.RouteConfig('#redirect',
                   path: '',
-                  parent: SeeAll_CollectionsAndAsksRoute.name,
+                  parent: SeeAllCollectionsAndAsksRoute.name,
                   redirectTo: 'recent',
                   fullMatch: true),
               _i3.RouteConfig(CollectionsAndAsks_RecentRoute.name,
-                  path: 'recent', parent: SeeAll_CollectionsAndAsksRoute.name),
+                  path: 'recent', parent: SeeAllCollectionsAndAsksRoute.name),
               _i3.RouteConfig(CollectionsAndAsks_PopularRoute.name,
-                  path: 'popular', parent: SeeAll_CollectionsAndAsksRoute.name)
+                  path: 'popular', parent: SeeAllCollectionsAndAsksRoute.name)
             ]),
-        _i3.RouteConfig(SeeAll_ContentArchiveRoute.name,
+        _i3.RouteConfig(SeeAllContentArchiveRoute.name,
             path: 'see_all_content_archive',
             children: [
               _i3.RouteConfig('#redirect',
                   path: '',
-                  parent: SeeAll_ContentArchiveRoute.name,
+                  parent: SeeAllContentArchiveRoute.name,
                   redirectTo: 'most_recommended',
                   fullMatch: true),
               _i3.RouteConfig(ContentArchive_MostRecommendedRoute.name,
                   path: 'most_recommended',
-                  parent: SeeAll_ContentArchiveRoute.name),
+                  parent: SeeAllContentArchiveRoute.name),
               _i3.RouteConfig(ContentArchive_RecentRoute.name,
-                  path: 'recent', parent: SeeAll_ContentArchiveRoute.name)
+                  path: 'recent', parent: SeeAllContentArchiveRoute.name)
             ]),
         _i3.RouteConfig(SeeAll_RecentAsksRoute.name,
             path: 'see_all_recent_asks',
@@ -257,19 +260,19 @@ class AppRouter extends _i3.RootStackRouter {
               _i3.RouteConfig(InspiringPeople_CommunityRoute.name,
                   path: 'community', parent: SeeAll_InspiringPeopleRoute.name)
             ]),
-        _i3.RouteConfig(SeeAll_FeaturedCollectionsRoute.name,
+        _i3.RouteConfig(SeeAllFeaturedCollectionsRoute.name,
             path: 'see_all_featured_collections',
             children: [
               _i3.RouteConfig('#redirect',
                   path: '',
-                  parent: SeeAll_FeaturedCollectionsRoute.name,
+                  parent: SeeAllFeaturedCollectionsRoute.name,
                   redirectTo: 'recently_featured',
                   fullMatch: true),
               _i3.RouteConfig(FeaturedCollections_RecentlyFeaturedRoute.name,
                   path: 'recently_featured',
-                  parent: SeeAll_FeaturedCollectionsRoute.name),
+                  parent: SeeAllFeaturedCollectionsRoute.name),
               _i3.RouteConfig(FeaturedCollections_PopularRoute.name,
-                  path: 'popular', parent: SeeAll_FeaturedCollectionsRoute.name)
+                  path: 'popular', parent: SeeAllFeaturedCollectionsRoute.name)
             ]),
         _i3.RouteConfig(EntryPointRoute.name, path: '/entry'),
         _i3.RouteConfig(InitialScreenRoute.name, path: '/initial'),
@@ -365,27 +368,27 @@ class NotificationSettingsRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.SeeAll_CollectionsAndAsks]
-class SeeAll_CollectionsAndAsksRoute extends _i3.PageRouteInfo<void> {
-  const SeeAll_CollectionsAndAsksRoute({List<_i3.PageRouteInfo>? children})
-      : super(SeeAll_CollectionsAndAsksRoute.name,
+/// [_i1.SeeAllCollectionsAndAsksView]
+class SeeAllCollectionsAndAsksRoute extends _i3.PageRouteInfo<void> {
+  const SeeAllCollectionsAndAsksRoute({List<_i3.PageRouteInfo>? children})
+      : super(SeeAllCollectionsAndAsksRoute.name,
             path: 'see_all_collections_and_asks', initialChildren: children);
 
   static const String name = 'SeeAll_CollectionsAndAsksRoute';
 }
 
 /// generated route for
-/// [_i1.SeeAll_ContentArchive]
-class SeeAll_ContentArchiveRoute extends _i3.PageRouteInfo<void> {
-  const SeeAll_ContentArchiveRoute({List<_i3.PageRouteInfo>? children})
-      : super(SeeAll_ContentArchiveRoute.name,
+/// [_i1.SeeAllContentArchiveView]
+class SeeAllContentArchiveRoute extends _i3.PageRouteInfo<void> {
+  const SeeAllContentArchiveRoute({List<_i3.PageRouteInfo>? children})
+      : super(SeeAllContentArchiveRoute.name,
             path: 'see_all_content_archive', initialChildren: children);
 
   static const String name = 'SeeAll_ContentArchiveRoute';
 }
 
 /// generated route for
-/// [_i1.SeeAll_RecentAsks]
+/// [_i1.SeeAllRecentAsks]
 class SeeAll_RecentAsksRoute extends _i3.PageRouteInfo<void> {
   const SeeAll_RecentAsksRoute({List<_i3.PageRouteInfo>? children})
       : super(SeeAll_RecentAsksRoute.name,
@@ -395,7 +398,7 @@ class SeeAll_RecentAsksRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.SeeAll_PopularTopics]
+/// [_i1.SeeAllPopularTopics]
 class SeeAll_PopularTopicsRoute extends _i3.PageRouteInfo<void> {
   const SeeAll_PopularTopicsRoute()
       : super(SeeAll_PopularTopicsRoute.name, path: 'see_all_popular_topics');
@@ -404,7 +407,7 @@ class SeeAll_PopularTopicsRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.SeeAll_InspiringPeople]
+/// [_i1.SeeAllInspiringPeople]
 class SeeAll_InspiringPeopleRoute extends _i3.PageRouteInfo<void> {
   const SeeAll_InspiringPeopleRoute({List<_i3.PageRouteInfo>? children})
       : super(SeeAll_InspiringPeopleRoute.name,
@@ -414,10 +417,10 @@ class SeeAll_InspiringPeopleRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.SeeAll_FeaturedCollections]
-class SeeAll_FeaturedCollectionsRoute extends _i3.PageRouteInfo<void> {
-  const SeeAll_FeaturedCollectionsRoute({List<_i3.PageRouteInfo>? children})
-      : super(SeeAll_FeaturedCollectionsRoute.name,
+/// [_i1.SeeAllFeaturedCollections]
+class SeeAllFeaturedCollectionsRoute extends _i3.PageRouteInfo<void> {
+  const SeeAllFeaturedCollectionsRoute({List<_i3.PageRouteInfo>? children})
+      : super(SeeAllFeaturedCollectionsRoute.name,
             path: 'see_all_featured_collections', initialChildren: children);
 
   static const String name = 'SeeAll_FeaturedCollectionsRoute';
@@ -464,7 +467,7 @@ class LoginScreen2Route extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.resetPassword]
+/// [_i1.ResetPasswordView]
 class ResetPasswordRoute extends _i3.PageRouteInfo<void> {
   const ResetPasswordRoute() : super(ResetPasswordRoute.name, path: '/forgot');
 
@@ -472,7 +475,7 @@ class ResetPasswordRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.resetPasswordNew]
+/// [_i1.ResetPasswordNew]
 class ResetPasswordNewRoute extends _i3.PageRouteInfo<void> {
   const ResetPasswordNewRoute()
       : super(ResetPasswordNewRoute.name, path: '/forgot_new');
@@ -489,7 +492,7 @@ class MyRegisterRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.myRegisterConfirm]
+/// [_i1.ConfirmRegisterView]
 class MyRegisterConfirmRoute extends _i3.PageRouteInfo<void> {
   const MyRegisterConfirmRoute()
       : super(MyRegisterConfirmRoute.name, path: '/register_confirm');
@@ -517,7 +520,7 @@ class HomeRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.CollectionsAndAsks_Recent]
+/// [_i1.CollectionsAndAsksRecentView]
 class CollectionsAndAsks_RecentRoute extends _i3.PageRouteInfo<void> {
   const CollectionsAndAsks_RecentRoute()
       : super(CollectionsAndAsks_RecentRoute.name, path: 'recent');
@@ -526,7 +529,7 @@ class CollectionsAndAsks_RecentRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.CollectionsAndAsks_Popular]
+/// [_i1.CollectionsAndAsksPopularView]
 class CollectionsAndAsks_PopularRoute extends _i3.PageRouteInfo<void> {
   const CollectionsAndAsks_PopularRoute()
       : super(CollectionsAndAsks_PopularRoute.name, path: 'popular');
@@ -535,7 +538,7 @@ class CollectionsAndAsks_PopularRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.ContentArchive_MostRecommended]
+/// [_i1.ContentArchiveMostRecommendedView]
 class ContentArchive_MostRecommendedRoute extends _i3.PageRouteInfo<void> {
   const ContentArchive_MostRecommendedRoute()
       : super(ContentArchive_MostRecommendedRoute.name,
@@ -545,7 +548,7 @@ class ContentArchive_MostRecommendedRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.ContentArchive_Recent]
+/// [_i1.ContentArchiveRecent]
 class ContentArchive_RecentRoute extends _i3.PageRouteInfo<void> {
   const ContentArchive_RecentRoute()
       : super(ContentArchive_RecentRoute.name, path: 'recent');
@@ -554,7 +557,7 @@ class ContentArchive_RecentRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.RecentAsks_Recent]
+/// [_i1.RecentAsksRecent]
 class RecentAsks_RecentRoute extends _i3.PageRouteInfo<void> {
   const RecentAsks_RecentRoute()
       : super(RecentAsks_RecentRoute.name, path: 'recent');
@@ -563,7 +566,7 @@ class RecentAsks_RecentRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.RecentAsks_Popular]
+/// [_i1.RecentAsksPopular]
 class RecentAsks_PopularRoute extends _i3.PageRouteInfo<void> {
   const RecentAsks_PopularRoute()
       : super(RecentAsks_PopularRoute.name, path: 'popular');
@@ -572,7 +575,7 @@ class RecentAsks_PopularRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.InspiringPeople_Creators]
+/// [_i1.InspiringPeopleCreators]
 class InspiringPeople_CreatorsRoute extends _i3.PageRouteInfo<void> {
   const InspiringPeople_CreatorsRoute()
       : super(InspiringPeople_CreatorsRoute.name, path: 'creators');
@@ -581,7 +584,7 @@ class InspiringPeople_CreatorsRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.InspiringPeople_Community]
+/// [_i1.InspiringPeopleCommunity]
 class InspiringPeople_CommunityRoute extends _i3.PageRouteInfo<void> {
   const InspiringPeople_CommunityRoute()
       : super(InspiringPeople_CommunityRoute.name, path: 'community');
@@ -590,7 +593,7 @@ class InspiringPeople_CommunityRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.FeaturedCollections_RecentlyFeatured]
+/// [_i1.FeaturedCollectionsRecentlyFeatured]
 class FeaturedCollections_RecentlyFeaturedRoute
     extends _i3.PageRouteInfo<void> {
   const FeaturedCollections_RecentlyFeaturedRoute()
@@ -601,7 +604,7 @@ class FeaturedCollections_RecentlyFeaturedRoute
 }
 
 /// generated route for
-/// [_i1.FeaturedCollections_Popular]
+/// [_i1.FeaturedCollectionsPopular]
 class FeaturedCollections_PopularRoute extends _i3.PageRouteInfo<void> {
   const FeaturedCollections_PopularRoute()
       : super(FeaturedCollections_PopularRoute.name, path: 'popular');

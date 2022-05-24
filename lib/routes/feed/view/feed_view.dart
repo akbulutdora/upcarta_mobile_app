@@ -1,18 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 import '../../../navigation/routes.gr.dart';
 
-import 'package:upcarta_mobile_app/util/colors.dart';
-import 'package:upcarta_mobile_app/util/styles.dart';
-
-final FirebaseAuth _auth = FirebaseAuth.instance;
-
 class FeedScreen extends StatefulWidget {
+  const FeedScreen({Key? key}) : super(key: key);
+
   static MaterialPage page() {
     return MaterialPage(
       child: FeedScreen(),

@@ -7,12 +7,12 @@ import '../../../util/colors.dart';
 import '../../../util/styles.dart';
 import '../collection_card.dart';
 
-class HorizontalContentList__Popular_Topics extends StatelessWidget {
-  const HorizontalContentList__Popular_Topics({Key? key}) : super(key: key);
+class HorizontalContentListPopularTopics extends StatelessWidget {
+  const HorizontalContentListPopularTopics({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -30,7 +30,7 @@ class HorizontalContentList__Popular_Topics extends StatelessWidget {
                   child: OutlinedButton(
                     style: outlinedButtonStyle,
                     onPressed: () {
-                      context.router.push(SeeAll_PopularTopicsRoute());
+                      context.router.push(const SeeAll_PopularTopicsRoute());
                     },
                     child: Text(
                       "View all",

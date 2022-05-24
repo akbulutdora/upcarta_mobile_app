@@ -6,7 +6,8 @@ import 'package:upcarta_mobile_app/util/colors.dart';
 class FeedContentList extends StatefulWidget {
   final List<Content> contentList;
 
-  FeedContentList({required this.contentList});
+  const FeedContentList({Key? key, required this.contentList})
+      : super(key: key);
 
   @override
   State<FeedContentList> createState() => _FeedContentListState();
@@ -52,7 +53,7 @@ class _FeedContentListState extends State<FeedContentList> {
                         ],
                       ),
                     ),
-                    Divider(),
+                    const Divider(),
                     ContentCard(content: contents[index]),
                   ],
                 ));

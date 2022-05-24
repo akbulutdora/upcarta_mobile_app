@@ -27,76 +27,73 @@ import '../app/app.dart';
       ),
       AutoRoute(
           path: 'see_all_collections_and_asks',
-          page: SeeAll_CollectionsAndAsks,
+          page: SeeAllCollectionsAndAsksView,
           children: [
             AutoRoute(
               path: 'recent',
               initial: true,
-              page: CollectionsAndAsks_Recent,
+              page: CollectionsAndAsksRecentView,
             ),
             AutoRoute(
               path: 'popular',
-              page: CollectionsAndAsks_Popular,
+              page: CollectionsAndAsksPopularView,
             ),
           ]),
       AutoRoute(
           path: 'see_all_content_archive',
-          page: SeeAll_ContentArchive,
+          page: SeeAllContentArchiveView,
           children: [
             AutoRoute(
               path: 'most_recommended',
               initial: true,
-              page: ContentArchive_MostRecommended,
+              page: ContentArchiveMostRecommendedView,
             ),
             AutoRoute(
               path: 'recent',
-              page: ContentArchive_Recent,
+              page: ContentArchiveRecent,
             ),
           ]),
-      AutoRoute(
-          path: 'see_all_recent_asks',
-          page: SeeAll_RecentAsks,
-          children: [
-            AutoRoute(
-              path: 'recent',
-              initial: true,
-              page: RecentAsks_Recent,
-            ),
-            AutoRoute(
-              path: 'popular',
-              page: RecentAsks_Popular,
-            ),
-          ]),
+      AutoRoute(path: 'see_all_recent_asks', page: SeeAllRecentAsks, children: [
+        AutoRoute(
+          path: 'recent',
+          initial: true,
+          page: RecentAsksRecent,
+        ),
+        AutoRoute(
+          path: 'popular',
+          page: RecentAsksPopular,
+        ),
+      ]),
       AutoRoute(
         path: 'see_all_popular_topics',
-        page: SeeAll_PopularTopics,
+        page: SeeAllPopularTopics,
       ),
       AutoRoute(
           path: 'see_all_inspiring_people',
-          page: SeeAll_InspiringPeople,
+          page: SeeAllInspiringPeople,
           children: [
             AutoRoute(
               path: 'creators',
               initial: true,
-              page: InspiringPeople_Creators,
+              page: InspiringPeopleCreators,
             ),
             AutoRoute(
               path: 'community',
-              page: InspiringPeople_Community,
+              page: InspiringPeopleCommunity,
             ),
           ]),
       AutoRoute(
           path: 'see_all_featured_collections',
-          page: SeeAll_FeaturedCollections,
+          page: SeeAllFeaturedCollections,
           children: [
             AutoRoute(
               path: 'recently_featured',
               initial: true,
-              page: FeaturedCollections_RecentlyFeatured,
+              page: FeaturedCollectionsRecentlyFeatured,
             ),
             AutoRoute(
               path: 'popular',
-              page: FeaturedCollections_Popular,
+              page: FeaturedCollectionsPopular,
             ),
           ]),
       AutoRoute(
@@ -122,11 +119,11 @@ import '../app/app.dart';
       ),
       AutoRoute(
         path: '/forgot',
-        page: resetPassword,
+        page: ResetPasswordView,
       ),
       AutoRoute(
         path: '/forgot_new',
-        page: resetPasswordNew,
+        page: ResetPasswordNew,
       ),
       AutoRoute(
         path: '/register',
@@ -134,7 +131,7 @@ import '../app/app.dart';
       ),
       AutoRoute(
         path: '/register_confirm',
-        page: myRegisterConfirm,
+        page: ConfirmRegisterView,
       ),
       AutoRoute(
         path: '/onboarding',

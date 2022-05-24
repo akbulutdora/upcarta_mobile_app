@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
 
-class SeeAll_CollectionsAndAsks extends StatefulWidget {
-  const SeeAll_CollectionsAndAsks({Key? key}) : super(key: key);
+class SeeAllCollectionsAndAsksView extends StatefulWidget {
+  const SeeAllCollectionsAndAsksView({Key? key}) : super(key: key);
 
   @override
-  State<SeeAll_CollectionsAndAsks> createState() =>
-      _SeeAll_CollectionsAndAsksState();
+  State<SeeAllCollectionsAndAsksView> createState() =>
+      _SeeAllCollectionsAndAsksViewState();
 }
 
-class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
+class _SeeAllCollectionsAndAsksViewState
+    extends State<SeeAllCollectionsAndAsksView> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -36,12 +37,11 @@ class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
                 fontWeight: FontWeight.w600,
                 fontSize: 18),
           ),
-          bottom: PreferredSize(
+          bottom: const PreferredSize(
             preferredSize: Size.fromHeight(36),
             child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child:
-                  SizedBox(height: 32, child: SearchBar_CollectionsAndAsks()),
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: SizedBox(height: 32, child: SearchBarCollectionsAndAsks()),
             ),
           ),
         ),
@@ -77,8 +77,8 @@ class _SeeAll_CollectionsAndAsksState extends State<SeeAll_CollectionsAndAsks> {
                 height: 580,
                 child: TabBarView(
                   children: <Widget>[
-                    CollectionsAndAsks_Recent(),
-                    CollectionsAndAsks_Popular()
+                    CollectionsAndAsksRecentView(),
+                    CollectionsAndAsksPopularView()
                   ],
                 ),
               )

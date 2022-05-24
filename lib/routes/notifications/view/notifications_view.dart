@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:upcarta_mobile_app/util/view_paths.dart';
 import "package:upcarta_mobile_app/models/models.dart" as models;
 
 final DateTime myDate = DateTime.utc(2022, 05, 18);
@@ -72,12 +69,12 @@ class NotificationsScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 24))),
         body: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             children: [
               NotificationsGroup(listOfItems: todayList, when: "Today"),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               NotificationsGroup(listOfItems: yesterdayList, when: "Yesterday"),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               NotificationsGroup(listOfItems: earlierList, when: "Earlier"),
             ]));
   }
@@ -110,20 +107,21 @@ class NotificationsGroup extends StatelessWidget {
                   shadows: const [
                     Shadow(offset: Offset(0, -5), color: Colors.black)
                   ])),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           ...listOfItems.map((item) {
             return Column(
               children: [
                 Row(
                   children: [
-                    CircleAvatar(radius: 24, backgroundColor: Colors.blue),
+                    const CircleAvatar(
+                        radius: 24, backgroundColor: Colors.blue),
                     Text(" ${item.username}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 24)),
-                    Text(" ${item.text}", style: TextStyle(fontSize: 24)),
+                    Text(" ${item.text}", style: const TextStyle(fontSize: 24)),
                   ],
                 ),
-                Divider(thickness: 1),
+                const Divider(thickness: 1),
               ],
             );
           }).toList(),

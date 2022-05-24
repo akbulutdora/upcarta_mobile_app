@@ -7,12 +7,12 @@ import '../../../util/styles.dart';
 import '../collection_card.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 
-class HorizontalContentList__ContentArchive extends StatelessWidget {
-  const HorizontalContentList__ContentArchive({Key? key}) : super(key: key);
+class HorizontalContentListContentArchive extends StatelessWidget {
+  const HorizontalContentListContentArchive({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -30,7 +30,7 @@ class HorizontalContentList__ContentArchive extends StatelessWidget {
                   child: OutlinedButton(
                     style: outlinedButtonStyle,
                     onPressed: () {
-                      context.router.push(SeeAll_ContentArchiveRoute());
+                      context.router.push(const SeeAllContentArchiveRoute());
                     },
                     child: Text(
                       "View all",

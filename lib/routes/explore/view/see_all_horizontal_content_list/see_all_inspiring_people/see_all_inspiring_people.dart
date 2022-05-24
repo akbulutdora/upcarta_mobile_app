@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
 
-class SeeAll_InspiringPeople extends StatefulWidget {
-  const SeeAll_InspiringPeople({Key? key}) : super(key: key);
+class SeeAllInspiringPeople extends StatefulWidget {
+  const SeeAllInspiringPeople({Key? key}) : super(key: key);
 
   @override
-  State<SeeAll_InspiringPeople> createState() => _SeeAll_InspiringPeopleState();
+  State<SeeAllInspiringPeople> createState() => _SeeAllInspiringPeopleState();
 }
 
-class _SeeAll_InspiringPeopleState extends State<SeeAll_InspiringPeople> {
+class _SeeAllInspiringPeopleState extends State<SeeAllInspiringPeople> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -39,7 +39,7 @@ class _SeeAll_InspiringPeopleState extends State<SeeAll_InspiringPeople> {
             preferredSize: Size.fromHeight(36),
             child: Padding(
               padding: EdgeInsets.only(left: 16, right: 16),
-              child: SizedBox(height: 32, child: SearchBar_People()),
+              child: SizedBox(height: 32, child: SearchBarPeople()),
             ),
           ),
         ),
@@ -78,8 +78,8 @@ class _SeeAll_InspiringPeopleState extends State<SeeAll_InspiringPeople> {
                 height: 580,
                 child: TabBarView(
                   children: <Widget>[
-                    InspiringPeople_Creators(),
-                    InspiringPeople_Community()
+                    InspiringPeopleCreators(),
+                    InspiringPeopleCommunity()
                   ],
                 ),
               )

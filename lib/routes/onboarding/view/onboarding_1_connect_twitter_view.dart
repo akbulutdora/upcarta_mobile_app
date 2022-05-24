@@ -61,7 +61,7 @@ class UserOnboarding1 extends StatelessWidget {
           margin: EdgeInsets.only(top: height * 0.05),
           child: ElevatedButton(
             onPressed: () {
-              context.router.push(UserOnboarding2Route());
+              context.router.push(const UserOnboarding2Route());
             },
             child: Text(
               "Connect Your Twitter",
@@ -87,7 +87,7 @@ class UserOnboarding1 extends StatelessWidget {
                 children: [
                   OutlinedButton(
                     onPressed: () {
-                      context.router.push(UserOnboarding3Route());
+                      context.router.push(const UserOnboarding3Route());
                     },
                     child: const Text(
                       "Skip",

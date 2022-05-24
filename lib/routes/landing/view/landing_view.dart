@@ -64,8 +64,7 @@ class _LandingPageState extends State<LandingPage> {
             _currentPageNotifier.value = idx;
             controller.animateToPage(idx,
                 duration: const Duration(milliseconds: 300),
-                curve: Interval(0, 1));
-            print("HERE HERE HERE ${controller.page}");
+                curve: const Interval(0, 1));
             setState(() {
               index = idx;
             });
@@ -90,7 +89,7 @@ class Page1 extends StatelessWidget {
         const Text("Discover",
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34)),
         const Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: EdgeInsets.symmetric(horizontal: 40),
           child: Text(
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.",
               textAlign: TextAlign.center,
@@ -142,12 +141,12 @@ class Page3 extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 17)),
         ),
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
         ElevatedButton(
             onPressed: () async {
               SharedPreferences prefs = await SharedPreferences.getInstance();
               prefs.setBool("landingCompleted", true);
-              context.router.replace(LoginScreenRoute());
+              context.router.replace(const LoginScreenRoute());
             },
             child: const Text("Let's Go", style: TextStyle(fontSize: 17)),
             style: ElevatedButton.styleFrom(
@@ -264,19 +263,19 @@ class _CirclePageIndicatorState extends State<CirclePageIndicator> {
             onTap: () => widget.onPageSelected == null
                 ? null
                 : widget.onPageSelected!(index),
-            child: Container(
+            child: SizedBox(
               width: size + widget.dotSpacing,
               child: Material(
                 color: widget.borderWidth > 0 ? borderColor : color,
                 type: MaterialType.circle,
-                child: Container(
+                child: SizedBox(
                   width: size,
                   height: size,
                   child: Center(
                     child: Material(
                       type: MaterialType.circle,
                       color: color,
-                      child: Container(
+                      child: SizedBox(
                         width: size - widget.borderWidth,
                         height: size - widget.borderWidth,
                       ),

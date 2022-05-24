@@ -87,7 +87,7 @@ class _UserOnboarding2State extends State<UserOnboarding2> {
         ),
         Expanded(
           child: ListView(
-            padding: EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             children: List<Widget>.generate(
               users.length,
               (index) => FollowWithRadio(
@@ -106,7 +106,7 @@ class _UserOnboarding2State extends State<UserOnboarding2> {
           ),
         ),
         Container(
-          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(
                 offset: Offset(0, 0), blurRadius: 10, color: Colors.black12)
           ]),

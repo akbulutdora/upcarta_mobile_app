@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 
-class ContentArchive_Recent extends StatefulWidget {
-  const ContentArchive_Recent({Key? key}) : super(key: key);
+class ContentArchiveRecent extends StatefulWidget {
+  const ContentArchiveRecent({Key? key}) : super(key: key);
 
   @override
-  State<ContentArchive_Recent> createState() => _ContentArchive_RecentState();
+  State<ContentArchiveRecent> createState() => _ContentArchiveRecentState();
 }
 
-class _ContentArchive_RecentState extends State<ContentArchive_Recent> {
+class _ContentArchiveRecentState extends State<ContentArchiveRecent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

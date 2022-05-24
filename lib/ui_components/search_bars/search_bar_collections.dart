@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class SearchBar_Collections extends StatefulWidget {
-  const SearchBar_Collections({Key? key}) : super(key: key);
+class SearchBarCollections extends StatefulWidget {
+  const SearchBarCollections({Key? key}) : super(key: key);
 
   @override
-  State<SearchBar_Collections> createState() => _SearchBar_CollectionsState();
+  State<SearchBarCollections> createState() => _SearchBarCollectionsState();
 }
 
-class _SearchBar_CollectionsState extends State<SearchBar_Collections> {
+class _SearchBarCollectionsState extends State<SearchBarCollections> {
   @override
   Widget build(BuildContext context) {
-    return buildSearchBar_Collections();
+    return buildSearchBarCollections();
   }
 }
 
 @override
-Widget buildSearchBar_Collections() => const TextField(
+Widget buildSearchBarCollections() => const TextField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
         hintText: 'Search for collections',

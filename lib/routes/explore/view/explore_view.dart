@@ -6,7 +6,7 @@ import 'package:upcarta_mobile_app/util/colors.dart';
 
 class ExploreScreen extends StatefulWidget {
   static MaterialPage page(int currentTab) {
-    return MaterialPage(child: ExploreScreen());
+    return const MaterialPage(child: ExploreScreen());
   }
 
   const ExploreScreen({Key? key}) : super(key: key);
@@ -73,11 +73,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 height: 490,
                 child: Expanded(
                   child: ListView(children: const <Widget>[
-                    HorizontalContentList__FeaturedCollection(),
-                    HorizontalContentList__InspiringPeople(),
-                    HorizontalContentList__Popular_Topics(),
-                    HorizontalContentList__RecentAsks(),
-                    HorizontalContentList__ContentArchive(),
+                    HorizontalContentListFeaturedCollection(),
+                    HorizontalContentListInspiringPeople(),
+                    HorizontalContentListPopularTopics(),
+                    HorizontalContentListRecentAsks(),
+                    HorizontalContentListContentArchive(),
                   ]),
                 ),
               ),
@@ -120,9 +120,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       : AppColors.secondary)),
         ),
         //avatar: _catList[i].icon,
-        padding: EdgeInsets.all(0.5),
+        padding: const EdgeInsets.all(0.5),
         backgroundColor: Colors.transparent,
-        shape: StadiumBorder(side: BorderSide(color: Color(0xffDEDEDE))),
+        shape: const StadiumBorder(side: BorderSide(color: Color(0xffDEDEDE))),
         disabledColor: AppColors.chip,
         selectedColor: AppColors.selected,
         showCheckmark: false,

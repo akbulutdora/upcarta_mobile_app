@@ -2,15 +2,11 @@ library top_view;
 
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../../util/styles.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 import 'package:upcarta_mobile_app/routes/feed/feed.dart';
 
 part "top_view_header.dart";
-
-final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class TopView extends StatefulWidget {
   const TopView({Key? key}) : super(key: key);

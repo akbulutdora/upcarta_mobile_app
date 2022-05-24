@@ -93,7 +93,7 @@ class UserOnboarding4 extends StatelessWidget {
               )),
         ),
         Container(
-          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(
                 offset: Offset(0, 0), blurRadius: 10, color: Colors.black12)
           ]),
@@ -153,7 +153,7 @@ class Topics extends StatelessWidget {
             fontWeight: FontWeight.w500,
             letterSpacing: 0.2,
             decoration: TextDecoration.underline,
-            decorationColor: Color(0xFF4E89FD),
+            decorationColor: const Color(0xFF4E89FD),
             decorationStyle: TextDecorationStyle.solid,
             decorationThickness: 1,
             shadows: [
@@ -202,11 +202,11 @@ class _CustomChipState extends State<CustomChip> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(widget.label,
-                style: TextStyle(fontSize: 14, color: Colors.black)),
-            SizedBox(width: 5),
+                style: const TextStyle(fontSize: 14, color: Colors.black)),
+            const SizedBox(width: 5),
             isSelected
-                ? Icon(Icons.check, color: Colors.white, size: 18)
-                : Icon(Icons.add, color: Colors.blue, size: 18)
+                ? const Icon(Icons.check, color: Colors.white, size: 18)
+                : const Icon(Icons.add, color: Colors.blue, size: 18)
           ],
         ),
         selectedColor: Colors.blue[100],

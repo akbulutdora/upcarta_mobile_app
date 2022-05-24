@@ -71,10 +71,10 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
         ),
         body: const TabBarView(
           children: <Widget>[
-            myLibrarySavedScreen(),
-            myLibraryCompletedScreen(),
-            myLibraryCollectionsScreen(),
-            myLibraryRecommendsScreen(),
+            MyLibrarySavedScreen(),
+            LibraryCompletedView(),
+            LibraryCollectionsView(),
+            LibraryRecommendsView(),
           ],
         ),
       ),

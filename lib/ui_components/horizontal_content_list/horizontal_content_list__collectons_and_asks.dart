@@ -28,7 +28,8 @@ class HorizontalContentList extends StatelessWidget {
                   child: OutlinedButton(
                     style: outlinedButtonStyle,
                     onPressed: () {
-                      context.router.push(SeeAll_CollectionsAndAsksRoute());
+                      context.router
+                          .push(const SeeAllCollectionsAndAsksRoute());
                     },
                     child: Text(
                       "View all",

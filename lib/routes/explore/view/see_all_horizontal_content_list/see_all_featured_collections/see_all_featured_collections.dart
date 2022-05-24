@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
 
-class SeeAll_FeaturedCollections extends StatefulWidget {
-  const SeeAll_FeaturedCollections({Key? key}) : super(key: key);
+class SeeAllFeaturedCollections extends StatefulWidget {
+  const SeeAllFeaturedCollections({Key? key}) : super(key: key);
 
   @override
-  State<SeeAll_FeaturedCollections> createState() =>
-      _SeeAll_FeaturedCollectionsState();
+  State<SeeAllFeaturedCollections> createState() =>
+      _SeeAllFeaturedCollectionsState();
 }
 
-class _SeeAll_FeaturedCollectionsState
-    extends State<SeeAll_FeaturedCollections> {
+class _SeeAllFeaturedCollectionsState extends State<SeeAllFeaturedCollections> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -41,7 +40,7 @@ class _SeeAll_FeaturedCollectionsState
             preferredSize: Size.fromHeight(36),
             child: Padding(
               padding: EdgeInsets.only(left: 16, right: 16),
-              child: SizedBox(height: 32, child: SearchBar_Collections()),
+              child: SizedBox(height: 32, child: SearchBarCollections()),
             ),
           ),
         ),
@@ -80,8 +79,8 @@ class _SeeAll_FeaturedCollectionsState
                 height: 580,
                 child: TabBarView(
                   children: <Widget>[
-                    FeaturedCollections_RecentlyFeatured(),
-                    FeaturedCollections_Popular()
+                    FeaturedCollectionsRecentlyFeatured(),
+                    FeaturedCollectionsPopular()
                   ],
                 ),
               )

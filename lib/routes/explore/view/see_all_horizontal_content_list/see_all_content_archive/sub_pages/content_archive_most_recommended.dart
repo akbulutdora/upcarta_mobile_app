@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 
-class ContentArchive_MostRecommended extends StatefulWidget {
-  const ContentArchive_MostRecommended({Key? key}) : super(key: key);
+class ContentArchiveMostRecommendedView extends StatefulWidget {
+  const ContentArchiveMostRecommendedView({Key? key}) : super(key: key);
 
   @override
-  State<ContentArchive_MostRecommended> createState() =>
-      _ContentArchive_MostRecommendedState();
+  State<ContentArchiveMostRecommendedView> createState() =>
+      _ContentArchiveMostRecommendedViewState();
 }
 
-class _ContentArchive_MostRecommendedState
-    extends State<ContentArchive_MostRecommended> {
+class _ContentArchiveMostRecommendedViewState
+    extends State<ContentArchiveMostRecommendedView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
