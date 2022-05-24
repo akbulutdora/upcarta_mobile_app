@@ -49,9 +49,14 @@ class AuthRepository {
   }) async {
     try {
       FireStoreService fireStoreService = FireStoreService();
+
       var user = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+
+      _controller.add(AppStatus.authenticated);
+
       fireStoreService.createPerson(user, username, name, email);
+
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool("authenticated", true);
     } catch (_) {}
