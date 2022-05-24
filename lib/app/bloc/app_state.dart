@@ -21,6 +21,10 @@ class AppState extends Equatable {
       : this._(
           status: AppStatus.unauthenticated,
         );
+  const AppState.prelanded()
+      : this._(
+          status: AppStatus.prelanded,
+        );
 
   @override
   List<Object> get props => [status, user];

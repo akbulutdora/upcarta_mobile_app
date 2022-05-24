@@ -130,7 +130,8 @@ class SignupForm extends StatelessWidget {
     return BlocListener<SignupCubit, SignupState>(
       listener: (context, state) {
         if (state.status == SignupStatus.success) {
-          AutoRouter.of(context).push(const HomeRoute());
+          // AutoRouter.of(context).push(const HomeRoute());
+          AutoRouter.of(context).replaceAll([const OnboardingScreenRoute()]);
         } else if (state.status == SignupStatus.error) {
           // ERROR
           // ScaffoldMessenger.of(context)

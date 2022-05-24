@@ -54,6 +54,12 @@ const kTextStyle6 = TextStyle(
     fontSize: 17,
     color: Colors.black);
 
+const exploreCardsFont = TextStyle(
+    fontFamily: "SF Compact Text",
+    fontWeight: FontWeight.w500,
+    fontSize: 17,
+    color: Colors.black);
+
 const kTextStyle7 = TextStyle(
     fontFamily: "SF Compact Text",
     fontWeight: FontWeight.normal,

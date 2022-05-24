@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
@@ -235,6 +236,14 @@ class _LoginScreen extends State<LoginScreen> {
                               },
                               child: const Text("LOG IN")),
                         ],
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.setBool("landed", false);
+                        },
+                        child: const Text("Press to cancel landed"),
                       ),
                     ],
                   ),

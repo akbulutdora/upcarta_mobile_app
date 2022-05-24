@@ -1,9 +1,4 @@
 export 'horizontal_content_list/horizontal_content_list__collectons_and_asks.dart';
-export 'horizontal_content_list/horizontal_content_list__recent_asks.dart';
-export 'horizontal_content_list/horizontal_content_list__popular_topics.dart';
-export 'horizontal_content_list/horizontal_content_list__inspiring_people.dart';
-export 'horizontal_content_list/horizontal_content_list__featured_collections.dart';
-export 'horizontal_content_list/horizontal_content_list__content_archive.dart';
 export 'collection_card.dart';
 export 'feed_content_list.dart';
 export 'content_card.dart';
@@ -19,5 +14,5 @@ export 'search_bars/search_bar_general.dart';
 export 'search_bars/search_bar_people.dart';
 export 'search_bars/search_bar_topics.dart';
 
-export 'chips/WrappedSinglChip__Explore.dart';
-export 'chips/WrappedSingleChip__YourLibrary.dart';
+export 'chips/wrapped_single_chip_explore.dart';
+export 'chips/wrapped_single_chip_library.dart';
