@@ -158,6 +158,10 @@ class AppRouter extends _i3.RootStackRouter {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.FeaturedCollectionsPopular());
     },
+    EditOnboardingRoute.name: (routeData) {
+      return _i3.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.EditOnboarding());
+    },
     UserOnboarding1Route.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.UserOnboarding1());
@@ -299,8 +303,10 @@ class AppRouter extends _i3.RootStackRouter {
         _i3.RouteConfig(OnboardingScreenRoute.name,
             path: '/onboarding',
             children: [
-              _i3.RouteConfig(UserOnboarding1Route.name,
+              _i3.RouteConfig(EditOnboardingRoute.name,
                   path: '', parent: OnboardingScreenRoute.name),
+              _i3.RouteConfig(UserOnboarding1Route.name,
+                  path: 'userOnboarding1', parent: OnboardingScreenRoute.name),
               _i3.RouteConfig(UserOnboarding2Route.name,
                   path: 'userOnboarding2', parent: OnboardingScreenRoute.name),
               _i3.RouteConfig(UserOnboarding3Route.name,
@@ -644,9 +650,18 @@ class FeaturedCollectionsPopularRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [_i1.EditOnboarding]
+class EditOnboardingRoute extends _i3.PageRouteInfo<void> {
+  const EditOnboardingRoute() : super(EditOnboardingRoute.name, path: '');
+
+  static const String name = 'EditOnboardingRoute';
+}
+
+/// generated route for
 /// [_i1.UserOnboarding1]
 class UserOnboarding1Route extends _i3.PageRouteInfo<void> {
-  const UserOnboarding1Route() : super(UserOnboarding1Route.name, path: '');
+  const UserOnboarding1Route()
+      : super(UserOnboarding1Route.name, path: 'userOnboarding1');
 
   static const String name = 'UserOnboarding1Route';
 }

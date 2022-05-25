@@ -25,6 +25,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
   bool topics = false;
   bool activity = false;
   bool messages = false;
+
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -34,7 +35,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             backgroundColor: Colors.white,
             titleSpacing: 0.0,
             title: const Text(
-              'Notifications',
+              'Notification Settings',
               style: TextStyle(
                   fontFamily: "SFCompactText-Medium",
                   color: Colors.black,
@@ -55,17 +56,13 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             padding: EdgeInsets.all(height * 0.016),
             child: ListView(
               children: <Widget>[
-                const InkWell(
-                  child: ListTile(
-                    title: Text(
-                      "Notification Preferences",
-                      style: TextStyle(
-                        fontFamily: "SFCompactText",
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                        color: Colors.black,
-                      ),
-                    ),
+                const Text(
+                  "Notification Preferences",
+                  style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                    color: Colors.black,
                   ),
                 ),
                 const Divider(

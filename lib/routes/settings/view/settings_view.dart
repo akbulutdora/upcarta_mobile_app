@@ -56,7 +56,7 @@ class _SettingsState extends State<Settings> {
                           context.router.push(const EmailSettingsRoute());
                         },
                         child: const ListTile(
-                            title: Text('Email Settings',
+                            title: Text('Email',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,
@@ -69,9 +69,11 @@ class _SettingsState extends State<Settings> {
                             )))),
                 Card(
                     child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.router.push(const PasswordSettingsRoute());
+                        },
                         child: const ListTile(
-                            title: Text('Password Settings',
+                            title: Text('Password',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,
@@ -89,7 +91,7 @@ class _SettingsState extends State<Settings> {
                               .push(const NotificationSettingsRoute());
                         },
                         child: const ListTile(
-                            title: Text('Notification Settings',
+                            title: Text('Notifications',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,

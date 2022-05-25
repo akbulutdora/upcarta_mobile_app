@@ -24,6 +24,7 @@ export '../routes/edit_profile/view/edit_profile_view.dart';
 export '../routes/settings/view/notification_settings_view.dart';
 export '../ui_components/components.dart';
 export '../routes/splash/view/initial_view.dart';
+export '../routes/onboarding/view/edit_onboarding_view.dart';
 export '../routes/onboarding/view/onboarding_0_view.dart';
 export '../routes/onboarding/view/onboarding_1_connect_twitter_view.dart';
 export '../routes/onboarding/view/onboarding_2_follow_from_twitter_view.dart';
