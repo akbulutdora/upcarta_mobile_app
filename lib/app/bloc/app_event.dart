@@ -11,6 +11,7 @@ class AppLogoutRequested extends AppEvent {}
 
 class AppStatusChanged extends AppEvent {
   const AppStatusChanged(this.status);
+
   final AppStatus status;
 
   @override
@@ -19,16 +20,12 @@ class AppStatusChanged extends AppEvent {
 
 class AppUserChanged extends AppEvent {
   const AppUserChanged(this.user);
-  final AuthUser user;
+
+  final User user;
 
   @override
   List<Object> get props => [user];
 }
 
-// class AppLanded extends AppEvent {
-//   const AppLanded(this.status);
-//   final AppStatus status;
-
-//   @override
-//   List<Object> get props => [status];
-// }
+class AppLanded extends AppEvent {}
+class AppLandedCanceled extends AppEvent {}

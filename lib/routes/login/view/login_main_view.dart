@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,6 +7,8 @@ import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+
+import '../../../app/bloc/app_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -34,15 +37,6 @@ class _LoginScreen extends State<LoginScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.notifications_none_outlined,
-                  color: AppColors.secondary,
-                  size: 30,
-                ))
-          ],
           elevation: 0,
           titleSpacing: 0.0,
           title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -237,14 +231,21 @@ class _LoginScreen extends State<LoginScreen> {
                               child: const Text("LOG IN")),
                         ],
                       ),
-                      TextButton(
-                        onPressed: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          prefs.setBool("landed", false);
+                      BlocListener<AppBloc, AppState>(
+                        listener: (context, state) async {
+                          // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
+                          if (state == const AppState.prelanded()) {
+                            context.router.replace(const LandingRoute());
+                          }
                         },
-                        child: const Text("Press to cancel landed"),
-                      ),
+                        child: TextButton(
+                          onPressed: () {
+                            context.read<AppBloc>().add(AppLandedCanceled());
+                            print("landed canceled\n\n\n");
+                          },
+                          child: const Text("Press to cancel landed"),
+                        ),
+                      )
                     ],
                   ),
                 ),

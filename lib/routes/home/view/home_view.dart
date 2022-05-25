@@ -6,6 +6,8 @@ import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 
+import '../../../models/auth_user.dart';
+
 class Home extends StatefulWidget {
   static MaterialPage page(int currentTab) {
     return const MaterialPage(

@@ -1,17 +1,18 @@
 part of 'login_cubit.dart';
 
-enum LoginStatus { initial, submitting, success, error }
+enum LoginStatus { initial, submitting, success, submissionFailure }
 
 class LoginState extends Equatable {
   final String email;
   final String password;
   final LoginStatus status;
+  final String? errorMessage;
 
-  const LoginState({
-    required this.email,
-    required this.password,
-    required this.status,
-  });
+  const LoginState(
+      {required this.email,
+      required this.password,
+      required this.status,
+      this.errorMessage});
 
   factory LoginState.initial() {
     return const LoginState(
@@ -25,10 +26,12 @@ class LoginState extends Equatable {
     String? email,
     String? password,
     LoginStatus? status,
+    String? errorMessage,
   }) {
     return LoginState(
         email: email ?? this.email,
         password: password ?? this.password,
-        status: status ?? this.status);
+        status: status ?? this.status,
+        errorMessage: errorMessage ?? this.errorMessage);
   }
 }

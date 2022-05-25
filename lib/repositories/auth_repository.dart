@@ -6,7 +6,7 @@ import 'package:upcarta_mobile_app/service/firestore_service.dart';
 
 enum AppStatus { authenticated, unauthenticated, uninitialized, prelanded }
 
-class AuthRepository {
+class AuthenticationRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
   //final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -29,15 +29,15 @@ class AuthRepository {
     yield* _controller.stream;
   }
 
-  AuthRepository({
+  AuthenticationRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
   }) : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance;
 
-  var currentUser = AuthUser.empty;
+  var currentUser = User.empty;
 
-  Stream<AuthUser> get user {
+  Stream<User> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      final user = firebaseUser == null ? AuthUser.empty : firebaseUser.toUser;
+      final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
       currentUser = user;
       return user;
     });
@@ -69,15 +69,23 @@ class AuthRepository {
     required String password,
   }) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      // TODO: REMOVE THESE AND FIND BEST PRACTICE
+      // await Future.delayed(
+      //   const Duration(milliseconds: 500),
+      //       () => _controller.add(AppStatus.authenticated),
+      // );
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // prefs.setBool("authenticated", true);
+      final credential = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      await Future.delayed(
-        const Duration(milliseconds: 500),
-        () => _controller.add(AppStatus.authenticated),
-      );
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool("authenticated", true);
-    } catch (_) {}
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+
+      }
+    }
   }
 
   Future<void> logOut() async {
@@ -93,8 +101,8 @@ class AuthRepository {
 }
 
 extension on firebase_auth.User {
-  AuthUser get toUser {
-    return AuthUser(
+  User get toUser {
+    return User(
       id: uid,
       email: email!,
       name: displayName,

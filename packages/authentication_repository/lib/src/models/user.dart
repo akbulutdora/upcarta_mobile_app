@@ -1,13 +1,26 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part "auth_user.g.dart";
+part "user.g.dart";
 
+/// {@template user}
+/// User model
+///
+/// [User.empty] represents an unauthenticated user.
+/// {@endtemplate}
+///
 @JsonSerializable()
 class User extends Equatable {
-  final String id;
-  final String? name;
+  /// The current user's email address.
   final String? email;
+
+  /// The current user's id.
+  final String id;
+
+  /// The current user's name (display name).
+  final String? name;
+
+  /// Url for the current user's photo.
   final String? photoURL;
   final String? username;
   final int followers = 0;
@@ -22,10 +35,11 @@ class User extends Equatable {
   final List<int>? asksIDs;
   final String? joinDate;
 
+  /// {@macro user}
   const User({
     required this.id,
-    this.name,
     this.email,
+    this.name,
     this.photoURL,
     this.username,
     this.bio,
@@ -37,18 +51,14 @@ class User extends Equatable {
     this.followerIDs,
     this.followingIDs,
   });
-  static const empty = User(
-      id: "",
-      name: "",
-      photoURL: "",
-      email: "",
-      username: "",
-      bio: "",
-      recommendationsID: "",
-      savesID: "",
-      joinDate: "");
 
+  /// Empty user which represents an unauthenticated user.
+  static const empty = User(id: '');
+
+  /// Convenience getter to determine whether the current user is empty.
   bool get isEmpty => this == User.empty;
+
+  /// Convenience getter to determine whether the current user is not empty.
   bool get isNotEmpty => this != User.empty;
 
   factory User.fromJson(Map<String, dynamic> json) =>
@@ -56,10 +66,5 @@ class User extends Equatable {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  List<Object?> get props => [
-        id,
-        name,
-        photoURL,
-        email,
-      ];
+  List<Object?> get props => [email, id, name, photoURL];
 }

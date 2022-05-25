@@ -1,6 +1,8 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
+
+// import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
@@ -32,15 +34,6 @@ class _MyRegisterState extends State<MyRegister> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.notifications_none_outlined,
-                  color: AppColors.secondary,
-                  size: 30,
-                ))
-          ],
           elevation: 0,
           titleSpacing: 0.0,
           title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -60,7 +53,8 @@ class _MyRegisterState extends State<MyRegister> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: BlocProvider<SignupCubit>(
-            create: (_) => SignupCubit(context.read<AuthRepository>()),
+            create: (_) =>
+                SignupCubit(context.read<AuthenticationRepository>()),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -134,7 +128,7 @@ class SignupForm extends StatelessWidget {
           AutoRouter.of(context).replaceAll([const OnboardingScreenRoute()]);
           // AutoRouter.of(context).push(const OnboardingScreenRoute());
 
-        } else if (state.status == SignupStatus.error) {
+        } else if (state.status == SignupStatus.submissionFailure) {
           // ERROR
           // ScaffoldMessenger.of(context)
           //   ..hideCurrentSnackBar()

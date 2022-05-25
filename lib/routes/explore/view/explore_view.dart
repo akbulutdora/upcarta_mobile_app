@@ -5,9 +5,9 @@ import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
-
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
+import '../../../models/auth_user.dart';
 
 class ExploreScreen extends StatefulWidget {
   static MaterialPage page(int currentTab) {
@@ -136,6 +136,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             alignment: Alignment.topLeft,
                             child: const WrappedSingleChip(),
                           ),
+                          Center(
+                              child: Text("The user typed ${state.searchKey}")),
                         ],
                       );
                     } else if (state.status == ExploreStatus.typing) {
@@ -174,8 +176,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return BlocBuilder<ExploreCubit, ExploreState>(
       builder: (context, state) {
         return TextField(
-          onChanged: (value) {
+          onSubmitted: ((value) {
+            context.read<ExploreCubit>().submitSearch();
+          }),
+          onChanged: (value) async {
             context.read<ExploreCubit>().searchKeyChanged(value);
+            await Future.delayed(const Duration(seconds: 1));
+            context.read<ExploreCubit>().submitSearch();
           },
           onEditingComplete: () {
             context.read<ExploreCubit>().submitSearch();
@@ -275,7 +282,9 @@ class ExploreCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        AutoRouter.of(context).push(route);
+        // AutoRouter.of(context).push(route);
+        context.read<ExploreCubit>().searchKeyChanged(text);
+        context.read<ExploreCubit>().submitSearch();
       },
       child: Card(
         elevation: 0,
