@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
+import 'package:upcarta_mobile_app/app/bloc/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
@@ -24,11 +25,16 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: _authRepository,
-      child: BlocProvider(
-        create: (_) => AppBloc(
-          authRepository: _authRepository,
-          sharedPrefs: sharedPreferences,
-        ),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => AppBloc(
+              authRepository: _authRepository,
+              sharedPrefs: sharedPreferences,
+            ),
+          ),
+          BlocProvider(create: (_) => ThemeCubit(sharedPreferences)),
+        ],
         child: const AppView(),
       ),
     );
@@ -50,12 +56,16 @@ class _AppViewState extends State<AppView> {
   final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Upcarta',
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      routerDelegate: _appRouter.delegate(),
-      theme: ThemeData.light(),
-      builder: (context, router) => router!,
+    return BlocBuilder<ThemeCubit, ThemeData>(
+      builder: (_, theme) {
+        return MaterialApp.router(
+          title: 'Upcarta',
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          routerDelegate: _appRouter.delegate(),
+          theme: theme,
+          builder: (context, router) => router!,
+        );
+      },
     );
   }
 }

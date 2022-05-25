@@ -24,7 +24,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       : _authRepository = authRepository,
         _sharedPrefs = sharedPrefs,
         super(const AppState.uninitialized()) {
-    // on<AppStatusChanged>(_onAppStatusChanged); TODO: HANDLE
     on<AppLogoutRequested>(_onLogoutRequested);
     on<AppUserChanged>(_onAppUserChanged);
     on<AppLanded>(_onLanded);
