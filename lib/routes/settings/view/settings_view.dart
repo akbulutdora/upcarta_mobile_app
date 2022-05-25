@@ -52,9 +52,11 @@ class _SettingsState extends State<Settings> {
               children: <Widget>[
                 Card(
                     child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.router.push(const EmailSettingsRoute());
+                        },
                         child: const ListTile(
-                            title: Text('Change Email',
+                            title: Text('Email Settings',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,
@@ -69,7 +71,7 @@ class _SettingsState extends State<Settings> {
                     child: InkWell(
                         onTap: () {},
                         child: const ListTile(
-                            title: Text('Change Password',
+                            title: Text('Password Settings',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,
@@ -87,7 +89,7 @@ class _SettingsState extends State<Settings> {
                               .push(const NotificationSettingsRoute());
                         },
                         child: const ListTile(
-                            title: Text('Notifications',
+                            title: Text('Notification Settings',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,
