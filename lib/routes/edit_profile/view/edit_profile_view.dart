@@ -52,48 +52,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Connect Accounts",
-              style: TextStyle(
-                fontFamily: "SFCompactText",
-                fontWeight: FontWeight.w700,
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-            const Divider(
-              color: Colors.grey,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    backgroundColor: Colors.lightBlue,
-                    padding: EdgeInsets.all(height * 0.02)),
-                child: Text(
-                  'Connect to Twitter',
-                  style: TextStyle(color: Colors.white, fontSize: height / 50),
-                ),
-              ),
-              OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    side: const BorderSide(color: Colors.black),
-                    padding: EdgeInsets.all(height * 0.02)),
-                child: Text(
-                  'Connect to Google',
-                  style: TextStyle(color: Colors.black, fontSize: height / 50),
-                ),
-              ),
-            ]),
-            const Divider(
-              color: Colors.grey,
-            ),
-            SizedBox(height: height * 0.012),
-            const Text(
               "Credentials",
               style: TextStyle(
                 fontFamily: "SFCompactText",

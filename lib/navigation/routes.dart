@@ -149,6 +149,11 @@ import '../app/app.dart';
         children: [
           AutoRoute(
             path: '',
+            name: 'EditOnboardingRoute',
+            page: EditOnboarding,
+          ),
+          AutoRoute(
+            path: 'userOnboarding1',
             name: 'UserOnboarding1Route',
             page: UserOnboarding1,
           ),
