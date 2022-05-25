@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/bloc/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/routes/login/bloc/login_cubit.dart';
 
 class Settings extends StatefulWidget {
   static MaterialPage page() {
@@ -104,31 +106,32 @@ class _SettingsState extends State<Settings> {
                               Icons.notifications,
                               color: Colors.black,
                             )))),
-                Card(
-                    child: InkWell(
-                  child: SwitchListTile(
-                    title: const Text(
-                      'Dark Mode',
-                      style: TextStyle(
-                        fontFamily: "SFCompactText",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                        color: Colors.black,
+                BlocBuilder<ThemeCubit, ThemeData>(
+                  builder: (_, theme) {
+                    return Card(
+                        child: InkWell(
+                      child: SwitchListTile(
+                        title: const Text(
+                          'Dark Mode',
+                          style: TextStyle(
+                            fontFamily: "SFCompactText",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
+                        ),
+                        value: theme.brightness == Brightness.dark,
+                        onChanged: (bool value) {
+                          context.read<ThemeCubit>().toggleTheme();
+                        },
+                        secondary: const Icon(
+                          Icons.brightness_2,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    value: darkMode,
-                    onChanged: (bool value) {
-                      setState(() {
-                        darkMode = value;
-                        context.read<ThemeCubit>().toggleTheme();
-                      });
-                    },
-                    secondary: const Icon(
-                      Icons.brightness_2,
-                      color: Colors.black,
-                    ),
-                  ),
-                )),
+                    ));
+                  },
+                ),
                 Card(
                     child: InkWell(
                         onTap: () {},
@@ -145,7 +148,12 @@ class _SettingsState extends State<Settings> {
                         ))),
                 Card(
                   child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        // TODO: CHECK THIS
+                        context.read<AppBloc>().add(AppLogoutRequested());
+                        AutoRouter.of(context)
+                            .replaceAll([const LoginScreenRoute()]);
+                      },
                       child: const ListTile(
                           title: Text(
                         'Logout',

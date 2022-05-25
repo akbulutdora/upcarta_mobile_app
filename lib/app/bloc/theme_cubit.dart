@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
+import 'package:upcarta_mobile_app/util/theme.dart';
 
 class ThemeCubit extends Cubit<ThemeData> {
   /// {@macro brightness_cubit}
@@ -13,20 +14,8 @@ class ThemeCubit extends Cubit<ThemeData> {
 
   final SharedPreferences _sharedPrefs;
 
-  static final _lightTheme = ThemeData(
-    primaryColor: AppColors.primary,
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      foregroundColor: Colors.white,
-    ),
-    brightness: Brightness.light,
-  );
-
-  static final _darkTheme = ThemeData(
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      foregroundColor: Colors.black,
-    ),
-    brightness: Brightness.dark,
-  );
+  static final _lightTheme = lightTheme;
+  static final _darkTheme = darkTheme;
 
   /// Toggles the current brightness between light and dark.
   void toggleTheme() {
