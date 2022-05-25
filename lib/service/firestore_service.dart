@@ -47,7 +47,7 @@ class FireStoreService {
   }
 
   // CREATE A USER WITH GIVEN AUTH CREDENTIALS
-  Future<User?> createPerson(user, username, name, email) async {
+  Future<OldUser?> createPerson(user, username, name, email) async {
     String savesID;
     String recomID;
 
@@ -81,7 +81,7 @@ class FireStoreService {
         .add(recommendationsCollection)
         .then((DocumentReference doc) => doc.id);
 
-    final thisUser = User(
+    final thisUser = OldUser(
       id: user.user!.uid,
       username: username,
       email: email,

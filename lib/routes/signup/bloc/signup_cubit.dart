@@ -1,11 +1,12 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
+// import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 
 part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
-  final AuthRepository _authRepository;
+  final AuthenticationRepository _authRepository;
   SignupCubit(this._authRepository) : super(SignupState.initial());
 
   void emailChanged(String value) {
@@ -30,12 +31,17 @@ class SignupCubit extends Cubit<SignupState> {
     } //to avoid sending multiple reqs at the same time
     emit(state.copyWith(status: SignupStatus.submitting));
     try {
-      await _authRepository.signup(
+      await _authRepository.signUp(
           email: state.email,
-          password: state.password,
-          name: state.name,
-          username: state.username);
+          password: state.password,);
       emit(state.copyWith(status: SignupStatus.success));
+    } on SignUpWithEmailAndPasswordFailure catch (e) {
+      emit(
+        state.copyWith(
+          errorMessage: e.message,
+          status: SignupStatus.submissionFailure,
+        ),
+      );
     } catch (_) {}
   }
 }

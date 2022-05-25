@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "user.g.dart";
 
 @JsonSerializable()
-class User extends Equatable {
+class OldUser extends Equatable {
   final String id;
   final String name;
   final String username;
@@ -22,7 +22,7 @@ class User extends Equatable {
   final List<int>? asksIDs;
   final DateTime? joinDate;
 
-  User({
+  OldUser({
     required this.username,
     required this.id,
     required this.name,
@@ -41,7 +41,7 @@ class User extends Equatable {
     this.asksIDs,
   });
 
-  static final empty = User(
+  static final empty = OldUser(
     id: "",
     name: "",
     username: "",
@@ -55,11 +55,11 @@ class User extends Equatable {
     savesID: "",
   );
 
-  bool get isEmpty => this == User.empty;
-  bool get isNotEmpty => this != User.empty;
+  bool get isEmpty => this == OldUser.empty;
+  bool get isNotEmpty => this != OldUser.empty;
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  factory OldUser.fromJson(Map<String, dynamic> json) => _$OldUserFromJson(json);
+  Map<String, dynamic> toJson() => _$OldUserToJson(this);
 
   @override
   List<Object?> get props => [

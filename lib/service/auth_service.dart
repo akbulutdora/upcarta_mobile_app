@@ -56,7 +56,7 @@ class AuthService {
         .add(recommendationsCollection)
         .then((DocumentReference doc) => doc.id);
 
-    final thisUser = user_model.User(
+    final thisUser = user_model.OldUser(
       id: user.user!.uid,
       username: username,
       email: email,

@@ -8,7 +8,8 @@ export '../routes/explore/view/explore_view.dart';
 export '../routes/new_action/view/new_action_view.dart';
 export '../routes/feed/view/latest_view.dart';
 export '../routes/home/view/home_view.dart';
-
+export '../routes/settings/view/email_settings_view.dart';
+export '../routes/settings/view/password_settings_view.dart';
 export '../routes/feed/view/top_view.dart';
 export '../routes/signup/view/register_view.dart';
 export '../routes/forgot_password/view/forgotpass_view.dart';

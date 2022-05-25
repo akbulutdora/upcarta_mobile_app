@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fire_auth;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import '../../../models/auth_user.dart';
 import '../../../models/user.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
@@ -151,13 +152,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleImage(
-                  imageProvider: NetworkImage(thisUser.avatar),
+                  imageProvider: NetworkImage(thisUser.photoURL!),
                   //widget.user.profileImageUrl),
                   imageRadius: 55.0,
                 ),
                 Text(
                   //widget.user.name,
-                  thisUser.name,
+                  thisUser.name!,
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.bold,
@@ -210,7 +211,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                       ),
                 Text(
-                  thisUser.bio,
+                  thisUser.bio!,
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.normal,
@@ -326,7 +327,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       (res) {
         if (res.data() != null) {
           User myUser = User.fromJson(res.data()!);
-          myUser.avatar = url;
+          //myUser.photoURL = url;
           return myUser;
         }
         return null;

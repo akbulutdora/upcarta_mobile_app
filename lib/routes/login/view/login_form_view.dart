@@ -1,14 +1,17 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
+// import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/routes/login/login.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 class LoginScreen2 extends StatefulWidget {
   @override
@@ -45,37 +48,27 @@ class _LoginScreen2 extends State<LoginScreen2> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.logout,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                context.read<AppBloc>().add(AppLogoutRequested());
-              },
-            ),
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.notifications_none_outlined,
-                  color: AppColors.secondary,
-                  size: 30,
-                ))
-          ],
+          // systemOverlayStyle: SystemUiOverlayStyle(sys),
+
           elevation: 0,
           titleSpacing: 0.0,
-          title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(
-              user.email!,
-              style: const TextStyle(color: Colors.black),
-            ),
-            Icon(
-              Icons.pause_circle,
-              size: 30,
-              color: AppColors.primary,
-            ),
-          ]),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // FIXME: APPBAR UI
+            children: [
+              Image.asset("assets/images/upcarta-logo-small.png"),
+              const SizedBox(
+                width: 10,
+              ),
+              const Text(
+                "Upcarta",
+                style: kAppBarTextStyle,
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+            ],
+          ),
           centerTitle: true,
           backgroundColor: Colors.white,
         ),
@@ -83,7 +76,7 @@ class _LoginScreen2 extends State<LoginScreen2> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: BlocProvider(
-            create: (context) => LoginCubit(context.read<AuthRepository>()),
+            create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
             child: const SingleChildScrollView(
               child: LoginForm(),
             ),
@@ -102,16 +95,17 @@ class LoginForm extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state.status == LoginStatus.success) {
-          AutoRouter.of(context).replace(const HomeRoute());
-        } else if (state.status == LoginStatus.error) {
-          // HANDLE ERROR
-          // ScaffoldMessenger.of(context)
-          //   ..hideCurrentSnackBar()
-          //   ..showSnackBar(
-          //     SnackBar(
-          //       content: Text(state.errorMessage ?? 'Authentication Failure'),
-          //     ),
-          //   );
+          // AutoRouter.of(context).replace(const HomeRoute());
+          AutoRouter.of(context).replaceAll([const HomeRoute()]);
+        } else if (state.status == LoginStatus.submissionFailure) {
+          // TODO: IMPLEMENT SUBMISSION FAILURE ERROR
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage ?? 'Authentication Failure'),
+              ),
+            );
         }
       },
       child: Align(

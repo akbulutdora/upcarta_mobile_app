@@ -135,8 +135,6 @@ class Page3 extends StatelessWidget {
       listener: (context, state) async {
         // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
         if (state == const AppState.unauthenticated()) {
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setBool("landed", true);
           context.router.replace(const LoginScreenRoute());
         }
       },
@@ -158,7 +156,7 @@ class Page3 extends StatelessWidget {
               onPressed: () async {
                 context
                     .read<AppBloc>()
-                    .add(const AppStatusChanged(AppStatus.unauthenticated));
+                    .add(AppLanded());
               },
               child: const Text("Let's Go", style: TextStyle(fontSize: 17)),
               style: ElevatedButton.styleFrom(

@@ -1,31 +1,25 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
+// import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'app/app.dart';
 
 Future<void> main() async {
   return BlocOverrides.runZoned(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-      final authRepository = AuthRepository();
+      final authenticationRepository = AuthenticationRepository();
+      await authenticationRepository.user.first;
       // await authRepository.user.first;
       runApp(
-        RepositoryProvider.value(
-          value: authRepository,
-          child: BlocProvider(
-            create: (_) => AppBloc(
-              authRepository: authRepository,
-            ),
-            child: App(
-              authRepository: authRepository,
-            ),
-          ),
-        ),
+          App(authRepository: authenticationRepository, sharedPreferences: sharedPreferences,),
       );
     },
     blocObserver: AppBlocObserver(),
