@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part "user.g.dart";
+part 'user.g.dart';
 
 /// {@template user}
 /// User model
@@ -11,30 +11,6 @@ part "user.g.dart";
 ///
 @JsonSerializable()
 class User extends Equatable {
-  /// The current user's email address.
-  final String? email;
-
-  /// The current user's id.
-  final String id;
-
-  /// The current user's name (display name).
-  final String? name;
-
-  /// Url for the current user's photo.
-  final String? photoURL;
-  final String? username;
-  final int followers = 0;
-  final int following = 0;
-  final List<int>? followerIDs;
-  final List<int>? followingIDs;
-  final String? bio;
-  final int recommendationCount = 0;
-  final String? recommendationsID;
-  final String? savesID;
-  final List<int>? collectionsIDs;
-  final List<int>? asksIDs;
-  final String? joinDate;
-
   /// {@macro user}
   const User({
     required this.id,
@@ -50,7 +26,64 @@ class User extends Equatable {
     this.collectionsIDs,
     this.followerIDs,
     this.followingIDs,
+    this.followers = 0,
+    this.following = 0,
+    this.recommendationCount = 0,
   });
+
+  /// The JSON serializer
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  /// The JSON serializer
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+
+  /// The current user's email address.
+  final String? email;
+
+  /// The current user's id.
+  final String id;
+
+  /// The current user's name (display name).
+  final String? name;
+
+  /// Url for the current user's photo.
+  final String? photoURL;
+
+  /// The current user's username
+  final String? username;
+
+  /// Number of followers the current user has
+  final int followers;
+
+  /// Number of followings the current user has
+  final int following;
+
+  /// IDs of followers the current user has
+  final List<int>? followerIDs;
+
+  /// IDs of followings the current user has
+  final List<int>? followingIDs;
+
+  /// The current user's bio description text
+  final String? bio;
+
+  /// The current user's recommendation count
+  final int recommendationCount;
+
+  /// The IDs of recommendations of current user
+  final String? recommendationsID;
+
+  /// The IDs of saves of current user
+  final String? savesID;
+
+  /// IDs of collections of current user
+  final List<int>? collectionsIDs;
+
+  /// IDs of asks of current user
+  final List<int>? asksIDs;
+
+  /// the join date of current user
+  final String? joinDate;
 
   /// Empty user which represents an unauthenticated user.
   static const empty = User(id: '');
@@ -60,10 +93,6 @@ class User extends Equatable {
 
   /// Convenience getter to determine whether the current user is not empty.
   bool get isNotEmpty => this != User.empty;
-
-  factory User.fromJson(Map<String, dynamic> json) =>
-      _$UserFromJson(json);
-  Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
   List<Object?> get props => [email, id, name, photoURL];
