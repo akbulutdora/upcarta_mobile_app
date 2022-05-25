@@ -1,13 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/routes/login/login.dart';
@@ -42,8 +36,6 @@ class _LoginScreen2 extends State<LoginScreen2> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
-
-    final user = context.select((AppBloc bloc) => bloc.state.user);
 
     return SafeArea(
       child: Scaffold(

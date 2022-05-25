@@ -29,6 +29,7 @@ class User extends Equatable {
     this.followers = 0,
     this.following = 0,
     this.recommendationCount = 0,
+    this.followedTopicIDs,
   });
 
   /// The JSON serializer
@@ -59,10 +60,14 @@ class User extends Equatable {
   final int following;
 
   /// IDs of followers the current user has
-  final List<int>? followerIDs;
+  final List<String>? followerIDs;
 
   /// IDs of followings the current user has
-  final List<int>? followingIDs;
+  final List<String>? followingIDs;
+
+  /// IDs of topics the current user follows
+
+  final List<String>? followedTopicIDs;
 
   /// The current user's bio description text
   final String? bio;
@@ -77,10 +82,10 @@ class User extends Equatable {
   final String? savesID;
 
   /// IDs of collections of current user
-  final List<int>? collectionsIDs;
+  final List<String>? collectionsIDs;
 
   /// IDs of asks of current user
-  final List<int>? asksIDs;
+  final List<String>? asksIDs;
 
   /// the join date of current user
   final String? joinDate;

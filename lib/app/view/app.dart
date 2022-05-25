@@ -69,14 +69,6 @@ class EntryPoint extends StatelessWidget {
     return BlocListener<AppBloc, AppState>(
       child: const SplashScreen(),
       listener: (context, state) {
-        // DONE: IMPLEMENT APP RUNNING (REOPENING AFTER SPLASH IS VIEWED)
-        // FIXME: ANDROID SPLAH TOO DARK
-        // DONE: IMPLEMENT APP INITIALIZED (LANDING VIEWED) WITH SHARED PREF
-        // DONE: IMPLEMENT LOGGED IN WITH SHARED PREF
-        // DONE: IMPLEMENT ONBOARDING AFTER REGISTER
-        // TODO: IMPLEMENT ONBOARDING COMPLETED (TALK TO OTHERS ABOUT WHAT IF ONBOARDING LEFT IN HALF)
-        // DONE: IMPLEMENT EXITING APP AFTER BACK BUTTON IN FEED
-        // FIXME: BACKBUTTON BEHAVIOR AT HOME SCREENS EXCEPT FOR FEED
         switch (state.status) {
           case AppStatus.authenticated:
             // print("\n\n\nAUTHENTICATED");

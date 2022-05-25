@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
-import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import '../../../navigation/routes.gr.dart';
 
 void main() {
@@ -133,7 +131,6 @@ class Page3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AppBloc, AppState>(
       listener: (context, state) async {
-        // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
         if (state == const AppState.unauthenticated()) {
           context.router.replace(const LoginScreenRoute());
         }
@@ -154,9 +151,7 @@ class Page3 extends StatelessWidget {
           const SizedBox(height: 50),
           ElevatedButton(
               onPressed: () async {
-                context
-                    .read<AppBloc>()
-                    .add(AppLanded());
+                context.read<AppBloc>().add(AppLanded());
               },
               child: const Text("Let's Go", style: TextStyle(fontSize: 17)),
               style: ElevatedButton.styleFrom(

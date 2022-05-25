@@ -4,14 +4,23 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'app/app.dart';
 
 Future<void> main() async {
+  // DONE: IMPLEMENT APP RUNNING (REOPENING AFTER SPLASH IS VIEWED)
+  // FIXME: ANDROID SPLAH TOO DARK
+  // DONE: IMPLEMENT APP INITIALIZED (LANDING VIEWED) WITH SHARED PREF
+  // DONE: IMPLEMENT LOGGED IN WITH SHARED PREF
+  // DONE: IMPLEMENT ONBOARDING AFTER REGISTER
+  // TODO: IMPLEMENT ONBOARDING COMPLETED (TALK TO OTHERS ABOUT WHAT IF ONBOARDING LEFT IN HALF)
+  // DONE: IMPLEMENT EXITING APP AFTER BACK BUTTON IN FEED
+  // FIXME: BACKBUTTON BEHAVIOR AT HOME SCREENS EXCEPT FOR FEED
+  // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
   return BlocOverrides.runZoned(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
@@ -19,7 +28,10 @@ Future<void> main() async {
       await authenticationRepository.user.first;
       // await authRepository.user.first;
       runApp(
-          App(authRepository: authenticationRepository, sharedPreferences: sharedPreferences,),
+        App(
+          authRepository: authenticationRepository,
+          sharedPreferences: sharedPreferences,
+        ),
       );
     },
     blocObserver: AppBlocObserver(),

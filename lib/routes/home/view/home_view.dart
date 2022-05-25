@@ -1,12 +1,6 @@
-// DORA
 import 'package:flutter/material.dart';
-
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-
-import '../../../models/auth_user.dart';
 
 class Home extends StatefulWidget {
   static MaterialPage page(int currentTab) {
@@ -28,8 +22,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late User user;
-
   @override
   Widget build(BuildContext context) {
     AutoRouter.of(context);

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cache/cache.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -157,13 +158,16 @@ class AuthenticationRepository {
     CacheClient? cache,
     firebase_auth.FirebaseAuth? firebaseAuth,
     GoogleSignIn? googleSignIn,
+    FirebaseFirestore? firebaseFirestore,
   })  : _cache = cache ?? CacheClient(),
         _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn.standard();
+        _googleSignIn = googleSignIn ?? GoogleSignIn.standard(),
+        _firestoreDB = firebaseFirestore ?? FirebaseFirestore.instance;
 
   final CacheClient _cache;
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final FirebaseFirestore _firestoreDB;
 
   /// Whether or not the current environment is web
   /// Should only be overriden for testing purposes. Otherwise,
@@ -194,14 +198,79 @@ class AuthenticationRepository {
     return _cache.read<User>(key: userCacheKey) ?? User.empty;
   }
 
-  /// Creates a new user with the provided [email] and [password].
-  ///
+  /// Creates a new user with the provided [email], [password], [username]
+  ///  and [name].
   /// Throws a [SignUpWithEmailAndPasswordFailure] if an exception occurs.
-  Future<void> signUp({required String email, required String password}) async {
+  Future<void> signUp(
+      {required String email,
+      required String password,
+      required String username,
+      required String name}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      await _firebaseAuth
+          .createUserWithEmailAndPassword(
         email: email,
         password: password,
+      )
+          .then(
+        (cred) async {
+          final uid = cred.user!.uid;
+          String savesID;
+          String recomID;
+
+          // CREATE THE INITIALLY EMPTY SAVED COLLECTION
+          final savedCollection = <String, dynamic>{
+            'collectionType': 'saved',
+            'ownerID': uid,
+            'description': '',
+            'createdDate': DateTime.now(),
+            'recommenderIDs': <String>[],
+            'postIDs': <String>[],
+            'isAsk': false,
+            'contentTypes': ''
+          };
+          savesID = await _firestoreDB
+              .collection('collections')
+              .add(savedCollection)
+              .then((DocumentReference doc) => doc.id);
+          final recommendationsCollection = <String, dynamic>{
+            'collectionType': 'recommendation',
+            'ownerID': uid,
+            'description': '',
+            'createdDate': DateTime.now(),
+            'recommenderIDs': <String>[],
+            'postIDs': <String>[],
+            'isAsk': false,
+            'contentTypes': ''
+          };
+          recomID = await _firestoreDB
+              .collection('collections')
+              .add(recommendationsCollection)
+              .then((DocumentReference doc) => doc.id);
+          final thisUser = User(
+            id: uid,
+            username: username,
+            email: cred.user!.email,
+            name: name,
+            bio: '',
+            joinDate: DateTime.now().toString(),
+            followerIDs: const [],
+            followingIDs: const [],
+            followedTopicIDs: const [],
+            followers: 0,
+            following: 0,
+            photoURL:
+                'gs://upcarta-77024.appspot.com/Amadeo Modigliani - Ritratto di Paul Guillaume 1916.jpg',
+            recommendationCount: 0,
+            recommendationsID: recomID,
+            savesID: savesID,
+            collectionsIDs: const [],
+            asksIDs: const [],
+          );
+          return _firestoreDB.collection('Person').doc(uid).set(
+                thisUser.toJson(),
+              );
+        },
       );
     } on FirebaseAuthException catch (e) {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
@@ -233,7 +231,6 @@ class _LoginScreen extends State<LoginScreen> {
                       ),
                       BlocListener<AppBloc, AppState>(
                         listener: (context, state) async {
-                          // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
                           if (state == const AppState.prelanded()) {
                             context.router.replace(const LandingRoute());
                           }

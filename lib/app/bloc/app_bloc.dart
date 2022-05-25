@@ -51,33 +51,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     _sharedPrefs.setBool(("landed"), true);
     emit(const AppState.unauthenticated());
   }
+
   void _onLandedCanceled(
-      AppLandedCanceled event,
-      Emitter<AppState> emit,
-      ) {
+    AppLandedCanceled event,
+    Emitter<AppState> emit,
+  ) {
     _sharedPrefs.setBool(("landed"), false);
     emit(const AppState.prelanded());
   }
-
-  // TODO: FIND A WAY TO CONFIGURE LANDED, SPLASH
-  // void _onAppStatusChanged(
-  //   AppStatusChanged event,
-  //   Emitter<AppState> emit,
-  // ) async {
-  //   switch (event.status) {
-  //     case AppStatus.prelanded:
-  //       return emit(const AppState.prelanded());
-  //     case AppStatus.unauthenticated:
-  //       return emit(const AppState.unauthenticated());
-  //     case AppStatus.authenticated:
-  //       final user = await _tryGetUser();
-  //       return emit(user != null
-  //           ? AppState.authenticated(user)
-  //           : const AppState.unauthenticated());
-  //     default:
-  //       return emit(const AppState.uninitialized());
-  //   }
-  // }
 
   void _onLogoutRequested(
     AppLogoutRequested event,
@@ -90,15 +71,5 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   Future<void> close() {
     _userSubscription?.cancel();
     return super.close();
-  }
-
-  Future<User?> _tryGetUser() async {
-    try {
-      final user = _authRepository.currentUser;
-      // print("INSIDE APPBLOC" + user.email!);
-      return user;
-    } catch (_) {
-      return null;
-    }
   }
 }

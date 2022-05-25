@@ -17,20 +17,23 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       savesID: json['savesID'] as String?,
       joinDate: json['joinDate'] as String?,
       asksIDs: (json['asksIDs'] as List<dynamic>?)
-          ?.map((dynamic e) => e as int)
+          ?.map((dynamic e) => e as String)
           .toList(),
       collectionsIDs: (json['collectionsIDs'] as List<dynamic>?)
-          ?.map((dynamic e) => e as int)
+          ?.map((dynamic e) => e as String)
           .toList(),
       followerIDs: (json['followerIDs'] as List<dynamic>?)
-          ?.map((dynamic e) => e as int)
+          ?.map((dynamic e) => e as String)
           .toList(),
       followingIDs: (json['followingIDs'] as List<dynamic>?)
-          ?.map((dynamic e) => e as int)
+          ?.map((dynamic e) => e as String)
           .toList(),
       followers: json['followers'] as int? ?? 0,
       following: json['following'] as int? ?? 0,
       recommendationCount: json['recommendationCount'] as int? ?? 0,
+      followedTopicIDs: (json['followedTopicIDs'] as List<dynamic>?)
+          ?.map((dynamic e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -43,6 +46,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'following': instance.following,
       'followerIDs': instance.followerIDs,
       'followingIDs': instance.followingIDs,
+      'followedTopicIDs': instance.followedTopicIDs,
       'bio': instance.bio,
       'recommendationCount': instance.recommendationCount,
       'recommendationsID': instance.recommendationsID,
