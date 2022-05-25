@@ -26,6 +26,16 @@ import '../app/app.dart';
         page: NotificationSettings,
       ),
       AutoRoute(
+        path: 'email_settings',
+        name: 'EmailSettingsRoute',
+        page: EmailSettings,
+      ),
+      AutoRoute(
+        path: 'password_settings',
+        name: 'PasswordSettingsRoute',
+        page: PasswordSettings,
+      ),
+      AutoRoute(
           path: 'see_all_collections_and_asks',
           page: SeeAllCollectionsAndAsksView,
           children: [

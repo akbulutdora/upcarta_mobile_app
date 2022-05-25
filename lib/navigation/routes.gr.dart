@@ -37,6 +37,14 @@ class AppRouter extends _i3.RootStackRouter {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.NotificationSettings());
     },
+    EmailSettingsRoute.name: (routeData) {
+      return _i3.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.EmailSettings());
+    },
+    PasswordSettingsRoute.name: (routeData) {
+      return _i3.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.PasswordSettings());
+    },
     SeeAllCollectionsAndAsksViewRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData,
@@ -205,6 +213,8 @@ class AppRouter extends _i3.RootStackRouter {
         _i3.RouteConfig(SettingsRoute.name, path: 'settings'),
         _i3.RouteConfig(NotificationSettingsRoute.name,
             path: 'notification_settings'),
+        _i3.RouteConfig(EmailSettingsRoute.name, path: 'email_settings'),
+        _i3.RouteConfig(PasswordSettingsRoute.name, path: 'password_settings'),
         _i3.RouteConfig(SeeAllCollectionsAndAsksViewRoute.name,
             path: 'see_all_collections_and_asks',
             children: [
@@ -368,6 +378,24 @@ class NotificationSettingsRoute extends _i3.PageRouteInfo<void> {
       : super(NotificationSettingsRoute.name, path: 'notification_settings');
 
   static const String name = 'NotificationSettingsRoute';
+}
+
+/// generated route for
+/// [_i1.EmailSettings]
+class EmailSettingsRoute extends _i3.PageRouteInfo<void> {
+  const EmailSettingsRoute()
+      : super(EmailSettingsRoute.name, path: 'email_settings');
+
+  static const String name = 'EmailSettingsRoute';
+}
+
+/// generated route for
+/// [_i1.PasswordSettings]
+class PasswordSettingsRoute extends _i3.PageRouteInfo<void> {
+  const PasswordSettingsRoute()
+      : super(PasswordSettingsRoute.name, path: 'password_settings');
+
+  static const String name = 'PasswordSettingsRoute';
 }
 
 /// generated route for
