@@ -11,15 +11,20 @@ Future<void> main() async {
   return BlocOverrides.runZoned(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
+      // FlutterError.onError = FirebaseCra
       final authenticationRepository = AuthenticationRepository();
       await authenticationRepository.user.first;
       // await authRepository.user.first;
       runApp(
-          App(authRepository: authenticationRepository, sharedPreferences: sharedPreferences,),
+        App(
+          authRepository: authenticationRepository,
+          sharedPreferences: sharedPreferences,
+        ),
       );
     },
     blocObserver: AppBlocObserver(),
