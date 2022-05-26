@@ -147,10 +147,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleImage(
-                  imageProvider: NetworkImage(thisUser.photoURL!),
+                CircleAvatar(
+                  // FIXME: ADD NULL IMAGE CASE
+                  foregroundImage: thisUser.photoURL != null
+                      ? NetworkImage(thisUser.photoURL!)
+                      : null,
+                  backgroundImage: const AssetImage("assets/images/mock.jpg"),
                   //widget.user.profileImageUrl),
-                  imageRadius: 55.0,
+                  radius: 55.0,
                 ),
                 Text(
                   //widget.user.name,

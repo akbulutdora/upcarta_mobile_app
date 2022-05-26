@@ -26,7 +26,8 @@ Future<void> main() async {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-      final authenticationRepository = AuthenticationRepository();
+      final authenticationRepository =
+          AuthenticationRepository(sharedPreferences: sharedPreferences);
       await authenticationRepository.user.first;
       // await authRepository.user.first;
       runApp(

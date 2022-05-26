@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'package:cache/cache.dart';
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/models/user.dart';
 
 /// {@template sign_up_with_email_and_password_failure}
@@ -154,16 +155,16 @@ class LogOutFailure implements Exception {}
 class AuthenticationRepository {
   /// {@macro authentication_repository}
   AuthenticationRepository({
-    CacheClient? cache,
+    required SharedPreferences sharedPreferences,
     firebase_auth.FirebaseAuth? firebaseAuth,
     GoogleSignIn? googleSignIn,
     FirebaseFirestore? firebaseFirestore,
-  })  : _cache = cache ?? CacheClient(),
+  })  : _sharedPreferences = sharedPreferences,
         _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
         _googleSignIn = googleSignIn ?? GoogleSignIn.standard(),
         _firestoreDB = firebaseFirestore ?? FirebaseFirestore.instance;
 
-  final CacheClient _cache;
+  final SharedPreferences _sharedPreferences;
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
   final FirebaseFirestore _firestoreDB;
@@ -186,16 +187,19 @@ class AuthenticationRepository {
   Stream<User> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
-      _cache.write(key: userCacheKey, value: user);
+      _sharedPreferences.setString("user", json.encode(user.toString()));
       return user;
     });
   }
 
-  // TODO: ADD SHARED PPREFERENCES
   /// Returns the current cached user.
   /// Defaults to [User.empty] if there is no cached user.
   User get currentUser {
-    return _cache.read<User>(key: userCacheKey) ?? User.empty;
+    var cachedUser = _sharedPreferences.getString("user");
+    if (cachedUser == null) {
+      return User.empty;
+    }
+    return User.fromJson(json.decode(cachedUser));
   }
 
   /// Creates a new user with the provided [email], [password], [username]

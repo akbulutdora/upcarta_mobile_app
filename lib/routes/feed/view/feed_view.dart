@@ -46,8 +46,8 @@ class _FeedScreenState extends State<FeedScreen> {
                     },
                   )
                 ],
-                title: Text(
-                  user.email!,
+                title: const Text(
+                  'Upcarta',
                   style: kTextStyle3b,
                 ),
                 leading: Image.asset(
