@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+
 // import 'package:flow_builder/flow_builder.dart'; MAYBE WE SWITCH TI THIS
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,24 +8,37 @@ import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
+
+import '../../repositories/user_repository.dart';
 
 class App extends StatelessWidget {
   const App({
     Key? key,
     required AuthenticationRepository authRepository,
+    required UserRepository userRepository,
     required this.sharedPreferences,
   })  : _authRepository = authRepository,
+        _userRepository = userRepository,
         super(key: key);
 
   final AuthenticationRepository _authRepository;
+  final UserRepository _userRepository;
   final SharedPreferences sharedPreferences;
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: _authRepository,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider.value(
+          value: _authRepository,
+        ),
+        RepositoryProvider.value(
+          value: _userRepository,
+        ),
+      ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -54,6 +68,7 @@ class AppView extends StatefulWidget {
 
 class _AppViewState extends State<AppView> {
   final _appRouter = AppRouter();
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, ThemeData>(

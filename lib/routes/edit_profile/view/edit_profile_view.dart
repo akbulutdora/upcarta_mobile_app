@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
-
+import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 class EditProfileScreen extends StatefulWidget {
   static MaterialPage page() {
     return const MaterialPage(
@@ -47,7 +48,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             },
           )),
       //),
-      body: Padding(
+      body: BlocProvider(
+  create: (context) => EditProfileCubit(context.read<AuthenticationRepository>(), context.read<UserRepository>()),
+  child: Padding(
         padding: EdgeInsets.all(height * 0.016),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -140,6 +143,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ],
         ),
       ),
+),
     );
   }
 }

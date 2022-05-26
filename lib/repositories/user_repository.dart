@@ -18,8 +18,13 @@ class UserRepository {
   /// Called when the user changes their profile description
   Future<void> changeBio(String newBio) async {
     try {
-      _firestoreDB.doc(_firebaseAuth.currentUser!.uid).set({"bio": newBio});
-    } catch (_) {}
+      print(newBio);
+      print("changed");
+      print(_firebaseAuth.currentUser!.uid);
+      _firestoreDB.collection("Person").doc(_firebaseAuth.currentUser!.uid).update({"bio": newBio});
+      print("done");
+
+    } catch (e) {print(e);}
   }
 
   /// Called when the user changes their profile picture
