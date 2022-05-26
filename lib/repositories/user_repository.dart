@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 /// {@template user_repository}
-/// Repository which manages user actions.
+/// 5-*Ğlköhyujmg tfnbractions.
 /// {@endtemplate}
 
 class UserRepository {
@@ -23,7 +23,16 @@ class UserRepository {
   }
 
   /// Called when the user changes their profile picture
-  Future<void> changePhoto(String newURL) async {}
+  Future<void> changePhoto(String newURL) async {
+    try {
+      _firebaseAuth.currentUser!.updatePhotoURL(newURL);
+      _firestoreDB
+          .doc(_firebaseAuth.currentUser!.uid)
+          .set({"photoURL": newURL});
+    }
+    // TODO: IMPLEMENT ERROR
+    catch (_) {}
+  }
 
   /// Called when the user changes their username
   /// TODO: HOCAYA SOR, DOĞRU MU

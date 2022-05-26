@@ -15,7 +15,6 @@ Future<void> main() async {
   // TODO: IMPLEMENT ONBOARDING COMPLETED (TALK TO OTHERS ABOUT WHAT IF ONBOARDING LEFT IN HALF)
   // DONE: IMPLEMENT EXITING APP AFTER BACK BUTTON IN FEED
   // FIXME: BACKBUTTON BEHAVIOR AT HOME SCREENS EXCEPT FOR FEED
-  // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
   // TODO: HOCAYA SOR, BİRDEN FAZLA REPOSITORY NASIL INJECT EDİLİR
   // TODO: HOCAYA SOR, USER REPOSITORY VE AUTH REPOSITORY AYNI USER MODELE NASIL ERİŞEBİLİR
   return BlocOverrides.runZoned(
@@ -40,25 +39,3 @@ Future<void> main() async {
     blocObserver: AppBlocObserver(),
   );
 }
-
-// class Welcome extends StatefulWidget {
-//   const Welcome({Key? key}) : super(key: key);
-
-//   @override
-  // State<Welcome> createState() => _WelcomeState();
-// }
-
-// class _WelcomeState extends State<Welcome> {
-//   final _appRouter = AppRouter();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp.router(
-//       title: 'Upcarta',
-//       routeInformationParser: _appRouter.defaultRouteParser(),
-//       routerDelegate: _appRouter.delegate(),
-//       theme: ThemeData.light(),
-//       builder: (context, router) => router!,
-//     );
-//   }
-// }
