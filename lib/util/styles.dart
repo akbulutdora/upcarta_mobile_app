@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 final lHeadingTextStyle = TextStyle(
-  color: AppColors.primary,
+  color: AppColors.upcartaBlue,
   fontSize: 20,
   fontWeight: FontWeight.w400,
 );
@@ -135,7 +135,7 @@ final contentCardDescriptionStyle = TextStyle(
     fontFamily: "SF Compact Text",
     fontWeight: FontWeight.w300,
     fontSize: 10,
-    color: AppColors.contentText);
+    color: AppColors.gray3_contentText);
 
 final outlinedButtonStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.all(Colors.transparent),

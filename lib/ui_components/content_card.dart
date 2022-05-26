@@ -65,7 +65,7 @@ class ContentCard extends StatelessWidget {
                     Icon(
                       Icons.local_movies_outlined,
                       size: 20,
-                      color: AppColors.primary,
+                      color: AppColors.upcartaBlue,
                     ),
                     SizedBox(
                       width: 2,
@@ -76,7 +76,7 @@ class ContentCard extends StatelessWidget {
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
                           fontSize: 10,
-                          color: AppColors.primary),
+                          color: AppColors.upcartaBlue),
                     ),
                     SizedBox(
                       width: 6,
@@ -91,7 +91,7 @@ class ContentCard extends StatelessWidget {
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
                           fontSize: 10,
-                          color: AppColors.secondary),
+                          color: AppColors.black),
                     ),
                     SizedBox(
                       width: 6,
@@ -106,7 +106,7 @@ class ContentCard extends StatelessWidget {
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
                           fontSize: 10,
-                          color: AppColors.secondary),
+                          color: AppColors.black),
                     ),
                     SizedBox(
                       width: 6,
@@ -121,7 +121,7 @@ class ContentCard extends StatelessWidget {
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
                           fontSize: 10,
-                          color: AppColors.secondary),
+                          color: AppColors.black),
                     ),
                   ]),
                   SizedBox(
@@ -169,7 +169,7 @@ class ContentCard extends StatelessWidget {
                                         fontFamily: "SF Compact Text",
                                         fontWeight: FontWeight.w300,
                                         fontSize: 10,
-                                        color: AppColors.primary),
+                                        color: AppColors.upcartaBlue),
                                   )
                                 ]),
                           ),
@@ -189,7 +189,7 @@ class ContentCard extends StatelessWidget {
                               fontFamily: "SF Compact Text",
                               fontWeight: FontWeight.normal,
                               fontSize: 10,
-                              color: AppColors.secondary),
+                              color: AppColors.black),
                         ),
                       ),
                     ],

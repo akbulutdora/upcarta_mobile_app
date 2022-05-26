@@ -24,7 +24,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 onPressed: () {},
                 icon: Icon(
                   Icons.notifications_none_outlined,
-                  color: AppColors.secondary,
+                  color: AppColors.black,
                   size: 30,
                 ))
           ],
@@ -34,7 +34,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             Icon(
               Icons.pause_circle,
               size: 30,
-              color: AppColors.primary,
+              color: AppColors.upcartaBlue,
             ),
           ]),
           centerTitle: true,

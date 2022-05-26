@@ -133,6 +133,7 @@ class Page3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return BlocListener<AppBloc, AppState>(
       listener: (context, state) async {
         if (state == const AppState.unauthenticated()) {

@@ -29,7 +29,7 @@ class _FeedContentListState extends State<FeedContentList> {
             return Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: AppColors.edgeColor)),
+                    border: Border.all(color: AppColors.gray2_lightText)),
                 child: Column(
                   children: [
                     Padding(
