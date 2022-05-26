@@ -4,6 +4,7 @@
     <item android:drawable="@android:color/white" />
 
     <!-- You can insert your own image assets here -->
+    <!-- TODO: fill horizontal - fill vertical-->
     <item>
         <bitmap
             android:gravity="center"

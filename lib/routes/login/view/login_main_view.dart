@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
+import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
+import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
@@ -30,35 +30,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
-  // final _formKey = GlobalKey<FormState>();
-
-// DELETE START
-  // Future<void> signInWithGoogle() async {
-  //   // Trigger the authentication flow
-  //   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-  //   // // Obtain the auth details from the request
-  //   final GoogleSignInAuthentication? googleAuth =
-  //       await googleUser?.authentication;
-
-  //   // // Create a new credential
-  //   final credential = GoogleAuthProvider.credential(
-  //     accessToken: googleAuth?.accessToken,
-  //     idToken: googleAuth?.idToken,
-  //   );
-  //   print("SIGNED IN");
-  //   print(FirebaseAuth.instance.signInWithCredential(credential));
-
-  //   // // Once signed in, return the UserCredential
-  //   // return await FirebaseAuth.instance.signInWithCredential(credential);
-  // }
-// DELETE END
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white),
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarColor: Colors.white),
         elevation: 0,
         titleSpacing: 0.0,
         title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -284,7 +261,15 @@ class LoginMainViewButtons extends StatelessWidget {
                 },
                 child: const Text("Press to cancel landed"),
               ),
-            )
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                context.read<ThemeCubit>().toggleTheme();
+                print("Theme toggled\n\n\n");
+              },
+              child: Text("Toggle Theme",
+                  style: Theme.of(context).textTheme.headline1),
+            ),
           ],
         ));
   }

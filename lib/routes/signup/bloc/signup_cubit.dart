@@ -1,6 +1,6 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 
 part 'signup_state.dart';
@@ -33,7 +33,9 @@ class SignupCubit extends Cubit<SignupState> {
     try {
       await _authRepository.signUp(
           email: state.email,
-          password: state.password,);
+          password: state.password,
+          username: state.username,
+          name: state.name);
       emit(state.copyWith(status: SignupStatus.success));
     } on SignUpWithEmailAndPasswordFailure catch (e) {
       emit(

@@ -1,19 +1,15 @@
-// BERNA
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fire_auth;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import '../../../models/auth_user.dart';
-import '../../../models/user.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page() {
-    return MaterialPage(
+    return const MaterialPage(
       child: ProfileScreen(),
     );
   }
@@ -52,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.settings,
               color: Colors.black54,
             ),
@@ -86,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 pinned: true,
                 automaticallyImplyLeading: false,
                 //remove the default back button
-                bottom: TabBar(
+                bottom: const TabBar(
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.black,
                   labelPadding: EdgeInsets.only(right: 3, left: 3),
@@ -129,11 +125,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         builder: ((context, AsyncSnapshot snapshot) {
           User thisUser = User.empty;
           if (!snapshot.hasData) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
-            return Text(
+            return const Text(
               "ERROR",
               style: TextStyle(color: Colors.red),
             );
@@ -151,15 +147,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleImage(
-                  imageProvider: NetworkImage(thisUser.photoURL!),
+                CircleAvatar(
+                  // FIXME: ADD NULL IMAGE CASE
+                  foregroundImage: thisUser.photoURL != null
+                      ? NetworkImage(thisUser.photoURL!)
+                      : null,
+                  backgroundImage: const AssetImage("assets/images/mock.jpg"),
                   //widget.user.profileImageUrl),
-                  imageRadius: 55.0,
+                  radius: 55.0,
                 ),
                 Text(
                   //widget.user.name,
                   thisUser.name!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -168,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 Text(
                   '@${thisUser.username}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
@@ -181,7 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             horizontal: 30.0, vertical: 10.0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
-                            side: BorderSide(color: Colors.blue)),
+                            side: const BorderSide(color: Colors.blue)),
                         child: const Text(
                           'Edit Profile',
                           style: TextStyle(
@@ -212,7 +212,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                 Text(
                   thisUser.bio!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
@@ -225,7 +225,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       border: Border.all(
                         color: Colors.blue,
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10))),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -235,14 +236,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Text(
                               //'${widget.user.following}',
                               thisUser.recommendationCount.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: "SFCompactText",
                                 fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 color: Colors.black,
                               ),
                             ),
-                            Text(
+                            const Text(
                               ' Recommendations',
                               style: TextStyle(
                                 fontFamily: "SFCompactText",
@@ -253,7 +254,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ]),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 22,
                           child: VerticalDivider(color: Colors.blue),
                         ),
@@ -262,14 +263,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Row(children: [
                             Text(
                               thisUser.followers.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: "SFCompactText",
                                 fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 color: Colors.black,
                               ),
                             ),
-                            Text(
+                            const Text(
                               ' Followers',
                               style: TextStyle(
                                 fontFamily: "SFCompactText",
@@ -280,7 +281,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             )
                           ]),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 22,
                           child: VerticalDivider(color: Colors.blue),
                         ),
@@ -289,14 +290,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Row(children: [
                             Text(
                               thisUser.following.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: "SFCompactText",
                                 fontWeight: FontWeight.w700,
                                 fontSize: 12,
                                 color: Colors.black,
                               ),
                             ),
-                            Text(
+                            const Text(
                               ' Following',
                               style: TextStyle(
                                 fontFamily: "SFCompactText",

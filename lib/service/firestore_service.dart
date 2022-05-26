@@ -47,7 +47,7 @@ class FireStoreService {
   }
 
   // CREATE A USER WITH GIVEN AUTH CREDENTIALS
-  Future<OldUser?> createPerson(user, username, name, email) async {
+  Future<User?> createPerson(user, username, name, email) async {
     String savesID;
     String recomID;
 
@@ -81,18 +81,18 @@ class FireStoreService {
         .add(recommendationsCollection)
         .then((DocumentReference doc) => doc.id);
 
-    final thisUser = OldUser(
+    final thisUser = User(
       id: user.user!.uid,
       username: username,
       email: email,
       name: name,
       bio: "",
-      joinDate: DateTime.now(),
+      joinDate: DateTime.now().toString(),
       followerIDs: const [],
       followingIDs: const [],
       followers: 0,
       following: 0,
-      avatar:
+      photoURL:
           "gs://upcarta-77024.appspot.com/Amadeo Modigliani - Ritratto di Paul Guillaume 1916.jpg",
       recommendationCount: 0,
       recommendationsID: recomID,

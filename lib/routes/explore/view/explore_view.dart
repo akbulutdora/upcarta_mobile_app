@@ -1,13 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
-import '../../../models/auth_user.dart';
 
 class ExploreScreen extends StatefulWidget {
   static MaterialPage page(int currentTab) {
@@ -28,8 +26,6 @@ class Cat {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-  late User user;
-
   final List<Cat> _catList = [
     Cat("All", false),
     Cat("Collections", false),
@@ -96,7 +92,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               const SizedBox(height: 10),
               BlocListener<ExploreCubit, ExploreState>(
                 listener: (context, state) {
-                  // TODO: implement listener
+                  // TODO: implement listener - query response
                 },
                 child: BlocBuilder<ExploreCubit, ExploreState>(
                   buildWhen: (previous, current) =>
