@@ -21,10 +21,14 @@ class UserRepository {
       print(newBio);
       print("changed");
       print(_firebaseAuth.currentUser!.uid);
-      _firestoreDB.collection("Person").doc(_firebaseAuth.currentUser!.uid).update({"bio": newBio});
+      _firestoreDB
+          .collection("Person")
+          .doc(_firebaseAuth.currentUser!.uid)
+          .update({"bio": newBio});
       print("done");
-
-    } catch (e) {print(e);}
+    } catch (e) {
+      print(e);
+    }
   }
 
   /// Called when the user changes their profile picture

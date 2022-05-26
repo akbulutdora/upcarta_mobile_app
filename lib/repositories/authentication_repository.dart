@@ -288,7 +288,7 @@ class AuthenticationRepository {
   ///
   /// Throws a [LogInWithGoogleFailure] if an exception occurs.
   ///   /// TODO: HOCAYA SOR, GOOGLE SIGNIN + FIRESTORE USER ENTRY NASIL OLACAK
-  Future<User> logInWithGoogle() async {
+  Future<void> logInWithGoogle() async {
     try {
       late final firebase_auth.AuthCredential credential;
       if (isWeb) {
@@ -308,12 +308,6 @@ class AuthenticationRepository {
           /// ADD IT TO FIRESTORE IF IT IS
         );
       }
-
-      var creds = await _firebaseAuth.signInWithCredential(credential);
-      var userFromFireStore =
-          await _firestoreDB.collection("Person").doc(creds.user!.uid).get();
-      User user = User.fromJson(userFromFireStore.data()!);
-      return user;
     } on FirebaseAuthException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
     } catch (_) {
