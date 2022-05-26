@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import '../../../navigation/routes.gr.dart';
 
@@ -52,12 +53,13 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   _buildCircleIndicator() {
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return Positioned(
       left: 0.0,
       right: 0.0,
       bottom: 0.0,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 60),
+        padding: EdgeInsets.only(bottom: 60.h),
         child: CirclePageIndicator(
           dotColor: const Color(0xFFB4C7ED),
           selectedDotColor: const Color(0xFF4E89FD),
@@ -83,18 +85,19 @@ class Page1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset("assets/images/Upcarta_Discover.png", height: 300),
-        const Text("Discover",
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34)),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+        Image.asset("assets/images/Upcarta_Discover.png", height: 300.h),
+        Text("Discover",
+            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34.sp)),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 72.w, vertical: 16.h),
           child: Text(
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 17)),
+              style: TextStyle(fontSize: 17.sp)),
         ),
       ],
     );
@@ -106,18 +109,19 @@ class Page2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset("assets/images/Upcarta_Organize.png", height: 300),
-        const Text("Organize",
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34)),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40),
+        Image.asset("assets/images/Upcarta_Organize.png", height: 300.h),
+        Text("Organize",
+            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34.sp)),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 72.w, vertical: 16.h),
           child: Text(
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 17)),
+              style: TextStyle(fontSize: 17.sp)),
         )
       ],
     );
@@ -138,28 +142,28 @@ class Page3 extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset("assets/images/Upcarta_Share.png", height: 300),
-          const Text("Share",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34)),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40),
+          Image.asset("assets/images/Upcarta_Share.png", height: 300.h),
+          Text("Share",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34.sp)),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 72.w, vertical: 16.h),
             child: Text(
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 17)),
+                style: TextStyle(fontSize: 17.sp)),
           ),
-          const SizedBox(height: 50),
+          SizedBox(height: 20.h),
           ElevatedButton(
               onPressed: () async {
                 context.read<AppBloc>().add(AppLanded());
               },
-              child: const Text("Let's Go", style: TextStyle(fontSize: 17)),
+              child: Text("Let's Go", style: TextStyle(fontSize: 17.sp)),
               style: ElevatedButton.styleFrom(
                   primary: const Color(0xFF4E89FD),
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                      EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15))))
+                      borderRadius: BorderRadius.circular(15.r))))
         ],
       ),
     );

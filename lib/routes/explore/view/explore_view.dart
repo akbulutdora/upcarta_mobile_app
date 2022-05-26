@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
@@ -18,23 +19,7 @@ class ExploreScreen extends StatefulWidget {
   State<ExploreScreen> createState() => _ExploreScreenState();
 }
 
-class Cat {
-  String label = "";
-  //Icon icon=Icon(Icons.person);
-  bool isSelected = false;
-  Cat(this.label, this.isSelected); //, this.icon
-}
-
 class _ExploreScreenState extends State<ExploreScreen> {
-  final List<Cat> _catList = [
-    Cat("All", false),
-    Cat("Collections", false),
-    Cat("People", false),
-    Cat("Topics", false),
-    Cat("Asks", false),
-    Cat("Contents", false),
-  ];
-
   final List<Widget> cardsList = const <Widget>[
     ExploreCard(
       text: "Featured Collections",
@@ -64,8 +49,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
       appBar: AppBar(
         leading: Image.asset(
           "assets/images/upcarta-logo-small.png",
-          width: 30,
-          height: 30,
+          width: 30.w,
+          height: 30.h,
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -199,40 +184,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
         );
       },
     );
-  }
-
-  List<Widget> catChips() {
-    List<Widget> chips = [];
-    for (int i = 0; i < _catList.length; i++) {
-      Widget item = FilterChip(
-        label: SizedBox(
-          height: 24,
-          child: Text(_catList[i].label,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 13,
-                  fontFamily: "SFCompactText-Regular",
-                  color: _catList[i].isSelected
-                      ? AppColors.chip
-                      : AppColors.secondary)),
-        ),
-        //avatar: _catList[i].icon,
-        padding: const EdgeInsets.all(0.5),
-        backgroundColor: Colors.transparent,
-        shape: const StadiumBorder(side: BorderSide(color: Color(0xffDEDEDE))),
-        disabledColor: AppColors.chip,
-        selectedColor: AppColors.selected,
-        showCheckmark: false,
-        selected: _catList[i].isSelected,
-        onSelected: (bool value) {
-          setState(() {
-            _catList[i].isSelected = value;
-          });
-        },
-      );
-      chips.add(item);
-    }
-    return chips;
   }
 }
 

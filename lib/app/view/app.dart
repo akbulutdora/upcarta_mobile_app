@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 // import 'package:flow_builder/flow_builder.dart'; MAYBE WE SWITCH TI THIS
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
@@ -73,12 +74,15 @@ class _AppViewState extends State<AppView> {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, ThemeData>(
       builder: (_, theme) {
-        return MaterialApp.router(
-          title: 'Upcarta',
-          routeInformationParser: _appRouter.defaultRouteParser(),
-          routerDelegate: _appRouter.delegate(),
-          theme: theme,
-          builder: (context, router) => router!,
+        return ScreenUtilInit(
+          builder: (context, child) => MaterialApp.router(
+            title: 'Upcarta',
+            routeInformationParser: _appRouter.defaultRouteParser(),
+            routerDelegate: _appRouter.delegate(),
+            theme: theme,
+            builder: (context, router) => router!,
+          ),
+          designSize: const Size(375, 812),
         );
       },
     );
