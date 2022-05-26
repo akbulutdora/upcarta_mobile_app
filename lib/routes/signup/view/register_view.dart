@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
@@ -26,7 +27,8 @@ class MyRegister extends StatefulWidget {
 class _MyRegisterState extends State<MyRegister> {
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
+    ScreenUtil.init(context, designSize: const Size(375, 812));
+
     final double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
@@ -34,7 +36,11 @@ class _MyRegisterState extends State<MyRegister> {
           elevation: 0,
           titleSpacing: 0.0,
           title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset("assets/images/upcarta-logo-small.png"),
+            Image.asset(
+              "assets/images/1x.png",
+              height: 30.h,
+              width: 30.w,
+            ),
             const SizedBox(
               width: 8,
             ),

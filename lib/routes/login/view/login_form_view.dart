@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
@@ -6,6 +8,8 @@ import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/routes/login/login.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
+
+import '../../../util/colors.dart';
 
 class LoginScreen2 extends StatefulWidget {
   @override
@@ -34,39 +38,26 @@ class _LoginScreen2 extends State<LoginScreen2> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
+    ScreenUtil.init(context, designSize: const Size(375, 812));
 
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          // systemOverlayStyle: SystemUiOverlayStyle(sys),
-
           elevation: 0,
           titleSpacing: 0.0,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            // FIXME: APPBAR UI
-            children: [
-              Image.asset("assets/images/upcarta-logo-small.png"),
-              const SizedBox(
-                width: 10,
-              ),
-              const Text(
-                "Upcarta",
-                style: kAppBarTextStyle,
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-            ],
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
+          title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Image.asset('assets/images/1x.png', height: 30.h, width: 30.w),
+            SizedBox(width: 8.w),
+            const Text(
+              'Upcarta',
+              style: kAppBarTextStyle,
+            ),
+          ]),
+          backgroundColor: AppColors.white,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.only(left: 36.w, right: 36.w),
           child: BlocProvider(
             create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
             child: const SingleChildScrollView(
@@ -100,58 +91,46 @@ class LoginForm extends StatelessWidget {
             );
         }
       },
-      child: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Image.asset(
-                "assets/images/upcarta-logo-small.png",
-                height: 120,
-              ),
+      child: Column(
+        children: [
+          SizedBox(height: 160.h),
+          Text("Sign in with email",
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                  color: AppColors.black,
+                  fontSize: 28.sp,
+                  fontWeight: FontWeight.w600)),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.025),
 
-              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-              Text("Sign in with email",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: MediaQuery.of(context).size.height / 30,
-                      fontWeight: FontWeight.bold)),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.025),
-
-              const SizedBox(height: 16),
-              _EmailInput(),
-              const SizedBox(height: 16),
-              _PasswordInput(),
-              const SizedBox(height: 16),
-              _LoginButton(),
-              const SizedBox(height: 16),
-              // _GoogleLoginButton(),
-              // const SizedBox(height: 4),
-              _SignUpButton(),
-              TextButton(
-                onPressed: () async {
-                  context.router.push(const ResetPasswordViewRoute());
-                },
-                child: const Text(
-                  'Forgot password?',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-              TextButton(
-                onPressed: () async {
-                  context.router.push(const LoginScreenRoute());
-                },
-                child: const Text(
-                  "Resend Verification Email?",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ],
+          const SizedBox(height: 16),
+          _EmailInput(),
+          const SizedBox(height: 16),
+          _PasswordInput(),
+          const SizedBox(height: 16),
+          _LoginButton(),
+          const SizedBox(height: 16),
+          // _GoogleLoginButton(),
+          // const SizedBox(height: 4),
+          _SignUpButton(),
+          TextButton(
+            onPressed: () async {
+              context.router.push(const ResetPasswordViewRoute());
+            },
+            child: const Text(
+              'Forgot password?',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
-        ),
+          TextButton(
+            onPressed: () async {
+              context.router.push(const LoginScreenRoute());
+            },
+            child: const Text(
+              "Resend Verification Email?",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -174,7 +153,7 @@ class _EmailInput extends StatelessWidget {
             fillColor: Colors.transparent,
             filled: true,
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(10.0.r),
                 borderSide: const BorderSide(
                   color: Colors.white,
                 )),
@@ -201,7 +180,7 @@ class _PasswordInput extends StatelessWidget {
             fillColor: Colors.transparent,
             filled: true,
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(10.0.r),
                 borderSide: const BorderSide(
                   color: Colors.white,
                 )),
@@ -227,17 +206,16 @@ class _LoginButton extends StatelessWidget {
                 key: const Key('loginForm_continue_raisedButton'),
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                      borderRadius: BorderRadius.circular(10.r)),
                   backgroundColor: Colors.indigoAccent,
-                  padding: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).size.height * 0.03),
+                  padding: EdgeInsets.fromLTRB(35.w, 10.h, 35.w, 10.h),
                 ),
                 child: Text(
                   'Sign In',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.height / 50,
-                      fontWeight: FontWeight.bold),
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w600),
                 ),
               );
       },
