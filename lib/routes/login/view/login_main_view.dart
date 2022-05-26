@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
 import 'package:upcarta_mobile_app/app/bloc/theme_cubit.dart';
+import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';

@@ -23,11 +23,11 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   bool darkMode = false;
-
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
+    AutoRouter.of(context);
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.white,
@@ -146,24 +146,34 @@ class _SettingsState extends State<Settings> {
                             ),
                           ),
                         ))),
-                Card(
-                  child: InkWell(
-                      onTap: () {
-                        // TODO: CHECK THIS
-                        context.read<AppBloc>().add(AppLogoutRequested());
-                        AutoRouter.of(context)
-                            .replaceAll([const LoginScreenRoute()]);
-                      },
-                      child: const ListTile(
-                          title: Text(
-                        'Logout',
-                        style: TextStyle(
-                          fontFamily: "SFCompactText",
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
-                          color: Colors.red,
-                        ),
-                      ))),
+                BlocListener<AppBloc, AppState>(
+                  listener: (context, state) {
+                    // TODO: implement listener
+                    if (state.status == AppStatus.unauthenticated) {
+                      // FIXME: LOGOUT DOESN'T NAVIGATE HOME
+                      // AutoRouter.of(context)
+                      //     .replaceAll([const LoginScreenRoute()]);
+                      AutoRouter.of(context).pushAndPopUntil(
+                          const LoginScreenRoute(),
+                          predicate: ((route) => false));
+                    }
+                  },
+                  child: Card(
+                    child: InkWell(
+                        onTap: () {
+                          context.read<AppBloc>().add(AppLogoutRequested());
+                        },
+                        child: const ListTile(
+                            title: Text(
+                          'Logout',
+                          style: TextStyle(
+                            fontFamily: "SFCompactText",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors.red,
+                          ),
+                        ))),
+                  ),
                 ),
               ],
             )));

@@ -1,4 +1,3 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:auto_route/auto_route.dart';
 // import 'package:flow_builder/flow_builder.dart'; MAYBE WE SWITCH TI THIS
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/bloc/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 

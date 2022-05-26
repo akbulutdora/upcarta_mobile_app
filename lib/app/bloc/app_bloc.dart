@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:upcarta_mobile_app/models/user.dart';
+import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 
 // import 'package:upcarta_mobile_app/models/auth_user.dart';
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';

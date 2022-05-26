@@ -1,4 +1,3 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:http/http.dart' as http;

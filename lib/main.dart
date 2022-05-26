@@ -1,4 +1,4 @@
-import 'package:authentication_repository/authentication_repository.dart';
+import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,6 +16,8 @@ Future<void> main() async {
   // DONE: IMPLEMENT EXITING APP AFTER BACK BUTTON IN FEED
   // FIXME: BACKBUTTON BEHAVIOR AT HOME SCREENS EXCEPT FOR FEED
   // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
+  // TODO: HOCAYA SOR, BİRDEN FAZLA REPOSITORY NASIL INJECT EDİLİR
+  // TODO: HOCAYA SOR, USER REPOSITORY VE AUTH REPOSITORY AYNI USER MODELE NASIL ERİŞEBİLİR
   return BlocOverrides.runZoned(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
