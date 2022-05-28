@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/routes/login/bloc/login_cubit.dart';
 
 class Settings extends StatefulWidget {
   static MaterialPage page() {

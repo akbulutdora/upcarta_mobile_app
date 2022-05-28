@@ -237,7 +237,7 @@ class ExploreCard extends StatelessWidget {
         elevation: 0,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: AppColors.gray2_lightText,
+            color: AppColors.gray2LightText,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),

@@ -16,7 +16,6 @@ Future<void> main() async {
   // TODO: IMPLEMENT ONBOARDING COMPLETED (TALK TO OTHERS ABOUT WHAT IF ONBOARDING LEFT IN HALF)
   // DONE: IMPLEMENT EXITING APP AFTER BACK BUTTON IN FEED
   // FIXME: BACKBUTTON BEHAVIOR AT HOME SCREENS EXCEPT FOR FEED
-  // TODO: HOCAYA SOR, BİRDEN FAZLA REPOSITORY NASIL INJECT EDİLİR
   // TODO: HOCAYA SOR, USER REPOSITORY VE AUTH REPOSITORY AYNI USER MODELE NASIL ERİŞEBİLİR
   return BlocOverrides.runZoned(
     () async {
@@ -29,7 +28,8 @@ Future<void> main() async {
       final authenticationRepository =
           AuthenticationRepository(sharedPreferences: sharedPreferences);
       await authenticationRepository.user.first;
-      final userRepository = UserRepository();
+      final userRepository =
+          UserRepository(sharedPreferences: sharedPreferences);
       // await authRepository.user.first;
       runApp(
         App(

@@ -152,8 +152,6 @@ class SignupForm extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            _UsernameInput(),
-            const SizedBox(height: 16),
             _PasswordInput(),
             const SizedBox(height: 16),
             // _ConfirmPasswordInput(),
@@ -204,33 +202,6 @@ class _NameInput extends StatelessWidget {
           obscureText: false,
           decoration: InputDecoration(
             labelText: 'Name',
-            fillColor: Colors.transparent,
-            filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _UsernameInput extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SignupCubit, SignupState>(
-      buildWhen: (previous, current) => previous.username != current.username,
-      builder: (context, state) {
-        return TextField(
-          key: const Key('signUpForm_usernameInput_textField'),
-          onChanged: (username) =>
-              context.read<SignupCubit>().usernameChanged(username),
-          obscureText: false,
-          decoration: InputDecoration(
-            labelText: 'Username',
             fillColor: Colors.transparent,
             filled: true,
             border: OutlineInputBorder(

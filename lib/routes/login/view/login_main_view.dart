@@ -71,6 +71,10 @@ class LoginMainViewButtons extends StatelessWidget {
     ScreenUtil.init(context, designSize: const Size(375, 812));
     return BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
+          if (state.status == LoginStatus.googleSignup) {
+            // AutoRouter.of(context).replace(const HomeRoute());
+            AutoRouter.of(context).replaceAll([const OnboardingScreenRoute()]);
+          }
           if (state.status == LoginStatus.success) {
             // AutoRouter.of(context).replace(const HomeRoute());
             AutoRouter.of(context).replaceAll([const HomeRoute()]);
@@ -161,21 +165,21 @@ class LoginMainViewButtons extends StatelessWidget {
                       Divider(
                         indent: 48.w,
                         thickness: 1.h,
-                        color: AppColors.gray3_contentText,
+                        color: AppColors.gray3ContentText,
                       ),
                     ],
                   ),
                 ),
                 Text("     OR     ",
                     style: TextStyle(
-                        fontSize: 13.sp, color: AppColors.gray3_contentText)),
+                        fontSize: 13.sp, color: AppColors.gray3ContentText)),
                 Expanded(
                   child: Column(
                     children: [
                       Divider(
                         endIndent: 48.w,
                         thickness: 1.h,
-                        color: AppColors.gray3_contentText,
+                        color: AppColors.gray3ContentText,
                       ),
                     ],
                   ),
@@ -259,7 +263,6 @@ class LoginMainViewButtons extends StatelessWidget {
             ),
             BlocListener<AppBloc, AppState>(
               listener: (context, state) async {
-                // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
                 if (state == const AppState.prelanded()) {
                   context.router.replace(const LandingRoute());
                 }

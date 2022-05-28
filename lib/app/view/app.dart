@@ -9,6 +9,7 @@ import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
 
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
@@ -49,6 +50,10 @@ class App extends StatelessWidget {
             ),
           ),
           BlocProvider(create: (_) => ThemeCubit(sharedPreferences)),
+          BlocProvider(
+              create: (_) => ProfileBloc(
+                  userRepository: _userRepository,
+                  authRepository: _authRepository)),
         ],
         child: const AppView(),
       ),

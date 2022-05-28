@@ -35,7 +35,7 @@ class _ContentTypePickerChipsState extends State<ContentTypePickerChips> {
               disabledColor: Colors.white,
               selectedColor: AppColors.upcartaBlue,
               backgroundColor: Colors.white,
-              side: BorderSide(color: AppColors.gray1_boxFrame),
+              side: BorderSide(color: AppColors.gray1BoxFrame),
               avatar: Icon(contentTypeDict[index]["icon"]),
               label: Text(
                 contentTypeDict[index]["name"],

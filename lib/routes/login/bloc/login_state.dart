@@ -1,6 +1,12 @@
 part of 'login_cubit.dart';
 
-enum LoginStatus { initial, submitting, success, submissionFailure }
+enum LoginStatus {
+  initial,
+  submitting,
+  success,
+  submissionFailure,
+  googleSignup
+}
 
 class LoginState extends Equatable {
   final String email;

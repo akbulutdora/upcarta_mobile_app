@@ -135,7 +135,7 @@ final contentCardDescriptionStyle = TextStyle(
     fontFamily: "SF Compact Text",
     fontWeight: FontWeight.w300,
     fontSize: 10,
-    color: AppColors.gray3_contentText);
+    color: AppColors.gray3ContentText);
 
 final outlinedButtonStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.all(Colors.transparent),

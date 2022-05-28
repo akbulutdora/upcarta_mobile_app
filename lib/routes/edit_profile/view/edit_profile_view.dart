@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.dart';
+import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+
 class EditProfileScreen extends StatefulWidget {
   static MaterialPage page() {
     return const MaterialPage(
@@ -49,101 +51,96 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           )),
       //),
       body: BlocProvider(
-  create: (context) => EditProfileCubit(context.read<AuthenticationRepository>(), context.read<UserRepository>()),
-  child: Padding(
-        padding: EdgeInsets.all(height * 0.016),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Credentials",
-              style: TextStyle(
-                fontFamily: "SFCompactText",
-                fontWeight: FontWeight.w700,
-                fontSize: 20,
-                color: Colors.black,
+        create: (context) => EditProfileCubit(
+            context.read<AuthenticationRepository>(),
+            context.read<UserRepository>()),
+        //  create: (context) => ProfileBloc(
+        // userRepository: context.read<UserRepository>(), user: User.empty),
+        // TODO: EMPTY USER OLMAYACAK
+        child: Padding(
+          padding: EdgeInsets.all(height * 0.016),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Credentials",
+                style: TextStyle(
+                  fontFamily: "SFCompactText",
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            const Divider(
-              color: Colors.grey,
-            ),
-            const Text(
-              "Profile Image",
-              style: TextStyle(
-                fontFamily: "SFCompactText",
-                fontWeight: FontWeight.normal,
-                fontSize: 16,
-                color: Colors.black,
+              const Divider(
+                color: Colors.grey,
               ),
-            ),
-            const CircleImage(
-              imageProvider: AssetImage("assets/images/mock.jpg"),
-              //widget.user.profileImageUrl),
-              imageRadius: 45.0,
-            ),
-            const Text(
-              "Name",
-              style: TextStyle(
-                fontFamily: "SFCompactText",
-                fontWeight: FontWeight.normal,
-                fontSize: 16,
-                color: Colors.black,
+              const Text(
+                "Profile Image",
+                style: TextStyle(
+                  fontFamily: "SFCompactText",
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Name',
-                fillColor: Colors.transparent,
-                filled: true,
-                isDense: true,
-                contentPadding: EdgeInsets.all(height * 0.016),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(
-                      color: Colors.white,
-                    )),
+              const CircleImage(
+                imageProvider: AssetImage("assets/images/mock.jpg"),
+                //widget.user.profileImageUrl),
+                imageRadius: 45.0,
               ),
-            ),
-            const Text(
-              "Username",
-              style: TextStyle(
-                fontFamily: "SFCompactText",
-                fontWeight: FontWeight.normal,
-                fontSize: 16,
-                color: Colors.black,
+              const Text(
+                "Name",
+                style: TextStyle(
+                  fontFamily: "SFCompactText",
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Username',
-                fillColor: Colors.transparent,
-                filled: true,
-                isDense: true,
-                contentPadding: EdgeInsets.all(height * 0.016),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: const BorderSide(
-                      color: Colors.white,
-                    )),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                  fillColor: Colors.transparent,
+                  filled: true,
+                  isDense: true,
+                  contentPadding: EdgeInsets.all(height * 0.016),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(
+                        color: Colors.white,
+                      )),
+                ),
               ),
-            ),
-            const Text(
-              "Bio",
-              style: TextStyle(
-                fontFamily: "SFCompactText",
-                fontWeight: FontWeight.normal,
-                fontSize: 16,
-                color: Colors.black,
+              const Text(
+                "Username",
+                style: TextStyle(
+                  fontFamily: "SFCompactText",
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            const _BioInputForm(),
-            SizedBox(height: height * 0.012),
-            _BioSubmitButton(height: height),
-          ],
+              _UsernameInput(),
+              const SizedBox(
+                height: 8,
+              ),
+              const Text(
+                "Bio",
+                style: TextStyle(
+                  fontFamily: "SFCompactText",
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
+              ),
+              const _BioInputForm(),
+              SizedBox(height: height * 0.012),
+              _BioSubmitButton(height: height),
+            ],
+          ),
         ),
       ),
-),
     );
   }
 }
@@ -158,7 +155,12 @@ class _BioSubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EditProfileCubit, EditProfileState>(
+    return BlocConsumer<EditProfileCubit, EditProfileState>(
+      listener: (context, state) {
+        if (state.status == EditProfileStatus.success) {
+          AutoRouter.of(context).pop();
+        }
+      },
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status == EditProfileStatus.submitting
@@ -167,7 +169,7 @@ class _BioSubmitButton extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: OutlinedButton(
                   onPressed: () {
-                    context.read<EditProfileCubit>().bioSubmitted();
+                    context.read<EditProfileCubit>().editProfileSubmitted();
                   },
                   style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -206,6 +208,33 @@ class _BioInputForm extends StatelessWidget {
             fillColor: Colors.transparent,
             filled: true,
             isDense: true,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: const BorderSide(
+                  color: Colors.white,
+                )),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _UsernameInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<EditProfileCubit, EditProfileState>(
+      buildWhen: (previous, current) => previous.username != current.username,
+      builder: (context, state) {
+        return TextField(
+          key: const Key('signUpForm_usernameInput_textField'),
+          onChanged: (username) =>
+              context.read<EditProfileCubit>().usernameChanged(username),
+          obscureText: false,
+          decoration: InputDecoration(
+            labelText: 'Username',
+            fillColor: Colors.transparent,
+            filled: true,
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
                 borderSide: const BorderSide(

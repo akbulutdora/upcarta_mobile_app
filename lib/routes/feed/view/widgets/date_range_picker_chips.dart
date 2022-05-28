@@ -28,7 +28,7 @@ class _DateRangePickerChipsState extends State<DateRangePickerChips> {
               disabledColor: Colors.white,
               selectedColor: AppColors.upcartaBlue,
               backgroundColor: Colors.white,
-              side: BorderSide(color: AppColors.gray1_boxFrame),
+              side: BorderSide(color: AppColors.gray1BoxFrame),
               label: Text(
                 dateRangeNames[index],
                 style: TextStyle(
