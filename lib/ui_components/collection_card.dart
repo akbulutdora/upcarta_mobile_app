@@ -19,7 +19,7 @@ class CollectionCard extends StatelessWidget {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
-          side: BorderSide(color: AppColors.edgeColor),
+          side: BorderSide(color: AppColors.gray2LightText),
         ),
         child: Container(
           padding: EdgeInsets.all(8),
@@ -60,7 +60,7 @@ class CollectionCard extends StatelessWidget {
               ),
               Divider(
                 height: 0,
-                color: AppColors.edgeColor,
+                color: AppColors.gray2LightText,
               ),
               SizedBox(
                 height: 8,
@@ -95,7 +95,7 @@ class CollectionCard extends StatelessWidget {
                                 fontFamily: "SF Compact Text",
                                 fontWeight: FontWeight.w300,
                                 fontSize: 10,
-                                color: AppColors.primary),
+                                color: AppColors.upcartaBlue),
                           )
                         ]),
                   )

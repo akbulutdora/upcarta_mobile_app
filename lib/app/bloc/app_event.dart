@@ -9,15 +9,6 @@ abstract class AppEvent extends Equatable {
 
 class AppLogoutRequested extends AppEvent {}
 
-class AppStatusChanged extends AppEvent {
-  const AppStatusChanged(this.status);
-
-  final AppStatus status;
-
-  @override
-  List<Object> get props => [status];
-}
-
 class AppUserChanged extends AppEvent {
   const AppUserChanged(this.user);
 
@@ -28,4 +19,5 @@ class AppUserChanged extends AppEvent {
 }
 
 class AppLanded extends AppEvent {}
+
 class AppLandedCanceled extends AppEvent {}

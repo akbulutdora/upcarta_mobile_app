@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "838181007011-589es8bbai14131lt6jk01d2aeh6t5vj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.upcarta.upcarta_mobile_app",
+            "certificate_hash": "bb4fe1004f2ffa22615ce1342c88beb5aba7077f"
+          }
+        },
+        {
+          "client_id": "838181007011-vo6a0ll55ul1rf5j2phr58rvshm122uf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.upcarta.upcarta_mobile_app",
+            "certificate_hash": "2c292a3a004d34f3cf8876fd5bcb04794b2a0c4e"
+          }
+        },
+        {
           "client_id": "838181007011-97b0a9gk1jbcgenmsjpjufaef0pvufpo.apps.googleusercontent.com",
           "client_type": 3
         }

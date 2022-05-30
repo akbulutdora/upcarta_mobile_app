@@ -38,15 +38,19 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-// TODO: IMPLEMENT GOOGLE SIGN IN
   Future<void> logInWithGoogle() async {
     if (state.status == LoginStatus.submitting) {
       return;
     }
     emit(state.copyWith(status: LoginStatus.submitting));
     try {
-      await _authRepository.logInWithGoogle();
-      emit(state.copyWith(status: LoginStatus.success));
+      var googleExists = await _authRepository.logInWithGoogle();
+
+      if (!googleExists) {
+        emit(state.copyWith(status: LoginStatus.googleSignup)); // google signup
+      } else {
+        emit(state.copyWith(status: LoginStatus.success)); // google login
+      }
     } on LogInWithGoogleFailure catch (e) {
       emit(
         state.copyWith(

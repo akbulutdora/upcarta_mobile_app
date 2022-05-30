@@ -16,13 +16,18 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     emit(state.copyWith(bio: value, status: EditProfileStatus.initial));
   }
 
-  Future<void> bioSubmitted() async {
+  void usernameChanged(String value) {
+    emit(state.copyWith(username: value, status: EditProfileStatus.initial));
+  }
+
+  Future<void> editProfileSubmitted() async {
     if (state.status == EditProfileStatus.submitting) {
       return;
     } //to avoid sending multiple reqs at the same time
     emit(state.copyWith(status: EditProfileStatus.submitting));
     try {
       await _userRepository.changeBio(state.bio);
+      await _userRepository.changeUsername(state.username);
       emit(state.copyWith(status: EditProfileStatus.success));
     } catch (e) {
       emit(

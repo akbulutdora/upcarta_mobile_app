@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
@@ -32,6 +33,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreen extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle:
@@ -39,27 +41,22 @@ class _LoginScreen extends State<LoginScreen> {
         elevation: 0,
         titleSpacing: 0.0,
         title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Icon(
-            Icons.pause_circle,
-            size: 30,
-            color: AppColors.primary,
-          ),
+          Image.asset('assets/images/upcarta-logo-small.png',
+              height: 30.h, width: 30.w),
+          SizedBox(width: 8.w),
           const Text(
             'Upcarta',
             style: kAppBarTextStyle,
           ),
         ]),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
       ),
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: BlocProvider(
-          create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
-          child: const SingleChildScrollView(
-            child: LoginMainViewButtons(),
-          ),
+      backgroundColor: AppColors.white,
+      body: BlocProvider(
+        create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
+        child: const SingleChildScrollView(
+          child: LoginMainViewButtons(),
         ),
       ),
     );
@@ -71,10 +68,13 @@ class LoginMainViewButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
+          if (state.status == LoginStatus.googleSignup) {
+            // AutoRouter.of(context).replace(const HomeRoute());
+            AutoRouter.of(context).replaceAll([const OnboardingScreenRoute()]);
+          }
           if (state.status == LoginStatus.success) {
             // AutoRouter.of(context).replace(const HomeRoute());
             AutoRouter.of(context).replaceAll([const HomeRoute()]);
@@ -96,160 +96,173 @@ class LoginMainViewButtons extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.only(
-                    top: height * 0.05,
+                    top: 80.h,
                   ),
                   child: Text(
-                    'Discover, collect \n and share great content.',
+                    'Discover, collect and share\n great content.',
                     textAlign: TextAlign.center,
-                    style:
-                        TextStyle(color: Colors.black, fontSize: height / 30),
+                    style: TextStyle(
+                        color: AppColors.black,
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: height * .10),
+            SizedBox(height: 64.h),
             SizedBox(
-              //height: height * 0.07,
-              width: width,
               child: OutlinedButton(
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(10.r)),
                     backgroundColor: Colors.lightBlue,
-                    padding: EdgeInsets.symmetric(vertical: height * 0.03)),
+                    padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h)),
                 child: Text(
                   'Continue with Twitter',
-                  style: TextStyle(color: Colors.white, fontSize: height / 50),
+                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
                 ),
               ),
             ),
-            SizedBox(height: height * .025),
+            SizedBox(height: 16.h),
             SizedBox(
-              //height: height * 0.07,
-              width: width,
               child: OutlinedButton(
                 onPressed: () {
                   context.read<LoginCubit>().logInWithGoogle();
                 },
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    backgroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: height * 0.03)),
+                        borderRadius: BorderRadius.circular(10.r)),
+                    backgroundColor: AppColors.white,
+                    padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h)),
                 child: Text(
                   'Continue with Google',
-                  style: TextStyle(color: Colors.black, fontSize: height / 50),
+                  style: TextStyle(color: AppColors.black, fontSize: 16.sp),
                 ),
               ),
             ),
-            SizedBox(height: height * .025),
+            SizedBox(height: 16.h),
             SizedBox(
-              //height: height * 0.07,
-              width: width,
               child: OutlinedButton(
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    backgroundColor: Colors.black,
-                    padding: EdgeInsets.symmetric(vertical: height * 0.03)),
+                        borderRadius: BorderRadius.circular(10.r)),
+                    backgroundColor: AppColors.black,
+                    padding: EdgeInsets.fromLTRB(67.w, 13.h, 67.w, 14.h)),
                 child: Text(
                   'Continue with Apple',
-                  style: TextStyle(color: Colors.white, fontSize: height / 50),
+                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
                 ),
               ),
             ),
-            SizedBox(height: height * .03),
+            SizedBox(height: 16.h),
             Row(
               children: [
                 Expanded(
                   child: Column(
                     children: [
                       Divider(
-                        thickness: height * 0.001,
-                        color: Colors.black,
+                        indent: 48.w,
+                        thickness: 1.h,
+                        color: AppColors.gray3ContentText,
                       ),
                     ],
                   ),
                 ),
-                const Text("     OR     "),
+                Text("     OR     ",
+                    style: TextStyle(
+                        fontSize: 13.sp, color: AppColors.gray3ContentText)),
                 Expanded(
                   child: Column(
                     children: [
                       Divider(
-                        thickness: height * 0.001,
-                        color: Colors.black,
+                        endIndent: 48.w,
+                        thickness: 1.h,
+                        color: AppColors.gray3ContentText,
                       ),
                     ],
                   ),
                 )
               ],
             ),
-            SizedBox(height: height * .03),
+            SizedBox(height: 16.h),
             SizedBox(
-              //height: height * 0.07,
-              width: width * 1,
               child: OutlinedButton(
                 onPressed: () async {
                   context.router.push(const MyRegisterRoute());
                 },
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(10.r)),
                     backgroundColor: Colors.indigoAccent,
-                    padding: EdgeInsets.symmetric(vertical: height * 0.03)),
+                    padding: EdgeInsets.fromLTRB(111.w, 13.h, 111.w, 14.h)),
                 child: Text(
                   'Sign Up',
-                  style: TextStyle(color: Colors.white, fontSize: height / 50),
+                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
                 ),
               ),
             ),
-            SizedBox(height: height * .015),
             SizedBox(
-              width: width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: height * 0.015,
-                        color: Colors.black,
+                  Row(
+                    children: [
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          primary: AppColors.upcartaBlue,
+                        ),
+                        onPressed: () async {
+                          context.router.push(const LoginScreen2Route());
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(42.w, 8.h, 42.w, 8.h),
+                          child: RichText(
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'Have an account already?  ',
+                                    style: TextStyle(
+                                        fontSize: 15.sp,
+                                        color: AppColors.black)),
+                                TextSpan(
+                                    text: 'LOG IN',
+                                    style: TextStyle(
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.upcartaBlue)),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
-                      children: const <TextSpan>[
-                        TextSpan(text: 'By signing up you agree to our '),
-                        TextSpan(
-                            text: '\nTerms, Privacy Policy, and Cookie Use',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                      ],
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(52.w, 0.h, 52.w, 0.h),
+                    child: RichText(
+                      textAlign: TextAlign.justify,
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'By signing up you agree to our ',
+                              style: TextStyle(
+                                  fontSize: 12.sp, color: AppColors.black)),
+                          TextSpan(
+                              text: 'Terms, Privacy Policy, and Cookie Use',
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.black)),
+                        ],
+                      ),
                     ),
                   )
                 ],
               ),
             ),
-            //SizedBox(height: height * .2),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Have an account already?',
-                  style: TextStyle(fontSize: height * 0.02),
-                ),
-                TextButton(
-                    style: TextButton.styleFrom(
-                      primary: Colors.lightBlue,
-                    ),
-                    onPressed: () async {
-                      context.router.push(const LoginScreen2Route());
-                    },
-                    child: const Text("LOG IN")),
-              ],
-            ),
             BlocListener<AppBloc, AppState>(
               listener: (context, state) async {
-                // TODO: HOCAYA SOR, SHARED PREF NEREYE GİDEBİLİR
                 if (state == const AppState.prelanded()) {
                   context.router.replace(const LandingRoute());
                 }

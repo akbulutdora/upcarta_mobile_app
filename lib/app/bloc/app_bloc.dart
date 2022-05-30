@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
 
 // import 'package:upcarta_mobile_app/models/auth_user.dart';
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
@@ -15,22 +16,27 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   final AuthenticationRepository _authRepository;
   final SharedPreferences _sharedPrefs;
   late final StreamSubscription<User>? _userSubscription;
+  // ProfileBloc _profileBloc;
 
   AppState get initialState => const AppState.uninitialized();
 
-  AppBloc(
-      {required AuthenticationRepository authRepository,
-      required SharedPreferences sharedPrefs})
-      : _authRepository = authRepository,
+  AppBloc({
+    required AuthenticationRepository authRepository,
+    required SharedPreferences sharedPrefs,
+    // required ProfileBloc profileBloc
+  })  : _authRepository = authRepository,
         _sharedPrefs = sharedPrefs,
+        // _profileBloc = profileBloc,
         super(const AppState.uninitialized()) {
     on<AppLogoutRequested>(_onLogoutRequested);
     on<AppUserChanged>(_onAppUserChanged);
     on<AppLanded>(_onLanded);
     on<AppLandedCanceled>(_onLandedCanceled);
 
-    _userSubscription =
-        _authRepository.user.listen((user) => add(AppUserChanged(user)));
+    _userSubscription = _authRepository.user.listen((user) {
+      add(AppUserChanged(user));
+      // _profileBloc.add(ProfileEventChanged(user));
+    });
   }
 
   FutureOr<void> _onAppUserChanged(

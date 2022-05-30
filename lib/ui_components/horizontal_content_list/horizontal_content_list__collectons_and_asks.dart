@@ -37,7 +37,7 @@ class HorizontalContentList extends StatelessWidget {
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
                           fontSize: 11,
-                          color: AppColors.primary),
+                          color: AppColors.upcartaBlue),
                     ),
                   ),
                 ),

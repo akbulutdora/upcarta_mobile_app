@@ -18,7 +18,7 @@ class _LatestViewState extends State<LatestView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0, right: 8, left: 8),
+      padding: const EdgeInsets.only(top: 4, right: 8, left: 8),
       child: Column(
         children: [
           FutureBuilder<QuerySnapshot>(

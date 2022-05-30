@@ -40,7 +40,7 @@ class _TopViewState extends State<TopView> {
         ];
       },
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 8.0, right: 8, left: 8),
+        padding: const EdgeInsets.only(top: 4.0, right: 8, left: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,

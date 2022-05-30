@@ -1,7 +1,9 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:upcarta_mobile_app/models/content.dart';
-import 'package:upcarta_mobile_app/models/collection.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:upcarta_mobile_app/models/user.dart';
 
 /// {@template user_repository}
 /// 5-*Ğlköhyujmg tfnbractions.
@@ -9,19 +11,53 @@ import 'package:upcarta_mobile_app/models/collection.dart';
 
 class UserRepository {
   UserRepository({
-    FirebaseAuth? firebaseAuth,
+    firebase_auth.FirebaseAuth? firebaseAuth,
     FirebaseFirestore? firebaseFirestore,
-  })  : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _firestoreDB = firebaseFirestore ?? FirebaseFirestore.instance;
+    required SharedPreferences sharedPreferences,
+  })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
+        _firestoreDB = firebaseFirestore ?? FirebaseFirestore.instance,
+        _sharedPreferences = sharedPreferences;
 
-  final FirebaseAuth _firebaseAuth;
+  final firebase_auth.FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestoreDB;
+  final SharedPreferences _sharedPreferences;
+
+  /// TODO: FIX LISTENER, SHOULD ALSO LISTEN TO AUTH CHANGES
+  Stream<User> get user {
+    return _firestoreDB
+        .collection("Person")
+        .doc(_firebaseAuth.currentUser!.uid)
+        .snapshots()
+        .map((event) {
+      print("\n\n\n\nEVENT DATA ${event.data()!}\n\n\n");
+      final user =
+          event.data() == null ? User.empty : User.fromJson(event.data()!);
+      _sharedPreferences.setString("user", json.encode(user.toString()));
+
+      return user;
+    });
+  }
+
+  Future<User> getCurrentUser() async {
+    var event = await _firestoreDB
+        .collection("Person")
+        .doc(_firebaseAuth.currentUser!.uid)
+        .get()
+        .then((value) => value.data());
+
+    return User.fromJson(event!);
+  }
 
   /// Called when the user changes their profile description
   Future<void> changeBio(String newBio) async {
     try {
-      _firestoreDB.doc(_firebaseAuth.currentUser!.uid).set({"bio": newBio});
-    } catch (_) {}
+      _firestoreDB
+          .collection("Person")
+          .doc(_firebaseAuth.currentUser!.uid)
+          .update({"bio": newBio});
+    } catch (e) {
+      print(e);
+    }
   }
 
   /// Called when the user changes their profile picture
@@ -29,24 +65,28 @@ class UserRepository {
     try {
       _firebaseAuth.currentUser!.updatePhotoURL(newURL);
       _firestoreDB
+          .collection("Person")
           .doc(_firebaseAuth.currentUser!.uid)
-          .set({"photoURL": newURL});
+          .update({"photoURL": newURL});
     }
     // TODO: IMPLEMENT ERROR
     catch (_) {}
   }
 
   /// Called when the user changes their username
-  /// TODO: HOCAYA SOR, DOĞRU MU
-  Future<void> changeUsername(String newUsername) async {
+  FutureOr<void> changeUsername(String newUsername) async {
     try {
-      _firebaseAuth.currentUser!.updateDisplayName(newUsername);
+      print("\n\n\nHERE ${newUsername}\n\n\n");
+      //_firebaseAuth.currentUser!.updateDisplayName(newUsername);
       _firestoreDB
+          .collection("Person")
           .doc(_firebaseAuth.currentUser!.uid)
-          .set({"username": newUsername});
+          .update({"username": newUsername});
     }
     // TODO: IMPLEMENT ERROR
-    catch (_) {}
+    catch (e) {
+      print(e.toString());
+    }
   }
 
   /// Called when the user follows another user
@@ -54,6 +94,12 @@ class UserRepository {
 
   /// Called when the user unfollows another user
   Future<void> unfollowUserWithID(String unfollowID) async {}
+
+  /// Called when the user follows a topic
+  Future<void> followTopicWithID(String followID) async {}
+
+  /// Called when the user unfollows a topic
+  Future<void> unfollowTopicWithID(String followID) async {}
 
   /// Called when the user saves a recommendation to one of their collections
   Future<void> saveToCollection(String postID, String collectionID) async {}

@@ -205,11 +205,9 @@ class AuthenticationRepository {
   /// Creates a new user with the provided [email], [password], [username]
   ///  and [name].
   /// Throws a [SignUpWithEmailAndPasswordFailure] if an exception occurs.
-  /// TODO: HOCAYA SOR, ÇOK ÇİRKİN BU SANKİ
   Future<void> signUp({
     required String email,
     required String password,
-    required String username,
     required String name,
   }) async {
     try {
@@ -220,62 +218,7 @@ class AuthenticationRepository {
       )
           .then(
         (cred) async {
-          final uid = cred.user!.uid;
-          String savesID;
-          String recomID;
-
-          // CREATE THE INITIALLY EMPTY SAVED COLLECTION
-          final savedCollection = <String, dynamic>{
-            'collectionType': 'saved',
-            'ownerID': uid,
-            'description': '',
-            'createdDate': DateTime.now(),
-            'recommenderIDs': <String>[],
-            'postIDs': <String>[],
-            'isAsk': false,
-            'contentTypes': ''
-          };
-          savesID = await _firestoreDB
-              .collection('collections')
-              .add(savedCollection)
-              .then((DocumentReference doc) => doc.id);
-          final recommendationsCollection = <String, dynamic>{
-            'collectionType': 'recommendation',
-            'ownerID': uid,
-            'description': '',
-            'createdDate': DateTime.now(),
-            'recommenderIDs': <String>[],
-            'postIDs': <String>[],
-            'isAsk': false,
-            'contentTypes': ''
-          };
-          recomID = await _firestoreDB
-              .collection('collections')
-              .add(recommendationsCollection)
-              .then((DocumentReference doc) => doc.id);
-          final thisUser = User(
-            id: uid,
-            username: username,
-            email: cred.user!.email,
-            name: name,
-            bio: '',
-            joinDate: DateTime.now().toString(),
-            followerIDs: const [],
-            followingIDs: const [],
-            followedTopicIDs: const [],
-            followers: 0,
-            following: 0,
-            photoURL:
-                'gs://upcarta-77024.appspot.com/Amadeo Modigliani - Ritratto di Paul Guillaume 1916.jpg',
-            recommendationCount: 0,
-            recommendationsID: recomID,
-            savesID: savesID,
-            collectionsIDs: const [],
-            asksIDs: const [],
-          );
-          return _firestoreDB.collection('Person').doc(uid).set(
-                thisUser.toJson(),
-              );
+          return await createUserWithCollections(cred, name);
         },
       );
     } on FirebaseAuthException catch (e) {
@@ -285,29 +228,95 @@ class AuthenticationRepository {
     }
   }
 
+  createUserWithCollections(
+      firebase_auth.UserCredential cred, String name) async {
+    print("IN CREATE USER WITH COLLECTIONS");
+    final uid = cred.user!.uid;
+    String savesID;
+    String recomID;
+    // CREATE THE INITIALLY EMPTY SAVED COLLECTION
+    final savedCollection = <String, dynamic>{
+      'collectionType': 'saved',
+      'ownerID': uid,
+      'description': '',
+      'createdDate': DateTime.now(),
+      'recommenderIDs': <String>[],
+      'postIDs': <String>[],
+      'isAsk': false,
+      'contentTypes': ''
+    };
+    savesID = await _firestoreDB
+        .collection('collections')
+        .add(savedCollection)
+        .then((DocumentReference doc) => doc.id);
+    final recommendationsCollection = <String, dynamic>{
+      'collectionType': 'recommendation',
+      'ownerID': uid,
+      'description': '',
+      'createdDate': DateTime.now(),
+      'recommenderIDs': <String>[],
+      'postIDs': <String>[],
+      'isAsk': false,
+      'contentTypes': ''
+    };
+    recomID = await _firestoreDB
+        .collection('collections')
+        .add(recommendationsCollection)
+        .then((DocumentReference doc) => doc.id);
+    final thisUser = User(
+      id: uid,
+      username: "",
+      email: cred.user!.email,
+      name: name,
+      bio: '',
+      joinDate: DateTime.now().toString(),
+      followerIDs: const [],
+      followingIDs: const [],
+      followedTopicIDs: const [],
+      followers: 0,
+      following: 0,
+      photoURL:
+          'gs://upcarta-77024.appspot.com/Amadeo Modigliani - Ritratto di Paul Guillaume 1916.jpg',
+      recommendationCount: 0,
+      recommendationsID: recomID,
+      savesID: savesID,
+      collectionsIDs: const [],
+      asksIDs: const [],
+    );
+    return _firestoreDB.collection('Person').doc(uid).set(
+          thisUser.toJson(),
+        );
+  }
+
   /// Starts the Sign In with Google Flow.
   ///
   /// Throws a [LogInWithGoogleFailure] if an exception occurs.
-  ///   /// TODO: HOCAYA SOR, GOOGLE SIGNIN + FIRESTORE USER ENTRY NASIL OLACAK
-  Future<void> logInWithGoogle() async {
+  Future<bool> logInWithGoogle() async {
     try {
       late final firebase_auth.AuthCredential credential;
-      if (isWeb) {
-        final googleProvider = firebase_auth.GoogleAuthProvider();
-        final userCredential = await _firebaseAuth.signInWithPopup(
-          googleProvider,
-        );
-        credential = userCredential.credential!;
-      } else {
-        final googleUser = await _googleSignIn.signIn();
-        final googleAuth = await googleUser!.authentication;
-        credential = firebase_auth.GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        );
-      }
 
-      await _firebaseAuth.signInWithCredential(credential);
+      final googleUser = await _googleSignIn.signIn();
+      final googleAuth = await googleUser!.authentication;
+      print("IN LOGIN WITH GOOGLE BEFORE GET GOOGLEAUTHPROVIDER CREDENTIAL");
+      credential = firebase_auth.GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+      print("IN LOG IN WITH GOOGLE BEFORE FIREBASEAUTH SIGNIN WITH CREDENTIAL");
+      var userCredential = await _firebaseAuth.signInWithCredential(credential);
+      // TODO: MIGHT BE ERROR
+      var usersRef =
+          _firestoreDB.collection('Person').doc(userCredential.user!.uid);
+      var googleExists = await usersRef.get().then(
+        (docSnapshot) {
+          if (!docSnapshot.exists) {
+            print("IN DOCSNAPSHOT EXISTS");
+            createUserWithCollections(
+                userCredential, userCredential.user!.displayName!);
+            return false;
+          }
+          return true;
+        },
+      );
+      return googleExists;
     } on FirebaseAuthException catch (e) {
       throw LogInWithGoogleFailure.fromCode(e.code);
     } catch (_) {
