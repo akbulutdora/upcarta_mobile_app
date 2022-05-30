@@ -12,13 +12,13 @@ class FireStoreService {
 
     Content data = Content(
         title: "Firebase content 2",
-        id: newContentRef.id,
+        postId: newContentRef.id,
         contentType: ContentType.video,
-        createDate: DateTime.now(),
-        image: "",
-        posterID: "posterID",
-        link: "www.youtube.com",
-        creatorID: "creatorID",
+        createDate: DateTime.now().toString(),
+        imageLocation: "",
+        uId: "posterID",
+        username: "",
+        url: "www.youtube.com",
         contentTopic: "contentTopic",
         recommendationText: "Cool video!",
         recommendersIDs: ["recommendersIDs"]);
@@ -107,4 +107,5 @@ class FireStoreService {
 
     return user.user;
   }
+
 }

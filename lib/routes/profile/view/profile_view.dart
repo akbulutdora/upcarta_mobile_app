@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart' as fire_auth;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
@@ -61,7 +62,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       //),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [Expanded(child: SizedBox(child: buildTabController()))],
+        children: [
+          Expanded(child: SizedBox(child: buildTabController()))],
       ),
     );
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

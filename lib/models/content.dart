@@ -50,28 +50,30 @@ enum ContentType {
 @JsonSerializable()
 class Content {
   final String title;
-  final String id;
+  final String createDate;
   final ContentType contentType;
-  final String description;
-  final DateTime createDate;
-  final String image;
-  final String link;
-  final String posterID; // (id of the user who added this content initially)
-  final String creatorID;
+  final String uId;
+  final String postId;
+  final String username;
   final String contentTopic;
   List<String> recommendersIDs;
   final String recommendationText;
+  final String imageLocation;
+  final String description;
+  final String url;
+
+
 
   Content({
     required this.title,
-    required this.id,
+    required this.uId,
+    required this.postId,
+    required this.username,
     required this.contentType,
     this.description = "This content has no description.",
     required this.createDate,
-    required this.image,
-    required this.posterID,
-    required this.link,
-    required this.creatorID,
+    required this.imageLocation,
+    required this.url,
     required this.contentTopic,
     required this.recommendationText,
     required this.recommendersIDs,

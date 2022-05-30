@@ -136,7 +136,7 @@ class ContentCard extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: Image.network(
-                            content.image,
+                            content.imageLocation,
                             errorBuilder: (BuildContext context,
                                 Object exception, StackTrace? stackTrace) {
                               return Container(
@@ -164,7 +164,7 @@ class ContentCard extends StatelessWidget {
                                     maxLines: 3,
                                   ),
                                   Text(
-                                    content.link,
+                                    content.url,
                                     style: TextStyle(
                                         fontFamily: "SF Compact Text",
                                         fontWeight: FontWeight.w300,
