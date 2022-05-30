@@ -22,7 +22,7 @@ class _LatestViewState extends State<LatestView> {
       child: Column(
         children: [
           FutureBuilder<QuerySnapshot>(
-            future: _firestore.collection("postsTest2").get(),
+            future: _firestore.collection("posts").get(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -41,6 +41,7 @@ class _LatestViewState extends State<LatestView> {
                     .map((content) => Content.fromJson(
                         content.data() as Map<String, dynamic>))
                     .toList();
+                print("\n\n\nHERE ${contents}");
                 return FeedContentList(contentList: contents as List<Content>);
               }
 

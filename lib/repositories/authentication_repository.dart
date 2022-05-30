@@ -240,7 +240,7 @@ class AuthenticationRepository {
       'ownerID': uid,
       'description': '',
       'createdDate': DateTime.now(),
-      'recommenderIDs': <String>[],
+      'recommenderIDs': <String>[uid],
       'postIDs': <String>[],
       'isAsk': false,
       'contentTypes': ''
