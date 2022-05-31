@@ -10,6 +10,7 @@ import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
+import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
@@ -20,13 +21,16 @@ class App extends StatelessWidget {
   const App({
     Key? key,
     required AuthenticationRepository authRepository,
+    required AnalyticsRepository analyticsRepository,
     required UserRepository userRepository,
     required this.sharedPreferences,
   })  : _authRepository = authRepository,
         _userRepository = userRepository,
+        _analyticsRepository = analyticsRepository,
         super(key: key);
 
   final AuthenticationRepository _authRepository;
+  final AnalyticsRepository _analyticsRepository;
   final UserRepository _userRepository;
   final SharedPreferences sharedPreferences;
 
@@ -40,6 +44,9 @@ class App extends StatelessWidget {
         RepositoryProvider.value(
           value: _userRepository,
         ),
+        RepositoryProvider.value(
+          value: _analyticsRepository,
+        )
       ],
       child: MultiBlocProvider(
         providers: [

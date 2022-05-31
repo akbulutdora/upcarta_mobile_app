@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 import 'package:upcarta_mobile_app/routes/login/login.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 
@@ -59,7 +60,8 @@ class _LoginScreen2 extends State<LoginScreen2> {
         body: Padding(
           padding: EdgeInsets.only(left: 36.w, right: 36.w),
           child: BlocProvider(
-            create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
+            create: (_) => LoginCubit(context.read<AuthenticationRepository>(),
+                context.read<AnalyticsRepository>()),
             child: const SingleChildScrollView(
               child: LoginForm(),
             ),

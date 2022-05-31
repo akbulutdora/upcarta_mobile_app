@@ -1,4 +1,5 @@
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,11 +31,14 @@ Future<void> main() async {
       await authenticationRepository.user.first;
       final userRepository =
           UserRepository(sharedPreferences: sharedPreferences);
+      final analyticsRepository = AnalyticsRepository();
+
       // await authRepository.user.first;
       runApp(
         App(
           authRepository: authenticationRepository,
           userRepository: userRepository,
+          analyticsRepository: analyticsRepository,
           sharedPreferences: sharedPreferences,
         ),
       );
