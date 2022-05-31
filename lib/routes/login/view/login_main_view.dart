@@ -14,6 +14,8 @@ import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import '../../../app/bloc/app_bloc.dart';
 import 'package:upcarta_mobile_app/routes/login/login.dart';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+
 class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreen();
@@ -57,7 +59,7 @@ class _LoginScreen extends State<LoginScreen> {
       body: BlocProvider(
         create: (_) => LoginCubit(context.read<AuthenticationRepository>(),
             context.read<AnalyticsRepository>()),
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           // child: const SingleChildScrollView(
           child: LoginMainViewButtons(),
         ),

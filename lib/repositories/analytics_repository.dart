@@ -6,6 +6,9 @@ class AnalyticsRepository {
 
   final FirebaseAnalytics _firebaseAnalytics;
 
+  FirebaseAnalyticsObserver getAnalyticsObserver() =>
+      FirebaseAnalyticsObserver(analytics: _firebaseAnalytics);
+
   setLogEvent(String log) async {
     try {
       await _firebaseAnalytics
