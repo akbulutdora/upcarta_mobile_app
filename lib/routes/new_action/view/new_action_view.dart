@@ -15,7 +15,6 @@ class NewPostScreen extends StatefulWidget {
 
 class _NewPostScreenState extends State<NewPostScreen> {
   String dropdownvalue = 'Recommended Content';
-  final _postInputController = TextEditingController();
 
   // List of items in our dropdown menu
   var items = [

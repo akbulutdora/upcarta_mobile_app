@@ -26,7 +26,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
     // TODO: SUBSCRIPTION GEREKLİ Mİ?
     _userSubscription =
-        _userRepository.user.listen((user) => add(ProfileEventChanged(user)));
+        _userRepository.user.listen((user) => add(ProfileEventChanged(
+              user,
+            )));
     _authSubscription = _authRepository.user
         .listen((user) => add(ProfileEventAuthChanged(user)));
   }

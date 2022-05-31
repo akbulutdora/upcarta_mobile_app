@@ -31,7 +31,6 @@ class UserRepository {
         .doc(_firebaseAuth.currentUser!.uid)
         .snapshots()
         .map((event) {
-      print("\n\n\n\nEVENT DATA ${event.data()!}\n\n\n");
       final user =
           event.data() == null ? User.empty : User.fromJson(event.data()!);
       _sharedPreferences.setString("user", json.encode(user.toString()));
@@ -267,6 +266,7 @@ class UserRepository {
   }
 
   /// Timeline
+  /// TODO: SHOULD FETCH 20 POSTS AT A TIME AS IN THIS EXAMPLE https://bloclibrary.dev/#/flutterinfinitelisttutorial
   Future getTimeline() async {
     try {
       var docSnapshot = await _firestoreDB
@@ -282,6 +282,29 @@ class UserRepository {
       print('Failed with error code: $e');
       //TODO: bu ne return etmeli
       return {};
+    }
+  }
+
+  /// TODO: FETCH A CERTAIN NUMBER OF POSTS FROM COLLECTION "posts"
+  Future fetchPosts({int numberOfPosts = 0}) async {
+    try {
+      var data = await _firestoreDB.collection("posts").get().then((value) {
+        return value.docs.map((e) => Content.fromJson(e.data())).toList();
+      });
+
+      // var docSnapshot = await _firestoreDB
+      //     .collection('posts')
+      //     .doc(_firebaseAuth.currentUser!.uid)
+      //     .get();
+      // if (docSnapshot.) {
+      //   Map<String, dynamic> data = docSnapshot.data()!;
+      //   return data;
+      // }
+      return data;
+      // return {};
+    } catch (e) {
+      print('Failed with error code: $e');
+      rethrow;
     }
   }
 }
