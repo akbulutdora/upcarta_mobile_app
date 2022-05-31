@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -29,22 +32,22 @@ class DefaultFirebaseOptions {
           'DefaultFirebaseOptions have not been configured for macos - '
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
+      case TargetPlatform.windows:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for linux - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
         );
     }
   }
-
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDWv_dM95G9px5wdMpKkk6bpCLCmK6X1-s',
-    appId: '1:838181007011:web:5454ed994c6fb69ea19916',
-    messagingSenderId: '838181007011',
-    projectId: 'upcarta-77024',
-    authDomain: 'upcarta-77024.firebaseapp.com',
-    databaseURL: 'https://upcarta-77024-default-rtdb.europe-west1.firebasedatabase.app',
-    storageBucket: 'upcarta-77024.appspot.com',
-  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBa30_-u1oSi0ORrXfsVnjdJF2mot3Sozk',
@@ -57,12 +60,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCNogvjbrwOpdgdtEOV2w52pOtVDfQHF4k',
-    appId: '1:838181007011:ios:a3d324b0e2e7c8c2a19916',
+    appId: '1:838181007011:ios:c11bfcd79b07b9d2a19916',
     messagingSenderId: '838181007011',
     projectId: 'upcarta-77024',
     databaseURL: 'https://upcarta-77024-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'upcarta-77024.appspot.com',
-    iosClientId: '838181007011-570ica2df8p06873csimkj1ha42fc9dr.apps.googleusercontent.com',
-    iosBundleId: 'com.upcarta.app',
+    androidClientId: '838181007011-589es8bbai14131lt6jk01d2aeh6t5vj.apps.googleusercontent.com',
+    iosClientId: '838181007011-ceaolv9gt5dboo0ecpo2rvg8p73lps6t.apps.googleusercontent.com',
+    iosBundleId: 'com.idilkapikiran.upcartaMobileApp',
   );
 }
