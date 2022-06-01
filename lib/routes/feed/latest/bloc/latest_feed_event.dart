@@ -8,3 +8,5 @@ abstract class LatestFeedEvent extends Equatable {
 }
 
 class LatestFeedEventContentFetched extends LatestFeedEvent {}
+
+class LatestFeedEventContentRefreshed extends LatestFeedEvent {}

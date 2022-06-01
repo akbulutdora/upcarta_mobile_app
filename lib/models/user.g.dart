@@ -6,7 +6,7 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
+AppUser _$AppUserFromJson(Map<String, dynamic> json) => AppUser(
       id: json['id'] as String,
       email: json['email'] as String?,
       name: json['name'] as String?,
@@ -27,22 +27,18 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       followingIDs: (json['followingIDs'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      followers: json['followers'] as int? ?? 0,
-      following: json['following'] as int? ?? 0,
       recommendationCount: json['recommendationCount'] as int? ?? 0,
       followedTopicIDs: (json['followedTopicIDs'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
     );
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
       'email': instance.email,
       'id': instance.id,
       'name': instance.name,
       'photoURL': instance.photoURL,
       'username': instance.username,
-      'followers': instance.followers,
-      'following': instance.following,
       'followerIDs': instance.followerIDs,
       'followingIDs': instance.followingIDs,
       'followedTopicIDs': instance.followedTopicIDs,

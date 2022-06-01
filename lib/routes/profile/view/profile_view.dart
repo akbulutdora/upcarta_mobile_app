@@ -253,7 +253,9 @@ class BuildProfile extends StatelessWidget {
                   onPressed: () {},
                   child: Row(children: [
                     Text(
-                      state.user.followers.toString(),
+                      state.user.followerIDs == null
+                          ? "0"
+                          : state.user.followerIDs!.length.toString(),
                       style: const TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.w700,
@@ -280,7 +282,9 @@ class BuildProfile extends StatelessWidget {
                   onPressed: () {},
                   child: Row(children: [
                     Text(
-                      state.user.following.toString(),
+                      state.user.followingIDs == null
+                          ? "0"
+                          : state.user.followingIDs!.length.toString(),
                       style: const TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.w700,

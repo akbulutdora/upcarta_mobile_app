@@ -5,14 +5,14 @@ import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/bottom_loader
 import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/content_list_item.dart';
 import 'package:upcarta_mobile_app/ui_components/feed_content_list.dart';
 
-class PostsList extends StatefulWidget {
-  const PostsList({Key? key}) : super(key: key);
+class LatestContentList extends StatefulWidget {
+  const LatestContentList({Key? key}) : super(key: key);
 
   @override
-  _PostsListState createState() => _PostsListState();
+  _LatestContentListState createState() => _LatestContentListState();
 }
 
-class _PostsListState extends State<PostsList> {
+class _LatestContentListState extends State<LatestContentList> {
   final _scrollController = ScrollController();
 
   @override
@@ -32,16 +32,26 @@ class _PostsListState extends State<PostsList> {
             if (state.contents.isEmpty) {
               return const Center(child: Text('no posts'));
             }
-            return ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return index >= state.contents.length
-                    ? const BottomLoader()
-                    : ContentListItem(content: state.contents[index]);
+            return RefreshIndicator(
+              onRefresh: () {
+                return Future(
+                  () => context
+                      .read<LatestFeedBloc>()
+                      .add(LatestFeedEventContentRefreshed()),
+                );
               },
-              itemCount: state.hasReachedMax
-                  ? state.contents.length
-                  : state.contents.length + 1,
-              controller: _scrollController,
+              child: ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  return index >= state.contents.length
+                      ? const BottomLoader()
+                      : ContentListItem(content: state.contents[index]);
+                },
+                itemCount: state.hasReachedMax
+                    ? state.contents.length
+                    : state.contents.length + 1,
+                controller: _scrollController,
+              ),
             );
           default:
             return const Center(child: CircularProgressIndicator());

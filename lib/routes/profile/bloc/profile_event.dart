@@ -18,14 +18,14 @@ abstract class ProfileEvent extends Equatable {
 
 class ProfileEventChanged extends ProfileEvent {
   const ProfileEventChanged(this.user);
-  final User user;
+  final AppUser user;
   @override
   List<Object> get props => [user];
 }
 
 class ProfileEventAuthChanged extends ProfileEvent {
   const ProfileEventAuthChanged(this.user);
-  final User user;
+  final AppUser user;
   @override
   List<Object> get props => [user];
 }
@@ -33,7 +33,7 @@ class ProfileEventAuthChanged extends ProfileEvent {
 class ProfileEventSubmitted extends ProfileEvent {
   const ProfileEventSubmitted(this.user);
 
-  final User user;
+  final AppUser user;
 
   @override
   List<Object> get props => [user];

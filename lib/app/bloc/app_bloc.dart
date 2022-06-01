@@ -15,7 +15,7 @@ part 'app_state.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   final AuthenticationRepository _authRepository;
   final SharedPreferences _sharedPrefs;
-  late final StreamSubscription<User>? _userSubscription;
+  late final StreamSubscription<AppUser>? _userSubscription;
   // ProfileBloc _profileBloc;
 
   AppState get initialState => const AppState.uninitialized();

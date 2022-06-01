@@ -25,7 +25,7 @@ class _LatestViewState extends State<LatestView> {
         create: (_) =>
             LatestFeedBloc(userRepository: context.read<UserRepository>())
               ..add(LatestFeedEventContentFetched()),
-        child: const PostsList(),
+        child: const LatestContentList(),
       ),
     );
     // return Padding(

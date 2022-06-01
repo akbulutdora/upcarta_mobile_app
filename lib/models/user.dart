@@ -6,13 +6,13 @@ part 'user.g.dart';
 /// {@template user}
 /// User model
 ///
-/// [User.empty] represents an unauthenticated user.
+/// [AppUser.empty] represents an unauthenticated user.
 /// {@endtemplate}
 ///
 @JsonSerializable()
-class User extends Equatable {
+class AppUser extends Equatable {
   /// {@macro user}
-  const User({
+  const AppUser({
     required this.id,
     this.email,
     this.name,
@@ -26,17 +26,16 @@ class User extends Equatable {
     this.collectionsIDs,
     this.followerIDs,
     this.followingIDs,
-    this.followers = 0,
-    this.following = 0,
     this.recommendationCount = 0,
     this.followedTopicIDs,
   });
 
   /// The JSON serializer
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory AppUser.fromJson(Map<String, dynamic> json) =>
+      _$AppUserFromJson(json);
 
   /// The JSON serializer
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  Map<String, dynamic> toJson() => _$AppUserToJson(this);
 
   /// The current user's email address.
   final String? email;
@@ -52,12 +51,6 @@ class User extends Equatable {
 
   /// The current user's username
   final String? username;
-
-  /// Number of followers the current user has
-  final int followers;
-
-  /// Number of followings the current user has
-  final int following;
 
   /// IDs of followers the current user has
   final List<String>? followerIDs;
@@ -91,14 +84,30 @@ class User extends Equatable {
   final String? joinDate;
 
   /// Empty user which represents an unauthenticated user.
-  static const empty = User(id: '');
+  static const empty = AppUser(id: '');
 
   /// Convenience getter to determine whether the current user is empty.
-  bool get isEmpty => this == User.empty;
+  bool get isEmpty => this == AppUser.empty;
 
   /// Convenience getter to determine whether the current user is not empty.
-  bool get isNotEmpty => this != User.empty;
+  bool get isNotEmpty => this != AppUser.empty;
 
   @override
-  List<Object?> get props => [email, id, name, photoURL];
+  List<Object?> get props => [
+        email,
+        id,
+        name,
+        photoURL,
+        username,
+        followerIDs,
+        followingIDs,
+        followedTopicIDs,
+        bio,
+        recommendationCount,
+        recommendationsID,
+        savesID,
+        collectionsIDs,
+        asksIDs,
+        joinDate
+      ];
 }

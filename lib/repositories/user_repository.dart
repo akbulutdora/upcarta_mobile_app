@@ -13,7 +13,6 @@ import '../models/models.dart';
 /// 5-*Ğlköhyujmg tfnbractions.
 /// {@endtemplate}
 
-
 class UserRepository {
   UserRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
@@ -28,31 +27,34 @@ class UserRepository {
   final SharedPreferences _sharedPreferences;
   final String userCollection = "Person";
 
+  final AppUser appUser = AppUser.empty;
 
   /// TODO: FIX LISTENER, SHOULD ALSO LISTEN TO AUTH CHANGES
-  Stream<User> get user {
+  Stream<AppUser> get user {
     return _firestoreDB
         .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
         .snapshots()
         .map((event) {
-      final user =
-          event.data() == null ? User.empty : User.fromJson(event.data()!);
+      final user = event.data() == null
+          ? AppUser.empty
+          : AppUser.fromJson(event.data()!);
       _sharedPreferences.setString("user", json.encode(user.toString()));
 
       return user;
     });
   }
 
-
-  Future<User> getCurrentUser() async {
+  Future<AppUser> getCurrentUser() async {
     var event = await _firestoreDB
         .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
         .get()
         .then((value) => value.data());
 
-    return User.fromJson(event!);
+    print("USER REQUESTED ${event.toString()}");
+    print("AFTER USER REQUESTED ${AppUser.fromJson(event!).toString()}");
+    return AppUser.fromJson(event);
   }
 
   /// Called when the user changes their profile description
@@ -98,28 +100,48 @@ class UserRepository {
 
   /// Called when the user follows another user
   Future<void> followUserWithID(String followID) async {
-    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
+    _firestoreDB
+        .collection(userCollection)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .update({
       "followingIDs": FieldValue.arrayUnion([followID]),
+    });
+
+    _firestoreDB.collection(userCollection).doc(followID).update({
+      "followerIDs": FieldValue.arrayUnion([_firebaseAuth.currentUser!.uid]),
     });
   }
 
   /// Called when the user unfollows another user
   Future<void> unfollowUserWithID(String unfollowID) async {
-    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
+    _firestoreDB
+        .collection(userCollection)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .update({
       "followingIDs": FieldValue.arrayRemove([unfollowID]),
+    });
+
+    _firestoreDB.collection(userCollection).doc(unfollowID).update({
+      "followerIDs": FieldValue.arrayRemove([_firebaseAuth.currentUser!.uid]),
     });
   }
 
   /// Called when the user follows a topic
   Future<void> followTopicWithID(String followID) async {
-    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
+    _firestoreDB
+        .collection(userCollection)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .update({
       "followedTopicsIDs": FieldValue.arrayUnion([followID]),
     });
   }
 
   /// Called when the user unfollows a topic
   Future<void> unfollowTopicWithID(String followID) async {
-    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
+    _firestoreDB
+        .collection(userCollection)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .update({
       "followedTopicsIDs": FieldValue.arrayRemove([followID]),
     });
   }
@@ -139,7 +161,8 @@ class UserRepository {
         .get()
         .then((documentSnapshot) => documentSnapshot['recommendationsID']);
     _firestoreDB.collection("posts").doc(postID).update({
-      "recommendersIDs": FieldValue.arrayUnion([_firebaseAuth.currentUser!.uid]),
+      "recommendersIDs":
+          FieldValue.arrayUnion([_firebaseAuth.currentUser!.uid]),
     });
     _firestoreDB.collection("collections").doc(recommendationsID).update({
       "postIDs": FieldValue.arrayUnion([postID]),
@@ -351,19 +374,19 @@ class UserRepository {
   /// TODO: FETCH A CERTAIN NUMBER OF POSTS FROM COLLECTION "posts"
   Future fetchPosts({int numberOfPosts = 0}) async {
     try {
-      var data = await _firestoreDB.collection("posts").get().then((value) {
+      var data = await _firestoreDB
+          .collection("posts")
+          .limit(numberOfPosts + 10)
+          .get()
+          .then((value) {
         return value.docs.map((e) => Content.fromJson(e.data())).toList();
       });
 
-      // var docSnapshot = await _firestoreDB
-      //     .collection('posts')
-      //     .doc(_firebaseAuth.currentUser!.uid)
-      //     .get();
-      // if (docSnapshot.) {
-      //   Map<String, dynamic> data = docSnapshot.data()!;
-      //   return data;
-      // }
-      return data;
+      if (data.length > numberOfPosts) {
+        return data.sublist(numberOfPosts);
+      } else {
+        return [];
+      }
       // return {};
     } catch (e) {
       print('Failed with error code: $e');

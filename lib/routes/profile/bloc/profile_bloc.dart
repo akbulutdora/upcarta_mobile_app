@@ -10,8 +10,8 @@ part 'profile_event.dart';
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  late final StreamSubscription<User>? _userSubscription;
-  late final StreamSubscription<User>? _authSubscription;
+  late final StreamSubscription<AppUser>? _userSubscription;
+  late final StreamSubscription<AppUser>? _authSubscription;
   final UserRepository _userRepository;
   final AuthenticationRepository _authRepository;
 
@@ -20,7 +20,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     required AuthenticationRepository authRepository,
   })  : _userRepository = userRepository,
         _authRepository = authRepository,
-        super(const ProfileState.initial(User.empty)) {
+        super(const ProfileState.initial(AppUser.empty)) {
     on<ProfileEventChanged>(_onChanged);
     on<ProfileEventAuthChanged>(_onAuthChanged);
 
@@ -56,7 +56,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     print("\n\n\nprinting user in profile bloc ${event.user}");
     emit(const ProfileState.loading());
 
-    User user = await _userRepository.getCurrentUser();
+    AppUser user = await _userRepository.getCurrentUser();
 
     emit(ProfileState.success(user));
     // emit(event.user.isNotEmpty
