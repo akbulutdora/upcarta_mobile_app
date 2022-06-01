@@ -65,8 +65,7 @@ class _LoginScreen2 extends State<LoginScreen2> {
         body: Padding(
           padding: EdgeInsets.only(left: 36.w, right: 36.w),
           child: BlocProvider(
-            create: (_) => LoginCubit(context.read<AuthenticationRepository>(),
-                context.read<AnalyticsRepository>()),
+            create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
             child: const SingleChildScrollView(
               child: LoginForm(),
             ),

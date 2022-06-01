@@ -11,8 +11,7 @@ class AnalyticsRepository {
 
   setLogEvent(String log) async {
     try {
-      await _firebaseAnalytics
-          .logEvent(name: log, parameters: {"event_name": "Event"});
+      await _firebaseAnalytics.logEvent(name: log);
       print(log);
     } catch (err) {
       print("error while setting log event (analytics): $err");
@@ -32,6 +31,17 @@ class AnalyticsRepository {
       await _firebaseAnalytics.setUserId(id: userID);
     } catch (err) {
       print("error while setting user id (analytics): $err");
+    }
+  }
+
+  setDefaultEventParameters(String email) async {
+    try {
+      await _firebaseAnalytics.setDefaultEventParameters({
+        "email": email,
+      });
+      print(email);
+    } catch (err) {
+      print("error while setting default parameters (analytics): $err");
     }
   }
 }

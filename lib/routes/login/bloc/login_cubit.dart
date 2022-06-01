@@ -6,11 +6,9 @@ import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(this._authRepository, this._analyticsRepository)
-      : super(LoginState.initial());
+  LoginCubit(this._authRepository) : super(LoginState.initial());
 
   final AuthenticationRepository _authRepository;
-  final AnalyticsRepository _analyticsRepository;
 
   void emailChanged(String value) {
     emit(state.copyWith(email: value, status: LoginStatus.initial));
@@ -28,8 +26,6 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       await _authRepository.logInWithEmailAndPassword(
           email: state.email, password: state.password);
-      await _analyticsRepository.setUserId(state.email);
-      await _analyticsRepository.setLogEvent("${state.email} signed in");
       emit(state.copyWith(status: LoginStatus.success));
     } on LogInWithEmailAndPasswordFailure catch (e) {
       emit(

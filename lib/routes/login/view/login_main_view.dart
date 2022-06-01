@@ -57,8 +57,7 @@ class _LoginScreen extends State<LoginScreen> {
       ),
       backgroundColor: AppColors.white,
       body: BlocProvider(
-        create: (_) => LoginCubit(context.read<AuthenticationRepository>(),
-            context.read<AnalyticsRepository>()),
+        create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
         child: const SingleChildScrollView(
           // child: const SingleChildScrollView(
           child: LoginMainViewButtons(),
