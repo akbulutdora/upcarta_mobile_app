@@ -183,30 +183,30 @@ class UserRepository {
   Future<void> changePassword(String newPassword) async {}
 
   ///*********************************************PROFILE*********************************************************
-  /// Contents. Bu değişebilir belki collectionsInfo field'ını kaldırıp for loop yapılabilir.
+  /// Contents.
   Future<List<Map<String, dynamic>>> profileGetCollections() async {
     try {
-      var docSnapshot = await _firestoreDB
-          .collection('users')
+      dynamic res;
+      var collectionIds = await _firestoreDB
+          .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
-          .get();
-
-      if (docSnapshot.exists) {
-        Map<String, dynamic> data = docSnapshot.data()!;
-        var collectionInfo = data['collectionsInfo'];
-        return collectionInfo;
+          .get()
+          .then((documentSnapshot) => documentSnapshot['collectionsIDs']);
+      for (int i = 0; i < collectionIds.length; i++) {
+        var collectionSnapshot = await _firestoreDB.collection('collections')
+            .doc(collectionIds[i])
+            .get();
+        res.add(collectionSnapshot);
       }
-      return [];
+      return res;
     } catch (e) {
       print('Failed with error code: $e');
       //TODO: bu ne return etmeli
       return [];
     }
   }
-
   /// Getting content details
-  Future<Map<String, dynamic>> profileGetCollectionsDetail(
-      String collectionId) async {
+  Future<Map<String, dynamic>> profileGetCollectionsDetail(String collectionId) async {
     try {
       var docSnapshot =
           await _firestoreDB.collection('collections').doc(collectionId).get();
