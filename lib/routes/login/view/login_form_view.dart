@@ -99,8 +99,9 @@ class LoginForm extends StatelessWidget {
         }
       },
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 160.h),
+          SizedBox(height: 140.h),
           Align(
             alignment: Alignment.centerLeft,
             child: Text("Sign In with Email",
@@ -121,44 +122,60 @@ class LoginForm extends StatelessWidget {
           _EmailInput(),
           SizedBox(height: 16.h),
           _PasswordInput(),
-          SizedBox(height: 12.h),
+          SizedBox(height: 16.h),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextButton(
-                onPressed: () async {
-                  context.router.push(const ResetPasswordViewRoute());
-                },
-                child: Text(
-                  'Forgot password?',
-                  style: TextStyle(
-                    fontFamily: 'SFCompactText-Regular.ttf',
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.upcartaBlue,
-                    decoration: TextDecoration.underline,
-                    decorationColor: AppColors.upcartaBlue,
-                  ),
-                ),
-              ),
+              _SignUpButton(),
+              _LoginButton(),
             ],
           ),
-          Align(alignment: Alignment.centerRight, child: _LoginButton()),
+          SizedBox(
+            height: 40.h,
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextButton(
+                  onPressed: () async {
+                    context.router.push(const ResetPasswordViewRoute());
+                  },
+                  child: Text(
+                    'Forgot password?',
+                    style: TextStyle(
+                      fontFamily: 'SFCompactText-Regular.ttf',
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.upcartaBlue,
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppColors.upcartaBlue,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    context.router.push(const LoginScreenRoute());
+                  },
+                  child: Text(
+                    "Resend Verification Email?",
+                    style: TextStyle(
+                      fontFamily: 'SFCompactText-Regular.ttf',
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.upcartaBlue,
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppColors.upcartaBlue,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           const SizedBox(height: 16),
           // _GoogleLoginButton(),
           // const SizedBox(height: 4),
-
-          _SignUpButton(),
-
-          TextButton(
-            onPressed: () async {
-              context.router.push(const LoginScreenRoute());
-            },
-            child: const Text(
-              "Resend Verification Email?",
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
         ],
       ),
     );
@@ -243,10 +260,10 @@ class _LoginButton extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r)),
                   backgroundColor: Colors.indigoAccent,
-                  padding: EdgeInsets.fromLTRB(35.w, 10.h, 35.w, 10.h),
+                  padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
                 ),
                 child: Text(
-                  'Sign In',
+                  'Log In',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 15.sp,
@@ -284,12 +301,19 @@ class _SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return TextButton(
+    return OutlinedButton(
       key: const Key('loginForm_createAccount_flatButton'),
       onPressed: () => AutoRouter.of(context).push(const MyRegisterRoute()),
+      style: OutlinedButton.styleFrom(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+        side: BorderSide(color: AppColors.upcartaBlue),
+        backgroundColor: AppColors.white,
+        padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
+      ),
       child: Text(
-        'CREATE ACCOUNT',
-        style: TextStyle(color: theme.primaryColor),
+        'Sign Up',
+        style: TextStyle(color: theme.primaryColor, fontSize: 15.sp),
       ),
     );
   }
