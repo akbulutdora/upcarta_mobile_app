@@ -50,7 +50,7 @@ enum ContentType {
 @JsonSerializable()
 class Content {
   final String title;
-  final String createDate;
+  final DateTime createDate;
   final ContentType contentType;
   final String uId;
   final String postId;
@@ -61,8 +61,6 @@ class Content {
   final String imageLocation;
   final String description;
   final String url;
-
-
 
   Content({
     required this.title,

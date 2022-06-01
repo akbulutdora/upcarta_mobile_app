@@ -12,7 +12,7 @@ final List<Content> contents = <Content>[
     imageLocation:
         'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg',
     contentTopic: '',
-    createDate: DateTime.now().toString(),
+    createDate: DateTime.now(),
     recommendationText: '',
     recommendersIDs: [],
   ),
@@ -27,7 +27,7 @@ final List<Content> contents = <Content>[
     imageLocation:
         'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg',
     contentTopic: '',
-    createDate: DateTime.now().toString(),
+    createDate: DateTime.now(),
     recommendationText: '',
     recommendersIDs: [],
   ),
@@ -42,7 +42,7 @@ final List<Content> contents = <Content>[
     imageLocation:
         'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg',
     contentTopic: '',
-    createDate: DateTime.now().toString(),
+    createDate: DateTime.now(),
     recommendationText: '',
     recommendersIDs: [],
   ),
@@ -57,7 +57,7 @@ final List<Content> contents = <Content>[
     imageLocation:
         'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg',
     contentTopic: '',
-    createDate: DateTime.now().toString(),
+    createDate: DateTime.now(),
     recommendationText: '',
     recommendersIDs: [],
   ),
@@ -72,7 +72,7 @@ final List<Content> contents = <Content>[
     imageLocation:
         'https://i.pinimg.com/originals/e8/15/b9/e815b94b7a82d7c6e2f4c791bf984d98.jpg',
     contentTopic: '',
-    createDate: DateTime.now().toString(),
+    createDate: DateTime.now(),
     recommendationText: '',
     recommendersIDs: [],
   ),

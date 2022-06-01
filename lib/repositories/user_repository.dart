@@ -200,18 +200,19 @@ class UserRepository {
   // TODO: Might be moved to auth repo
   /// Called when the user changes their email
   Future<void> changeEmail(String newEmail) async {
-    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
-        "email": newEmail});
+    _firestoreDB
+        .collection(userCollection)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .update({"email": newEmail});
   }
 
   // TODO: Might be moved to auth repo
   /// Called when the user changes their password
   Future<void> changePassword(String newPassword) async {
     var currentUser = _firebaseAuth.currentUser;
-    currentUser!.updatePassword(newPassword).then((_){
+    currentUser!.updatePassword(newPassword).then((_) {
       print("Successfully changed password");
-    }).catchError((err){
-    });
+    }).catchError((err) {});
   }
 
   ///*********************************************PROFILE*********************************************************
@@ -225,7 +226,8 @@ class UserRepository {
           .get()
           .then((documentSnapshot) => documentSnapshot['collectionsIDs']);
       for (int i = 0; i < collectionIds.length; i++) {
-        var collectionSnapshot = await _firestoreDB.collection('collections')
+        var collectionSnapshot = await _firestoreDB
+            .collection('collections')
             .doc(collectionIds[i])
             .get();
         res.add(collectionSnapshot);
@@ -237,8 +239,10 @@ class UserRepository {
       return [];
     }
   }
+
   /// Getting content details
-  Future<Map<String, dynamic>> profileGetCollectionsDetail(String collectionId) async {
+  Future<Map<String, dynamic>> profileGetCollectionsDetail(
+      String collectionId) async {
     try {
       var docSnapshot =
           await _firestoreDB.collection('collections').doc(collectionId).get();
@@ -322,7 +326,7 @@ class UserRepository {
         recommendationText: "",
         contentTopic: '',
         contentType: ContentType.video,
-        createDate: DateTime.now().toString(),
+        createDate: DateTime.now(),
         imageLocation: '',
         postId: postId,
         recommendersIDs: [_firebaseAuth.currentUser!.uid],
@@ -385,6 +389,7 @@ class UserRepository {
     try {
       var data = await _firestoreDB
           .collection("posts")
+          .orderBy("createDate", descending: true)
           .limit(numberOfPosts + 10)
           .get()
           .then((value) {
