@@ -1,9 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/repositories/query_repository.dart';
+import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
+import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
@@ -67,7 +72,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: BlocProvider(
-          create: (context) => ExploreCubit(),
+          // TODO: INJECT PROPERLY
+          create: (context) => ExploreCubit(
+              QueryRepository(firebaseFirestore: FirebaseFirestore.instance),
+              context.read<UserRepository>()),
           child: Column(
             children: [
               SizedBox(
@@ -75,76 +83,73 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 child: buildSearchBar(),
               ),
               const SizedBox(height: 10),
-              BlocListener<ExploreCubit, ExploreState>(
-                listener: (context, state) {
-                  // TODO: implement listener - query response
-                },
-                child: BlocBuilder<ExploreCubit, ExploreState>(
-                  buildWhen: (previous, current) =>
-                      previous.status != current.status ||
-                      previous.searchKey != current.searchKey,
-                  builder: (context, state) {
-                    if (state.status == ExploreStatus.submitting) {
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text("The user is typed ${state.searchKey}"),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const CircularProgressIndicator(),
-                          ],
-                        ),
-                      );
-                    } else if (state.status == ExploreStatus.initial ||
-                        state.searchKey == "") {
-                      return GridView.count(
-                        shrinkWrap: true,
-                        crossAxisCount: 2,
-                        childAspectRatio: 2,
-                        children: cardsList,
-                      );
-                    } else if (state.status == ExploreStatus.success &&
-                        state.searchKey != "") {
-                      return Column(
+              BlocBuilder<ExploreCubit, ExploreState>(
+                buildWhen: (previous, current) =>
+                    previous.status != current.status ||
+                    previous.searchKey != current.searchKey,
+                builder: (context, state) {
+                  if (state.status == ExploreStatus.submitting) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            alignment: Alignment.topLeft,
-                            child: const WrappedSingleChip(),
+                          const SizedBox(
+                            height: 10,
                           ),
-                          Center(
-                              child: Text("The user typed ${state.searchKey}")),
+                          Text("The user is typing ${state.searchKey}"),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const CircularProgressIndicator(),
                         ],
-                      );
-                    } else if (state.status == ExploreStatus.typing) {
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text("The user is typing ${state.searchKey}"),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const CircularProgressIndicator(),
-                          ],
+                      ),
+                    );
+                  } else if (state.status == ExploreStatus.initial ||
+                      state.searchKey == "") {
+                    return GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: 2,
+                      childAspectRatio: 2,
+                      children: cardsList,
+                    );
+                  } else if (state.status == ExploreStatus.typing) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text("The user is typing ${state.searchKey}"),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const CircularProgressIndicator(),
+                        ],
+                      ),
+                    );
+                  } else if (state.status == ExploreStatus.error) {
+                    return const Center(
+                      child: Text("Error"),
+                    );
+                  } else {
+                    // else if (state.status == ExploreStatus.success &&
+                    //     state.searchKey != "") {
+                    return Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.topLeft,
+                          child: const WrappedSingleChip(),
                         ),
-                      );
-                    } else {
-                      return const Center(
-                        child: Text("Error"),
-                      );
-                    }
-                  },
-                ),
+                        SearchResultList(
+                          searchResult: state.searchPeople,
+                        ),
+                      ],
+                    );
+                  }
+                },
               ),
             ],
           ),
@@ -183,6 +188,78 @@ class _ExploreScreenState extends State<ExploreScreen> {
           ),
         );
       },
+    );
+  }
+}
+
+class SearchResultList extends StatelessWidget {
+  final List searchResult;
+  const SearchResultList({
+    Key? key,
+    required this.searchResult,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 500,
+            child: Expanded(
+              child: ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    AppUser item = searchResult[index];
+                    return BlocBuilder<ProfileBloc, ProfileState>(
+                      builder: (context, state) {
+                        if (state.status == ExploreStatus.followRequested) {
+                          return const CircularProgressIndicator();
+                        }
+                        if (state.user.followingIDs != null &&
+                            !state.user.followingIDs!.contains(item.id)) {
+                          print(
+                              "\n\nTHE USER AT BLOC ${state.user.toString()}");
+                          return ListTile(
+                            leading: IconButton(
+                                onPressed: (() {
+                                  BlocProvider.of<ExploreCubit>(context)
+                                      .followRequested(item.id);
+                                }),
+                                icon: Icon(
+                                  Icons.add_circle_outline_rounded,
+                                  color: AppColors.primary,
+                                )),
+                            trailing: Text(item.name ?? "null name"),
+                            title: Text(item.email ?? "null email"),
+                            isThreeLine: true,
+                            subtitle: Text(item.username ?? "null username"),
+                            dense: true,
+                          );
+                        } else {
+                          return ListTile(
+                            leading: IconButton(
+                                onPressed: (() {
+                                  BlocProvider.of<ExploreCubit>(context)
+                                      .unfollowRequested(item.id);
+                                }),
+                                icon: const Icon(
+                                    Icons.add_circle_outline_rounded)),
+                            trailing: Text(item.name ?? "null name"),
+                            title: Text(item.email ?? "null email"),
+                            isThreeLine: true,
+                            subtitle: Text(item.username ?? "null username"),
+                            dense: true,
+                          );
+                        }
+                      },
+                    );
+                  },
+                  itemCount: searchResult.length),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

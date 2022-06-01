@@ -11,16 +11,16 @@ extension ProfileStatusX on ProfileStatus {
 
 class ProfileState extends Equatable {
   final ProfileStatus status;
-  final User user;
+  final AppUser user;
   const ProfileState._(
-      {this.status = ProfileStatus.initial, this.user = User.empty});
+      {this.status = ProfileStatus.initial, this.user = AppUser.empty});
 
-  const ProfileState.initial(User user)
+  const ProfileState.initial(AppUser user)
       : this._(status: ProfileStatus.initial, user: user);
 
   const ProfileState.loading() : this._(status: ProfileStatus.loading);
 
-  const ProfileState.success(User user)
+  const ProfileState.success(AppUser user)
       : this._(status: ProfileStatus.success, user: user);
 
   const ProfileState.failure() : this._(status: ProfileStatus.failure);
