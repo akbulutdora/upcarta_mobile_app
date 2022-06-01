@@ -176,11 +176,20 @@ class UserRepository {
 
   // TODO: Might be moved to auth repo
   /// Called when the user changes their email
-  Future<void> changeEmail(String newEmail) async {}
+  Future<void> changeEmail(String newEmail) async {
+    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
+        "email": newEmail});
+  }
 
   // TODO: Might be moved to auth repo
   /// Called when the user changes their password
-  Future<void> changePassword(String newPassword) async {}
+  Future<void> changePassword(String newPassword) async {
+    var currentUser = _firebaseAuth.currentUser;
+    currentUser!.updatePassword(newPassword).then((_){
+      print("Successfully changed password");
+    }).catchError((err){
+    });
+  }
 
   ///*********************************************PROFILE*********************************************************
   /// Contents.
