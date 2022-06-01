@@ -30,20 +30,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
           titleSpacing: 0.0,
-          title: const Text(
+          title: Text(
             'Edit Profile',
             style: TextStyle(
                 fontFamily: "SFCompactText-Medium",
-                color: Colors.black,
+                color: Theme.of(context).iconTheme.color,
                 fontWeight: FontWeight.w500,
                 fontSize: 22),
           ),
           leading: IconButton(
-            icon: const Icon(
+            icon:  Icon(
               Icons.arrow_back_ios,
-              color: Colors.black26,
+              color: Theme.of(context).iconTheme.color,
             ),
             onPressed: () {
               context.router.pop();
@@ -60,28 +61,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         child: Padding(
           padding: EdgeInsets.all(height * 0.016),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+               Text(
                 "Credentials",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
                   fontWeight: FontWeight.w700,
                   fontSize: 20,
-                  color: Colors.black,
+                  color: Theme.of(context).iconTheme.color,
                 ),
               ),
-              const Divider(
-                color: Colors.grey,
+               Divider(
+                color: Theme.of(context).dividerTheme.color,
               ),
-              const Text(
+               Text(
                 "Profile Image",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
                   fontWeight: FontWeight.normal,
                   fontSize: 16,
-                  color: Colors.black,
+                  color: Theme.of(context).iconTheme.color,
                 ),
               ),
               const CircleImage(
@@ -89,13 +89,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 //widget.user.profileImageUrl),
                 imageRadius: 45.0,
               ),
-              const Text(
+               Text(
                 "Name",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
                   fontWeight: FontWeight.normal,
                   fontSize: 16,
-                  color: Colors.black,
+                  color: Theme.of(context).iconTheme.color,
                 ),
               ),
               TextField(
@@ -105,33 +105,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   filled: true,
                   isDense: true,
                   contentPadding: EdgeInsets.all(height * 0.016),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(
-                        color: Colors.white,
-                      )),
+                  border: Theme.of(context).inputDecorationTheme.border,
                 ),
               ),
-              const Text(
+               Text(
                 "Username",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
                   fontWeight: FontWeight.normal,
                   fontSize: 16,
-                  color: Colors.black,
+                  color: Theme.of(context).iconTheme.color,
                 ),
               ),
               _UsernameInput(),
-              const SizedBox(
-                height: 8,
-              ),
-              const Text(
+               Text(
                 "Bio",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
                   fontWeight: FontWeight.normal,
                   fontSize: 16,
-                  color: Colors.black,
+                  color: Theme.of(context).iconTheme.color,
                 ),
               ),
               const _BioInputForm(),
@@ -174,12 +167,12 @@ class _BioSubmitButton extends StatelessWidget {
                   style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
-                      backgroundColor: Colors.lightBlue,
+                      backgroundColor: Theme.of(context).primaryColor,
                       padding: EdgeInsets.all(height * 0.02)),
                   child: Text(
                     'Save',
                     style:
-                        TextStyle(color: Colors.white, fontSize: height / 50),
+                        TextStyle(color: Theme.of(context).iconTheme.color, fontSize: height / 50),
                   ),
                 ),
               );
@@ -208,11 +201,7 @@ class _BioInputForm extends StatelessWidget {
             fillColor: Colors.transparent,
             filled: true,
             isDense: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+            border: Theme.of(context).inputDecorationTheme.border,
           ),
         );
       },
@@ -235,11 +224,7 @@ class _UsernameInput extends StatelessWidget {
             labelText: 'Username',
             fillColor: Colors.transparent,
             filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+            border: Theme.of(context).inputDecorationTheme.border,
           ),
         );
       },

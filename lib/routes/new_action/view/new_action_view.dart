@@ -34,7 +34,8 @@ class _NewPostScreenState extends State<NewPostScreen> {
           width: 30,
           height: 30,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         elevation: 0,
         titleSpacing: 0.0,
         title: const Text(

@@ -29,7 +29,8 @@ class _SettingsState extends State<Settings> {
     AutoRouter.of(context);
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
             title: const Text(
               'Settings',
@@ -40,9 +41,9 @@ class _SettingsState extends State<Settings> {
                   fontSize: 22),
             ),
             leading: IconButton(
-              icon: const Icon(
+              icon:  Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black54,
+                color: Theme.of(context).iconTheme.color,
               ),
               onPressed: () {
                 context.router.pop();
@@ -58,34 +59,34 @@ class _SettingsState extends State<Settings> {
                         onTap: () {
                           context.router.push(const EmailSettingsRoute());
                         },
-                        child: const ListTile(
+                        child: ListTile(
                             title: Text('Email',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,
                                   fontSize: 18,
-                                  color: Colors.black,
+                                  color: Theme.of(context).iconTheme.color,
                                 )),
                             leading: Icon(
                               Icons.mail,
-                              color: Colors.black,
+                              color: Theme.of(context).iconTheme.color,
                             )))),
                 Card(
                     child: InkWell(
                         onTap: () {
                           context.router.push(const PasswordSettingsRoute());
                         },
-                        child: const ListTile(
+                        child:  ListTile(
                             title: Text('Password',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,
                                   fontSize: 18,
-                                  color: Colors.black,
+                                  color: Theme.of(context).iconTheme.color,
                                 )),
                             leading: Icon(
                               Icons.vpn_key,
-                              color: Colors.black,
+                              color: Theme.of(context).iconTheme.color,
                             )))),
                 Card(
                     child: InkWell(
@@ -93,39 +94,40 @@ class _SettingsState extends State<Settings> {
                           context.router
                               .push(const NotificationSettingsRoute());
                         },
-                        child: const ListTile(
+                        child:  ListTile(
                             title: Text('Notifications',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,
                                   fontSize: 18,
-                                  color: Colors.black,
+                                  color: Theme.of(context).iconTheme.color,
                                 )),
                             leading: Icon(
                               Icons.notifications,
-                              color: Colors.black,
+                              color: Theme.of(context).iconTheme.color,
                             )))),
                 BlocBuilder<ThemeCubit, ThemeData>(
                   builder: (_, theme) {
                     return Card(
                         child: InkWell(
                       child: SwitchListTile(
-                        title: const Text(
+                        activeColor: Theme.of(context).primaryColor,
+                        title:  Text(
                           'Dark Mode',
                           style: TextStyle(
                             fontFamily: "SFCompactText",
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
-                            color: Colors.black,
+                            color: Theme.of(context).iconTheme.color,
                           ),
                         ),
                         value: theme.brightness == Brightness.dark,
                         onChanged: (bool value) {
                           context.read<ThemeCubit>().toggleTheme();
                         },
-                        secondary: const Icon(
+                        secondary:  Icon(
                           Icons.brightness_2,
-                          color: Colors.black,
+                          color: Theme.of(context).iconTheme.color,
                         ),
                       ),
                     ));
@@ -134,14 +136,14 @@ class _SettingsState extends State<Settings> {
                 Card(
                     child: InkWell(
                         onTap: () {},
-                        child: const ListTile(
+                        child:  ListTile(
                           title: Text(
                             'Disable Account',
                             style: TextStyle(
                               fontFamily: "SFCompactText",
                               fontWeight: FontWeight.w500,
                               fontSize: 18,
-                              color: Colors.black,
+                              color: Theme.of(context).iconTheme.color,
                             ),
                           ),
                         ))),

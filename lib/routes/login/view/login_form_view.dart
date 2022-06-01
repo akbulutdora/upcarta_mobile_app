@@ -48,14 +48,16 @@ class _LoginScreen2 extends State<LoginScreen2> {
           title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Image.asset('assets/images/1x.png', height: 30.h, width: 30.w),
             SizedBox(width: 8.w),
-            const Text(
+             Text(
               'Upcarta',
-              style: kAppBarTextStyle,
+              style: TextStyle(
+                  color: Theme.of(context).iconTheme.color,
+                  fontSize: 22.sp,
+                  fontWeight: FontWeight.w600),
             ),
           ]),
-          backgroundColor: AppColors.white,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         ),
-        backgroundColor: AppColors.white,
         body: Padding(
           padding: EdgeInsets.only(left: 36.w, right: 36.w),
           child: BlocProvider(
@@ -97,7 +99,7 @@ class LoginForm extends StatelessWidget {
           Text("Sign in with email",
               textAlign: TextAlign.start,
               style: TextStyle(
-                  color: AppColors.black,
+                  color: Theme.of(context).iconTheme.color,
                   fontSize: 28.sp,
                   fontWeight: FontWeight.w600)),
           SizedBox(height: MediaQuery.of(context).size.height * 0.025),
@@ -116,18 +118,18 @@ class LoginForm extends StatelessWidget {
             onPressed: () async {
               context.router.push(const ResetPasswordViewRoute());
             },
-            child: const Text(
+            child:  Text(
               'Forgot password?',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Theme.of(context).iconTheme.color),
             ),
           ),
           TextButton(
             onPressed: () async {
               context.router.push(const LoginScreenRoute());
             },
-            child: const Text(
+            child:  Text(
               "Resend Verification Email?",
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Theme.of(context).iconTheme.color),
             ),
           ),
         ],
@@ -152,11 +154,7 @@ class _EmailInput extends StatelessWidget {
             labelText: 'Email',
             fillColor: Colors.transparent,
             filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0.r),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+            border: Theme.of(context).inputDecorationTheme.border,
           ),
         );
       },
@@ -179,11 +177,7 @@ class _PasswordInput extends StatelessWidget {
             labelText: 'Password',
             fillColor: Colors.transparent,
             filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0.r),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+            border: Theme.of(context).inputDecorationTheme.border,
           ),
         );
       },
@@ -207,13 +201,13 @@ class _LoginButton extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r)),
-                  backgroundColor: Colors.indigoAccent,
+                  backgroundColor: Theme.of(context).primaryColor,
                   padding: EdgeInsets.fromLTRB(35.w, 10.h, 35.w, 10.h),
                 ),
                 child: Text(
                   'Sign In',
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).iconTheme.color,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w600),
                 ),

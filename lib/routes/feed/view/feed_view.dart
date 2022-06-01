@@ -34,18 +34,6 @@ class _FeedScreenState extends State<FeedScreen> {
           return SafeArea(
             child: Scaffold(
               appBar: AppBar(
-                actions: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.logout,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {
-                      context.read<AppBloc>().add(AppLogoutRequested());
-                      AutoRouter.of(context).replace(LoginScreenRoute());
-                    },
-                  )
-                ],
                 title: const Text(
                   'Upcarta',
                   style: kTextStyle3b,
@@ -55,7 +43,8 @@ class _FeedScreenState extends State<FeedScreen> {
                   width: 30,
                   height: 30,
                 ),
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+                foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
                 titleSpacing: 0.0,
                 //leading: AutoLeadingButton(),
                 bottom: PreferredSize(
@@ -67,6 +56,7 @@ class _FeedScreenState extends State<FeedScreen> {
                       child: TabBar(
                         isScrollable: true,
                         indicatorWeight: 2.25,
+                        indicatorColor: Theme.of(context).primaryColor,
                         indicatorSize: TabBarIndicatorSize.label,
                         labelPadding: EdgeInsets.only(left: 8, right: 8),
                         controller: controller,
@@ -74,12 +64,12 @@ class _FeedScreenState extends State<FeedScreen> {
                           Tab(text: 'Latest'),
                           Tab(text: 'Top'),
                         ],
-                        unselectedLabelColor: Color(0xffC4C4C4),
+                        unselectedLabelColor: Theme.of(context).dividerTheme.color,
                         unselectedLabelStyle: TextStyle(
                             fontFamily: 'SFCompactText-SemiBold.ttf',
                             fontSize: 17,
                             fontWeight: FontWeight.w600),
-                        labelColor: Color(0xff4E89FD),
+                        labelColor: Theme.of(context).primaryColor,
                         labelStyle: TextStyle(
                             fontFamily: 'SFCompactText-SemiBold.ttf',
                             fontSize: 17,

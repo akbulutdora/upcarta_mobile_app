@@ -35,7 +35,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: const Text("Go To Home Screen"),
           ),
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         centerTitle: true,
         elevation: 0,
         title: Row(

@@ -32,9 +32,9 @@ class _ContentTypePickerChipsState extends State<ContentTypePickerChips> {
           contentTypeDict.length,
           (int index) {
             return ChoiceChip(
-              disabledColor: Colors.white,
-              selectedColor: AppColors.upcartaBlue,
-              backgroundColor: Colors.white,
+              disabledColor: Theme.of(context).chipTheme.disabledColor,
+              selectedColor: Theme.of(context).chipTheme.selectedColor,
+              backgroundColor: Theme.of(context).chipTheme.selectedColor,
               side: BorderSide(color: AppColors.gray1BoxFrame),
               avatar: Icon(contentTypeDict[index]["icon"]),
               label: Text(

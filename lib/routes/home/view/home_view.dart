@@ -35,15 +35,16 @@ class _HomeState extends State<Home> {
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
+          backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           type: BottomNavigationBarType.fixed,
           iconSize: 24,
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.black,
+          selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+          unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          items: const <BottomNavigationBarItem>[
+          items:  const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               activeIcon: Icon(

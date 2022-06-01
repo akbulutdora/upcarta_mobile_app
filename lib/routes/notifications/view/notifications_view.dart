@@ -58,8 +58,9 @@ class NotificationsScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-            backgroundColor: Colors.white,
-            foregroundColor: const Color(0xFFC4C4C4),
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
+
             toolbarHeight: 80,
             elevation: 0,
             centerTitle: true,

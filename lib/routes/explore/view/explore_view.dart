@@ -52,7 +52,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
           width: 30.w,
           height: 30.h,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         elevation: 0,
         titleSpacing: 0.0,
         title: const Text(

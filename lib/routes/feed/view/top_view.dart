@@ -27,7 +27,8 @@ class _TopViewState extends State<TopView> {
             automaticallyImplyLeading: false,
             expandedHeight: 400,
             // collapsedHeight: 75,
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             floating: true,
             pinned: true,
             flexibleSpace: const FlexibleSpaceBar(

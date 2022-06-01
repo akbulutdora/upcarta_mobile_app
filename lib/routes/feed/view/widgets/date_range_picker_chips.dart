@@ -25,9 +25,9 @@ class _DateRangePickerChipsState extends State<DateRangePickerChips> {
           dateRangeNames.length,
           (int index) {
             return ChoiceChip(
-              disabledColor: Colors.white,
-              selectedColor: AppColors.upcartaBlue,
-              backgroundColor: Colors.white,
+              disabledColor: Theme.of(context).chipTheme.disabledColor,
+              selectedColor: Theme.of(context).chipTheme.selectedColor,
+              backgroundColor: Theme.of(context).chipTheme.selectedColor,
               side: BorderSide(color: AppColors.gray1BoxFrame),
               label: Text(
                 dateRangeNames[index],

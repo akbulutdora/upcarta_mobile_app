@@ -38,7 +38,8 @@ class _ResetPasswordNewState extends State<ResetPasswordNew> {
             ),
           ]),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         ),
         backgroundColor: Colors.transparent,
         body: Padding(

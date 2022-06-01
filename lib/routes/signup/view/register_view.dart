@@ -44,15 +44,18 @@ class _MyRegisterState extends State<MyRegister> {
             const SizedBox(
               width: 8,
             ),
-            const Text(
+             Text(
               "Upcarta",
-              style: kTextStyle3b,
+              style: TextStyle(
+                color: Theme.of(context).iconTheme.color,
+                fontSize: 22,
+              ),
             )
           ]),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         ),
-        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: BlocProvider<SignupCubit>(
@@ -65,7 +68,7 @@ class _MyRegisterState extends State<MyRegister> {
                   Text("Sign up",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).iconTheme.color,
                           fontSize: MediaQuery.of(context).size.height / 30,
                           fontWeight: FontWeight.bold)),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.025),
@@ -178,11 +181,7 @@ class _EmailInput extends StatelessWidget {
             labelText: 'Email',
             fillColor: Colors.transparent,
             filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+            border: Theme.of(context).inputDecorationTheme.border,
           ),
         );
       },
@@ -204,11 +203,7 @@ class _NameInput extends StatelessWidget {
             labelText: 'Name',
             fillColor: Colors.transparent,
             filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+            border: Theme.of(context).inputDecorationTheme.border,
           ),
         );
       },
@@ -231,11 +226,7 @@ class _PasswordInput extends StatelessWidget {
             labelText: 'Password',
             fillColor: Colors.transparent,
             filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+            border: Theme.of(context).inputDecorationTheme.border,
           ),
         );
       },
@@ -295,14 +286,14 @@ class _SignUpButton extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
-                  backgroundColor: Colors.indigoAccent,
+                  backgroundColor: Theme.of(context).primaryColor,
                   padding: EdgeInsets.symmetric(
                       vertical: MediaQuery.of(context).size.height * 0.03),
                 ),
                 child: Text(
                   'Sign Up',
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).iconTheme.color,
                       fontSize: MediaQuery.of(context).size.height / 50,
                       fontWeight: FontWeight.bold),
                 ),

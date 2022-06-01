@@ -19,26 +19,18 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.notifications_none_outlined,
-                  color: AppColors.black,
-                  size: 30,
-                ))
-          ],
           elevation: 0,
           titleSpacing: 0.0,
           title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Icon(
-              Icons.pause_circle,
-              size: 30,
-              color: AppColors.upcartaBlue,
+            Image.asset(
+              "assets/images/upcarta-logo-small.png",
+              width: 30,
+              height: 30,
             ),
           ]),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         ),
         backgroundColor: Colors.transparent,
         body: Padding(
@@ -52,7 +44,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                     Text("Recover Your Password",
                         textAlign: TextAlign.justify,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Theme.of(context).iconTheme.color,
                             fontSize: height / 30,
                             fontWeight: FontWeight.bold)),
                     SizedBox(height: height * 0.025),
@@ -61,11 +53,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                         labelText: 'Email',
                         fillColor: Colors.transparent,
                         filled: true,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                            )),
+                        border: Theme.of(context).inputDecorationTheme.border,
                       ),
                     ),
                     SizedBox(height: height * 0.025),
@@ -81,7 +69,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                           style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12)),
-                            backgroundColor: Colors.indigoAccent,
+                            backgroundColor: Theme.of(context).primaryColor,
                             padding:
                                 EdgeInsets.symmetric(vertical: height * 0.03),
                           ),
