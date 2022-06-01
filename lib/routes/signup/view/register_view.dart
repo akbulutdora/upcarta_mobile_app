@@ -7,6 +7,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/routes/signup/signup.dart';
 
+import '../../../util/colors.dart';
+
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
 
@@ -33,82 +35,54 @@ class _MyRegisterState extends State<MyRegister> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: BackButton(
+            color: AppColors.gray1BoxFrame,
+          ),
           elevation: 0,
           titleSpacing: 0.0,
-          title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset(
-              "assets/images/1x.png",
-              height: 30.h,
-              width: 30.w,
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            const Text(
-              "Upcarta",
-              style: kTextStyle3b,
-            )
-          ]),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          title: Row(children: [
+            SizedBox(width: 80.w),
+            Image.asset('assets/images/1x.png', height: 30.h, width: 30.w),
+            SizedBox(width: 8.w),
+            const Text(
+              'Upcarta',
+              style: kAppBarTextStyle,
+            ),
+          ]),
+          backgroundColor: AppColors.white,
         ),
         backgroundColor: Colors.white,
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.only(left: 36.w, right: 36.w),
           child: BlocProvider<SignupCubit>(
             create: (_) =>
                 SignupCubit(context.read<AuthenticationRepository>()),
             child: SingleChildScrollView(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(height: height * 0.15),
-                  Text("Sign up",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: MediaQuery.of(context).size.height / 30,
-                          fontWeight: FontWeight.bold)),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+                  SizedBox(height: 160.h),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Sign Up",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 26.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.transparent, // Step 2 SEE HERE
+                            shadows: [
+                              Shadow(
+                                  offset: Offset(0, -10.sp),
+                                  color: Colors.black)
+                            ],
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.upcartaBlue,
+                            decorationThickness: 2.sp)),
+                  ),
+                  SizedBox(height: 32.h),
                   const SignupForm(),
                   SizedBox(height: height * 0.05),
-                  // Container(
-                  //   width: width,
-                  //   child: Column(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     crossAxisAlignment: CrossAxisAlignment.stretch,
-                  //     children: [
-                  //       OutlinedButton(
-                  //         onPressed: () async {
-                  //           _authService
-                  //               .createPerson(
-                  //                   _nameController.text,
-                  //                   _emailController.text,
-                  //                   _passwordController.text,
-                  //                   _usernameController.text)
-                  //               .then((value) {
-                  //             // return context.router
-                  //             //     .push(MyRegisterConfirmRoute());
-                  //             return context.router.push(HomeRoute());
-                  //           });
-                  //         },
-                  //         style: OutlinedButton.styleFrom(
-                  //           shape: RoundedRectangleBorder(
-                  //               borderRadius: BorderRadius.circular(12)),
-                  //           backgroundColor: Colors.indigoAccent,
-                  //           padding:
-                  //               EdgeInsets.symmetric(vertical: height * 0.03),
-                  //         ),
-                  //         child: Text(
-                  //           'Sign Up',
-                  //           style: TextStyle(
-                  //               color: Colors.white,
-                  //               fontSize: height / 50,
-                  //               fontWeight: FontWeight.bold),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -141,22 +115,17 @@ class SignupForm extends StatelessWidget {
         }
       },
       child: Align(
-        alignment: const Alignment(0, -1 / 3),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _EmailInput(),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             _NameInput(),
-            const SizedBox(
-              height: 8,
-            ),
+            SizedBox(height: 16.h),
             _PasswordInput(),
-            const SizedBox(height: 16),
+            SizedBox(height: 24.h),
             // _ConfirmPasswordInput(),
 
-            _SignUpButton(),
+            Align(alignment: Alignment.centerRight, child: _SignUpButton()),
           ],
         ),
       ),
@@ -170,19 +139,23 @@ class _EmailInput extends StatelessWidget {
     return BlocBuilder<SignupCubit, SignupState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
-        return TextField(
-          key: const Key('signUpForm_emailInput_textField'),
-          onChanged: (email) => context.read<SignupCubit>().emailChanged(email),
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            labelText: 'Email',
-            fillColor: Colors.transparent,
-            filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+        return SizedBox(
+          height: 60.h,
+          child: TextField(
+            key: const Key('signUpForm_emailInput_textField'),
+            onChanged: (email) =>
+                context.read<SignupCubit>().emailChanged(email),
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              labelText: 'Email',
+              fillColor: Colors.transparent,
+              filled: true,
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.white,
+                  )),
+            ),
           ),
         );
       },
@@ -196,19 +169,22 @@ class _NameInput extends StatelessWidget {
     return BlocBuilder<SignupCubit, SignupState>(
       buildWhen: (previous, current) => previous.name != current.name,
       builder: (context, state) {
-        return TextField(
-          key: const Key('signUpForm_nameInput_textField'),
-          onChanged: (name) => context.read<SignupCubit>().nameChanged(name),
-          obscureText: false,
-          decoration: InputDecoration(
-            labelText: 'Name',
-            fillColor: Colors.transparent,
-            filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+        return SizedBox(
+          height: 60.h,
+          child: TextField(
+            key: const Key('signUpForm_nameInput_textField'),
+            onChanged: (name) => context.read<SignupCubit>().nameChanged(name),
+            obscureText: false,
+            decoration: InputDecoration(
+              labelText: 'Name',
+              fillColor: Colors.transparent,
+              filled: true,
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.white,
+                  )),
+            ),
           ),
         );
       },
@@ -222,53 +198,29 @@ class _PasswordInput extends StatelessWidget {
     return BlocBuilder<SignupCubit, SignupState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
-        return TextField(
-          key: const Key('signUpForm_passwordInput_textField'),
-          onChanged: (password) =>
-              context.read<SignupCubit>().passwordChanged(password),
-          obscureText: true,
-          decoration: InputDecoration(
-            labelText: 'Password',
-            fillColor: Colors.transparent,
-            filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+        return SizedBox(
+          height: 60.h,
+          child: TextField(
+            key: const Key('signUpForm_passwordInput_textField'),
+            onChanged: (password) =>
+                context.read<SignupCubit>().passwordChanged(password),
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              fillColor: Colors.transparent,
+              filled: true,
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(
+                    color: Colors.white,
+                  )),
+            ),
           ),
         );
       },
     );
   }
 }
-
-// class _ConfirmPasswordInput extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocBuilder<SignupCubit, SignupState>(
-//       buildWhen: (previous, current) =>
-//           previous.password != current.password ||
-//           previous.confirmedPassword != current.confirmedPassword,
-//       builder: (context, state) {
-//         return TextField(
-//           key: const Key('signUpForm_confirmedPasswordInput_textField'),
-//           onChanged: (confirmPassword) => context
-//               .read<SignupCubit>()
-//               .confirmedPasswordChanged(confirmPassword),
-//           obscureText: true,
-//           decoration: InputDecoration(
-//             labelText: 'confirm password',
-//             helperText: '',
-//             errorText: state.confirmedPassword.invalid
-//                 ? 'passwords do not match'
-//                 : null,
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
 
 class _SignUpButton extends StatelessWidget {
   @override
@@ -279,32 +231,20 @@ class _SignUpButton extends StatelessWidget {
       builder: (context, state) {
         return state.status == SignupStatus.submitting
             ? const CircularProgressIndicator()
-            : ElevatedButton(
-                onPressed: () {
-                  context.read<SignupCubit>().signupFormSubmitted();
-                  // _authService
-                  //     .createPerson(state.name, state.email, state.password,
-                  //         state.username)
-                  //     .then((value) {
-                  //   // return context.router
-                  //   //     .push(MyRegisterConfirmRoute());
-                  //   return context.router.push(HomeRoute());
-                  // });
-                },
-                key: const Key('signUpForm_continue_raisedButton'),
+            : OutlinedButton(
+                key: const Key('loginForm_createAccount_flatButton'),
+                onPressed: () =>
+                    AutoRouter.of(context).push(const MyRegisterRoute()),
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  backgroundColor: Colors.indigoAccent,
-                  padding: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).size.height * 0.03),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  side: BorderSide(color: AppColors.upcartaBlue),
+                  backgroundColor: AppColors.upcartaBlue,
+                  padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
                 ),
                 child: Text(
                   'Sign Up',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.height / 50,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(color: AppColors.white, fontSize: 15.sp),
                 ),
               );
       },
