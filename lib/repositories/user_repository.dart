@@ -7,9 +7,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/models/collection.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 
+import '../models/models.dart';
+
 /// {@template user_repository}
 /// 5-*Ğlköhyujmg tfnbractions.
 /// {@endtemplate}
+
 
 class UserRepository {
   UserRepository({
@@ -23,11 +26,13 @@ class UserRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestoreDB;
   final SharedPreferences _sharedPreferences;
+  final String userCollection = "Person";
+
 
   /// TODO: FIX LISTENER, SHOULD ALSO LISTEN TO AUTH CHANGES
   Stream<User> get user {
     return _firestoreDB
-        .collection("Person")
+        .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
         .snapshots()
         .map((event) {
@@ -39,9 +44,10 @@ class UserRepository {
     });
   }
 
+
   Future<User> getCurrentUser() async {
     var event = await _firestoreDB
-        .collection("Person")
+        .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
         .get()
         .then((value) => value.data());
@@ -53,7 +59,7 @@ class UserRepository {
   Future<void> changeBio(String newBio) async {
     try {
       _firestoreDB
-          .collection("Person")
+          .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
           .update({"bio": newBio});
     } catch (e) {
@@ -66,7 +72,7 @@ class UserRepository {
     try {
       _firebaseAuth.currentUser!.updatePhotoURL(newURL);
       _firestoreDB
-          .collection("Person")
+          .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
           .update({"photoURL": newURL});
     }
@@ -80,7 +86,7 @@ class UserRepository {
       print("\n\n\nHERE ${newUsername}\n\n\n");
       //_firebaseAuth.currentUser!.updateDisplayName(newUsername);
       _firestoreDB
-          .collection("Person")
+          .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
           .update({"username": newUsername});
     }
@@ -91,25 +97,82 @@ class UserRepository {
   }
 
   /// Called when the user follows another user
-  Future<void> followUserWithID(String followID) async {}
+  Future<void> followUserWithID(String followID) async {
+    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
+      "followingIDs": FieldValue.arrayUnion([followID]),
+    });
+  }
 
   /// Called when the user unfollows another user
-  Future<void> unfollowUserWithID(String unfollowID) async {}
+  Future<void> unfollowUserWithID(String unfollowID) async {
+    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
+      "followingIDs": FieldValue.arrayRemove([unfollowID]),
+    });
+  }
 
   /// Called when the user follows a topic
-  Future<void> followTopicWithID(String followID) async {}
+  Future<void> followTopicWithID(String followID) async {
+    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
+      "followedTopicsIDs": FieldValue.arrayUnion([followID]),
+    });
+  }
 
   /// Called when the user unfollows a topic
-  Future<void> unfollowTopicWithID(String followID) async {}
+  Future<void> unfollowTopicWithID(String followID) async {
+    _firestoreDB.collection(userCollection).doc(_firebaseAuth.currentUser!.uid).update({
+      "followedTopicsIDs": FieldValue.arrayRemove([followID]),
+    });
+  }
 
-  /// Called when the user saves a recommendation to one of their collections
-  Future<void> saveToCollection(String postID, String collectionID) async {}
+  /// Called when the user adds a recommendation to one of their collections
+  Future<void> saveToCollection(String postID, String collectionID) async {
+    _firestoreDB.collection("collections").doc(collectionID).update({
+      "postIDs": FieldValue.arrayUnion([postID]),
+    });
+  }
 
   /// Called when the user shares a recommendation
-  Future<void> recommendContent(String postID) async {}
+  Future<void> recommendContent(String postID) async {
+    var recommendationsID = await _firestoreDB
+        .collection(userCollection)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .get()
+        .then((documentSnapshot) => documentSnapshot['recommendationsID']);
+    _firestoreDB.collection("posts").doc(postID).update({
+      "recommendersIDs": FieldValue.arrayUnion([_firebaseAuth.currentUser!.uid]),
+    });
+    _firestoreDB.collection("collections").doc(recommendationsID).update({
+      "postIDs": FieldValue.arrayUnion([postID]),
+    });
+  }
 
   /// Called when the user saves a recommendation
-  Future<void> saveContent(String spostID) async {}
+  Future<void> saveContent(String postID) async {
+    //Getting the unique savesId from the user collection.
+    var savesId = await _firestoreDB
+        .collection(userCollection)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .get()
+        .then((documentSnapshot) => documentSnapshot['savesID']);
+    //Adding the new postId in the saves collection of the user.
+    _firestoreDB.collection("collections").doc(savesId).update({
+      "postIDs": FieldValue.arrayUnion([postID]),
+    });
+  }
+
+  /// Called when the user unsaves a recommendation
+  Future<void> unsaveContent(String postID) async {
+    //Getting the unique savesId from the user collection.
+    var savesId = await _firestoreDB
+        .collection(userCollection)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .get()
+        .then((documentSnapshot) => documentSnapshot['savesID']);
+    //Removing the new postId in the saves collection of the user.
+    _firestoreDB.collection("collections").doc(savesId).update({
+      "postIDs": FieldValue.arrayRemove([postID]),
+    });
+  }
 
   // TODO: Might be moved to auth repo
   /// Called when the user changes their email
@@ -120,7 +183,7 @@ class UserRepository {
   Future<void> changePassword(String newPassword) async {}
 
   ///*********************************************PROFILE*********************************************************
-  /// Contents
+  /// Contents. Bu değişebilir belki collectionsInfo field'ını kaldırıp for loop yapılabilir.
   Future<List<Map<String, dynamic>>> profileGetCollections() async {
     try {
       var docSnapshot = await _firestoreDB
