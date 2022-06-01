@@ -44,9 +44,14 @@ class _LoginScreen2 extends State<LoginScreen2> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: BackButton(
+            color: AppColors.gray1BoxFrame,
+          ),
           elevation: 0,
           titleSpacing: 0.0,
-          title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          centerTitle: true,
+          title: Row(children: [
+            SizedBox(width: 80.w),
             Image.asset('assets/images/1x.png', height: 30.h, width: 30.w),
             SizedBox(width: 8.w),
             const Text(
@@ -96,33 +101,55 @@ class LoginForm extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 160.h),
-          Text("Sign in with email",
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  color: AppColors.black,
-                  fontSize: 28.sp,
-                  fontWeight: FontWeight.w600)),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.025),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text("Sign In with Email",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    fontSize: 26.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.transparent, // Step 2 SEE HERE
+                    shadows: [
+                      Shadow(offset: Offset(0, -10.sp), color: Colors.black)
+                    ],
+                    decoration: TextDecoration.underline,
+                    decorationColor: AppColors.upcartaBlue,
+                    decorationThickness: 2.sp)),
+          ),
+          SizedBox(height: 32.h),
 
-          const SizedBox(height: 16),
           _EmailInput(),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
           _PasswordInput(),
-          const SizedBox(height: 16),
-          _LoginButton(),
+          SizedBox(height: 12.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              TextButton(
+                onPressed: () async {
+                  context.router.push(const ResetPasswordViewRoute());
+                },
+                child: Text(
+                  'Forgot password?',
+                  style: TextStyle(
+                    fontFamily: 'SFCompactText-Regular.ttf',
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.upcartaBlue,
+                    decoration: TextDecoration.underline,
+                    decorationColor: AppColors.upcartaBlue,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Align(alignment: Alignment.centerRight, child: _LoginButton()),
           const SizedBox(height: 16),
           // _GoogleLoginButton(),
           // const SizedBox(height: 4),
+
           _SignUpButton(),
-          TextButton(
-            onPressed: () async {
-              context.router.push(const ResetPasswordViewRoute());
-            },
-            child: const Text(
-              'Forgot password?',
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
+
           TextButton(
             onPressed: () async {
               context.router.push(const LoginScreenRoute());
@@ -144,21 +171,24 @@ class _EmailInput extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
-        return TextField(
-          key: const Key('loginForm_emailInput_textField'),
-          onChanged: (email) {
-            context.read<LoginCubit>().emailChanged(email);
-          },
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            labelText: 'Email',
-            fillColor: Colors.transparent,
-            filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0.r),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+        return SizedBox(
+          height: 60.h,
+          child: TextField(
+            key: const Key('loginForm_emailInput_textField'),
+            onChanged: (email) {
+              context.read<LoginCubit>().emailChanged(email);
+            },
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              labelText: 'Email',
+              fillColor: Colors.transparent,
+              filled: true,
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0.r),
+                  borderSide: const BorderSide(
+                    color: Colors.white,
+                  )),
+            ),
           ),
         );
       },
@@ -172,20 +202,23 @@ class _PasswordInput extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
-        return TextField(
-          key: const Key('loginForm_passwordInput_textField'),
-          onChanged: (password) =>
-              context.read<LoginCubit>().passwordChanged(password),
-          obscureText: true,
-          decoration: InputDecoration(
-            labelText: 'Password',
-            fillColor: Colors.transparent,
-            filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0.r),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+        return SizedBox(
+          height: 60.h,
+          child: TextField(
+            key: const Key('loginForm_passwordInput_textField'),
+            onChanged: (password) =>
+                context.read<LoginCubit>().passwordChanged(password),
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              fillColor: Colors.transparent,
+              filled: true,
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0.r),
+                  borderSide: const BorderSide(
+                    color: Colors.white,
+                  )),
+            ),
           ),
         );
       },
