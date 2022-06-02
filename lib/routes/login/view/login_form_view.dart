@@ -111,7 +111,7 @@ class LoginForm extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: Colors.transparent, // Step 2 SEE HERE
                     shadows: [
-                      Shadow(offset: Offset(0, -10.sp), color: Colors.black)
+                      Shadow(offset: Offset(0, -10.sp), color: Theme.of(context).iconTheme.color!)
                     ],
                     decoration: TextDecoration.underline,
                     decorationColor: Theme.of(context).primaryColor,
@@ -135,9 +135,9 @@ class LoginForm extends StatelessWidget {
                     fontFamily: 'SFCompactText-Regular.ttf',
                     fontSize: 15.sp,
                     fontWeight: FontWeight.w400,
-                    color: AppColors.upcartaBlue,
+                    color: Theme.of(context).primaryColor,
                     decoration: TextDecoration.underline,
-                    decorationColor: AppColors.upcartaBlue,
+                    decorationColor: Theme.of(context).primaryColor,
                   ),
                 ),
               ),

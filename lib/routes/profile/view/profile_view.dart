@@ -83,7 +83,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             return [
               SliverAppBar(
                 backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-                foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
                 floating: true,
                 pinned: true,
                 automaticallyImplyLeading: false,

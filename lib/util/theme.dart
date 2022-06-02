@@ -8,8 +8,7 @@ ThemeData lightTheme = ThemeData(
     foregroundColor: Colors.white,
     backgroundColor: AppColors.upcartaBlue,
   ),
-  appBarTheme: const AppBarTheme(
-    foregroundColor: Colors.black,
+  appBarTheme: AppBarTheme(
     backgroundColor: Colors.white,
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
@@ -51,8 +50,7 @@ ThemeData darkTheme = ThemeData(
     foregroundColor: Colors.white,
     backgroundColor: AppColors.darkPrimary,
   ),
-  appBarTheme: const AppBarTheme(
-    foregroundColor: Colors.white,
+  appBarTheme: AppBarTheme(
     backgroundColor: Colors.black,
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
