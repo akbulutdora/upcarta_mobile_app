@@ -67,8 +67,8 @@ class _LibraryRecommendsViewState extends State<LibraryRecommendsView> {
             ),
           ],
         ),
-        const Divider(
-          color: Color(0xff949494),
+         Divider(
+          color:Theme.of(context).dividerTheme.color,
         ),
         ContentList(
           contentList: contents,
