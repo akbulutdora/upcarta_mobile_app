@@ -33,7 +33,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         titleSpacing: 0.0,
         title: Text(
-          "Upcarta",
+          "Your Profile",
           style: TextStyle(
               fontFamily: "SFCompactText-Medium",
               color: Theme.of(context).iconTheme.color,

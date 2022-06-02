@@ -40,11 +40,11 @@ class _NewPostScreenState extends State<NewPostScreen> {
         foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         elevation: 0,
         titleSpacing: 0.0,
-        title: const Text(
+        title:  Text(
           'New Action',
           style: TextStyle(
               fontFamily: "SFCompactText-Medium",
-              color: Colors.black,
+              color: Theme.of(context).iconTheme.color,
               fontWeight: FontWeight.w500,
               fontSize: 22),
         ),
@@ -191,7 +191,7 @@ class _PopUpDialog extends StatelessWidget {
             : MaterialButton(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 30.0, vertical: 10.0),
-                color: Colors.blue,
+                color:Theme.of(context).primaryColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(3.0)),
                 child: const Text(

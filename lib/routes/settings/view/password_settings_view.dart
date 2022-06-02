@@ -26,18 +26,18 @@ class _PasswordSettingsState extends State<PasswordSettings> {
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
-            title: const Text(
+            title:  Text(
               'Password Settings',
               style: TextStyle(
                   fontFamily: "SFCompactText-Medium",
-                  color: Colors.black,
+                  color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
                   fontSize: 22),
             ),
             leading: IconButton(
-              icon: const Icon(
+              icon:  Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black54,
+                color:Theme.of(context).iconTheme.color,
               ),
               onPressed: () {
                 context.router.pop();
@@ -48,35 +48,40 @@ class _PasswordSettingsState extends State<PasswordSettings> {
             padding: EdgeInsets.all(height * 0.016),
             child: ListView(
               children: <Widget>[
-                const Text(
+                 Text(
                   "Change Password",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 SizedBox(height: height * 0.012),
-                const Text(
+                 Text(
                   "Current Password",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
                 SizedBox(height: height * 0.012),
                 TextField(
+                  cursorColor: Theme.of(context).primaryColor,
                   decoration: InputDecoration(
-                    labelText: '******',
                     fillColor: Colors.transparent,
                     filled: true,
                     isDense: true,
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                        )),
                     contentPadding: EdgeInsets.all(height * 0.016),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -86,22 +91,27 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                   ),
                 ),
                 SizedBox(height: height * 0.020),
-                const Text(
+                 Text(
                   "New Password",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
                 SizedBox(height: height * 0.012),
                 TextField(
+                  cursorColor: Theme.of(context).primaryColor,
                   decoration: InputDecoration(
-                    labelText: '******',
                     fillColor: Colors.transparent,
                     filled: true,
                     isDense: true,
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                        )),
                     contentPadding: EdgeInsets.all(height * 0.016),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -111,22 +121,27 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                   ),
                 ),
                 SizedBox(height: height * 0.020),
-                const Text(
+                 Text(
                   "Confirm New Password",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
                 SizedBox(height: height * 0.012),
                 TextField(
+                  cursorColor: Theme.of(context).primaryColor,
                   decoration: InputDecoration(
-                    labelText: '******',
                     fillColor: Colors.transparent,
                     filled: true,
                     isDense: true,
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor,
+                        )),
                     contentPadding: EdgeInsets.all(height * 0.016),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -143,7 +158,7 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                     style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
-                        backgroundColor: Colors.lightBlue,
+                        backgroundColor: Theme.of(context).primaryColor,
                         padding: EdgeInsets.all(height * 0.02)),
                     child: Text(
                       'Save',
