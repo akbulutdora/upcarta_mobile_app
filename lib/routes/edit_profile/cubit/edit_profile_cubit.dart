@@ -20,6 +20,10 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     emit(state.copyWith(username: value, status: EditProfileStatus.initial));
   }
 
+  void photoChanged(String value) {
+    emit(state.copyWith(photoURL: value, status: EditProfileStatus.initial));
+  }
+
   Future<void> editProfileSubmitted() async {
     if (state.status == EditProfileStatus.submitting) {
       return;
@@ -28,6 +32,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     try {
       await _userRepository.changeBio(state.bio);
       await _userRepository.changeUsername(state.username);
+      await _userRepository.changePhoto(state.photoURL);
       emit(state.copyWith(status: EditProfileStatus.success));
     } catch (e) {
       emit(
@@ -38,9 +43,5 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         ),
       );
     }
-  }
-
-  void photoURLChanged(String value) {
-    emit(state.copyWith(photoURL: value, status: EditProfileStatus.initial));
   }
 }

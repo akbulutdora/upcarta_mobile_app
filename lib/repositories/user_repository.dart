@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/models/collection.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
-
+import 'package:path/path.dart';
 import '../models/models.dart';
 
 /// {@template user_repository}
@@ -17,15 +19,19 @@ class UserRepository {
   UserRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
     FirebaseFirestore? firebaseFirestore,
+    FirebaseStorage? firebaseStorage,
     required SharedPreferences sharedPreferences,
+
   })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
         _firestoreDB = firebaseFirestore ?? FirebaseFirestore.instance,
+        _firebaseStorage = firebaseStorage ?? FirebaseStorage.instance,
         _sharedPreferences = sharedPreferences;
 
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestoreDB;
   final SharedPreferences _sharedPreferences;
   final String userCollection = "Person";
+  final FirebaseStorage _firebaseStorage;
 
   final AppUser appUser = AppUser.empty;
 
@@ -72,14 +78,18 @@ class UserRepository {
   /// Called when the user changes their profile picture
   Future<void> changePhoto(String newURL) async {
     try {
-      _firebaseAuth.currentUser!.updatePhotoURL(newURL);
+            _firebaseAuth.currentUser!.updatePhotoURL(newURL);
       _firestoreDB
           .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
           .update({"photoURL": newURL});
     }
     // TODO: IMPLEMENT ERROR
-    catch (_) {}
+    on FirebaseException catch(e) {
+      print('ERROR: ${e.code} - ${e.message}');
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   /// Called when the user changes their username
