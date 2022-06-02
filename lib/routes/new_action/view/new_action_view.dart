@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/new_action/cubit/new_action_cubit.dart';
 
 import '../../../navigation/routes.gr.dart';
+import '../../../ui_components/DropDown_NewPost.dart';
+import '../../../util/colors.dart';
 
 class NewPostScreen extends StatefulWidget {
   const NewPostScreen({Key? key}) : super(key: key);
@@ -30,93 +34,235 @@ class _NewPostScreenState extends State<NewPostScreen> {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        leading: Image.asset(
-          "assets/images/upcarta-logo-small.png",
-          width: 30,
-          height: 30,
-        ),
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
-        elevation: 0,
-        titleSpacing: 0.0,
-        title: const Text(
-          'New Action',
-          style: TextStyle(
-              fontFamily: "SFCompactText-Medium",
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-              fontSize: 22),
-        ),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: BlocProvider(
-            create: (context) => NewActionCubit(context.read<UserRepository>()),
-            child: BlocListener<NewActionCubit, NewActionState>(
-              listener: (context, state) {
-                // TODO: implement listener
-                if (state.status == ActionStatus.success) {
-                  ScaffoldMessenger.of(context)
-                    ..hideCurrentSnackBar()
-                    ..showSnackBar(
-                      const SnackBar(
-                        content: Text("SUCCESS"),
+      backgroundColor: AppColors.white,
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          height: 120,
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.blueAccent),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(15.r))),
+          child: Padding(
+            padding: EdgeInsets.only(top: 16.h),
+            child: Column(
+              children: <Widget>[
+                Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      IconButton(
+                          iconSize: 28.0,
+                          icon: Icon(Icons.book_outlined),
+                          onPressed: () {}),
+                      IconButton(
+                        iconSize: 28.0,
+                        icon: Icon(Icons.article_outlined),
+                        onPressed: () {},
                       ),
-                    );
-                }
-                if (state.status == ActionStatus.submissionFailure) {
-                  ScaffoldMessenger.of(context)
-                    ..hideCurrentSnackBar()
-                    ..showSnackBar(
-                      const SnackBar(
-                        content: Text('Failure'),
+                      IconButton(
+                        iconSize: 28.0,
+                        icon: Icon(Icons.ac_unit),
+                        onPressed: () {},
                       ),
-                    );
-                }
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DropdownButton(
-                    // Initial Value
-                    value: dropdownvalue,
-
-                    // Down Arrow Icon
-                    icon: const Icon(Icons.keyboard_arrow_down),
-
-                    // Array list of items
-                    items: items.map((String items) {
-                      return DropdownMenuItem(
-                          value: items,
-                          child: Text(
-                            items,
-                            style: const TextStyle(
-                                color: Colors.grey, fontSize: 18),
-                          ));
-                    }).toList(),
-                    // After selecting the desired option,it will
-                    // change button value to selected value
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownvalue = newValue!;
-                      });
-                    },
-                  ),
-                  SizedBox(height: height * .05),
-                  const TitleForm(),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  const URLForm(),
-                  SizedBox(height: height * .05),
-                  const _PopUpDialog(),
-                ],
-              ),
+                      IconButton(
+                        iconSize: 28.0,
+                        icon: Icon(Icons.video_call_outlined),
+                        onPressed: () {},
+                      ),
+                    ]),
+                Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      IconButton(
+                        iconSize: 28.0,
+                        icon: Icon(Icons.movie_creation_outlined),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        iconSize: 28.0,
+                        icon: Icon(Icons.tv_outlined),
+                        onPressed: () {},
+                        //Content type
+                        //Image
+                        //topic
+                        //Description
+                      ),
+                      IconButton(
+                          iconSize: 28.0,
+                          icon: Icon(Icons.podcasts_outlined),
+                          onPressed: () {}),
+                      IconButton(
+                        iconSize: 28.0,
+                        icon: Icon(Icons.audiotrack_outlined),
+                        onPressed: () {},
+                      ),
+                    ]),
+              ],
             ),
           ),
+        ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(16.w, 48.h, 16.w, 0.h),
+        child: Column(
+          children: [
+            BlocProvider(
+              create: (context) =>
+                  NewActionCubit(context.read<UserRepository>()),
+              child: BlocListener<NewActionCubit, NewActionState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                  if (state.status == ActionStatus.success) {
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(
+                        const SnackBar(
+                          content: Text("SUCCESS"),
+                        ),
+                      );
+                  }
+                  if (state.status == ActionStatus.submissionFailure) {
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(
+                        const SnackBar(
+                          content: Text('Failure'),
+                        ),
+                      );
+                  }
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.close,
+                              color: AppColors.gray3ContentText, size: 30.sm),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16.h),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
+                        width: 270.w,
+                        height: 50.h,
+                        padding: EdgeInsets.only(left: 8),
+                        decoration: BoxDecoration(
+                            color: AppColors.white,
+                            border: Border.all(
+                              color: AppColors.upcartaBlue,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(15.r)),
+                        child: CustDropDown(
+                          items: [
+                            CustDropdownMenuItem(
+                              value: 0,
+                              child: Text(
+                                'Recommended Content',
+                                style: TextStyle(fontSize: 15.sp),
+                              ),
+                            ),
+                            CustDropdownMenuItem(
+                              value: 0,
+                              child: Text('Create New Collection',
+                                  style: TextStyle(fontSize: 15.sp)),
+                            ),
+                            CustDropdownMenuItem(
+                              value: 0,
+                              child: Text('Recommendation By Expert',
+                                  style: TextStyle(fontSize: 15.sp)),
+                            ),
+                            CustDropdownMenuItem(
+                              value: 0,
+                              child: Text('Collection By Expert',
+                                  style: TextStyle(fontSize: 15.sp)),
+                            ),
+                            CustDropdownMenuItem(
+                              value: 0,
+                              child: Text('Ask By Expert',
+                                  style: TextStyle(fontSize: 15.sp)),
+                            )
+                          ],
+                          hintText: "Select Action",
+                          borderRadius: 10.r,
+                          onChanged: (val) {
+                            print(val);
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 16.h),
+                    TextField(
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      minLines: 1,
+                      maxLines: 2,
+                      style: TextStyle(
+                          decoration: TextDecoration.none,
+                          fontSize: 22.sp,
+                          fontWeight: FontWeight.w600),
+                      cursorColor: AppColors.upcartaBlue,
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(
+                          color: AppColors.gray3ContentText,
+                        ),
+                        hintText: "Add a Title",
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                    Divider(
+                      color: AppColors.upcartaBlue,
+                      indent: 8.w,
+                      height: 0.h,
+                    ),
+                    TextField(
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      minLines: 1,
+                      maxLines: 5,
+                      style: TextStyle(
+                          decoration: TextDecoration.none,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w400),
+                      cursorColor: AppColors.upcartaBlue,
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(
+                          color: AppColors.gray3ContentText,
+                        ),
+                        hintText: "Add optional body text...",
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 4.h),
+                    SizedBox(height: 60.h, child: URLForm()),
+                    SizedBox(height: 32.h),
+                    const Align(
+                        alignment: Alignment.bottomRight, child: _SendButton()),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -130,57 +276,32 @@ class URLForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: (value) {
-        context.read<NewActionCubit>().contentChanged(value);
-      },
-      minLines: 1,
-      maxLines: 3,
-      decoration: InputDecoration(
-          fillColor: Colors.transparent,
-          filled: true,
-          labelText: 'Enter URL',
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(
-              color: Colors.white,
+    return Padding(
+      padding: EdgeInsets.only(left: 8.w),
+      child: TextField(
+        onChanged: (value) {
+          context.read<NewActionCubit>().contentChanged(value);
+        },
+        minLines: 1,
+        maxLines: 3,
+        decoration: InputDecoration(
+            fillColor: Colors.transparent,
+            filled: true,
+            labelText: 'Enter URL',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0.r),
+              borderSide: const BorderSide(
+                color: Colors.white,
+              ),
             ),
-          ),
-          labelStyle: const TextStyle(color: Colors.grey, fontSize: 18)),
+            labelStyle: TextStyle(color: Colors.grey, fontSize: 15.sp)),
+      ),
     );
   }
 }
 
-class TitleForm extends StatelessWidget {
-  const TitleForm({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      onChanged: (value) {
-        context.read<NewActionCubit>().titleChanged(value);
-      },
-      minLines: 1,
-      maxLines: 3,
-      decoration: InputDecoration(
-          fillColor: Colors.transparent,
-          filled: true,
-          labelText: 'Share your ideas...',
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(
-              color: Colors.white,
-            ),
-          ),
-          labelStyle: const TextStyle(color: Colors.grey, fontSize: 18)),
-    );
-  }
-}
-
-class _PopUpDialog extends StatelessWidget {
-  const _PopUpDialog({Key? key}) : super(key: key);
+class _SendButton extends StatelessWidget {
+  const _SendButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -188,22 +309,22 @@ class _PopUpDialog extends StatelessWidget {
       builder: (context, state) {
         return state.status == ActionStatus.submitting
             ? const CircularProgressIndicator()
-            : MaterialButton(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                color: Colors.blue,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(3.0)),
-                child: const Text(
-                  'Submit',
-                  style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      color: Colors.white,
-                      fontSize: 18),
-                ),
+            : OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.r)),
+                    backgroundColor: AppColors.white,
+                    side: BorderSide(color: AppColors.upcartaBlue)),
                 onPressed: () {
                   context.read<NewActionCubit>().submitContent();
                 },
+                child: Text(
+                  'Send',
+                  style: TextStyle(
+                      color: AppColors.upcartaBlue,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w400),
+                ),
               );
       },
     );

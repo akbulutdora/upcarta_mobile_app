@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'dart:math';
@@ -47,7 +48,7 @@ class _UserOnboarding2State extends State<UserOnboarding2> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
-
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return Column(
       children: [
         Padding(

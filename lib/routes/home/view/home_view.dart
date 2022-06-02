@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 
 class Home extends StatefulWidget {
@@ -38,7 +39,7 @@ class _HomeState extends State<Home> {
           backgroundColor:
               Theme.of(context).bottomNavigationBarTheme.backgroundColor,
           type: BottomNavigationBarType.fixed,
-          iconSize: 24,
+          iconSize: 26.sm,
           selectedItemColor:
               Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
           unselectedItemColor:
