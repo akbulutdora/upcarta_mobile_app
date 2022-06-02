@@ -8,7 +8,7 @@ import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/query_repository.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
-import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
+import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
@@ -74,6 +74,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: BlocProvider(
           // TODO: INJECT PROPERLY
+          // FIXME: FIX SEARCH BEHAVIOR
           create: (context) => ExploreCubit(
               QueryRepository(firebaseFirestore: FirebaseFirestore.instance),
               context.read<UserRepository>()),
@@ -212,47 +213,43 @@ class SearchResultList extends StatelessWidget {
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     AppUser item = searchResult[index];
-                    return BlocBuilder<ProfileBloc, ProfileState>(
+                    return BlocBuilder<UserBloc, UserState>(
                       builder: (context, state) {
                         if (state.status == ExploreStatus.followRequested) {
                           return const CircularProgressIndicator();
                         }
-                        if (state.user.followingIDs != null &&
-                            !state.user.followingIDs!.contains(item.id)) {
-                          print(
-                              "\n\nTHE USER AT BLOC ${state.user.toString()}");
-                          return ListTile(
-                            leading: IconButton(
-                                onPressed: (() {
-                                  BlocProvider.of<ExploreCubit>(context)
-                                      .followRequested(item.id);
-                                }),
-                                icon: Icon(
-                                  Icons.add_circle_outline_rounded,
-                                  color: AppColors.primary,
-                                )),
-                            trailing: Text(item.name ?? "null name"),
-                            title: Text(item.email ?? "null email"),
-                            isThreeLine: true,
-                            subtitle: Text(item.username ?? "null username"),
-                            dense: true,
-                          );
-                        } else {
-                          return ListTile(
-                            leading: IconButton(
-                                onPressed: (() {
-                                  BlocProvider.of<ExploreCubit>(context)
-                                      .unfollowRequested(item.id);
-                                }),
-                                icon: const Icon(
-                                    Icons.add_circle_outline_rounded)),
-                            trailing: Text(item.name ?? "null name"),
-                            title: Text(item.email ?? "null email"),
-                            isThreeLine: true,
-                            subtitle: Text(item.username ?? "null username"),
-                            dense: true,
-                          );
-                        }
+                        bool isNotFollowing = state.user.followingIDs != null &&
+                            !state.user.followingIDs!.contains(item.id);
+
+                        return ListTile(
+                          leading: IconButton(
+                              onPressed: isNotFollowing
+                                  ? (() {
+                                      BlocProvider.of<ExploreCubit>(context)
+                                          .followRequested(item.id);
+                                    })
+                                  : (() {
+                                      BlocProvider.of<ExploreCubit>(context)
+                                          .unfollowRequested(item.id);
+                                    }),
+                              icon: Icon(
+                                Icons.add_circle_outline_rounded,
+                                color: isNotFollowing
+                                    ? AppColors.primary
+                                    : Colors.grey,
+                              )),
+                          trailing: TextButton(
+                            child: Text(item.name ?? "null name"),
+                            onPressed: () {
+                              AutoRouter.of(context)
+                                  .push(OtherProfileScreenRoute(uid: item.id));
+                            },
+                          ),
+                          title: Text(item.email ?? "null email"),
+                          isThreeLine: true,
+                          subtitle: Text("@" + item.username!),
+                          dense: true,
+                        );
                       },
                     );
                   },

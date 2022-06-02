@@ -85,7 +85,7 @@ class UserRepository {
   /// Called when the user changes their username
   FutureOr<void> changeUsername(String newUsername) async {
     try {
-      print("\n\n\nHERE ${newUsername}\n\n\n");
+      print("\n\n\nHERE $newUsername\n\n\n");
       //_firebaseAuth.currentUser!.updateDisplayName(newUsername);
       _firestoreDB
           .collection(userCollection)
@@ -316,7 +316,7 @@ class UserRepository {
       final newRef = _firestoreDB.collection("posts").doc();
       var postId = newRef.id;
 
-      print("IS THERE ERROR BEFORE CONTENT ${postId}\n\n\n\n");
+      print("IS THERE ERROR BEFORE CONTENT $postId\n\n\n\n");
 
       Content post = Content(
         title: title,

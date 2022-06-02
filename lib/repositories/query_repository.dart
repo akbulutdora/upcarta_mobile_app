@@ -32,4 +32,21 @@ class QueryRepository {
       rethrow;
     }
   }
+
+  Future<AppUser> fetchUser(String uid) async {
+    try {
+      var docSnapshot = await _firestoreDB.collection('Person').doc(uid).get();
+      if (docSnapshot.exists && docSnapshot.data() != null) {
+        if (docSnapshot.data()!.isNotEmpty) {
+          return AppUser.fromJson(docSnapshot.data()!);
+        }
+        return AppUser.empty;
+      }
+
+      throw "user-fetch-error";
+    } catch (e) {
+      print("USER FETCH ERROR $e");
+      rethrow;
+    }
+  }
 }

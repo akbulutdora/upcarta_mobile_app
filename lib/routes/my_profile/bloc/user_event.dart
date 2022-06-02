@@ -1,7 +1,7 @@
-part of 'profile_bloc.dart';
+part of 'user_bloc.dart';
 
-abstract class ProfileEvent extends Equatable {
-  const ProfileEvent();
+abstract class UserEvent extends Equatable {
+  const UserEvent();
 
   @override
   List<Object> get props => [];
@@ -16,22 +16,22 @@ abstract class ProfileEvent extends Equatable {
 //   List<Object> get props => [bio];
 // }
 
-class ProfileEventChanged extends ProfileEvent {
-  const ProfileEventChanged(this.user);
+class UserEventChanged extends UserEvent {
+  const UserEventChanged(this.user);
   final AppUser user;
   @override
   List<Object> get props => [user];
 }
 
-class ProfileEventAuthChanged extends ProfileEvent {
-  const ProfileEventAuthChanged(this.user);
+class UserEventAuthChanged extends UserEvent {
+  const UserEventAuthChanged(this.user);
   final AppUser user;
   @override
   List<Object> get props => [user];
 }
 
-class ProfileEventSubmitted extends ProfileEvent {
-  const ProfileEventSubmitted(this.user);
+class UserEventSubmitted extends UserEvent {
+  const UserEventSubmitted(this.user);
 
   final AppUser user;
 

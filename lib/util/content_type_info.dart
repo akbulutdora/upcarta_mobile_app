@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/content.dart';
 
-Map<ContentType, List> dict = {
+Map<ContentType, List> contentTypeInfoDict = {
   ContentType.video: [Icons.ondemand_video_sharp, "Video"],
   ContentType.article: [Icons.ondemand_video_sharp, "Article"],
   ContentType.podcastEpisode: [Icons.ondemand_video_sharp, "Podcast Episode"],

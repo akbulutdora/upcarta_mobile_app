@@ -3,6 +3,7 @@ import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:upcarta_mobile_app/repositories/query_repository.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +37,7 @@ Future<void> main() async {
       await authenticationRepository.user.first;
       final userRepository =
           UserRepository(sharedPreferences: sharedPreferences);
+      final queryRepository = QueryRepository();
       final analyticsRepository = AnalyticsRepository();
 
       // await authRepository.user.first;
@@ -45,6 +47,7 @@ Future<void> main() async {
           userRepository: userRepository,
           analyticsRepository: analyticsRepository,
           sharedPreferences: sharedPreferences,
+          queryRepository: queryRepository,
         ),
       );
     },

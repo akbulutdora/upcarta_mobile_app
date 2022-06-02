@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
+import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
+
 import 'package:upcarta_mobile_app/ui_components/components.dart';
-import 'package:upcarta_mobile_app/routes/profile/profile.dart';
+import 'package:upcarta_mobile_app/routes/my_profile/my_profile.dart';
 
-
-class ProfileScreen extends StatefulWidget {
+class MyProfileScreen extends StatefulWidget {
   static MaterialPage page() {
     return const MaterialPage(
-      child: ProfileScreen(),
+      child: MyProfileScreen(),
     );
   }
 
-  const ProfileScreen({
+  const MyProfileScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  _MyProfileScreenState createState() => _MyProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _MyProfileScreenState extends State<MyProfileScreen> {
   // final AuthService _authService = AuthService();
 
   @override
@@ -32,7 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         titleSpacing: 0.0,
-        title:  Text(
+        title: Text(
           "Upcarta",
           style: TextStyle(
               fontFamily: "SFCompactText-Medium",
@@ -47,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         actions: <Widget>[
           IconButton(
-            icon:  Icon(
+            icon: Icon(
               Icons.settings,
               color: Theme.of(context).iconTheme.color,
             ),
@@ -91,9 +91,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   indicatorColor: Theme.of(context).primaryColor,
                   labelColor: Theme.of(context).iconTheme.color,
                   unselectedLabelColor: Theme.of(context).iconTheme.color,
-                  labelPadding: EdgeInsets.only(right: 3, left: 3),
-                  labelStyle: TextStyle(fontSize: 14),
-                  tabs: [
+                  labelPadding: const EdgeInsets.only(right: 3, left: 3),
+                  labelStyle: const TextStyle(fontSize: 14),
+                  tabs: const [
                     Tab(text: "Overview"),
                     Tab(text: "Content"),
                     Tab(text: "Recs"),
@@ -130,7 +130,7 @@ class BuildProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(builder: ((context, state) {
+    return BlocBuilder<UserBloc, UserState>(builder: ((context, state) {
       final double width = MediaQuery.of(context).size.width;
       final double height = MediaQuery.of(context).size.height;
       bool isMyProfile = true;
@@ -176,7 +176,8 @@ class BuildProfile extends StatelessWidget {
                         horizontal: 30.0, vertical: 10.0),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color: Theme.of(context).primaryColor)),
+                        side:
+                            BorderSide(color: Theme.of(context).primaryColor)),
                     child: Text(
                       'Edit Profile',
                       style: TextStyle(
@@ -229,14 +230,14 @@ class BuildProfile extends StatelessWidget {
                     Text(
                       //'${widget.user.following}',
                       state.user.recommendationCount.toString(),
-                      style:  TextStyle(
+                      style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.w700,
                         fontSize: 12,
-                        color:Theme.of(context).iconTheme.color,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
-                     Text(
+                    Text(
                       ' Recommendations',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
@@ -247,7 +248,7 @@ class BuildProfile extends StatelessWidget {
                     ),
                   ]),
                 ),
-                    SizedBox(
+                SizedBox(
                   height: 22,
                   child: VerticalDivider(color: Theme.of(context).primaryColor),
                 ),
@@ -265,7 +266,7 @@ class BuildProfile extends StatelessWidget {
                         color: Theme.of(context).iconTheme.color,
                       ),
                     ),
-                     Text(
+                    Text(
                       ' Followers',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
@@ -276,7 +277,7 @@ class BuildProfile extends StatelessWidget {
                     )
                   ]),
                 ),
-                 SizedBox(
+                SizedBox(
                   height: 22,
                   child: VerticalDivider(color: Theme.of(context).primaryColor),
                 ),
@@ -294,7 +295,7 @@ class BuildProfile extends StatelessWidget {
                         color: Theme.of(context).iconTheme.color,
                       ),
                     ),
-                     Text(
+                    Text(
                       ' Following',
                       style: TextStyle(
                         fontFamily: "SFCompactText",

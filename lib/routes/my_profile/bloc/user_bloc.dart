@@ -6,31 +6,31 @@ import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 
-part 'profile_event.dart';
-part 'profile_state.dart';
+part 'user_event.dart';
+part 'user_state.dart';
 
-class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
+class UserBloc extends Bloc<UserEvent, UserState> {
   late final StreamSubscription<AppUser>? _userSubscription;
   late final StreamSubscription<AppUser>? _authSubscription;
   final UserRepository _userRepository;
   final AuthenticationRepository _authRepository;
 
-  ProfileBloc({
+  UserBloc({
     required UserRepository userRepository,
     required AuthenticationRepository authRepository,
   })  : _userRepository = userRepository,
         _authRepository = authRepository,
-        super(const ProfileState.initial(AppUser.empty)) {
-    on<ProfileEventChanged>(_onChanged);
-    on<ProfileEventAuthChanged>(_onAuthChanged);
+        super(const UserState.initial(AppUser.empty)) {
+    on<UserEventChanged>(_onChanged);
+    on<UserEventAuthChanged>(_onAuthChanged);
 
     // TODO: SUBSCRIPTION GEREKLİ Mİ?
     _userSubscription =
-        _userRepository.user.listen((user) => add(ProfileEventChanged(
+        _userRepository.user.listen((user) => add(UserEventChanged(
               user,
             )));
-    _authSubscription = _authRepository.user
-        .listen((user) => add(ProfileEventAuthChanged(user)));
+    _authSubscription =
+        _authRepository.user.listen((user) => add(UserEventAuthChanged(user)));
   }
 
   // FutureOr<void> _onBioChanged(
@@ -39,26 +39,26 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   // }
 
   FutureOr<void> _onChanged(
-      ProfileEventChanged event, Emitter<ProfileState> emit) async {
+      UserEventChanged event, Emitter<UserState> emit) async {
     print("\n\n\nprinting user in profile bloc ${event.user}");
-    emit(const ProfileState.loading());
+    emit(const UserState.loading());
 
     //User user = await _userRepository.getCurrentUser();
 
     // emit(ProfileState.success(user));
     emit(event.user.isNotEmpty
-        ? ProfileState.success(event.user)
-        : const ProfileState.failure());
+        ? UserState.success(event.user)
+        : const UserState.failure());
   }
 
   FutureOr<void> _onAuthChanged(
-      ProfileEventAuthChanged event, Emitter<ProfileState> emit) async {
+      UserEventAuthChanged event, Emitter<UserState> emit) async {
     print("\n\n\nprinting user in profile bloc ${event.user}");
-    emit(const ProfileState.loading());
+    emit(const UserState.loading());
 
     AppUser user = await _userRepository.getCurrentUser();
 
-    emit(ProfileState.success(user));
+    emit(UserState.success(user));
     // emit(event.user.isNotEmpty
     //     ? ProfileState.success(event.user)
     //     : const ProfileState.failure());

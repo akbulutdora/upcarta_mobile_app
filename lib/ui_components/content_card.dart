@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
+import 'package:upcarta_mobile_app/util/content_type_info.dart';
 
 import 'components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
@@ -29,6 +31,7 @@ class ContentCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Flexible(
                         child: Text(
@@ -39,22 +42,26 @@ class ContentCard extends StatelessWidget {
                           softWrap: false,
                         ),
                       ),
-                      IconButton(
-                        constraints: BoxConstraints.loose(Size(20, 20)),
-                        splashRadius: 20,
-                        iconSize: 20,
-                        onPressed: () {},
-                        icon: Icon(Icons.bookmark),
-                        padding: EdgeInsets.all(0),
-                      ),
-                      SizedBox(width: 20),
-                      IconButton(
-                        constraints: BoxConstraints.loose(Size(20, 20)),
-                        splashRadius: 20,
-                        iconSize: 20,
-                        onPressed: () {},
-                        icon: Icon(Icons.more_horiz),
-                        padding: EdgeInsets.all(0),
+                      Row(
+                        children: [
+                          IconButton(
+                            constraints: BoxConstraints.loose(Size(20, 20)),
+                            splashRadius: 20,
+                            iconSize: 20,
+                            onPressed: () {},
+                            icon: Icon(Icons.bookmark),
+                            padding: EdgeInsets.all(0),
+                          ),
+                          SizedBox(width: 20),
+                          IconButton(
+                            constraints: BoxConstraints.loose(Size(20, 20)),
+                            splashRadius: 20,
+                            iconSize: 20,
+                            onPressed: () {},
+                            icon: Icon(Icons.more_horiz),
+                            padding: EdgeInsets.all(0),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -63,7 +70,7 @@ class ContentCard extends StatelessWidget {
                   ),
                   Row(children: [
                     Icon(
-                      Icons.local_movies_outlined,
+                      contentTypeInfoDict[content.contentType]![0],
                       size: 20,
                       color: AppColors.upcartaBlue,
                     ),
@@ -71,7 +78,7 @@ class ContentCard extends StatelessWidget {
                       width: 2,
                     ),
                     Text(
-                      content.contentType.toString(),
+                      contentTypeInfoDict[content.contentType]![1],
                       style: TextStyle(
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
@@ -101,7 +108,8 @@ class ContentCard extends StatelessWidget {
                       width: 6,
                     ),
                     Text(
-                      "created date",
+                      DateFormat('EEE, dd/mm, HH:mm')
+                          .format(content.createDate),
                       style: TextStyle(
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
@@ -140,11 +148,15 @@ class ContentCard extends StatelessWidget {
                             errorBuilder: (BuildContext context,
                                 Object exception, StackTrace? stackTrace) {
                               return Container(
-                                  padding: EdgeInsets.all(8),
+                                  color: Colors.grey.shade100,
+                                  padding: EdgeInsets.all(16),
                                   width: 100,
-                                  child: const Text(
-                                    'Could not find image 😢',
-                                    style: kTextStyle11,
+                                  height: 80,
+                                  child: Center(
+                                    child: const Text(
+                                      'Could not find the image 😢',
+                                      style: kTextStyle11,
+                                    ),
                                   ));
                             },
                             height: 72,

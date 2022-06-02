@@ -9,7 +9,8 @@ export '../routes/library/view/library_screen.dart';
 export '../routes/splash/view/splash_view.dart';
 export '../routes/splash/view/initial_view.dart';
 
-export '../routes/profile/view/profile_view.dart';
+export '../routes/my_profile/view/my_profile_view.dart';
+export '../routes/other_profile/view/other_profile_view.dart';
 export '../routes/edit_profile/view/edit_profile_view.dart';
 
 export '../routes/login/view/login_main_view.dart';

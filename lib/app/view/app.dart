@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-
 // import 'package:flow_builder/flow_builder.dart'; MAYBE WE SWITCH TI THIS
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,8 +8,9 @@ import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
-import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
+import 'package:upcarta_mobile_app/repositories/query_repository.dart';
 import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
+import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
@@ -23,9 +23,11 @@ class App extends StatelessWidget {
     required AuthenticationRepository authRepository,
     required AnalyticsRepository analyticsRepository,
     required UserRepository userRepository,
+    required QueryRepository queryRepository,
     required this.sharedPreferences,
   })  : _authRepository = authRepository,
         _userRepository = userRepository,
+        _queryRepository = queryRepository,
         _analyticsRepository = analyticsRepository,
         super(key: key);
 
@@ -33,6 +35,7 @@ class App extends StatelessWidget {
   final AnalyticsRepository _analyticsRepository;
   final UserRepository _userRepository;
   final SharedPreferences sharedPreferences;
+  final QueryRepository _queryRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +46,9 @@ class App extends StatelessWidget {
         ),
         RepositoryProvider.value(
           value: _userRepository,
+        ),
+        RepositoryProvider.value(
+          value: _queryRepository,
         ),
         RepositoryProvider.value(
           value: _analyticsRepository,
@@ -59,20 +65,18 @@ class App extends StatelessWidget {
           ),
           BlocProvider(create: (_) => ThemeCubit(sharedPreferences)),
           BlocProvider(
-              create: (_) => ProfileBloc(
+              create: (_) => UserBloc(
                   userRepository: _userRepository,
                   authRepository: _authRepository)),
         ],
-        child: AppView(analyticsRepository: _analyticsRepository),
+        child: const AppView(),
       ),
     );
   }
 }
 
 class AppView extends StatefulWidget {
-  AppView({Key? key, required this.analyticsRepository}) : super(key: key);
-
-  late AnalyticsRepository analyticsRepository;
+  const AppView({Key? key}) : super(key: key);
 
   @override
   State<AppView> createState() => _AppViewState();
@@ -94,8 +98,9 @@ class _AppViewState extends State<AppView> {
             title: 'Upcarta',
             routeInformationParser: _appRouter.defaultRouteParser(),
             routerDelegate: _appRouter.delegate(
-                navigatorObservers: () =>
-                    [widget.analyticsRepository.getAnalyticsObserver()]),
+                navigatorObservers: () => [
+                      context.read<AnalyticsRepository>().getAnalyticsObserver()
+                    ]),
             theme: theme,
             builder: (context, router) => router!,
           ),

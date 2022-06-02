@@ -128,6 +128,10 @@ import '../app/app.dart';
         page: LoginScreen2,
       ),
       AutoRoute(
+        path: '/other_profile',
+        page: OtherProfileScreen,
+      ),
+      AutoRoute(
         path: '/forgot',
         page: ResetPasswordView,
       ),
@@ -214,9 +218,9 @@ import '../app/app.dart';
             page: MyLibraryScreen,
           ),
           AutoRoute(
-            path: 'profile',
+            path: 'my_profile',
             name: 'ProfileScreenRoute',
-            page: ProfileScreen,
+            page: MyProfileScreen,
           ),
           RedirectRoute(path: '*', redirectTo: ''),
         ],

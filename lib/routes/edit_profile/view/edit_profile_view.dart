@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.dart';
-import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
@@ -42,7 +41,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 fontSize: 22),
           ),
           leading: IconButton(
-            icon:  Icon(
+            icon: Icon(
               Icons.arrow_back_ios,
               color: Theme.of(context).iconTheme.color,
             ),
@@ -63,7 +62,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text(
+              Text(
                 "Credentials",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
@@ -72,10 +71,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   color: Theme.of(context).iconTheme.color,
                 ),
               ),
-               Divider(
+              Divider(
                 color: Theme.of(context).dividerTheme.color,
               ),
-               Text(
+              Text(
                 "Profile Image",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
@@ -89,7 +88,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 //widget.user.profileImageUrl),
                 imageRadius: 45.0,
               ),
-               Text(
+              Text(
                 "Name",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
@@ -108,7 +107,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   border: Theme.of(context).inputDecorationTheme.border,
                 ),
               ),
-               Text(
+              Text(
                 "Username",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
@@ -118,7 +117,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
               _UsernameInput(),
-               Text(
+              Text(
                 "Bio",
                 style: TextStyle(
                   fontFamily: "SFCompactText",
@@ -171,8 +170,9 @@ class _BioSubmitButton extends StatelessWidget {
                       padding: EdgeInsets.all(height * 0.02)),
                   child: Text(
                     'Save',
-                    style:
-                        TextStyle(color: Theme.of(context).iconTheme.color, fontSize: height / 50),
+                    style: TextStyle(
+                        color: Theme.of(context).iconTheme.color,
+                        fontSize: height / 50),
                   ),
                 ),
               );

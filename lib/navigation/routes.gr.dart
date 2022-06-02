@@ -90,6 +90,12 @@ class AppRouter extends _i3.RootStackRouter {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.LoginScreen2());
     },
+    OtherProfileScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<OtherProfileScreenRouteArgs>();
+      return _i3.AdaptivePage<dynamic>(
+          routeData: routeData,
+          child: _i1.OtherProfileScreen(key: args.key, uid: args.uid));
+    },
     ResetPasswordViewRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.ResetPasswordView());
@@ -196,7 +202,7 @@ class AppRouter extends _i3.RootStackRouter {
     },
     ProfileScreenRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.ProfileScreen());
+          routeData: routeData, child: const _i1.MyProfileScreen());
     },
     LatestScreenRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
@@ -295,6 +301,7 @@ class AppRouter extends _i3.RootStackRouter {
         _i3.RouteConfig(SplashScreenRoute.name, path: '/splash'),
         _i3.RouteConfig(LoginScreenRoute.name, path: '/login'),
         _i3.RouteConfig(LoginScreen2Route.name, path: '/login2'),
+        _i3.RouteConfig(OtherProfileScreenRoute.name, path: '/other_profile'),
         _i3.RouteConfig(ResetPasswordViewRoute.name, path: '/forgot'),
         _i3.RouteConfig(ResetPasswordNewRoute.name, path: '/forgot_new'),
         _i3.RouteConfig(MyRegisterRoute.name, path: '/register'),
@@ -341,7 +348,7 @@ class AppRouter extends _i3.RootStackRouter {
           _i3.RouteConfig(MyLibraryScreenRoute.name,
               path: 'myLibrary', parent: HomeRoute.name),
           _i3.RouteConfig(ProfileScreenRoute.name,
-              path: 'profile', parent: HomeRoute.name),
+              path: 'my_profile', parent: HomeRoute.name),
           _i3.RouteConfig('*#redirect',
               path: '*',
               parent: HomeRoute.name,
@@ -501,6 +508,31 @@ class LoginScreen2Route extends _i3.PageRouteInfo<void> {
   const LoginScreen2Route() : super(LoginScreen2Route.name, path: '/login2');
 
   static const String name = 'LoginScreen2Route';
+}
+
+/// generated route for
+/// [_i1.OtherProfileScreen]
+class OtherProfileScreenRoute
+    extends _i3.PageRouteInfo<OtherProfileScreenRouteArgs> {
+  OtherProfileScreenRoute({_i4.Key? key, required String uid})
+      : super(OtherProfileScreenRoute.name,
+            path: '/other_profile',
+            args: OtherProfileScreenRouteArgs(key: key, uid: uid));
+
+  static const String name = 'OtherProfileScreenRoute';
+}
+
+class OtherProfileScreenRouteArgs {
+  const OtherProfileScreenRouteArgs({this.key, required this.uid});
+
+  final _i4.Key? key;
+
+  final String uid;
+
+  @override
+  String toString() {
+    return 'OtherProfileScreenRouteArgs{key: $key, uid: $uid}';
+  }
 }
 
 /// generated route for
@@ -728,9 +760,10 @@ class MyLibraryScreenRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.ProfileScreen]
+/// [_i1.MyProfileScreen]
 class ProfileScreenRoute extends _i3.PageRouteInfo<void> {
-  const ProfileScreenRoute() : super(ProfileScreenRoute.name, path: 'profile');
+  const ProfileScreenRoute()
+      : super(ProfileScreenRoute.name, path: 'my_profile');
 
   static const String name = 'ProfileScreenRoute';
 }

@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
-import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
 
 // import 'package:upcarta_mobile_app/models/auth_user.dart';
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
@@ -55,8 +54,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       _analyticsRepository.setUserId(event.user.email!);
       _analyticsRepository.setDefaultEventParameters(event.user.email!);
       _analyticsRepository.setLogEvent("signed_in");
-
-      print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n\n");
     }
   }
 
