@@ -102,6 +102,13 @@ class _PasswordSubmitButton extends StatelessWidget {
     return BlocConsumer<PasswordSettingsCubit, PasswordSettingsState>(
       listener: (context, state) {
         if (state.status == PasswordSettingsStatus.success) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('Password successfully changed!'),
+              ),
+            );
           AutoRouter.of(context).pop();
         } else if (state.status == PasswordSettingsStatus.submissionFailure) {
           ScaffoldMessenger.of(context)
