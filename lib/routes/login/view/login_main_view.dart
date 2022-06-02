@@ -36,15 +36,15 @@ class _LoginScreen extends State<LoginScreen> {
     ScreenUtil.init(context, designSize: const Size(375, 812));
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle:
-             SystemUiOverlayStyle(statusBarColor: Theme.of(context).appBarTheme.backgroundColor),
+        systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Theme.of(context).appBarTheme.backgroundColor),
         elevation: 0,
         titleSpacing: 0.0,
         title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Image.asset('assets/images/upcarta-logo-small.png',
               height: 30.h, width: 30.w),
           SizedBox(width: 8.w),
-           Text(
+          Text(
             'Upcarta',
             style: TextStyle(
                 color: Theme.of(context).iconTheme.color,
@@ -119,10 +119,11 @@ class LoginMainViewButtons extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.r)),
                     backgroundColor: Colors.lightBlue,
-                    padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h)),
+                    padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h),
+                    side: BorderSide(color: Colors.lightBlue)),
                 child: Text(
                   'Continue with Twitter',
-                  style: TextStyle(color: Theme.of(context).iconTheme.color, fontSize: 16.sp),
+                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
                 ),
               ),
             ),
@@ -136,7 +137,8 @@ class LoginMainViewButtons extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.r)),
                     backgroundColor: AppColors.white,
-                    padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h)),
+                    padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h),
+                    side: BorderSide(color: AppColors.black)),
                 child: Text(
                   'Continue with Google',
                   style: TextStyle(color: AppColors.black, fontSize: 16.sp),
@@ -151,7 +153,8 @@ class LoginMainViewButtons extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.r)),
                     backgroundColor: AppColors.black,
-                    padding: EdgeInsets.fromLTRB(67.w, 13.h, 67.w, 14.h)),
+                    padding: EdgeInsets.fromLTRB(67.w, 13.h, 67.w, 14.h),
+                    side: BorderSide(color: AppColors.black)),
                 child: Text(
                   'Continue with Apple',
                   style: TextStyle(color: AppColors.white, fontSize: 16.sp),
@@ -174,7 +177,8 @@ class LoginMainViewButtons extends StatelessWidget {
                 ),
                 Text("     OR     ",
                     style: TextStyle(
-                        fontSize: 13.sp, color: Theme.of(context).dividerTheme.color)),
+                        fontSize: 13.sp,
+                        color: Theme.of(context).dividerTheme.color)),
                 Expanded(
                   child: Column(
                     children: [
@@ -197,11 +201,12 @@ class LoginMainViewButtons extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.r)),
-                    backgroundColor: Theme.of(context).primaryColor,
-                    padding: EdgeInsets.fromLTRB(111.w, 13.h, 111.w, 14.h)),
+                    backgroundColor: AppColors.upcartaBlue,
+                    padding: EdgeInsets.fromLTRB(111.w, 13.h, 111.w, 14.h),
+                    side: BorderSide(color: AppColors.upcartaBlue)),
                 child: Text(
                   'Sign Up',
-                  style: TextStyle(color:Theme.of(context).iconTheme.color, fontSize: 16.sp),
+                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
                 ),
               ),
             ),
@@ -226,7 +231,8 @@ class LoginMainViewButtons extends StatelessWidget {
                                     text: 'Have an account already?  ',
                                     style: TextStyle(
                                         fontSize: 15.sp,
-                                        color: Theme.of(context).iconTheme.color)),
+                                        color:
+                                            Theme.of(context).iconTheme.color)),
                                 TextSpan(
                                     text: 'LOG IN',
                                     style: TextStyle(
@@ -249,7 +255,8 @@ class LoginMainViewButtons extends StatelessWidget {
                           TextSpan(
                               text: 'By signing up you agree to our ',
                               style: TextStyle(
-                                  fontSize: 12.sp, color: Theme.of(context).iconTheme.color)),
+                                  fontSize: 12.sp,
+                                  color: Theme.of(context).iconTheme.color)),
                           TextSpan(
                               text: 'Terms, Privacy Policy, and Cookie Use',
                               style: TextStyle(

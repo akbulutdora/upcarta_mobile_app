@@ -112,7 +112,9 @@ class LoginForm extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: Colors.transparent, // Step 2 SEE HERE
                     shadows: [
-                      Shadow(offset: Offset(0, -10.sp), color: Theme.of(context).iconTheme.color!)
+                      Shadow(
+                          offset: Offset(0, -10.sp),
+                          color: Theme.of(context).iconTheme.color!)
                     ],
                     decoration: TextDecoration.underline,
                     decorationColor: Theme.of(context).primaryColor,
@@ -171,20 +173,6 @@ class LoginForm extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          // _GoogleLoginButton(),
-          // const SizedBox(height: 4),
-
-          _SignUpButton(),
-          TextButton(
-            onPressed: () async {
-              context.router.push(const LoginScreenRoute());
-            },
-            child: Text(
-              "Resend Verification Email?",
-              style: TextStyle(color: Theme.of(context).iconTheme.color),
             ),
           ),
         ],
@@ -263,12 +251,12 @@ class _LoginButton extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r)),
                   backgroundColor: Theme.of(context).primaryColor,
-                  padding: EdgeInsets.fromLTRB(35.w, 10.h, 35.w, 10.h),
+                  padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
                 ),
                 child: Text(
                   'Log In',
                   style: TextStyle(
-                      color: Theme.of(context).iconTheme.color,
+                      color: AppColors.white,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w600),
                 ),
