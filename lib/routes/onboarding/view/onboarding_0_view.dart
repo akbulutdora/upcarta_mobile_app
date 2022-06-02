@@ -1,8 +1,10 @@
 // İDİL
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/util/colors.dart';
 import '../../../navigation/routes.gr.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -23,33 +25,35 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     // final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
-
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         actions: [
-          TextButton(
+          IconButton(
             onPressed: () {
               context.router.replace(const HomeRoute());
             },
-            child: const Text("Go To Home Screen"),
+            icon: Icon(Icons.home_filled),
+            color: AppColors.upcartaBlue,
           ),
         ],
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         centerTitle: true,
         elevation: 0,
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.circle, color: Colors.blue[400]),
-            Text(" Upcarta",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: height * 0.025))
-          ],
-        ),
+        title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Image.asset('assets/images/upcarta-logo-small.png',
+              height: 30.h, width: 30.w),
+          SizedBox(width: 8.w),
+          Text(
+            'Upcarta',
+            style: TextStyle(
+                color: Theme.of(context).iconTheme.color,
+                fontSize: 22,
+                fontWeight: FontWeight.w600),
+          ),
+        ]),
       ),
       // body: UserOnboarding2(),
       body: const AutoRouter(),

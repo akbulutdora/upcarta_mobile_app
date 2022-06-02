@@ -72,219 +72,220 @@ class LoginMainViewButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
     return BlocListener<LoginCubit, LoginState>(
-        listener: (context, state) {
-          if (state.status == LoginStatus.googleSignup) {
-            // AutoRouter.of(context).replace(const HomeRoute());
-            AutoRouter.of(context).replaceAll([const OnboardingScreenRoute()]);
-          }
-          if (state.status == LoginStatus.success) {
-            // AutoRouter.of(context).replace(const HomeRoute());
-            AutoRouter.of(context).replaceAll([const HomeRoute()]);
-          } else if (state.status == LoginStatus.submissionFailure) {
-            // TODO: IMPLEMENT SUBMISSION FAILURE ERROR
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Text(state.errorMessage ?? 'Authentication Failure'),
+      listener: (context, state) {
+        if (state.status == LoginStatus.googleSignup) {
+          // AutoRouter.of(context).replace(const HomeRoute());
+          AutoRouter.of(context).replaceAll([const OnboardingScreenRoute()]);
+        }
+        if (state.status == LoginStatus.success) {
+          // AutoRouter.of(context).replace(const HomeRoute());
+          AutoRouter.of(context).replaceAll([const HomeRoute()]);
+        } else if (state.status == LoginStatus.submissionFailure) {
+          // TODO: IMPLEMENT SUBMISSION FAILURE ERROR
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage ?? 'Authentication Failure'),
+              ),
+            );
+        }
+      },
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.only(
+                  top: 80.h,
                 ),
-              );
-          }
-        },
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+                child: Text(
+                  'Discover, collect and share\n great content.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Theme.of(context).iconTheme.color,
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.w600),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 64.h),
+          SizedBox(
+            child: OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.r)),
+                  backgroundColor: Colors.lightBlue,
+                  padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h),
+                  side: BorderSide(color: Colors.lightBlue)),
+              child: Text(
+                'Continue with Twitter',
+                style: TextStyle(color: AppColors.white, fontSize: 16.sp),
+              ),
+            ),
+          ),
+          SizedBox(height: 16.h),
+          SizedBox(
+            child: OutlinedButton(
+              onPressed: () {
+                context.read<LoginCubit>().logInWithGoogle();
+              },
+              style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.r)),
+                  backgroundColor: AppColors.white,
+                  padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h),
+                  side: BorderSide(color: AppColors.black, width: 1)),
+              child: Text(
+                'Continue with Google',
+                style: TextStyle(color: AppColors.black, fontSize: 16.sp),
+              ),
+            ),
+          ),
+          SizedBox(height: 16.h),
+          SizedBox(
+            child: OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.r)),
+                  backgroundColor: AppColors.black,
+                  padding: EdgeInsets.fromLTRB(67.w, 13.h, 67.w, 14.h),
+                  side: BorderSide(color: AppColors.black)),
+              child: Text(
+                'Continue with Apple',
+                style: TextStyle(color: AppColors.white, fontSize: 16.sp),
+              ),
+            ),
+          ),
+          SizedBox(height: 16.h),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Divider(
+                      indent: 48.w,
+                      thickness: 1.h,
+                      color: Theme.of(context).dividerTheme.color,
+                    ),
+                  ],
+                ),
+              ),
+              Text("     OR     ",
+                  style: TextStyle(
+                      fontSize: 13.sp,
+                      color: Theme.of(context).dividerTheme.color)),
+              Expanded(
+                child: Column(
+                  children: [
+                    Divider(
+                      endIndent: 48.w,
+                      thickness: 1.h,
+                      color: Theme.of(context).dividerTheme.color,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 16.h),
+          SizedBox(
+            child: OutlinedButton(
+              onPressed: () async {
+                context.router.push(const MyRegisterRoute());
+              },
+              style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.r)),
+                  backgroundColor: AppColors.upcartaBlue,
+                  padding: EdgeInsets.fromLTRB(111.w, 13.h, 111.w, 14.h),
+                  side: BorderSide(color: AppColors.upcartaBlue)),
+              child: Text(
+                'Sign Up',
+                style: TextStyle(color: AppColors.white, fontSize: 16.sp),
+              ),
+            ),
+          ),
+          SizedBox(
+            child: Column(
               children: [
-                Container(
-                  padding: EdgeInsets.only(
-                    top: 80.h,
-                  ),
-                  child: Text(
-                    'Discover, collect and share\n great content.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Theme.of(context).iconTheme.color,
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 64.h),
-            SizedBox(
-              child: OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r)),
-                    backgroundColor: Colors.lightBlue,
-                    padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h),
-                    side: BorderSide(color: Colors.lightBlue)),
-                child: Text(
-                  'Continue with Twitter',
-                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
-                ),
-              ),
-            ),
-            SizedBox(height: 16.h),
-            SizedBox(
-              child: OutlinedButton(
-                onPressed: () {
-                  context.read<LoginCubit>().logInWithGoogle();
-                },
-                style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r)),
-                    backgroundColor: AppColors.white,
-                    padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h),
-                    side: BorderSide(color: AppColors.black)),
-                child: Text(
-                  'Continue with Google',
-                  style: TextStyle(color: AppColors.black, fontSize: 16.sp),
-                ),
-              ),
-            ),
-            SizedBox(height: 16.h),
-            SizedBox(
-              child: OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r)),
-                    backgroundColor: AppColors.black,
-                    padding: EdgeInsets.fromLTRB(67.w, 13.h, 67.w, 14.h),
-                    side: BorderSide(color: AppColors.black)),
-                child: Text(
-                  'Continue with Apple',
-                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
-                ),
-              ),
-            ),
-            SizedBox(height: 16.h),
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      Divider(
-                        indent: 48.w,
-                        thickness: 1.h,
-                        color: Theme.of(context).dividerTheme.color,
+                Row(
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Theme.of(context).primaryColor,
                       ),
-                    ],
-                  ),
-                ),
-                Text("     OR     ",
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        color: Theme.of(context).dividerTheme.color)),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Divider(
-                        endIndent: 48.w,
-                        thickness: 1.h,
-                        color: Theme.of(context).dividerTheme.color,
+                      onPressed: () async {
+                        context.router.push(const LoginScreen2Route());
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(42.w, 8.h, 42.w, 8.h),
+                        child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: 'Have an account already?  ',
+                                  style: TextStyle(
+                                      fontSize: 15.sp,
+                                      color:
+                                          Theme.of(context).iconTheme.color)),
+                              TextSpan(
+                                  text: 'LOG IN',
+                                  style: TextStyle(
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context).primaryColor)),
+                            ],
+                          ),
+                        ),
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(52.w, 0.h, 52.w, 0.h),
+                  child: RichText(
+                    textAlign: TextAlign.justify,
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'By signing up you agree to our ',
+                            style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Theme.of(context).iconTheme.color)),
+                        TextSpan(
+                            text: 'Terms, Privacy Policy, and Cookie Use',
+                            style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).iconTheme.color)),
+                      ],
+                    ),
                   ),
                 )
               ],
             ),
-            SizedBox(height: 16.h),
-            SizedBox(
-              child: OutlinedButton(
-                onPressed: () async {
-                  context.router.push(const MyRegisterRoute());
-                },
-                style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r)),
-                    backgroundColor: AppColors.upcartaBlue,
-                    padding: EdgeInsets.fromLTRB(111.w, 13.h, 111.w, 14.h),
-                    side: BorderSide(color: AppColors.upcartaBlue)),
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
-                ),
-              ),
-            ),
-            SizedBox(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          primary: Theme.of(context).primaryColor,
-                        ),
-                        onPressed: () async {
-                          context.router.push(const LoginScreen2Route());
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(42.w, 8.h, 42.w, 8.h),
-                          child: RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Have an account already?  ',
-                                    style: TextStyle(
-                                        fontSize: 15.sp,
-                                        color:
-                                            Theme.of(context).iconTheme.color)),
-                                TextSpan(
-                                    text: 'LOG IN',
-                                    style: TextStyle(
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).primaryColor)),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(52.w, 0.h, 52.w, 0.h),
-                    child: RichText(
-                      textAlign: TextAlign.justify,
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'By signing up you agree to our ',
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  color: Theme.of(context).iconTheme.color)),
-                          TextSpan(
-                              text: 'Terms, Privacy Policy, and Cookie Use',
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).iconTheme.color)),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            BlocListener<AppBloc, AppState>(
-              listener: (context, state) async {
-                if (state == const AppState.prelanded()) {
-                  context.router.replace(const LandingRoute());
-                }
+          ),
+          BlocListener<AppBloc, AppState>(
+            listener: (context, state) async {
+              if (state == const AppState.prelanded()) {
+                context.router.replace(const LandingRoute());
+              }
+            },
+            child: TextButton(
+              onPressed: () {
+                context.read<AppBloc>().add(AppLandedCanceled());
+                print("landed canceled\n\n\n");
               },
-              child: TextButton(
-                onPressed: () {
-                  context.read<AppBloc>().add(AppLandedCanceled());
-                  print("landed canceled\n\n\n");
-                },
-                child: const Text("Press to cancel landed"),
-              ),
+              child: const Text("Press to cancel landed"),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
