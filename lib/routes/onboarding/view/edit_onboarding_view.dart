@@ -3,13 +3,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/onboarding/cubit/onboarding_cubit.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 
@@ -32,6 +32,7 @@ class EditOnboarding extends StatefulWidget {
 }
 
 class _EditOnboardingState extends State<EditOnboarding> {
+
   final ImagePicker _picker = ImagePicker();
   XFile? _image;
 
@@ -47,6 +48,7 @@ class _EditOnboardingState extends State<EditOnboarding> {
     var url = downurl.toString();
     return url;
   }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
@@ -91,7 +93,8 @@ class _EditOnboardingState extends State<EditOnboarding> {
                     // TODO: WHEN IMAGE IS UPDATED, WE NEED TO TRIGGER ONPRESSED, ONUPDATED ETC.
                     Align(
                       alignment: Alignment.center,
-                      child:Container(
+                      child: Container(
+                        height: 16.h,
                           child:Material(
                             shape: CircleBorder(),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -125,7 +128,7 @@ class _EditOnboardingState extends State<EditOnboarding> {
                             side: BorderSide(color: AppColors.upcartaBlue),
                             backgroundColor: AppColors.white,
                             padding:
-                                EdgeInsets.fromLTRB(32.w, 10.h, 32.w, 10.h)),
+                            EdgeInsets.fromLTRB(32.w, 10.h, 32.w, 10.h)),
                         child: Text(
                           'Continue',
                           style: TextStyle(
@@ -199,4 +202,3 @@ class _BioInput extends StatelessWidget {
     );
   }
 }
-

@@ -224,7 +224,15 @@ class UserRepository {
       print("Successfully changed password");
     }).catchError((err) {});
   }
-
+  Future<void> deleteAccount(String newPassword) async{
+  try {
+  var currentUser = _firebaseAuth.currentUser;
+  await currentUser!.delete();
+  } on firebase_auth.FirebaseAuthException catch (e) {
+  if (e.code == 'requires-recent-login') {
+  print('The user must reauthenticate before this operation can be executed.');
+  }
+  }}
   ///*********************************************PROFILE*********************************************************
   /// Contents.
   Future<List<Map<String, dynamic>>> profileGetCollections() async {
