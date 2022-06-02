@@ -141,8 +141,9 @@ class _SettingsState extends State<Settings> {
                         onTap: () async {
                           try {
                             await FirebaseFirestore.instance.collection("Person").doc(FirebaseAuth.instance.currentUser?.uid).delete();
+                            await FirebaseAuth.instance.currentUser!.delete();
                             context.read<AppBloc>().add(AppLogoutRequested());
-                            //await FirebaseAuth.instance.currentUser!.delete();
+
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'requires-recent-login') {
                               print('The user must reauthenticate before this operation can be executed.');
@@ -152,7 +153,7 @@ class _SettingsState extends State<Settings> {
                         },
                         child:  ListTile(
                           title: Text(
-                            'Disable Account',
+                            'Delete Account',
                             style: TextStyle(
                               fontFamily: "SFCompactText",
                               fontWeight: FontWeight.w500,
