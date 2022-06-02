@@ -180,26 +180,26 @@ class AuthenticationRepository {
   @visibleForTesting
   static const userCacheKey = '__user_cache_key__';
 
-  /// Stream of [User] which will emit the current user when
+  /// Stream of [AppUser] which will emit the current user when
   /// the authentication state changes.
   ///
-  /// Emits [User.empty] if the user is not authenticated.
-  Stream<User> get user {
+  /// Emits [AppUser.empty] if the user is not authenticated.
+  Stream<AppUser> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
+      final user = firebaseUser == null ? AppUser.empty : firebaseUser.toUser;
       _sharedPreferences.setString("user", json.encode(user.toString()));
       return user;
     });
   }
 
   /// Returns the current cached user.
-  /// Defaults to [User.empty] if there is no cached user.
-  User get currentUser {
+  /// Defaults to [AppUser.empty] if there is no cached user.
+  AppUser get currentUser {
     var cachedUser = _sharedPreferences.getString("user");
     if (cachedUser == null) {
-      return User.empty;
+      return AppUser.empty;
     }
-    return User.fromJson(json.decode(cachedUser));
+    return AppUser.fromJson(json.decode(cachedUser));
   }
 
   /// Creates a new user with the provided [email], [password], [username]
@@ -240,7 +240,7 @@ class AuthenticationRepository {
       'ownerID': uid,
       'description': '',
       'createdDate': DateTime.now(),
-      'recommenderIDs': <String>[],
+      'recommenderIDs': <String>[uid],
       'postIDs': <String>[],
       'isAsk': false,
       'contentTypes': ''
@@ -263,7 +263,7 @@ class AuthenticationRepository {
         .collection('collections')
         .add(recommendationsCollection)
         .then((DocumentReference doc) => doc.id);
-    final thisUser = User(
+    final thisUser = AppUser(
       id: uid,
       username: "",
       email: cred.user!.email,
@@ -273,8 +273,6 @@ class AuthenticationRepository {
       followerIDs: const [],
       followingIDs: const [],
       followedTopicIDs: const [],
-      followers: 0,
-      following: 0,
       photoURL:
           'gs://upcarta-77024.appspot.com/Amadeo Modigliani - Ritratto di Paul Guillaume 1916.jpg',
       recommendationCount: 0,
@@ -344,7 +342,7 @@ class AuthenticationRepository {
   }
 
   /// Signs out the current user which will emit
-  /// [User.empty] from the [user] Stream.
+  /// [AppUser.empty] from the [user] Stream.
   ///
   /// Throws a [LogOutFailure] if an exception occurs.
   Future<void> logOut() async {
@@ -360,7 +358,8 @@ class AuthenticationRepository {
 }
 
 extension on firebase_auth.User {
-  User get toUser {
-    return User(id: uid, email: email, name: displayName, photoURL: photoURL);
+  AppUser get toUser {
+    return AppUser(
+        id: uid, email: email, name: displayName, photoURL: photoURL);
   }
 }

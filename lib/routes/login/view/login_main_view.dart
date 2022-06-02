@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
+import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 
 import 'package:upcarta_mobile_app/util/colors.dart';
@@ -12,6 +13,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import '../../../app/bloc/app_bloc.dart';
 import 'package:upcarta_mobile_app/routes/login/login.dart';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -57,6 +60,7 @@ class _LoginScreen extends State<LoginScreen> {
       body: BlocProvider(
         create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
         child: const SingleChildScrollView(
+          // child: const SingleChildScrollView(
           child: LoginMainViewButtons(),
         ),
       ),

@@ -1,17 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' as fire_auth;
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
-import 'package:upcarta_mobile_app/repositories/user_repository.dart';
-import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
+import 'package:upcarta_mobile_app/routes/profile/profile.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -121,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Column(),
               Column(),
-              Column(),
+              const ProfileRecommendationsList(),
               Column(),
               Column(),
             ],
@@ -262,7 +256,9 @@ class BuildProfile extends StatelessWidget {
                   onPressed: () {},
                   child: Row(children: [
                     Text(
-                      state.user.followers.toString(),
+                      state.user.followerIDs == null
+                          ? "0"
+                          : state.user.followerIDs!.length.toString(),
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.w700,
@@ -289,8 +285,10 @@ class BuildProfile extends StatelessWidget {
                   onPressed: () {},
                   child: Row(children: [
                     Text(
-                      state.user.following.toString(),
-                      style:  TextStyle(
+                      state.user.followingIDs == null
+                          ? "0"
+                          : state.user.followingIDs!.length.toString(),
+                      style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.w700,
                         fontSize: 12,

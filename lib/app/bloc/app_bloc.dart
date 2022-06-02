@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
 
 // import 'package:upcarta_mobile_app/models/auth_user.dart';
@@ -14,17 +15,20 @@ part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   final AuthenticationRepository _authRepository;
+  final AnalyticsRepository _analyticsRepository;
   final SharedPreferences _sharedPrefs;
-  late final StreamSubscription<User>? _userSubscription;
+  late final StreamSubscription<AppUser>? _userSubscription;
   // ProfileBloc _profileBloc;
 
   AppState get initialState => const AppState.uninitialized();
 
   AppBloc({
     required AuthenticationRepository authRepository,
+    required AnalyticsRepository analyticsRepository,
     required SharedPreferences sharedPrefs,
     // required ProfileBloc profileBloc
   })  : _authRepository = authRepository,
+        _analyticsRepository = analyticsRepository,
         _sharedPrefs = sharedPrefs,
         // _profileBloc = profileBloc,
         super(const AppState.uninitialized()) {
@@ -47,6 +51,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
                 !_sharedPrefs.getBool("landed")!
             ? const AppState.prelanded()
             : const AppState.unauthenticated());
+    if (event.user.email != null) {
+      _analyticsRepository.setUserId(event.user.email!);
+      _analyticsRepository.setDefaultEventParameters(event.user.email!);
+      _analyticsRepository.setLogEvent("signed_in");
+
+      print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n\n");
+    }
   }
 
   void _onLanded(
