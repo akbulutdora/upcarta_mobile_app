@@ -34,9 +34,13 @@ class _FeedScreenState extends State<FeedScreen> {
           return SafeArea(
             child: Scaffold(
               appBar: AppBar(
-                title: const Text(
-                  'Upcarta',
-                  style: kTextStyle3b,
+                title: Text(
+                  "Upcarta",
+                  style: TextStyle(
+                      fontFamily: "SFCompactText-Medium",
+                      color: Theme.of(context).iconTheme.color,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 22),
                 ),
                 leading: Image.asset(
                   "assets/images/upcarta-logo-small.png",
@@ -64,7 +68,8 @@ class _FeedScreenState extends State<FeedScreen> {
                           Tab(text: 'Latest'),
                           Tab(text: 'Top'),
                         ],
-                        unselectedLabelColor: Theme.of(context).dividerTheme.color,
+                        unselectedLabelColor:
+                            Theme.of(context).dividerTheme.color,
                         unselectedLabelStyle: TextStyle(
                             fontFamily: 'SFCompactText-SemiBold.ttf',
                             fontSize: 17,

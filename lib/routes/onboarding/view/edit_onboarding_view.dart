@@ -1,13 +1,17 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/onboarding/cubit/onboarding_cubit.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
+import 'package:path/path.dart';
+import 'dart:io';
 
 // TODO: IMPLEMENT USER  BLOC WITH USER REPOSITORY WHICH WILL HANDLE
 // TODO: OPERATIONS SUCH AS FOLLOW, UNFOLLOW, CHANGE PROFILE PIC
@@ -28,6 +32,23 @@ class EditOnboarding extends StatefulWidget {
 }
 
 class _EditOnboardingState extends State<EditOnboarding> {
+
+  final ImagePicker _picker = ImagePicker();
+  XFile? _image;
+
+  Future pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = pickedFile;
+    });
+    String fileName = basename(_image!.path);
+    Reference firebaseStorageRef = FirebaseStorage.instance.ref().child('uploads/$fileName');
+
+    var downurl = await (await firebaseStorageRef.putFile(File(_image!.path))).ref.getDownloadURL();
+    var url = downurl.toString();
+    return url;
+  }
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
@@ -72,11 +93,20 @@ class _EditOnboardingState extends State<EditOnboarding> {
                     // TODO: WHEN IMAGE IS UPDATED, WE NEED TO TRIGGER ONPRESSED, ONUPDATED ETC.
                     Align(
                       alignment: Alignment.center,
-                      child: CircleImage(
-                        imageProvider: AssetImage("assets/images/mock.jpg"),
-                        //widget.user.profileImageUrl),
-                        imageRadius: 70.0.r,
+                      child: Container(
+                        height: 16.h,
+                          child:Material(
+                            shape: CircleBorder(),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: InkWell(
+                              splashColor: Colors.black26,
+                              onTap:() async {var value = await pickImage();
+                              context.read<OnboardingCubit>().photoChanged(value);
+                              },
+                            ),
+                          )
                       ),
+
                     ),
 
                     SizedBox(height: 24.h),
@@ -98,7 +128,7 @@ class _EditOnboardingState extends State<EditOnboarding> {
                             side: BorderSide(color: AppColors.upcartaBlue),
                             backgroundColor: AppColors.white,
                             padding:
-                                EdgeInsets.fromLTRB(32.w, 10.h, 32.w, 10.h)),
+                            EdgeInsets.fromLTRB(32.w, 10.h, 32.w, 10.h)),
                         child: Text(
                           'Continue',
                           style: TextStyle(

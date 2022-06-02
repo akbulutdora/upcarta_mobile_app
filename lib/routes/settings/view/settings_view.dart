@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
@@ -135,10 +138,22 @@ class _SettingsState extends State<Settings> {
                 ),
                 Card(
                     child: InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          try {
+                            await FirebaseFirestore.instance.collection("Person").doc(FirebaseAuth.instance.currentUser?.uid).delete();
+                            await FirebaseAuth.instance.currentUser!.delete();
+                            context.read<AppBloc>().add(AppLogoutRequested());
+
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'requires-recent-login') {
+                              print('The user must reauthenticate before this operation can be executed.');
+                            }
+                          }
+
+                        },
                         child:  ListTile(
                           title: Text(
-                            'Disable Account',
+                            'Delete Account',
                             style: TextStyle(
                               fontFamily: "SFCompactText",
                               fontWeight: FontWeight.w500,

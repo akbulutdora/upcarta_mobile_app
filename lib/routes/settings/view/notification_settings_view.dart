@@ -35,18 +35,18 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
-            title: const Text(
+            title:  Text(
               'Notification Settings',
               style: TextStyle(
                   fontFamily: "SFCompactText-Medium",
-                  color: Colors.black,
+                  color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
                   fontSize: 22),
             ),
             leading: IconButton(
-              icon: const Icon(
+              icon:  Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black54,
+                color: Theme.of(context).iconTheme.color,
               ),
               onPressed: () {
                 context.router.pop();
@@ -57,27 +57,28 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             padding: EdgeInsets.all(height * 0.016),
             child: ListView(
               children: <Widget>[
-                const Text(
+                 Text(
                   "Notification Preferences",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title:  Text(
                       'Pause All',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: pauseAll,
@@ -88,18 +89,19 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color:Theme.of(context).dividerTheme.color,
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title:  Text(
                       'Contents',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: contents,
@@ -110,18 +112,19 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title:  Text(
                       'Collections',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: collections,
@@ -132,18 +135,19 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title:  Text(
                       'Asks',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: asks,
@@ -154,18 +158,19 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title:  Text(
                       'Topics',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: topics,
@@ -176,18 +181,19 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title:  Text(
                       'Activities from people you follow',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: activity,
@@ -198,18 +204,19 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title:  Text(
                       'Messages',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: messages,
@@ -220,8 +227,8 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 SizedBox(height: height * 0.012),
                 Container(
@@ -231,7 +238,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
-                        backgroundColor: Colors.lightBlue,
+                        backgroundColor: Theme.of(context).primaryColor,
                         padding: EdgeInsets.all(height * 0.02)),
                     child: Text(
                       'Save',

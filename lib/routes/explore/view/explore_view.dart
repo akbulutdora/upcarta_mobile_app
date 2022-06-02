@@ -61,11 +61,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
         foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         elevation: 0,
         titleSpacing: 0.0,
-        title: const Text(
+        title:  Text(
           'Explore',
           style: TextStyle(
               fontFamily: "SFCompactText-Medium",
-              color: Colors.black,
+              color: Theme.of(context).iconTheme.color,
               fontWeight: FontWeight.w500,
               fontSize: 22),
         ),
@@ -235,8 +235,8 @@ class SearchResultList extends StatelessWidget {
                               icon: Icon(
                                 Icons.add_circle_outline_rounded,
                                 color: isNotFollowing
-                                    ? AppColors.primary
-                                    : Colors.grey,
+                                    ? Theme.of(context).primaryColor
+                                    : Theme.of(context).dividerTheme.color,
                               )),
                           trailing: TextButton(
                             child: Text(item.name ?? "null name"),
@@ -312,13 +312,12 @@ class ExploreCard extends StatelessWidget {
         elevation: 0,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: AppColors.gray2LightText,
+            color: Theme.of(context).dividerTheme.color!,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
         child: Container(
           padding: const EdgeInsets.all(12),
-          color: Colors.white,
           child: Text(
             text,
             style: exploreCardsFont,

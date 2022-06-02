@@ -15,7 +15,9 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   void usernameChanged(String value) {
     emit(state.copyWith(username: value, status: OnboardingStatus.initial));
   }
-
+  void photoChanged(String value) {
+    emit(state.copyWith(photoURL: value, status: OnboardingStatus.initial));
+  }
   void submitBioPhotoURLUsername() async {
     if (state.status == OnboardingStatus.submitting) {
       return;

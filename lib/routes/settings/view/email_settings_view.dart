@@ -35,18 +35,18 @@ bool updateEmail = false;
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
-            title: const Text(
+            title:  Text(
               'Email Settings',
               style: TextStyle(
                   fontFamily: "SFCompactText-Medium",
-                  color: Colors.black,
+                  color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
                   fontSize: 22),
             ),
             leading: IconButton(
-              icon: const Icon(
+              icon:  Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black54,
+                color: Theme.of(context).iconTheme.color,
               ),
               onPressed: () {
                 context.router.pop();
@@ -57,24 +57,29 @@ bool updateEmail = false;
             padding: EdgeInsets.all(height * 0.016),
             child: ListView(
               children: <Widget>[
-                const Text(
+                 Text(
                   "Email",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 20,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    fillColor: Colors.transparent,
-                    filled: true,
-                    isDense: true,
+                    cursorColor: Theme.of(context).primaryColor,
+                    decoration: InputDecoration(
+                      fillColor: Colors.transparent,
+                      filled: true,
+                      isDense: true,
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor,
+                          )),
                     contentPadding: EdgeInsets.all(height * 0.016),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -83,21 +88,21 @@ bool updateEmail = false;
                         )),
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 SizedBox(height: height * 0.012),
-                const Text(
+                 Text(
                   "Connect Accounts",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 20,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -107,7 +112,7 @@ bool updateEmail = false;
                         style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12)),
-                            backgroundColor: Colors.lightBlue,
+                            backgroundColor: Theme.of(context).primaryColor,
                             padding: EdgeInsets.all(height * 0.02)),
                         child: Text(
                           'Connect to Twitter',
@@ -120,49 +125,50 @@ bool updateEmail = false;
                         style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12)),
-                            side: const BorderSide(color: Colors.black),
+                            side:  BorderSide(color: Theme.of(context).primaryColor),
                             padding: EdgeInsets.all(height * 0.02)),
                         child: Text(
                           'Connect to Google',
                           style: TextStyle(
-                              color: Colors.black, fontSize: height / 50),
+                              color: Theme.of(context).iconTheme.color, fontSize: height / 50),
                         ),
                       ),
                     ]),
-                const Divider(
-                  color: Colors.grey,
+                Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 SizedBox(height: height * 0.012),
-                const Text(
+                 Text(
                   "Discover Email",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
-                const Text(
+                 Text(
                   "Discover great books, podcasts, videos, articles, twitter threads, and more, based on your followings.",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
-                    color: Colors.grey,
+                    color: Theme.of(context).dividerTheme.color,
                   ),
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title:  Text(
                       'Weekly',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: weekly,
@@ -174,36 +180,37 @@ bool updateEmail = false;
                   ),
                 ),
                 SizedBox(height: height * 0.012),
-                const Text(
+                 Text(
                   "Related to you",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                    color: Theme.of(context).dividerTheme.color,
                 ),
-                const Text(
+                 Text(
                   "Get activity notifications in your inbox.",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
-                    color: Colors.grey,
+                    color: Theme.of(context).dividerTheme.color,
                   ),
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title:  Text(
                       'Send notification emails',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: notifEmail,
@@ -215,36 +222,37 @@ bool updateEmail = false;
                   ),
                 ),
                 SizedBox(height: height * 0.012),
-                const Text(
+                 Text(
                   "From Upcarta",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
-                const Text(
+                 Text(
                   "Get notified about new features and improvements.",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
-                    color: Colors.grey,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
                 InkWell(
                   child: SwitchListTile(
-                    title: const Text(
+                    activeColor: Theme.of(context).primaryColor,
+                    title: Text(
                       'Send product update emails',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     value: updateEmail,
@@ -262,7 +270,7 @@ bool updateEmail = false;
                     style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
-                        backgroundColor: Colors.lightBlue,
+                        backgroundColor: Theme.of(context).primaryColor,
                         padding: EdgeInsets.all(height * 0.02)),
                     child: Text(
                       'Save',

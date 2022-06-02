@@ -1,12 +1,17 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.dart';
+import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
-
+import 'package:path/path.dart';
 class EditProfileScreen extends StatefulWidget {
   static MaterialPage page() {
     return const MaterialPage(
@@ -23,6 +28,21 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  final ImagePicker _picker = ImagePicker();
+  XFile? _image;
+
+  Future pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = pickedFile;
+    });
+    String fileName = basename(_image!.path);
+    Reference firebaseStorageRef = FirebaseStorage.instance.ref().child('uploads/$fileName');
+
+    var downurl = await (await firebaseStorageRef.putFile(File(_image!.path))).ref.getDownloadURL();
+    var url = downurl.toString();
+    return url;
+  }
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -51,13 +71,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           )),
       //),
       body: BlocProvider(
-        create: (context) => EditProfileCubit(
+        create: (_) => EditProfileCubit(
             context.read<AuthenticationRepository>(),
             context.read<UserRepository>()),
         //  create: (context) => ProfileBloc(
         // userRepository: context.read<UserRepository>(), user: User.empty),
         // TODO: EMPTY USER OLMAYACAK
-        child: Padding(
+        child: BlocBuilder<UserBloc, UserState>(
+  builder: (context, state) {
+    return Padding(
           padding: EdgeInsets.all(height * 0.016),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,11 +105,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   color: Theme.of(context).iconTheme.color,
                 ),
               ),
-              const CircleImage(
-                imageProvider: AssetImage("assets/images/mock.jpg"),
-                //widget.user.profileImageUrl),
-                imageRadius: 45.0,
+
+               InkWell(
+
+                 child: CircleAvatar(foregroundImage: context.read<UserBloc>().state.user.photoURL != null
+                    ? NetworkImage(context.read<UserBloc>().state.user.photoURL!)
+                    : null,
+                  backgroundImage: const AssetImage("assets/images/mock.jpg"),
+                  //widget.user.profileImageUrl),
+                  minRadius: 45.0,
+                   maxRadius: 45.0,
               ),
+                 onTap: () async {var value = await pickImage();
+               context.read<EditProfileCubit>().photoChanged(value);
+               }
+               ),
               Text(
                 "Name",
                 style: TextStyle(
@@ -131,7 +163,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               _BioSubmitButton(height: height),
             ],
           ),
-        ),
+        );
+  },
+),
       ),
     );
   }

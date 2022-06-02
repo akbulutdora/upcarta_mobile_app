@@ -67,8 +67,8 @@ class _LibraryCollectionsViewState extends State<LibraryCollectionsView> {
             ),
           ],
         ),
-        const Divider(
-          color: Color(0xff949494),
+         Divider(
+          color:Theme.of(context).dividerTheme.color,
         ),
         ContentList(
           contentList: contents,
