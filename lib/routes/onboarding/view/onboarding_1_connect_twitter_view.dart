@@ -1,105 +1,103 @@
 import "package:flutter/material.dart";
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'dart:math';
+
+import 'package:upcarta_mobile_app/util/colors.dart';
 
 class UserOnboarding1 extends StatelessWidget {
   const UserOnboarding1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
-
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(vertical: height * 0.03),
-          height: min(width * 0.85, height * 0.4),
-          child: AspectRatio(
-              aspectRatio: 1,
-              child: Image.asset("assets/images/onboardingImage.png")),
-        ),
-        SizedBox(
-          width: width * 0.6,
-          child: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              style: const TextStyle(color: Colors.black),
-              children: [
-                TextSpan(
-                  text: "\tWelcome to Upcarta\t",
-                  style: TextStyle(
-                    color: Colors.transparent,
-                    fontSize: min(width * 0.055, 24),
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: -0.2,
-                    decoration: TextDecoration.underline,
-                    decorationColor: Colors.blue[400],
-                    decorationStyle: TextDecorationStyle.solid,
-                    decorationThickness: 2,
-                    shadows: [
-                      Shadow(
-                          offset: Offset(0, -height * 0.007),
-                          color: Colors.black)
-                    ],
-                  ),
-                ),
-                TextSpan(
-                  text:
-                      "Connect your account and follow the people on your twitter.",
-                  style: TextStyle(
-                      fontSize: min(width * 0.037, 15),
-                      fontWeight: FontWeight.normal,
-                      height: 1.2),
-                ),
-              ],
-            ),
+    ScreenUtil.init(context, designSize: const Size(375, 812));
+    return Padding(
+      padding: EdgeInsets.only(left: 16.w, right: 16.w),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 40.h,
           ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: height * 0.05),
-          child: ElevatedButton(
-            onPressed: () {
-              context.router.push(const UserOnboarding2Route());
-            },
-            child: Text(
-              "Connect Your Twitter",
-              style: TextStyle(
-                  color: Colors.white, fontSize: min(16, width * 0.043)),
-            ),
-            style: ElevatedButton.styleFrom(
-              fixedSize: Size(min(288, width * 0.78), min(48, width * 0.13)),
-              primary: Colors.blue[400],
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-            ),
+          Image.asset(
+            "assets/images/onboardingImage.png",
+            height: 315.h,
+            width: 315.w,
           ),
-        ),
-        Expanded(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                  width * 0.05, height * 0.02, width * 0.05, height * 0.05),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+          SizedBox(height: 40.h),
+          SizedBox(
+            width: 245.w,
+            child: RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: TextStyle(color: AppColors.black),
                 children: [
-                  OutlinedButton(
-                    onPressed: () {
-                      context.router.push(const UserOnboarding3Route());
-                    },
-                    child: const Text(
-                      "Skip",
-                      style: TextStyle(color: Colors.grey, fontSize: 18),
+                  TextSpan(
+                    text: "\tWelcome to Upcarta\t",
+                    style: TextStyle(
+                      color: Colors.transparent,
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.2,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.blue[400],
+                      decorationStyle: TextDecorationStyle.solid,
+                      decorationThickness: 2,
+                      shadows: [
+                        Shadow(offset: Offset(0, -12.h), color: AppColors.black)
+                      ],
                     ),
+                  ),
+                  TextSpan(
+                    text:
+                        "\nConnect your account and follow the people on your twitter.",
+                    style: TextStyle(
+                        fontSize: 15.sp,
+                        fontFamily: "SFCompactText-Regular.ttf",
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
             ),
           ),
-        ),
-      ],
+          Container(
+            margin: EdgeInsets.only(top: 32.h),
+            child: ElevatedButton(
+              onPressed: () {
+                context.router.push(const UserOnboarding2Route());
+              },
+              child: Text(
+                "Connect Your Twitter",
+                style: TextStyle(color: AppColors.white, fontSize: 16.sm),
+              ),
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(280.w, 64.h),
+                primary: Colors.lightBlue,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+              ),
+            ),
+          ),
+          SizedBox(height: 24.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              OutlinedButton(
+                onPressed: () {
+                  context.router.push(const UserOnboarding3Route());
+                },
+                style: ElevatedButton.styleFrom(
+                    side: BorderSide(color: AppColors.gray3ContentText)),
+                child: Text(
+                  "Skip",
+                  style: TextStyle(
+                      color: AppColors.gray3ContentText, fontSize: 16.sm),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
