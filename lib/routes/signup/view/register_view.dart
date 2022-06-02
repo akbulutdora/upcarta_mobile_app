@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
@@ -106,11 +107,11 @@ class SignupForm extends StatelessWidget {
 
         } else if (state.status == SignupStatus.submissionFailure) {
           // ERROR
-          // ScaffoldMessenger.of(context)
-          //   ..hideCurrentSnackBar()
-          //   ..showSnackBar(
-          //     SnackBar(content: Text(state.errorMessage ?? 'Sign Up Failure')),
-          //   );
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(content: Text(state.errorMessage ?? 'Sign Up Failure')),
+            );
         }
       },
       child: Align(
@@ -233,7 +234,7 @@ class _SignUpButton extends StatelessWidget {
             : OutlinedButton(
                 key: const Key('loginForm_createAccount_flatButton'),
                 onPressed: () =>
-                    AutoRouter.of(context).push(const MyRegisterRoute()),
+                    context.read<SignupCubit>().signupFormSubmitted(),
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r)),
