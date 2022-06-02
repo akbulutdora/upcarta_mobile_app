@@ -53,6 +53,7 @@ class _LatestContentListState extends State<LatestContentList> {
                 controller: _scrollController,
               ),
             );
+
           default:
             return const Center(child: CircularProgressIndicator());
         }

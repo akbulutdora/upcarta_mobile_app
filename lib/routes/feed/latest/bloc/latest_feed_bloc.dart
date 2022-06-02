@@ -11,6 +11,8 @@ class LatestFeedBloc extends Bloc<LatestFeedEvent, LatestFeedState> {
       : super(const LatestFeedState()) {
     on<LatestFeedEventContentFetched>(_onContentFetched);
     on<LatestFeedEventContentRefreshed>(_onContentRefreshed);
+    on<LatestFeedEventContentSaved>(_onContentSaved);
+    on<LatestFeedEventContentReported>(_onContentReported);
   }
   final UserRepository userRepository;
 
@@ -67,6 +69,38 @@ class LatestFeedBloc extends Bloc<LatestFeedEvent, LatestFeedState> {
             ));
     } catch (_) {
       emit(state.copyWith(status: LatestFeedStatus.failure));
+    }
+  }
+
+  Future<void> _onContentSaved(
+      LatestFeedEventContentSaved event, Emitter<LatestFeedState> emit) async {
+    if (state.status == LatestFeedStatus.saveRequested) return;
+    emit(state.copyWith(
+      status: LatestFeedStatus.saveRequested,
+    ));
+    try {
+      userRepository.saveContent(event.contentID);
+      emit(state.copyWith(
+        status: LatestFeedStatus.success,
+      ));
+    } catch (_) {
+      print("CONTENT SAVE ERROR");
+    }
+  }
+
+  Future<void> _onContentReported(LatestFeedEventContentReported event,
+      Emitter<LatestFeedState> emit) async {
+    if (state.status == LatestFeedStatus.reportRequested) return;
+    emit(state.copyWith(
+      status: LatestFeedStatus.reportRequested,
+    ));
+    try {
+      userRepository.reportContent(event.contentID);
+      emit(state.copyWith(
+        status: LatestFeedStatus.success,
+      ));
+    } catch (_) {
+      print("CONTENT REPORT ERROR");
     }
   }
 }

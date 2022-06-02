@@ -114,7 +114,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             children: [
               Column(),
               Column(),
-              const ProfileRecommendationsList(),
+              ProfileRecommendationsList(
+                  uid: context.read<UserBloc>().state.user.id),
               Column(),
               Column(),
             ],

@@ -228,6 +228,22 @@ class UserRepository {
     });
   }
 
+  /// Called when the user saves a recommendation
+  Future<void> reportContent(String postID) async {
+    //Getting the unique savesId from the user collection.
+    try {
+      var report = <String, dynamic>{
+        "reportedID": postID,
+        "reporterID": _firebaseAuth.currentUser!.uid,
+        "reportType": "content"
+      };
+      await _firestoreDB.collection("reports").doc().set(report);
+    } catch (e) {
+      print("REPORT CONTENT ERROR $e");
+      rethrow;
+    }
+  }
+
   // TODO: Might be moved to auth repo
   /// Called when the user changes their email
   Future<void> changeEmail(String newEmail) async {
@@ -311,12 +327,9 @@ class UserRepository {
 
   ///Recommends
   //TODO: bu baya kötü geldi bana daha iyi yolu var mı ki, kötü yazdım yani kodu.
-  Future<List<dynamic>> profileGetRecommends() async {
+  Future<List<Content>> profileGetRecommends(String uid) async {
     try {
-      var docSnapshot = await _firestoreDB
-          .collection('users')
-          .doc(_firebaseAuth.currentUser!.uid)
-          .get();
+      var docSnapshot = await _firestoreDB.collection('Person').doc(uid).get();
 
       if (docSnapshot.exists) {
         Map<String, dynamic> data = docSnapshot.data()!;
@@ -326,13 +339,51 @@ class UserRepository {
             .doc(recommendationsID)
             .get();
         if (recommendationSnapshot.exists) {
-          var recPostsList = [];
+          List<Content> recPostsList = [];
           var postIDs = recommendationSnapshot.data()!['postIDs'];
           for (int i = 0; i < postIDs.length; i++) {
             var recommendationPostSnapshot =
                 await _firestoreDB.collection('posts').doc(postIDs[i]).get();
             if (recommendationPostSnapshot.exists) {
-              recPostsList.add(recommendationPostSnapshot.data()!);
+              recPostsList
+                  .add(Content.fromJson(recommendationPostSnapshot.data()!));
+            }
+          }
+          return recPostsList;
+        }
+      }
+      return [];
+    } catch (e) {
+      print('Failed with error code: $e');
+      //TODO: bu ne return etmeli
+      return [];
+    }
+  }
+
+  Future<List<Content>> libraryGetSaves() async {
+    try {
+      var docSnapshot = await _firestoreDB
+          .collection('Person')
+          .doc(_firebaseAuth.currentUser!.uid)
+          .get();
+
+      if (docSnapshot.exists) {
+        Map<String, dynamic> data = docSnapshot.data()!;
+        print("DATA: $data");
+        var recommendationsID = data['savesID'];
+        var recommendationSnapshot = await _firestoreDB
+            .collection('collections')
+            .doc(recommendationsID)
+            .get();
+        if (recommendationSnapshot.exists) {
+          List<Content> recPostsList = [];
+          var postIDs = recommendationSnapshot.data()!['postIDs'];
+          for (int i = 0; i < postIDs.length; i++) {
+            var recommendationPostSnapshot =
+                await _firestoreDB.collection('posts').doc(postIDs[i]).get();
+            if (recommendationPostSnapshot.exists) {
+              recPostsList
+                  .add(Content.fromJson(recommendationPostSnapshot.data()!));
             }
           }
           return recPostsList;
@@ -367,13 +418,14 @@ class UserRepository {
       final newRef = _firestoreDB.collection("posts").doc();
       var postId = newRef.id;
 
+      AppUser thisUser = await getCurrentUser();
       print("IS THERE ERROR BEFORE CONTENT $postId\n\n\n\n");
 
       Content post = Content(
         title: title,
         url: contentURL,
         uId: _firebaseAuth.currentUser!.uid,
-        username: _firebaseAuth.currentUser!.displayName ?? "",
+        username: thisUser.name ?? "",
         recommendationText: "",
         contentTopic: '',
         contentType: ContentType.video,

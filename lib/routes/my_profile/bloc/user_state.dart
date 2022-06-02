@@ -1,6 +1,6 @@
 part of 'user_bloc.dart';
 
-enum UserStatus { initial, loading, success, failure }
+enum UserStatus { initial, loading, success, failure, recommendedFetched }
 
 extension UserStatusX on UserStatus {
   bool get isLoadingOrSuccess => [
@@ -12,33 +12,25 @@ extension UserStatusX on UserStatus {
 class UserState extends Equatable {
   final UserStatus status;
   final AppUser user;
-  const UserState._(
-      {this.status = UserStatus.initial, this.user = AppUser.empty});
+  final List<Content> recommendedContents;
+  const UserState({
+    this.status = UserStatus.initial,
+    this.user = AppUser.empty,
+    this.recommendedContents = const <Content>[],
+  });
 
-  const UserState.initial(AppUser user)
-      : this._(status: UserStatus.initial, user: user);
-
-  const UserState.loading() : this._(status: UserStatus.loading);
-
-  const UserState.success(AppUser user)
-      : this._(status: UserStatus.success, user: user);
-
-  const UserState.failure() : this._(status: UserStatus.failure);
-
-  // const ProfileState.initial()
-  //     : this._(status: ProfileStatus.initial, user: User.empty);
-
-  // ProfileState copyWith({
-  //   ProfileStatus? status,
-  //   User? user,
-  //   String? bio,
-  // }) {
-  //   return ProfileState(
-  //     status: status ?? this.status,
-  //     user: user ?? this.user,
-  //   );
-  // }
+  UserState copyWith({
+    UserStatus? status,
+    List<Content>? recommendedContents,
+    AppUser? user,
+  }) {
+    return UserState(
+      status: status ?? this.status,
+      recommendedContents: recommendedContents ?? this.recommendedContents,
+      user: user ?? this.user,
+    );
+  }
 
   @override
-  List<Object> get props => [status];
+  List<Object> get props => [user, status, recommendedContents];
 }

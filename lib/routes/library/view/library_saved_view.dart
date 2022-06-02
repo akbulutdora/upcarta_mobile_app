@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/content_list_item.dart';
+import 'package:upcarta_mobile_app/routes/library/bloc/library_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
@@ -73,11 +76,45 @@ class _MyLibrarySavedScreenState extends State<MyLibrarySavedScreen> {
             ),
           ],
         ),
-         Divider(
-          color:Theme.of(context).dividerTheme.color,
+        Divider(
+          color: Theme.of(context).dividerTheme.color,
         ),
-        ContentList(
-          contentList: contents,
+        BlocBuilder<LibraryBloc, LibraryState>(
+          builder: (context, state) {
+            switch (state.status) {
+              case LibraryStatus.failure:
+                return const Center(child: Text('failed to fetch posts'));
+              case LibraryStatus.success:
+                if (state.contents.isEmpty) {
+                  return const Center(child: Text('no posts'));
+                }
+                return RefreshIndicator(
+                  onRefresh: () {
+                    return Future(
+                      () => context
+                          .read<LibraryBloc>()
+                          .add(LibraryEventContentRefreshed()),
+                    );
+                  },
+                  child: SizedBox(
+                    // FIXME: FIX SIZE
+                    height: 470,
+                    child: Expanded(
+                      child: ListView.builder(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return ContentListItem(
+                                content: state.contents[index]);
+                          },
+                          itemCount: state.contents.length),
+                    ),
+                  ),
+                );
+
+              default:
+                return const Center(child: CircularProgressIndicator());
+            }
+          },
         ),
       ],
     );

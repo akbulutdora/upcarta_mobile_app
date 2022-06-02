@@ -7,17 +7,16 @@ import 'package:upcarta_mobile_app/ui_components/components.dart';
 class ProfileRecommendationsList extends StatelessWidget {
   const ProfileRecommendationsList({
     Key? key,
+    required this.uid,
   }) : super(key: key);
+  final String uid;
 
   @override
   Widget build(BuildContext context) {
     FirebaseFirestore _firestore = FirebaseFirestore.instance;
     FirebaseAuth _fireauth = FirebaseAuth.instance;
     return FutureBuilder<QuerySnapshot>(
-      future: _firestore
-          .collection("posts")
-          .where("uId", isEqualTo: _fireauth.currentUser!.uid)
-          .get(),
+      future: _firestore.collection("posts").where("uId", isEqualTo: uid).get(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return const Text("Something went wrong");

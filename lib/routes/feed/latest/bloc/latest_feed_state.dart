@@ -1,6 +1,12 @@
 part of 'latest_feed_bloc.dart';
 
-enum LatestFeedStatus { initial, success, failure }
+enum LatestFeedStatus {
+  initial,
+  success,
+  failure,
+  saveRequested,
+  reportRequested
+}
 
 class LatestFeedState extends Equatable {
   const LatestFeedState({

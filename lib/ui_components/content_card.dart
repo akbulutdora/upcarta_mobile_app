@@ -3,17 +3,29 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
+import 'package:upcarta_mobile_app/routes/feed/latest/bloc/latest_feed_bloc.dart';
+import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/contents_list.dart';
+import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/util/content_type_info.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 
-class ContentCard extends StatelessWidget {
+class ContentCard extends StatefulWidget {
   final Content content;
-  final bool isTweet = true;
 
   ContentCard({Key? key, required this.content}) : super(key: key);
+
+  @override
+  State<ContentCard> createState() => _ContentCardState();
+}
+
+class _ContentCardState extends State<ContentCard> {
+  final bool isTweet = true;
+
+  var _selected = "";
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +47,7 @@ class ContentCard extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          content.title,
+                          widget.content.title,
                           style: contentCardTitleStyle,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -48,7 +60,11 @@ class ContentCard extends StatelessWidget {
                             constraints: BoxConstraints.loose(Size(20, 20)),
                             splashRadius: 20,
                             iconSize: 20,
-                            onPressed: () {},
+                            onPressed: () {
+                              context.read<LatestFeedBloc>().add(
+                                  LatestFeedEventContentSaved(
+                                      widget.content.postId));
+                            },
                             icon: Icon(Icons.bookmark),
                             padding: EdgeInsets.all(0),
                           ),
@@ -57,7 +73,45 @@ class ContentCard extends StatelessWidget {
                             constraints: BoxConstraints.loose(Size(20, 20)),
                             splashRadius: 20,
                             iconSize: 20,
-                            onPressed: () {},
+                            onPressed: () async {
+                              FocusScope.of(context).unfocus();
+                              _selected = await showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return SimpleDialog(
+                                    title: Text('Post actions'),
+                                    children: [
+                                      SimpleDialogOption(
+                                        child: const Text(
+                                            'Add content to collection'),
+                                        onPressed: () {
+                                          Navigator.pop(
+                                              context, "Add to collection");
+                                        },
+                                      ),
+                                      SimpleDialogOption(
+                                        child: const Text('Report content'),
+                                        onPressed: () {
+                                          context.read<LatestFeedBloc>().add(
+                                              LatestFeedEventContentReported(
+                                                  widget.content.postId));
+                                          Navigator.pop(
+                                              context, "Report content");
+                                        },
+                                      ),
+                                      SimpleDialogOption(
+                                        child: const Text('Report user'),
+                                        onPressed: () {
+                                          Navigator.pop(context, "Report user");
+                                        },
+                                      ),
+                                    ],
+                                    elevation: 10,
+                                    //backgroundColor: Colors.green,
+                                  );
+                                },
+                              );
+                            },
                             icon: Icon(Icons.more_horiz),
                             padding: EdgeInsets.all(0),
                           ),
@@ -70,7 +124,7 @@ class ContentCard extends StatelessWidget {
                   ),
                   Row(children: [
                     Icon(
-                      contentTypeInfoDict[content.contentType]![0],
+                      contentTypeInfoDict[widget.content.contentType]![0],
                       size: 20,
                       color: AppColors.upcartaBlue,
                     ),
@@ -78,7 +132,7 @@ class ContentCard extends StatelessWidget {
                       width: 2,
                     ),
                     Text(
-                      contentTypeInfoDict[content.contentType]![1],
+                      contentTypeInfoDict[widget.content.contentType]![1],
                       style: TextStyle(
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
@@ -93,7 +147,9 @@ class ContentCard extends StatelessWidget {
                       width: 6,
                     ),
                     Text(
-                      "By creator",
+                      widget.content.username != ""
+                          ? widget.content.username
+                          : "null",
                       style: TextStyle(
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
@@ -109,7 +165,7 @@ class ContentCard extends StatelessWidget {
                     ),
                     Text(
                       DateFormat('EEE, dd/mm, HH:mm')
-                          .format(content.createDate),
+                          .format(widget.content.createDate),
                       style: TextStyle(
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
@@ -144,7 +200,7 @@ class ContentCard extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                           child: Image.network(
-                            content.imageLocation,
+                            widget.content.imageLocation,
                             errorBuilder: (BuildContext context,
                                 Object exception, StackTrace? stackTrace) {
                               return Container(
@@ -169,14 +225,14 @@ class ContentCard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    content.description,
+                                    widget.content.description,
                                     style: contentCardDescriptionStyle,
                                     textAlign: TextAlign.left,
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 3,
                                   ),
                                   Text(
-                                    content.url,
+                                    widget.content.url,
                                     style: TextStyle(
                                         fontFamily: "SF Compact Text",
                                         fontWeight: FontWeight.w300,

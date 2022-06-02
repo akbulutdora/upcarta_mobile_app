@@ -38,3 +38,12 @@ class UserEventSubmitted extends UserEvent {
   @override
   List<Object> get props => [user];
 }
+
+class UserEventRecommendationsFetched extends UserEvent {
+  const UserEventRecommendationsFetched(this.userID);
+
+  final String userID;
+
+  @override
+  List<Object> get props => [userID];
+}

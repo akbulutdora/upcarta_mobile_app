@@ -119,7 +119,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
             children: [
               Column(),
               Column(),
-              const ProfileRecommendationsList(),
+              ProfileRecommendationsList(uid: widget.uid),
               Column(),
               Column(),
             ],
