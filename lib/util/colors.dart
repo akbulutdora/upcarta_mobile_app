@@ -32,4 +32,12 @@ class AppColors {
   static Color tabBarSelectedText = const Color(0xff000000);
   static Color tabBarOtherText = const Color(0xff667080);
   static Color chip = const Color(0xffFFFFFF);
+
+  //Light Theme Colors
+  static Color lightDivider = const Color(0xff949494);
+
+  //Dark Theme Colors
+  static Color darkPrimary = Colors.deepPurpleAccent;
+  static Color appBar = Colors.black45;
+  static Color darkDivider = Colors.white;
 }

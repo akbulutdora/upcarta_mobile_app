@@ -53,6 +53,7 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (_) => AppBloc(
               authRepository: _authRepository,
+              analyticsRepository: _analyticsRepository,
               sharedPrefs: sharedPreferences,
             ),
           ),
@@ -62,14 +63,16 @@ class App extends StatelessWidget {
                   userRepository: _userRepository,
                   authRepository: _authRepository)),
         ],
-        child: const AppView(),
+        child: AppView(analyticsRepository: _analyticsRepository),
       ),
     );
   }
 }
 
 class AppView extends StatefulWidget {
-  const AppView({Key? key}) : super(key: key);
+  AppView({Key? key, required this.analyticsRepository}) : super(key: key);
+
+  late AnalyticsRepository analyticsRepository;
 
   @override
   State<AppView> createState() => _AppViewState();
@@ -90,7 +93,9 @@ class _AppViewState extends State<AppView> {
           builder: (context, child) => MaterialApp.router(
             title: 'Upcarta',
             routeInformationParser: _appRouter.defaultRouteParser(),
-            routerDelegate: _appRouter.delegate(),
+            routerDelegate: _appRouter.delegate(
+                navigatorObservers: () =>
+                    [widget.analyticsRepository.getAnalyticsObserver()]),
             theme: theme,
             builder: (context, router) => router!,
           ),

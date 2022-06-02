@@ -52,7 +52,6 @@ class _MyRegisterState extends State<MyRegister> {
           ]),
           backgroundColor: AppColors.white,
         ),
-        backgroundColor: Colors.white,
         body: Padding(
           padding: EdgeInsets.only(left: 36.w, right: 36.w),
           child: BlocProvider<SignupCubit>(

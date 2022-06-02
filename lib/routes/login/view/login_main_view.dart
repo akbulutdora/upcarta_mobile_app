@@ -37,25 +37,25 @@ class _LoginScreen extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle:
-            const SystemUiOverlayStyle(statusBarColor: Colors.white),
+             SystemUiOverlayStyle(statusBarColor: Theme.of(context).appBarTheme.backgroundColor),
         elevation: 0,
         titleSpacing: 0.0,
         title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Image.asset('assets/images/upcarta-logo-small.png',
               height: 30.h, width: 30.w),
           SizedBox(width: 8.w),
-          const Text(
+           Text(
             'Upcarta',
-            style: kAppBarTextStyle,
+            style: TextStyle(
+                color: Theme.of(context).iconTheme.color,
+                fontSize: 22,
+                fontWeight: FontWeight.w600),
           ),
         ]),
         centerTitle: true,
-        backgroundColor: AppColors.white,
       ),
-      backgroundColor: AppColors.white,
       body: BlocProvider(
-        create: (_) => LoginCubit(context.read<AuthenticationRepository>(),
-            context.read<AnalyticsRepository>()),
+        create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
         child: const SingleChildScrollView(
           // child: const SingleChildScrollView(
           child: LoginMainViewButtons(),
@@ -104,7 +104,7 @@ class LoginMainViewButtons extends StatelessWidget {
                     'Discover, collect and share\n great content.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: AppColors.black,
+                        color: Theme.of(context).iconTheme.color,
                         fontSize: 22.sp,
                         fontWeight: FontWeight.w600),
                   ),
@@ -122,7 +122,7 @@ class LoginMainViewButtons extends StatelessWidget {
                     padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h)),
                 child: Text(
                   'Continue with Twitter',
-                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
+                  style: TextStyle(color: Theme.of(context).iconTheme.color, fontSize: 16.sp),
                 ),
               ),
             ),
@@ -167,21 +167,21 @@ class LoginMainViewButtons extends StatelessWidget {
                       Divider(
                         indent: 48.w,
                         thickness: 1.h,
-                        color: AppColors.gray3ContentText,
+                        color: Theme.of(context).dividerTheme.color,
                       ),
                     ],
                   ),
                 ),
                 Text("     OR     ",
                     style: TextStyle(
-                        fontSize: 13.sp, color: AppColors.gray3ContentText)),
+                        fontSize: 13.sp, color: Theme.of(context).dividerTheme.color)),
                 Expanded(
                   child: Column(
                     children: [
                       Divider(
                         endIndent: 48.w,
                         thickness: 1.h,
-                        color: AppColors.gray3ContentText,
+                        color: Theme.of(context).dividerTheme.color,
                       ),
                     ],
                   ),
@@ -197,11 +197,11 @@ class LoginMainViewButtons extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.r)),
-                    backgroundColor: Colors.indigoAccent,
+                    backgroundColor: Theme.of(context).primaryColor,
                     padding: EdgeInsets.fromLTRB(111.w, 13.h, 111.w, 14.h)),
                 child: Text(
                   'Sign Up',
-                  style: TextStyle(color: AppColors.white, fontSize: 16.sp),
+                  style: TextStyle(color:Theme.of(context).iconTheme.color, fontSize: 16.sp),
                 ),
               ),
             ),
@@ -212,7 +212,7 @@ class LoginMainViewButtons extends StatelessWidget {
                     children: [
                       TextButton(
                         style: TextButton.styleFrom(
-                          primary: AppColors.upcartaBlue,
+                          primary: Theme.of(context).primaryColor,
                         ),
                         onPressed: () async {
                           context.router.push(const LoginScreen2Route());
@@ -226,13 +226,13 @@ class LoginMainViewButtons extends StatelessWidget {
                                     text: 'Have an account already?  ',
                                     style: TextStyle(
                                         fontSize: 15.sp,
-                                        color: AppColors.black)),
+                                        color: Theme.of(context).iconTheme.color)),
                                 TextSpan(
                                     text: 'LOG IN',
                                     style: TextStyle(
                                         fontSize: 15.sp,
                                         fontWeight: FontWeight.bold,
-                                        color: AppColors.upcartaBlue)),
+                                        color: Theme.of(context).primaryColor)),
                               ],
                             ),
                           ),
@@ -249,13 +249,13 @@ class LoginMainViewButtons extends StatelessWidget {
                           TextSpan(
                               text: 'By signing up you agree to our ',
                               style: TextStyle(
-                                  fontSize: 12.sp, color: AppColors.black)),
+                                  fontSize: 12.sp, color: Theme.of(context).iconTheme.color)),
                           TextSpan(
                               text: 'Terms, Privacy Policy, and Cookie Use',
                               style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
-                                  color: AppColors.black)),
+                                  color: Theme.of(context).iconTheme.color)),
                         ],
                       ),
                     ),

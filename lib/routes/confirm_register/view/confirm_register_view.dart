@@ -27,7 +27,7 @@ class _ConfirmRegisterViewState extends State<ConfirmRegisterView> {
                 onPressed: () {},
                 icon: Icon(
                   Icons.notifications_none_outlined,
-                  color: AppColors.black,
+                  color: Theme.of(context).iconTheme.color,
                   size: 30,
                 ))
           ],
@@ -37,13 +37,13 @@ class _ConfirmRegisterViewState extends State<ConfirmRegisterView> {
             Icon(
               Icons.pause_circle,
               size: 30,
-              color: AppColors.upcartaBlue,
+              color: Theme.of(context).primaryColor,
             ),
           ]),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         ),
-        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -64,7 +64,7 @@ class _ConfirmRegisterViewState extends State<ConfirmRegisterView> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Theme.of(context).iconTheme.color,
                             fontSize: height / 40),
                       ),
                     ),
@@ -76,7 +76,7 @@ class _ConfirmRegisterViewState extends State<ConfirmRegisterView> {
                     'We sent a confirmation email to:',
                     textAlign: TextAlign.center,
                     style:
-                        TextStyle(color: Colors.black, fontSize: height / 60),
+                        TextStyle(color: Theme.of(context).iconTheme.color, fontSize: height / 60),
                   ),
                 ),
                 Text(
@@ -84,13 +84,13 @@ class _ConfirmRegisterViewState extends State<ConfirmRegisterView> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Theme.of(context).iconTheme.color,
                       fontSize: height / 60),
                 ),
                 Text(
                   'Check your email and click on the confirmation link to continue',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black, fontSize: height / 60),
+                  style: TextStyle(color: Theme.of(context).iconTheme.color, fontSize: height / 60),
                 ),
               ]),
               SizedBox(height: height * 0.30),
@@ -98,9 +98,9 @@ class _ConfirmRegisterViewState extends State<ConfirmRegisterView> {
                 onPressed: () async {
                   context.router.push(const LoginScreenRoute());
                 },
-                child: const Text(
+                child: Text(
                   "Resend Email",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Theme.of(context).iconTheme.color),
                 ),
               ),
             ],

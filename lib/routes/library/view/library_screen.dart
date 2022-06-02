@@ -28,7 +28,8 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
           titleSpacing: 0.0,
           title: const Text(
             'Your Library',

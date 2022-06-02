@@ -90,7 +90,7 @@ class CollectionCard extends StatelessWidget {
                             maxLines: 3,
                           ),
                           Text(
-                            content.link,
+                            content.url,
                             style: TextStyle(
                                 fontFamily: "SF Compact Text",
                                 fontWeight: FontWeight.w300,

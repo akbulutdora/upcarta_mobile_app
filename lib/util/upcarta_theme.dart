@@ -126,7 +126,7 @@ class UpcartaTheme {
         backgroundColor: Colors.blueAccent,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.blueAccent,
+        selectedItemColor: Colors.deepPurpleAccent,
       ),
       textTheme: darkTextTheme,
     );

@@ -54,19 +54,20 @@ class _LoginScreen2 extends State<LoginScreen2> {
             SizedBox(width: 80.w),
             Image.asset('assets/images/1x.png', height: 30.h, width: 30.w),
             SizedBox(width: 8.w),
-            const Text(
+            Text(
               'Upcarta',
-              style: kAppBarTextStyle,
+              style: TextStyle(
+                  color: Theme.of(context).iconTheme.color,
+                  fontSize: 22.sp,
+                  fontWeight: FontWeight.w600),
             ),
           ]),
-          backgroundColor: AppColors.white,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         ),
-        backgroundColor: AppColors.white,
         body: Padding(
           padding: EdgeInsets.only(left: 36.w, right: 36.w),
           child: BlocProvider(
-            create: (_) => LoginCubit(context.read<AuthenticationRepository>(),
-                context.read<AnalyticsRepository>()),
+            create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
             child: const SingleChildScrollView(
               child: LoginForm(),
             ),
@@ -111,14 +112,13 @@ class LoginForm extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: Colors.transparent, // Step 2 SEE HERE
                     shadows: [
-                      Shadow(offset: Offset(0, -10.sp), color: Colors.black)
+                      Shadow(offset: Offset(0, -10.sp), color: Theme.of(context).iconTheme.color!)
                     ],
                     decoration: TextDecoration.underline,
-                    decorationColor: AppColors.upcartaBlue,
+                    decorationColor: Theme.of(context).primaryColor,
                     decorationThickness: 2.sp)),
           ),
           SizedBox(height: 32.h),
-
           _EmailInput(),
           SizedBox(height: 16.h),
           _PasswordInput(),
@@ -176,6 +176,17 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: 16),
           // _GoogleLoginButton(),
           // const SizedBox(height: 4),
+
+          _SignUpButton(),
+          TextButton(
+            onPressed: () async {
+              context.router.push(const LoginScreenRoute());
+            },
+            child: Text(
+              "Resend Verification Email?",
+              style: TextStyle(color: Theme.of(context).iconTheme.color),
+            ),
+          ),
         ],
       ),
     );
@@ -200,11 +211,7 @@ class _EmailInput extends StatelessWidget {
               labelText: 'Email',
               fillColor: Colors.transparent,
               filled: true,
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0.r),
-                  borderSide: const BorderSide(
-                    color: Colors.white,
-                  )),
+              border: Theme.of(context).inputDecorationTheme.border,
             ),
           ),
         );
@@ -230,11 +237,7 @@ class _PasswordInput extends StatelessWidget {
               labelText: 'Password',
               fillColor: Colors.transparent,
               filled: true,
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0.r),
-                  borderSide: const BorderSide(
-                    color: Colors.white,
-                  )),
+              border: Theme.of(context).inputDecorationTheme.border,
             ),
           ),
         );
@@ -259,13 +262,13 @@ class _LoginButton extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r)),
-                  backgroundColor: Colors.indigoAccent,
-                  padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  padding: EdgeInsets.fromLTRB(35.w, 10.h, 35.w, 10.h),
                 ),
                 child: Text(
                   'Log In',
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).iconTheme.color,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w600),
                 ),

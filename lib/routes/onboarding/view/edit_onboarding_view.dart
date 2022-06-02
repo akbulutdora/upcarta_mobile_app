@@ -44,26 +44,26 @@ class _EditOnboardingState extends State<EditOnboarding> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                 Text(
                   "Edit Your Profile Information",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
                     fontSize: 20,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                const Divider(
-                  color: Colors.grey,
+                 Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 SizedBox(height: height * 0.020),
-                const Text(
+                 Text(
                   "Profile Image",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.normal,
                     fontSize: 16,
-                    color: Colors.black,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                 ),
                 SizedBox(height: height * 0.016),

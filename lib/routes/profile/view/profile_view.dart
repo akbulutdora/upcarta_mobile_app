@@ -1,16 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' as fire_auth;
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
-import 'package:upcarta_mobile_app/repositories/user_repository.dart';
-import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:upcarta_mobile_app/routes/profile/bloc/profile_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
+import 'package:upcarta_mobile_app/routes/profile/profile.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -34,13 +29,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         titleSpacing: 0.0,
-        title: const Text(
+        title:  Text(
           "Upcarta",
           style: TextStyle(
               fontFamily: "SFCompactText-Medium",
-              color: Colors.black,
+              color: Theme.of(context).iconTheme.color,
               fontWeight: FontWeight.w500,
               fontSize: 22),
         ),
@@ -51,9 +47,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(
+            icon:  Icon(
               Icons.settings,
-              color: Colors.black54,
+              color: Theme.of(context).iconTheme.color,
             ),
             onPressed: () async {
               context.router.push(const SettingsRoute());
@@ -86,14 +82,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           headerSliverBuilder: (context, value) {
             return [
               SliverAppBar(
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
                 floating: true,
                 pinned: true,
                 automaticallyImplyLeading: false,
                 //remove the default back button
-                bottom: const TabBar(
-                  labelColor: Colors.black,
-                  unselectedLabelColor: Colors.black,
+                bottom: TabBar(
+                  indicatorColor: Theme.of(context).primaryColor,
+                  labelColor: Theme.of(context).iconTheme.color,
+                  unselectedLabelColor: Theme.of(context).iconTheme.color,
                   labelPadding: EdgeInsets.only(right: 3, left: 3),
                   labelStyle: TextStyle(fontSize: 14),
                   tabs: [
@@ -108,7 +105,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 flexibleSpace: const FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
                   background: BuildProfile(),
-
                   // This is where you build the profile part
                 ),
               ),
@@ -118,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Column(),
               Column(),
-              Column(),
+              const ProfileRecommendationsList(),
               Column(),
               Column(),
             ],
@@ -158,11 +154,11 @@ class BuildProfile extends StatelessWidget {
             Text(
               //widget.user.name,
               state.user.name ?? "NAME IS NULL",
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: "SFCompactText",
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: Colors.black,
+                color: Theme.of(context).iconTheme.color,
               ), // bold
             ),
             Text(
@@ -180,12 +176,12 @@ class BuildProfile extends StatelessWidget {
                         horizontal: 30.0, vertical: 10.0),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        side: const BorderSide(color: Colors.blue)),
-                    child: const Text(
+                        side: BorderSide(color: Theme.of(context).primaryColor)),
+                    child: Text(
                       'Edit Profile',
                       style: TextStyle(
                           fontFamily: "SFCompactText",
-                          color: Colors.blue,
+                          color: Theme.of(context).primaryColor,
                           fontSize: 15),
                     ),
                     onPressed: () async {
@@ -195,14 +191,14 @@ class BuildProfile extends StatelessWidget {
                 : MaterialButton(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30.0, vertical: 10.0),
-                    color: Colors.blue,
+                    color: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(3.0)),
-                    child: const Text(
+                    child: Text(
                       'Follow',
                       style: TextStyle(
                           fontFamily: "SFCompactText",
-                          color: Colors.white,
+                          color: Theme.of(context).primaryColor,
                           fontSize: 18),
                     ),
                     onPressed: () async {
@@ -211,18 +207,18 @@ class BuildProfile extends StatelessWidget {
                   ),
             Text(
               "BIO: ${state.user.bio}",
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: "SFCompactText",
                 fontWeight: FontWeight.normal,
                 fontSize: 14,
-                color: Colors.black,
+                color: Theme.of(context).iconTheme.color,
               ),
             ),
             Container(
               padding: const EdgeInsets.all(0),
               decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.blue,
+                    color: Theme.of(context).primaryColor,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(10))),
               child:
@@ -233,74 +229,78 @@ class BuildProfile extends StatelessWidget {
                     Text(
                       //'${widget.user.following}',
                       state.user.recommendationCount.toString(),
-                      style: const TextStyle(
+                      style:  TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.w700,
                         fontSize: 12,
-                        color: Colors.black,
+                        color:Theme.of(context).iconTheme.color,
                       ),
                     ),
-                    const Text(
+                     Text(
                       ' Recommendations',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 12,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                   ]),
                 ),
-                const SizedBox(
+                    SizedBox(
                   height: 22,
-                  child: VerticalDivider(color: Colors.blue),
+                  child: VerticalDivider(color: Theme.of(context).primaryColor),
                 ),
                 TextButton(
                   onPressed: () {},
                   child: Row(children: [
                     Text(
-                      state.user.followers.toString(),
-                      style: const TextStyle(
+                      state.user.followerIDs == null
+                          ? "0"
+                          : state.user.followerIDs!.length.toString(),
+                      style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.w700,
                         fontSize: 12,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
-                    const Text(
+                     Text(
                       ' Followers',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 12,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     )
                   ]),
                 ),
-                const SizedBox(
+                 SizedBox(
                   height: 22,
-                  child: VerticalDivider(color: Colors.blue),
+                  child: VerticalDivider(color: Theme.of(context).primaryColor),
                 ),
                 TextButton(
                   onPressed: () {},
                   child: Row(children: [
                     Text(
-                      state.user.following.toString(),
-                      style: const TextStyle(
+                      state.user.followingIDs == null
+                          ? "0"
+                          : state.user.followingIDs!.length.toString(),
+                      style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.w700,
                         fontSize: 12,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
-                    const Text(
+                     Text(
                       ' Following',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
                         fontSize: 12,
-                        color: Colors.black,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     )
                   ]),

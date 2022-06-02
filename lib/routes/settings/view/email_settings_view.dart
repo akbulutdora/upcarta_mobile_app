@@ -32,7 +32,8 @@ bool updateEmail = false;
         .height;
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
             title: const Text(
               'Email Settings',

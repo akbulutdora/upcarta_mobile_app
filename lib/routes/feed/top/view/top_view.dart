@@ -2,11 +2,11 @@ library top_view;
 
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
-import '../../../util/styles.dart';
+import '../../../../util/styles.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 import 'package:upcarta_mobile_app/routes/feed/feed.dart';
 
-part "top_view_header.dart";
+part 'top_view_header.dart';
 
 class TopView extends StatefulWidget {
   const TopView({Key? key}) : super(key: key);
@@ -27,7 +27,8 @@ class _TopViewState extends State<TopView> {
             automaticallyImplyLeading: false,
             expandedHeight: 400,
             // collapsedHeight: 75,
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             floating: true,
             pinned: true,
             flexibleSpace: const FlexibleSpaceBar(
