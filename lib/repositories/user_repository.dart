@@ -9,6 +9,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/models/collection.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:path/path.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:upcarta_mobile_app/models/collection.dart';
+import 'package:upcarta_mobile_app/models/models.dart';
+import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+
 import '../models/models.dart';
 
 /// {@template user_repository}
@@ -21,7 +27,6 @@ class UserRepository {
     FirebaseFirestore? firebaseFirestore,
     FirebaseStorage? firebaseStorage,
     required SharedPreferences sharedPreferences,
-
   })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
         _firestoreDB = firebaseFirestore ?? FirebaseFirestore.instance,
         _firebaseStorage = firebaseStorage ?? FirebaseStorage.instance,
@@ -66,10 +71,16 @@ class UserRepository {
   /// Called when the user changes their profile description
   Future<void> changeBio(String newBio) async {
     try {
+      var thisUser = await getCurrentUser();
+      //if (newBio == "") {
+      //  newBio = thisUser.bio!;
+      //}
+      //else{
       _firestoreDB
           .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
           .update({"bio": newBio});
+      //}
     } catch (e) {
       print(e);
     }
@@ -78,14 +89,14 @@ class UserRepository {
   /// Called when the user changes their profile picture
   Future<void> changePhoto(String newURL) async {
     try {
-            _firebaseAuth.currentUser!.updatePhotoURL(newURL);
+      _firebaseAuth.currentUser!.updatePhotoURL(newURL);
       _firestoreDB
           .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
           .update({"photoURL": newURL});
     }
     // TODO: IMPLEMENT ERROR
-    on FirebaseException catch(e) {
+    on FirebaseException catch (e) {
       print('ERROR: ${e.code} - ${e.message}');
     } catch (e) {
       print(e.toString());
@@ -95,16 +106,26 @@ class UserRepository {
   /// Called when the user changes their username
   FutureOr<void> changeUsername(String newUsername) async {
     try {
-      print("\n\n\nHERE $newUsername\n\n\n");
-      //_firebaseAuth.currentUser!.updateDisplayName(newUsername);
-      _firestoreDB
-          .collection(userCollection)
-          .doc(_firebaseAuth.currentUser!.uid)
-          .update({"username": newUsername});
-    }
-    // TODO: IMPLEMENT ERROR
-    catch (e) {
-      print(e.toString());
+      var thisUser = await getCurrentUser();
+      if (newUsername == "") {
+        throw ("username cannot be empty");
+      } else {
+        var usernameSnapshot = await _firestoreDB
+            .collection(userCollection)
+            .where("username", isEqualTo: newUsername)
+            .get();
+        if (!usernameSnapshot.docs.isEmpty &&
+            thisUser.username != newUsername) {
+          throw ("username already in use");
+        } else {
+          _firestoreDB
+              .collection(userCollection)
+              .doc(_firebaseAuth.currentUser!.uid)
+              .update({"username": newUsername});
+        }
+      }
+    } catch (_) {
+      rethrow;
     }
   }
 
@@ -219,20 +240,32 @@ class UserRepository {
   // TODO: Might be moved to auth repo
   /// Called when the user changes their password
   Future<void> changePassword(String newPassword) async {
-    var currentUser = _firebaseAuth.currentUser;
-    currentUser!.updatePassword(newPassword).then((_) {
-      print("Successfully changed password");
-    }).catchError((err) {});
+    try {
+      if (newPassword.length < 6) {
+        print("weak password");
+        throw ("Weak password!");
+      } else {
+        var currentUser = _firebaseAuth.currentUser;
+        currentUser!.updatePassword(newPassword);
+        print("CHANGED PASSWORD SUCCESSFULLY");
+      }
+    } catch (_) {
+      rethrow;
+    }
   }
-  Future<void> deleteAccount(String newPassword) async{
-  try {
-  var currentUser = _firebaseAuth.currentUser;
-  await currentUser!.delete();
-  } on firebase_auth.FirebaseAuthException catch (e) {
-  if (e.code == 'requires-recent-login') {
-  print('The user must reauthenticate before this operation can be executed.');
+
+  Future<void> deleteAccount(String newPassword) async {
+    try {
+      var currentUser = _firebaseAuth.currentUser;
+      await currentUser!.delete();
+    } on firebase_auth.FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        print(
+            'The user must reauthenticate before this operation can be executed.');
+      }
+    }
   }
-  }}
+
   ///*********************************************PROFILE*********************************************************
   /// Contents.
   Future<List<Map<String, dynamic>>> profileGetCollections() async {

@@ -2,16 +2,18 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/onboarding/cubit/onboarding_cubit.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 import 'package:path/path.dart';
 import 'dart:io';
+
+import '../../profile/bloc/profile_bloc.dart';
 
 // TODO: IMPLEMENT USER  BLOC WITH USER REPOSITORY WHICH WILL HANDLE
 // TODO: OPERATIONS SUCH AS FOLLOW, UNFOLLOW, CHANGE PROFILE PIC
@@ -53,7 +55,7 @@ class _EditOnboardingState extends State<EditOnboarding> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
     return Scaffold(
-      backgroundColor: AppColors.white,
+
       body: Padding(
         padding: EdgeInsets.only(left: 36.w, right: 36.w),
         child: BlocProvider(
@@ -63,6 +65,15 @@ class _EditOnboardingState extends State<EditOnboarding> {
               if (state.status == OnboardingStatus.success) {
                 context.router.push(const UserOnboarding1Route());
               }
+              else if (state.status == OnboardingStatus.submissionFailure) {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text(state.errorMessage ?? 'Username Change Failure'),
+                  ),
+                );
+            }
             },
             builder: (context, state) {
               return SingleChildScrollView(
@@ -138,9 +149,95 @@ class _EditOnboardingState extends State<EditOnboarding> {
                     ),
                   ],
                 ),
-              );
-            },
-          ),
+                const Divider(
+                  color: Colors.grey,
+                ),
+                SizedBox(height: height * 0.020),
+                const Text(
+                  "Profile Image",
+                  style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.normal,
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: height * 0.016),
+                // TODO: WHEN IMAGE IS UPDATED, WE NEED TO TRIGGER ONPRESSED, ONUPDATED ETC.
+                const CircleImage(
+                  imageProvider: AssetImage("assets/images/mock.jpg"),
+                  //widget.user.profileImageUrl),
+                  imageRadius: 45.0,
+                ),
+
+                SizedBox(height: height * 0.020),
+
+                const Text(
+                  "Username",
+                  style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.normal,
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                _UsernameInput(),
+                const SizedBox(
+                  height: 8,
+                ),
+
+                const Text(
+                  "Bio",
+                  style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.normal,
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: height * 0.012),
+                TextField(
+                  onChanged: ((value) =>
+                      context.read<OnboardingCubit>().bioChanged(value)),
+                  decoration: InputDecoration(
+                    labelText: 'Bio',
+                    fillColor: Colors.transparent,
+                    filled: true,
+                    isDense: true,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(
+                          color: Colors.white,
+                        )),
+                  ),
+                ),
+                SizedBox(height: height * 0.020),
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      context
+                          .read<OnboardingCubit>()
+                          .submitBioPhotoURLUsername();
+                    },
+                    style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                        backgroundColor: Colors.lightBlue,
+                        padding: EdgeInsets.all(height * 0.02)),
+                    child: Text(
+                      'Continue',
+                      style:
+                          TextStyle(color: Colors.white, fontSize: height / 50),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -150,55 +247,30 @@ class _EditOnboardingState extends State<EditOnboarding> {
 class _UsernameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String username = context.read<AppBloc>().state.user.email!.split('@')[0]+"user";
+    final TextEditingController _controller = TextEditingController(text: username); //context.read<ProfileBloc>().state.user.username!
+    context.read<OnboardingCubit>().usernameChanged(username);
     return BlocBuilder<OnboardingCubit, OnboardingState>(
       buildWhen: (previous, current) => previous.username != current.username,
       builder: (context, state) {
-        return SizedBox(
-          height: 60.h,
-          child: TextField(
-            key: const Key('signUpForm_usernameInput_textField'),
-            onChanged: (username) =>
-                context.read<OnboardingCubit>().usernameChanged(username),
-            obscureText: false,
-            decoration: InputDecoration(
-              labelText: 'Username',
-              fillColor: Colors.transparent,
-              filled: true,
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0.r),
-                  borderSide: const BorderSide(
-                    color: Colors.white,
-                  )),
-            ),
-            minLines: 1,
-            maxLines: 1,
+        return TextField(
+          controller: _controller,
+          key: const Key('signUpForm_usernameInput_textField'),
+          onChanged: (username) =>
+              context.read<OnboardingCubit>().usernameChanged(username),
+          obscureText: false,
+          decoration: InputDecoration(
+            labelText: 'Username',
+            fillColor: Colors.transparent,
+            filled: true,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: const BorderSide(
+                  color: Colors.white,
+                )),
           ),
         );
       },
-    );
-  }
-}
-
-class _BioInput extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      onChanged: ((value) => context.read<OnboardingCubit>().bioChanged(value)),
-      decoration: InputDecoration(
-        labelText: 'Bio',
-        alignLabelWithHint: true,
-        fillColor: Colors.transparent,
-        filled: true,
-        isDense: true,
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0.r),
-            borderSide: const BorderSide(
-              color: Colors.white,
-            )),
-      ),
-      keyboardType: TextInputType.multiline,
-      minLines: 4, //Normal textInputField will be displayed
-      maxLines: 4,
     );
   }
 }
