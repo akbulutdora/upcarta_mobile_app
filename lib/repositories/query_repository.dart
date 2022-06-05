@@ -35,6 +35,7 @@ class QueryRepository {
 
   Future<AppUser> fetchUser(String uid) async {
     try {
+      print("\n\nFETCH USER CALLED: $uid");
       var docSnapshot = await _firestoreDB.collection('Person').doc(uid).get();
       if (docSnapshot.exists && docSnapshot.data() != null) {
         if (docSnapshot.data()!.isNotEmpty) {

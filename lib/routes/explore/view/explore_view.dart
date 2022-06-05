@@ -9,6 +9,7 @@ import 'package:upcarta_mobile_app/repositories/query_repository.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
+import 'package:upcarta_mobile_app/routes/other_profile/bloc/other_profile_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
@@ -61,7 +62,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
         elevation: 0,
         titleSpacing: 0.0,
-        title:  Text(
+        title: Text(
           'Explore',
           style: TextStyle(
               fontFamily: "SFCompactText-Medium",
@@ -209,51 +210,73 @@ class SearchResultList extends StatelessWidget {
           SizedBox(
             height: 500,
             child: Expanded(
-              child: ListView.builder(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    AppUser item = searchResult[index];
-                    return BlocBuilder<UserBloc, UserState>(
-                      builder: (context, state) {
-                        if (state.status == ExploreStatus.followRequested) {
-                          return const CircularProgressIndicator();
-                        }
-                        bool isNotFollowing = state.user.followingIDs != null &&
-                            !state.user.followingIDs!.contains(item.id);
+              child: BlocListener<OtherProfileBloc, OtherProfileState>(
+                listener: ((context, state) {
+                  switch (state.status) {
+                    case OtherProfileStatus.success:
+                      AutoRouter.of(context)
+                          .push(OtherProfileScreenRoute(uid: state.user.id));
+                      // context
+                      //     .read<OtherProfileBloc>()
+                      //     .add(OtherProfileEventFetched(state.user.id));
+                      break;
+                    default:
+                      break;
+                  }
+                }),
+                child: ListView.builder(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      AppUser item = searchResult[index];
+                      return BlocBuilder<OtherProfileBloc, OtherProfileState>(
+                        builder: (context, state) {
+                          if (state.status == ExploreStatus.followRequested) {
+                            return const CircularProgressIndicator();
+                          }
+                          bool isNotFollowing =
+                              state.user.followingIDs != null &&
+                                  !state.user.followingIDs!.contains(item.id);
 
-                        return ListTile(
-                          leading: IconButton(
-                              onPressed: isNotFollowing
-                                  ? (() {
-                                      BlocProvider.of<ExploreCubit>(context)
-                                          .followRequested(item.id);
-                                    })
-                                  : (() {
-                                      BlocProvider.of<ExploreCubit>(context)
-                                          .unfollowRequested(item.id);
-                                    }),
-                              icon: Icon(
-                                Icons.add_circle_outline_rounded,
-                                color: isNotFollowing
-                                    ? Theme.of(context).primaryColor
-                                    : Theme.of(context).dividerTheme.color,
-                              )),
-                          trailing: TextButton(
-                            child: Text(item.name ?? "null name"),
-                            onPressed: () {
-                              AutoRouter.of(context)
-                                  .push(OtherProfileScreenRoute(uid: item.id));
-                            },
-                          ),
-                          title: Text(item.email ?? "null email"),
-                          isThreeLine: true,
-                          subtitle: Text("@" + item.username!),
-                          dense: true,
-                        );
-                      },
-                    );
-                  },
-                  itemCount: searchResult.length),
+                          return ListTile(
+                            leading: IconButton(
+                                onPressed: isNotFollowing
+                                    ? (() {
+                                        BlocProvider.of<ExploreCubit>(context)
+                                            .followRequested(item.id);
+                                      })
+                                    : (() {
+                                        BlocProvider.of<ExploreCubit>(context)
+                                            .unfollowRequested(item.id);
+                                      }),
+                                icon: Icon(
+                                  Icons.add_circle_outline_rounded,
+                                  color: isNotFollowing
+                                      ? Theme.of(context).primaryColor
+                                      : Theme.of(context).dividerTheme.color,
+                                )),
+                            trailing: TextButton(
+                              child: Text(item.name ?? "null name"),
+                              onPressed: () {
+                                // AutoRouter.of(context)
+                                //     .push(OtherProfileScreenRoute(uid: item.id));
+                                // context.read<OtherProfileBloc>().add(
+                                //     OtherProfileEventRecommendationsFetched(
+                                //         item));
+                                context
+                                    .read<OtherProfileBloc>()
+                                    .add(OtherProfileEventFetched(item.id));
+                              },
+                            ),
+                            title: Text(item.email ?? "null email"),
+                            isThreeLine: true,
+                            subtitle: Text("@" + item.username!),
+                            dense: true,
+                          );
+                        },
+                      );
+                    },
+                    itemCount: searchResult.length),
+              ),
             ),
           ),
         ],

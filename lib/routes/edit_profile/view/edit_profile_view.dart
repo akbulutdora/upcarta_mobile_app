@@ -12,6 +12,7 @@ import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:path/path.dart';
+
 class EditProfileScreen extends StatefulWidget {
   static MaterialPage page() {
     return const MaterialPage(
@@ -37,12 +38,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       _image = pickedFile;
     });
     String fileName = basename(_image!.path);
-    Reference firebaseStorageRef = FirebaseStorage.instance.ref().child('uploads/$fileName');
+    Reference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('uploads/$fileName');
 
-    var downurl = await (await firebaseStorageRef.putFile(File(_image!.path))).ref.getDownloadURL();
+    var downurl = await (await firebaseStorageRef.putFile(File(_image!.path)))
+        .ref
+        .getDownloadURL();
     var url = downurl.toString();
     return url;
   }
+
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -78,94 +83,100 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         // userRepository: context.read<UserRepository>(), user: User.empty),
         // TODO: EMPTY USER OLMAYACAK
         child: BlocBuilder<UserBloc, UserState>(
-  builder: (context, state) {
-    return Padding(
-          padding: EdgeInsets.all(height * 0.016),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Credentials",
-                style: TextStyle(
-                  fontFamily: "SFCompactText",
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color: Theme.of(context).iconTheme.color,
-                ),
+          builder: (context, state) {
+            return Padding(
+              padding: EdgeInsets.all(height * 0.016),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Credentials",
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                  ),
+                  Divider(
+                    color: Theme.of(context).dividerTheme.color,
+                  ),
+                  Text(
+                    "Profile Image",
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                  ),
+                  InkWell(
+                      child: CircleAvatar(
+                        foregroundImage: context
+                                    .read<UserBloc>()
+                                    .state
+                                    .user
+                                    .photoURL !=
+                                null
+                            ? NetworkImage(
+                                context.read<UserBloc>().state.user.photoURL!)
+                            : null,
+                        backgroundImage:
+                            const AssetImage("assets/images/mock.jpg"),
+                        //widget.user.profileImageUrl),
+                        minRadius: 45.0,
+                        maxRadius: 45.0,
+                      ),
+                      onTap: () async {
+                        var value = await pickImage();
+                        context.read<EditProfileCubit>().photoChanged(value);
+                      }),
+                  Text(
+                    "Name",
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Name',
+                      fillColor: Colors.transparent,
+                      filled: true,
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(height * 0.016),
+                      border: Theme.of(context).inputDecorationTheme.border,
+                    ),
+                  ),
+                  Text(
+                    "Username",
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                  ),
+                  _UsernameInput(),
+                  Text(
+                    "Bio",
+                    style: TextStyle(
+                      fontFamily: "SFCompactText",
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                  ),
+                  const _BioInputForm(),
+                  SizedBox(height: height * 0.012),
+                  _BioSubmitButton(height: height),
+                ],
               ),
-              Divider(
-                color: Theme.of(context).dividerTheme.color,
-              ),
-              Text(
-                "Profile Image",
-                style: TextStyle(
-                  fontFamily: "SFCompactText",
-                  fontWeight: FontWeight.normal,
-                  fontSize: 16,
-                  color: Theme.of(context).iconTheme.color,
-                ),
-              ),
-
-               InkWell(
-
-                 child: CircleAvatar(foregroundImage: context.read<UserBloc>().state.user.photoURL != null
-                    ? NetworkImage(context.read<UserBloc>().state.user.photoURL!)
-                    : null,
-                  backgroundImage: const AssetImage("assets/images/mock.jpg"),
-                  //widget.user.profileImageUrl),
-                  minRadius: 45.0,
-                   maxRadius: 45.0,
-              ),
-                 onTap: () async {var value = await pickImage();
-               context.read<EditProfileCubit>().photoChanged(value);
-               }
-               ),
-              Text(
-                "Name",
-                style: TextStyle(
-                  fontFamily: "SFCompactText",
-                  fontWeight: FontWeight.normal,
-                  fontSize: 16,
-                  color: Theme.of(context).iconTheme.color,
-                ),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Name',
-                  fillColor: Colors.transparent,
-                  filled: true,
-                  isDense: true,
-                  contentPadding: EdgeInsets.all(height * 0.016),
-                  border: Theme.of(context).inputDecorationTheme.border,
-                ),
-              ),
-              Text(
-                "Username",
-                style: TextStyle(
-                  fontFamily: "SFCompactText",
-                  fontWeight: FontWeight.normal,
-                  fontSize: 16,
-                  color: Theme.of(context).iconTheme.color,
-                ),
-              ),
-              _UsernameInput(),
-              Text(
-                "Bio",
-                style: TextStyle(
-                  fontFamily: "SFCompactText",
-                  fontWeight: FontWeight.normal,
-                  fontSize: 16,
-                  color: Theme.of(context).iconTheme.color,
-                ),
-              ),
-              const _BioInputForm(),
-              SizedBox(height: height * 0.012),
-              _BioSubmitButton(height: height),
-            ],
-          ),
-        );
-  },
-),
+            );
+          },
+        ),
       ),
     );
   }

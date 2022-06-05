@@ -11,6 +11,7 @@ import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/query_repository.dart';
 import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
+import 'package:upcarta_mobile_app/routes/other_profile/bloc/other_profile_bloc.dart';
 
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
@@ -64,10 +65,6 @@ class App extends StatelessWidget {
             ),
           ),
           BlocProvider(create: (_) => ThemeCubit(sharedPreferences)),
-          BlocProvider(
-              create: (_) => UserBloc(
-                  userRepository: _userRepository,
-                  authRepository: _authRepository)),
         ],
         child: const AppView(),
       ),
@@ -117,25 +114,44 @@ class EntryPoint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //AutoRouter.of(context);
-    return BlocListener<AppBloc, AppState>(
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<AppBloc, AppState>(
+          listener: (context, state) {
+            print("listening ${state.status}");
+            switch (state.status) {
+              case AppStatus.authenticated:
+                // print("\n\n\nAUTHENTICATED");
+                AutoRouter.of(context).replace(const HomeRoute());
+                break;
+              case AppStatus.prelanded:
+                AutoRouter.of(context).replace(const LandingRoute());
+                break;
+              case AppStatus.unauthenticated:
+                // print("\n\n\nNOT AUTHENTICATED");
+                AutoRouter.of(context).replace(const LoginScreenRoute());
+                break;
+              default:
+                break;
+            }
+          },
+        ),
+        // BlocListener<OtherProfileBloc, OtherProfileState>(
+        //     listener: ((context, state) {
+        //   switch (state.status) {
+        //     case OtherProfileStatus.success:
+        //       AutoRouter.of(context)
+        //           .push(OtherProfileScreenRoute(uid: state.user.id));
+        //       // context
+        //       //     .read<OtherProfileBloc>()
+        //       //     .add(OtherProfileEventFetched(state.user.id));
+        //       break;
+        //     default:
+        //       break;
+        //   }
+        // }))
+      ],
       child: const SplashScreen(),
-      listener: (context, state) {
-        switch (state.status) {
-          case AppStatus.authenticated:
-            // print("\n\n\nAUTHENTICATED");
-            AutoRouter.of(context).replace(const HomeRoute());
-            break;
-          case AppStatus.prelanded:
-            AutoRouter.of(context).replace(const LandingRoute());
-            break;
-          case AppStatus.unauthenticated:
-            // print("\n\n\nNOT AUTHENTICATED");
-            AutoRouter.of(context).replace(const LoginScreenRoute());
-            break;
-          default:
-            break;
-        }
-      },
     );
   }
 }

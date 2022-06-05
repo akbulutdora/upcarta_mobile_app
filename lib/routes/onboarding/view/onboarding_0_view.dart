@@ -1,9 +1,11 @@
 // İDİL
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import '../../../navigation/routes.gr.dart';
 
@@ -34,7 +36,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             onPressed: () {
               context.router.replace(const HomeRoute());
             },
-            icon: Icon(Icons.home_filled),
+            icon: const Icon(Icons.home_filled),
             color: AppColors.upcartaBlue,
           ),
         ],

@@ -50,28 +50,51 @@ class UserRepository {
       final user = event.data() == null
           ? AppUser.empty
           : AppUser.fromJson(event.data()!);
+      appUser = user;
+
       _sharedPreferences.setString("user", json.encode(user.toString()));
 
       return user;
     });
   }
 
+  set appUser(AppUser user) {
+    appUser = user;
+  }
+
+  /// Returns the current cached user.
+  /// Defaults to [AppUser.empty] if there is no cached user.
+  // AppUser get currentUser {
+  //   var cachedUser = _sharedPreferences.getString("user");
+  //   if (cachedUser == null) {
+  //     return AppUser.empty;
+  //   }
+  //   return AppUser.fromJson(json.decode(cachedUser));
+  // }
+
   Future<AppUser> getCurrentUser() async {
+    // return appUser;
+
+    if (_firebaseAuth.currentUser == null) return AppUser.empty;
     var event = await _firestoreDB
         .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
-        .get()
-        .then((value) => value.data());
+        .get();
+// TODO: NULL
+    if (event.exists) {
+      var data = event.data()!;
 
-    print("USER REQUESTED ${event.toString()}");
-    print("AFTER USER REQUESTED ${AppUser.fromJson(event!).toString()}");
-    return AppUser.fromJson(event);
+      print("USER REQUESTED ${event.toString()}");
+      print("AFTER USER REQUESTED ${AppUser.fromJson(data).toString()}");
+
+      return AppUser.fromJson(data);
+    }
+    return AppUser.empty;
   }
 
   /// Called when the user changes their profile description
   Future<void> changeBio(String newBio) async {
     try {
-      var thisUser = await getCurrentUser();
       //if (newBio == "") {
       //  newBio = thisUser.bio!;
       //}
@@ -326,7 +349,7 @@ class UserRepository {
   }
 
   ///Recommends
-  //TODO: bu baya kötü geldi bana daha iyi yolu var mı ki, kötü yazdım yani kodu.
+  //TODO: sort posts by date
   Future<List<Content>> profileGetRecommends(String uid) async {
     try {
       var docSnapshot = await _firestoreDB.collection('Person').doc(uid).get();

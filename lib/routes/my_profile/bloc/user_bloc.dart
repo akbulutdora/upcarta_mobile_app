@@ -31,28 +31,30 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       add(UserEventChanged(
         user,
       ));
-      add(UserEventRecommendationsFetched(user.id));
+      add(const UserEventRecommendationsFetched());
     });
     _authSubscription = _authRepository.user.listen((user) {
-      add(UserEventAuthChanged(user));
-      add(UserEventRecommendationsFetched(user.id));
+      add(const UserEventAuthChanged());
+      if (user.recommendationsID != null) {
+        add(const UserEventRecommendationsFetched());
+      }
     });
   }
 
   FutureOr<void> _onChanged(
       UserEventChanged event, Emitter<UserState> emit) async {
     print("\n\n\nprinting user in profile bloc ${event.user}");
-    emit(state.copyWith(status: UserStatus.loading, user: event.user));
+    emit(state.copyWith(status: UserStatus.loading));
 
-    // emit(ProfileState.success(user));
+    AppUser user = await _userRepository.getCurrentUser();
     emit(event.user.isNotEmpty
-        ? state.copyWith(status: UserStatus.success, user: event.user)
+        ? state.copyWith(status: UserStatus.success, user: user)
         : state.copyWith(status: UserStatus.failure));
   }
 
   FutureOr<void> _onAuthChanged(
       UserEventAuthChanged event, Emitter<UserState> emit) async {
-    print("\n\n\nprinting user in profile bloc ${event.user}");
+    // print("\n\n\nprinting user in profile bloc ${event.user}");
     emit(state.copyWith(status: UserStatus.loading));
 
     AppUser user = await _userRepository.getCurrentUser();
@@ -72,7 +74,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         recommendedContents: [],
       ));
 
-      final contents = await _userRepository.profileGetRecommends(event.userID);
+      final contents =
+          await _userRepository.profileGetRecommends(state.user.id);
       return emit(state.copyWith(
         status: UserStatus.success,
         recommendedContents: contents,

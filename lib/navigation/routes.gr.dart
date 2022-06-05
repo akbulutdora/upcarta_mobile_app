@@ -93,8 +93,7 @@ class AppRouter extends _i3.RootStackRouter {
     OtherProfileScreenRoute.name: (routeData) {
       final args = routeData.argsAs<OtherProfileScreenRouteArgs>();
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData,
-          child: _i1.OtherProfileScreen(key: args.key, uid: args.uid));
+          routeData: routeData, child: _i1.OtherProfileScreen(key: args.key));
     },
     ResetPasswordViewRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(

@@ -2,6 +2,7 @@ part of 'user_bloc.dart';
 
 enum UserStatus { initial, loading, success, failure, recommendedFetched }
 
+// TODO: MAYBE UNNECESSARY
 extension UserStatusX on UserStatus {
   bool get isLoadingOrSuccess => [
         UserStatus.loading,

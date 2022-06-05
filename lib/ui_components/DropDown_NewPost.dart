@@ -83,7 +83,7 @@ class _CustDropDownState extends State<CustDropDown>
 
   @override
   dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 

@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
+import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/routes/onboarding/cubit/onboarding_cubit.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
@@ -32,7 +33,6 @@ class EditOnboarding extends StatefulWidget {
 }
 
 class _EditOnboardingState extends State<EditOnboarding> {
-
   final ImagePicker _picker = ImagePicker();
   XFile? _image;
 
@@ -42,9 +42,12 @@ class _EditOnboardingState extends State<EditOnboarding> {
       _image = pickedFile;
     });
     String fileName = basename(_image!.path);
-    Reference firebaseStorageRef = FirebaseStorage.instance.ref().child('uploads/$fileName');
+    Reference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('uploads/$fileName');
 
-    var downurl = await (await firebaseStorageRef.putFile(File(_image!.path))).ref.getDownloadURL();
+    var downurl = await (await firebaseStorageRef.putFile(File(_image!.path)))
+        .ref
+        .getDownloadURL();
     var url = downurl.toString();
     return url;
   }
@@ -94,19 +97,20 @@ class _EditOnboardingState extends State<EditOnboarding> {
                     Align(
                       alignment: Alignment.center,
                       child: Container(
-                        height: 16.h,
-                          child:Material(
+                          height: 16.h,
+                          child: Material(
                             shape: CircleBorder(),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             child: InkWell(
                               splashColor: Colors.black26,
-                              onTap:() async {var value = await pickImage();
-                              context.read<OnboardingCubit>().photoChanged(value);
+                              onTap: () async {
+                                var value = await pickImage();
+                                context
+                                    .read<OnboardingCubit>()
+                                    .photoChanged(value);
                               },
                             ),
-                          )
-                      ),
-
+                          )),
                     ),
 
                     SizedBox(height: 24.h),
@@ -128,7 +132,7 @@ class _EditOnboardingState extends State<EditOnboarding> {
                             side: BorderSide(color: AppColors.upcartaBlue),
                             backgroundColor: AppColors.white,
                             padding:
-                            EdgeInsets.fromLTRB(32.w, 10.h, 32.w, 10.h)),
+                                EdgeInsets.fromLTRB(32.w, 10.h, 32.w, 10.h)),
                         child: Text(
                           'Continue',
                           style: TextStyle(

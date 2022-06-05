@@ -187,20 +187,20 @@ class AuthenticationRepository {
   Stream<AppUser> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       final user = firebaseUser == null ? AppUser.empty : firebaseUser.toUser;
-      _sharedPreferences.setString("user", json.encode(user.toString()));
+      //_sharedPreferences.setString("user", json.encode(user.toString()));
       return user;
     });
   }
 
   /// Returns the current cached user.
   /// Defaults to [AppUser.empty] if there is no cached user.
-  AppUser get currentUser {
-    var cachedUser = _sharedPreferences.getString("user");
-    if (cachedUser == null) {
-      return AppUser.empty;
-    }
-    return AppUser.fromJson(json.decode(cachedUser));
-  }
+  // AppUser get currentUser {
+  //   var cachedUser = _sharedPreferences.getString("user");
+  //   if (cachedUser == null) {
+  //     return AppUser.empty;
+  //   }
+  //   return AppUser.fromJson(json.decode(cachedUser));
+  // }
 
   /// Creates a new user with the provided [email], [password], [username]
   ///  and [name].

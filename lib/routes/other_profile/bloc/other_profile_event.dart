@@ -38,3 +38,11 @@ class OtherProfileEventSubmitted extends OtherProfileEvent {
   @override
   List<Object> get props => [user];
 }
+
+class OtherProfileEventRecommendationsFetched extends OtherProfileEvent {
+  const OtherProfileEventRecommendationsFetched(this.user);
+
+  final AppUser user;
+  @override
+  List<Object> get props => [user];
+}

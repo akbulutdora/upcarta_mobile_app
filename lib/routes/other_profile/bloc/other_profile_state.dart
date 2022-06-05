@@ -1,7 +1,15 @@
 part of 'other_profile_bloc.dart';
 
-enum OtherProfileStatus { initial, loading, success, failure }
+enum OtherProfileStatus {
+  initial,
+  loading,
+  success,
+  failure,
+  recommendedFetched,
+  fetchSuccess
+}
 
+// TODO: MAYBE UNNECESSARY
 extension OtherProfileStatusX on OtherProfileStatus {
   bool get isLoadingOrSuccess => [
         OtherProfileStatus.loading,
@@ -12,34 +20,24 @@ extension OtherProfileStatusX on OtherProfileStatus {
 class OtherProfileState extends Equatable {
   final OtherProfileStatus status;
   final AppUser user;
-  const OtherProfileState._(
-      {this.status = OtherProfileStatus.initial, this.user = AppUser.empty});
+  final List<Content> recommendedContents;
+  const OtherProfileState(
+      {this.status = OtherProfileStatus.initial,
+      this.user = AppUser.empty,
+      this.recommendedContents = const <Content>[]});
 
-  const OtherProfileState.initial(AppUser user)
-      : this._(status: OtherProfileStatus.initial, user: user);
-
-  const OtherProfileState.loading()
-      : this._(status: OtherProfileStatus.loading);
-
-  const OtherProfileState.success(AppUser user)
-      : this._(status: OtherProfileStatus.success, user: user);
-
-  const OtherProfileState.failure()
-      : this._(status: OtherProfileStatus.failure);
-
-  // const ProfileState.initial()
-  //     : this._(status: ProfileStatus.initial, user: User.empty);
-
-  // OtherProfileState copyWith({
-  //   OtherProfileState? status,
-  //   AppUser? user,
-  // }) {
-  //   return OtherProfileState(
-  //     status: status ?? this.status,
-  //     user: user ?? this.user,
-  //   );
-  // }
+  OtherProfileState copyWith({
+    OtherProfileStatus? status,
+    AppUser? user,
+    List<Content>? recommendedContents,
+  }) {
+    return OtherProfileState(
+      status: status ?? this.status,
+      user: user ?? this.user,
+      recommendedContents: recommendedContents ?? this.recommendedContents,
+    );
+  }
 
   @override
-  List<Object> get props => [status];
+  List<Object> get props => [user, status, recommendedContents];
 }

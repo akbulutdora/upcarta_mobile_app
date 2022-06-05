@@ -2,19 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/repositories/query_repository.dart';
-import 'package:upcarta_mobile_app/repositories/user_repository.dart';
-import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
-import 'package:upcarta_mobile_app/routes/other_profile/bloc/other_profile_bloc.dart';
+import 'package:upcarta_mobile_app/routes/other_profile/other_profile.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
-import 'package:upcarta_mobile_app/routes/my_profile/my_profile.dart';
 
 class OtherProfileScreen extends StatefulWidget {
-  final String uid;
-
   const OtherProfileScreen({
     Key? key,
-    required this.uid,
   }) : super(key: key);
 
   @override
@@ -56,22 +49,15 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
         ],
       ),
       //),
-      body: BlocProvider(
-        create: (context) => OtherProfileBloc(
-            userRepository: context.read<UserRepository>(),
-            queryRepository: context.read<QueryRepository>(),
-            userID: widget.uid)
-          ..add(OtherProfileEventFetched(widget.uid)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: SizedBox(
-                child: buildTabController(),
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: SizedBox(
+              child: buildTabController(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -119,7 +105,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
             children: [
               Column(),
               Column(),
-              ProfileRecommendationsList(uid: widget.uid),
+              OtherProfileRecommendationsList(),
               Column(),
               Column(),
             ],
@@ -138,7 +124,7 @@ class BuildOtherProfile extends StatelessWidget {
     return BlocBuilder<OtherProfileBloc, OtherProfileState>(
         builder: ((context, state) {
       bool isFollowed = context
-          .read<UserBloc>()
+          .read<OtherProfileBloc>()
           .state
           .user
           .followingIDs!

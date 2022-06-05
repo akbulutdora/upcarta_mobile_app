@@ -24,10 +24,10 @@ class UserEventChanged extends UserEvent {
 }
 
 class UserEventAuthChanged extends UserEvent {
-  const UserEventAuthChanged(this.user);
-  final AppUser user;
+  const UserEventAuthChanged();
+
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [];
 }
 
 class UserEventSubmitted extends UserEvent {
@@ -39,11 +39,15 @@ class UserEventSubmitted extends UserEvent {
   List<Object> get props => [user];
 }
 
-class UserEventRecommendationsFetched extends UserEvent {
-  const UserEventRecommendationsFetched(this.userID);
+class UserEventProfileFetched extends UserEvent {
+  const UserEventProfileFetched();
+  @override
+  List<Object> get props => [];
+}
 
-  final String userID;
+class UserEventRecommendationsFetched extends UserEvent {
+  const UserEventRecommendationsFetched();
 
   @override
-  List<Object> get props => [userID];
+  List<Object> get props => [];
 }
