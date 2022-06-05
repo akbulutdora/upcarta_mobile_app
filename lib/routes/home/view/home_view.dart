@@ -39,10 +39,9 @@ class _HomeState extends State<Home> {
             create: (_) => UserBloc(
                 userRepository: context.read<UserRepository>(),
                 authRepository: context.read<AuthenticationRepository>())),
-        BlocProvider(
-            create: ((_) => OtherProfileBloc(
-                userRepository: context.read<UserRepository>(),
-                queryRepository: context.read<QueryRepository>())))
+        // BlocProvider(
+        //     create: ((_) => OtherProfileBloc(
+        //         queryRepository: context.read<QueryRepository>())))
       ],
       child: AutoTabsScaffold(
         routes: const [

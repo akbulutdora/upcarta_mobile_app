@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/routes/other_profile/other_profile.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 
@@ -123,12 +125,10 @@ class BuildOtherProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<OtherProfileBloc, OtherProfileState>(
         builder: ((context, state) {
-      bool isFollowed = context
-          .read<OtherProfileBloc>()
-          .state
-          .user
-          .followingIDs!
-          .contains(state.user.id);
+      print("USER AT OTHER PROFILE VIEW:${state.user.toString()}");
+      bool isFollowed = state.user.followerIDs!
+          .contains(context.read<AppBloc>().state.user.id);
+
       final double width = MediaQuery.of(context).size.width;
       final double height = MediaQuery.of(context).size.height;
       return Container(

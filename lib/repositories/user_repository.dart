@@ -50,16 +50,11 @@ class UserRepository {
       final user = event.data() == null
           ? AppUser.empty
           : AppUser.fromJson(event.data()!);
-      appUser = user;
 
       _sharedPreferences.setString("user", json.encode(user.toString()));
 
       return user;
     });
-  }
-
-  set appUser(AppUser user) {
-    appUser = user;
   }
 
   /// Returns the current cached user.

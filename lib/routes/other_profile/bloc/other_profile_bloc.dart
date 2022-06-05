@@ -12,14 +12,11 @@ part 'other_profile_state.dart';
 
 class OtherProfileBloc extends Bloc<OtherProfileEvent, OtherProfileState> {
   late final StreamSubscription<AppUser>? _userSubscription;
-  final UserRepository _userRepository;
   final QueryRepository _queryRepository;
 
   OtherProfileBloc({
-    required UserRepository userRepository,
     required QueryRepository queryRepository,
-  })  : _userRepository = userRepository,
-        _queryRepository = queryRepository,
+  })  : _queryRepository = queryRepository,
         super(const OtherProfileState()) {
     // on<OtherProfileEventChanged>(_onChanged);
     on<OtherProfileEventFetched>(_onUserFetched);
@@ -59,7 +56,7 @@ class OtherProfileBloc extends Bloc<OtherProfileEvent, OtherProfileState> {
       ));
 
       final contents =
-          await _userRepository.profileGetRecommends(event.user.id);
+          await _queryRepository.profileGetRecommends(event.user.id);
       return emit(state.copyWith(
         status: OtherProfileStatus.fetchSuccess,
         recommendedContents: contents,

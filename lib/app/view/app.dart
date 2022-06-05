@@ -65,6 +65,9 @@ class App extends StatelessWidget {
             ),
           ),
           BlocProvider(create: (_) => ThemeCubit(sharedPreferences)),
+          BlocProvider(
+              create: ((_) =>
+                  OtherProfileBloc(queryRepository: _queryRepository)))
         ],
         child: const AppView(),
       ),

@@ -50,4 +50,39 @@ class QueryRepository {
       rethrow;
     }
   }
+
+  ///Recommends
+  //TODO: sort posts by date
+  Future<List<Content>> profileGetRecommends(String uid) async {
+    try {
+      var docSnapshot = await _firestoreDB.collection('Person').doc(uid).get();
+
+      if (docSnapshot.exists) {
+        Map<String, dynamic> data = docSnapshot.data()!;
+        var recommendationsID = data['recommendationsID'];
+        var recommendationSnapshot = await _firestoreDB
+            .collection('collections')
+            .doc(recommendationsID)
+            .get();
+        if (recommendationSnapshot.exists) {
+          List<Content> recPostsList = [];
+          var postIDs = recommendationSnapshot.data()!['postIDs'];
+          for (int i = 0; i < postIDs.length; i++) {
+            var recommendationPostSnapshot =
+                await _firestoreDB.collection('posts').doc(postIDs[i]).get();
+            if (recommendationPostSnapshot.exists) {
+              recPostsList
+                  .add(Content.fromJson(recommendationPostSnapshot.data()!));
+            }
+          }
+          return recPostsList;
+        }
+      }
+      return [];
+    } catch (e) {
+      print('Failed with error code: $e');
+      //TODO: bu ne return etmeli
+      return [];
+    }
+  }
 }

@@ -204,6 +204,7 @@ class SearchResultList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppUser currentUser = context.read<UserBloc>().state.user;
     return Center(
       child: Column(
         children: [
@@ -234,8 +235,10 @@ class SearchResultList extends StatelessWidget {
                             return const CircularProgressIndicator();
                           }
                           bool isNotFollowing =
-                              state.user.followingIDs != null &&
-                                  !state.user.followingIDs!.contains(item.id);
+                              currentUser.followingIDs != null &&
+                                  !currentUser.followingIDs!.contains(item.id);
+                          print(
+                              "FIRST IS  ${state.user.id} AND SECOND IS ${item.id}");
 
                           return ListTile(
                             leading: IconButton(

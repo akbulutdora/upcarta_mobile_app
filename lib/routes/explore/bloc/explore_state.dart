@@ -44,5 +44,10 @@ class ExploreState extends Equatable {
     );
   }
 
+  @override
+  String toString() {
+    return '''ExploreState { status: $status, searchkey: $searchKey, searchPeople: ${searchPeople.length}, followID: $followID }''';
+  }
+
   String get value => searchKey;
 }

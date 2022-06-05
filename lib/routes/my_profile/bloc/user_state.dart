@@ -33,5 +33,10 @@ class UserState extends Equatable {
   }
 
   @override
+  String toString() {
+    return '''UserState { status: $status, user: $user, recommendedContents: ${recommendedContents.length}}''';
+  }
+
+  @override
   List<Object> get props => [user, status, recommendedContents];
 }
