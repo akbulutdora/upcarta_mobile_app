@@ -263,6 +263,12 @@ class AuthenticationRepository {
         .collection('collections')
         .add(recommendationsCollection)
         .then((DocumentReference doc) => doc.id);
+
+    await _firestoreDB
+        .collection('notifications')
+        .doc(uid)
+        .set({"notificationList": []});
+
     final thisUser = AppUser(
       id: uid,
       username: "",

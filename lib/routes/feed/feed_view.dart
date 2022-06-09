@@ -6,6 +6,9 @@ import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 
+import "package:upcarta_mobile_app/models/models.dart" as models;
+import 'package:upcarta_mobile_app/repositories/notification_repository.dart';
+
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
 
@@ -20,6 +23,10 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
+  // DELETE START
+  late NotificationRepository repo = NotificationRepository();
+  // DELETE END
+
   @override
   Widget build(BuildContext context) {
     AutoRouter.of(context);
@@ -42,6 +49,33 @@ class _FeedScreenState extends State<FeedScreen> {
                       fontWeight: FontWeight.w500,
                       fontSize: 22),
                 ),
+                actions: [
+                  IconButton(
+                    icon: Icon(Icons.notifications, color: Colors.black),
+                    onPressed: () {
+                      // DELETE START
+                      // repo.addNotifications(models.Notification(
+                      //     text: "Hello5",
+                      //     image: "a",
+                      //     username: "Can5",
+                      //     contentID: "3",
+                      //     date: DateTime.utc(2022, 06, 02),
+                      //     isRead: false));
+                      // DELETE END
+                      AutoRouter.of(context).push(NotificationsScreenRoute());
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.logout,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      context.read<AppBloc>().add(AppLogoutRequested());
+                      AutoRouter.of(context).replace(LoginScreenRoute());
+                    },
+                  )
+                ],
                 leading: Image.asset(
                   "assets/images/upcarta-logo-small.png",
                   width: 30,

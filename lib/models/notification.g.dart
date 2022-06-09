@@ -12,6 +12,7 @@ Notification _$NotificationFromJson(Map<String, dynamic> json) => Notification(
       username: json['username'] as String,
       contentID: json['contentID'] as String,
       date: DateTime.parse(json['date'] as String),
+      isRead: json['isRead'] as bool,
     );
 
 Map<String, dynamic> _$NotificationToJson(Notification instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$NotificationToJson(Notification instance) =>
       'username': instance.username,
       'contentID': instance.contentID,
       'date': instance.date.toIso8601String(),
+      'isRead': instance.isRead,
     };

@@ -26,6 +26,11 @@ import '../app/app.dart';
         page: NotificationSettings,
       ),
       AutoRoute(
+        path: 'notification_screen',
+        name: 'NotificationsScreenRoute',
+        page: NotificationsScreen,
+      ),
+      AutoRoute(
         path: 'email_settings',
         name: 'EmailSettingsRoute',
         page: EmailSettings,
