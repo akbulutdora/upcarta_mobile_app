@@ -95,9 +95,8 @@ class AppRouter extends _i3.RootStackRouter {
           routeData: routeData, child: const _i1.LoginScreen2());
     },
     OtherProfileScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<OtherProfileScreenRouteArgs>();
       return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: _i1.OtherProfileScreen(key: args.key));
+          routeData: routeData, child: const _i1.OtherProfileScreen());
     },
     ResetPasswordViewRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
@@ -526,27 +525,11 @@ class LoginScreen2Route extends _i3.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i1.OtherProfileScreen]
-class OtherProfileScreenRoute
-    extends _i3.PageRouteInfo<OtherProfileScreenRouteArgs> {
-  OtherProfileScreenRoute({_i4.Key? key, required String uid})
-      : super(OtherProfileScreenRoute.name,
-            path: '/other_profile',
-            args: OtherProfileScreenRouteArgs(key: key, uid: uid));
+class OtherProfileScreenRoute extends _i3.PageRouteInfo<void> {
+  const OtherProfileScreenRoute()
+      : super(OtherProfileScreenRoute.name, path: '/other_profile');
 
   static const String name = 'OtherProfileScreenRoute';
-}
-
-class OtherProfileScreenRouteArgs {
-  const OtherProfileScreenRouteArgs({this.key, required this.uid});
-
-  final _i4.Key? key;
-
-  final String uid;
-
-  @override
-  String toString() {
-    return 'OtherProfileScreenRouteArgs{key: $key, uid: $uid}';
-  }
 }
 
 /// generated route for

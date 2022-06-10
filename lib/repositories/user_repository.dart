@@ -14,6 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/models/collection.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+import 'package:upcarta_mobile_app/repositories/notification_repository.dart';
 
 import '../models/models.dart';
 
@@ -37,6 +38,8 @@ class UserRepository {
   final SharedPreferences _sharedPreferences;
   final String userCollection = "Person";
   final FirebaseStorage _firebaseStorage;
+
+  final NotificationRepository _notifRepo = NotificationRepository();
 
   final AppUser appUser = AppUser.empty;
 
@@ -159,6 +162,8 @@ class UserRepository {
     _firestoreDB.collection(userCollection).doc(followID).update({
       "followerIDs": FieldValue.arrayUnion([_firebaseAuth.currentUser!.uid]),
     });
+
+    _notifRepo.addNotifications(NotifTypes.follow, followID);
   }
 
   /// Called when the user unfollows another user

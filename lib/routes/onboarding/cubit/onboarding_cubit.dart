@@ -15,9 +15,11 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   void usernameChanged(String value) {
     emit(state.copyWith(username: value, status: OnboardingStatus.initial));
   }
+
   void photoChanged(String value) {
     emit(state.copyWith(photoURL: value, status: OnboardingStatus.initial));
   }
+
   void submitBioPhotoURLUsername() async {
     if (state.status == OnboardingStatus.submitting) {
       return;
@@ -38,13 +40,13 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     }
   }
 
-  void followUserWithID() async {
+  void followUserWithID(String id) async {
     if (state.status == OnboardingStatus.submitting) {
       return;
     } //to avoid sending multiple reqs at the same time
     emit(state.copyWith(status: OnboardingStatus.submitting));
     try {
-      await _userRepository.followUserWithID(state.id);
+      await _userRepository.followUserWithID(id);
       emit(state.copyWith(status: OnboardingStatus.success));
     } catch (e) {
       emit(
@@ -56,13 +58,13 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     }
   }
 
-  void unfollowUserWithID() async {
+  void unfollowUserWithID(String id) async {
     if (state.status == OnboardingStatus.submitting) {
       return;
     } //to avoid sending multiple reqs at the same time
     emit(state.copyWith(status: OnboardingStatus.submitting));
     try {
-      await _userRepository.unfollowUserWithID(state.id);
+      await _userRepository.unfollowUserWithID(id);
       emit(state.copyWith(status: OnboardingStatus.success));
     } catch (e) {
       emit(

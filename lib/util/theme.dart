@@ -11,6 +11,7 @@ ThemeData lightTheme = ThemeData(
   ),
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.white,
+    foregroundColor: AppColors.black,
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: AppColors.black,

@@ -20,29 +20,30 @@ class NotificationsScreen extends StatefulWidget {
 class _NotificationsScreenState extends State<NotificationsScreen> {
   bool isAllRead = false;
   final NotificationRepository nRepo = NotificationRepository();
-  // void setAllRead() {
-  //   setState(() {
-  //     for (var notif in myList) {
-  //       if (!notif.isRead) {
-  //         notif.isRead = true;
-  //       }
-  //     }
-  //   });
-  // }
-  Map<String, List<Notification>> notifList = {
+
+  Map<String, List<dynamic>> notifList = {
     "Today": [],
     "Yesterday": [],
     "Earlier": []
   };
 
+  setAllRead() async {
+    await nRepo.readAllNotifications();
+    setState(() {});
+  }
+
   Future fetchData() async {
-    return await nRepo.getNotifications();
+    var list = await nRepo.getNotifications();
+    notifList = Map<String, List<dynamic>>.from(list);
+
+    print(list);
+    return list;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: AppBar(
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
@@ -51,13 +52,17 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           centerTitle: true,
           title: const Text(
             "Activity",
-            style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.w600, fontSize: 24),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
           ),
           actions: [
             TextButton(
-                onPressed: () {
-                  // setAllRead();
+                onPressed: () async {
+                  // await setAllRead();
+
+                  // nRepo.getNotifications();
+
+                  nRepo.addNotifications(
+                      NotifTypes.reshare, "MyqFZF2Sz6adhzVdOqayA9MhAx22");
                 },
                 child: const Text(
                   "Mark All As Read",
@@ -65,6 +70,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ))
           ],
         ),
+        // body: Container());
         body: FutureBuilder(
             future: fetchData(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -170,10 +176,12 @@ class _NotificationInstanceState extends State<NotificationInstance> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          widget.repo.readNotification(widget.notificationInstance.contentID);
-          widget.notificationInstance.isRead = true;
-        });
+        if (!widget.notificationInstance.isRead) {
+          setState(() {
+            widget.repo.readNotification(widget.notificationInstance.contentID);
+            widget.notificationInstance.isRead = true;
+          });
+        }
       },
       child: Container(
         width: double.maxFinite,
@@ -185,12 +193,17 @@ class _NotificationInstanceState extends State<NotificationInstance> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
                 children: [
-                  const CircleAvatar(radius: 24, backgroundColor: Colors.blue),
+                  CircleAvatar(
+                    radius: 18,
+                    // backgroundColor: Colors.blue,
+                    foregroundImage:
+                        NetworkImage(widget.notificationInstance.image),
+                  ),
                   Text(" ${widget.notificationInstance.username}",
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 24)),
+                          fontWeight: FontWeight.bold, fontSize: 18)),
                   Text(" ${widget.notificationInstance.text}",
-                      style: const TextStyle(fontSize: 24)),
+                      style: const TextStyle(fontSize: 18)),
                 ],
               ),
             ),
