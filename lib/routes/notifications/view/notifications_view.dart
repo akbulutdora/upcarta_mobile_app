@@ -57,12 +57,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           actions: [
             TextButton(
                 onPressed: () async {
-                  // await setAllRead();
-
-                  // nRepo.getNotifications();
-
-                  nRepo.addNotifications(
-                      NotifTypes.reshare, "MyqFZF2Sz6adhzVdOqayA9MhAx22");
+                  await setAllRead();
                 },
                 child: const Text(
                   "Mark All As Read",
