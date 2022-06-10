@@ -143,15 +143,37 @@ class BuildProfile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CircleAvatar(
-              // FIXME: ADD NULL IMAGE CASE
-              foregroundImage: state.user.photoURL != null
-                  ? NetworkImage(state.user.photoURL!)
-                  : null,
-              backgroundImage: const AssetImage("assets/images/mock.jpg"),
-              //widget.user.profileImageUrl),
-              radius: 55.0,
+            GestureDetector(
+              onTap: () async {
+                await showDialog(
+                    context: context,
+                    builder: (_) => Dialog(
+                  child: Column(
+                    children: [Expanded(
+                      child: Image(
+                        // FIXME: ADD NULL CASE
+                      image: NetworkImage(state.user.photoURL!)
+
+                ),
+                    ),]
+                  )
+                )
+                );
+              },
+              child: Hero(
+                tag: 'imageHero',
+                child: CircleAvatar(
+                  // FIXME: ADD NULL IMAGE CASE
+                  foregroundImage: state.user.photoURL != null
+                      ? NetworkImage(state.user.photoURL!)
+                      : null,
+                  backgroundImage: const AssetImage("assets/images/mock.jpg"),
+                  //widget.user.profileImageUrl),
+                  radius: 55.0,
+                ),
+              ),
             ),
+
             Text(
               //widget.user.name,
               state.user.name ?? "NAME IS NULL",
@@ -315,4 +337,6 @@ class BuildProfile extends StatelessWidget {
       );
     }));
   }
+
 }
+
