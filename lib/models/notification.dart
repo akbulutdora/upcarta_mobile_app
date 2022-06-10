@@ -1,21 +1,23 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part "notification.g.dart";
+
+var uuid = Uuid();
 
 @JsonSerializable()
 class Notification {
   final String text;
   final String image;
   final String username;
-  final String contentID;
   final DateTime date;
+  String contentID = "";
   bool isRead;
 
   Notification(
       {required this.text,
       required this.image,
       required this.username,
-      required this.contentID,
       required this.date,
       required this.isRead});
 

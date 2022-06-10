@@ -215,8 +215,8 @@ class SearchResultList extends StatelessWidget {
                 listener: ((context, state) {
                   switch (state.status) {
                     case OtherProfileStatus.success:
-                      AutoRouter.of(context)
-                          .push(OtherProfileScreenRoute(uid: state.user.id));
+                      AutoRouter.of(context).push(OtherProfileScreenRoute());
+                      // .push(OtherProfileScreenRoute(uid: state.user.id));
                       // context
                       //     .read<OtherProfileBloc>()
                       //     .add(OtherProfileEventFetched(state.user.id));
