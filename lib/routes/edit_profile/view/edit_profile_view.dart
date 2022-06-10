@@ -76,6 +76,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           )),
       //),
       body: BlocProvider(
+  create: (_) => UserBloc(authRepository: context.read<AuthenticationRepository>(), userRepository: context.read<UserRepository>()),
+  child: BlocProvider(
         create: (_) => EditProfileCubit(
             context.read<AuthenticationRepository>(),
             context.read<UserRepository>()),
@@ -178,6 +180,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           },
         ),
       ),
+),
     );
   }
 }
