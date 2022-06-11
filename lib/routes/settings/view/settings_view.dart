@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/util/colors.dart';
 
 class Settings extends StatefulWidget {
   static MaterialPage page() {
@@ -31,10 +32,12 @@ class _SettingsState extends State<Settings> {
     final double height = MediaQuery.of(context).size.height;
     AutoRouter.of(context);
     return Scaffold(
+        backgroundColor: AppColors.white,
         appBar: AppBar(
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
+            elevation: 0.4,
             title: const Text(
               'Settings',
               style: TextStyle(
@@ -44,7 +47,7 @@ class _SettingsState extends State<Settings> {
                   fontSize: 22),
             ),
             leading: IconButton(
-              icon:  Icon(
+              icon: Icon(
                 Icons.arrow_back_ios,
                 color: Theme.of(context).iconTheme.color,
               ),
@@ -79,7 +82,7 @@ class _SettingsState extends State<Settings> {
                         onTap: () {
                           context.router.push(const PasswordSettingsRoute());
                         },
-                        child:  ListTile(
+                        child: ListTile(
                             title: Text('Password',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
@@ -97,7 +100,7 @@ class _SettingsState extends State<Settings> {
                           context.router
                               .push(const NotificationSettingsRoute());
                         },
-                        child:  ListTile(
+                        child: ListTile(
                             title: Text('Notifications',
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
@@ -115,7 +118,7 @@ class _SettingsState extends State<Settings> {
                         child: InkWell(
                       child: SwitchListTile(
                         activeColor: Theme.of(context).primaryColor,
-                        title:  Text(
+                        title: Text(
                           'Dark Mode',
                           style: TextStyle(
                             fontFamily: "SFCompactText",
@@ -128,7 +131,7 @@ class _SettingsState extends State<Settings> {
                         onChanged: (bool value) {
                           context.read<ThemeCubit>().toggleTheme();
                         },
-                        secondary:  Icon(
+                        secondary: Icon(
                           Icons.brightness_2,
                           color: Theme.of(context).iconTheme.color,
                         ),
@@ -140,18 +143,20 @@ class _SettingsState extends State<Settings> {
                     child: InkWell(
                         onTap: () async {
                           try {
-                            await FirebaseFirestore.instance.collection("Person").doc(FirebaseAuth.instance.currentUser?.uid).delete();
+                            await FirebaseFirestore.instance
+                                .collection("Person")
+                                .doc(FirebaseAuth.instance.currentUser?.uid)
+                                .delete();
                             await FirebaseAuth.instance.currentUser!.delete();
                             context.read<AppBloc>().add(AppLogoutRequested());
-
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'requires-recent-login') {
-                              print('The user must reauthenticate before this operation can be executed.');
+                              print(
+                                  'The user must reauthenticate before this operation can be executed.');
                             }
                           }
-
                         },
-                        child:  ListTile(
+                        child: ListTile(
                           title: Text(
                             'Delete Account',
                             style: TextStyle(

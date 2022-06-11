@@ -27,7 +27,7 @@ class _WrappedSingleChipLibraryState extends State<WrappedSingleChipLibrary> {
       choiceItems: C2Choice.listFrom(
           source: options, value: (i, v) => i, label: (i, String v) => v),
       wrapped: true,
-      spacing: 6,
+      spacing: 16,
       padding: const EdgeInsets.all(0),
       choiceStyle: C2ChoiceStyle(
         labelStyle:

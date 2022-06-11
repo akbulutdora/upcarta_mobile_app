@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -263,7 +265,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         ),
                       ),
                       SizedBox(height: 4.h),
-                      SizedBox(height: 60.h, child: URLForm()),
+                      SizedBox(height: 75.h, child: const URLForm()),
                       SizedBox(height: 32.h),
                       const Align(
                           alignment: Alignment.bottomRight,
@@ -290,13 +292,15 @@ class URLForm extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 8.w),
       child: TextField(
+        textAlignVertical: TextAlignVertical.center,
+        style: TextStyle(fontSize: 15.sp, color: AppColors.black),
         onChanged: (value) {
           context.read<NewActionCubit>().contentChanged(value);
         },
         minLines: 1,
         maxLines: 3,
         decoration: InputDecoration(
-            fillColor: Colors.transparent,
+            fillColor: Colors.white,
             filled: true,
             labelText: 'Enter URL',
             border: OutlineInputBorder(
