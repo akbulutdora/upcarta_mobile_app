@@ -21,7 +21,14 @@ class ProfileRecommendationsList extends StatelessWidget {
       builder: (context, state) {
         switch (state.status) {
           case UserStatus.failure:
-            return const Center(child: Text('failed to fetch posts'));
+            return Center(
+                child: TextButton(
+                    onPressed: () {
+                      context
+                          .read<UserBloc>()
+                          .add(const UserEventRecommendationsFetched());
+                    },
+                    child: Text('failed to fetch recs')));
           case UserStatus.recommendedFetched:
             return const Center(child: CircularProgressIndicator());
           case UserStatus.success:

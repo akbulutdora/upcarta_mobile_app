@@ -111,7 +111,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
       var event = await FirebaseFirestore.instance
           .collection("Person")
-          .doc(personList![i])
+          .doc(personList[i])
           .get();
       if (event.exists) {
         var data = event.data()!;

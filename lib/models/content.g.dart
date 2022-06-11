@@ -26,7 +26,7 @@ Content _$ContentFromJson(Map<String, dynamic> json) => Content(
 
 Map<String, dynamic> _$ContentToJson(Content instance) => <String, dynamic>{
       'title': instance.title,
-      'createDate': instance.createDate.toIso8601String(),
+      'createDate': instance.createDate,
       'contentType': _$ContentTypeEnumMap[instance.contentType],
       'uId': instance.uId,
       'postId': instance.postId,

@@ -513,9 +513,18 @@ class UserRepository {
   /// TODO: FETCH A CERTAIN NUMBER OF POSTS FROM COLLECTION "posts"
   Future fetchPosts({int numberOfPosts = 0}) async {
     try {
+      var followingIDs=  await _firestoreDB
+        .collection(userCollection)
+        .doc(_firebaseAuth.currentUser!.uid)
+        .get()
+        .then((documentSnapshot) => documentSnapshot['followingIDs']);
+      print("HEYYYYYYYO" + await _firestoreDB
+          .collection("posts")
+          .where("uId", whereIn:followingIDs).get().then((value) =>value.docs.map((e) => e['url']).toString()));
       var data = await _firestoreDB
           .collection("posts")
           .orderBy("createDate", descending: true)
+          .where("uId", whereIn:followingIDs)
           .limit(numberOfPosts + 10)
           .get()
           .then((value) {

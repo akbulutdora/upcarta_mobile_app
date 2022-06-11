@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
-
+bool isPressed = false;
 class ContentCard extends StatefulWidget {
   final Content content;
 
@@ -61,6 +61,7 @@ class _ContentCardState extends State<ContentCard> {
                             splashRadius: 20,
                             iconSize: 20,
                             onPressed: () {
+                              isPressed = true;
                               context.read<LatestFeedBloc>().add(
                                   LatestFeedEventContentSaved(
                                       widget.content.postId));
