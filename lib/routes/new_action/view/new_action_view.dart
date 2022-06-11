@@ -50,20 +50,24 @@ class _NewPostScreenState extends State<NewPostScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       IconButton(
+                          splashRadius: 32.r,
                           iconSize: 28.0,
                           icon: Icon(Icons.book_outlined),
                           onPressed: () {}),
                       IconButton(
+                        splashRadius: 32.r,
                         iconSize: 28.0,
                         icon: Icon(Icons.article_outlined),
                         onPressed: () {},
                       ),
                       IconButton(
+                        splashRadius: 32.r,
                         iconSize: 28.0,
                         icon: Icon(Icons.ac_unit),
                         onPressed: () {},
                       ),
                       IconButton(
+                        splashRadius: 32.r,
                         iconSize: 28.0,
                         icon: Icon(Icons.video_call_outlined),
                         onPressed: () {},
@@ -74,11 +78,13 @@ class _NewPostScreenState extends State<NewPostScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       IconButton(
+                        splashRadius: 32.r,
                         iconSize: 28.0,
                         icon: Icon(Icons.movie_creation_outlined),
                         onPressed: () {},
                       ),
                       IconButton(
+                        splashRadius: 32.r,
                         iconSize: 28.0,
                         icon: Icon(Icons.tv_outlined),
                         onPressed: () {},
@@ -88,10 +94,12 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         //Description
                       ),
                       IconButton(
+                          splashRadius: 32.r,
                           iconSize: 28.0,
                           icon: Icon(Icons.podcasts_outlined),
                           onPressed: () {}),
                       IconButton(
+                        splashRadius: 32.r,
                         iconSize: 28.0,
                         icon: Icon(Icons.audiotrack_outlined),
                         onPressed: () {},
@@ -102,167 +110,170 @@ class _NewPostScreenState extends State<NewPostScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(16.w, 48.h, 16.w, 0.h),
-        child: Column(
-          children: [
-            BlocProvider(
-              create: (context) =>
-                  NewActionCubit(context.read<UserRepository>()),
-              child: BlocListener<NewActionCubit, NewActionState>(
-                listener: (context, state) {
-                  // TODO: implement listener
-                  if (state.status == ActionStatus.success) {
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(
-                          content: Text("SUCCESS"),
-                        ),
-                      );
-                  }
-                  if (state.status == ActionStatus.submissionFailure) {
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(
-                          content: Text('Failure'),
-                        ),
-                      );
-                  }
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.close,
-                              color: AppColors.gray3ContentText, size: 30.sm),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16.h),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        width: 270.w,
-                        height: 50.h,
-                        padding: EdgeInsets.only(left: 8),
-                        decoration: BoxDecoration(
-                            color: AppColors.white,
-                            border: Border.all(
-                              color: AppColors.upcartaBlue,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(15.r)),
-                        child: CustDropDown(
-                          items: [
-                            CustDropdownMenuItem(
-                              value: 0,
-                              child: Text(
-                                'Recommended Content',
-                                style: TextStyle(fontSize: 15.sp),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(16.w, 42.h, 16.w, 0.h),
+          child: Column(
+            children: [
+              BlocProvider(
+                create: (context) =>
+                    NewActionCubit(context.read<UserRepository>()),
+                child: BlocListener<NewActionCubit, NewActionState>(
+                  listener: (context, state) {
+                    // TODO: implement listener
+                    if (state.status == ActionStatus.success) {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          const SnackBar(
+                            content: Text("SUCCESS"),
+                          ),
+                        );
+                    }
+                    if (state.status == ActionStatus.submissionFailure) {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          const SnackBar(
+                            content: Text('Failure'),
+                          ),
+                        );
+                    }
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.close,
+                                color: AppColors.gray3ContentText, size: 30.sm),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          width: 270.w,
+                          height: 50.h,
+                          padding: EdgeInsets.only(left: 8),
+                          decoration: BoxDecoration(
+                              color: AppColors.white,
+                              border: Border.all(
+                                color: AppColors.upcartaBlue,
+                                width: 1,
                               ),
-                            ),
-                            CustDropdownMenuItem(
-                              value: 0,
-                              child: Text('Create New Collection',
-                                  style: TextStyle(fontSize: 15.sp)),
-                            ),
-                            CustDropdownMenuItem(
-                              value: 0,
-                              child: Text('Recommendation By Expert',
-                                  style: TextStyle(fontSize: 15.sp)),
-                            ),
-                            CustDropdownMenuItem(
-                              value: 0,
-                              child: Text('Collection By Expert',
-                                  style: TextStyle(fontSize: 15.sp)),
-                            ),
-                            CustDropdownMenuItem(
-                              value: 0,
-                              child: Text('Ask By Expert',
-                                  style: TextStyle(fontSize: 15.sp)),
-                            )
-                          ],
-                          hintText: "Select Action",
-                          borderRadius: 10.r,
-                          onChanged: (val) {
-                            print(val);
-                          },
+                              borderRadius: BorderRadius.circular(15.r)),
+                          child: CustDropDown(
+                            items: [
+                              CustDropdownMenuItem(
+                                value: 0,
+                                child: Text(
+                                  'Recommended Content',
+                                  style: TextStyle(fontSize: 15.sp),
+                                ),
+                              ),
+                              CustDropdownMenuItem(
+                                value: 0,
+                                child: Text('Create New Collection',
+                                    style: TextStyle(fontSize: 15.sp)),
+                              ),
+                              CustDropdownMenuItem(
+                                value: 0,
+                                child: Text('Recommendation By Expert',
+                                    style: TextStyle(fontSize: 15.sp)),
+                              ),
+                              CustDropdownMenuItem(
+                                value: 0,
+                                child: Text('Collection By Expert',
+                                    style: TextStyle(fontSize: 15.sp)),
+                              ),
+                              CustDropdownMenuItem(
+                                value: 0,
+                                child: Text('Ask By Expert',
+                                    style: TextStyle(fontSize: 15.sp)),
+                              )
+                            ],
+                            hintText: "Select Action",
+                            borderRadius: 10.r,
+                            onChanged: (val) {
+                              print(val);
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 16.h),
-                    TextField(
-                      enableSuggestions: false,
-                      autocorrect: false,
-                      minLines: 1,
-                      maxLines: 2,
-                      style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.w600),
-                      cursorColor: AppColors.upcartaBlue,
-                      decoration: InputDecoration(
-                        hintStyle: TextStyle(
-                          color: AppColors.gray3ContentText,
-                        ),
-                        hintText: "Add a Title",
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                    Divider(
-                      color: AppColors.upcartaBlue,
-                      indent: 8.w,
-                      height: 0.h,
-                    ),
-                    TextField(
-                      enableSuggestions: false,
-                      autocorrect: false,
-                      minLines: 1,
-                      maxLines: 5,
-                      style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w400),
-                      cursorColor: AppColors.upcartaBlue,
-                      decoration: InputDecoration(
-                        hintStyle: TextStyle(
-                          color: AppColors.gray3ContentText,
-                        ),
-                        hintText: "Add optional body text...",
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide.none,
+                      SizedBox(height: 8.h),
+                      TextField(
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        minLines: 1,
+                        maxLines: 2,
+                        style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.w600),
+                        cursorColor: AppColors.upcartaBlue,
+                        decoration: InputDecoration(
+                          hintStyle: TextStyle(
+                            color: AppColors.gray3ContentText,
+                          ),
+                          hintText: "Add a Title",
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100),
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100),
+                            borderSide: BorderSide.none,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 4.h),
-                    SizedBox(height: 60.h, child: URLForm()),
-                    SizedBox(height: 32.h),
-                    const Align(
-                        alignment: Alignment.bottomRight, child: _SendButton()),
-                  ],
+                      Divider(
+                        color: AppColors.upcartaBlue,
+                        indent: 8.w,
+                        height: 0.h,
+                      ),
+                      TextField(
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        minLines: 1,
+                        maxLines: 5,
+                        style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w400),
+                        cursorColor: AppColors.upcartaBlue,
+                        decoration: InputDecoration(
+                          hintStyle: TextStyle(
+                            color: AppColors.gray3ContentText,
+                          ),
+                          hintText: "Add optional body text...",
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100),
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 4.h),
+                      SizedBox(height: 60.h, child: URLForm()),
+                      SizedBox(height: 32.h),
+                      const Align(
+                          alignment: Alignment.bottomRight,
+                          child: _SendButton()),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
