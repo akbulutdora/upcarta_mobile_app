@@ -71,90 +71,92 @@ class _ExploreScreenState extends State<ExploreScreen> {
               fontSize: 22),
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        child: BlocProvider(
-          // TODO: INJECT PROPERLY
-          // FIXME: FIX SEARCH BEHAVIOR
-          create: (context) => ExploreCubit(
-              QueryRepository(firebaseFirestore: FirebaseFirestore.instance),
-              context.read<UserRepository>()),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 32,
-                child: buildSearchBar(),
-              ),
-              const SizedBox(height: 10),
-              BlocBuilder<ExploreCubit, ExploreState>(
-                buildWhen: (previous, current) =>
-                    previous.status != current.status ||
-                    previous.searchKey != current.searchKey,
-                builder: (context, state) {
-                  if (state.status == ExploreStatus.submitting) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text("The user is typing ${state.searchKey}"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const CircularProgressIndicator(),
-                        ],
-                      ),
-                    );
-                  } else if (state.status == ExploreStatus.initial ||
-                      state.searchKey == "") {
-                    return GridView.count(
-                      shrinkWrap: true,
-                      crossAxisCount: 2,
-                      childAspectRatio: 2,
-                      children: cardsList,
-                    );
-                  } else if (state.status == ExploreStatus.typing) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text("The user is typing ${state.searchKey}"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const CircularProgressIndicator(),
-                        ],
-                      ),
-                    );
-                  } else if (state.status == ExploreStatus.error) {
-                    return const Center(
-                      child: Text("Error"),
-                    );
-                  } else {
-                    // else if (state.status == ExploreStatus.success &&
-                    //     state.searchKey != "") {
-                    return Column(
-                      children: [
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: const WrappedSingleChip(),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: BlocProvider(
+            // TODO: INJECT PROPERLY
+            // FIXME: FIX SEARCH BEHAVIOR
+            create: (context) => ExploreCubit(
+                QueryRepository(firebaseFirestore: FirebaseFirestore.instance),
+                context.read<UserRepository>()),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 32,
+                  child: buildSearchBar(),
+                ),
+                const SizedBox(height: 10),
+                BlocBuilder<ExploreCubit, ExploreState>(
+                  buildWhen: (previous, current) =>
+                      previous.status != current.status ||
+                      previous.searchKey != current.searchKey,
+                  builder: (context, state) {
+                    if (state.status == ExploreStatus.submitting) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("The user is typing ${state.searchKey}"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const CircularProgressIndicator(),
+                          ],
                         ),
-                        SearchResultList(
-                          searchResult: state.searchPeople,
+                      );
+                    } else if (state.status == ExploreStatus.initial ||
+                        state.searchKey == "") {
+                      return GridView.count(
+                        shrinkWrap: true,
+                        crossAxisCount: 2,
+                        childAspectRatio: 2,
+                        children: cardsList,
+                      );
+                    } else if (state.status == ExploreStatus.typing) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text("The user is typing ${state.searchKey}"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const CircularProgressIndicator(),
+                          ],
                         ),
-                      ],
-                    );
-                  }
-                },
-              ),
-            ],
+                      );
+                    } else if (state.status == ExploreStatus.error) {
+                      return const Center(
+                        child: Text("Error"),
+                      );
+                    } else {
+                      // else if (state.status == ExploreStatus.success &&
+                      //     state.searchKey != "") {
+                      return Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: const WrappedSingleChip(),
+                          ),
+                          SearchResultList(
+                            searchResult: state.searchPeople,
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
