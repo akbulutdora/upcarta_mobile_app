@@ -181,7 +181,7 @@ class BuildProfile extends StatelessWidget {
                       : null,
                   backgroundImage: const AssetImage("assets/images/mock.jpg"),
                   //widget.user.profileImageUrl),
-                  radius: 65.r,
+                  radius: 60.r,
                 ),
               ),
             ),

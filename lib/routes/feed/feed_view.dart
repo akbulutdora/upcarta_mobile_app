@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -35,6 +36,7 @@ class _FeedScreenState extends State<FeedScreen> {
           final user = context.select((AppBloc bloc) => bloc.state.user);
           return SafeArea(
             child: Scaffold(
+              backgroundColor: AppColors.white,
               appBar: AppBar(
                 title: Text(
                   "Upcarta",
@@ -44,6 +46,7 @@ class _FeedScreenState extends State<FeedScreen> {
                       fontWeight: FontWeight.w500,
                       fontSize: 22),
                 ),
+                elevation: 0.8,
                 actions: [
                   IconButton(
                     icon: Icon(Icons.notifications,
