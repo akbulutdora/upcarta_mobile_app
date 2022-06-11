@@ -97,7 +97,7 @@ class _EditOnboardingState extends State<EditOnboarding> {
                     Align(
                       alignment: Alignment.center,
                       child: Container(
-                          height: 16.h,
+                          height: 150.h,
                           child: Material(
                             shape: CircleBorder(),
                             clipBehavior: Clip.antiAliasWithSaveLayer,

@@ -151,13 +151,16 @@ class BuildProfile extends StatelessWidget {
                 await showDialog(
                     context: context,
                     builder: (_) => Dialog(
-                            child: Column(children: [
-                          Expanded(
-                            child: Image(
-                                // FIXME: ADD NULL CASE
-                                image: NetworkImage(state.user.photoURL!)),
-                          ),
-                        ])));
+                            child: SizedBox(
+                              height: 400.w,
+                                width: 400.w,
+                            child: CircleAvatar(
+                                foregroundImage: state.user.photoURL != null
+                                    ? NetworkImage(state.user.photoURL!)
+                                    : null,
+                            backgroundImage: const AssetImage("assets/images/mock.jpg"),
+                            radius: 400.h,),
+                        )));
               },
               child: Hero(
                 tag: 'imageHero',
@@ -280,7 +283,15 @@ class BuildProfile extends StatelessWidget {
                         context: context,
                         builder: (_) => Dialog(
                             child: Column(
-                                children: [const SizedBox(height: 10),
+                                children: [
+                                  Text("Followers",
+                                    style: TextStyle(
+                                      fontFamily: "SFCompactText",
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 20,
+                                      color: Theme.of(context).iconTheme.color,
+                                    ),),
+                                  const SizedBox(height: 10),
                                   ...listOfItems.map((item) {
                                     return FollowerInstance(
                                       followerName: item['followerName'],
@@ -326,7 +337,14 @@ class BuildProfile extends StatelessWidget {
                         context: context,
                         builder: (_) => Dialog(
                         child: Column(
-                            children: [const SizedBox(height: 10),
+                            children: [Text("Following",
+                              style: TextStyle(
+                                fontFamily: "SFCompactText",
+                                fontWeight: FontWeight.normal,
+                                fontSize: 20,
+                                color: Theme.of(context).iconTheme.color,
+                              ),),
+                              const SizedBox(height: 10),
                               ...listOfItems2.map((item) {
                                 return FollowerInstance(
                                   followerName: item['followerName'],
