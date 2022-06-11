@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/models/user.dart';
@@ -74,7 +75,44 @@ class OtherProfileBloc extends Bloc<OtherProfileEvent, OtherProfileState> {
   //       ? OtherProfileState.success(event.user)
   //       : const OtherProfileState.failure());
   // }
+  Future<List> getFollowerNames(List<String>? followers) async {
+    List followerList = [];
+    for (var i = 0; i < followers!.length; i++) {
 
+
+      var event = await FirebaseFirestore.instance
+          .collection("Person")
+          .doc(followers![i])
+          .get();
+      if (event.exists) {
+        var data = event.data()!;
+        Map dummyFollower = Map();
+        dummyFollower['followerName'] = AppUser.fromJson(data).name;
+        dummyFollower['followerUName'] = AppUser.fromJson(data).username;
+        followerList.add(dummyFollower);
+      }
+    }
+    return followerList;
+  }
+  Future<List> getFollowingNames(List<String>? personList) async {
+    List followingList = [];
+    for (var i = 0; i < personList!.length; i++) {
+
+
+      var event = await FirebaseFirestore.instance
+          .collection("Person")
+          .doc(personList![i])
+          .get();
+      if (event.exists) {
+        var data = event.data()!;
+        Map dummyFollower = Map();
+        dummyFollower['followerName'] = AppUser.fromJson(data).name;
+        dummyFollower['followerUName'] = AppUser.fromJson(data).username;
+        followingList.add(dummyFollower);
+      }
+    }
+    return followingList;
+  }
   @override
   Future<void> close() {
     _userSubscription?.cancel();

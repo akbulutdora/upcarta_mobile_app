@@ -164,13 +164,16 @@ class BuildProfile extends StatelessWidget {
                 await showDialog(
                     context: context,
                     builder: (_) => Dialog(
-                            child: Column(children: [
-                          Expanded(
-                            child: Image(
-                                // FIXME: ADD NULL CASE
-                                image: NetworkImage(state.user.photoURL!)),
-                          ),
-                        ])));
+                            child: SizedBox(
+                              height: 400.w,
+                                width: 400.w,
+                            child: CircleAvatar(
+                                foregroundImage: state.user.photoURL != null
+                                    ? NetworkImage(state.user.photoURL!)
+                                    : null,
+                            backgroundImage: const AssetImage("assets/images/mock.jpg"),
+                            radius: 400.h,),
+                        )));
               },
               child: Hero(
                 tag: 'imageHero',
@@ -296,15 +299,27 @@ class BuildProfile extends StatelessWidget {
                       child: VerticalDivider(
                           color: Theme.of(context).primaryColor),
                     ),
-                    TextButton(
-                      onPressed: () async {
-                        listOfItems = await context
-                            .read<UserBloc>()
-                            .getFollowerNames(state.user.followerIDs);
-                        await showDialog(
-                            context: context,
-                            builder: (_) => Dialog(
-                                    child: Column(children: [
+                  ]),
+                ),
+                SizedBox(
+                  height: 22,
+                  child: VerticalDivider(color: Theme.of(context).primaryColor),
+                ),
+                TextButton(
+                  onPressed: () async {
+                   listOfItems = await context.read<UserBloc>().getFollowerNames(state.user.followerIDs);
+                    await showDialog(
+                        context: context,
+                        builder: (_) => Dialog(
+                            child: Column(
+                                children: [
+                                  Text("Followers",
+                                    style: TextStyle(
+                                      fontFamily: "SFCompactText",
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 20,
+                                      color: Theme.of(context).iconTheme.color,
+                                    ),),
                                   const SizedBox(height: 10),
                                   ...listOfItems.map((item) {
                                     return FollowerInstance(
@@ -337,50 +352,43 @@ class BuildProfile extends StatelessWidget {
                         )
                       ]),
                     ),
-                    SizedBox(
-                      height: 26.h,
-                      width: 6.w,
-                      child: VerticalDivider(
-                          color: Theme.of(context).primaryColor),
-                    ),
-                    TextButton(
-                      onPressed: () async {
-                        listOfItems2 = await context
-                            .read<UserBloc>()
-                            .getFollowingNames(state.user.followingIDs);
-                        await showDialog(
-                            context: context,
-                            builder: (_) => Dialog(
-                                    child: Column(children: [
-                                  const SizedBox(height: 10),
-                                  ...listOfItems2.map((item) {
-                                    return FollowerInstance(
-                                      followerName: item['followerName'],
-                                      followerUName: item['followerUName'],
-                                    );
-                                  }).toList(),
-                                ])));
-                      },
-                      child: Row(children: [
-                        Text(
-                          state.user.followingIDs == null
-                              ? "0"
-                              : state.user.followingIDs!.length.toString(),
-                          style: TextStyle(
-                            fontFamily: "SFCompactText",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12.sp,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        ),
-                        Text(
-                          '   Following',
-                          style: TextStyle(
-                            fontFamily: "SFCompactText",
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
+                    Text(
+                      ' Followers',
+                      style: TextStyle(
+                        fontFamily: "SFCompactText",
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    )
+                  ]),
+                ),
+                SizedBox(
+                  height: 22,
+                  child: VerticalDivider(color: Theme.of(context).primaryColor),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    listOfItems2 = await context.read<UserBloc>().getFollowingNames(state.user.followingIDs);
+                    await showDialog(
+                        context: context,
+                        builder: (_) => Dialog(
+                        child: Column(
+                            children: [Text("Following",
+                              style: TextStyle(
+                                fontFamily: "SFCompactText",
+                                fontWeight: FontWeight.normal,
+                                fontSize: 20,
+                                color: Theme.of(context).iconTheme.color,
+                              ),),
+                              const SizedBox(height: 10),
+                              ...listOfItems2.map((item) {
+                                return FollowerInstance(
+                                  followerName: item['followerName'],
+                                  followerUName: item['followerUName'],
+                                );
+                              }).toList(),
+                            ]
                         )
                       ]),
                     ),
