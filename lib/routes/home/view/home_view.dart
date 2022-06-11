@@ -54,13 +54,13 @@ class _HomeState extends State<Home> {
         bottomNavigationBuilder: (_, tabsRouter) {
           return BottomNavigationBar(
             backgroundColor:
-                Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            Theme.of(context).bottomNavigationBarTheme.backgroundColor,
             type: BottomNavigationBarType.fixed,
             iconSize: 26.sm,
             selectedItemColor:
-                Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
             unselectedItemColor:
-                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+            Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
             currentIndex: tabsRouter.activeIndex,
             onTap: tabsRouter.setActiveIndex,
             showSelectedLabels: false,

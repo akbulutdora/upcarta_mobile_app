@@ -25,7 +25,6 @@ class MyProfileScreen extends StatefulWidget {
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
   // final AuthService _authService = AuthService();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,8 +101,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     Tab(text: "Asks")
                   ],
                 ),
-                expandedHeight: 500.h,
-                flexibleSpace: const FlexibleSpaceBar(
+                expandedHeight: height / 2,
+                flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
                   background: BuildProfile(),
                   // This is where you build the profile part
@@ -128,7 +127,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 }
 
 class BuildProfile extends StatelessWidget {
-  const BuildProfile({Key? key}) : super(key: key);
+
+  List<dynamic> listOfItems= [];
+  List<dynamic> listOfItems2= [];
+  BuildProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -272,7 +274,24 @@ class BuildProfile extends StatelessWidget {
                   child: VerticalDivider(color: Theme.of(context).primaryColor),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                   listOfItems = await context.read<UserBloc>().getFollowerNames(state.user.followerIDs);
+                    await showDialog(
+                        context: context,
+                        builder: (_) => Dialog(
+                            child: Column(
+                                children: [const SizedBox(height: 10),
+                                  ...listOfItems.map((item) {
+                                    return FollowerInstance(
+                                      followerName: item['followerName'],
+                                      followerUName: item['followerUName'],
+                                    );
+                                  }).toList(),
+                                ]
+                            )
+                        )
+                    );
+                  },
                   child: Row(children: [
                     Text(
                       state.user.followerIDs == null
@@ -301,7 +320,24 @@ class BuildProfile extends StatelessWidget {
                   child: VerticalDivider(color: Theme.of(context).primaryColor),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    listOfItems2 = await context.read<UserBloc>().getFollowingNames(state.user.followingIDs);
+                    await showDialog(
+                        context: context,
+                        builder: (_) => Dialog(
+                        child: Column(
+                            children: [const SizedBox(height: 10),
+                              ...listOfItems2.map((item) {
+                                return FollowerInstance(
+                                  followerName: item['followerName'],
+                                  followerUName: item['followerUName'],
+                                );
+                              }).toList(),
+                            ]
+                        )
+                    )
+                    );
+                  },
                   child: Row(children: [
                     Text(
                       state.user.followingIDs == null
@@ -334,3 +370,49 @@ class BuildProfile extends StatelessWidget {
     }));
   }
 }
+class FollowerInstance extends StatefulWidget {
+
+
+  FollowerInstance(
+      {Key? key,
+      required this.followerName,
+        required this.followerUName,
+      })
+      : super(key: key);
+  String followerName;
+  String followerUName;
+  @override
+  State<FollowerInstance> createState() => _FollowerInstanceState();
+}
+
+class _FollowerInstanceState extends State<FollowerInstance> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+      },
+      child: Container(
+        width: double.maxFinite,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Row(
+                children: [
+                  Text(" ${widget.followerName}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18)),
+                  Text(" @${widget.followerUName}",
+                      style: const TextStyle(fontSize: 18)),
+                ],
+              ),
+            ),
+            const Divider(thickness: 1, height: 0),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
