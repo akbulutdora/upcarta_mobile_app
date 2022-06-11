@@ -27,7 +27,14 @@ class _LatestContentListState extends State<LatestContentList> {
       builder: (context, state) {
         switch (state.status) {
           case LatestFeedStatus.failure:
-            return const Center(child: Text('failed to fetch posts'));
+            return Center(
+                child: TextButton(
+                    onPressed: () {
+                      context
+                          .read<LatestFeedBloc>()
+                          .add(LatestFeedEventContentRefreshed());
+                    },
+                    child: Text('failed to fetch posts')));
           case LatestFeedStatus.success:
             if (state.contents.isEmpty) {
               return const Center(child: Text('no posts'));

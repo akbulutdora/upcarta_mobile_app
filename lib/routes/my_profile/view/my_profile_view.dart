@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 
@@ -101,7 +102,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     Tab(text: "Asks")
                   ],
                 ),
-                expandedHeight: height / 2,
+                expandedHeight: 500.h,
                 flexibleSpace: const FlexibleSpaceBar(
                   collapseMode: CollapseMode.pin,
                   background: BuildProfile(),
@@ -148,17 +149,13 @@ class BuildProfile extends StatelessWidget {
                 await showDialog(
                     context: context,
                     builder: (_) => Dialog(
-                  child: Column(
-                    children: [Expanded(
-                      child: Image(
-                        // FIXME: ADD NULL CASE
-                      image: NetworkImage(state.user.photoURL!)
-
-                ),
-                    ),]
-                  )
-                )
-                );
+                            child: Column(children: [
+                          Expanded(
+                            child: Image(
+                                // FIXME: ADD NULL CASE
+                                image: NetworkImage(state.user.photoURL!)),
+                          ),
+                        ])));
               },
               child: Hero(
                 tag: 'imageHero',
@@ -173,7 +170,6 @@ class BuildProfile extends StatelessWidget {
                 ),
               ),
             ),
-
             Text(
               //widget.user.name,
               state.user.name ?? "NAME IS NULL",
@@ -337,6 +333,4 @@ class BuildProfile extends StatelessWidget {
       );
     }));
   }
-
 }
-
