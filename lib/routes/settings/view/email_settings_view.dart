@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EmailSettings extends StatefulWidget {
   static MaterialPage page() {
@@ -17,34 +18,29 @@ class EmailSettings extends StatefulWidget {
 }
 
 class _EmailSettingsState extends State<EmailSettings> {
-bool weekly = false;
-bool notifEmail = false;
-bool updateEmail = false;
+  bool weekly = false;
+  bool notifEmail = false;
+  bool updateEmail = false;
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    final double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
+            elevation: 0.8,
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
-            title:  Text(
+            title: Text(
               'Email Settings',
               style: TextStyle(
                   fontFamily: "SFCompactText-Medium",
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
-                  fontSize: 22),
+                  fontSize: 22.sp),
             ),
             leading: IconButton(
-              icon:  Icon(
+              icon: Icon(
                 Icons.arrow_back_ios,
                 color: Theme.of(context).iconTheme.color,
               ),
@@ -54,32 +50,45 @@ bool updateEmail = false;
             )),
         //),
         body: Container(
-            padding: EdgeInsets.all(height * 0.016),
+            padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 0.h),
             child: ListView(
               children: <Widget>[
-                 Text(
+                Text(
                   "Email",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
-                    fontSize: 20,
+                    fontSize: 18.sp,
                     color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                 Divider(
+                Divider(
                   color: Theme.of(context).dividerTheme.color,
                 ),
+                SizedBox(height: 4.h),
+                Text(
+                  "Change your email address.",
+                  style: TextStyle(
+                    fontFamily: "SFCompactText",
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14,
+                    color: Theme.of(context).dividerTheme.color,
+                  ),
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
                 TextField(
-                    cursorColor: Theme.of(context).primaryColor,
-                    decoration: InputDecoration(
-                      fillColor: Colors.transparent,
-                      filled: true,
-                      isDense: true,
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor,
-                          )),
+                  cursorColor: Theme.of(context).primaryColor,
+                  decoration: InputDecoration(
+                    fillColor: Colors.transparent,
+                    filled: true,
+                    isDense: true,
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                        )),
                     contentPadding: EdgeInsets.all(height * 0.016),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -88,16 +97,13 @@ bool updateEmail = false;
                         )),
                   ),
                 ),
-                Divider(
-                  color: Theme.of(context).dividerTheme.color,
-                ),
-                SizedBox(height: height * 0.012),
-                 Text(
+                SizedBox(height: 40.h),
+                Text(
                   "Connect Accounts",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
-                    fontSize: 20,
+                    fontSize: 18.sp,
                     color: Theme.of(context).iconTheme.color,
                   ),
                 ),
@@ -111,63 +117,63 @@ bool updateEmail = false;
                         onPressed: () {},
                         style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
+                                borderRadius: BorderRadius.circular(15.r)),
                             backgroundColor: Theme.of(context).primaryColor,
-                            padding: EdgeInsets.all(height * 0.02)),
+                            padding: EdgeInsets.fromLTRB(32.w, 8.h, 32.w, 8.h)),
                         child: Text(
                           'Connect to Twitter',
-                          style: TextStyle(
-                              color: Colors.white, fontSize: height / 50),
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 12.sp),
                         ),
                       ),
+                      SizedBox(width: 12.w),
                       OutlinedButton(
                         onPressed: () {},
                         style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                            side:  BorderSide(color: Theme.of(context).primaryColor),
-                            padding: EdgeInsets.all(height * 0.02)),
+                                borderRadius: BorderRadius.circular(15.r)),
+                            side: BorderSide(
+                                color: Theme.of(context).primaryColor),
+                            padding: EdgeInsets.fromLTRB(32.w, 8.h, 32.w, 8.h)),
                         child: Text(
                           'Connect to Google',
                           style: TextStyle(
-                              color: Theme.of(context).iconTheme.color, fontSize: height / 50),
+                              color: Theme.of(context).iconTheme.color,
+                              fontSize: 12.sp),
                         ),
                       ),
                     ]),
-                Divider(
-                  color: Theme.of(context).dividerTheme.color,
-                ),
-                SizedBox(height: height * 0.012),
-                 Text(
+                SizedBox(height: 40.h),
+                Text(
                   "Discover Email",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     color: Theme.of(context).iconTheme.color,
                   ),
                 ),
                 Divider(
                   color: Theme.of(context).dividerTheme.color,
                 ),
-                 Text(
+                Text(
                   "Discover great books, podcasts, videos, articles, twitter threads, and more, based on your followings.",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.normal,
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     color: Theme.of(context).dividerTheme.color,
                   ),
                 ),
                 InkWell(
                   child: SwitchListTile(
                     activeColor: Theme.of(context).primaryColor,
-                    title:  Text(
+                    title: Text(
                       'Weekly',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
-                        fontSize: 14,
+                        fontSize: 14.sp,
                         color: Theme.of(context).iconTheme.color,
                       ),
                     ),
@@ -179,20 +185,20 @@ bool updateEmail = false;
                     },
                   ),
                 ),
-                SizedBox(height: height * 0.012),
-                 Text(
+                SizedBox(height: 40.h),
+                Text(
                   "Related to you",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.w700,
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                 Divider(
-                    color: Theme.of(context).dividerTheme.color,
+                Divider(
+                  color: Theme.of(context).dividerTheme.color,
                 ),
-                 Text(
+                Text(
                   "Get activity notifications in your inbox.",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
@@ -204,7 +210,7 @@ bool updateEmail = false;
                 InkWell(
                   child: SwitchListTile(
                     activeColor: Theme.of(context).primaryColor,
-                    title:  Text(
+                    title: Text(
                       'Send notification emails',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
@@ -221,8 +227,8 @@ bool updateEmail = false;
                     },
                   ),
                 ),
-                SizedBox(height: height * 0.012),
-                 Text(
+                SizedBox(height: 40.h),
+                Text(
                   "From Upcarta",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
@@ -231,16 +237,16 @@ bool updateEmail = false;
                     color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                 Divider(
+                Divider(
                   color: Theme.of(context).dividerTheme.color,
                 ),
-                 Text(
+                Text(
                   "Get notified about new features and improvements.",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
-                    color: Theme.of(context).iconTheme.color,
+                    color: Theme.of(context).dividerTheme.color,
                   ),
                 ),
                 InkWell(
@@ -263,6 +269,7 @@ bool updateEmail = false;
                     },
                   ),
                 ),
+                SizedBox(height: 24.h),
                 Container(
                   alignment: Alignment.centerRight,
                   child: OutlinedButton(
@@ -271,16 +278,14 @@ bool updateEmail = false;
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
                         backgroundColor: Theme.of(context).primaryColor,
-                        padding: EdgeInsets.all(height * 0.02)),
+                        padding: EdgeInsets.fromLTRB(32.w, 8.h, 32.w, 8.h)),
                     child: Text(
                       'Save',
-                      style:
-                      TextStyle(color: Colors.white, fontSize: height / 50),
+                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
                     ),
                   ),
                 ),
               ],
             )));
   }
-
 }
