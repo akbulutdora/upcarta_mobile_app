@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/bloc/latest_feed_bloc.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/contents_list.dart';
@@ -12,7 +14,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
+
 bool isPressed = false;
+
 class ContentCard extends StatefulWidget {
   final Content content;
 
@@ -33,10 +37,10 @@ class _ContentCardState extends State<ContentCard> {
         ? Card(
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
-            ),
+                borderRadius: BorderRadius.circular(10.r),
+                side: BorderSide(color: AppColors.gray2LightText)),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+              padding: EdgeInsets.fromLTRB(12.w, 14.h, 12.w, 14.h),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +52,10 @@ class _ContentCardState extends State<ContentCard> {
                       Flexible(
                         child: Text(
                           widget.content.title,
-                          style: contentCardTitleStyle,
+                          style: TextStyle(
+                              fontSize: 17.sp,
+                              fontFamily: "SFCompactText",
+                              fontWeight: FontWeight.w600),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           softWrap: false,
@@ -57,26 +64,9 @@ class _ContentCardState extends State<ContentCard> {
                       Row(
                         children: [
                           IconButton(
-                            constraints: BoxConstraints.loose(Size(20, 20)),
-                            splashRadius: 20,
-                            iconSize: 20,
-                            onPressed: () {
-                              isPressed = !isPressed;
-                              context.read<LatestFeedBloc>().add(
-                                  LatestFeedEventContentSaved(
-                                      widget.content.postId));
-                            },
-                            icon: isPressed?
-                            Icon(Icons.bookmark, color: Theme.of(context).iconTheme.color)
-                            :
-    Icon(Icons.bookmark_border_outlined, color: Theme.of(context).iconTheme.color),
-                            padding: EdgeInsets.all(0),
-                          ),
-                          SizedBox(width: 20),
-                          IconButton(
-                            constraints: BoxConstraints.loose(Size(20, 20)),
-                            splashRadius: 20,
-                            iconSize: 20,
+                            constraints: BoxConstraints.loose(Size(16, 20)),
+                            splashRadius: 20.r,
+                            iconSize: 20.sm,
                             onPressed: () async {
                               FocusScope.of(context).unfocus();
                               _selected = await showDialog(
@@ -115,7 +105,26 @@ class _ContentCardState extends State<ContentCard> {
                                 },
                               );
                             },
-                            icon: Icon(Icons.more_horiz, color:Theme.of(context).iconTheme.color),
+                            icon: Icon(Icons.more_horiz,
+                                color: Theme.of(context).iconTheme.color),
+                            padding: EdgeInsets.all(0),
+                          ),
+                          SizedBox(width: 20.h),
+                          IconButton(
+                            constraints: BoxConstraints.loose(Size(20, 20)),
+                            splashRadius: 22.r,
+                            iconSize: 22.sm,
+                            onPressed: () {
+                              isPressed = !isPressed;
+                              context.read<LatestFeedBloc>().add(
+                                  LatestFeedEventContentSaved(
+                                      widget.content.postId));
+                            },
+                            icon: isPressed
+                                ? Icon(Icons.bookmark,
+                                    color: Theme.of(context).iconTheme.color)
+                                : Icon(Icons.bookmark_border_outlined,
+                                    color: Theme.of(context).iconTheme.color),
                             padding: EdgeInsets.all(0),
                           ),
                         ],
@@ -123,31 +132,31 @@ class _ContentCardState extends State<ContentCard> {
                     ],
                   ),
                   SizedBox(
-                    height: 2,
+                    height: 4.h,
                   ),
                   Row(children: [
                     Icon(
                       contentTypeInfoDict[widget.content.contentType]![0],
-                      size: 20,
+                      size: 18.sm,
                       color: Theme.of(context).primaryColor,
                     ),
                     SizedBox(
-                      width: 2,
+                      width: 4.w,
                     ),
                     Text(
                       contentTypeInfoDict[widget.content.contentType]![1],
                       style: TextStyle(
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
-                          fontSize: 10,
+                          fontSize: 12.sm,
                           color: Theme.of(context).primaryColor),
                     ),
                     SizedBox(
-                      width: 6,
+                      width: 6.w,
                     ),
-                    Text("\u00B7"),
+                    Text("\u00B7", style: TextStyle(fontSize: 18.sp)),
                     SizedBox(
-                      width: 6,
+                      width: 6.w,
                     ),
                     Text(
                       widget.content.username != ""
@@ -156,15 +165,15 @@ class _ContentCardState extends State<ContentCard> {
                       style: TextStyle(
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
-                          fontSize: 10,
+                          fontSize: 12.sm,
                           color: Theme.of(context).iconTheme.color),
                     ),
                     SizedBox(
-                      width: 6,
+                      width: 6.w,
                     ),
-                    Text("\u00B7"),
+                    Text("\u00B7", style: TextStyle(fontSize: 18.sp)),
                     SizedBox(
-                      width: 6,
+                      width: 6.w,
                     ),
                     Text(
                       DateFormat('EEE, dd/mm, HH:mm')
@@ -172,45 +181,33 @@ class _ContentCardState extends State<ContentCard> {
                       style: TextStyle(
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
-                          fontSize: 10,
+                          fontSize: 12.sm,
                           color: Theme.of(context).iconTheme.color),
                     ),
                     SizedBox(
-                      width: 6,
-                    ),
-                    Text("\u00B7"),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Text(
-                      "genre",
-                      style: TextStyle(
-                          fontFamily: "SF Compact Text",
-                          fontWeight: FontWeight.normal,
-                          fontSize: 10,
-                          color: Theme.of(context).iconTheme.color),
+                      width: 6.sp,
                     ),
                   ]),
                   SizedBox(
-                    height: 2,
+                    height: 8.h,
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                        border: Border.all(color: AppColors.upcartaBlue),
+                        borderRadius: BorderRadius.all(Radius.circular(5.r))),
                     child: Row(
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          borderRadius: BorderRadius.all(Radius.circular(5.r)),
                           child: Image.network(
                             widget.content.imageLocation,
                             errorBuilder: (BuildContext context,
                                 Object exception, StackTrace? stackTrace) {
                               return Container(
-                                  color: Colors.grey.shade100,
-                                  padding: EdgeInsets.all(16),
-                                  width: 100,
-                                  height: 80,
+                                  color: AppColors.upcartaBlue,
+                                  padding: EdgeInsets.all(16.sm),
+                                  width: 100.w,
+                                  height: 80.h,
                                   child: Center(
                                     child: const Text(
                                       'Could not find the image 😢',
@@ -248,7 +245,7 @@ class _ContentCardState extends State<ContentCard> {
                       ],
                     ),
                   ),
-
+                  SizedBox(height: 4.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -259,12 +256,13 @@ class _ContentCardState extends State<ContentCard> {
                           style: TextStyle(
                               fontFamily: "SF Compact Text",
                               fontWeight: FontWeight.normal,
-                              fontSize: 10,
+                              fontSize: 10.sp,
                               color: Theme.of(context).iconTheme.color),
                         ),
                       ),
                     ],
                   ),
+                  SizedBox(height: 4.h),
                   RecommendedBy(recommenders: [
                     {
                       "image": "imageLink",

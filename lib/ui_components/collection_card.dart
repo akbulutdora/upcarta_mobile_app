@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 
@@ -23,7 +24,7 @@ class CollectionCard extends StatelessWidget {
         ),
         child: Container(
           padding: EdgeInsets.all(8),
-          width: 318,
+          width: 360.h,
           // padding: const EdgeInsets.fromLTRB(10, 6, 10, 13),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

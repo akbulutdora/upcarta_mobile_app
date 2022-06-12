@@ -1,6 +1,7 @@
 library top_view;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import '../../../../util/styles.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
@@ -25,7 +26,7 @@ class _TopViewState extends State<TopView> {
             toolbarHeight: 0,
             leading: Container(),
             automaticallyImplyLeading: false,
-            expandedHeight: 400,
+            expandedHeight: 485.h,
             // collapsedHeight: 75,
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,

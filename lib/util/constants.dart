@@ -2,10 +2,10 @@ import 'package:upcarta_mobile_app/models/models.dart';
 
 final List<Content> contents = <Content>[
   Content(
-    title: "TOP SCREEN",
-    username: "dora",
+    title: "Stand by Me",
+    username: "By Rob Reiner",
     postId: "1",
-    contentType: ContentType.book,
+    contentType: ContentType.movie,
     uId: '',
     url: 'www.google.com',
     description: 'berna',

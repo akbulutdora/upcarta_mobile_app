@@ -299,7 +299,7 @@ class URLForm extends StatelessWidget {
         minLines: 1,
         maxLines: 3,
         decoration: InputDecoration(
-            fillColor: Colors.white,
+            fillColor: Colors.transparent,
             filled: true,
             labelText: 'Enter URL',
             border: OutlineInputBorder(

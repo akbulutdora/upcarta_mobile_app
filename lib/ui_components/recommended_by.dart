@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RecommendedBy extends StatelessWidget {
   const RecommendedBy({Key? key, required this.recommenders}) : super(key: key);
@@ -19,11 +20,11 @@ class RecommendedBy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+          padding: EdgeInsets.symmetric(vertical: 5.w),
           child: Stack(
               clipBehavior: Clip.none,
               alignment: Alignment.center,
@@ -31,17 +32,17 @@ class RecommendedBy extends StatelessWidget {
                 SizedBox(
                   width: recommenders.length < 3
                       ? recommenders.length < 2
-                          ? 40
-                          : 55
-                      : 70,
-                  height: 20,
+                          ? 40.w
+                          : 55.w
+                      : 55.w,
+                  height: 20.h,
                 ),
                 ...createMap(recommenders).entries.map((item) {
                   return item.key < 3
                       ? Positioned(
-                          left: item.key * 15,
+                          left: item.key * 12,
                           child: CircleAvatar(
-                            radius: 15,
+                            radius: 15.r,
                             backgroundColor: Color(
                                 int.parse(item.value["color"] ?? "0xFF34E8EB")),
                           ),
@@ -52,7 +53,7 @@ class RecommendedBy extends StatelessWidget {
         ),
         Text(
           "Also recommended by ${recommenders[0]["username"]} ${recommenders.length > 1 ? recommenders.length > 2 ? "and " + (recommenders.length - 1).toString() + " others" : "and " + recommenders[1]["username"]! : ""}",
-          style: const TextStyle(fontSize: 12),
+          style: TextStyle(fontSize: 12.sp),
         )
       ],
     );

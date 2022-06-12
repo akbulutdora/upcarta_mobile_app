@@ -55,7 +55,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       appBar: AppBar(
           elevation: 0.8,
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
