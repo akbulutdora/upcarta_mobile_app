@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
@@ -36,14 +37,14 @@ class _SettingsState extends State<Settings> {
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
-            elevation: 0.4,
+            elevation: 0.8,
             title: Text(
               'Settings',
               style: TextStyle(
                   fontFamily: "SFCompactText-Medium",
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
-                  fontSize: 22),
+                  fontSize: 22.sp),
             ),
             leading: IconButton(
               icon: Icon(
@@ -56,10 +57,12 @@ class _SettingsState extends State<Settings> {
             )),
         //),
         body: Container(
-            padding: EdgeInsets.all(height * 0.016),
+            color: Theme.of(context).appBarTheme.backgroundColor,
+            padding: EdgeInsets.all(16.h),
             child: ListView(
               children: <Widget>[
                 Card(
+                    elevation: 0,
                     child: InkWell(
                         onTap: () {
                           context.router.push(const EmailSettingsRoute());
@@ -69,14 +72,19 @@ class _SettingsState extends State<Settings> {
                                 style: TextStyle(
                                   fontFamily: "SFCompactText",
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 18,
+                                  fontSize: 18.sp,
                                   color: Theme.of(context).iconTheme.color,
                                 )),
                             leading: Icon(
                               Icons.mail,
                               color: Theme.of(context).iconTheme.color,
                             )))),
+                Divider(
+                  color: Theme.of(context).dividerColor,
+                  height: 2.h,
+                ),
                 Card(
+                    elevation: 0,
                     child: InkWell(
                         onTap: () {
                           context.router.push(const PasswordSettingsRoute());
@@ -93,7 +101,12 @@ class _SettingsState extends State<Settings> {
                               Icons.vpn_key,
                               color: Theme.of(context).iconTheme.color,
                             )))),
+                Divider(
+                  color: Theme.of(context).dividerColor,
+                  height: 2.h,
+                ),
                 Card(
+                    elevation: 0,
                     child: InkWell(
                         onTap: () {
                           context.router
@@ -111,34 +124,44 @@ class _SettingsState extends State<Settings> {
                               Icons.notifications,
                               color: Theme.of(context).iconTheme.color,
                             )))),
+                Divider(
+                  color: AppColors.gray3ContentText,
+                  height: 2.h,
+                ),
                 BlocBuilder<ThemeCubit, ThemeData>(
                   builder: (_, theme) {
                     return Card(
+                        elevation: 0,
                         child: InkWell(
-                      child: SwitchListTile(
-                        activeColor: Theme.of(context).primaryColor,
-                        title: Text(
-                          'Dark Mode',
-                          style: TextStyle(
-                            fontFamily: "SFCompactText",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
-                            color: Theme.of(context).iconTheme.color,
+                          child: SwitchListTile(
+                            activeColor: Theme.of(context).primaryColor,
+                            title: Text(
+                              'Dark Mode',
+                              style: TextStyle(
+                                fontFamily: "SFCompactText",
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            ),
+                            value: theme.brightness == Brightness.dark,
+                            onChanged: (bool value) {
+                              context.read<ThemeCubit>().toggleTheme();
+                            },
+                            secondary: Icon(
+                              Icons.brightness_2,
+                              color: Theme.of(context).iconTheme.color,
+                            ),
                           ),
-                        ),
-                        value: theme.brightness == Brightness.dark,
-                        onChanged: (bool value) {
-                          context.read<ThemeCubit>().toggleTheme();
-                        },
-                        secondary: Icon(
-                          Icons.brightness_2,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
-                      ),
-                    ));
+                        ));
                   },
                 ),
+                Divider(
+                  color: AppColors.gray3ContentText,
+                  height: 2.h,
+                ),
                 Card(
+                    elevation: 0,
                     child: InkWell(
                         onTap: () async {
                           try {
@@ -166,6 +189,10 @@ class _SettingsState extends State<Settings> {
                             ),
                           ),
                         ))),
+                Divider(
+                  color: Theme.of(context).dividerColor,
+                  height: 2.h,
+                ),
                 BlocListener<AppBloc, AppState>(
                   listener: (context, state) {
                     // TODO: implement listener
@@ -179,6 +206,7 @@ class _SettingsState extends State<Settings> {
                     }
                   },
                   child: Card(
+                    elevation: 0,
                     child: InkWell(
                         onTap: () {
                           context.read<AppBloc>().add(AppLogoutRequested());
@@ -194,6 +222,10 @@ class _SettingsState extends State<Settings> {
                           ),
                         ))),
                   ),
+                ),
+                Divider(
+                  color: Theme.of(context).dividerColor,
+                  height: 2.h,
                 ),
               ],
             )));
