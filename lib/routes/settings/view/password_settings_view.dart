@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 
 import '../../../repositories/authentication_repository.dart';
@@ -28,17 +29,19 @@ class _PasswordSettingsState extends State<PasswordSettings> {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: AppBar(
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
+            elevation: 0.8,
             title: Text(
               'Password Settings',
               style: TextStyle(
                   fontFamily: "SFCompactText-Medium",
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
-                  fontSize: 22),
+                  fontSize: 22.sp),
             ),
             leading: IconButton(
               icon: Icon(
@@ -55,7 +58,7 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                 context.read<AuthenticationRepository>(),
                 context.read<UserRepository>()),
             child: Container(
-                padding: EdgeInsets.all(height * 0.016),
+                padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 0.h),
                 child: ListView(
                   children: <Widget>[
                     Text(
@@ -63,27 +66,17 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.w700,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     Divider(
                       color: Theme.of(context).dividerTheme.color,
                     ),
-                    SizedBox(height: height * 0.020),
-                    Text(
-                      "New Password",
-                      style: TextStyle(
-                        fontFamily: "SFCompactText",
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                        color: Theme.of(context).iconTheme.color,
-                      ),
-                    ),
-                    SizedBox(height: height * 0.012),
+                    SizedBox(height: 16.h),
                     _PasswordInput(),
-                    SizedBox(height: height * 0.020),
-                    _PasswordSubmitButton(height: height),
+                    SizedBox(height: 16.h),
+                    _PasswordSubmitButton(height: 40.h),
                   ],
                 ))));
   }
@@ -136,11 +129,10 @@ class _PasswordSubmitButton extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                       backgroundColor: Theme.of(context).primaryColor,
-                      padding: EdgeInsets.all(height * 0.02)),
+                      padding: EdgeInsets.fromLTRB(32.w, 8.h, 32.w, 8.h)),
                   child: Text(
                     'Save',
-                    style:
-                        TextStyle(color: Colors.white, fontSize: height / 50),
+                    style: TextStyle(color: Colors.white, fontSize: 14.sp),
                   ),
                 ),
               );
@@ -155,20 +147,23 @@ class _PasswordInput extends StatelessWidget {
     return BlocBuilder<PasswordSettingsCubit, PasswordSettingsState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
-        return TextField(
-          key: const Key('passwordSettingsForm_passwordInput_textField'),
-          onChanged: (password) =>
-              context.read<PasswordSettingsCubit>().passwordChanged(password),
-          obscureText: false,
-          decoration: InputDecoration(
-            labelText: 'Enter New Password',
-            fillColor: Colors.transparent,
-            filled: true,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(
-                  color: Colors.white,
-                )),
+        return SizedBox(
+          height: 60.h,
+          child: TextField(
+            key: const Key('passwordSettingsForm_passwordInput_textField'),
+            onChanged: (password) =>
+                context.read<PasswordSettingsCubit>().passwordChanged(password),
+            obscureText: false,
+            decoration: InputDecoration(
+              labelText: 'Enter New Password',
+              fillColor: Colors.transparent,
+              filled: true,
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                  borderSide: const BorderSide(
+                    color: Colors.white,
+                  )),
+            ),
           ),
         );
       },

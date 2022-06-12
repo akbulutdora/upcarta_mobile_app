@@ -50,7 +50,7 @@ class _EmailSettingsState extends State<EmailSettings> {
             )),
         //),
         body: Container(
-            padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 0.h),
+            padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 0.h),
             child: ListView(
               children: <Widget>[
                 Text(

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NotificationSettings extends StatefulWidget {
   static MaterialPage page() {
@@ -31,20 +32,22 @@ class _NotificationSettingsState extends State<NotificationSettings> {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: AppBar(
+            elevation: 0.8,
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
-            title:  Text(
+            title: Text(
               'Notification Settings',
               style: TextStyle(
                   fontFamily: "SFCompactText-Medium",
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
-                  fontSize: 22),
+                  fontSize: 22.sp),
             ),
             leading: IconButton(
-              icon:  Icon(
+              icon: Icon(
                 Icons.arrow_back_ios,
                 color: Theme.of(context).iconTheme.color,
               ),
@@ -54,10 +57,10 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             )),
         //),
         body: Container(
-            padding: EdgeInsets.all(height * 0.016),
+            padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 0.h),
             child: ListView(
               children: <Widget>[
-                 Text(
+                Text(
                   "Notification Preferences",
                   style: TextStyle(
                     fontFamily: "SFCompactText",
@@ -66,18 +69,22 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     color: Theme.of(context).iconTheme.color,
                   ),
                 ),
-                 Divider(
+                SizedBox(
+                  height: 4.h,
+                ),
+                Divider(
                   color: Theme.of(context).dividerTheme.color,
+                  height: 12.h,
                 ),
                 InkWell(
                   child: SwitchListTile(
                     activeColor: Theme.of(context).primaryColor,
-                    title:  Text(
+                    title: Text(
                       'Pause All',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: Theme.of(context).iconTheme.color,
                       ),
                     ),
@@ -89,18 +96,17 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                 Divider(
-                  color:Theme.of(context).dividerTheme.color,
-                ),
+                Divider(
+                    color: Theme.of(context).dividerTheme.color, height: 12.h),
                 InkWell(
                   child: SwitchListTile(
                     activeColor: Theme.of(context).primaryColor,
-                    title:  Text(
+                    title: Text(
                       'Contents',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
                         fontWeight: FontWeight.normal,
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: Theme.of(context).iconTheme.color,
                       ),
                     ),
@@ -112,13 +118,14 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                 Divider(
+                Divider(
                   color: Theme.of(context).dividerTheme.color,
+                  height: 12.h,
                 ),
                 InkWell(
                   child: SwitchListTile(
                     activeColor: Theme.of(context).primaryColor,
-                    title:  Text(
+                    title: Text(
                       'Collections',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
@@ -135,13 +142,14 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                 Divider(
+                Divider(
                   color: Theme.of(context).dividerTheme.color,
+                  height: 12.h,
                 ),
                 InkWell(
                   child: SwitchListTile(
                     activeColor: Theme.of(context).primaryColor,
-                    title:  Text(
+                    title: Text(
                       'Asks',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
@@ -158,13 +166,14 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                 Divider(
+                Divider(
                   color: Theme.of(context).dividerTheme.color,
+                  height: 12.h,
                 ),
                 InkWell(
                   child: SwitchListTile(
                     activeColor: Theme.of(context).primaryColor,
-                    title:  Text(
+                    title: Text(
                       'Topics',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
@@ -181,13 +190,14 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                 Divider(
+                Divider(
                   color: Theme.of(context).dividerTheme.color,
+                  height: 12.h,
                 ),
                 InkWell(
                   child: SwitchListTile(
                     activeColor: Theme.of(context).primaryColor,
-                    title:  Text(
+                    title: Text(
                       'Activities from people you follow',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
@@ -204,13 +214,14 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                 Divider(
+                Divider(
                   color: Theme.of(context).dividerTheme.color,
+                  height: 12.h,
                 ),
                 InkWell(
                   child: SwitchListTile(
                     activeColor: Theme.of(context).primaryColor,
-                    title:  Text(
+                    title: Text(
                       'Messages',
                       style: TextStyle(
                         fontFamily: "SFCompactText",
@@ -227,10 +238,11 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     },
                   ),
                 ),
-                 Divider(
+                Divider(
                   color: Theme.of(context).dividerTheme.color,
+                  height: 12.h,
                 ),
-                SizedBox(height: height * 0.012),
+                SizedBox(height: 16.h),
                 Container(
                   alignment: Alignment.centerRight,
                   child: OutlinedButton(
@@ -239,11 +251,10 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
                         backgroundColor: Theme.of(context).primaryColor,
-                        padding: EdgeInsets.all(height * 0.02)),
+                        padding: EdgeInsets.fromLTRB(32.w, 8.h, 32.w, 8.h)),
                     child: Text(
                       'Save',
-                      style:
-                          TextStyle(color: Colors.white, fontSize: height / 50),
+                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
                     ),
                   ),
                 ),
