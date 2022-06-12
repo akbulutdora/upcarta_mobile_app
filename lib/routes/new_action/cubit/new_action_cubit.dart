@@ -16,6 +16,9 @@ class NewActionCubit extends Cubit<NewActionState> {
   void titleChanged(String value) {
     emit(state.copyWith(postTitle: value, status: ActionStatus.initial));
   }
+  void urlChanged(String value) {
+    emit(state.copyWith(postUrl: value, status: ActionStatus.initial));
+  }
 
   Future<void> submitContent() async {
     if (state.status == ActionStatus.submitting) {
@@ -23,7 +26,7 @@ class NewActionCubit extends Cubit<NewActionState> {
     } //to avoid sending multiple reqs at the same time
     emit(state.copyWith(status: ActionStatus.submitting));
     try {
-      await _userRepository.createContent(state.contentTtile, state.contentURL);
+      await _userRepository.createContent(state.contentTtile, state.contentURL, state.content);
       emit(state.copyWith(status: ActionStatus.success));
     } catch (_) {
       emit(state.copyWith(status: ActionStatus.submissionFailure));

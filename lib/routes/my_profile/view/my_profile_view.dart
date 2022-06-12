@@ -91,7 +91,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   Widget buildTabController() {
     return DefaultTabController(
       initialIndex: 0,
-      length: 5,
+      length: 1,
       child: NestedScrollView(
         headerSliverBuilder: (context, value) {
           return [
@@ -114,11 +114,11 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 indicatorPadding: const EdgeInsets.all(0),
                 isScrollable: true,
                 tabs: const <Widget>[
-                  Tab(text: "Overview"),
-                  Tab(text: "Content"),
+                  //Tab(text: "Overview"),
+                  //Tab(text: "Content"),
                   Tab(text: "Recommends"),
-                  Tab(text: "Collections"),
-                  Tab(text: "Asks")
+                  //Tab(text: "Collections"),
+                  //Tab(text: "Asks")
                 ],
                 unselectedLabelColor: Theme.of(context).dividerTheme.color,
                 unselectedLabelStyle: TextStyle(
@@ -139,12 +139,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         },
         body: TabBarView(
           children: [
-            Column(),
-            Column(),
+            //Column(),
+            //Column(),
             ProfileRecommendationsList(
                 uid: context.read<UserBloc>().state.user.id),
-            Column(),
-            Column(),
+            //Column(),
+            //Column(),
           ],
         ),
       ),

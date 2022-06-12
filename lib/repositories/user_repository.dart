@@ -458,7 +458,7 @@ class UserRepository {
   }
 
   ///User creates recommendation post
-  Future<void> createContent(String title, String contentURL) async {
+  Future<void> createContent(String title, String contentURL,String content) async {
     try {
       final newRef = _firestoreDB.collection("posts").doc();
       var postId = newRef.id;
@@ -471,7 +471,7 @@ class UserRepository {
         url: contentURL,
         uId: _firebaseAuth.currentUser!.uid,
         username: thisUser.name ?? "",
-        recommendationText: "",
+        recommendationText: content,
         contentTopic: '',
         contentType: ContentType.video,
         createDate: DateTime.now(),

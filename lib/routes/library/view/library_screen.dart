@@ -31,7 +31,7 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
         ..add(LibraryEventContentFetched()),
       child: DefaultTabController(
         initialIndex: 0,
-        length: 4,
+        length: 1,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
@@ -61,9 +61,9 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
               isScrollable: true,
               tabs: const <Widget>[
                 Tab(text: 'Saved'),
-                Tab(text: 'Completed'),
-                Tab(text: 'Collections'),
-                Tab(text: 'Recommends'),
+                //Tab(text: 'Completed'),
+                //Tab(text: 'Collections'),
+                //Tab(text: 'Recommends'),
               ],
               unselectedLabelColor: Theme.of(context).dividerTheme.color,
               unselectedLabelStyle: const TextStyle(
@@ -80,9 +80,9 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
           body: const TabBarView(
             children: <Widget>[
               MyLibrarySavedScreen(),
-              LibraryCompletedView(),
-              LibraryCollectionsView(),
-              LibraryRecommendsView(),
+              //LibraryCompletedView(),
+              //LibraryCollectionsView(),
+              //LibraryRecommendsView(),
             ],
           ),
         ),

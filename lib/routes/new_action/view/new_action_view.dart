@@ -117,7 +117,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
           child: Column(
             children: [
               BlocProvider(
-                create: (context) =>
+                create: (_context) =>
                     NewActionCubit(context.read<UserRepository>()),
                 child: BlocListener<NewActionCubit, NewActionState>(
                   listener: (context, state) {
@@ -209,6 +209,9 @@ class _NewPostScreenState extends State<NewPostScreen> {
                       ),
                       SizedBox(height: 8.h),
                       TextField(
+                        onChanged: (value) {
+                          context.read<NewActionCubit>().titleChanged(value);
+                        },
                         enableSuggestions: false,
                         autocorrect: false,
                         minLines: 1,
@@ -239,6 +242,9 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         height: 0.h,
                       ),
                       TextField(
+                        onChanged: (value) {
+                          context.read<NewActionCubit>().contentChanged(value);
+                        },
                         enableSuggestions: false,
                         autocorrect: false,
                         minLines: 1,
@@ -294,7 +300,7 @@ class URLForm extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         style: TextStyle(fontSize: 15.sp, color: AppColors.black),
         onChanged: (value) {
-          context.read<NewActionCubit>().contentChanged(value);
+          context.read<NewActionCubit>().urlChanged(value);
         },
         minLines: 1,
         maxLines: 3,
