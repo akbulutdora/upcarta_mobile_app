@@ -26,7 +26,7 @@ class NewActionCubit extends Cubit<NewActionState> {
     } //to avoid sending multiple reqs at the same time
     emit(state.copyWith(status: ActionStatus.submitting));
     try {
-      await _userRepository.createContent(state.contentTtile, state.contentURL, state.content);
+      await _userRepository.createContent(state.contentTitle, state.contentURL, state.content);
       emit(state.copyWith(status: ActionStatus.success));
     } catch (_) {
       emit(state.copyWith(status: ActionStatus.submissionFailure));

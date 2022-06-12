@@ -5,25 +5,25 @@ enum ActionStatus { initial, submitting, success, submissionFailure }
 class NewActionState extends Equatable {
   final String content;
   final String contentURL;
-  final String contentTtile;
+  final String contentTitle;
   final ActionStatus status;
   final String? errorMessage;
 
   const NewActionState({
     required this.content,
     required this.contentURL,
-    required this.contentTtile,
+    required this.contentTitle,
     required this.status,
     this.errorMessage,
   });
 
   factory NewActionState.initial() {
     return const NewActionState(
-        content:"", contentURL: "", contentTtile: "", status: ActionStatus.initial);
+        content:"", contentURL: "", contentTitle: "", status: ActionStatus.initial);
   }
 
   @override
-  List<Object> get props => [content, contentURL, contentTtile, status];
+  List<Object> get props => [content, contentURL, contentTitle, status];
 
   NewActionState copyWith({
     String? postContent,
@@ -34,7 +34,7 @@ class NewActionState extends Equatable {
   }) {
     return NewActionState(
         //contentURL: postContent ?? this.contentURL,
-        contentTtile: postTitle ?? this.contentTtile,
+        contentTitle: postTitle ?? this.contentTitle,
         content: postContent ?? this.content,
         contentURL: postUrl ?? this.contentURL,
         status: status ?? this.status,

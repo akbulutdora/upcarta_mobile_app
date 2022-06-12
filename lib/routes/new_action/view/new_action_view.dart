@@ -30,7 +30,9 @@ class _NewPostScreenState extends State<NewPostScreen> {
     'Collection By Expert',
     'Ask By Expert',
   ];
+
   _NewPostScreenState createState() => _NewPostScreenState();
+
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -117,7 +119,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
           child: Column(
             children: [
               BlocProvider(
-                create: (_context) =>
+                create: (_) =>
                     NewActionCubit(context.read<UserRepository>()),
                 child: BlocListener<NewActionCubit, NewActionState>(
                   listener: (context, state) {
@@ -208,67 +210,13 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      TextField(
-                        onChanged: (value) {
-                          context.read<NewActionCubit>().titleChanged(value);
-                        },
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        minLines: 1,
-                        maxLines: 2,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.w600),
-                        cursorColor: AppColors.upcartaBlue,
-                        decoration: InputDecoration(
-                          hintStyle: TextStyle(
-                            color: AppColors.gray3ContentText,
-                          ),
-                          hintText: "Add a Title",
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(100),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(100),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
-                      ),
+                     const TitleForm(),
                       Divider(
                         color: AppColors.upcartaBlue,
                         indent: 8.w,
                         height: 0.h,
                       ),
-                      TextField(
-                        onChanged: (value) {
-                          context.read<NewActionCubit>().contentChanged(value);
-                        },
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        minLines: 1,
-                        maxLines: 5,
-                        style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w400),
-                        cursorColor: AppColors.upcartaBlue,
-                        decoration: InputDecoration(
-                          hintStyle: TextStyle(
-                            color: AppColors.gray3ContentText,
-                          ),
-                          hintText: "Add optional body text...",
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(100),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(100),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
-                      ),
+                      const BodyForm(),
                       SizedBox(height: 4.h),
                       SizedBox(height: 75.h, child: const URLForm()),
                       SizedBox(height: 32.h),
@@ -281,6 +229,83 @@ class _NewPostScreenState extends State<NewPostScreen> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class TitleForm extends StatelessWidget {
+  const TitleForm({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return  TextField(
+      onChanged: (value) {
+        context.read<NewActionCubit>().titleChanged(value);
+      },
+      enableSuggestions: false,
+      autocorrect: false,
+      minLines: 1,
+      maxLines: 2,
+      style: TextStyle(
+          decoration: TextDecoration.none,
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w600),
+      cursorColor: AppColors.upcartaBlue,
+      decoration: InputDecoration(
+        hintStyle: TextStyle(
+          color: AppColors.gray3ContentText,
+        ),
+        hintText: "Add a Title",
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    );
+  }
+}
+
+class BodyForm extends StatelessWidget {
+  const BodyForm({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return  TextField(
+      onChanged: (value) {
+        context.read<NewActionCubit>().contentChanged(value);
+
+      },
+      enableSuggestions: false,
+      autocorrect: false,
+      minLines: 1,
+      maxLines: 5,
+      style: TextStyle(
+          decoration: TextDecoration.none,
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400),
+      cursorColor: AppColors.upcartaBlue,
+      decoration: InputDecoration(
+        hintStyle: TextStyle(
+          color: AppColors.gray3ContentText,
+        ),
+        hintText: "Add optional body text...",
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide.none,
         ),
       ),
     );
