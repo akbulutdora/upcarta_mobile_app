@@ -9,6 +9,8 @@ import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/my_profile.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 
+bool isPrivate = false;
+
 class MyProfileScreen extends StatefulWidget {
   static MaterialPage page() {
     return const MaterialPage(
@@ -50,6 +52,17 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         ),
         actions: <Widget>[
           IconButton(
+              icon: isPrivate
+                  ? Icon(
+                      Icons.lock_open_rounded,
+                    )
+                  : Icon(Icons.lock_outline_rounded),
+              onPressed: () {
+                setState(() {
+                  isPrivate = !isPrivate;
+                });
+              }),
+          IconButton(
             icon: Icon(
               Icons.settings,
               color: Theme.of(context).iconTheme.color,
@@ -57,7 +70,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             onPressed: () async {
               context.router.push(const SettingsRoute());
             },
-          )
+          ),
         ],
       ),
       //),
@@ -142,6 +155,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 class BuildProfile extends StatelessWidget {
   List<dynamic> listOfItems = [];
   List<dynamic> listOfItems2 = [];
+
   BuildProfile({Key? key}) : super(key: key);
 
   @override
@@ -405,6 +419,7 @@ class FollowerInstance extends StatefulWidget {
   }) : super(key: key);
   String followerName;
   String followerUName;
+
   @override
   State<FollowerInstance> createState() => _FollowerInstanceState();
 }

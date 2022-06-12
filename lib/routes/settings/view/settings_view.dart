@@ -26,7 +26,6 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  bool darkMode = false;
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
