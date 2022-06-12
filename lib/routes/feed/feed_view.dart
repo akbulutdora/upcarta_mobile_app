@@ -36,7 +36,6 @@ class _FeedScreenState extends State<FeedScreen> {
           final user = context.select((AppBloc bloc) => bloc.state.user);
           return SafeArea(
             child: Scaffold(
-              backgroundColor: AppColors.white,
               appBar: AppBar(
                 title: Text(
                   "Upcarta",

@@ -32,17 +32,16 @@ class _SettingsState extends State<Settings> {
     final double height = MediaQuery.of(context).size.height;
     AutoRouter.of(context);
     return Scaffold(
-        backgroundColor: AppColors.white,
         appBar: AppBar(
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
             elevation: 0.4,
-            title: const Text(
+            title: Text(
               'Settings',
               style: TextStyle(
                   fontFamily: "SFCompactText-Medium",
-                  color: Colors.black,
+                  color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
                   fontSize: 22),
             ),

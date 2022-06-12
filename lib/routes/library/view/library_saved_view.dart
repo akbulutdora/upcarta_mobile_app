@@ -22,7 +22,6 @@ class _MyLibrarySavedScreenState extends State<MyLibrarySavedScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: AppColors.white,
         child: Padding(
           padding: EdgeInsets.only(top: 8.0.h),
           child: Column(

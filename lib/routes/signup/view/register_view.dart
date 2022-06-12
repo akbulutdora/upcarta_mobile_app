@@ -52,7 +52,6 @@ class _MyRegisterState extends State<MyRegister> {
               style: kAppBarTextStyle,
             ),
           ]),
-          backgroundColor: AppColors.white,
         ),
         body: Padding(
           padding: EdgeInsets.only(left: 36.w, right: 36.w),

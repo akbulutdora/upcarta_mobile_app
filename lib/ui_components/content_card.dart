@@ -61,12 +61,15 @@ class _ContentCardState extends State<ContentCard> {
                             splashRadius: 20,
                             iconSize: 20,
                             onPressed: () {
-                              isPressed = true;
+                              isPressed = !isPressed;
                               context.read<LatestFeedBloc>().add(
                                   LatestFeedEventContentSaved(
                                       widget.content.postId));
                             },
-                            icon: Icon(Icons.bookmark),
+                            icon: isPressed?
+                            Icon(Icons.bookmark, color: Theme.of(context).iconTheme.color)
+                            :
+    Icon(Icons.bookmark_border_outlined, color: Theme.of(context).iconTheme.color),
                             padding: EdgeInsets.all(0),
                           ),
                           SizedBox(width: 20),
@@ -108,12 +111,11 @@ class _ContentCardState extends State<ContentCard> {
                                       ),
                                     ],
                                     elevation: 10,
-                                    //backgroundColor: Colors.green,
                                   );
                                 },
                               );
                             },
-                            icon: Icon(Icons.more_horiz),
+                            icon: Icon(Icons.more_horiz, color:Theme.of(context).iconTheme.color),
                             padding: EdgeInsets.all(0),
                           ),
                         ],
@@ -127,7 +129,7 @@ class _ContentCardState extends State<ContentCard> {
                     Icon(
                       contentTypeInfoDict[widget.content.contentType]![0],
                       size: 20,
-                      color: AppColors.upcartaBlue,
+                      color: Theme.of(context).primaryColor,
                     ),
                     SizedBox(
                       width: 2,
@@ -138,7 +140,7 @@ class _ContentCardState extends State<ContentCard> {
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
                           fontSize: 10,
-                          color: AppColors.upcartaBlue),
+                          color: Theme.of(context).primaryColor),
                     ),
                     SizedBox(
                       width: 6,
@@ -155,7 +157,7 @@ class _ContentCardState extends State<ContentCard> {
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
                           fontSize: 10,
-                          color: AppColors.black),
+                          color: Theme.of(context).iconTheme.color),
                     ),
                     SizedBox(
                       width: 6,
@@ -171,7 +173,7 @@ class _ContentCardState extends State<ContentCard> {
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
                           fontSize: 10,
-                          color: AppColors.black),
+                          color: Theme.of(context).iconTheme.color),
                     ),
                     SizedBox(
                       width: 6,
@@ -186,7 +188,7 @@ class _ContentCardState extends State<ContentCard> {
                           fontFamily: "SF Compact Text",
                           fontWeight: FontWeight.normal,
                           fontSize: 10,
-                          color: AppColors.black),
+                          color: Theme.of(context).iconTheme.color),
                     ),
                   ]),
                   SizedBox(
@@ -238,7 +240,7 @@ class _ContentCardState extends State<ContentCard> {
                                         fontFamily: "SF Compact Text",
                                         fontWeight: FontWeight.w300,
                                         fontSize: 10,
-                                        color: AppColors.upcartaBlue),
+                                        color: Theme.of(context).primaryColor),
                                   )
                                 ]),
                           ),
@@ -258,7 +260,7 @@ class _ContentCardState extends State<ContentCard> {
                               fontFamily: "SF Compact Text",
                               fontWeight: FontWeight.normal,
                               fontSize: 10,
-                              color: AppColors.black),
+                              color: Theme.of(context).iconTheme.color),
                         ),
                       ),
                     ],

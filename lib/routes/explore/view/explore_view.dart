@@ -53,7 +53,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
     return Scaffold(
-      backgroundColor: AppColors.white,
       appBar: AppBar(
         leading: Image.asset(
           "assets/images/upcarta-logo-small.png",

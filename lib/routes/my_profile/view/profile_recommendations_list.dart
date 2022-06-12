@@ -33,7 +33,13 @@ class ProfileRecommendationsList extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           case UserStatus.success:
             if (state.recommendedContents.isEmpty) {
-              return const Center(child: Text('no posts'));
+              return Center(child: TextButton(
+                  onPressed: () {
+                    context
+                        .read<UserBloc>()
+                        .add(const UserEventRecommendationsFetched());
+                  },
+                  child: Text('failed to fetch recs')),);
             }
             return RefreshIndicator(
               onRefresh: () {
