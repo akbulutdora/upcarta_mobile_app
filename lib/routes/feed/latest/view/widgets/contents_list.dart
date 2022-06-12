@@ -34,7 +34,7 @@ class _LatestContentListState extends State<LatestContentList> {
                           .read<LatestFeedBloc>()
                           .add(LatestFeedEventContentRefreshed());
                     },
-                    child: const Text('failed to fetch posts')));
+                    child: const Text('Failed to fetch posts!')));
           case LatestFeedStatus.success:
             if (state.contents.isEmpty) {
               return Center(
@@ -42,7 +42,7 @@ class _LatestContentListState extends State<LatestContentList> {
                       onPressed: () => context
                           .read<LatestFeedBloc>()
                           .add(LatestFeedEventContentRefreshed()),
-                      child: const Text('no posts')));
+                      child: const Text('There are no posts to display.')));
             }
             return RefreshIndicator(
               onRefresh: () {
@@ -56,7 +56,7 @@ class _LatestContentListState extends State<LatestContentList> {
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return index >= state.contents.length
-                      ? const BottomLoader()
+                      ? Container() //const BottomLoader()
                       : ContentListItem(content: state.contents[index]);
                 },
                 itemCount: state.hasReachedMax

@@ -67,7 +67,8 @@ class LatestFeedBloc extends Bloc<LatestFeedEvent, LatestFeedState> {
               contents: List.of(state.contents)..addAll(contents),
               hasReachedMax: false,
             ));
-    } catch (_) {
+    } catch (e) {
+      print(e);
       emit(state.copyWith(status: LatestFeedStatus.failure));
     }
   }

@@ -70,6 +70,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       UserEventRecommendationsFetched event, Emitter<UserState> emit) async {
     if (state.status == UserStatus.recommendedFetched) return;
     try {
+
       emit(state.copyWith(
         status: UserStatus.recommendedFetched,
         recommendedContents: [],

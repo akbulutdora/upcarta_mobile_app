@@ -350,13 +350,14 @@ class UserRepository {
 
   ///Recommends
   //TODO: sort posts by date
-  Future<List<Content>> profileGetRecommends(String uid) async {
+  //Future<List<Content>>
+  Future profileGetRecommends(String uid) async {
     try {
-      var docSnapshot = await _firestoreDB.collection('Person').doc(uid).get();
-
+      var docSnapshot = await _firestoreDB.collection(userCollection).doc(uid).get();
       if (docSnapshot.exists) {
         Map<String, dynamic> data = docSnapshot.data()!;
         var recommendationsID = data['recommendationsID'];
+        print(recommendationsID);
         var recommendationSnapshot = await _firestoreDB
             .collection('collections')
             .doc(recommendationsID)
@@ -364,6 +365,16 @@ class UserRepository {
         if (recommendationSnapshot.exists) {
           List<Content> recPostsList = [];
           var postIDs = recommendationSnapshot.data()!['postIDs'];
+          /*
+
+          var recPostsList = await _firestoreDB
+              .collection('posts')
+              .where('postID', whereIn:postIDs)
+              .get()
+              .then((val) => val.docs.map((e)=> e.data()!).toList());
+          print("HELELLLLOOOOO" + recPostsList.toString());
+*/
+
           for (int i = 0; i < postIDs.length; i++) {
             var recommendationPostSnapshot =
                 await _firestoreDB.collection('posts').doc(postIDs[i]).get();
@@ -372,51 +383,62 @@ class UserRepository {
                   .add(Content.fromJson(recommendationPostSnapshot.data()!));
             }
           }
+          if(recPostsList.isEmpty){return;}
           return recPostsList;
+
         }
       }
-      return [];
+      return;
     } catch (e) {
       print('Failed with error code: $e');
       //TODO: bu ne return etmeli
-      return [];
+      return;
     }
   }
 
-  Future<List<Content>> libraryGetSaves() async {
+  Future libraryGetSaves() async {
     try {
       var docSnapshot = await _firestoreDB
-          .collection('Person')
+          .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
           .get();
 
       if (docSnapshot.exists) {
         Map<String, dynamic> data = docSnapshot.data()!;
-        print("DATA: $data");
-        var recommendationsID = data['savesID'];
-        var recommendationSnapshot = await _firestoreDB
+        var savesID = data['savesID'];
+
+
+        var savesSnapshot = await _firestoreDB
             .collection('collections')
-            .doc(recommendationsID)
+            .doc(savesID)
             .get();
-        if (recommendationSnapshot.exists) {
+        if (savesSnapshot.exists) {
+          /*
+          var recPostsList = await _firestoreDB
+              .collection('posts')
+              .where('postID', whereIn:postIDs)
+              .get()
+              .then((val) => val.docs.map((e)=> e.data()!).toList());
+          */
           List<Content> recPostsList = [];
-          var postIDs = recommendationSnapshot.data()!['postIDs'];
+          var postIDs = savesSnapshot.data()!['postIDs'];
           for (int i = 0; i < postIDs.length; i++) {
-            var recommendationPostSnapshot =
+            var savePostSnapshot =
                 await _firestoreDB.collection('posts').doc(postIDs[i]).get();
-            if (recommendationPostSnapshot.exists) {
+            if (savePostSnapshot.exists) {
               recPostsList
-                  .add(Content.fromJson(recommendationPostSnapshot.data()!));
+                  .add(Content.fromJson(savePostSnapshot.data()!));
             }
           }
+          if(recPostsList.isEmpty){return;}
           return recPostsList;
         }
       }
-      return [];
+      return;
     } catch (e) {
       print('Failed with error code: $e');
       //TODO: bu ne return etmeli
-      return [];
+      return;
     }
   }
 
@@ -518,26 +540,28 @@ class UserRepository {
         .doc(_firebaseAuth.currentUser!.uid)
         .get()
         .then((documentSnapshot) => documentSnapshot['followingIDs']);
-      print("HEYYYYYYYO" + await _firestoreDB
-          .collection("posts")
-          .where("uId", whereIn:followingIDs).get().then((value) =>value.docs.map((e) => e['url']).toString()));
-      var data = await _firestoreDB
+      if(followingIDs.toString()=="[]"){return;}
+
+      print("HEYYYYYYYO" + await _firestoreDB.collection("posts").where("uId", whereIn:followingIDs).get().then((value) =>value.docs.map((e) => e['url']).toString()));
+      var data1 = await _firestoreDB
           .collection("posts")
           .orderBy("createDate", descending: true)
           .where("uId", whereIn:followingIDs)
           .limit(numberOfPosts + 10)
-          .get()
-          .then((value) {
-        return value.docs.map((e) => Content.fromJson(e.data())).toList();
-      });
+          .get();
+      dynamic data;
+      if(data1.docs.isEmpty){return;}
+      else{
+        data= data1.docs.map((e) => Content.fromJson(e.data())).toList();
+          //.then((value) {return value.docs.map((e) => Content.fromJson(e.data())).toList();});
 
       if (data.length > numberOfPosts) {
         return data.sublist(numberOfPosts);
       } else {
-        return [];
+        return;
       }
       // return {};
-    } catch (e) {
+    }} catch (e) {
       print('Failed with error code: $e');
       rethrow;
     }

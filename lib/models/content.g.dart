@@ -14,7 +14,8 @@ Content _$ContentFromJson(Map<String, dynamic> json) => Content(
       contentType: $enumDecode(_$ContentTypeEnumMap, json['contentType']),
       description:
           json['description'] as String? ?? "This content has no description.",
-      createDate: DateTime.parse(json['createDate'] as String),
+      //createDate: DateTime.parse(json['createDate'] as String),
+      createDate: json['createDate'].toDate() as DateTime,
       imageLocation: json['imageLocation'] as String,
       url: json['url'] as String,
       contentTopic: json['contentTopic'] as String,

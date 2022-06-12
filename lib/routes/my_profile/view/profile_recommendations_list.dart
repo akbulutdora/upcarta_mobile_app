@@ -28,7 +28,7 @@ class ProfileRecommendationsList extends StatelessWidget {
                           .read<UserBloc>()
                           .add(const UserEventRecommendationsFetched());
                     },
-                    child: Text('failed to fetch recs')));
+                    child: Text('Failed to fetch recommendations!')));
           case UserStatus.recommendedFetched:
             return const Center(child: CircularProgressIndicator());
           case UserStatus.success:
@@ -39,7 +39,7 @@ class ProfileRecommendationsList extends StatelessWidget {
                         .read<UserBloc>()
                         .add(const UserEventRecommendationsFetched());
                   },
-                  child: Text('failed to fetch recs')),);
+                  child: Text('You currently have no recommendations')),);
             }
             return RefreshIndicator(
               onRefresh: () {
