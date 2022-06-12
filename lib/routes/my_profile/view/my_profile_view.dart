@@ -79,7 +79,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 455.h, //DOKUNMA BUNA
+              height: 650.h, //DOKUNMA BUNA
               child: buildTabController(),
             ),
           ],
