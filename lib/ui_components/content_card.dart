@@ -225,7 +225,7 @@ class _ContentCardState extends State<ContentCard> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    widget.content.description,
+                                    widget.content.recommendationText,
                                     style: contentCardDescriptionStyle,
                                     textAlign: TextAlign.left,
                                     overflow: TextOverflow.ellipsis,
