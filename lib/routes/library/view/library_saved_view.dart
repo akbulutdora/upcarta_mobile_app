@@ -45,7 +45,7 @@ class _MyLibrarySavedScreenState extends State<MyLibrarySavedScreen> {
                         },
                         child: SizedBox(
                           // FIXME: FIX SIZE
-                          height: 620.h,
+                          height: 605.h,
                           child: ListView.builder(
                               physics:
                                   const AlwaysScrollableScrollPhysics(), //ScrollableScrollPhysics(),
