@@ -34,10 +34,15 @@ class _LatestContentListState extends State<LatestContentList> {
                           .read<LatestFeedBloc>()
                           .add(LatestFeedEventContentRefreshed());
                     },
-                    child: Text('failed to fetch posts')));
+                    child: const Text('failed to fetch posts')));
           case LatestFeedStatus.success:
             if (state.contents.isEmpty) {
-              return const Center(child: Text('no posts'));
+              return Center(
+                  child: TextButton(
+                      onPressed: () => context
+                          .read<LatestFeedBloc>()
+                          .add(LatestFeedEventContentRefreshed()),
+                      child: const Text('no posts')));
             }
             return RefreshIndicator(
               onRefresh: () {
