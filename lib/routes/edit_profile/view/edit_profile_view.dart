@@ -4,11 +4,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
+import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:path/path.dart';
@@ -53,7 +55,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: AppBar(
+          elevation: 0.8,
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
           titleSpacing: 0.0,
@@ -63,7 +67,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 fontFamily: "SFCompactText-Medium",
                 color: Theme.of(context).iconTheme.color,
                 fontWeight: FontWeight.w500,
-                fontSize: 22),
+                fontSize: 22.sp),
           ),
           leading: IconButton(
             icon: Icon(
@@ -76,111 +80,85 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           )),
       //),
       body: BlocProvider(
-  create: (_) => UserBloc(authRepository: context.read<AuthenticationRepository>(), userRepository: context.read<UserRepository>()),
-  child: BlocProvider(
-        create: (_) => EditProfileCubit(
-            context.read<AuthenticationRepository>(),
-            context.read<UserRepository>()),
-        //  create: (context) => ProfileBloc(
-        // userRepository: context.read<UserRepository>(), user: User.empty),
-        // TODO: EMPTY USER OLMAYACAK
-        child: BlocBuilder<UserBloc, UserState>(
-          builder: (context, state) {
-            return Padding(
-              padding: EdgeInsets.all(height * 0.016),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Credentials",
-                    style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                  ),
-                  Divider(
-                    color: Theme.of(context).dividerTheme.color,
-                  ),
-                  Text(
-                    "Profile Image",
-                    style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.normal,
-                      fontSize: 16,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                  ),
-                  InkWell(
-                      child: CircleAvatar(
-                        foregroundImage: context
-                                    .read<UserBloc>()
-                                    .state
-                                    .user
-                                    .photoURL !=
-                                null
-                            ? NetworkImage(
-                                context.read<UserBloc>().state.user.photoURL!)
-                            : null,
-                        backgroundImage:
-                            const AssetImage("assets/images/mock.jpg"),
-                        //widget.user.profileImageUrl),
-                        minRadius: 45.0,
-                        maxRadius: 45.0,
+        create: (_) => UserBloc(
+            authRepository: context.read<AuthenticationRepository>(),
+            userRepository: context.read<UserRepository>()),
+        child: BlocProvider(
+          create: (_) => EditProfileCubit(
+              context.read<AuthenticationRepository>(),
+              context.read<UserRepository>()),
+          //  create: (context) => ProfileBloc(
+          // userRepository: context.read<UserRepository>(), user: User.empty),
+          // TODO: EMPTY USER OLMAYACAK
+          child: BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) {
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Credentials",
+                        style: TextStyle(
+                          fontFamily: "SFCompactText",
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                          color: Theme.of(context).iconTheme.color,
+                        ),
                       ),
-                      onTap: () async {
-                        var value = await pickImage();
-                        context.read<EditProfileCubit>().photoChanged(value);
-                      }),
-                  Text(
-                    "Name",
-                    style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.normal,
-                      fontSize: 16,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
+                      Divider(
+                        color: Theme.of(context).dividerTheme.color,
+                      ),
+                      SizedBox(height: 16.h),
+                      InkWell(
+                          child: CircleAvatar(
+                            foregroundImage:
+                                context.read<UserBloc>().state.user.photoURL !=
+                                        null
+                                    ? NetworkImage(context
+                                        .read<UserBloc>()
+                                        .state
+                                        .user
+                                        .photoURL!)
+                                    : null,
+                            backgroundImage:
+                                const AssetImage("assets/images/mock.jpg"),
+                            //widget.user.profileImageUrl),
+                            minRadius: 45.0,
+                            maxRadius: 45.0,
+                          ),
+                          onTap: () async {
+                            var value = await pickImage();
+                            context
+                                .read<EditProfileCubit>()
+                                .photoChanged(value);
+                          }),
+                      SizedBox(height: 24.h),
+                      TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Name',
+                          fillColor: Colors.transparent,
+                          filled: true,
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(16.h),
+                          border: Theme.of(context).inputDecorationTheme.border,
+                        ),
+                      ),
+                      SizedBox(height: 16.h),
+                      _UsernameInput(),
+                      SizedBox(height: 16.h),
+                      _BioInputForm(),
+                      SizedBox(height: 16.h),
+                      _BioSubmitButton(height: 40.h),
+                    ],
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Name',
-                      fillColor: Colors.transparent,
-                      filled: true,
-                      isDense: true,
-                      contentPadding: EdgeInsets.all(height * 0.016),
-                      border: Theme.of(context).inputDecorationTheme.border,
-                    ),
-                  ),
-                  Text(
-                    "Username",
-                    style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.normal,
-                      fontSize: 16,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                  ),
-                  _UsernameInput(),
-                  Text(
-                    "Bio",
-                    style: TextStyle(
-                      fontFamily: "SFCompactText",
-                      fontWeight: FontWeight.normal,
-                      fontSize: 16,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                  ),
-                  const _BioInputForm(),
-                  SizedBox(height: height * 0.012),
-                  _BioSubmitButton(height: height),
-                ],
-              ),
-            );
-          },
+                ),
+              );
+            },
+          ),
         ),
       ),
-),
     );
   }
 }
@@ -215,12 +193,14 @@ class _BioSubmitButton extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                       backgroundColor: Theme.of(context).primaryColor,
-                      padding: EdgeInsets.all(height * 0.02)),
+                      padding: EdgeInsets.fromLTRB(24.w, 8.h, 24.w, 8.h)),
                   child: Text(
                     'Save',
                     style: TextStyle(
-                        color: Theme.of(context).iconTheme.color,
-                        fontSize: height / 50),
+                        //color: Theme.of(context).iconTheme.color,
+                        color: AppColors.white,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400),
                   ),
                 ),
               );
@@ -246,11 +226,15 @@ class _BioInputForm extends StatelessWidget {
           },
           decoration: InputDecoration(
             labelText: 'Bio',
+            alignLabelWithHint: true,
             fillColor: Colors.transparent,
             filled: true,
             isDense: true,
             border: Theme.of(context).inputDecorationTheme.border,
           ),
+          keyboardType: TextInputType.multiline,
+          minLines: 4, //Normal textInputField will be displayed
+          maxLines: 4,
         );
       },
     );
@@ -263,16 +247,19 @@ class _UsernameInput extends StatelessWidget {
     return BlocBuilder<EditProfileCubit, EditProfileState>(
       buildWhen: (previous, current) => previous.username != current.username,
       builder: (context, state) {
-        return TextField(
-          key: const Key('signUpForm_usernameInput_textField'),
-          onChanged: (username) =>
-              context.read<EditProfileCubit>().usernameChanged(username),
-          obscureText: false,
-          decoration: InputDecoration(
-            labelText: 'Username',
-            fillColor: Colors.transparent,
-            filled: true,
-            border: Theme.of(context).inputDecorationTheme.border,
+        return SizedBox(
+          height: 60.h,
+          child: TextField(
+            key: const Key('signUpForm_usernameInput_textField'),
+            onChanged: (username) =>
+                context.read<EditProfileCubit>().usernameChanged(username),
+            obscureText: false,
+            decoration: InputDecoration(
+              labelText: 'Username',
+              fillColor: Colors.transparent,
+              filled: true,
+              border: Theme.of(context).inputDecorationTheme.border,
+            ),
           ),
         );
       },
