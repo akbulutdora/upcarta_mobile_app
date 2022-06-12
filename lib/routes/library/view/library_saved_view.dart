@@ -47,7 +47,7 @@ class _MyLibrarySavedScreenState extends State<MyLibrarySavedScreen> {
                           // FIXME: FIX SIZE
                           height: 400,
                           child: ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
+                              physics: const AlwaysScrollableScrollPhysics(),//ScrollableScrollPhysics(),
                               itemBuilder: (BuildContext context, int index) {
                                 return ContentListItem(
                                     content: state.contents[index]);
