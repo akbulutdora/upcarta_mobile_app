@@ -7,15 +7,16 @@ import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/bloc/latest_feed_bloc.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/contents_list.dart';
+import 'package:upcarta_mobile_app/routes/library/bloc/library_bloc.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
+import 'package:upcarta_mobile_app/util/constants.dart';
 import 'package:upcarta_mobile_app/util/content_type_info.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../routes/explore/bloc/explore_cubit.dart';
 import 'components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
-
-bool isPressed = false;
 
 class ContentCard extends StatefulWidget {
   final Content content;
@@ -28,11 +29,12 @@ class ContentCard extends StatefulWidget {
 
 class _ContentCardState extends State<ContentCard> {
   final bool isTweet = true;
-
   var _selected = "";
-
+  bool isSaved = false;
   @override
   Widget build(BuildContext context) {
+    final AppUser currentUser = context.read<UserBloc>().state.user;
+
     return isTweet
         ? Card(
             elevation: 0,
@@ -114,16 +116,31 @@ class _ContentCardState extends State<ContentCard> {
                             constraints: BoxConstraints.loose(Size(20, 20)),
                             splashRadius: 22.r,
                             iconSize: 22.sm,
-                            onPressed: () {
-                              isPressed = !isPressed;
-                              context.read<LatestFeedBloc>().add(
-                                  LatestFeedEventContentSaved(
-                                      widget.content.postId));
-                            },
-                            icon: isPressed
-                                ? Icon(Icons.bookmark,
+                            onPressed: !isSaved
+                                ? (() {
+                                    context.read<LatestFeedBloc>().add(
+                                        LatestFeedEventContentSaved(
+                                            widget.content.postId));
+                                    setState(
+                                            (){
+                                          isSaved = ! isSaved;
+                                        }
+                                    );
+                                  })
+                                : (() {
+                                    context.read<LatestFeedBloc>().add(
+                                        LatestFeedEventContentUnsaved(
+                                            widget.content.postId));
+                                    setState(
+                                        (){
+                                          isSaved = ! isSaved;
+                                        }
+                                    );
+                                  }),
+                            icon: !isSaved
+                                ? Icon(Icons.bookmark_border_outlined,
                                     color: Theme.of(context).iconTheme.color)
-                                : Icon(Icons.bookmark_border_outlined,
+                                : Icon(Icons.bookmark,
                                     color: Theme.of(context).iconTheme.color),
                             padding: EdgeInsets.all(0),
                           ),

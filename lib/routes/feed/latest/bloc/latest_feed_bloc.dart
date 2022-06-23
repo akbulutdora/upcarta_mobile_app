@@ -12,6 +12,7 @@ class LatestFeedBloc extends Bloc<LatestFeedEvent, LatestFeedState> {
     on<LatestFeedEventContentFetched>(_onContentFetched);
     on<LatestFeedEventContentRefreshed>(_onContentRefreshed);
     on<LatestFeedEventContentSaved>(_onContentSaved);
+    on<LatestFeedEventContentUnsaved>(_onContentUnsaved);
     on<LatestFeedEventContentReported>(_onContentReported);
   }
   final UserRepository userRepository;
@@ -86,6 +87,23 @@ class LatestFeedBloc extends Bloc<LatestFeedEvent, LatestFeedState> {
       ));
     } catch (_) {
       print("CONTENT SAVE ERROR");
+    }
+  }
+
+  Future<void> _onContentUnsaved(
+      LatestFeedEventContentUnsaved event, Emitter<LatestFeedState> emit) async {
+    if (state.status == LatestFeedStatus.unsaveRequested) return;
+    emit(state.copyWith(
+      status: LatestFeedStatus.unsaveRequested,
+    ));
+    try {
+      userRepository.unsaveContent(event.contentID);
+      print(event.contentID);
+      emit(state.copyWith(
+        status: LatestFeedStatus.success,
+      ));
+    } catch (_) {
+      print("CONTENT UNSAVE ERROR");
     }
   }
 

@@ -20,6 +20,15 @@ class LatestFeedEventContentSaved extends LatestFeedEvent {
   List<Object> get props => [contentID];
 }
 
+class LatestFeedEventContentUnsaved extends LatestFeedEvent {
+  const LatestFeedEventContentUnsaved(this.contentID);
+
+  final String contentID;
+
+  @override
+  List<Object> get props => [contentID];
+}
+
 class LatestFeedEventContentReported extends LatestFeedEvent {
   const LatestFeedEventContentReported(this.contentID);
 

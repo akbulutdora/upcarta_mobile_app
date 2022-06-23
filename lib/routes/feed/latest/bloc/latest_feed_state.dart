@@ -5,6 +5,7 @@ enum LatestFeedStatus {
   success,
   failure,
   saveRequested,
+  unsaveRequested,
   reportRequested
 }
 
