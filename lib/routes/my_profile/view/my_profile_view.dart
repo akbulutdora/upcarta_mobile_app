@@ -284,7 +284,8 @@ class BuildProfile extends StatelessWidget {
                       child: Row(children: [
                         Text(
                           //'${widget.user.following}',
-                          state.user.recommendationCount.toString(),
+                          // state.user.recommendationCount.toString(),
+                          state.recommendedContents.length.toString(),
                           style: TextStyle(
                             fontFamily: "SFCompactText",
                             fontWeight: FontWeight.w700,
