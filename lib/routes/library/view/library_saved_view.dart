@@ -23,7 +23,7 @@ class _MyLibrarySavedScreenState extends State<MyLibrarySavedScreen> {
     return SingleChildScrollView(
       child: Container(
         child: Padding(
-          padding: EdgeInsets.only(top: 8.0.h),
+          padding: EdgeInsets.fromLTRB(16.0.w, 16.0.w, 8.0.h, 0),
           child: Column(
             children: <Widget>[
               BlocBuilder<LibraryBloc, LibraryState>(
@@ -33,14 +33,33 @@ class _MyLibrarySavedScreenState extends State<MyLibrarySavedScreen> {
                       return const Center(child: Text('failed to fetch posts'));
                     case LibraryStatus.success:
                       if (state.contents.isEmpty) {
-                        return const Center(child: Text('no posts'));
+                        return RefreshIndicator(
+                            onRefresh: () {
+                              return Future(
+                                () => context
+                                    .read<LibraryBloc>()
+                                    .add(LibraryEventContentFetched()),
+                              );
+                            },
+                            child: SizedBox(
+                              height: 605.h,
+                              child: ListView(
+                                  physics:
+                                      const AlwaysScrollableScrollPhysics(), //ScrollableScrollPhysics(),
+                                  // itemBuilder: (BuildContext context, int index) {
+                                  children: const [
+                                    Center(child: Text('No Posts'))
+                                  ]
+                                  // },
+                                  ),
+                            ));
                       }
                       return RefreshIndicator(
                         onRefresh: () {
                           return Future(
                             () => context
                                 .read<LibraryBloc>()
-                                .add(LibraryEventContentRefreshed()),
+                                .add(LibraryEventContentFetched()),
                           );
                         },
                         child: SizedBox(

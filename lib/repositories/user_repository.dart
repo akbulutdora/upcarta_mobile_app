@@ -353,7 +353,8 @@ class UserRepository {
   //Future<List<Content>>
   Future profileGetRecommends(String uid) async {
     try {
-      var docSnapshot = await _firestoreDB.collection(userCollection).doc(uid).get();
+      var docSnapshot =
+          await _firestoreDB.collection(userCollection).doc(uid).get();
       if (docSnapshot.exists) {
         Map<String, dynamic> data = docSnapshot.data()!;
         var recommendationsID = data['recommendationsID'];
@@ -364,7 +365,9 @@ class UserRepository {
             .get();
         if (recommendationSnapshot.exists) {
           List<Content> recPostsList = [];
-          var postIDs = recommendationSnapshot.data()!['postIDs'];
+          var unorderedPostIDs = recommendationSnapshot.data()!['postIDs'];
+          var postIDs = List.from(unorderedPostIDs.reversed);
+
           /*
 
           var recPostsList = await _firestoreDB
@@ -383,9 +386,10 @@ class UserRepository {
                   .add(Content.fromJson(recommendationPostSnapshot.data()!));
             }
           }
-          if(recPostsList.isEmpty){return;}
+          if (recPostsList.isEmpty) {
+            return;
+          }
           return recPostsList;
-
         }
       }
       return;
@@ -407,11 +411,8 @@ class UserRepository {
         Map<String, dynamic> data = docSnapshot.data()!;
         var savesID = data['savesID'];
 
-
-        var savesSnapshot = await _firestoreDB
-            .collection('collections')
-            .doc(savesID)
-            .get();
+        var savesSnapshot =
+            await _firestoreDB.collection('collections').doc(savesID).get();
         if (savesSnapshot.exists) {
           /*
           var recPostsList = await _firestoreDB
@@ -426,11 +427,13 @@ class UserRepository {
             var savePostSnapshot =
                 await _firestoreDB.collection('posts').doc(postIDs[i]).get();
             if (savePostSnapshot.exists) {
-              recPostsList
-                  .add(Content.fromJson(savePostSnapshot.data()!));
+              recPostsList.add(Content.fromJson(savePostSnapshot.data()!));
             }
           }
-          if(recPostsList.isEmpty){return;}
+          print(recPostsList);
+          if (recPostsList.isEmpty) {
+            return;
+          }
           return recPostsList;
         }
       }
@@ -458,7 +461,8 @@ class UserRepository {
   }
 
   ///User creates recommendation post
-  Future<void> createContent(String title, String contentURL,String content) async {
+  Future<void> createContent(
+      String title, String contentURL, String content) async {
     try {
       final newRef = _firestoreDB.collection("posts").doc();
       var postId = newRef.id;
@@ -535,33 +539,42 @@ class UserRepository {
   /// TODO: FETCH A CERTAIN NUMBER OF POSTS FROM COLLECTION "posts"
   Future fetchPosts({int numberOfPosts = 0}) async {
     try {
-      var followingIDs=  await _firestoreDB
-        .collection(userCollection)
-        .doc(_firebaseAuth.currentUser!.uid)
-        .get()
-        .then((documentSnapshot) => documentSnapshot['followingIDs']);
-      if(followingIDs.toString()=="[]"){return;}
+      var followingIDs = await _firestoreDB
+          .collection(userCollection)
+          .doc(_firebaseAuth.currentUser!.uid)
+          .get()
+          .then((documentSnapshot) => documentSnapshot['followingIDs']);
+      if (followingIDs.toString() == "[]") {
+        return;
+      }
 
-      print("HEYYYYYYYO" + await _firestoreDB.collection("posts").where("uId", whereIn:followingIDs).get().then((value) =>value.docs.map((e) => e['url']).toString()));
+      print("HEYYYYYYYO" +
+          await _firestoreDB
+              .collection("posts")
+              .where("uId", whereIn: followingIDs)
+              .get()
+              .then((value) => value.docs.map((e) => e['url']).toString()));
       var data1 = await _firestoreDB
           .collection("posts")
           .orderBy("createDate", descending: true)
-          .where("uId", whereIn:followingIDs)
+          .where("uId", whereIn: followingIDs)
           .limit(numberOfPosts + 10)
           .get();
       dynamic data;
-      if(data1.docs.isEmpty){return;}
-      else{
-        data= data1.docs.map((e) => Content.fromJson(e.data())).toList();
-          //.then((value) {return value.docs.map((e) => Content.fromJson(e.data())).toList();});
-
-      if (data.length > numberOfPosts) {
-        return data.sublist(numberOfPosts);
-      } else {
+      if (data1.docs.isEmpty) {
         return;
+      } else {
+        data = data1.docs.map((e) => Content.fromJson(e.data())).toList();
+        //.then((value) {return value.docs.map((e) => Content.fromJson(e.data())).toList();});
+
+        if (data.length > numberOfPosts) {
+          return data.sublist(numberOfPosts);
+        } else {
+          return;
+        }
+        // return {};
       }
-      // return {};
-    }} catch (e) {
+    } catch (e) {
       print('Failed with error code: $e');
       rethrow;
     }

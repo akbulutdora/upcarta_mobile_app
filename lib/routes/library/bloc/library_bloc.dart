@@ -22,9 +22,11 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
       ));
 
       final contents = await userRepository.libraryGetSaves();
+      print('AAAAAA:\n\n${contents}');
+      List<Content> emptyList = [];
       return emit(state.copyWith(
         status: LibraryStatus.success,
-        contents: contents,
+        contents: contents ?? emptyList,
       ));
     } catch (_) {
       emit(state.copyWith(status: LibraryStatus.failure));
