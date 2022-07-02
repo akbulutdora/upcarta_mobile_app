@@ -39,6 +39,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     _userSubscription = _authRepository.user.listen((user) {
       add(AppUserChanged(user));
       // _profileBloc.add(ProfileEventChanged(user));
+      sjkadfjkasfhsdjfa
+      üısakdfjklasfjksal
+      plsajfklsd
     });
   }
 
