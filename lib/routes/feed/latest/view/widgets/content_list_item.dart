@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/content.dart';
-import 'package:intl/intl.dart';
 import 'package:upcarta_mobile_app/ui_components/content_card.dart';
 
 class ContentListItem extends StatelessWidget {
@@ -10,20 +9,20 @@ class ContentListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm");
-    final textTheme = Theme.of(context).textTheme;
     return ContentCard(
       content: content,
     );
-    return Material(
-      child: ListTile(
-        leading: Text(content.postId, style: textTheme.caption),
-        title: Text(content.title),
-        trailing: Text(dateFormat.format((content.createDate))),
-        isThreeLine: true,
-        subtitle: Text(content.contentTopic),
-        dense: true,
-      ),
-    );
+    // DateFormat dateFormat = DateFormat('yyyy-MM-dd HH:mm');
+    // final textTheme = Theme.of(context).textTheme;
+    // return Material(
+    //   child: ListTile(
+    //     leading: Text(content.postId, style: textTheme.caption),
+    //     title: Text(content.title),
+    //     trailing: Text(dateFormat.format((content.createDate))),
+    //     isThreeLine: true,
+    //     subtitle: Text(content.contentTopic),
+    //     dense: true,
+    //   ),
+    // );
   }
 }

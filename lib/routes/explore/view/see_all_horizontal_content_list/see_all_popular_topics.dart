@@ -28,7 +28,7 @@ class _SeeAllPopularTopicsState extends State<SeeAllPopularTopics> {
         title: const Text(
           'Explore Topics',
           style: TextStyle(
-              fontFamily: "SFCompactText-Medium.ttf",
+              fontFamily: 'SFCompactText-Medium.ttf',
               color: Colors.black,
               fontWeight: FontWeight.w600,
               fontSize: 20),

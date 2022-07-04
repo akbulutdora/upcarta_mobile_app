@@ -1,7 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part "content.g.dart";
+part 'content.g.dart';
 
 enum ContentType {
   @JsonValue(0)
@@ -69,7 +68,7 @@ class Content {
     required this.postId,
     required this.username,
     required this.contentType,
-    this.description = "This content has no description.",
+    this.description = 'This content has no description.',
     required this.createDate,
     required this.imageLocation,
     required this.url,

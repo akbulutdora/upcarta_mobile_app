@@ -50,7 +50,7 @@ class _TopViewState extends State<TopView> {
             const SizedBox(height: 8),
             const Padding(
               padding: EdgeInsets.only(left: 16.0),
-              child: Text("Contents", style: sectionStyle),
+              child: Text('Contents', style: sectionStyle),
             ),
             ContentList(
               contentList: contents,

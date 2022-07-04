@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/bloc/latest_feed_bloc.dart';
-import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/bottom_loader.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/content_list_item.dart';
-import 'package:upcarta_mobile_app/ui_components/feed_content_list.dart';
 
 class LatestContentList extends StatefulWidget {
   const LatestContentList({Key? key}) : super(key: key);

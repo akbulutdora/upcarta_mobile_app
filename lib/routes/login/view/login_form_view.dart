@@ -30,8 +30,8 @@ class _LoginScreen2 extends State<LoginScreen2> {
 
   void setLoginState(String inp1, String inp2) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("uEmail", inp1);
-    prefs.setString("uPass", inp2);
+    await prefs.setString('uEmail', inp1);
+    await prefs.setString('uPass', inp2);
   }
 
   @override
@@ -102,7 +102,7 @@ class LoginForm extends StatelessWidget {
           SizedBox(height: 160.h),
           Align(
             alignment: Alignment.centerLeft,
-            child: Text("Sign In with Email",
+            child: Text('Sign In with Email',
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     fontSize: 26.sp,
@@ -139,7 +139,7 @@ class LoginForm extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () async {
-                    context.router.push(const ResetPasswordViewRoute());
+                    await context.router.push(const ResetPasswordViewRoute());
                   },
                   child: Text(
                     'Forgot password?',
@@ -155,10 +155,10 @@ class LoginForm extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () async {
-                    context.router.push(const LoginScreenRoute());
+                    await context.router.push(const LoginScreenRoute());
                   },
                   child: Text(
-                    "Resend Verification Email?",
+                    'Resend Verification Email?',
                     style: TextStyle(
                       fontFamily: 'SFCompactText-Regular.ttf',
                       fontSize: 15.sp,

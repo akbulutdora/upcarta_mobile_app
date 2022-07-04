@@ -20,11 +20,11 @@ class ExploreState extends Equatable {
     required this.searchKey,
     required this.status,
     this.searchPeople = const <AppUser>[],
-    this.followID = "",
+    this.followID = '',
   });
 
   factory ExploreState.initial() {
-    return const ExploreState(searchKey: "", status: ExploreStatus.initial);
+    return const ExploreState(searchKey: '', status: ExploreStatus.initial);
   }
 
   @override

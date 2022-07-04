@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:upcarta_mobile_app/models/content.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 
 part 'new_action_state.dart';

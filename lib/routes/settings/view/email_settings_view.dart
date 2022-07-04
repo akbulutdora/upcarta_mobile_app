@@ -23,7 +23,6 @@ class _EmailSettingsState extends State<EmailSettings> {
   bool updateEmail = false;
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
@@ -34,7 +33,7 @@ class _EmailSettingsState extends State<EmailSettings> {
             title: Text(
               'Email Settings',
               style: TextStyle(
-                  fontFamily: "SFCompactText-Medium",
+                  fontFamily: 'SFCompactText-Medium',
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
                   fontSize: 22.sp),
@@ -54,9 +53,9 @@ class _EmailSettingsState extends State<EmailSettings> {
             child: ListView(
               children: <Widget>[
                 Text(
-                  "Email",
+                  'Email',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.w700,
                     fontSize: 18.sp,
                     color: Theme.of(context).iconTheme.color,
@@ -67,9 +66,9 @@ class _EmailSettingsState extends State<EmailSettings> {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  "Change your email address.",
+                  'Change your email address.',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
                     color: Theme.of(context).dividerTheme.color,
@@ -99,9 +98,9 @@ class _EmailSettingsState extends State<EmailSettings> {
                 ),
                 SizedBox(height: 40.h),
                 Text(
-                  "Connect Accounts",
+                  'Connect Accounts',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.w700,
                     fontSize: 18.sp,
                     color: Theme.of(context).iconTheme.color,
@@ -145,9 +144,9 @@ class _EmailSettingsState extends State<EmailSettings> {
                     ]),
                 SizedBox(height: 40.h),
                 Text(
-                  "Discover Email",
+                  'Discover Email',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.w700,
                     fontSize: 18.sp,
                     color: Theme.of(context).iconTheme.color,
@@ -157,9 +156,9 @@ class _EmailSettingsState extends State<EmailSettings> {
                   color: Theme.of(context).dividerTheme.color,
                 ),
                 Text(
-                  "Discover great books, podcasts, videos, articles, twitter threads, and more, based on your followings.",
+                  'Discover great books, podcasts, videos, articles, twitter threads, and more, based on your followings.',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.normal,
                     fontSize: 14.sp,
                     color: Theme.of(context).dividerTheme.color,
@@ -171,7 +170,7 @@ class _EmailSettingsState extends State<EmailSettings> {
                     title: Text(
                       'Weekly',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 14.sp,
                         color: Theme.of(context).iconTheme.color,
@@ -187,9 +186,9 @@ class _EmailSettingsState extends State<EmailSettings> {
                 ),
                 SizedBox(height: 40.h),
                 Text(
-                  "Related to you",
+                  'Related to you',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.w700,
                     fontSize: 18.sp,
                     color: Theme.of(context).iconTheme.color,
@@ -199,9 +198,9 @@ class _EmailSettingsState extends State<EmailSettings> {
                   color: Theme.of(context).dividerTheme.color,
                 ),
                 Text(
-                  "Get activity notifications in your inbox.",
+                  'Get activity notifications in your inbox.',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
                     color: Theme.of(context).dividerTheme.color,
@@ -213,7 +212,7 @@ class _EmailSettingsState extends State<EmailSettings> {
                     title: Text(
                       'Send notification emails',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
                         color: Theme.of(context).iconTheme.color,
@@ -229,9 +228,9 @@ class _EmailSettingsState extends State<EmailSettings> {
                 ),
                 SizedBox(height: 40.h),
                 Text(
-                  "From Upcarta",
+                  'From Upcarta',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
                     color: Theme.of(context).iconTheme.color,
@@ -241,9 +240,9 @@ class _EmailSettingsState extends State<EmailSettings> {
                   color: Theme.of(context).dividerTheme.color,
                 ),
                 Text(
-                  "Get notified about new features and improvements.",
+                  'Get notified about new features and improvements.',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
                     color: Theme.of(context).dividerTheme.color,
@@ -255,7 +254,7 @@ class _EmailSettingsState extends State<EmailSettings> {
                     title: Text(
                       'Send product update emails',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
                         color: Theme.of(context).iconTheme.color,

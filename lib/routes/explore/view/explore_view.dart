@@ -1,5 +1,8 @@
+// ignore_for_file: unused_import
+
 import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,23 +31,23 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   final List<Widget> cardsList = const <Widget>[
     ExploreCard(
-      text: "Featured Collections",
+      text: 'Featured Collections',
       route: SeeAllFeaturedCollectionsRoute(),
     ),
     ExploreCard(
-      text: "Inspiring People",
+      text: 'Inspiring People',
       route: SeeAllInspiringPeopleRoute(),
     ),
     ExploreCard(
-      text: "Popular Topics",
+      text: 'Popular Topics',
       route: SeeAllPopularTopicsRoute(),
     ),
     ExploreCard(
-      text: "Recent Asks",
+      text: 'Recent Asks',
       route: SeeAllRecentAsksRoute(),
     ),
     ExploreCard(
-      text: "Archived Content",
+      text: 'Archived Content',
       route: SeeAllContentArchiveViewRoute(),
     ),
   ];
@@ -55,7 +58,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: Image.asset(
-          "assets/images/upcarta-logo-small.png",
+          'assets/images/upcarta-logo-small.png',
           width: 30.w,
           height: 30.h,
         ),
@@ -66,7 +69,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         title: Text(
           'Explore',
           style: TextStyle(
-              fontFamily: "SFCompactText-Medium",
+              fontFamily: 'SFCompactText-Medium',
               color: Theme.of(context).iconTheme.color,
               fontWeight: FontWeight.w500,
               fontSize: 22),
@@ -102,7 +105,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Text("The user is typing ${state.searchKey}"),
+                            Text('The user is typing ${state.searchKey}'),
                             const SizedBox(
                               height: 10,
                             ),
@@ -111,7 +114,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         ),
                       );
                     } else if (state.status == ExploreStatus.initial ||
-                        state.searchKey == "") {
+                        state.searchKey == '') {
                       return GridView.count(
                         shrinkWrap: true,
                         crossAxisCount: 2,
@@ -127,7 +130,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Text("The user is typing ${state.searchKey}"),
+                            Text('The user is typing ${state.searchKey}'),
                             const SizedBox(
                               height: 10,
                             ),
@@ -137,7 +140,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       );
                     } else if (state.status == ExploreStatus.error) {
                       return const Center(
-                        child: Text("Error"),
+                        child: Text('Error'),
                       );
                     } else {
                       // else if (state.status == ExploreStatus.success &&
@@ -183,7 +186,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
             hintText: 'Content, people, topic, collection, or ask',
             hintStyle: TextStyle(
-                fontFamily: "SFCompactText-Regular",
+                fontFamily: 'SFCompactText-Regular',
                 color: Color(0xff949494),
                 fontWeight: FontWeight.w400,
                 fontSize: 13),
@@ -218,7 +221,7 @@ class SearchResultList extends StatelessWidget {
                 listener: ((context, state) {
                   switch (state.status) {
                     case OtherProfileStatus.success:
-                      AutoRouter.of(context).push(OtherProfileScreenRoute());
+                      AutoRouter.of(context).push(const OtherProfileScreenRoute());
                       // .push(OtherProfileScreenRoute(uid: state.user.id));
                       // context
                       //     .read<OtherProfileBloc>()
@@ -240,8 +243,10 @@ class SearchResultList extends StatelessWidget {
                           bool isNotFollowing =
                               currentUser.followingIDs != null &&
                                   !currentUser.followingIDs!.contains(item.id);
-                          print(
-                              "FIRST IS  ${state.user.id} AND SECOND IS ${item.id}");
+                          if (kDebugMode) {
+                            print(
+                              'FIRST IS  ${state.user.id} AND SECOND IS ${item.id}');
+                          }
 
                           return ListTile(
                             leading: IconButton(
@@ -261,7 +266,7 @@ class SearchResultList extends StatelessWidget {
                                       : Theme.of(context).dividerTheme.color,
                                 )),
                             trailing: TextButton(
-                              child: Text(item.name ?? "null name"),
+                              child: Text(item.name ?? 'null name'),
                               onPressed: () {
                                 // AutoRouter.of(context)
                                 //     .push(OtherProfileScreenRoute(uid: item.id));
@@ -273,9 +278,9 @@ class SearchResultList extends StatelessWidget {
                                     .add(OtherProfileEventFetched(item.id));
                               },
                             ),
-                            title: Text(item.email ?? "null email"),
+                            title: Text(item.email ?? 'null email'),
                             isThreeLine: true,
-                            subtitle: Text("@" + item.username!),
+                            subtitle: Text('@' + item.username!),
                             dense: true,
                           );
                         },

@@ -32,7 +32,7 @@ class _SeeAllCollectionsAndAsksViewState
           title: const Text(
             'Collections and Asks',
             style: TextStyle(
-                fontFamily: "SFCompactText-Medium.ttf",
+                fontFamily: 'SFCompactText-Medium.ttf',
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
                 fontSize: 18),

@@ -22,7 +22,7 @@ class EditProfileState extends Equatable {
 
   factory EditProfileState.initial() {
     return const EditProfileState(
-        bio: "", photoURL: "", username: "", status: EditProfileStatus.initial);
+        bio: '', photoURL: '', username: '', status: EditProfileStatus.initial);
   }
 
   EditProfileState copyWith({

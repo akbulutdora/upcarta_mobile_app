@@ -19,7 +19,7 @@ class NewActionState extends Equatable {
 
   factory NewActionState.initial() {
     return const NewActionState(
-        content:"", contentURL: "", contentTitle: "", status: ActionStatus.initial);
+        content:'', contentURL: '', contentTitle: '', status: ActionStatus.initial);
   }
 
   @override
@@ -34,9 +34,9 @@ class NewActionState extends Equatable {
   }) {
     return NewActionState(
         //contentURL: postContent ?? this.contentURL,
-        contentTitle: postTitle ?? this.contentTitle,
-        content: postContent ?? this.content,
-        contentURL: postUrl ?? this.contentURL,
+        contentTitle: postTitle ?? contentTitle,
+        content: postContent ?? content,
+        contentURL: postUrl ?? contentURL,
         status: status ?? this.status,
         errorMessage: errorMessage ?? this.errorMessage);
   }

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 
 class CustDropDown<T> extends StatefulWidget {
-  final List<CustDropdownMenuItem> items;
+  final List<CustomDropdownMenuItem> items;
   final Function onChanged;
   final String hintText;
   final double borderRadius;
@@ -15,7 +15,7 @@ class CustDropDown<T> extends StatefulWidget {
   const CustDropDown(
       {required this.items,
       required this.onChanged,
-      this.hintText = "",
+      this.hintText = '',
       this.borderRadius = 0,
       this.borderWidth = 1,
       this.maxListHeight = 224,
@@ -152,8 +152,7 @@ class _CustDropDownState extends State<CustDropDown>
                                                 _isAnyItemSelected = true;
                                                 _itemSelected = item.child;
                                                 _removeOverlay();
-                                                if (widget.onChanged != null)
-                                                  widget.onChanged(item.value);
+                                                widget.onChanged(item.value);
                                               });
                                             }
                                           },
@@ -261,14 +260,15 @@ class _CustDropDownState extends State<CustDropDown>
       return BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)));
     }
+    return null;
   }
 }
 
-class CustDropdownMenuItem<T> extends StatelessWidget {
+class CustomDropdownMenuItem<T> extends StatelessWidget {
   final T value;
   final Widget child;
 
-  const CustDropdownMenuItem({required this.value, required this.child});
+  const CustomDropdownMenuItem({Key? key, required this.value, required this.child}) : super(key:key);
 
   @override
   Widget build(BuildContext context) {

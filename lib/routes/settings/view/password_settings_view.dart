@@ -2,9 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:upcarta_mobile_app/util/view_paths.dart';
 
-import '../../../repositories/authentication_repository.dart';
 import '../../../repositories/user_repository.dart';
 import '../cubit/password_settings_cubit.dart';
 
@@ -26,8 +24,6 @@ class PasswordSettings extends StatefulWidget {
 class _PasswordSettingsState extends State<PasswordSettings> {
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: AppBar(
@@ -38,7 +34,7 @@ class _PasswordSettingsState extends State<PasswordSettings> {
             title: Text(
               'Password Settings',
               style: TextStyle(
-                  fontFamily: "SFCompactText-Medium",
+                  fontFamily: 'SFCompactText-Medium',
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
                   fontSize: 22.sp),
@@ -55,16 +51,15 @@ class _PasswordSettingsState extends State<PasswordSettings> {
         //),
         body: BlocProvider(
             create: (context) => PasswordSettingsCubit(
-                context.read<AuthenticationRepository>(),
                 context.read<UserRepository>()),
             child: Container(
                 padding: EdgeInsets.fromLTRB(16.w, 20.h, 16.w, 0.h),
                 child: ListView(
                   children: <Widget>[
                     Text(
-                      "Change Password",
+                      'Change Password',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.w700,
                         fontSize: 18.sp,
                         color: Theme.of(context).iconTheme.color,

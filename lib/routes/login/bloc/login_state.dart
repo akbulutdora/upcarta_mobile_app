@@ -22,7 +22,7 @@ class LoginState extends Equatable {
 
   factory LoginState.initial() {
     return const LoginState(
-        email: "", password: "", status: LoginStatus.initial);
+        email: '', password: '', status: LoginStatus.initial);
   }
 
   @override

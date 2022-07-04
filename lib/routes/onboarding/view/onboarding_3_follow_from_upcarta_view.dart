@@ -1,4 +1,5 @@
-import "package:flutter/material.dart";
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -25,8 +26,8 @@ class _UserOnboarding3State extends State<UserOnboarding3> {
 
   Future fetchData() async {
     var x = await _firestoreDB
-        .collection("Person")
-        .where("id",
+        .collection('Person')
+        .where('id',
             isNotEqualTo: firebase_auth.FirebaseAuth.instance.currentUser?.uid)
         .get();
 
@@ -39,29 +40,29 @@ class _UserOnboarding3State extends State<UserOnboarding3> {
 
   List<Map<String, String>> users = [
     {
-      "name": "Person A",
-      "about":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl."
+      'name': 'Person A',
+      'about':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl.'
     },
     {
-      "name": "Person B",
-      "about":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl."
+      'name': 'Person B',
+      'about':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl.'
     },
     {
-      "name": "Person C",
-      "about":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl."
+      'name': 'Person C',
+      'about':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl.'
     },
     {
-      "name": "Person D",
-      "about":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl."
+      'name': 'Person D',
+      'about':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl.'
     },
     {
-      "name": "Person E",
-      "about":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl."
+      'name': 'Person E',
+      'about':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at fringilla odio. Proin vitae turpis euismod, consectetur tortor quis, tempor nisl.'
     },
   ];
 
@@ -77,7 +78,7 @@ class _UserOnboarding3State extends State<UserOnboarding3> {
           future: fetchData(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: Text('Please wait its loading...'));
+              return const Center(child: Text('Please wait its loading...'));
             } else {
               if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
@@ -92,7 +93,7 @@ class _UserOnboarding3State extends State<UserOnboarding3> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Follow 5 or More People From Upcarta",
+                            'Follow 5 or More People From Upcarta',
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: height * 0.02),
@@ -112,19 +113,19 @@ class _UserOnboarding3State extends State<UserOnboarding3> {
                           //     listener: (context, state) {},
                           //     builder: (context, state) {
                           return Person(
-                              id: peopleList[index]?["id"],
-                              name: peopleList[index]["username"]!,
-                              about: peopleList[index]["bio"]!,
-                              image: peopleList[index]?["photoURL"] ?? "",
+                              id: peopleList[index]?['id'],
+                              name: peopleList[index]['username']!,
+                              about: peopleList[index]['bio']!,
+                              image: peopleList[index]?['photoURL'] ?? '',
                               follow: () {
-                                followList.add(peopleList[index]["username"]!);
+                                followList.add(peopleList[index]['username']!);
                                 // context
                                 //     .read<OnboardingCubit>()
                                 //     .followUserWithID(peopleList[index]?["id"]);
                               },
                               unfollow: () {
                                 followList.removeWhere((element) =>
-                                    element == peopleList[index]["username"]);
+                                    element == peopleList[index]['username']);
                                 // context
                                 //     .read<OnboardingCubit>()
                                 //     .unfollowUserWithID(
@@ -154,19 +155,21 @@ class _UserOnboarding3State extends State<UserOnboarding3> {
                                 // context.router.push(UserOnboarding3Route());
                               },
                               child: const Text(
-                                "Skip",
+                                'Skip',
                                 style: TextStyle(
                                     color: Color(0xFF949494), fontSize: 18),
                               ),
                             ),
                             OutlinedButton(
                               onPressed: () {
-                                print(followList);
+                                if (kDebugMode) {
+                                  print(followList);
+                                }
                                 context.router
                                     .push(const UserOnboarding4Route());
                               },
                               child: const Text(
-                                "Next",
+                                'Next',
                                 style: TextStyle(
                                     color: Color(0xFF4E89FD), fontSize: 18),
                               ),
@@ -297,14 +300,12 @@ class _FollowButtonState extends State<FollowButton> {
               widget.isFollowing
                   ? {
                       widget.unfollow(),
-                      print("unfollow"),
                       context
                           .read<OnboardingCubit>()
                           .unfollowUserWithID(widget.id)
                     }
                   : {
                       widget.follow(),
-                      print("follow"),
                       context
                           .read<OnboardingCubit>()
                           .followUserWithID(widget.id)
@@ -319,10 +320,10 @@ class _FollowButtonState extends State<FollowButton> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 10)),
             child: widget.isFollowing
-                ? const Text("Unfollow",
+                ? const Text('Unfollow',
                     style: TextStyle(fontSize: 14, color: Colors.grey))
                 : const Text(
-                    "Follow",
+                    'Follow',
                     style: TextStyle(fontSize: 14, color: Colors.blue),
                   ),
           );

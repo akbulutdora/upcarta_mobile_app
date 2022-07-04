@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 
@@ -17,7 +16,6 @@ class _ConfirmRegisterViewState extends State<ConfirmRegisterView> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
@@ -99,7 +97,7 @@ class _ConfirmRegisterViewState extends State<ConfirmRegisterView> {
                   context.router.push(const LoginScreenRoute());
                 },
                 child: Text(
-                  "Resend Email",
+                  'Resend Email',
                   style: TextStyle(color: Theme.of(context).iconTheme.color),
                 ),
               ),

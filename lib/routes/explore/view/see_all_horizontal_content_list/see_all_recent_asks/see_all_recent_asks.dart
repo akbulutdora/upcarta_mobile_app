@@ -30,7 +30,7 @@ class _SeeAllRecentAsksState extends State<SeeAllRecentAsks> {
           title: const Text(
             'Explore Asks',
             style: TextStyle(
-                fontFamily: "SFCompactText-Medium.ttf",
+                fontFamily: 'SFCompactText-Medium.ttf',
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
                 fontSize: 18),

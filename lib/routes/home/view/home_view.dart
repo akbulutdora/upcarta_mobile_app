@@ -4,10 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
-import 'package:upcarta_mobile_app/repositories/query_repository.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
-import 'package:upcarta_mobile_app/routes/other_profile/bloc/other_profile_bloc.dart';
 
 class Home extends StatefulWidget {
   static MaterialPage page(int currentTab) {
@@ -76,7 +74,7 @@ class _HomeState extends State<Home> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.search),
                 activeIcon: ImageIcon(
-                  AssetImage("assets/images/Vector.png"),
+                  AssetImage('assets/images/Vector.png'),
                   size: 20,
                 ),
                 label: 'Explore Screen',

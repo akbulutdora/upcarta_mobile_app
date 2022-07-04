@@ -43,9 +43,9 @@ class _FeedContentListState extends State<FeedContentList> {
                           ),
                           SizedBox(width: 6),
                           Text(
-                            "Recommended by",
+                            'Recommended by',
                             style: TextStyle(
-                                fontFamily: "SF Compact Text",
+                                fontFamily: 'SF Compact Text',
                                 fontWeight: FontWeight.normal,
                                 fontSize: 10,
                                 color: Color(0xff949494)),

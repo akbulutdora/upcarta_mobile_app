@@ -1,9 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
-import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:auto_route/auto_route.dart';
@@ -118,7 +118,7 @@ class LoginMainViewButtons extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.r)),
                   backgroundColor: Colors.lightBlue,
                   padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h),
-                  side: BorderSide(color: Colors.lightBlue)),
+                  side: const BorderSide(color: Colors.lightBlue)),
               child: Text(
                 'Continue with Twitter',
                 style: TextStyle(color: AppColors.white, fontSize: 16.sp),
@@ -173,7 +173,7 @@ class LoginMainViewButtons extends StatelessWidget {
                   ],
                 ),
               ),
-              Text("     OR     ",
+              Text('     OR     ',
                   style: TextStyle(
                       fontSize: 13.sp,
                       color: Theme.of(context).dividerTheme.color)),
@@ -277,9 +277,11 @@ class LoginMainViewButtons extends StatelessWidget {
             child: TextButton(
               onPressed: () {
                 context.read<AppBloc>().add(AppLandedCanceled());
-                print("landed canceled\n\n\n");
+                if (kDebugMode) {
+                  print('landed canceled\n\n\n');
+                }
               },
-              child: const Text("Press to cancel landed"),
+              child: const Text('Press to cancel landed'),
             ),
           ),
         ],

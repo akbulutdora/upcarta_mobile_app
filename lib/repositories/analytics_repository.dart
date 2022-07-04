@@ -1,4 +1,5 @@
-import "package:firebase_analytics/firebase_analytics.dart";
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 
 class AnalyticsRepository {
   AnalyticsRepository({FirebaseAnalytics? firebaseAnalytics})
@@ -12,9 +13,13 @@ class AnalyticsRepository {
   setLogEvent(String log) async {
     try {
       await _firebaseAnalytics.logEvent(name: log);
-      print(log);
+      if (kDebugMode) {
+        print(log);
+      }
     } catch (err) {
-      print("error while setting log event (analytics): $err");
+      if (kDebugMode) {
+        print('error while setting log event (analytics): $err');
+      }
     }
   }
 
@@ -22,7 +27,9 @@ class AnalyticsRepository {
     try {
       _firebaseAnalytics.setCurrentScreen(screenName: screenName);
     } catch (err) {
-      print("error while setting current screen (analytics): $err");
+      if (kDebugMode) {
+        print('error while setting current screen (analytics): $err');
+      }
     }
   }
 
@@ -30,18 +37,24 @@ class AnalyticsRepository {
     try {
       await _firebaseAnalytics.setUserId(id: userID);
     } catch (err) {
-      print("error while setting user id (analytics): $err");
+      if (kDebugMode) {
+        print('error while setting user id (analytics): $err');
+      }
     }
   }
 
   setDefaultEventParameters(String email) async {
     try {
       await _firebaseAnalytics.setDefaultEventParameters({
-        "email": email,
+        'email': email,
       });
-      print(email);
+      if (kDebugMode) {
+        print(email);
+      }
     } catch (err) {
-      print("error while setting default parameters (analytics): $err");
+      if (kDebugMode) {
+        print('error while setting default parameters (analytics): $err');
+      }
     }
   }
 }

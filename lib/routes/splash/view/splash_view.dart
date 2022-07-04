@@ -41,13 +41,13 @@ class _SplashScreenState extends State<SplashScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      "assets/images/upcarta-logo-small.png",
+                      'assets/images/upcarta-logo-small.png',
                     ),
                     const SizedBox(
                       width: 7,
                     ),
                     const Text(
-                      "Upcarta",
+                      'Upcarta',
                       style: splashTitleStyle,
                     )
                   ],

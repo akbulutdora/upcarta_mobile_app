@@ -21,7 +21,7 @@ class HorizontalContentList extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Collections and Asks", style: sectionStyle),
+                const Text('Collections and Asks', style: sectionStyle),
                 SizedBox(
                   height: 25,
                   width: 70,
@@ -32,9 +32,9 @@ class HorizontalContentList extends StatelessWidget {
                           .push(const SeeAllCollectionsAndAsksViewRoute());
                     },
                     child: Text(
-                      "View all",
+                      'View all',
                       style: TextStyle(
-                          fontFamily: "SF Compact Text",
+                          fontFamily: 'SF Compact Text',
                           fontWeight: FontWeight.normal,
                           fontSize: 11,
                           color: AppColors.upcartaBlue),

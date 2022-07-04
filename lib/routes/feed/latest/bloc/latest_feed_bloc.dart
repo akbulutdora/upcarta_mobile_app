@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 
@@ -69,7 +70,9 @@ class LatestFeedBloc extends Bloc<LatestFeedEvent, LatestFeedState> {
               hasReachedMax: false,
             ));
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       emit(state.copyWith(status: LatestFeedStatus.failure));
     }
   }
@@ -81,12 +84,14 @@ class LatestFeedBloc extends Bloc<LatestFeedEvent, LatestFeedState> {
       status: LatestFeedStatus.saveRequested,
     ));
     try {
-      userRepository.saveContent(event.contentID);
+      await userRepository.saveContent(event.contentID);
       emit(state.copyWith(
         status: LatestFeedStatus.success,
       ));
     } catch (_) {
-      print("CONTENT SAVE ERROR");
+      if (kDebugMode) {
+        print('CONTENT SAVE ERROR');
+      }
     }
   }
 
@@ -97,13 +102,17 @@ class LatestFeedBloc extends Bloc<LatestFeedEvent, LatestFeedState> {
       status: LatestFeedStatus.unsaveRequested,
     ));
     try {
-      userRepository.unsaveContent(event.contentID);
-      print(event.contentID);
+      await userRepository.unsaveContent(event.contentID);
+      if (kDebugMode) {
+        print(event.contentID);
+      }
       emit(state.copyWith(
         status: LatestFeedStatus.success,
       ));
     } catch (_) {
-      print("CONTENT UNSAVE ERROR");
+      if (kDebugMode) {
+        print('CONTENT UNSAVE ERROR');
+      }
     }
   }
 
@@ -114,12 +123,14 @@ class LatestFeedBloc extends Bloc<LatestFeedEvent, LatestFeedState> {
       status: LatestFeedStatus.reportRequested,
     ));
     try {
-      userRepository.reportContent(event.contentID);
+      await userRepository.reportContent(event.contentID);
       emit(state.copyWith(
         status: LatestFeedStatus.success,
       ));
     } catch (_) {
-      print("CONTENT REPORT ERROR");
+      if (kDebugMode) {
+        print('CONTENT REPORT ERROR');
+      }
     }
   }
 }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
-import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
@@ -65,7 +63,7 @@ class _MyRegisterState extends State<MyRegister> {
                   SizedBox(height: 160.h),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("Sign Up",
+                    child: Text('Sign Up',
                         textAlign: TextAlign.start,
                         style: TextStyle(
                             fontSize: 26.sp,

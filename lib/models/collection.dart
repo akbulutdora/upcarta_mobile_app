@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:upcarta_mobile_app/models/content.dart';
-part "collection.g.dart";
+part 'collection.g.dart';
 
 enum CollectionType {
   @JsonValue(0)
@@ -30,7 +30,7 @@ class Collection {
     required this.collectionId,
     required this.collectionType,
     required this.ownerId,
-    this.description = "This content has no description.",
+    this.description = 'This content has no description.',
     required this.creationDate,
     required this.recommendersIDs,
     required this.postIDs,

@@ -6,16 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
-import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/routes/onboarding/cubit/onboarding_cubit.dart';
-import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
-import 'package:upcarta_mobile_app/util/view_paths.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 
-// TODO: IMPLEMENT USER  BLOC WITH USER REPOSITORY WHICH WILL HANDLE
-// TODO: OPERATIONS SUCH AS FOLLOW, UNFOLLOW, CHANGE PROFILE PIC
 
 class EditOnboarding extends StatefulWidget {
   static MaterialPage page() {
@@ -76,7 +71,7 @@ class _EditOnboardingState extends State<EditOnboarding> {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "Create Your Profile",
+                        'Create Your Profile',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 20.sp,
@@ -96,10 +91,10 @@ class _EditOnboardingState extends State<EditOnboarding> {
                     // TODO: WHEN IMAGE IS UPDATED, WE NEED TO TRIGGER ONPRESSED, ONUPDATED ETC.
                     Align(
                       alignment: Alignment.center,
-                      child: Container(
+                      child: SizedBox(
                           height: 150.h,
                           child: Material(
-                            shape: CircleBorder(),
+                            shape: const CircleBorder(),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             child: InkWell(
                               splashColor: Colors.black26,
@@ -187,7 +182,7 @@ class _BioInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: ((value) => context.read<OnboardingCubit>().bioChanged(value)),
+      onChanged: (value) => context.read<OnboardingCubit>().bioChanged(value),
       decoration: InputDecoration(
         labelText: 'Bio',
         alignLabelWithHint: true,

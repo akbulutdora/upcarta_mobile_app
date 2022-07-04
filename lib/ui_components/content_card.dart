@@ -3,17 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/bloc/latest_feed_bloc.dart';
-import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/contents_list.dart';
-import 'package:upcarta_mobile_app/routes/library/bloc/library_bloc.dart';
-import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
-import 'package:upcarta_mobile_app/util/constants.dart';
 import 'package:upcarta_mobile_app/util/content_type_info.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../routes/explore/bloc/explore_cubit.dart';
 import 'components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
@@ -29,11 +23,9 @@ class ContentCard extends StatefulWidget {
 
 class _ContentCardState extends State<ContentCard> {
   final bool isTweet = true;
-  var _selected = "";
   bool isSaved = false;
   @override
   Widget build(BuildContext context) {
-    final AppUser currentUser = context.read<UserBloc>().state.user;
 
     return isTweet
         ? Card(
@@ -56,7 +48,7 @@ class _ContentCardState extends State<ContentCard> {
                           widget.content.title,
                           style: TextStyle(
                               fontSize: 17.sp,
-                              fontFamily: "SFCompactText",
+                              fontFamily: 'SFCompactText',
                               fontWeight: FontWeight.w600),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -71,41 +63,6 @@ class _ContentCardState extends State<ContentCard> {
                             iconSize: 20.sm,
                             onPressed: () async {
                               FocusScope.of(context).unfocus();
-                              _selected = await showDialog(
-                                context: context,
-                                builder: (_) {
-                                  return SimpleDialog(
-                                    title: Text('Post actions'),
-                                    children: [
-                                      SimpleDialogOption(
-                                        child: const Text(
-                                            'Add content to collection'),
-                                        onPressed: () {
-                                          Navigator.pop(
-                                              context, "Add to collection");
-                                        },
-                                      ),
-                                      SimpleDialogOption(
-                                        child: const Text('Report content'),
-                                        onPressed: () {
-                                          context.read<LatestFeedBloc>().add(
-                                              LatestFeedEventContentReported(
-                                                  widget.content.postId));
-                                          Navigator.pop(
-                                              context, "Report content");
-                                        },
-                                      ),
-                                      SimpleDialogOption(
-                                        child: const Text('Report user'),
-                                        onPressed: () {
-                                          Navigator.pop(context, "Report user");
-                                        },
-                                      ),
-                                    ],
-                                    elevation: 10,
-                                  );
-                                },
-                              );
                             },
                             icon: Icon(Icons.more_horiz,
                                 color: Theme.of(context).iconTheme.color),
@@ -163,7 +120,7 @@ class _ContentCardState extends State<ContentCard> {
                     Text(
                       contentTypeInfoDict[widget.content.contentType]![1],
                       style: TextStyle(
-                          fontFamily: "SF Compact Text",
+                          fontFamily: 'SF Compact Text',
                           fontWeight: FontWeight.normal,
                           fontSize: 12.sm,
                           color: Theme.of(context).primaryColor),
@@ -171,16 +128,16 @@ class _ContentCardState extends State<ContentCard> {
                     SizedBox(
                       width: 6.w,
                     ),
-                    Text("\u00B7", style: TextStyle(fontSize: 18.sp)),
+                    Text('\u00B7', style: TextStyle(fontSize: 18.sp)),
                     SizedBox(
                       width: 6.w,
                     ),
                     Text(
-                      widget.content.username != ""
+                      widget.content.username != ''
                           ? widget.content.username
-                          : "null",
+                          : 'null',
                       style: TextStyle(
-                          fontFamily: "SF Compact Text",
+                          fontFamily: 'SF Compact Text',
                           fontWeight: FontWeight.normal,
                           fontSize: 12.sm,
                           color: Theme.of(context).iconTheme.color),
@@ -188,7 +145,7 @@ class _ContentCardState extends State<ContentCard> {
                     SizedBox(
                       width: 6.w,
                     ),
-                    Text("\u00B7", style: TextStyle(fontSize: 18.sp)),
+                    Text('\u00B7', style: TextStyle(fontSize: 18.sp)),
                     SizedBox(
                       width: 6.w,
                     ),
@@ -196,7 +153,7 @@ class _ContentCardState extends State<ContentCard> {
                       DateFormat('EEE, dd/mm, HH:mm')
                           .format(widget.content.createDate),
                       style: TextStyle(
-                          fontFamily: "SF Compact Text",
+                          fontFamily: 'SF Compact Text',
                           fontWeight: FontWeight.normal,
                           fontSize: 12.sm,
                           color: Theme.of(context).iconTheme.color),
@@ -251,7 +208,7 @@ class _ContentCardState extends State<ContentCard> {
                                   Text(
                                     widget.content.url,
                                     style: TextStyle(
-                                        fontFamily: "SF Compact Text",
+                                        fontFamily: 'SF Compact Text',
                                         fontWeight: FontWeight.w300,
                                         fontSize: 10,
                                         color: Theme.of(context).primaryColor),
@@ -269,9 +226,9 @@ class _ContentCardState extends State<ContentCard> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
                         child: Text(
-                          "10 recommenders",
+                          '10 recommenders',
                           style: TextStyle(
-                              fontFamily: "SF Compact Text",
+                              fontFamily: 'SF Compact Text',
                               fontWeight: FontWeight.normal,
                               fontSize: 10.sp,
                               color: Theme.of(context).iconTheme.color),
@@ -282,24 +239,24 @@ class _ContentCardState extends State<ContentCard> {
                   SizedBox(height: 4.h),
                   RecommendedBy(recommenders: [
                     {
-                      "image": "imageLink",
-                      "username": "person A",
-                      "color": "0xFF34E8EB"
+                      'image': 'imageLink',
+                      'username': 'person A',
+                      'color': '0xFF34E8EB'
                     },
                     {
-                      "image": "imageLink",
-                      "username": "person B",
-                      "color": "0xFF20B3E8"
+                      'image': 'imageLink',
+                      'username': 'person B',
+                      'color': '0xFF20B3E8'
                     },
                     {
-                      "image": "imageLink",
-                      "username": "person C",
-                      "color": "0xFF206AE8"
+                      'image': 'imageLink',
+                      'username': 'person C',
+                      'color': '0xFF206AE8'
                     },
                     {
-                      "image": "imageLink",
-                      "username": "person D",
-                      "color": "0xFF5322E6"
+                      'image': 'imageLink',
+                      'username': 'person D',
+                      'color': '0xFF5322E6'
                     },
                   ]),
                   // ListTile(

@@ -1,19 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:upcarta_mobile_app/models/collection.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:path/path.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:upcarta_mobile_app/models/collection.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/notification_repository.dart';
 
 import '../models/models.dart';
@@ -30,14 +22,12 @@ class UserRepository {
     required SharedPreferences sharedPreferences,
   })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
         _firestoreDB = firebaseFirestore ?? FirebaseFirestore.instance,
-        _firebaseStorage = firebaseStorage ?? FirebaseStorage.instance,
         _sharedPreferences = sharedPreferences;
 
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestoreDB;
   final SharedPreferences _sharedPreferences;
-  final String userCollection = "Person";
-  final FirebaseStorage _firebaseStorage;
+  final String userCollection = 'Person';
 
   final NotificationRepository _notifRepo = NotificationRepository();
 
@@ -54,7 +44,7 @@ class UserRepository {
           ? AppUser.empty
           : AppUser.fromJson(event.data()!);
 
-      _sharedPreferences.setString("user", json.encode(user.toString()));
+      _sharedPreferences.setString('user', json.encode(user.toString()));
 
       return user;
     });
@@ -82,9 +72,6 @@ class UserRepository {
     if (event.exists) {
       var data = event.data()!;
 
-      print("USER REQUESTED ${event.toString()}");
-      print("AFTER USER REQUESTED ${AppUser.fromJson(data).toString()}");
-
       return AppUser.fromJson(data);
     }
     return AppUser.empty;
@@ -97,30 +84,28 @@ class UserRepository {
       //  newBio = thisUser.bio!;
       //}
       //else{
-      _firestoreDB
+      await _firestoreDB
           .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
-          .update({"bio": newBio});
+          .update({'bio': newBio});
       //}
     } catch (e) {
-      print(e);
+      rethrow;
     }
   }
 
   /// Called when the user changes their profile picture
   Future<void> changePhoto(String newURL) async {
     try {
-      _firebaseAuth.currentUser!.updatePhotoURL(newURL);
-      _firestoreDB
+      await _firebaseAuth.currentUser!.updatePhotoURL(newURL);
+      await _firestoreDB
           .collection(userCollection)
           .doc(_firebaseAuth.currentUser!.uid)
-          .update({"photoURL": newURL});
+          .update({'photoURL': newURL});
     }
     // TODO: IMPLEMENT ERROR
-    on FirebaseException catch (e) {
-      print('ERROR: ${e.code} - ${e.message}');
-    } catch (e) {
-      print(e.toString());
+catch (e) {
+      rethrow;
     }
   }
 
@@ -128,21 +113,21 @@ class UserRepository {
   FutureOr<void> changeUsername(String newUsername) async {
     try {
       var thisUser = await getCurrentUser();
-      if (newUsername == "") {
-        throw ("username cannot be empty");
+      if (newUsername == '') {
+        throw 'username cannot be empty';
       } else {
         var usernameSnapshot = await _firestoreDB
             .collection(userCollection)
-            .where("username", isEqualTo: newUsername)
+            .where('username', isEqualTo: newUsername)
             .get();
-        if (!usernameSnapshot.docs.isEmpty &&
+        if (usernameSnapshot.docs.isNotEmpty &&
             thisUser.username != newUsername) {
-          throw ("username already in use");
+          throw 'username already in use';
         } else {
-          _firestoreDB
+          await _firestoreDB
               .collection(userCollection)
               .doc(_firebaseAuth.currentUser!.uid)
-              .update({"username": newUsername});
+              .update({'username': newUsername});
         }
       }
     } catch (_) {
@@ -152,58 +137,58 @@ class UserRepository {
 
   /// Called when the user follows another user
   Future<void> followUserWithID(String followID) async {
-    _firestoreDB
+    await _firestoreDB
         .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
         .update({
-      "followingIDs": FieldValue.arrayUnion([followID]),
+      'followingIDs': FieldValue.arrayUnion([followID]),
     });
 
-    _firestoreDB.collection(userCollection).doc(followID).update({
-      "followerIDs": FieldValue.arrayUnion([_firebaseAuth.currentUser!.uid]),
+    await _firestoreDB.collection(userCollection).doc(followID).update({
+      'followerIDs': FieldValue.arrayUnion([_firebaseAuth.currentUser!.uid]),
     });
 
-    _notifRepo.addNotifications(NotifTypes.follow, followID);
+    await _notifRepo.addNotifications(NotifTypes.follow, followID);
   }
 
   /// Called when the user unfollows another user
   Future<void> unfollowUserWithID(String unfollowID) async {
-    _firestoreDB
+    await _firestoreDB
         .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
         .update({
-      "followingIDs": FieldValue.arrayRemove([unfollowID]),
+      'followingIDs': FieldValue.arrayRemove([unfollowID]),
     });
 
-    _firestoreDB.collection(userCollection).doc(unfollowID).update({
-      "followerIDs": FieldValue.arrayRemove([_firebaseAuth.currentUser!.uid]),
+    await _firestoreDB.collection(userCollection).doc(unfollowID).update({
+      'followerIDs': FieldValue.arrayRemove([_firebaseAuth.currentUser!.uid]),
     });
   }
 
   /// Called when the user follows a topic
   Future<void> followTopicWithID(String followID) async {
-    _firestoreDB
+    await _firestoreDB
         .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
         .update({
-      "followedTopicsIDs": FieldValue.arrayUnion([followID]),
+      'followedTopicsIDs': FieldValue.arrayUnion([followID]),
     });
   }
 
   /// Called when the user unfollows a topic
   Future<void> unfollowTopicWithID(String followID) async {
-    _firestoreDB
+    await _firestoreDB
         .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
         .update({
-      "followedTopicsIDs": FieldValue.arrayRemove([followID]),
+      'followedTopicsIDs': FieldValue.arrayRemove([followID]),
     });
   }
 
   /// Called when the user adds a recommendation to one of their collections
   Future<void> saveToCollection(String postID, String collectionID) async {
-    _firestoreDB.collection("collections").doc(collectionID).update({
-      "postIDs": FieldValue.arrayUnion([postID]),
+    await _firestoreDB.collection('collections').doc(collectionID).update({
+      'postIDs': FieldValue.arrayUnion([postID]),
     });
   }
 
@@ -214,12 +199,12 @@ class UserRepository {
         .doc(_firebaseAuth.currentUser!.uid)
         .get()
         .then((documentSnapshot) => documentSnapshot['recommendationsID']);
-    _firestoreDB.collection("posts").doc(postID).update({
-      "recommendersIDs":
+    await _firestoreDB.collection('posts').doc(postID).update({
+      'recommendersIDs':
           FieldValue.arrayUnion([_firebaseAuth.currentUser!.uid]),
     });
-    _firestoreDB.collection("collections").doc(recommendationsID).update({
-      "postIDs": FieldValue.arrayUnion([postID]),
+    await _firestoreDB.collection('collections').doc(recommendationsID).update({
+      'postIDs': FieldValue.arrayUnion([postID]),
     });
   }
 
@@ -232,8 +217,8 @@ class UserRepository {
         .get()
         .then((documentSnapshot) => documentSnapshot['savesID']);
     //Adding the new postId in the saves collection of the user.
-    _firestoreDB.collection("collections").doc(savesId).update({
-      "postIDs": FieldValue.arrayUnion([postID]),
+    await _firestoreDB.collection('collections').doc(savesId).update({
+      'postIDs': FieldValue.arrayUnion([postID]),
     });
   }
 
@@ -246,8 +231,8 @@ class UserRepository {
         .get()
         .then((documentSnapshot) => documentSnapshot['savesID']);
     //Removing the new postId in the saves collection of the user.
-    _firestoreDB.collection("collections").doc(savesId).update({
-      "postIDs": FieldValue.arrayRemove([postID]),
+    await _firestoreDB.collection('collections').doc(savesId).update({
+      'postIDs': FieldValue.arrayRemove([postID]),
     });
   }
 
@@ -256,13 +241,15 @@ class UserRepository {
     //Getting the unique savesId from the user collection.
     try {
       var report = <String, dynamic>{
-        "reportedID": postID,
-        "reporterID": _firebaseAuth.currentUser!.uid,
-        "reportType": "content"
+        'reportedID': postID,
+        'reporterID': _firebaseAuth.currentUser!.uid,
+        'reportType': 'content'
       };
-      await _firestoreDB.collection("reports").doc().set(report);
+      await _firestoreDB.collection('reports').doc().set(report);
     } catch (e) {
-      print("REPORT CONTENT ERROR $e");
+      if (kDebugMode) {
+        print('REPORT CONTENT ERROR $e');
+      }
       rethrow;
     }
   }
@@ -270,10 +257,10 @@ class UserRepository {
   // TODO: Might be moved to auth repo
   /// Called when the user changes their email
   Future<void> changeEmail(String newEmail) async {
-    _firestoreDB
+    await _firestoreDB
         .collection(userCollection)
         .doc(_firebaseAuth.currentUser!.uid)
-        .update({"email": newEmail});
+        .update({'email': newEmail});
   }
 
   // TODO: Might be moved to auth repo
@@ -281,12 +268,10 @@ class UserRepository {
   Future<void> changePassword(String newPassword) async {
     try {
       if (newPassword.length < 6) {
-        print("weak password");
-        throw ("Weak password!");
+        throw ('Weak password!');
       } else {
         var currentUser = _firebaseAuth.currentUser;
-        currentUser!.updatePassword(newPassword);
-        print("CHANGED PASSWORD SUCCESSFULLY");
+        await currentUser!.updatePassword(newPassword);
       }
     } catch (_) {
       rethrow;
@@ -299,8 +284,10 @@ class UserRepository {
       await currentUser!.delete();
     } on firebase_auth.FirebaseAuthException catch (e) {
       if (e.code == 'requires-recent-login') {
-        print(
-            'The user must reauthenticate before this operation can be executed.');
+        if (kDebugMode) {
+          print(
+            'The user must authenticate before this operation can be executed.');
+        }
       }
     }
   }
@@ -324,7 +311,9 @@ class UserRepository {
       }
       return res;
     } catch (e) {
-      print('Failed with error code: $e');
+      if (kDebugMode) {
+        print('Failed with error code: $e');
+      }
       //TODO: bu ne return etmeli
       return [];
     }
@@ -342,7 +331,9 @@ class UserRepository {
       }
       return {};
     } catch (e) {
-      print('Failed with error code: $e');
+      if (kDebugMode) {
+        print('Failed with error code: $e');
+      }
       //TODO: bu ne return etmeli
       return {};
     }
@@ -358,7 +349,6 @@ class UserRepository {
       if (docSnapshot.exists) {
         Map<String, dynamic> data = docSnapshot.data()!;
         var recommendationsID = data['recommendationsID'];
-        print(recommendationsID);
         var recommendationSnapshot = await _firestoreDB
             .collection('collections')
             .doc(recommendationsID)
@@ -394,7 +384,9 @@ class UserRepository {
       }
       return;
     } catch (e) {
-      print('Failed with error code: $e');
+      if (kDebugMode) {
+        print('Failed with error code: $e');
+      }
       //TODO: bu ne return etmeli
       return;
     }
@@ -430,7 +422,9 @@ class UserRepository {
               recPostsList.add(Content.fromJson(savePostSnapshot.data()!));
             }
           }
-          print(recPostsList);
+          if (kDebugMode) {
+            print(recPostsList);
+          }
           if (recPostsList.isEmpty) {
             return;
           }
@@ -439,7 +433,9 @@ class UserRepository {
       }
       return;
     } catch (e) {
-      print('Failed with error code: $e');
+      if (kDebugMode) {
+        print('Failed with error code: $e');
+      }
       //TODO: bu ne return etmeli
       return;
     }
@@ -451,12 +447,12 @@ class UserRepository {
   Future<String> setCollection(Collection collection) async {
     try {
       var collectionId = _firestoreDB
-          .collection("collections")
+          .collection('collections')
           .add(collection.toJson())
           .then((documentSnapshot) => documentSnapshot.id);
       return collectionId;
     } catch (_) {
-      return "";
+      return '';
     }
   }
 
@@ -464,17 +460,19 @@ class UserRepository {
   Future<void> createContent(
       String title, String contentURL, String content) async {
     try {
-      final newRef = _firestoreDB.collection("posts").doc();
+      final newRef = _firestoreDB.collection('posts').doc();
       var postId = newRef.id;
 
       AppUser thisUser = await getCurrentUser();
-      print("IS THERE ERROR BEFORE CONTENT $postId\n\n\n\n");
+      if (kDebugMode) {
+        print('IS THERE ERROR BEFORE CONTENT $postId\n\n\n\n');
+      }
 
       Content post = Content(
         title: title,
         url: contentURL,
         uId: _firebaseAuth.currentUser!.uid,
-        username: thisUser.name ?? "",
+        username: thisUser.name ?? '',
         recommendationText: content,
         contentTopic: '',
         contentType: ContentType.video,
@@ -483,35 +481,49 @@ class UserRepository {
         postId: postId,
         recommendersIDs: [_firebaseAuth.currentUser!.uid],
       );
-      print("IS THERE ERROR BEFORE SET POST ${post.toJson()}\n\n\n\n");
+      if (kDebugMode) {
+        print('IS THERE ERROR BEFORE SET POST ${post.toJson()}\n\n\n\n');
+      }
 
-      newRef.set(post.toJson());
+      await newRef.set(post.toJson());
 
-      print(
-          "IS THERE ERROR BEFORE REACHING TO BBGISUS ACCOUNT ${_firebaseAuth.currentUser!.uid}\n\n\n\n");
+      if (kDebugMode) {
+        print(
+          'IS THERE ERROR BEFORE REACHING TO BBGISUS ACCOUNT ${_firebaseAuth.currentUser!.uid}\n\n\n\n');
+      }
 
       var docSnapshot = await _firestoreDB
           .collection('Person')
           .doc(_firebaseAuth.currentUser!.uid)
           .get();
 
-      print("IS THERE ERROR AFTER REACHING TO BBGISUS ACCOUNT\n\n\n\n");
+      if (kDebugMode) {
+        print('IS THERE ERROR AFTER REACHING TO BBGISUS ACCOUNT\n\n\n\n');
+      }
 
       Map<String, dynamic> data = docSnapshot.data()!;
 
-      print("IS THERE ERROR AFTER GETTING DATA\n\n\n\n");
+      if (kDebugMode) {
+        print('IS THERE ERROR AFTER GETTING DATA\n\n\n\n');
+      }
 
       var recommendationsID = data['recommendationsID'];
 
-      print("IS THERE ERROR AFTER GETTING RECS ID\n\n\n\n");
+      if (kDebugMode) {
+        print('IS THERE ERROR AFTER GETTING RECS ID\n\n\n\n');
+      }
 
-      _firestoreDB.collection("collections").doc(recommendationsID).update({
-        "postIDs": FieldValue.arrayUnion([postId]),
+      await _firestoreDB.collection('collections').doc(recommendationsID).update({
+        'postIDs': FieldValue.arrayUnion([postId]),
       });
 
-      print("IS THERE ERROR AFTER UNIFY ARRAY\n\n\n\n");
+      if (kDebugMode) {
+        print('IS THERE ERROR AFTER UNIFY ARRAY\n\n\n\n');
+      }
     } catch (e) {
-      print("THE ERROR $e");
+      if (kDebugMode) {
+        print('THE ERROR $e');
+      }
       rethrow;
     }
   }
@@ -530,7 +542,9 @@ class UserRepository {
       }
       return {};
     } catch (e) {
-      print('Failed with error code: $e');
+      if (kDebugMode) {
+        print('Failed with error code: $e');
+      }
       //TODO: bu ne return etmeli
       return {};
     }
@@ -544,23 +558,25 @@ class UserRepository {
           .doc(_firebaseAuth.currentUser!.uid)
           .get()
           .then((documentSnapshot) => documentSnapshot['followingIDs']);
-      if (followingIDs.toString() == "[]") {
+      if (followingIDs.toString() == '[]') {
         return;
       }
 
-      print("HEYYYYYYYO" +
+      if (kDebugMode) {
+        print('URL: ' +
           await _firestoreDB
-              .collection("posts")
-              .where("uId", whereIn: followingIDs)
+              .collection('posts')
+              .where('uId', whereIn: followingIDs)
               .get()
               .then((value) => value.docs.map((e) => e['url']).toString()));
+      }
       var data1 = await _firestoreDB
-          .collection("posts")
-          .orderBy("createDate", descending: true)
-          .where("uId", whereIn: followingIDs)
+          .collection('posts')
+          .orderBy('createDate', descending: true)
+          .where('uId', whereIn: followingIDs)
           .limit(numberOfPosts + 10)
           .get();
-      dynamic data;
+      List<Content> data;
       if (data1.docs.isEmpty) {
         return;
       } else {
@@ -575,7 +591,9 @@ class UserRepository {
         // return {};
       }
     } catch (e) {
-      print('Failed with error code: $e');
+      if (kDebugMode) {
+        print('Failed with error code: $e');
+      }
       rethrow;
     }
   }

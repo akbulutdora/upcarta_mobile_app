@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 
@@ -22,7 +23,9 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
       ));
 
       final contents = await userRepository.libraryGetSaves();
-      print('AAAAAA:\n\n${contents}');
+      if (kDebugMode) {
+        print('AAAAAA:\n\n$contents');
+      }
       List<Content> emptyList = [];
       return emit(state.copyWith(
         status: LibraryStatus.success,

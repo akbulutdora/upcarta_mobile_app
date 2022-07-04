@@ -40,13 +40,13 @@ class _MyLibraryScreenState extends State<MyLibraryScreen> {
             title: Text(
               'Your Library',
               style: TextStyle(
-                  fontFamily: "SFCompactText-Medium",
+                  fontFamily: 'SFCompactText-Medium',
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
                   fontSize: 22),
             ),
             leading: Image.asset(
-              "assets/images/upcarta-logo-small.png",
+              'assets/images/upcarta-logo-small.png',
               width: 30,
               height: 30,
             ),

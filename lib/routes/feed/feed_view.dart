@@ -1,19 +1,15 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
-import 'package:upcarta_mobile_app/util/styles.dart';
 import 'package:auto_route/auto_route.dart';
 
-import "package:upcarta_mobile_app/models/models.dart" as models;
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
 
   static MaterialPage page() {
-    return MaterialPage(
+    return const MaterialPage(
       child: FeedScreen(),
     );
   }
@@ -28,19 +24,18 @@ class _FeedScreenState extends State<FeedScreen> {
     AutoRouter.of(context);
     return SafeArea(
       child: AutoTabsRouter.tabBar(
-        routes: [
+        routes: const [
           LatestScreenRoute(),
           TopScreenRoute(),
         ],
         builder: (context, child, controller) {
-          final user = context.select((AppBloc bloc) => bloc.state.user);
           return SafeArea(
             child: Scaffold(
               appBar: AppBar(
                 title: Text(
-                  "Upcarta",
+                  'Upcarta',
                   style: TextStyle(
-                      fontFamily: "SFCompactText-Medium",
+                      fontFamily: 'SFCompactText-Medium',
                       color: Theme.of(context).iconTheme.color,
                       fontWeight: FontWeight.w500,
                       fontSize: 22),
@@ -51,7 +46,8 @@ class _FeedScreenState extends State<FeedScreen> {
                     icon: Icon(Icons.notifications,
                         color: Theme.of(context).appBarTheme.foregroundColor),
                     onPressed: () {
-                      AutoRouter.of(context).push(NotificationsScreenRoute());
+                      AutoRouter.of(context)
+                          .push(const NotificationsScreenRoute());
                     },
                   ),
                   IconButton(
@@ -61,12 +57,12 @@ class _FeedScreenState extends State<FeedScreen> {
                     ),
                     onPressed: () {
                       context.read<AppBloc>().add(AppLogoutRequested());
-                      AutoRouter.of(context).replace(LoginScreenRoute());
+                      AutoRouter.of(context).replace(const LoginScreenRoute());
                     },
                   )
                 ],
                 leading: Image.asset(
-                  "assets/images/upcarta-logo-small.png",
+                  'assets/images/upcarta-logo-small.png',
                   width: 30,
                   height: 30,
                 ),
@@ -75,7 +71,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 titleSpacing: 0.0,
                 //leading: AutoLeadingButton(),
                 bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(40),
+                  preferredSize: const Size.fromHeight(40),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Align(
@@ -85,20 +81,20 @@ class _FeedScreenState extends State<FeedScreen> {
                         indicatorWeight: 2.25,
                         indicatorColor: Theme.of(context).primaryColor,
                         indicatorSize: TabBarIndicatorSize.label,
-                        labelPadding: EdgeInsets.only(left: 8, right: 8),
+                        labelPadding: const EdgeInsets.only(left: 8, right: 8),
                         controller: controller,
-                        tabs: <Widget>[
+                        tabs: const <Widget>[
                           Tab(text: 'Latest'),
                           Tab(text: 'Top'),
                         ],
                         unselectedLabelColor:
                             Theme.of(context).dividerTheme.color,
-                        unselectedLabelStyle: TextStyle(
+                        unselectedLabelStyle: const TextStyle(
                             fontFamily: 'SFCompactText-SemiBold.ttf',
                             fontSize: 17,
                             fontWeight: FontWeight.w600),
                         labelColor: Theme.of(context).primaryColor,
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                             fontFamily: 'SFCompactText-SemiBold.ttf',
                             fontSize: 17,
                             fontWeight: FontWeight.w600),

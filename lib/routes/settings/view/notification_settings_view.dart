@@ -29,8 +29,6 @@ class _NotificationSettingsState extends State<NotificationSettings> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: AppBar(
@@ -41,7 +39,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             title: Text(
               'Notification Settings',
               style: TextStyle(
-                  fontFamily: "SFCompactText-Medium",
+                  fontFamily: 'SFCompactText-Medium',
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
                   fontSize: 22.sp),
@@ -61,9 +59,9 @@ class _NotificationSettingsState extends State<NotificationSettings> {
             child: ListView(
               children: <Widget>[
                 Text(
-                  "Notification Preferences",
+                  'Notification Preferences',
                   style: TextStyle(
-                    fontFamily: "SFCompactText",
+                    fontFamily: 'SFCompactText',
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
                     color: Theme.of(context).iconTheme.color,
@@ -82,7 +80,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     title: Text(
                       'Pause All',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 16.sp,
                         color: Theme.of(context).iconTheme.color,
@@ -104,7 +102,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     title: Text(
                       'Contents',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 16.sp,
                         color: Theme.of(context).iconTheme.color,
@@ -128,7 +126,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     title: Text(
                       'Collections',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
                         color: Theme.of(context).iconTheme.color,
@@ -152,7 +150,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     title: Text(
                       'Asks',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
                         color: Theme.of(context).iconTheme.color,
@@ -176,7 +174,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     title: Text(
                       'Topics',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
                         color: Theme.of(context).iconTheme.color,
@@ -200,7 +198,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     title: Text(
                       'Activities from people you follow',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
                         color: Theme.of(context).iconTheme.color,
@@ -224,7 +222,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     title: Text(
                       'Messages',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 16,
                         color: Theme.of(context).iconTheme.color,

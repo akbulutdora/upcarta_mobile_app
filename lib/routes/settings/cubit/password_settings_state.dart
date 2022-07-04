@@ -18,7 +18,7 @@ class PasswordSettingsState extends Equatable {
 
   factory PasswordSettingsState.initial() {
     return const PasswordSettingsState(
-        password: "", status: PasswordSettingsStatus.initial);
+        password: '', status: PasswordSettingsStatus.initial);
   }
 
   PasswordSettingsState copyWith({

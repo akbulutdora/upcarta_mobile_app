@@ -4,9 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/routes/other_profile/other_profile.dart';
-import 'package:upcarta_mobile_app/ui_components/components.dart';
 
 class OtherProfileScreen extends StatefulWidget {
   const OtherProfileScreen({
@@ -27,15 +25,15 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
         backgroundColor: Colors.white,
         titleSpacing: 0.0,
         title: const Text(
-          "Upcarta",
+          'Upcarta',
           style: TextStyle(
-              fontFamily: "SFCompactText-Medium",
+              fontFamily: 'SFCompactText-Medium',
               color: Colors.black,
               fontWeight: FontWeight.w500,
               fontSize: 22),
         ),
         leading: Image.asset(
-          "assets/images/upcarta-logo-small.png",
+          'assets/images/upcarta-logo-small.png',
           width: 30,
           height: 30,
         ),
@@ -66,7 +64,6 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
   }
 
   Widget buildTabController() {
-    final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: DefaultTabController(
@@ -87,11 +84,11 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                   labelPadding: EdgeInsets.only(right: 3, left: 3),
                   labelStyle: TextStyle(fontSize: 14),
                   tabs: [
-                    Tab(text: "Overview"),
-                    Tab(text: "Content"),
-                    Tab(text: "Recs"),
-                    Tab(text: "Collections"),
-                    Tab(text: "Asks")
+                    Tab(text: 'Overview'),
+                    Tab(text: 'Content'),
+                    Tab(text: 'Recs'),
+                    Tab(text: 'Collections'),
+                    Tab(text: 'Asks')
                   ],
                 ),
                 expandedHeight: height / 2,
@@ -108,7 +105,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
             children: [
               Column(),
               Column(),
-              OtherProfileRecommendationsList(),
+              const OtherProfileRecommendationsList(),
               Column(),
               Column(),
             ],
@@ -121,17 +118,16 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
 
 class BuildOtherProfile extends StatelessWidget {
   BuildOtherProfile({Key? key}) : super(key: key);
-  List<dynamic> listOfItems= [];
-  List<dynamic> listOfItems2= [];
+  List<dynamic> listOfItems = [];
+  List<dynamic> listOfItems2 = [];
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OtherProfileBloc, OtherProfileState>(
-        builder: ((context, state) {
-      print("USER AT OTHER PROFILE VIEW:${state.user.toString()}");
+        builder: (context, state) {
       bool isFollowed = state.user.followerIDs!
           .contains(context.read<AppBloc>().state.user.id);
 
-      final double width = MediaQuery.of(context).size.width;
       final double height = MediaQuery.of(context).size.height;
       return Container(
         alignment: Alignment.center,
@@ -139,40 +135,43 @@ class BuildOtherProfile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [GestureDetector(
-            onTap: () async {
-              await showDialog(
-                  context: context,
-                  builder: (_) => Dialog(
-                      child: SizedBox(
-                        height: 400.w,
-                        width: 400.w,
-                        child: CircleAvatar(
-                          foregroundImage: state.user.photoURL != null
-                              ? NetworkImage(state.user.photoURL!)
-                              : null,
-                          backgroundImage: const AssetImage("assets/images/mock.jpg"),
-                          radius: 400.h,),
-                      )));
-            },
-            child: Hero(
-              tag: 'imageHero',
-              child: CircleAvatar(
-                // FIXME: ADD NULL IMAGE CASE
-                foregroundImage: state.user.photoURL != null
-                    ? NetworkImage(state.user.photoURL!)
-                    : null,
-                backgroundImage: const AssetImage("assets/images/mock.jpg"),
-                //widget.user.profileImageUrl),
-                radius: 55.0,
+          children: [
+            GestureDetector(
+              onTap: () async {
+                await showDialog(
+                    context: context,
+                    builder: (_) => Dialog(
+                            child: SizedBox(
+                          height: 400.w,
+                          width: 400.w,
+                          child: CircleAvatar(
+                            foregroundImage: state.user.photoURL != null
+                                ? NetworkImage(state.user.photoURL!)
+                                : null,
+                            backgroundImage:
+                                const AssetImage('assets/images/mock.jpg'),
+                            radius: 400.h,
+                          ),
+                        )));
+              },
+              child: Hero(
+                tag: 'imageHero',
+                child: CircleAvatar(
+                  // FIXME: ADD NULL IMAGE CASE
+                  foregroundImage: state.user.photoURL != null
+                      ? NetworkImage(state.user.photoURL!)
+                      : null,
+                  backgroundImage: const AssetImage('assets/images/mock.jpg'),
+                  //widget.user.profileImageUrl),
+                  radius: 55.0,
+                ),
               ),
             ),
-          ),
             Text(
               //widget.user.name,
-              state.user.name ?? "NAME IS NULL",
+              state.user.name ?? 'NAME IS NULL',
               style: const TextStyle(
-                fontFamily: "SFCompactText",
+                fontFamily: 'SFCompactText',
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 color: Colors.black,
@@ -181,7 +180,7 @@ class BuildOtherProfile extends StatelessWidget {
             Text(
               "@${state.user.username ?? 'username null'}",
               style: const TextStyle(
-                fontFamily: "SFCompactText",
+                fontFamily: 'SFCompactText',
                 fontWeight: FontWeight.normal,
                 fontSize: 14,
                 color: Colors.grey,
@@ -197,7 +196,7 @@ class BuildOtherProfile extends StatelessWidget {
                     child: const Text(
                       'Unfollow',
                       style: TextStyle(
-                          fontFamily: "SFCompactText",
+                          fontFamily: 'SFCompactText',
                           color: Colors.blue,
                           fontSize: 18),
                     ),
@@ -215,7 +214,7 @@ class BuildOtherProfile extends StatelessWidget {
                     child: const Text(
                       'Follow',
                       style: TextStyle(
-                          fontFamily: "SFCompactText",
+                          fontFamily: 'SFCompactText',
                           color: Colors.white,
                           fontSize: 18),
                     ),
@@ -225,9 +224,9 @@ class BuildOtherProfile extends StatelessWidget {
                     },
                   ),
             Text(
-              "BIO: ${state.user.bio}",
+              'BIO: ${state.user.bio}',
               style: const TextStyle(
-                fontFamily: "SFCompactText",
+                fontFamily: 'SFCompactText',
                 fontWeight: FontWeight.normal,
                 fontSize: 14,
                 color: Colors.black,
@@ -249,7 +248,7 @@ class BuildOtherProfile extends StatelessWidget {
                       //'${widget.user.following}',
                       state.user.recommendationCount.toString(),
                       style: const TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.w700,
                         fontSize: 12,
                         color: Colors.black,
@@ -258,7 +257,7 @@ class BuildOtherProfile extends StatelessWidget {
                     const Text(
                       ' Recommendations',
                       style: TextStyle(
-                        fontFamily: "SFCompactText",
+                        fontFamily: 'SFCompactText',
                         fontWeight: FontWeight.normal,
                         fontSize: 12,
                         color: Colors.black,
@@ -270,129 +269,129 @@ class BuildOtherProfile extends StatelessWidget {
                   height: 22,
                   child: VerticalDivider(color: Colors.blue),
                 ),
-                    TextButton(
-                      onPressed: () async {
-                        listOfItems = await context.read<OtherProfileBloc>().getFollowerNames(state.user.followerIDs);
-                        await showDialog(
-                            context: context,
-                            builder: (_) => Dialog(
-                                child: Column(
-                                    children: [
-                                      Text("Followers",
-                                        style: TextStyle(
-                                          fontFamily: "SFCompactText",
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 20,
-                                          color: Theme.of(context).iconTheme.color,
-                                        ),),
-                                      const SizedBox(height: 10),
-                                      ...listOfItems.map((item) {
-                                        return FollowerInstanceOther(
-                                          followerName: item['followerName'],
-                                          followerUName: item['followerUName'],
-                                        );
-                                      }).toList(),
-                                    ]
-                                )
-                            )
-                        );
-                      },
-                      child: Row(children: [
-                        Text(
-                          state.user.followerIDs == null
-                              ? "0"
-                              : state.user.followerIDs!.length.toString(),
-                          style: TextStyle(
-                            fontFamily: "SFCompactText",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        ),
-                        Text(
-                          ' Followers',
-                          style: TextStyle(
-                            fontFamily: "SFCompactText",
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        )
-                      ]),
+                TextButton(
+                  onPressed: () async {
+                    listOfItems = await context
+                        .read<OtherProfileBloc>()
+                        .getFollowerNames(state.user.followerIDs);
+                    await showDialog(
+                        context: context,
+                        builder: (_) => Dialog(
+                                child: Column(children: [
+                              Text(
+                                'Followers',
+                                style: TextStyle(
+                                  fontFamily: 'SFCompactText',
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 20,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              ...listOfItems.map((item) {
+                                return FollowerInstanceOther(
+                                  followerName: item['followerName'],
+                                  followerUName: item['followerUName'],
+                                );
+                              }).toList(),
+                            ])));
+                  },
+                  child: Row(children: [
+                    Text(
+                      state.user.followerIDs == null
+                          ? '0'
+                          : state.user.followerIDs!.length.toString(),
+                      style: TextStyle(
+                        fontFamily: 'SFCompactText',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
                     ),
-                    SizedBox(
-                      height: 22,
-                      child: VerticalDivider(color: Theme.of(context).primaryColor),
+                    Text(
+                      ' Followers',
+                      style: TextStyle(
+                        fontFamily: 'SFCompactText',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    )
+                  ]),
+                ),
+                SizedBox(
+                  height: 22,
+                  child: VerticalDivider(color: Theme.of(context).primaryColor),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    listOfItems2 = await context
+                        .read<OtherProfileBloc>()
+                        .getFollowingNames(state.user.followingIDs);
+                    await showDialog(
+                        context: context,
+                        builder: (_) => Dialog(
+                                child: Column(children: [
+                              Text(
+                                'Following',
+                                style: TextStyle(
+                                  fontFamily: 'SFCompactText',
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 20,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              ...listOfItems2.map((item) {
+                                return FollowerInstanceOther(
+                                  followerName: item['followerName'],
+                                  followerUName: item['followerUName'],
+                                );
+                              }).toList(),
+                            ])));
+                  },
+                  child: Row(children: [
+                    Text(
+                      state.user.followingIDs == null
+                          ? '0'
+                          : state.user.followingIDs!.length.toString(),
+                      style: TextStyle(
+                        fontFamily: 'SFCompactText',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
                     ),
-                    TextButton(
-                      onPressed: () async {
-                        listOfItems2 = await context.read<OtherProfileBloc>().getFollowingNames(state.user.followingIDs);
-                        await showDialog(
-                            context: context,
-                            builder: (_) => Dialog(
-                                child: Column(
-                                    children: [Text("Following",
-                                      style: TextStyle(
-                                        fontFamily: "SFCompactText",
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 20,
-                                        color: Theme.of(context).iconTheme.color,
-                                      ),),
-                                      const SizedBox(height: 10),
-                                      ...listOfItems2.map((item) {
-                                        return FollowerInstanceOther(
-                                          followerName: item['followerName'],
-                                          followerUName: item['followerUName'],
-                                        );
-                                      }).toList(),
-                                    ]
-                                )
-                            )
-                        );
-                      },
-                      child: Row(children: [
-                        Text(
-                          state.user.followingIDs == null
-                              ? "0"
-                              : state.user.followingIDs!.length.toString(),
-                          style: TextStyle(
-                            fontFamily: "SFCompactText",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        ),
-                        Text(
-                          ' Following',
-                          style: TextStyle(
-                            fontFamily: "SFCompactText",
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        )
-                      ]),
-                    ),
+                    Text(
+                      ' Following',
+                      style: TextStyle(
+                        fontFamily: 'SFCompactText',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    )
+                  ]),
+                ),
               ]),
             ),
             SizedBox(height: height * 0.020),
           ],
         ),
       );
-    }));
+    });
   }
 }
+
 class FollowerInstanceOther extends StatefulWidget {
+  const FollowerInstanceOther({
+    Key? key,
+    required this.followerName,
+    required this.followerUName,
+  }) : super(key: key);
+  final String followerName;
+  final String followerUName;
 
-
-  FollowerInstanceOther(
-      {Key? key,
-        required this.followerName,
-        required this.followerUName,
-      })
-      : super(key: key);
-  String followerName;
-  String followerUName;
   @override
   State<FollowerInstanceOther> createState() => _FollowerInstanceOtherState();
 }
@@ -401,9 +400,8 @@ class _FollowerInstanceOtherState extends State<FollowerInstanceOther> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-      },
-      child: Container(
+      onTap: () {},
+      child: SizedBox(
         width: double.maxFinite,
         child: Column(
           children: [
@@ -411,10 +409,10 @@ class _FollowerInstanceOtherState extends State<FollowerInstanceOther> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
                 children: [
-                  Text(" ${widget.followerName}",
+                  Text(' ${widget.followerName}',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 18)),
-                  Text(" @${widget.followerUName}",
+                  Text(' @${widget.followerUName}',
                       style: const TextStyle(fontSize: 18)),
                 ],
               ),

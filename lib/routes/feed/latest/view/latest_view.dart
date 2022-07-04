@@ -3,11 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/bloc/latest_feed_bloc.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/contents_list.dart';
-import 'package:upcarta_mobile_app/ui_components/components.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 class LatestView extends StatefulWidget {
   const LatestView({Key? key}) : super(key: key);

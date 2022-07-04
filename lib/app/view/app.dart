@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 // import 'package:flow_builder/flow_builder.dart'; MAYBE WE SWITCH TI THIS
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,6 @@ import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/query_repository.dart';
 import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
-import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/routes/other_profile/bloc/other_profile_bloc.dart';
 
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
@@ -66,8 +66,8 @@ class App extends StatelessWidget {
           ),
           BlocProvider(create: (_) => ThemeCubit(sharedPreferences)),
           BlocProvider(
-              create: ((_) =>
-                  OtherProfileBloc(queryRepository: _queryRepository)))
+              create: (_) =>
+                  OtherProfileBloc(queryRepository: _queryRepository))
         ],
         child: const AppView(),
       ),
@@ -121,7 +121,9 @@ class EntryPoint extends StatelessWidget {
       listeners: [
         BlocListener<AppBloc, AppState>(
           listener: (context, state) {
-            print("listening ${state.status}");
+            if (kDebugMode) {
+              print('listening ${state.status}');
+            }
             switch (state.status) {
               case AppStatus.authenticated:
                 // print("\n\n\nAUTHENTICATED");

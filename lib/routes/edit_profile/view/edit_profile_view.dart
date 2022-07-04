@@ -9,9 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
-import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
-import 'package:upcarta_mobile_app/util/view_paths.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:path/path.dart';
 
@@ -52,8 +50,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       appBar: AppBar(
@@ -64,7 +60,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           title: Text(
             'Edit Profile',
             style: TextStyle(
-                fontFamily: "SFCompactText-Medium",
+                fontFamily: 'SFCompactText-Medium',
                 color: Theme.of(context).iconTheme.color,
                 fontWeight: FontWeight.w500,
                 fontSize: 22.sp),
@@ -85,7 +81,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             userRepository: context.read<UserRepository>()),
         child: BlocProvider(
           create: (_) => EditProfileCubit(
-              context.read<AuthenticationRepository>(),
               context.read<UserRepository>()),
           //  create: (context) => ProfileBloc(
           // userRepository: context.read<UserRepository>(), user: User.empty),
@@ -99,9 +94,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Credentials",
+                        'Credentials',
                         style: TextStyle(
-                          fontFamily: "SFCompactText",
+                          fontFamily: 'SFCompactText',
                           fontWeight: FontWeight.w700,
                           fontSize: 20,
                           color: Theme.of(context).iconTheme.color,
@@ -123,7 +118,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         .photoURL!)
                                     : null,
                             backgroundImage:
-                                const AssetImage("assets/images/mock.jpg"),
+                                const AssetImage('assets/images/mock.jpg'),
                             //widget.user.profileImageUrl),
                             minRadius: 45.0,
                             maxRadius: 45.0,
@@ -148,7 +143,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       SizedBox(height: 16.h),
                       _UsernameInput(),
                       SizedBox(height: 16.h),
-                      _BioInputForm(),
+                      const _BioInputForm(),
                       SizedBox(height: 16.h),
                       _BioSubmitButton(height: 40.h),
                     ],

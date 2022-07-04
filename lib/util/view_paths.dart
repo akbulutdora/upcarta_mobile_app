@@ -7,7 +7,6 @@ export '../routes/feed/top/view/top_view.dart';
 export '../routes/library/view/library_screen.dart';
 
 export '../routes/splash/view/splash_view.dart';
-export '../routes/splash/view/initial_view.dart';
 
 export '../routes/my_profile/view/my_profile_view.dart';
 export '../routes/other_profile/view/other_profile_view.dart';

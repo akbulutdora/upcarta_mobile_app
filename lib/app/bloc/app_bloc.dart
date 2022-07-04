@@ -46,14 +46,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       AppUserChanged event, Emitter<AppState> emit) {
     emit(event.user.isNotEmpty
         ? AppState.authenticated(event.user)
-        : _sharedPrefs.getBool("landed") == null ||
-                !_sharedPrefs.getBool("landed")!
+        : _sharedPrefs.getBool('landed') == null ||
+                !_sharedPrefs.getBool('landed')!
             ? const AppState.prelanded()
             : const AppState.unauthenticated());
     if (event.user.email != null) {
       _analyticsRepository.setUserId(event.user.email!);
       _analyticsRepository.setDefaultEventParameters(event.user.email!);
-      _analyticsRepository.setLogEvent("signed_in");
+      _analyticsRepository.setLogEvent('signed_in');
     }
   }
 
@@ -61,7 +61,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     AppLanded event,
     Emitter<AppState> emit,
   ) {
-    _sharedPrefs.setBool(("landed"), true);
+    _sharedPrefs.setBool('landed', true);
     emit(const AppState.unauthenticated());
   }
 
@@ -69,7 +69,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     AppLandedCanceled event,
     Emitter<AppState> emit,
   ) {
-    _sharedPrefs.setBool(("landed"), false);
+    _sharedPrefs.setBool('landed', false);
     emit(const AppState.prelanded());
   }
 

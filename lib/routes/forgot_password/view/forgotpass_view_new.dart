@@ -14,7 +14,6 @@ class ResetPasswordNew extends StatefulWidget {
 class _ResetPasswordNewState extends State<ResetPasswordNew> {
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
@@ -50,7 +49,7 @@ class _ResetPasswordNewState extends State<ResetPasswordNew> {
                 child: Column(
                   children: [
                     SizedBox(height: height * 0.05),
-                    Text("Reset Your Password",
+                    Text('Reset Your Password',
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                             color: Colors.black,

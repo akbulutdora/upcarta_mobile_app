@@ -31,7 +31,7 @@ class _SeeAllFeaturedCollectionsState extends State<SeeAllFeaturedCollections> {
           title: const Text(
             'Explore Collections',
             style: TextStyle(
-                fontFamily: "SFCompactText-Medium.ttf",
+                fontFamily: 'SFCompactText-Medium.ttf',
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
                 fontSize: 18),

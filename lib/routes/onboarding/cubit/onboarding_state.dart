@@ -19,10 +19,10 @@ class OnboardingState extends Equatable {
 
   factory OnboardingState.initial() {
     return const OnboardingState(
-        bio: "",
-        photoURL: "",
-        id: "",
-        username: "",
+        bio: '',
+        photoURL: '',
+        id: '',
+        username: '',
         status: OnboardingStatus.initial);
   }
   @override

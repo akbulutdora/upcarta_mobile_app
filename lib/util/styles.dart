@@ -8,72 +8,72 @@ final lHeadingTextStyle = TextStyle(
 );
 
 const kAppBarTextStyle = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.w600,
     fontSize: 20,
     color: Colors.black);
 
 const kTextStyle1 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 34,
     color: Colors.black);
 
 const kTextStyle2 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 28,
     color: Colors.black);
 
 const kTextStyle3 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 22,
     color: Colors.black);
 const kTextStyle3b = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.bold,
     fontSize: 22,
     color: Colors.black);
 
 const kTextStyle4 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 20,
     color: Colors.black);
 
 const contentCardTitleStyle = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.w600,
     fontSize: 13,
     color: Colors.black);
 
 const kTextStyle6 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 17,
     color: Colors.black);
 
 const exploreCardsFont = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.w500,
     fontSize: 17,
     color: Colors.black);
 
 const kTextStyle7 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 16,
     color: Colors.black);
 
 const kTextStyle8 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 15,
     color: Colors.black);
 
 const sectionStyle = TextStyle(
-  fontFamily: "SF Compact Text",
+  fontFamily: 'SF Compact Text',
   fontWeight: FontWeight.w600,
   fontSize: 15,
   shadows: [
@@ -90,49 +90,49 @@ const sectionStyle = TextStyle(
 );
 
 const kTextStyle9 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 13,
     color: Colors.black);
 
 const searchBarText = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 13,
     color: Color(0xff949494));
 
 const searchButtonText = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 13,
     color: Color(0xff4E89FD));
 
 const libraryTabBar = TextStyle(
-  fontFamily: "SF Compact Text",
+  fontFamily: 'SF Compact Text',
   fontWeight: FontWeight.w600,
   fontSize: 16,
 );
 
 const splashTitleStyle = TextStyle(
-  fontFamily: "SF Compact Text",
+  fontFamily: 'SF Compact Text',
   fontWeight: FontWeight.w600,
   fontSize: 40,
 );
 
 const kTextStyle10 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 12,
     color: Colors.black);
 
 const kTextStyle11 = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 11,
     color: Colors.black);
 
 final contentCardDescriptionStyle = TextStyle(
-    fontFamily: "SF Compact Text",
+    fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.w300,
     fontSize: 10,
     color: AppColors.gray3ContentText);

@@ -1,9 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -218,7 +217,7 @@ class AuthenticationRepository {
       )
           .then(
         (cred) async {
-          return await createUserWithCollections(cred, name);
+          return createUserWithCollections(cred, name);
         },
       );
     } on FirebaseAuthException catch (e) {
@@ -228,9 +227,11 @@ class AuthenticationRepository {
     }
   }
 
-  createUserWithCollections(
+  Future<void> createUserWithCollections(
       firebase_auth.UserCredential cred, String name) async {
-    print("IN CREATE USER WITH COLLECTIONS");
+    if (kDebugMode) {
+      print('IN CREATE USER WITH COLLECTIONS');
+    }
     final uid = cred.user!.uid;
     String savesID;
     String recomID;
@@ -268,7 +269,7 @@ class AuthenticationRepository {
 
     final thisUser = AppUser(
       id: uid,
-      username: "",
+      username: '',
       email: cred.user!.email,
       name: name,
       bio: '',
@@ -298,10 +299,14 @@ class AuthenticationRepository {
 
       final googleUser = await _googleSignIn.signIn();
       final googleAuth = await googleUser!.authentication;
-      print("IN LOGIN WITH GOOGLE BEFORE GET GOOGLEAUTHPROVIDER CREDENTIAL");
+      if (kDebugMode) {
+        print('IN LOGIN WITH GOOGLE BEFORE GET GOOGLEAUTHPROVIDER CREDENTIAL');
+      }
       credential = firebase_auth.GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-      print("IN LOG IN WITH GOOGLE BEFORE FIREBASEAUTH SIGNIN WITH CREDENTIAL");
+      if (kDebugMode) {
+        print('IN LOG IN WITH GOOGLE BEFORE FIREBASEAUTH SIGNIN WITH CREDENTIAL');
+      }
       var userCredential = await _firebaseAuth.signInWithCredential(credential);
       // TODO: MIGHT BE ERROR
       var usersRef =
@@ -309,7 +314,9 @@ class AuthenticationRepository {
       var googleExists = await usersRef.get().then(
         (docSnapshot) {
           if (!docSnapshot.exists) {
-            print("IN DOCSNAPSHOT EXISTS");
+            if (kDebugMode) {
+              print('IN DOCSNAPSHOT EXISTS');
+            }
             createUserWithCollections(
                 userCredential, userCredential.user!.displayName!);
             return false;

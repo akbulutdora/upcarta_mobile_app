@@ -1,8 +1,7 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
-import 'dart:math';
 
 import 'package:upcarta_mobile_app/util/colors.dart';
 
@@ -20,7 +19,7 @@ class UserOnboarding1 extends StatelessWidget {
             height: 40.h,
           ),
           Image.asset(
-            "assets/images/onboardingImage.png",
+            'assets/images/onboardingImage.png',
             height: 315.h,
             width: 315.w,
           ),
@@ -33,7 +32,7 @@ class UserOnboarding1 extends StatelessWidget {
                 style: TextStyle(color: AppColors.black),
                 children: [
                   TextSpan(
-                    text: "\tWelcome to Upcarta\t",
+                    text: '\tWelcome to Upcarta\t',
                     style: TextStyle(
                       color: Colors.transparent,
                       fontSize: 22.sp,
@@ -50,10 +49,10 @@ class UserOnboarding1 extends StatelessWidget {
                   ),
                   TextSpan(
                     text:
-                        "\nConnect your account and follow the people on your twitter.",
+                        '\nConnect your account and follow the people on your twitter.',
                     style: TextStyle(
                         fontSize: 15.sp,
-                        fontFamily: "SFCompactText-Regular.ttf",
+                        fontFamily: 'SFCompactText-Regular.ttf',
                         fontWeight: FontWeight.w400),
                   ),
                 ],
@@ -67,7 +66,7 @@ class UserOnboarding1 extends StatelessWidget {
                 context.router.push(const UserOnboarding2Route());
               },
               child: Text(
-                "Connect Your Twitter",
+                'Connect Your Twitter',
                 style: TextStyle(color: AppColors.white, fontSize: 16.sm),
               ),
               style: ElevatedButton.styleFrom(
@@ -89,7 +88,7 @@ class UserOnboarding1 extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     side: BorderSide(color: AppColors.gray3ContentText)),
                 child: Text(
-                  "Skip",
+                  'Skip',
                   style: TextStyle(
                       color: AppColors.gray3ContentText, fontSize: 16.sm),
                 ),

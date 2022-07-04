@@ -12,7 +12,7 @@ Collection _$CollectionFromJson(Map<String, dynamic> json) => Collection(
           $enumDecode(_$CollectionTypeEnumMap, json['collectionType']),
       ownerId: json['ownerId'] as String,
       description:
-          json['description'] as String? ?? "This content has no description.",
+          json['description'] as String? ?? 'This content has no description.',
       creationDate: json['creationDate'] as String,
       recommendersIDs: (json['recommendersIDs'] as List<dynamic>)
           .map((e) => e as String)

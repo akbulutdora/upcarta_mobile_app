@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 
@@ -14,7 +13,6 @@ class ResetPasswordView extends StatefulWidget {
 class _ResetPasswordViewState extends State<ResetPasswordView> {
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
@@ -23,7 +21,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
           titleSpacing: 0.0,
           title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Image.asset(
-              "assets/images/upcarta-logo-small.png",
+              'assets/images/upcarta-logo-small.png',
               width: 30,
               height: 30,
             ),
@@ -41,7 +39,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 child: Column(
                   children: [
                     SizedBox(height: height * 0.05),
-                    Text("Recover Your Password",
+                    Text('Recover Your Password',
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                             color: Theme.of(context).iconTheme.color,

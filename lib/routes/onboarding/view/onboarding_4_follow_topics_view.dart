@@ -1,58 +1,58 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
 List<Map> topics = [
   {
-    "topic": "Decision Making Topics",
-    "choices": [
-      "Game Theory",
-      "Mental Model",
-      "Psychology",
-      "Risk",
-      "Probability",
-      "Persuasion",
-      "Negotiation",
-      "Strategy"
+    'topic': 'Decision Making Topics',
+    'choices': [
+      'Game Theory',
+      'Mental Model',
+      'Psychology',
+      'Risk',
+      'Probability',
+      'Persuasion',
+      'Negotiation',
+      'Strategy'
     ]
   },
   {
-    "topic": "Main Topics",
-    "choices": [
-      "Decision Making",
-      "Technology",
-      "Psychology",
-      "Bitcoin",
-      "History",
-      "Philosophy",
-      "Computer Science",
-      "Natural Science"
+    'topic': 'Main Topics',
+    'choices': [
+      'Decision Making',
+      'Technology',
+      'Psychology',
+      'Bitcoin',
+      'History',
+      'Philosophy',
+      'Computer Science',
+      'Natural Science'
     ]
   },
   {
-    "topic": "Main Topics",
-    "choices": [
-      "Decision Making",
-      "Technology",
-      "Psychology",
-      "Bitcoin",
-      "History",
-      "Philosophy",
-      "Computer Science",
-      "Natural Science"
+    'topic': 'Main Topics',
+    'choices': [
+      'Decision Making',
+      'Technology',
+      'Psychology',
+      'Bitcoin',
+      'History',
+      'Philosophy',
+      'Computer Science',
+      'Natural Science'
     ]
   },
   {
-    "topic": "Main Topics",
-    "choices": [
-      "Decision Making",
-      "Technology",
-      "Psychology",
-      "Bitcoin",
-      "History",
-      "Philosophy",
-      "Computer Science",
-      "Natural Science"
+    'topic': 'Main Topics',
+    'choices': [
+      'Decision Making',
+      'Technology',
+      'Psychology',
+      'Bitcoin',
+      'History',
+      'Philosophy',
+      'Computer Science',
+      'Natural Science'
     ]
   }
 ];
@@ -73,7 +73,7 @@ class UserOnboarding4 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Follow 5 or More Topic",
+                'Follow 5 or More Topic',
                 style: TextStyle(
                     fontWeight: FontWeight.w500, fontSize: height * 0.02),
               ),
@@ -88,8 +88,8 @@ class UserOnboarding4 extends StatelessWidget {
               children: List<Widget>.generate(
                 topics.length,
                 (index) => Topics(
-                    title: topics[index]["topic"],
-                    topicList: topics[index]["choices"]),
+                    title: topics[index]['topic'],
+                    topicList: topics[index]['choices']),
               )),
         ),
         Container(
@@ -108,7 +108,7 @@ class UserOnboarding4 extends StatelessWidget {
                     // context.router.push(UserOnboarding3Route());
                   },
                   child: const Text(
-                    "Skip",
+                    'Skip',
                     style: TextStyle(color: Color(0xFF949494), fontSize: 18),
                   ),
                 ),
@@ -117,7 +117,7 @@ class UserOnboarding4 extends StatelessWidget {
                     context.router.push(const HomeRoute());
                   },
                   child: const Text(
-                    "Next",
+                    'Next',
                     style: TextStyle(color: Color(0xFF4E89FD), fontSize: 18),
                   ),
                 ),

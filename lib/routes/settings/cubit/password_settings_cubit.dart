@@ -1,15 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 
 part 'password_settings_state.dart';
 
 class PasswordSettingsCubit extends Cubit<PasswordSettingsState> {
-  PasswordSettingsCubit(this._authRepository, this._userRepository)
+  PasswordSettingsCubit(this._userRepository)
       : super(PasswordSettingsState.initial());
 
-  final AuthenticationRepository _authRepository;
+  // final AuthenticationRepository _authRepository;
   final UserRepository _userRepository;
 
   void passwordChanged(String value) {

@@ -13,7 +13,7 @@ class DateRangePickerChips extends StatefulWidget {
 class _DateRangePickerChipsState extends State<DateRangePickerChips> {
   @override
   Widget build(BuildContext context) {
-    List<String> dateRangeNames = ["Week", "Month", "Year", "All"];
+    List<String> dateRangeNames = ['Week', 'Month', 'Year', 'All'];
     int _dateRangeValue = 0;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0),

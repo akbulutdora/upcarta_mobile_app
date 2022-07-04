@@ -1,45 +1,43 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UpcartaTheme {
-  static TextTheme lightTextTheme = TextTheme(
+  static TextTheme lightTextTheme = const TextTheme(
     // Large Title
-    titleLarge: const TextStyle(
+    titleLarge: TextStyle(
         // fontFamily: "SF Compact Text",
         fontWeight: FontWeight.normal,
         fontSize: 34,
         color: Colors.black),
     // title1 - usages:
-    titleMedium: const TextStyle(
+    titleMedium: TextStyle(
         fontWeight: FontWeight.normal, fontSize: 28, color: Colors.black),
     // title2 - usages:
-    titleSmall: const TextStyle(
+    titleSmall: TextStyle(
         fontWeight: FontWeight.normal, fontSize: 22, color: Colors.black),
     // title3 - usages:
-    displayLarge: const TextStyle(
+    displayLarge: TextStyle(
         fontWeight: FontWeight.normal, fontSize: 20, color: Colors.black),
     // headline
-    displayMedium: const TextStyle(
+    displayMedium: TextStyle(
         fontWeight: FontWeight.w600, fontSize: 17, color: Colors.black),
     // body
-    bodyLarge: const TextStyle(
+    bodyLarge: TextStyle(
         fontWeight: FontWeight.normal, fontSize: 17, color: Colors.black),
     // callout
-    bodyMedium: const TextStyle(
+    bodyMedium: TextStyle(
         fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black),
     // subhead
-    headlineLarge: const TextStyle(
+    headlineLarge: TextStyle(
         fontWeight: FontWeight.normal, fontSize: 15, color: Colors.black),
     // footnote
-    displaySmall: const TextStyle(
+    displaySmall: TextStyle(
         fontWeight: FontWeight.normal, fontSize: 13, color: Colors.black),
     //caption1
-    headlineMedium: const TextStyle(
+    headlineMedium: TextStyle(
         fontWeight: FontWeight.normal, fontSize: 12, color: Colors.black),
     //caption2
-    headlineSmall: const TextStyle(
+    headlineSmall: TextStyle(
         fontWeight: FontWeight.normal, fontSize: 11, color: Colors.black),
   );
 
@@ -73,7 +71,7 @@ class UpcartaTheme {
 
   static ThemeData light() {
     return ThemeData(
-      fontFamily: "SFCompactText",
+      fontFamily: 'SFCompactText',
       brightness: Brightness.light,
       checkboxTheme:
           CheckboxThemeData(fillColor: MaterialStateColor.resolveWith((states) {
@@ -83,10 +81,10 @@ class UpcartaTheme {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.transparent),
           padding: MaterialStateProperty.all(
-            EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+            const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
           ),
           side: MaterialStateProperty.all(
-            BorderSide(
+            const BorderSide(
               color: Colors.red,
               width: 0.5,
             ),
@@ -115,7 +113,7 @@ class UpcartaTheme {
 
   static ThemeData dark() {
     return ThemeData(
-      fontFamily: "SFCompactText",
+      fontFamily: 'SFCompactText',
       brightness: Brightness.dark,
       appBarTheme: AppBarTheme(
         foregroundColor: Colors.white,

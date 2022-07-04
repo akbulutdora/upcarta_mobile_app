@@ -5,9 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 
-import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/my_profile.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
 
 bool isPrivate = false;
 
@@ -34,7 +32,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: Image.asset(
-          "assets/images/upcarta-logo-small.png",
+          'assets/images/upcarta-logo-small.png',
           width: 30.w,
           height: 30.h,
         ),
@@ -45,7 +43,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         title: Text(
           'Your Profile',
           style: TextStyle(
-              fontFamily: "SFCompactText-Medium",
+              fontFamily: 'SFCompactText-Medium',
               color: Theme.of(context).iconTheme.color,
               fontWeight: FontWeight.w500,
               fontSize: 22),
@@ -53,10 +51,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         actions: <Widget>[
           IconButton(
               icon: isPrivate
-                  ? Icon(
+                  ? const Icon(
                       Icons.lock_open_rounded,
                     )
-                  : Icon(Icons.lock_outline_rounded),
+                  : const Icon(Icons.lock_outline_rounded),
               onPressed: () {
                 setState(() {
                   isPrivate = !isPrivate;
@@ -116,7 +114,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 tabs: const <Widget>[
                   //Tab(text: "Overview"),
                   //Tab(text: "Content"),
-                  Tab(text: "Recommends"),
+                  Tab(text: 'Recommends'),
                   //Tab(text: "Collections"),
                   //Tab(text: "Asks")
                 ],
@@ -161,8 +159,6 @@ class BuildProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(builder: ((context, state) {
-      final double width = MediaQuery.of(context).size.width;
-      final double height = MediaQuery.of(context).size.height;
       bool isMyProfile = true;
 
       return Container(
@@ -192,7 +188,7 @@ class BuildProfile extends StatelessWidget {
                   foregroundImage: state.user.photoURL != null
                       ? NetworkImage(state.user.photoURL!)
                       : null,
-                  backgroundImage: const AssetImage("assets/images/mock.jpg"),
+                  backgroundImage: const AssetImage('assets/images/mock.jpg'),
                   //widget.user.profileImageUrl),
                   radius: 60.r,
                 ),
@@ -201,9 +197,9 @@ class BuildProfile extends StatelessWidget {
             SizedBox(height: 16.h),
             Text(
               //widget.user.name,
-              state.user.name ?? "NAME IS NULL",
+              state.user.name ?? 'NAME IS NULL',
               style: TextStyle(
-                fontFamily: "SFCompactText",
+                fontFamily: 'SFCompactText',
                 fontWeight: FontWeight.w600,
                 fontSize: 20.sp,
                 color: Theme.of(context).iconTheme.color,
@@ -212,7 +208,7 @@ class BuildProfile extends StatelessWidget {
             Text(
               "@${state.user.username ?? 'username null'}",
               style: TextStyle(
-                fontFamily: "SFCompactText",
+                fontFamily: 'SFCompactText',
                 fontWeight: FontWeight.normal,
                 fontSize: 14.sp,
                 color: Colors.grey,
@@ -229,7 +225,7 @@ class BuildProfile extends StatelessWidget {
                     child: Text(
                       'Edit Profile',
                       style: TextStyle(
-                          fontFamily: "SFCompactText",
+                          fontFamily: 'SFCompactText',
                           color: Theme.of(context).primaryColor,
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500),
@@ -248,7 +244,7 @@ class BuildProfile extends StatelessWidget {
                     child: Text(
                       'Follow',
                       style: TextStyle(
-                          fontFamily: "SFCompactText",
+                          fontFamily: 'SFCompactText',
                           color: Theme.of(context).primaryColor,
                           fontSize: 18),
                     ),
@@ -258,9 +254,9 @@ class BuildProfile extends StatelessWidget {
                   ),
             SizedBox(height: 8.h),
             Text(
-              " ${state.user.bio}",
+              ' ${state.user.bio}',
               style: TextStyle(
-                fontFamily: "SFCompactText",
+                fontFamily: 'SFCompactText',
                 fontWeight: FontWeight.normal,
                 fontSize: 14.sp,
                 color: Theme.of(context).iconTheme.color,
@@ -287,7 +283,7 @@ class BuildProfile extends StatelessWidget {
                           // state.user.recommendationCount.toString(),
                           state.recommendedContents.length.toString(),
                           style: TextStyle(
-                            fontFamily: "SFCompactText",
+                            fontFamily: 'SFCompactText',
                             fontWeight: FontWeight.w700,
                             fontSize: 12.sp,
                             color: Theme.of(context).iconTheme.color,
@@ -296,7 +292,7 @@ class BuildProfile extends StatelessWidget {
                         Text(
                           '   Recommendations',
                           style: TextStyle(
-                            fontFamily: "SFCompactText",
+                            fontFamily: 'SFCompactText',
                             fontWeight: FontWeight.normal,
                             fontSize: 12.sp,
                             color: Theme.of(context).iconTheme.color,
@@ -331,10 +327,10 @@ class BuildProfile extends StatelessWidget {
                       child: Row(children: [
                         Text(
                           state.user.followerIDs == null
-                              ? "0"
+                              ? '0'
                               : state.user.followerIDs!.length.toString(),
                           style: TextStyle(
-                            fontFamily: "SFCompactText",
+                            fontFamily: 'SFCompactText',
                             fontWeight: FontWeight.w700,
                             fontSize: 12.sp,
                             color: Theme.of(context).iconTheme.color,
@@ -343,7 +339,7 @@ class BuildProfile extends StatelessWidget {
                         Text(
                           '   Followers',
                           style: TextStyle(
-                            fontFamily: "SFCompactText",
+                            fontFamily: 'SFCompactText',
                             fontWeight: FontWeight.normal,
                             fontSize: 12.sp,
                             color: Theme.of(context).iconTheme.color,
@@ -378,10 +374,10 @@ class BuildProfile extends StatelessWidget {
                       child: Row(children: [
                         Text(
                           state.user.followingIDs == null
-                              ? "0"
+                              ? '0'
                               : state.user.followingIDs!.length.toString(),
                           style: TextStyle(
-                            fontFamily: "SFCompactText",
+                            fontFamily: 'SFCompactText',
                             fontWeight: FontWeight.w700,
                             fontSize: 12.sp,
                             color: Theme.of(context).iconTheme.color,
@@ -390,7 +386,7 @@ class BuildProfile extends StatelessWidget {
                         Text(
                           '   Following',
                           style: TextStyle(
-                            fontFamily: "SFCompactText",
+                            fontFamily: 'SFCompactText',
                             fontWeight: FontWeight.normal,
                             fontSize: 12.sp,
                             color: Theme.of(context).iconTheme.color,
@@ -413,13 +409,13 @@ class BuildProfile extends StatelessWidget {
 }
 
 class FollowerInstance extends StatefulWidget {
-  FollowerInstance({
+  const FollowerInstance({
     Key? key,
     required this.followerName,
     required this.followerUName,
   }) : super(key: key);
-  String followerName;
-  String followerUName;
+  final String followerName;
+  final String followerUName;
 
   @override
   State<FollowerInstance> createState() => _FollowerInstanceState();
@@ -430,7 +426,7 @@ class _FollowerInstanceState extends State<FollowerInstance> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: Container(
+      child: SizedBox(
         width: double.maxFinite,
         child: Column(
           children: [
@@ -438,10 +434,10 @@ class _FollowerInstanceState extends State<FollowerInstance> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
                 children: [
-                  Text(" ${widget.followerName}",
+                  Text(' ${widget.followerName}',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 18)),
-                  Text(" @${widget.followerUName}",
+                  Text(' @${widget.followerUName}',
                       style: const TextStyle(fontSize: 18)),
                 ],
               ),

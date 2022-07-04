@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:flutter/foundation.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:uuid/uuid.dart';
 
@@ -25,26 +26,26 @@ class NotificationRepository {
 
     final String contentID = uuid.v1();
 
-    String text = "";
+    String text = '';
 
     if (type == NotifTypes.follow) {
-      text = "started to follow you";
+      text = 'started to follow you';
     }
     if (type == NotifTypes.reshare) {
-      text = "reshared your post";
+      text = 'reshared your post';
     }
 
     final doc =
-        await _firestoreDB.collection("notifications").doc(userID).get();
+        await _firestoreDB.collection('notifications').doc(userID).get();
 
     if (doc.data() == null) {
       await _firestoreDB.collection('notifications').doc(userID).set({
         contentID: {
-          "contentID": contentID,
-          "senderID": senderID,
-          "date": date,
-          "text": text,
-          "isRead": false,
+          'contentID': contentID,
+          'senderID': senderID,
+          'date': date,
+          'text': text,
+          'isRead': false,
         }
       });
       return;
@@ -52,11 +53,11 @@ class NotificationRepository {
 
     await _firestoreDB.collection('notifications').doc(userID).update({
       contentID: {
-        "contentID": contentID,
-        "senderID": senderID,
-        "date": date,
-        "text": text,
-        "isRead": false,
+        'contentID': contentID,
+        'senderID': senderID,
+        'date': date,
+        'text': text,
+        'isRead': false,
       }
     });
   }
@@ -68,7 +69,7 @@ class NotificationRepository {
         .get()
         .then((res) => res.data());
 
-    return {"username": user?["username"], "image": user?["photoURL"]};
+    return {'username': user?['username'], 'image': user?['photoURL']};
   }
 
   Future getNotifications() async {
@@ -85,14 +86,14 @@ class NotificationRepository {
 
       List<Notification> notifList = [];
 
-      for (var item in notifListRaw.values) {
+      for (final item in notifListRaw.values) {
         Map<String, dynamic> senderData =
-            await _getNotifOwner(item["senderID"]);
-        item.remove("senderID");
+            await _getNotifOwner(item['senderID']);
+        item.remove('senderID');
         Map<String, dynamic> notifJson = {
           ...senderData,
           ...item,
-          "date": item["date"].toDate().toString()
+          'date': item['date'].toDate().toString()
         };
 
         notifList.add(Notification.fromJson(notifJson));
@@ -126,12 +127,14 @@ class NotificationRepository {
       }).toList();
 
       return {
-        "Today": todayList,
-        "Yesterday": yesterdayList,
-        "Earlier": earlierList
+        'Today': todayList,
+        'Yesterday': yesterdayList,
+        'Earlier': earlierList
       };
     } catch (e) {
-      print('Failed with error code: $e');
+      if (kDebugMode) {
+        print('Failed with error code: $e');
+      }
       rethrow;
     }
   }
@@ -140,7 +143,7 @@ class NotificationRepository {
     await _firestoreDB
         .collection('notifications')
         .doc(_firebaseAuth.currentUser?.uid)
-        .update({"$id.isRead": true});
+        .update({'$id.isRead': true});
   }
 
   Future readAllNotifications() async {
@@ -152,10 +155,10 @@ class NotificationRepository {
         .get()
         .then((value) {
       value.data()?.forEach((key, value) {
-        if (value["isRead"] == false) {
+        if (value['isRead'] == false) {
           list = {
             ...list,
-            key: {...value, "isRead": true}
+            key: {...value, 'isRead': true}
           };
         }
       });

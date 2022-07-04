@@ -78,10 +78,6 @@ class AppRouter extends _i3.RootStackRouter {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i2.EntryPoint());
     },
-    InitialScreenRoute.name: (routeData) {
-      return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.InitialScreen());
-    },
     SplashScreenRoute.name: (routeData) {
       return _i3.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i1.SplashScreen());

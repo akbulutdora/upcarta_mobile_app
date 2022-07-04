@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 
@@ -44,7 +44,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   FutureOr<void> _onChanged(
       UserEventChanged event, Emitter<UserState> emit) async {
-    print("\n\n\nprinting user in profile bloc ${event.user}");
+    if (kDebugMode) {
+      print('\n\n\nprinting user in profile bloc ${event.user}');
+    }
     emit(state.copyWith(status: UserStatus.loading));
 
     AppUser user = await _userRepository.getCurrentUser();
@@ -92,12 +94,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
 
       var event = await FirebaseFirestore.instance
-          .collection("Person")
-          .doc(followers![i])
+          .collection('Person')
+          .doc(followers[i])
           .get();
       if (event.exists) {
         var data = event.data()!;
-        Map dummyFollower = Map();
+        Map dummyFollower = {};
         dummyFollower['followerName'] = AppUser.fromJson(data).name;
         dummyFollower['followerUName'] = AppUser.fromJson(data).username;
         followerList.add(dummyFollower);
@@ -111,12 +113,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
 
       var event = await FirebaseFirestore.instance
-          .collection("Person")
+          .collection('Person')
           .doc(personList[i])
           .get();
       if (event.exists) {
         var data = event.data()!;
-        Map dummyFollower = Map();
+        Map dummyFollower = {};
         dummyFollower['followerName'] = AppUser.fromJson(data).name;
         dummyFollower['followerUName'] = AppUser.fromJson(data).username;
         followingList.add(dummyFollower);

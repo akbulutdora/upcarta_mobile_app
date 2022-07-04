@@ -14,12 +14,12 @@ class _ContentTypePickerChipsState extends State<ContentTypePickerChips> {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> contentTypeDict = [
-      {"name": "All", "icon": Icons.star_border},
-      {"name": "Book", "icon": Icons.star_border},
-      {"name": "Article", "icon": Icons.star_border},
-      {"name": "Tweet", "icon": Icons.star_border},
-      {"name": "Video", "icon": Icons.star_border},
-      {"name": "Podcast", "icon": Icons.star_border},
+      {'name': 'All', 'icon': Icons.star_border},
+      {'name': 'Book', 'icon': Icons.star_border},
+      {'name': 'Article', 'icon': Icons.star_border},
+      {'name': 'Tweet', 'icon': Icons.star_border},
+      {'name': 'Video', 'icon': Icons.star_border},
+      {'name': 'Podcast', 'icon': Icons.star_border},
     ];
 
     int _contentTypeValue = 0;
@@ -36,9 +36,9 @@ class _ContentTypePickerChipsState extends State<ContentTypePickerChips> {
               selectedColor: Theme.of(context).chipTheme.selectedColor,
               backgroundColor: Theme.of(context).chipTheme.selectedColor,
               side: BorderSide(color: AppColors.gray1BoxFrame),
-              avatar: Icon(contentTypeDict[index]["icon"]),
+              avatar: Icon(contentTypeDict[index]['icon']),
               label: Text(
-                contentTypeDict[index]["name"],
+                contentTypeDict[index]['name'],
                 style: TextStyle(
                   color:
                       _contentTypeValue == index ? Colors.white : Colors.black,

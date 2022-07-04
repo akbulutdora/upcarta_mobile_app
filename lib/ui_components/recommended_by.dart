@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RecommendedBy extends StatelessWidget {
@@ -12,7 +12,7 @@ class RecommendedBy extends StatelessWidget {
   //   {"image": "imageLink", "username": "username 4", "color": "0xFF5322E6"},
   // ];
 
-  Map<int, Map<String, dynamic>> createMap(arr) {
+  Map<int, Map<String, dynamic>> createMap(List<Map<String, String>> arr) {
     var x = arr.asMap();
     return x;
   }
@@ -44,7 +44,7 @@ class RecommendedBy extends StatelessWidget {
                           child: CircleAvatar(
                             radius: 15.r,
                             backgroundColor: Color(
-                                int.parse(item.value["color"] ?? "0xFF34E8EB")),
+                                int.parse(item.value['color'] ?? '0xFF34E8EB')),
                           ),
                         )
                       : Container();

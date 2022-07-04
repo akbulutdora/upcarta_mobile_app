@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/repositories/query_repository.dart';
-import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 
 part 'other_profile_event.dart';
 part 'other_profile_state.dart';
@@ -38,11 +37,15 @@ class OtherProfileBloc extends Bloc<OtherProfileEvent, OtherProfileState> {
 
       final AppUser thisUser = await _queryRepository.fetchUser(event.uid);
       add(OtherProfileEventRecommendationsFetched(thisUser));
-      print("\n\n\nthe user info ${thisUser.toString()}\n\n\n");
+      if (kDebugMode) {
+        print('\n\n\nthe user info ${thisUser.toString()}\n\n\n');
+      }
 
       emit(state.copyWith(status: OtherProfileStatus.success, user: thisUser));
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       emit(state.copyWith(status: OtherProfileStatus.failure));
     }
   }
@@ -81,12 +84,12 @@ class OtherProfileBloc extends Bloc<OtherProfileEvent, OtherProfileState> {
 
 
       var event = await FirebaseFirestore.instance
-          .collection("Person")
-          .doc(followers![i])
+          .collection('Person')
+          .doc(followers[i])
           .get();
       if (event.exists) {
         var data = event.data()!;
-        Map dummyFollower = Map();
+        Map dummyFollower = {};
         dummyFollower['followerName'] = AppUser.fromJson(data).name;
         dummyFollower['followerUName'] = AppUser.fromJson(data).username;
         followerList.add(dummyFollower);
@@ -100,12 +103,12 @@ class OtherProfileBloc extends Bloc<OtherProfileEvent, OtherProfileState> {
 
 
       var event = await FirebaseFirestore.instance
-          .collection("Person")
-          .doc(personList![i])
+          .collection('Person')
+          .doc(personList[i])
           .get();
       if (event.exists) {
         var data = event.data()!;
-        Map dummyFollower = Map();
+        Map dummyFollower = {};
         dummyFollower['followerName'] = AppUser.fromJson(data).name;
         dummyFollower['followerUName'] = AppUser.fromJson(data).username;
         followingList.add(dummyFollower);

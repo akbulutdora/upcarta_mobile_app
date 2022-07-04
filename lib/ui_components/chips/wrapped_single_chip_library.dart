@@ -32,7 +32,7 @@ class _WrappedSingleChipState extends State<WrappedSingleChip> {
       padding: const EdgeInsets.all(0),
       choiceStyle: C2ChoiceStyle(
         labelStyle:
-            const TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
+            const TextStyle(fontSize: 12, fontFamily: 'SFCompactText-Regular'),
         margin: const EdgeInsets.all(0),
         padding: const EdgeInsets.fromLTRB(-3, 0, -3, 0),
         showCheckmark: false,
@@ -42,7 +42,7 @@ class _WrappedSingleChipState extends State<WrappedSingleChip> {
       ),
       choiceActiveStyle: C2ChoiceStyle(
         labelStyle:
-            const TextStyle(fontSize: 12, fontFamily: "SFCompactText-Regular"),
+            const TextStyle(fontSize: 12, fontFamily: 'SFCompactText-Regular'),
         margin: const EdgeInsets.all(0),
         padding: const EdgeInsets.fromLTRB(-3, 0, -3, 0),
         showCheckmark: false,

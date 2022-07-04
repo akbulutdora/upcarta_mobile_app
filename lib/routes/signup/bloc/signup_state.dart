@@ -19,10 +19,10 @@ class SignupState extends Equatable {
 
   factory SignupState.initial() {
     return const SignupState(
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       status: SignupStatus.initial,
-      name: "",
+      name: '',
     );
   }
 

@@ -30,7 +30,7 @@ class _SeeAllInspiringPeopleState extends State<SeeAllInspiringPeople> {
           title: const Text(
             'Explore People',
             style: TextStyle(
-                fontFamily: "SFCompactText-Medium.ttf",
+                fontFamily: 'SFCompactText-Medium.ttf',
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
                 fontSize: 18),

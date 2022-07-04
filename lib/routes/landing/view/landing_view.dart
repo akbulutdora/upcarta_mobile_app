@@ -89,13 +89,13 @@ class Page1 extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset("assets/images/Upcarta_Discover.png", height: 300.h),
-        Text("Discover",
+        Image.asset('assets/images/Upcarta_Discover.png', height: 300.h),
+        Text('Discover',
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34.sp)),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 72.w, vertical: 16.h),
           child: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.",
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 17.sp)),
         ),
@@ -113,13 +113,13 @@ class Page2 extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset("assets/images/Upcarta_Organize.png", height: 300.h),
-        Text("Organize",
+        Image.asset('assets/images/Upcarta_Organize.png', height: 300.h),
+        Text('Organize',
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34.sp)),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 72.w, vertical: 16.h),
           child: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.",
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 17.sp)),
         )
@@ -143,13 +143,13 @@ class Page3 extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset("assets/images/Upcarta_Share.png", height: 300.h),
-          Text("Share",
+          Image.asset('assets/images/Upcarta_Share.png', height: 300.h),
+          Text('Share',
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 34.sp)),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 72.w, vertical: 16.h),
             child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.",
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nibh nulla ante adipiscing ut montes, eu placerat massa.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 17.sp)),
           ),

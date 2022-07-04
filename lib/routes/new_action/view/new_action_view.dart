@@ -1,15 +1,11 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/new_action/cubit/new_action_cubit.dart';
 
-import '../../../navigation/routes.gr.dart';
-import '../../../ui_components/DropDown_NewPost.dart';
+import '../../../ui_components/dropdown_newpost.dart';
 import '../../../util/colors.dart';
 
 class NewPostScreen extends StatefulWidget {
@@ -35,8 +31,6 @@ class _NewPostScreenState extends State<NewPostScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Container(
@@ -55,24 +49,24 @@ class _NewPostScreenState extends State<NewPostScreen> {
                       IconButton(
                           splashRadius: 32.r,
                           iconSize: 28.0,
-                          icon: Icon(Icons.book_outlined),
+                          icon: const Icon(Icons.book_outlined),
                           onPressed: () {}),
                       IconButton(
                         splashRadius: 32.r,
                         iconSize: 28.0,
-                        icon: Icon(Icons.article_outlined),
+                        icon: const Icon(Icons.article_outlined),
                         onPressed: () {},
                       ),
                       IconButton(
                         splashRadius: 32.r,
                         iconSize: 28.0,
-                        icon: Icon(Icons.ac_unit),
+                        icon: const Icon(Icons.ac_unit),
                         onPressed: () {},
                       ),
                       IconButton(
                         splashRadius: 32.r,
                         iconSize: 28.0,
-                        icon: Icon(Icons.video_call_outlined),
+                        icon: const Icon(Icons.video_call_outlined),
                         onPressed: () {},
                       ),
                     ]),
@@ -83,13 +77,13 @@ class _NewPostScreenState extends State<NewPostScreen> {
                       IconButton(
                         splashRadius: 32.r,
                         iconSize: 28.0,
-                        icon: Icon(Icons.movie_creation_outlined),
+                        icon: const Icon(Icons.movie_creation_outlined),
                         onPressed: () {},
                       ),
                       IconButton(
                         splashRadius: 32.r,
                         iconSize: 28.0,
-                        icon: Icon(Icons.tv_outlined),
+                        icon: const Icon(Icons.tv_outlined),
                         onPressed: () {},
                         //Content type
                         //Image
@@ -99,12 +93,12 @@ class _NewPostScreenState extends State<NewPostScreen> {
                       IconButton(
                           splashRadius: 32.r,
                           iconSize: 28.0,
-                          icon: Icon(Icons.podcasts_outlined),
+                          icon: const Icon(Icons.podcasts_outlined),
                           onPressed: () {}),
                       IconButton(
                         splashRadius: 32.r,
                         iconSize: 28.0,
-                        icon: Icon(Icons.audiotrack_outlined),
+                        icon: const Icon(Icons.audiotrack_outlined),
                         onPressed: () {},
                       ),
                     ]),
@@ -129,7 +123,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         ..hideCurrentSnackBar()
                         ..showSnackBar(
                           const SnackBar(
-                            content: Text("SUCCESS"),
+                            content: Text('SUCCESS'),
                           ),
                         );
                     }
@@ -163,7 +157,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         child: Container(
                           width: 270.w,
                           height: 50.h,
-                          padding: EdgeInsets.only(left: 8),
+                          padding: const EdgeInsets.only(left: 8),
                           decoration: BoxDecoration(
                               color: AppColors.white,
                               border: Border.all(
@@ -173,38 +167,37 @@ class _NewPostScreenState extends State<NewPostScreen> {
                               borderRadius: BorderRadius.circular(15.r)),
                           child: CustDropDown(
                             items: [
-                              CustDropdownMenuItem(
+                              CustomDropdownMenuItem(
                                 value: 0,
                                 child: Text(
                                   'Recommended Content',
                                   style: TextStyle(fontSize: 15.sp),
                                 ),
                               ),
-                              CustDropdownMenuItem(
+                              CustomDropdownMenuItem(
                                 value: 0,
                                 child: Text('Create New Collection',
                                     style: TextStyle(fontSize: 15.sp)),
                               ),
-                              CustDropdownMenuItem(
+                              CustomDropdownMenuItem(
                                 value: 0,
                                 child: Text('Recommendation By Expert',
                                     style: TextStyle(fontSize: 15.sp)),
                               ),
-                              CustDropdownMenuItem(
+                              CustomDropdownMenuItem(
                                 value: 0,
                                 child: Text('Collection By Expert',
                                     style: TextStyle(fontSize: 15.sp)),
                               ),
-                              CustDropdownMenuItem(
+                              CustomDropdownMenuItem(
                                 value: 0,
                                 child: Text('Ask By Expert',
                                     style: TextStyle(fontSize: 15.sp)),
                               )
                             ],
-                            hintText: "Select Action",
+                            hintText: 'Select Action',
                             borderRadius: 10.r,
                             onChanged: (val) {
-                              print(val);
                             },
                           ),
                         ),
@@ -259,7 +252,7 @@ class TitleForm extends StatelessWidget {
         hintStyle: TextStyle(
           color: AppColors.gray3ContentText,
         ),
-        hintText: "Add a Title",
+        hintText: 'Add a Title',
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100),
           borderSide: BorderSide.none,
@@ -298,7 +291,7 @@ class BodyForm extends StatelessWidget {
         hintStyle: TextStyle(
           color: AppColors.gray3ContentText,
         ),
-        hintText: "Add optional body text...",
+        hintText: 'Add optional body text...',
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100),
           borderSide: BorderSide.none,

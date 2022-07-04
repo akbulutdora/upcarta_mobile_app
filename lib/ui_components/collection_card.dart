@@ -80,7 +80,7 @@ class CollectionCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Owner",
+                            'Owner',
                             style: kTextStyle10,
                           ),
                           Text(
@@ -93,7 +93,7 @@ class CollectionCard extends StatelessWidget {
                           Text(
                             content.url,
                             style: TextStyle(
-                                fontFamily: "SF Compact Text",
+                                fontFamily: 'SF Compact Text',
                                 fontWeight: FontWeight.w300,
                                 fontSize: 10,
                                 color: AppColors.upcartaBlue),

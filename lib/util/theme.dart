@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 
 // TODO: ADD THEME FEATURES
@@ -57,7 +56,7 @@ ThemeData darkTheme = ThemeData(
     foregroundColor: Colors.white,
     backgroundColor: AppColors.darkPrimary,
   ),
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     backgroundColor: Colors.black,
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(

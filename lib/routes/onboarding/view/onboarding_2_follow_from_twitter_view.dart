@@ -1,19 +1,20 @@
-import "package:flutter/material.dart";
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'dart:math';
 
 List<Map> users = [
-  {"fullName": "Person A", "userName": "persona"},
-  {"fullName": "Person B", "userName": "personb"},
-  {"fullName": "Person C", "userName": "personc"},
-  {"fullName": "Person D", "userName": "persond"},
-  {"fullName": "Person E", "userName": "persone"},
-  {"fullName": "Person F", "userName": "personf"},
-  {"fullName": "Person G", "userName": "persong"},
-  {"fullName": "Person H", "userName": "personh"},
-  {"fullName": "Person I", "userName": "personi"},
+  {'fullName': 'Person A', 'userName': 'persona'},
+  {'fullName': 'Person B', 'userName': 'personb'},
+  {'fullName': 'Person C', 'userName': 'personc'},
+  {'fullName': 'Person D', 'userName': 'persond'},
+  {'fullName': 'Person E', 'userName': 'persone'},
+  {'fullName': 'Person F', 'userName': 'personf'},
+  {'fullName': 'Person G', 'userName': 'persong'},
+  {'fullName': 'Person H', 'userName': 'personh'},
+  {'fullName': 'Person I', 'userName': 'personi'},
 ];
 
 class UserOnboarding2 extends StatefulWidget {
@@ -57,7 +58,7 @@ class _UserOnboarding2State extends State<UserOnboarding2> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Follow People From Your Twitter",
+                'Follow People From Your Twitter',
                 style: TextStyle(
                     fontWeight: FontWeight.w500, fontSize: height * 0.02),
               ),
@@ -66,18 +67,22 @@ class _UserOnboarding2State extends State<UserOnboarding2> {
               Row(
                 children: [
                   Text(
-                    "Select All $suggestionNumber Matches",
+                    'Select All $suggestionNumber Matches',
                     style: TextStyle(fontSize: height * 0.016),
                   ),
                   const SizedBox(width: 12),
                   CustomRadioButton(
                     isSelected: isAllSelected,
                     select: () {
-                      print("Add all");
+                      if (kDebugMode) {
+                        print('Add all');
+                      }
                       selectAll();
                     },
                     deselect: () {
-                      print("Remove All");
+                      if (kDebugMode) {
+                        print('Remove All');
+                      }
                       deselectAll();
                     },
                   ),
@@ -93,8 +98,8 @@ class _UserOnboarding2State extends State<UserOnboarding2> {
               users.length,
               (index) => FollowWithRadio(
                 isSelected: isAllSelected,
-                fullName: users[index]["fullName"],
-                userName: users[index]["userName"],
+                fullName: users[index]['fullName'],
+                userName: users[index]['userName'],
                 onSelect: () {
                   selectedUsers.add(users[index]);
                 },
@@ -122,17 +127,19 @@ class _UserOnboarding2State extends State<UserOnboarding2> {
                     // context.router.push(UserOnboarding3Route());
                   },
                   child: const Text(
-                    "Skip",
+                    'Skip',
                     style: TextStyle(color: Color(0xFF949494), fontSize: 18),
                   ),
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    print(selectedUsers);
+                    if (kDebugMode) {
+                      print(selectedUsers);
+                    }
                     context.router.push(const UserOnboarding3Route());
                   },
                   child: const Text(
-                    "Next",
+                    'Next',
                     style: TextStyle(color: Color(0xFF4E89FD), fontSize: 18),
                   ),
                 ),
@@ -200,7 +207,7 @@ class _FollowWithRadioState extends State<FollowWithRadio> {
                                 color: Colors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold)),
-                        Text("@${widget.userName}",
+                        Text('@${widget.userName}',
                             style: const TextStyle(
                                 color: Color(0xFF949494), fontSize: 16))
                       ],
@@ -244,13 +251,15 @@ class CustomRadioButton extends StatefulWidget {
 class _CustomRadioButtonState extends State<CustomRadioButton> {
   @override
   Widget build(BuildContext context) {
-    print(widget.isSelected);
+    if (kDebugMode) {
+      print(widget.isSelected);
+    }
     return GestureDetector(
       onTap: () {
         setState(() {
           widget.isSelected = !widget.isSelected;
         });
-        widget.isSelected ? widget.select() : {widget.deselect()};
+        widget.isSelected ? widget.select() : widget.deselect();
       },
       child: Container(
         width: widget.radius * 2,

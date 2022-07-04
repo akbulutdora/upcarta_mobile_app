@@ -1,12 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
-import 'package:upcarta_mobile_app/routes/feed/latest/bloc/latest_feed_bloc.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/content_list_item.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
-import 'package:upcarta_mobile_app/ui_components/components.dart';
 
 class ProfileRecommendationsList extends StatelessWidget {
   const ProfileRecommendationsList({
@@ -28,7 +23,7 @@ class ProfileRecommendationsList extends StatelessWidget {
                           .read<UserBloc>()
                           .add(const UserEventRecommendationsFetched());
                     },
-                    child: Text('Failed to fetch recommendations!')));
+                    child: const Text('Failed to fetch recommendations!')));
           case UserStatus.recommendedFetched:
             return const Center(child: CircularProgressIndicator());
           case UserStatus.success:
@@ -39,7 +34,7 @@ class ProfileRecommendationsList extends StatelessWidget {
                         .read<UserBloc>()
                         .add(const UserEventRecommendationsFetched());
                   },
-                  child: Text('You currently have no recommendations')),);
+                  child: const Text('You currently have no recommendations')),);
             }
             return RefreshIndicator(
               onRefresh: () {

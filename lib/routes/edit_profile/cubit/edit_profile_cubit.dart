@@ -1,15 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 
 part 'edit_profile_state.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
-  EditProfileCubit(this._authRepository, this._userRepository)
+  EditProfileCubit(this._userRepository)
       : super(EditProfileState.initial());
 
-  final AuthenticationRepository _authRepository;
   final UserRepository _userRepository;
 
   void bioChanged(String value) {
@@ -38,7 +36,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       emit(
         state.copyWith(
           // TODO: HANDLE ERROR
-          errorMessage: "An error occured",
+          errorMessage: 'An error occured',
           status: EditProfileStatus.submissionFailure,
         ),
       );

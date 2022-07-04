@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,8 +28,6 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
     AutoRouter.of(context);
     return Scaffold(
         appBar: AppBar(
@@ -40,7 +38,7 @@ class _SettingsState extends State<Settings> {
             title: Text(
               'Settings',
               style: TextStyle(
-                  fontFamily: "SFCompactText-Medium",
+                  fontFamily: 'SFCompactText-Medium',
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeight.w500,
                   fontSize: 22.sp),
@@ -69,7 +67,7 @@ class _SettingsState extends State<Settings> {
                         child: ListTile(
                             title: Text('Email',
                                 style: TextStyle(
-                                  fontFamily: "SFCompactText",
+                                  fontFamily: 'SFCompactText',
                                   fontWeight: FontWeight.w500,
                                   fontSize: 18.sp,
                                   color: Theme.of(context).iconTheme.color,
@@ -91,7 +89,7 @@ class _SettingsState extends State<Settings> {
                         child: ListTile(
                             title: Text('Password',
                                 style: TextStyle(
-                                  fontFamily: "SFCompactText",
+                                  fontFamily: 'SFCompactText',
                                   fontWeight: FontWeight.w500,
                                   fontSize: 18,
                                   color: Theme.of(context).iconTheme.color,
@@ -114,7 +112,7 @@ class _SettingsState extends State<Settings> {
                         child: ListTile(
                             title: Text('Notifications',
                                 style: TextStyle(
-                                  fontFamily: "SFCompactText",
+                                  fontFamily: 'SFCompactText',
                                   fontWeight: FontWeight.w500,
                                   fontSize: 18,
                                   color: Theme.of(context).iconTheme.color,
@@ -137,7 +135,7 @@ class _SettingsState extends State<Settings> {
                             title: Text(
                               'Dark Mode',
                               style: TextStyle(
-                                fontFamily: "SFCompactText",
+                                fontFamily: 'SFCompactText',
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
                                 color: Theme.of(context).iconTheme.color,
@@ -165,15 +163,17 @@ class _SettingsState extends State<Settings> {
                         onTap: () async {
                           try {
                             await FirebaseFirestore.instance
-                                .collection("Person")
+                                .collection('Person')
                                 .doc(FirebaseAuth.instance.currentUser?.uid)
                                 .delete();
                             await FirebaseAuth.instance.currentUser!.delete();
                             context.read<AppBloc>().add(AppLogoutRequested());
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'requires-recent-login') {
-                              print(
+                              if (kDebugMode) {
+                                print(
                                   'The user must reauthenticate before this operation can be executed.');
+                              }
                             }
                           }
                         },
@@ -181,7 +181,7 @@ class _SettingsState extends State<Settings> {
                           title: Text(
                             'Delete Account',
                             style: TextStyle(
-                              fontFamily: "SFCompactText",
+                              fontFamily: 'SFCompactText',
                               fontWeight: FontWeight.w500,
                               fontSize: 18,
                               color: Theme.of(context).iconTheme.color,
@@ -201,7 +201,7 @@ class _SettingsState extends State<Settings> {
                       //     .replaceAll([const LoginScreenRoute()]);
                       AutoRouter.of(context).pushAndPopUntil(
                           const LoginScreenRoute(),
-                          predicate: ((route) => false));
+                          predicate: (route) => false);
                     }
                   },
                   child: Card(
@@ -214,7 +214,7 @@ class _SettingsState extends State<Settings> {
                             title: Text(
                           'Logout',
                           style: TextStyle(
-                            fontFamily: "SFCompactText",
+                            fontFamily: 'SFCompactText',
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
                             color: Colors.red,

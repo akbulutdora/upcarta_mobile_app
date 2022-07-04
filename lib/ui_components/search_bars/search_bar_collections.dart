@@ -20,7 +20,7 @@ Widget buildSearchBarCollections() => const TextField(
         contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
         hintText: 'Search for collections',
         hintStyle: TextStyle(
-            fontFamily: "SFCompactText-Regular",
+            fontFamily: 'SFCompactText-Regular',
             color: Color(0xff949494),
             fontWeight: FontWeight.w400,
             fontSize: 13),
