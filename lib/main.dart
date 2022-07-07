@@ -24,7 +24,7 @@ Future<void> main() async {
           FirebaseCrashlytics.instance.recordFlutterFatalError;
 
       final authenticationRepository =
-          AuthenticationRepository(sharedPreferences: sharedPreferences);
+          AuthenticationRepository();
       await authenticationRepository.user.first;
       final userRepository =
           UserRepository(sharedPreferences: sharedPreferences);
