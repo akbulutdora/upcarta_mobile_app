@@ -30,26 +30,7 @@ class ExploreScreen extends StatefulWidget {
 
 class _ExploreScreenState extends State<ExploreScreen> {
   final List<Widget> cardsList = const <Widget>[
-    ExploreCard(
-      text: 'Featured Collections',
-      route: SeeAllFeaturedCollectionsRoute(),
-    ),
-    ExploreCard(
-      text: 'Inspiring People',
-      route: SeeAllInspiringPeopleRoute(),
-    ),
-    ExploreCard(
-      text: 'Popular Topics',
-      route: SeeAllPopularTopicsRoute(),
-    ),
-    ExploreCard(
-      text: 'Recent Asks',
-      route: SeeAllRecentAsksRoute(),
-    ),
-    ExploreCard(
-      text: 'Archived Content',
-      route: SeeAllContentArchiveViewRoute(),
-    ),
+
   ];
 
   @override

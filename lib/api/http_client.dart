@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class RequestREST {
   final String endpoint;
-  final Map<String, String> data;
+  final Map<String, dynamic> data;
 
   const RequestREST({
     required this.endpoint,
@@ -27,13 +28,15 @@ class RequestREST {
 // Future<T> executePost<T>(JsonParser<T> parser) async {
   Future<String> executePost() async {
     final uri = Uri.parse(endpoint);
-    final response = await _httpClient.post(
-      uri,
-      headers: {
-        'Authorization': 'your_api_key',
-      },
-      body: data,
-    );
+    final body = jsonEncode(data);
+    print(body);
+    final headers = {'content-type': 'application/json'};
+    final response = await _httpClient.post(uri,
+        headers: headers, body: body);
+    if (kDebugMode) {
+      print(response.statusCode);
+      print(response.body);
+    }
     return response.body;
     // return parser.parseFromJson(response.body);
   }
