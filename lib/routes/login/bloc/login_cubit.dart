@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:upcarta_mobile_app/api/http_client.dart';
+import 'package:upcarta_mobile_app/core/api/http_client.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 
 part 'login_state.dart';

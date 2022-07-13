@@ -61,6 +61,7 @@ dependencies:
   flow_builder: ^0.0.8
   firebase_storage: ^10.2.16
   freezed_annotation: ^2.0.3
+  dartz: ^0.10.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
