@@ -4,6 +4,7 @@ import 'package:upcarta_mobile_app/util/colors.dart';
 // TODO: ADD THEME FEATURES
 ThemeData lightTheme = ThemeData(
   primaryColor: AppColors.upcartaBlue,
+
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     foregroundColor: Colors.white,
     backgroundColor: AppColors.upcartaBlue,
@@ -11,7 +12,10 @@ ThemeData lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.white,
     foregroundColor: AppColors.black,
+    shadowColor: AppColors.gray1BoxFrame
   ),
+  cardColor: AppColors.gray2LightText,
+  hintColor: AppColors.gray3ContentText,
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: AppColors.black,
     unselectedItemColor: AppColors.gray3ContentText,
@@ -44,8 +48,11 @@ ThemeData lightTheme = ThemeData(
     ),
   )),
   chipTheme: ChipThemeData(
-    disabledColor: AppColors.white,
-    selectedColor: AppColors.upcartaBlue,
+    disabledColor: AppColors.black,
+    selectedColor: AppColors.white,
+    backgroundColor: AppColors.upcartaBlue,
+    shadowColor: AppColors.gray1BoxFrame,
+    side: BorderSide(color: AppColors.gray1BoxFrame),
   ),
   brightness: Brightness.light,
 );

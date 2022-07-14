@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
+
 
 class Settings extends StatefulWidget {
   static MaterialPage page() {
@@ -122,7 +122,7 @@ class _SettingsState extends State<Settings> {
                               color: Theme.of(context).iconTheme.color,
                             )))),
                 Divider(
-                  color: AppColors.gray3ContentText,
+                  color: Theme.of(context).hintColor,
                   height: 2.h,
                 ),
                 BlocBuilder<ThemeCubit, ThemeData>(
@@ -154,7 +154,7 @@ class _SettingsState extends State<Settings> {
                   },
                 ),
                 Divider(
-                  color: AppColors.gray3ContentText,
+                  color: Theme.of(context).hintColor,
                   height: 2.h,
                 ),
                 Card(

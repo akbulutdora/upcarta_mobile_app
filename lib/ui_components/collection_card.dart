@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
 
-import 'package:upcarta_mobile_app/util/colors.dart';
+
 
 class CollectionCard extends StatelessWidget {
   final Content content;
@@ -20,7 +20,7 @@ class CollectionCard extends StatelessWidget {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
-          side: BorderSide(color: AppColors.gray2LightText),
+          side: BorderSide(color: Theme.of(context).cardColor),
         ),
         child: Container(
           padding: EdgeInsets.all(8),
@@ -61,7 +61,7 @@ class CollectionCard extends StatelessWidget {
               ),
               Divider(
                 height: 0,
-                color: AppColors.gray2LightText,
+                color: Theme.of(context).cardColor,
               ),
               SizedBox(
                 height: 8,
@@ -96,7 +96,7 @@ class CollectionCard extends StatelessWidget {
                                 fontFamily: 'SF Compact Text',
                                 fontWeight: FontWeight.w300,
                                 fontSize: 10,
-                                color: AppColors.upcartaBlue),
+                                color:  Theme.of(context).primaryColor),
                           )
                         ]),
                   )

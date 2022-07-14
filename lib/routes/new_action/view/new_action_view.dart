@@ -6,7 +6,7 @@ import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/new_action/cubit/new_action_cubit.dart';
 
 import '../../../ui_components/dropdown_newpost.dart';
-import '../../../util/colors.dart';
+
 
 class NewPostScreen extends StatefulWidget {
   const NewPostScreen({Key? key}) : super(key: key);
@@ -147,7 +147,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
                           IconButton(
                             onPressed: () {},
                             icon: Icon(Icons.close,
-                                color: AppColors.gray3ContentText, size: 30.sm),
+                                color: Theme.of(context).hintColor, size: 30.sm),
                           ),
                         ],
                       ),
@@ -159,9 +159,9 @@ class _NewPostScreenState extends State<NewPostScreen> {
                           height: 50.h,
                           padding: const EdgeInsets.only(left: 8),
                           decoration: BoxDecoration(
-                              color: AppColors.white,
+                              color: Theme.of(context).floatingActionButtonTheme.foregroundColor,
                               border: Border.all(
-                                color: AppColors.upcartaBlue,
+                                color: Theme.of(context).primaryColor,
                                 width: 1,
                               ),
                               borderRadius: BorderRadius.circular(15.r)),
@@ -205,7 +205,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
                       SizedBox(height: 8.h),
                      const TitleForm(),
                       Divider(
-                        color: AppColors.upcartaBlue,
+                        color:  Theme.of(context).primaryColor,
                         indent: 8.w,
                         height: 0.h,
                       ),
@@ -247,10 +247,10 @@ class TitleForm extends StatelessWidget {
           decoration: TextDecoration.none,
           fontSize: 22.sp,
           fontWeight: FontWeight.w600),
-      cursorColor: AppColors.upcartaBlue,
+      cursorColor:  Theme.of(context).primaryColor,
       decoration: InputDecoration(
         hintStyle: TextStyle(
-          color: AppColors.gray3ContentText,
+          color: Theme.of(context).hintColor,
         ),
         hintText: 'Add a Title',
         enabledBorder: OutlineInputBorder(
@@ -286,10 +286,10 @@ class BodyForm extends StatelessWidget {
           decoration: TextDecoration.none,
           fontSize: 16.sp,
           fontWeight: FontWeight.w400),
-      cursorColor: AppColors.upcartaBlue,
+      cursorColor:  Theme.of(context).primaryColor,
       decoration: InputDecoration(
         hintStyle: TextStyle(
-          color: AppColors.gray3ContentText,
+          color: Theme.of(context).hintColor,
         ),
         hintText: 'Add optional body text...',
         enabledBorder: OutlineInputBorder(
@@ -316,7 +316,7 @@ class URLForm extends StatelessWidget {
       padding: EdgeInsets.only(left: 8.w),
       child: TextField(
         textAlignVertical: TextAlignVertical.center,
-        style: TextStyle(fontSize: 15.sp, color: AppColors.black),
+        style: TextStyle(fontSize: 15.sp, color: Theme.of(context).appBarTheme.foregroundColor),
         onChanged: (value) {
           context.read<NewActionCubit>().urlChanged(value);
         },
@@ -351,15 +351,15 @@ class _SendButton extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.r)),
-                    backgroundColor: AppColors.white,
-                    side: BorderSide(color: AppColors.upcartaBlue)),
+                    backgroundColor: Theme.of(context).floatingActionButtonTheme.foregroundColor,
+                    side: BorderSide(color: Theme.of(context).primaryColor)),
                 onPressed: () {
                   context.read<NewActionCubit>().submitContent();
                 },
                 child: Text(
                   'Send',
                   style: TextStyle(
-                      color: AppColors.upcartaBlue,
+                      color:  Theme.of(context).primaryColor,
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400),
                 ),

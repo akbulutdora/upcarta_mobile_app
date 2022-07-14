@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:upcarta_mobile_app/util/colors.dart';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 
@@ -23,7 +23,7 @@ class _ResetPasswordNewState extends State<ResetPasswordNew> {
                 onPressed: () {},
                 icon: Icon(
                   Icons.notifications_none_outlined,
-                  color: AppColors.black,
+                  color: Theme.of(context).appBarTheme.foregroundColor,
                   size: 30,
                 ))
           ],
@@ -33,7 +33,7 @@ class _ResetPasswordNewState extends State<ResetPasswordNew> {
             Icon(
               Icons.pause_circle,
               size: 30,
-              color: AppColors.upcartaBlue,
+              color: Theme.of(context).primaryColor,
             ),
           ]),
           centerTitle: true,

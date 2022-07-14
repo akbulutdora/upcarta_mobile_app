@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
+
 
 class ContentTypePickerChips extends StatefulWidget {
   const ContentTypePickerChips({
@@ -32,20 +32,19 @@ class _ContentTypePickerChipsState extends State<ContentTypePickerChips> {
           contentTypeDict.length,
           (int index) {
             return ChoiceChip(
-              disabledColor: Theme.of(context).chipTheme.disabledColor,
-              selectedColor: Theme.of(context).chipTheme.selectedColor,
-              backgroundColor: Theme.of(context).chipTheme.selectedColor,
-              side: BorderSide(color: AppColors.gray1BoxFrame),
-              avatar: Icon(contentTypeDict[index]['icon']),
+              selectedColor: Theme.of(context).chipTheme.backgroundColor,
+              side: Theme.of(context).chipTheme.side,
+              avatar: Icon(contentTypeDict[index]['icon'],
+              color: _contentTypeValue == index ? Theme.of(context).chipTheme.selectedColor : Theme.of(context).chipTheme.disabledColor,),
               label: Text(
                 contentTypeDict[index]['name'],
-                style: TextStyle(
-                  color:
-                      _contentTypeValue == index ? Colors.white : Colors.black,
-                ),
+              ),
+              labelStyle: TextStyle(
+                color: _contentTypeValue == index ? Theme.of(context).chipTheme.selectedColor : Theme.of(context).chipTheme.disabledColor,
               ),
               selected: _contentTypeValue == index,
               onSelected: (bool selected) {
+                // FIXME: Nothing happens
                 setState(() {
                   _contentTypeValue = selected ? index : 0;
                 });

@@ -7,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/onboarding/cubit/onboarding_cubit.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 
@@ -51,7 +50,7 @@ class _EditOnboardingState extends State<EditOnboarding> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: Theme.of(context).floatingActionButtonTheme.foregroundColor,
       body: Padding(
         padding: EdgeInsets.only(left: 36.w, right: 36.w),
         child: BlocProvider(
@@ -124,14 +123,14 @@ class _EditOnboardingState extends State<EditOnboarding> {
                         style: OutlinedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.r)),
-                            side: BorderSide(color: AppColors.upcartaBlue),
-                            backgroundColor: AppColors.white,
+                            side: BorderSide(color: Theme.of(context).primaryColor),
+                            backgroundColor: Theme.of(context).floatingActionButtonTheme.foregroundColor,
                             padding:
                                 EdgeInsets.fromLTRB(32.w, 10.h, 32.w, 10.h)),
                         child: Text(
                           'Continue',
                           style: TextStyle(
-                              color: AppColors.upcartaBlue, fontSize: 15.sp),
+                              color:  Theme.of(context).primaryColor, fontSize: 15.sp),
                         ),
                       ),
                     ),

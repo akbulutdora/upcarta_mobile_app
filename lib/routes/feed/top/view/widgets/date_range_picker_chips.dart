@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
 
 class DateRangePickerChips extends StatefulWidget {
   const DateRangePickerChips({
@@ -25,18 +24,17 @@ class _DateRangePickerChipsState extends State<DateRangePickerChips> {
           dateRangeNames.length,
           (int index) {
             return ChoiceChip(
-              disabledColor: Theme.of(context).chipTheme.disabledColor,
-              selectedColor: Theme.of(context).chipTheme.selectedColor,
-              backgroundColor: Theme.of(context).chipTheme.selectedColor,
-              side: BorderSide(color: AppColors.gray1BoxFrame),
+              selectedColor: Theme.of(context).chipTheme.backgroundColor,
+              side: Theme.of(context).chipTheme.side,
               label: Text(
                 dateRangeNames[index],
                 style: TextStyle(
-                  color: _dateRangeValue == index ? Colors.white : Colors.black,
+                  color: _dateRangeValue == index ? Theme.of(context).chipTheme.selectedColor : Theme.of(context).chipTheme.disabledColor,
                 ),
               ),
               selected: _dateRangeValue == index,
               onSelected: (bool selected) {
+                // FIXME: Nothing happens onPressed
                 setState(() {
                   _dateRangeValue = selected ? index : 0;
                 });

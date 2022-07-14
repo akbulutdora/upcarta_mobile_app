@@ -9,7 +9,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
 import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:path/path.dart';
 
@@ -192,8 +191,7 @@ class _BioSubmitButton extends StatelessWidget {
                   child: Text(
                     'Save',
                     style: TextStyle(
-                        //color: Theme.of(context).iconTheme.color,
-                        color: AppColors.white,
+                        color: Theme.of(context).floatingActionButtonTheme.foregroundColor,
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400),
                   ),

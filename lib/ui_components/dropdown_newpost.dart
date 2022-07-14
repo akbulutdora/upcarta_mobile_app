@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
+
 
 class CustDropDown<T> extends StatefulWidget {
   final List<CustomDropdownMenuItem> items;
@@ -119,7 +119,7 @@ class _CustDropDownState extends State<CustDropDown>
                               maxWidth: size.width),
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              border: Border.all(color: AppColors.upcartaBlue),
+                              border: Border.all(color:  Theme.of(context).primaryColor),
                               borderRadius: BorderRadius.circular(12.r)),
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(
@@ -141,7 +141,7 @@ class _CustDropDownState extends State<CustDropDown>
                                                 child: item.child,
                                               ),
                                               Divider(
-                                                color: AppColors.upcartaBlue,
+                                                color:  Theme.of(context).primaryColor,
                                                 height: 0.h,
                                               )
                                             ],

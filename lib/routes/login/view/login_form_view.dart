@@ -42,7 +42,7 @@ class _LoginScreen2 extends State<LoginScreen2> {
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(
-            color: AppColors.gray1BoxFrame,
+            color: Theme.of(context).appBarTheme.shadowColor,
           ),
           elevation: 0,
           titleSpacing: 0.0,
@@ -253,7 +253,7 @@ class _LoginButton extends StatelessWidget {
                 child: Text(
                   'Log In',
                   style: TextStyle(
-                      color: AppColors.white,
+                      color: Theme.of(context).floatingActionButtonTheme.foregroundColor,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w600),
                 ),
@@ -273,8 +273,8 @@ class _SignUpButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-        side: BorderSide(color: AppColors.upcartaBlue),
-        backgroundColor: AppColors.white,
+        side: BorderSide(color:  Theme.of(context).primaryColor),
+        backgroundColor: Theme.of(context).floatingActionButtonTheme.foregroundColor,
         padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
       ),
       child: Text(

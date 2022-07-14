@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'components.dart';
 import 'package:upcarta_mobile_app/util/styles.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
+
 
 class ContentCard extends StatefulWidget {
   final Content content;
@@ -32,7 +32,7 @@ class _ContentCardState extends State<ContentCard> {
             elevation: 0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                side: BorderSide(color: AppColors.gray2LightText)),
+                side: BorderSide(color: Theme.of(context).cardColor)),
             child: Padding(
               padding: EdgeInsets.fromLTRB(12.w, 14.h, 12.w, 14.h),
               child: Column(
@@ -167,7 +167,7 @@ class _ContentCardState extends State<ContentCard> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.upcartaBlue),
+                        border: Border.all(color:  Theme.of(context).primaryColor),
                         borderRadius: BorderRadius.all(Radius.circular(5.r))),
                     child: Row(
                       children: [
@@ -178,7 +178,7 @@ class _ContentCardState extends State<ContentCard> {
                             errorBuilder: (BuildContext context,
                                 Object exception, StackTrace? stackTrace) {
                               return Container(
-                                  color: AppColors.upcartaBlue,
+                                  color:  Theme.of(context).primaryColor,
                                   padding: EdgeInsets.all(16.sm),
                                   width: 100.w,
                                   height: 80.h,

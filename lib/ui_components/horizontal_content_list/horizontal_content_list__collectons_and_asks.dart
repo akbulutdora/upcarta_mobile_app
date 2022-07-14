@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../../../navigation/routes.gr.dart';
-import '../../../util/colors.dart';
+
 import '../../../util/styles.dart';
 import 'package:upcarta_mobile_app/util/constants.dart';
 import '../collection_card.dart';
@@ -37,7 +37,7 @@ class HorizontalContentList extends StatelessWidget {
                           fontFamily: 'SF Compact Text',
                           fontWeight: FontWeight.normal,
                           fontSize: 11,
-                          color: AppColors.upcartaBlue),
+                          color:  Theme.of(context).primaryColor),
                     ),
                   ),
                 ),

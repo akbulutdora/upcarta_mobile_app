@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'components.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
+
 
 class FeedContentList extends StatefulWidget {
   final List<Content> contentList;
@@ -29,7 +29,7 @@ class _FeedContentListState extends State<FeedContentList> {
             return Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: AppColors.gray2LightText)),
+                    border: Border.all(color: Theme.of(context).cardColor)),
                 child: Column(
                   children: [
                     Padding(

@@ -33,7 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               context.router.replace(const HomeRoute());
             },
             icon: const Icon(Icons.home_filled),
-            color: AppColors.upcartaBlue,
+            color:  Theme.of(context).primaryColor,
           ),
         ],
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,

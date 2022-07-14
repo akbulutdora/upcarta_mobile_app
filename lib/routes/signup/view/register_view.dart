@@ -7,7 +7,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/routes/signup/signup.dart';
 
-import '../../../util/colors.dart';
+
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class _MyRegisterState extends State<MyRegister> {
       child: Scaffold(
         appBar: AppBar(
           leading: BackButton(
-            color: AppColors.gray1BoxFrame,
+            color: Theme.of(context).appBarTheme.shadowColor,
           ),
           elevation: 0,
           titleSpacing: 0.0,
@@ -75,7 +75,7 @@ class _MyRegisterState extends State<MyRegister> {
                                   color: Colors.black)
                             ],
                             decoration: TextDecoration.underline,
-                            decorationColor: AppColors.upcartaBlue,
+                            decorationColor:  Theme.of(context).primaryColor,
                             decorationThickness: 2.sp)),
                   ),
                   SizedBox(height: 32.h),
@@ -236,13 +236,13 @@ class _SignUpButton extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r)),
-                  side: BorderSide(color: AppColors.upcartaBlue),
-                  backgroundColor: AppColors.upcartaBlue,
+                  side: BorderSide(color:  Theme.of(context).primaryColor),
+                  backgroundColor:  Theme.of(context).primaryColor,
                   padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
                 ),
                 child: Text(
                   'Sign Up',
-                  style: TextStyle(color: AppColors.white, fontSize: 15.sp),
+                  style: TextStyle(color: Theme.of(context).floatingActionButtonTheme.foregroundColor, fontSize: 15.sp),
                 ),
               );
       },

@@ -29,7 +29,7 @@ class UserOnboarding1 extends StatelessWidget {
             child: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                style: TextStyle(color: AppColors.black),
+                style: TextStyle(color: Theme.of(context).appBarTheme.foregroundColor),
                 children: [
                   TextSpan(
                     text: '\tWelcome to Upcarta\t',
@@ -43,7 +43,7 @@ class UserOnboarding1 extends StatelessWidget {
                       decorationStyle: TextDecorationStyle.solid,
                       decorationThickness: 2,
                       shadows: [
-                        Shadow(offset: Offset(0, -12.h), color: AppColors.black)
+                        Shadow(offset: Offset(0, -12.h), color: Theme.of(context).appBarTheme.foregroundColor!)
                       ],
                     ),
                   ),
@@ -86,7 +86,7 @@ class UserOnboarding1 extends StatelessWidget {
                   context.router.push(const UserOnboarding3Route());
                 },
                 style: ElevatedButton.styleFrom(
-                    side: BorderSide(color: AppColors.gray3ContentText)),
+                    side: BorderSide(color: Theme.of(context).hintColor)),
                 child: Text(
                   'Skip',
                   style: TextStyle(

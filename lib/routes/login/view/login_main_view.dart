@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/app/bloc/app_bloc.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
-import 'package:upcarta_mobile_app/util/colors.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import '../../../app/bloc/app_bloc.dart';
@@ -121,7 +120,7 @@ class LoginMainViewButtons extends StatelessWidget {
                   side: const BorderSide(color: Colors.lightBlue)),
               child: Text(
                 'Continue with Twitter',
-                style: TextStyle(color: AppColors.white, fontSize: 16.sp),
+                style: TextStyle(color: Theme.of(context).floatingActionButtonTheme.foregroundColor, fontSize: 16.sp),
               ),
             ),
           ),
@@ -134,12 +133,12 @@ class LoginMainViewButtons extends StatelessWidget {
               style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r)),
-                  backgroundColor: AppColors.white,
+                  backgroundColor: Theme.of(context).floatingActionButtonTheme.foregroundColor,
                   padding: EdgeInsets.fromLTRB(62.w, 13.h, 62.w, 14.h),
-                  side: BorderSide(color: AppColors.black, width: 1)),
+                  side: BorderSide(color: Theme.of(context).appBarTheme.foregroundColor!, width: 1)),
               child: Text(
                 'Continue with Google',
-                style: TextStyle(color: AppColors.black, fontSize: 16.sp),
+                style: TextStyle(color: Theme.of(context).appBarTheme.foregroundColor, fontSize: 16.sp),
               ),
             ),
           ),
@@ -150,12 +149,12 @@ class LoginMainViewButtons extends StatelessWidget {
               style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r)),
-                  backgroundColor: AppColors.black,
+                  backgroundColor: Theme.of(context).appBarTheme.foregroundColor,
                   padding: EdgeInsets.fromLTRB(67.w, 13.h, 67.w, 14.h),
-                  side: BorderSide(color: AppColors.black)),
+                  side: BorderSide(color: Theme.of(context).appBarTheme.foregroundColor!)),
               child: Text(
                 'Continue with Apple',
-                style: TextStyle(color: AppColors.white, fontSize: 16.sp),
+                style: TextStyle(color: Theme.of(context).floatingActionButtonTheme.foregroundColor, fontSize: 16.sp),
               ),
             ),
           ),
@@ -199,12 +198,12 @@ class LoginMainViewButtons extends StatelessWidget {
               style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.r)),
-                  backgroundColor: AppColors.upcartaBlue,
+                  backgroundColor:  Theme.of(context).primaryColor,
                   padding: EdgeInsets.fromLTRB(111.w, 13.h, 111.w, 14.h),
-                  side: BorderSide(color: AppColors.upcartaBlue)),
+                  side: BorderSide(color: Theme.of(context).primaryColor)),
               child: Text(
                 'Sign Up',
-                style: TextStyle(color: AppColors.white, fontSize: 16.sp),
+                style: TextStyle(color: Theme.of(context).floatingActionButtonTheme.foregroundColor, fontSize: 16.sp),
               ),
             ),
           ),
