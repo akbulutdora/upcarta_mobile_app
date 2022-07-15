@@ -26,7 +26,6 @@ class AuthenticationRepository implements IAuthenticationRepository {
       String email, String password) async {
     final isConnected = await networkInfo.isConnected;
     if (isConnected) {
-      print('atRemovePart');
       try {
         final userToken = await remoteDataSource.authenticate(
             email: email, password: password);
@@ -36,15 +35,8 @@ class AuthenticationRepository implements IAuthenticationRepository {
       } on ServerException {
         return Left(ServerFailure());
       }
-    } else {
-      print('atLocalPart');
-      try {
-        final userToken = await localDataStorage.getUserToken();
-        return Right(userToken);
-      } on CacheException {
-        return Left(CacheFailure());
-      }
     }
+    return Left(ServerFailure());
   }
 
   @override

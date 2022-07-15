@@ -1,19 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:upcarta_mobile_app/core/api/data_sources/local_data_storage.dart';
-import 'package:upcarta_mobile_app/core/api/data_sources/remote_data_source.dart';
 import 'package:upcarta_mobile_app/core/error/exception.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
-import 'package:upcarta_mobile_app/core/platform/network_info.dart';
 import 'package:upcarta_mobile_app/models/upcarta_user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository.dart';
-
-@GenerateMocks([NetworkInfo, RemoteDataSource, LocalDataStorage])
-import 'authentication_repository_test.mocks.dart';
-
-// class MockLocalDataSource extends Mock implements NumberTriviaLocalDataSource {}
+import '../shared_mocks.mocks.dart';
 
 void main() {
   MockRemoteDataSource mockRemoteDataSource = MockRemoteDataSource();
@@ -58,7 +50,7 @@ void main() {
       //arrange
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(mockRemoteDataSource.authenticate(
-          email: tEmail, password: tPassword))
+              email: tEmail, password: tPassword))
           .thenAnswer((_) async => tToken);
       // act
       repository.authenticate(tEmail, tPassword);
@@ -69,10 +61,10 @@ void main() {
     runTestsOnline(() {
       test(
         'should return remote data when the call to remote data source is successful',
-            () async {
+        () async {
           // arrange
           when(mockRemoteDataSource.authenticate(
-              email: tEmail, password: tPassword))
+                  email: tEmail, password: tPassword))
               .thenAnswer((_) async => tToken);
           // act
           final result = await repository.authenticate(tEmail, tPassword);
@@ -85,10 +77,10 @@ void main() {
 
       test(
         'should cache the data locally when the call to remote data source is successful',
-            () async {
+        () async {
           // arrange
           when(mockRemoteDataSource.authenticate(
-              email: anyNamed('email'), password: anyNamed('password')))
+                  email: anyNamed('email'), password: anyNamed('password')))
               .thenAnswer((_) async => tToken);
           // act
           await repository.authenticate(tEmail, tPassword);
@@ -101,10 +93,10 @@ void main() {
 
       test(
         'should return server failure when the call to remote data source is unsuccessful',
-            () async {
+        () async {
           // arrange
           when(mockRemoteDataSource.authenticate(
-              email: anyNamed('email'), password: anyNamed('password')))
+                  email: anyNamed('email'), password: anyNamed('password')))
               .thenThrow(ServerException());
           // act
           final result = await repository.authenticate(tEmail, tPassword);
@@ -119,7 +111,7 @@ void main() {
 
     runTestsOffline(() {
       test(
-        'should return last locally cached data when the cached data is present',
+        'should return server failure when there is no connection',
         () async {
           // arrange
           when(mockLocalDataStorage.getUserToken())
@@ -128,25 +120,10 @@ void main() {
           final result = await repository.authenticate(tEmail, tPassword);
           // assert
           verifyNoMoreInteractions(mockRemoteDataSource);
-          verify(mockLocalDataStorage.getUserToken());
-          expect(result, equals(const Right(tToken)));
-        },
-      );
-
-      test(
-        'should return CacheFailure when there is no cached data present',
-        () async {
-          // arrange
-          when(mockLocalDataStorage.getUserToken()).thenThrow(CacheException());
-          // act
-          final result = await repository.authenticate(tEmail, tPassword);
-          // assert
-          verifyNoMoreInteractions(mockRemoteDataSource);
-          verify(mockLocalDataStorage.getUserToken());
-          expect(result, equals(Left(CacheFailure())));
+          verifyNoMoreInteractions(mockLocalDataStorage);
+          expect(result, equals(Left(ServerFailure())));
         },
       );
     });
-
   });
 }
