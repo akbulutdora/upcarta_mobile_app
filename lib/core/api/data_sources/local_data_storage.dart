@@ -16,27 +16,26 @@ abstract class LocalDataStorage {
 
 const CACHED_USER_TOKEN = 'CACHED_USER_TOKEN';
 
-
 class LocalDataStorageImpl implements LocalDataStorage {
   final SharedPreferences sharedPreferences;
 
   LocalDataStorageImpl({required this.sharedPreferences});
 
   @override
-  Future<void> cacheUserToken(String token) {
-    // TODO: implement cacheUserToken
-    throw UnimplementedError();
+  Future<void> cacheUserToken(String token) async {
+    Map<String, dynamic> myMap = {'jwt': token};
+    sharedPreferences.setString(CACHED_USER_TOKEN, json.encode(myMap));
   }
 
   @override
   Future<String> getUserToken() {
-    final jsonString = sharedPreferences.getString('CACHED_USER_TOKEN');
+    final jsonString = sharedPreferences.getString(CACHED_USER_TOKEN);
     if (jsonString != null) {
-      return Future.value(json.decode(jsonString)['jwt']);
+      Map<String, dynamic> decoded = json.decode(json.decode(jsonString));
+
+      return Future.value(decoded['jwt']);
     } else {
       throw CacheException();
     }
   }
-  
-  
 }

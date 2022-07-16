@@ -7,10 +7,7 @@ abstract class NetworkInfo {
 // TODO: Find a package for checking connectivity
 
 class NetworkInfoImpl implements NetworkInfo {
-  // final DataConnectionChecker connectionChecker;
-
-  NetworkInfoImpl(//this.connectionChecker
-      );
+  NetworkInfoImpl();
 
   @override
   Future<bool> get isConnected async {

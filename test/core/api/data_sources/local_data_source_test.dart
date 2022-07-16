@@ -15,7 +15,8 @@ void main() {
   );
 
   group('getUserToken', () {
-    final tToken = json.decode(fixture('token_cached.json'))['jwt'];
+    Map<String, dynamic> decoded = json.decode(fixture('token_cached.json'));
+    final tToken = decoded['jwt'];
 
     test(
       'should return the user token from SharedPreferences when there is one in the cache',

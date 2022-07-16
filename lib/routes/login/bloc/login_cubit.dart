@@ -9,10 +9,6 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._authRepository) : super(LoginState.initial());
 
   final AuthenticationRepository _authRepository;
-  final RequestREST _req = const RequestREST(
-      endpoint: 'https://upcarta-staging.onrender.com/api/v1/sessions', data: {
-    'session': {'email': 'hello@upcarta.com', 'password': '12345678'}
-  });
 
   void emailChanged(String value) {
     emit(state.copyWith(email: value, status: LoginStatus.initial));
@@ -27,7 +23,6 @@ class LoginCubit extends Cubit<LoginState> {
       return;
     } //to avoid sending multiple reqs at the same time
 
-    _req.executePost();
     emit(state.copyWith(status: LoginStatus.submitting));
     try {
       await _authRepository.logInWithEmailAndPassword(
