@@ -1,50 +1,52 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:upcarta_mobile_app/core/api/data_sources/local_data_storage.dart';
+import 'package:upcarta_mobile_app/core/api/data_sources/remote_data_source.dart';
+import 'package:upcarta_mobile_app/core/error/exception.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
-import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
+import 'package:upcarta_mobile_app/core/platform/network_info.dart';
+import 'package:upcarta_mobile_app/models/upcarta_user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository_interface.dart';
-// import 'package:upcarta_mobile_app/api/http_client.dart';
-import 'package:upcarta_mobile_app/core/api/virtual_api.dart';
 
 class AuthenticationRepository implements IAuthenticationRepository {
-  final VirtualDB _db;
-  var userId = -1;
+  final RemoteDataSource remoteDataSource;
+
+  final LocalDataStorage localDataStorage;
+  final NetworkInfo networkInfo;
+  late String userId;
 
   /// Authentication repository
-  AuthenticationRepository(this._db);
+  AuthenticationRepository(
+      {required this.remoteDataSource,
+      required this.localDataStorage,
+      required this.networkInfo});
 
   @override
-  Future<Either<Failure, User>>  authenticate(String username, String password) async {
-    try {
-      var item = await _db.findByUsername(username);
-      if (item!['password'] == password) {
-        item['login'] = true;
-        _db.update(item);
-        return Future.delayed(const Duration(seconds: 1), () => User(email: ''));
+  Future<Either<Failure, String>> authenticate(
+      String email, String password) async {
+    final isConnected = await networkInfo.isConnected;
+    if (isConnected) {
+      try {
+        final userToken = await remoteDataSource.authenticate(
+            email: email, password: password);
+        localDataStorage.cacheUserToken(userToken);
+
+        return Right(userToken);
+      } on ServerException {
+        return Left(ServerFailure());
       }
-      return false;
-    } catch (e) {
-      debugPrint(e.toString());
-      return false;
     }
+    return Left(ServerFailure());
   }
 
   @override
-  Future<Either<Failure, User>>  register(String username, String password) async {
-    try {
-      userId = await _db.insert(
-          {'username': username, 'password': password, 'login': true});
-      return User.fromJson('');
-    } catch (e) {
-      debugPrint(e.toString());
-      return false;
-    }
+  Future<Either<Failure, String>> register(
+      String username, String password) async {
+    return Left(ServerFailure());
   }
 
   @override
-  Future<void> logOut() async {
-
-  }
+  Future<void> logOut() async {}
 
   @override
   String get signedEmail => 'email';
