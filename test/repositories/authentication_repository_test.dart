@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:upcarta_mobile_app/core/error/exception.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
-import 'package:upcarta_mobile_app/models/upcarta_user.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository.dart';
 import '../shared_mocks.mocks.dart';
 
