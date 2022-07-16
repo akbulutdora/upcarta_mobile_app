@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:upcarta_mobile_app/core/error/exception.dart';
-import 'package:upcarta_mobile_app/models/upcarta_user.dart';
-import 'package:upcarta_mobile_app/core/api/http_client.dart';
+import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:http/http.dart' as http;
 
 abstract class RemoteDataSource {
@@ -15,6 +15,8 @@ abstract class RemoteDataSource {
   ///
   /// Throws a [ServerException] for all error codes.
   Future<String> register({String email, String password});
+
+  Future<List<Content>> getAllContents();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -44,6 +46,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<String> register({String? email, String? password}) {
     // TODO: implement register
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Content>> getAllContents() {
+    // TODO: implement getAllContents
     throw UnimplementedError();
   }
 }

@@ -5,49 +5,37 @@ import 'package:upcarta_mobile_app/core/api/data_sources/remote_data_source.dart
 import 'package:upcarta_mobile_app/core/error/exception.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
 import 'package:upcarta_mobile_app/core/platform/network_info.dart';
+import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository_interface.dart';
 
-class AuthenticationRepository implements IAuthenticationRepository {
+class FeedRepository {
   final RemoteDataSource remoteDataSource;
 
   final LocalDataStorage localDataStorage;
   final NetworkInfo networkInfo;
   late String userId;
 
-  /// Authentication repository
-  AuthenticationRepository(
+  /// Feed repository
+  FeedRepository(
       {required this.remoteDataSource,
       required this.localDataStorage,
       required this.networkInfo});
 
-  @override
-  Future<Either<Failure, String>> authenticate(
-      String email, String password) async {
+  Future<Either<Failure, IList<Content>>> getAllContents() async {
     final isConnected = await networkInfo.isConnected;
     if (isConnected) {
       try {
-        final userToken = await remoteDataSource.authenticate(
-            email: email, password: password);
-        localDataStorage.cacheUserToken(userToken);
-
-        return Right(userToken);
+        final contents = await remoteDataSource.getAllContents();
+        // localDataStorage.cacheUserToken(userToken);
+        //
+        // return Right(userToken);
+        var myList = ilist(<Content>[]);
+        return Right(myList);
       } on ServerException {
         return Left(ServerFailure());
       }
     }
     return Left(ServerFailure());
   }
-
-  @override
-  Future<Either<Failure, String>> register(
-      String username, String password) async {
-    return Left(ServerFailure());
-  }
-
-  @override
-  Future<void> logOut() async {}
-
-  @override
-  String get signedEmail => 'email';
 }

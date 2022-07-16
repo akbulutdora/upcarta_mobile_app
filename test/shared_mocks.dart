@@ -4,6 +4,7 @@ import 'package:upcarta_mobile_app/core/api/data_sources/local_data_storage.dart
 import 'package:upcarta_mobile_app/core/api/data_sources/remote_data_source.dart';
 import 'package:upcarta_mobile_app/core/platform/network_info.dart';
 import 'package:http/http.dart' as http;
+import 'package:upcarta_mobile_app/repositories/feed_repository.dart';
 
 @GenerateMocks(
     [
@@ -11,7 +12,8 @@ import 'package:http/http.dart' as http;
       RemoteDataSource,
       LocalDataStorage,
       SharedPreferences,
-      http.Client
+      http.Client,
+      FeedRepository,
     ])
 import 'shared_mocks.mocks.dart';
 

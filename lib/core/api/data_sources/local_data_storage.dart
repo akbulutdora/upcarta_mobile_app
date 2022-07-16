@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/core/error/exception.dart';
-import 'package:upcarta_mobile_app/models/upcarta_user.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 
 abstract class LocalDataStorage {
   /// Gets the cached [String Token] which was gotten the last time
