@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:upcarta_mobile_app/models/upcarta_content.dart';
+import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
+import 'package:upcarta_mobile_app/models/content/platform.dart';
 
 part 'content_link.freezed.dart';
 
@@ -46,10 +49,8 @@ class ContentLink with _$ContentLink {
     @JsonKey(name: 'source_id')     String? sourceId,
     @JsonKey(name: 'alt_source_id') String? altSourceId,
     @JsonKey(name: 'platform_id')     int? platformId,
-    // TODO : platform objesini degistir
-    String? platform,
+    Platform? platform,
     LinkType? type,
-    // TODO : Content degiskeninin ne tuttugunu ogren
     Content? content,
     @JsonKey(name: 'content_id') int? contentId,
     @JsonKey(name: 'created_at') DateTime? createdAt,

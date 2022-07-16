@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:upcarta_mobile_app/models/entity.dart';
+import 'package:upcarta_mobile_app/models/entity/entity.dart';
+import 'upcarta_content.dart';
 
 part 'contribution.freezed.dart';
 
@@ -29,17 +30,17 @@ class Contribution with _$Contribution {
     ContributionRole? role,
     // TODO : contentin icinde Contribution bu ic ice giren classlara bak
     Content? content,
-    @JsonKey(name: 'content_id',required: true) int? contentId,
+    @JsonKey(name: 'content_id', required: true) required int contentId,
     Entity? entity,
-    @JsonKey(name: 'entity_id',required: true)  int? entityId,
+    @JsonKey(name: 'entity_id', required: true) required int entityId,
     int? pos,
     // iki tane entity var ?
-    @JsonKey(name : 'added_by') Entity? addedBy,
-    @JsonKey(name : 'added_by_id') int? addedById,
-    @JsonKey(name : 'inserted_at') DateTime? insertedAt,
-    @JsonKey(name : 'updated_at') DateTime? updatedAt,
-
+    @JsonKey(name: 'added_by') Entity? addedBy,
+    @JsonKey(name: 'added_by_id') int? addedById,
+    @JsonKey(name: 'inserted_at') DateTime? insertedAt,
+    @JsonKey(name: 'updated_at') DateTime? updatedAt,
   }) = _Contribution;
 
-  factory Contribution.fromJson(Map<String, Object?> json) => _$ContributionFromJson(json);
+  factory Contribution.fromJson(Map<String, Object?> json) =>
+      _$ContributionFromJson(json);
 }

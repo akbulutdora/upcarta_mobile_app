@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
-import 'package:upcarta_mobile_app/models/upcarta_user.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository_interface.dart';
 // import 'package:upcarta_mobile_app/api/http_client.dart';
 import 'package:upcarta_mobile_app/core/api/virtual_api.dart';

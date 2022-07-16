@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:upcarta_mobile_app/models/contribution.dart';
-import 'package:upcarta_mobile_app/models/upcarta_user.dart';
-import 'package:upcarta_mobile_app/models/topic.dart';
-import 'package:upcarta_mobile_app/models/content_details.dart';
+import 'package:upcarta_mobile_app/models/content/contribution.dart';
+import 'package:upcarta_mobile_app/models/entity/entity.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
+import 'package:upcarta_mobile_app/models/content/topic.dart';
+import 'package:upcarta_mobile_app/models/content/content_details.dart';
+
+import 'content_link.dart';
 
 part 'upcarta_content.freezed.dart';
 
@@ -15,7 +18,6 @@ enum Type {
   video,
   @JsonValue('article')
   article,
-  // TODO : enumlarda _ li gelirse bir sey yapmamiz gerekir mi
   @JsonValue('podcast_episode')
   podcastEpisode,
   @JsonValue('book')
@@ -73,17 +75,16 @@ class Content with _$Content {
     required String title,
     String? description,
     Type? type,
-    ContentDetails details,
+    ContentDetails? details,
     // obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
-    @JsonKey(name: 'added_by') User? addedBy,
+    @JsonKey(name: 'added_by') Entity? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
     @JsonKey(name: 'content_topics') List<Topic>? contentTopics,
-    List<Contributor> contributions,
+    List<Contribution>? contributions,
     // content linkler string olucak onlari string olarak mi sakliyoruz
     // TODO : * at least one link is required
-    // TODO : contentLink modeli olustur
     // liste gonderilmesini zorunlu kilarak ici bos olmasini kontrol edemiyoruz
-    @JsonKey(name: 'content_links', required: true) List<ContentLink> contentLinks,
+    @JsonKey(name: 'content_links', required: true) required List<ContentLink> contentLinks,
     @JsonKey(name: 'content_links_count') int? contentLinksCount,
 
     @JsonKey(name: 'recommenders_count')  int? recommendersCount,

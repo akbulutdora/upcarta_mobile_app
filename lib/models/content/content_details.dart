@@ -1,12 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:upcarta_mobile_app/models/entity.dart';
-import 'package:upcarta_mobile_app/models/identity.dart';
+import 'package:upcarta_mobile_app/models/entity/entity.dart';
+import 'package:upcarta_mobile_app/models/entity/identity.dart';
 
 part 'content_details.freezed.dart';
 
 part 'content_details.g.dart';
-
 
 @freezed
 class ContentDetails with _$ContentDetails {

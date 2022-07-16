@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
-import 'package:upcarta_mobile_app/models/upcarta_user.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 
 
 abstract class IAuthenticationRepository {

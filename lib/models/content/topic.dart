@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:upcarta_mobile_app/models/upcarta_user.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 
 part 'topic.freezed.dart';
 
@@ -22,7 +22,6 @@ class Topic with _$Topic {
     String? keywords,
     @JsonKey(name: 'inserted_at') DateTime? insertedAt,
     @JsonKey(name: 'updated_at') DateTime? updatedAt,
-
   }) = _Topic;
 
   factory Topic.fromJson(Map<String, Object?> json) => _$TopicFromJson(json);

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:upcarta_mobile_app/models/upcarta_user.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 
 void main() {
   const tUser = User(email: 'hello@upcarta.com');
