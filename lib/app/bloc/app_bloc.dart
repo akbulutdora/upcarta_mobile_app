@@ -6,8 +6,6 @@ import 'package:upcarta_mobile_app/models/user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 
-// import 'package:upcarta_mobile_app/models/auth_user.dart';
-// import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 part 'app_event.dart';
 
 part 'app_state.dart';
