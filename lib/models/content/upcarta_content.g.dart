@@ -24,7 +24,7 @@ _$_Content _$$_ContentFromJson(Map<String, dynamic> json) {
         : Entity.fromJson(json['added_by'] as Map<String, dynamic>),
     addedById: json['added_by_id'] as int?,
     contentTopics: (json['content_topics'] as List<dynamic>?)
-        ?.map((e) => Topic.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => ContentTopic.fromJson(e as Map<String, dynamic>))
         .toList(),
     contributions: (json['contributions'] as List<dynamic>?)
         ?.map((e) => Contribution.fromJson(e as Map<String, dynamic>))

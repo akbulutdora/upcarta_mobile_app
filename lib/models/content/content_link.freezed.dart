@@ -41,7 +41,7 @@ mixin _$ContentLink {
   @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at_accuracy')
-  CreatedAtAccuracy? get createdAtAccuracy =>
+  ContentLinkCreatedAtAccuracy? get createdAtAccuracy =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at_str')
   String? get createdAtStr => throw _privateConstructorUsedError;
@@ -82,7 +82,7 @@ abstract class $ContentLinkCopyWith<$Res> {
       @JsonKey(name: 'created_at')
           DateTime? createdAt,
       @JsonKey(name: 'created_at_accuracy')
-          CreatedAtAccuracy? createdAtAccuracy,
+          ContentLinkCreatedAtAccuracy? createdAtAccuracy,
       @JsonKey(name: 'created_at_str')
           String? createdAtStr,
       int? pos,
@@ -182,7 +182,7 @@ class _$ContentLinkCopyWithImpl<$Res> implements $ContentLinkCopyWith<$Res> {
       createdAtAccuracy: createdAtAccuracy == freezed
           ? _value.createdAtAccuracy
           : createdAtAccuracy // ignore: cast_nullable_to_non_nullable
-              as CreatedAtAccuracy?,
+              as ContentLinkCreatedAtAccuracy?,
       createdAtStr: createdAtStr == freezed
           ? _value.createdAtStr
           : createdAtStr // ignore: cast_nullable_to_non_nullable
@@ -250,7 +250,7 @@ abstract class _$$_ContentLinkCopyWith<$Res>
       @JsonKey(name: 'created_at')
           DateTime? createdAt,
       @JsonKey(name: 'created_at_accuracy')
-          CreatedAtAccuracy? createdAtAccuracy,
+          ContentLinkCreatedAtAccuracy? createdAtAccuracy,
       @JsonKey(name: 'created_at_str')
           String? createdAtStr,
       int? pos,
@@ -354,7 +354,7 @@ class __$$_ContentLinkCopyWithImpl<$Res> extends _$ContentLinkCopyWithImpl<$Res>
       createdAtAccuracy: createdAtAccuracy == freezed
           ? _value.createdAtAccuracy
           : createdAtAccuracy // ignore: cast_nullable_to_non_nullable
-              as CreatedAtAccuracy?,
+              as ContentLinkCreatedAtAccuracy?,
       createdAtStr: createdAtStr == freezed
           ? _value.createdAtStr
           : createdAtStr // ignore: cast_nullable_to_non_nullable
@@ -433,7 +433,7 @@ class _$_ContentLink with DiagnosticableTreeMixin implements _ContentLink {
   final DateTime? createdAt;
   @override
   @JsonKey(name: 'created_at_accuracy')
-  final CreatedAtAccuracy? createdAtAccuracy;
+  final ContentLinkCreatedAtAccuracy? createdAtAccuracy;
   @override
   @JsonKey(name: 'created_at_str')
   final String? createdAtStr;
@@ -561,7 +561,7 @@ abstract class _ContentLink implements ContentLink {
       @JsonKey(name: 'created_at')
           final DateTime? createdAt,
       @JsonKey(name: 'created_at_accuracy')
-          final CreatedAtAccuracy? createdAtAccuracy,
+          final ContentLinkCreatedAtAccuracy? createdAtAccuracy,
       @JsonKey(name: 'created_at_str')
           final String? createdAtStr,
       final int? pos,
@@ -607,7 +607,7 @@ abstract class _ContentLink implements ContentLink {
   DateTime? get createdAt;
   @override
   @JsonKey(name: 'created_at_accuracy')
-  CreatedAtAccuracy? get createdAtAccuracy;
+  ContentLinkCreatedAtAccuracy? get createdAtAccuracy;
   @override
   @JsonKey(name: 'created_at_str')
   String? get createdAtStr;

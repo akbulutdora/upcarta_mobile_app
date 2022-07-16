@@ -15,7 +15,6 @@ class ContentTopic with _$ContentTopic {
     int? id,
     // TODO: content topic contentin icerisinde yer aliyor(? mu) bunun nasil yapildigina bak
     Content? content,
-    // TODO: jsonkey kullanilarak required boyle mi yapiliyor
     @JsonKey(name: 'content_id',required: true) required int contentId,
     Topic? topic,
     @JsonKey(name: 'topic_id',required : true) required int topicId,

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:upcarta_mobile_app/core/error/exception.dart';
-import 'package:upcarta_mobile_app/models/upcarta_user.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/core/api/http_client.dart';
 import 'package:http/http.dart' as http;
 

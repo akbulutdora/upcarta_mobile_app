@@ -20,7 +20,7 @@ Entity _$EntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Entity {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $EntityCopyWith<$Res> {
   factory $EntityCopyWith(Entity value, $Res Function(Entity) then) =
       _$EntityCopyWithImpl<$Res>;
   $Res call(
-      {int id,
+      {int? id,
       String name,
       String username,
       String? description,
@@ -115,7 +115,7 @@ class _$EntityCopyWithImpl<$Res> implements $EntityCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -197,7 +197,7 @@ abstract class _$$_EntityCopyWith<$Res> implements $EntityCopyWith<$Res> {
       __$$_EntityCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
+      {int? id,
       String name,
       String username,
       String? description,
@@ -250,7 +250,7 @@ class __$$_EntityCopyWithImpl<$Res> extends _$EntityCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -319,7 +319,7 @@ class __$$_EntityCopyWithImpl<$Res> extends _$EntityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Entity with DiagnosticableTreeMixin implements _Entity {
   const _$_Entity(
-      {required this.id,
+      {this.id,
       required this.name,
       required this.username,
       this.description,
@@ -340,7 +340,7 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
       _$$_EntityFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String name;
   @override
@@ -482,7 +482,7 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
 
 abstract class _Entity implements Entity {
   const factory _Entity(
-      {required final int id,
+      {final int? id,
       required final String name,
       required final String username,
       final String? description,
@@ -512,7 +512,7 @@ abstract class _Entity implements Entity {
   factory _Entity.fromJson(Map<String, dynamic> json) = _$_Entity.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get name;
   @override

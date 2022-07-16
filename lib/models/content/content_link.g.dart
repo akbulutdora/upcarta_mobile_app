@@ -29,7 +29,7 @@ _$_ContentLink _$$_ContentLinkFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['created_at'] as String),
       createdAtAccuracy: $enumDecodeNullable(
-          _$CreatedAtAccuracyEnumMap, json['created_at_accuracy']),
+          _$ContentLinkCreatedAtAccuracyEnumMap, json['created_at_accuracy']),
       createdAtStr: json['created_at_str'] as String?,
       pos: json['pos'] as int?,
       syncedAt: json['synced_at'] == null
@@ -54,7 +54,7 @@ Map<String, dynamic> _$$_ContentLinkToJson(_$_ContentLink instance) =>
       'content_id': instance.contentId,
       'created_at': instance.createdAt?.toIso8601String(),
       'created_at_accuracy':
-          _$CreatedAtAccuracyEnumMap[instance.createdAtAccuracy],
+          _$ContentLinkCreatedAtAccuracyEnumMap[instance.createdAtAccuracy],
       'created_at_str': instance.createdAtStr,
       'pos': instance.pos,
       'synced_at': instance.syncedAt?.toIso8601String(),
@@ -70,9 +70,9 @@ const _$LinkTypeEnumMap = {
   LinkType.audio: 'audio',
 };
 
-const _$CreatedAtAccuracyEnumMap = {
-  CreatedAtAccuracy.year: 'year',
-  CreatedAtAccuracy.month: 'month',
-  CreatedAtAccuracy.day: 'day',
-  CreatedAtAccuracy.hour: 'hour',
+const _$ContentLinkCreatedAtAccuracyEnumMap = {
+  ContentLinkCreatedAtAccuracy.year: 'year',
+  ContentLinkCreatedAtAccuracy.month: 'month',
+  ContentLinkCreatedAtAccuracy.day: 'day',
+  ContentLinkCreatedAtAccuracy.hour: 'hour',
 };

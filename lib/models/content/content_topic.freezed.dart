@@ -22,8 +22,7 @@ ContentTopic _$ContentTopicFromJson(Map<String, dynamic> json) {
 mixin _$ContentTopic {
   int? get id =>
       throw _privateConstructorUsedError; // TODO: content topic contentin icerisinde yer aliyor(? mu) bunun nasil yapildigina bak
-  Content? get content =>
-      throw _privateConstructorUsedError; // TODO: jsonkey kullanilarak required boyle mi yapiliyor
+  Content? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'content_id', required: true)
   int get contentId => throw _privateConstructorUsedError;
   Topic? get topic => throw _privateConstructorUsedError;
@@ -285,7 +284,6 @@ class _$_ContentTopic with DiagnosticableTreeMixin implements _ContentTopic {
 // TODO: content topic contentin icerisinde yer aliyor(? mu) bunun nasil yapildigina bak
   @override
   final Content? content;
-// TODO: jsonkey kullanilarak required boyle mi yapiliyor
   @override
   @JsonKey(name: 'content_id', required: true)
   final int contentId;
@@ -401,7 +399,7 @@ abstract class _ContentTopic implements ContentTopic {
   int? get id;
   @override // TODO: content topic contentin icerisinde yer aliyor(? mu) bunun nasil yapildigina bak
   Content? get content;
-  @override // TODO: jsonkey kullanilarak required boyle mi yapiliyor
+  @override
   @JsonKey(name: 'content_id', required: true)
   int get contentId;
   @override

@@ -8,6 +8,7 @@ import 'package:upcarta_mobile_app/models/content/topic.dart';
 import 'package:upcarta_mobile_app/models/content/content_details.dart';
 
 import 'content_link.dart';
+import 'content_topic.dart';
 
 part 'upcarta_content.freezed.dart';
 
@@ -79,7 +80,7 @@ class Content with _$Content {
     // obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
     @JsonKey(name: 'added_by') Entity? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
-    @JsonKey(name: 'content_topics') List<Topic>? contentTopics,
+    @JsonKey(name: 'content_topics') List<ContentTopic>? contentTopics,
     List<Contribution>? contributions,
     // content linkler string olucak onlari string olarak mi sakliyoruz
     // TODO : * at least one link is required

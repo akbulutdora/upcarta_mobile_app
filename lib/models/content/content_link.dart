@@ -26,7 +26,7 @@ enum LinkType{
   audio,
 }
 // TODO: createdataccuracy content modelinde de tanimlandi ve o modeli importluyorum bir cakisma olur mu(ikisi de ayni sey aslinda)
-enum CreatedAtAccuracy{
+enum ContentLinkCreatedAtAccuracy{
   @JsonValue('year')
   year,
   @JsonValue('month')
@@ -54,7 +54,7 @@ class ContentLink with _$ContentLink {
     Content? content,
     @JsonKey(name: 'content_id') int? contentId,
     @JsonKey(name: 'created_at') DateTime? createdAt,
-    @JsonKey(name: 'created_at_accuracy') CreatedAtAccuracy? createdAtAccuracy,
+    @JsonKey(name: 'created_at_accuracy') ContentLinkCreatedAtAccuracy? createdAtAccuracy,
     @JsonKey(name: 'created_at_str') String? createdAtStr,
     int? pos,
     @JsonKey(name: 'synced_at') DateTime? syncedAt,

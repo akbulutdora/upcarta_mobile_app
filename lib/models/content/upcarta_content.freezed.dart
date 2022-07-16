@@ -31,7 +31,7 @@ mixin _$Content {
   @JsonKey(name: 'added_by_id')
   int? get addedById => throw _privateConstructorUsedError;
   @JsonKey(name: 'content_topics')
-  List<Topic>? get contentTopics => throw _privateConstructorUsedError;
+  List<ContentTopic>? get contentTopics => throw _privateConstructorUsedError;
   List<Contribution>? get contributions =>
       throw _privateConstructorUsedError; // content linkler string olucak onlari string olarak mi sakliyoruz
 // TODO : * at least one link is required
@@ -76,7 +76,7 @@ abstract class $ContentCopyWith<$Res> {
       @JsonKey(name: 'added_by_id')
           int? addedById,
       @JsonKey(name: 'content_topics')
-          List<Topic>? contentTopics,
+          List<ContentTopic>? contentTopics,
       List<Contribution>? contributions,
       @JsonKey(name: 'content_links', required: true)
           List<ContentLink> contentLinks,
@@ -162,7 +162,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
       contentTopics: contentTopics == freezed
           ? _value.contentTopics
           : contentTopics // ignore: cast_nullable_to_non_nullable
-              as List<Topic>?,
+              as List<ContentTopic>?,
       contributions: contributions == freezed
           ? _value.contributions
           : contributions // ignore: cast_nullable_to_non_nullable
@@ -246,7 +246,7 @@ abstract class _$$_ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       @JsonKey(name: 'added_by_id')
           int? addedById,
       @JsonKey(name: 'content_topics')
-          List<Topic>? contentTopics,
+          List<ContentTopic>? contentTopics,
       List<Contribution>? contributions,
       @JsonKey(name: 'content_links', required: true)
           List<ContentLink> contentLinks,
@@ -335,7 +335,7 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
       contentTopics: contentTopics == freezed
           ? _value._contentTopics
           : contentTopics // ignore: cast_nullable_to_non_nullable
-              as List<Topic>?,
+              as List<ContentTopic>?,
       contributions: contributions == freezed
           ? _value._contributions
           : contributions // ignore: cast_nullable_to_non_nullable
@@ -394,7 +394,7 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
       @JsonKey(name: 'added_by_id')
           this.addedById,
       @JsonKey(name: 'content_topics')
-          final List<Topic>? contentTopics,
+          final List<ContentTopic>? contentTopics,
       final List<Contribution>? contributions,
       @JsonKey(name: 'content_links', required: true)
           required final List<ContentLink> contentLinks,
@@ -438,10 +438,10 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
   @override
   @JsonKey(name: 'added_by_id')
   final int? addedById;
-  final List<Topic>? _contentTopics;
+  final List<ContentTopic>? _contentTopics;
   @override
   @JsonKey(name: 'content_topics')
-  List<Topic>? get contentTopics {
+  List<ContentTopic>? get contentTopics {
     final value = _contentTopics;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
@@ -607,7 +607,7 @@ abstract class _Content implements Content {
       @JsonKey(name: 'added_by_id')
           final int? addedById,
       @JsonKey(name: 'content_topics')
-          final List<Topic>? contentTopics,
+          final List<ContentTopic>? contentTopics,
       final List<Contribution>? contributions,
       @JsonKey(name: 'content_links', required: true)
           required final List<ContentLink> contentLinks,
@@ -648,7 +648,7 @@ abstract class _Content implements Content {
   int? get addedById;
   @override
   @JsonKey(name: 'content_topics')
-  List<Topic>? get contentTopics;
+  List<ContentTopic>? get contentTopics;
   @override
   List<Contribution>? get contributions;
   @override // content linkler string olucak onlari string olarak mi sakliyoruz
