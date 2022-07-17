@@ -13,7 +13,8 @@ class AuthenticationRepository implements IAuthenticationRepository {
 
   final LocalDataStorage localDataStorage;
   final NetworkInfo networkInfo;
-  late String userId;
+  late String _appUserToken;
+  late User _appUser;
 
   /// Authentication repository
   AuthenticationRepository(
@@ -27,10 +28,14 @@ class AuthenticationRepository implements IAuthenticationRepository {
     final isConnected = await networkInfo.isConnected;
     if (isConnected) {
       try {
-        final userToken = await remoteDataSource.authenticate(
+        final userInfo = await remoteDataSource.authenticate(
             email: email, password: password);
+        final userToken = userInfo[0];
+        final User appUser = userInfo[1];
         localDataStorage.cacheUserToken(userToken);
-
+        localDataStorage.cacheUser(appUser);
+        _appUser = appUser;
+        _appUserToken = userToken;
         return Right(userToken);
       } on ServerException {
         return Left(ServerFailure());
@@ -46,8 +51,14 @@ class AuthenticationRepository implements IAuthenticationRepository {
   }
 
   @override
-  Future<void> logOut() async {}
+  String get appUserToken => _appUserToken;
 
   @override
-  String get signedEmail => 'email';
+  User get appUser => _appUser;
+
+  @override
+  Future<void> logOut() {
+    // TODO: implement logOut
+    throw UnimplementedError();
+  }
 }

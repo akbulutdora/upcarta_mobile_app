@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:upcarta_mobile_app/core/error/exception.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
+import 'package:upcarta_mobile_app/models/entity/entity.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository.dart';
 import '../shared_mocks.mocks.dart';
@@ -18,7 +19,20 @@ void main() {
 
   const tEmail = 'hello@upcarta.com';
   const tPassword = '12345678';
-  const tUser = User(email: 'hello@upcarta.com');
+  const tUser = User(
+    email: 'hello@upcarta.com',
+    role: Role.user,
+    entity: Entity(
+        id: 1,
+        name: 'Hello',
+        username: 'helloupcarta',
+        hasUser: true,
+        followersCount: 0,
+        followedContentsCount: 0,
+        followedEntitiesCount: 0,
+        followedTopicsCount: 0),
+    identities: [],
+  );
   const tToken =
       'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzcG90YWJsZSIsImV4cCI6MTY1OTc3NTUyMiwiaWF0IjoxNjU3MzU2MzIyLCJpc3MiOiJzcG90YWJsZSIsImp0aSI6ImRhNWI1ZjQ4LWZiNzAtNDE3Mi1iYzY1LWM4YWYzNzAwNDgzNiIsIm5iZiI6MTY1NzM1NjMyMSwic3ViIjoiMSIsInR5cCI6ImFjY2VzcyJ9.yYEFOUcEjP34cbkmDy88-wKUF-2VbVO0phn7Vc3vKUtANO329rFdb5nuPvwi1ixBOn30AqZ4tZ71iKAoQTVkPQ';
 
@@ -51,7 +65,8 @@ void main() {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(mockRemoteDataSource.authenticate(
               email: tEmail, password: tPassword))
-          .thenAnswer((_) async => tToken);
+          .thenAnswer(
+              (_) async => [tToken, const User(email: 'hello@upcarta.com')]);
       // act
       repository.authenticate(tEmail, tPassword);
       // assert
@@ -65,7 +80,7 @@ void main() {
           // arrange
           when(mockRemoteDataSource.authenticate(
                   email: tEmail, password: tPassword))
-              .thenAnswer((_) async => tToken);
+              .thenAnswer((_) async => [tToken, tUser]);
           // act
           final result = await repository.authenticate(tEmail, tPassword);
           // assert
@@ -81,7 +96,7 @@ void main() {
           // arrange
           when(mockRemoteDataSource.authenticate(
                   email: anyNamed('email'), password: anyNamed('password')))
-              .thenAnswer((_) async => tToken);
+              .thenAnswer((_) async => [tToken, tUser]);
           // act
           await repository.authenticate(tEmail, tPassword);
           // assert
@@ -109,6 +124,7 @@ void main() {
       );
     });
 
+    // FIXME: Mock Local Data Storage interacts
     runTestsOffline(() {
       test(
         'should return server failure when there is no connection',
@@ -120,6 +136,7 @@ void main() {
           final result = await repository.authenticate(tEmail, tPassword);
           // assert
           verifyNoMoreInteractions(mockRemoteDataSource);
+
           verifyNoMoreInteractions(mockLocalDataStorage);
           expect(result, equals(Left(ServerFailure())));
         },
