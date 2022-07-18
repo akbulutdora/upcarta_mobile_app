@@ -27,12 +27,13 @@ class _ContentCardState extends State<ContentCard> {
   @override
   Widget build(BuildContext context) {
 
+
     return isTweet
         ? Card(
             elevation: 0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                side: BorderSide(color: Theme.of(context).cardColor)),
+                side: BorderSide(color: Theme.of(context).hintColor)),
             child: Padding(
               padding: EdgeInsets.fromLTRB(12.w, 14.h, 12.w, 14.h),
               child: Column(
@@ -119,11 +120,7 @@ class _ContentCardState extends State<ContentCard> {
                     ),
                     Text(
                       contentTypeInfoDict[widget.content.contentType]![1],
-                      style: TextStyle(
-                          fontFamily: 'SF Compact Text',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12.sm,
-                          color: Theme.of(context).primaryColor),
+                      style: kContentCard.copyWith(color: Theme.of(context).primaryColor),
                     ),
                     SizedBox(
                       width: 6.w,
@@ -136,11 +133,7 @@ class _ContentCardState extends State<ContentCard> {
                       widget.content.username != ''
                           ? widget.content.username
                           : 'null',
-                      style: TextStyle(
-                          fontFamily: 'SF Compact Text',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12.sm,
-                          color: Theme.of(context).iconTheme.color),
+                      style: kContentCard.copyWith(color: Theme.of(context).iconTheme.color),
                     ),
                     SizedBox(
                       width: 6.w,
@@ -152,11 +145,7 @@ class _ContentCardState extends State<ContentCard> {
                     Text(
                       DateFormat('EEE, dd/mm, HH:mm')
                           .format(widget.content.createDate),
-                      style: TextStyle(
-                          fontFamily: 'SF Compact Text',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12.sm,
-                          color: Theme.of(context).iconTheme.color),
+                      style: kContentCard.copyWith(color: Theme.of(context).iconTheme.color)
                     ),
                     SizedBox(
                       width: 6.sp,
@@ -207,11 +196,7 @@ class _ContentCardState extends State<ContentCard> {
                                   ),
                                   Text(
                                     widget.content.url,
-                                    style: TextStyle(
-                                        fontFamily: 'SF Compact Text',
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 10,
-                                        color: Theme.of(context).primaryColor),
+                                    style: contentCardDescriptionStyle.copyWith(color: Theme.of(context).primaryColor),
                                   )
                                 ]),
                           ),
@@ -227,11 +212,7 @@ class _ContentCardState extends State<ContentCard> {
                         padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
                         child: Text(
                           '10 recommenders',
-                          style: TextStyle(
-                              fontFamily: 'SF Compact Text',
-                              fontWeight: FontWeight.normal,
-                              fontSize: 10.sp,
-                              color: Theme.of(context).iconTheme.color),
+                          style: contentCardDescriptionStyle.copyWith(color: Theme.of(context).iconTheme.color),
                         ),
                       ),
                     ],

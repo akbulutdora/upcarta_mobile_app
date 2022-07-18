@@ -34,7 +34,8 @@ class ProfileRecommendationsList extends StatelessWidget {
                         .read<UserBloc>()
                         .add(const UserEventRecommendationsFetched());
                   },
-                  child: const Text('You currently have no recommendations')),);
+                  child: Text('You currently have no recommendations',style:
+                    TextStyle(color: Theme.of(context).primaryColor),)),);
             }
             return RefreshIndicator(
               onRefresh: () {

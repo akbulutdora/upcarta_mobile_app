@@ -23,7 +23,8 @@ class _CollectionsAndAsksRecentViewState
               child: ListView.builder(
                 // shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                padding: const EdgeInsets.only(top: 16),
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 itemCount: contents.length,
                 itemBuilder: (BuildContext context, int index) {
                   return CollectionCard(content: contents[index]);

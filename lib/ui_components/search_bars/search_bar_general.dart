@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../util/styles.dart';
+
 class SearchBarGeneral extends StatefulWidget {
   const SearchBarGeneral({Key? key}) : super(key: key);
 
@@ -19,11 +21,7 @@ Widget buildSearchBarGeneral() => const TextField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
         hintText: 'Content, people, topic, collection, or ask',
-        hintStyle: TextStyle(
-            fontFamily: 'SFCompactText-Regular',
-            color: Color(0xff949494),
-            fontWeight: FontWeight.w400,
-            fontSize: 13),
+        hintStyle: kSearchBarTextStyle,
         prefixIcon: Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),

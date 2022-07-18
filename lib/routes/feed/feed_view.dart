@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 
 class FeedScreen extends StatefulWidget {
@@ -34,11 +35,7 @@ class _FeedScreenState extends State<FeedScreen> {
               appBar: AppBar(
                 title: Text(
                   'Upcarta',
-                  style: TextStyle(
-                      fontFamily: 'SFCompactText-Medium',
-                      color: Theme.of(context).iconTheme.color,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 22),
+                  style: kAppBarTitleTextStyle.copyWith(color: Theme.of(context).iconTheme.color),
                 ),
                 elevation: 0.8,
                 actions: [

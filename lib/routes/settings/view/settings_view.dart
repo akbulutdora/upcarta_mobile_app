@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 
 class Settings extends StatefulWidget {
@@ -35,13 +36,9 @@ class _SettingsState extends State<Settings> {
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             titleSpacing: 0.0,
             elevation: 0.8,
-            title: Text(
+            title:  Text(
               'Settings',
-              style: TextStyle(
-                  fontFamily: 'SFCompactText-Medium',
-                  color: Theme.of(context).iconTheme.color,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 22.sp),
+              style: kAppBarTitleTextStyle.copyWith(color: Theme.of(context).iconTheme.color),
             ),
             leading: IconButton(
               icon: Icon(
@@ -65,13 +62,8 @@ class _SettingsState extends State<Settings> {
                           context.router.push(const EmailSettingsRoute());
                         },
                         child: ListTile(
-                            title: Text('Email',
-                                style: TextStyle(
-                                  fontFamily: 'SFCompactText',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 18.sp,
-                                  color: Theme.of(context).iconTheme.color,
-                                )),
+                            title: const Text('Email',
+                                style: kSettingsLines),
                             leading: Icon(
                               Icons.mail,
                               color: Theme.of(context).iconTheme.color,
@@ -87,13 +79,8 @@ class _SettingsState extends State<Settings> {
                           context.router.push(const PasswordSettingsRoute());
                         },
                         child: ListTile(
-                            title: Text('Password',
-                                style: TextStyle(
-                                  fontFamily: 'SFCompactText',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 18,
-                                  color: Theme.of(context).iconTheme.color,
-                                )),
+                            title: const Text('Password',
+                                style: kSettingsLines),
                             leading: Icon(
                               Icons.vpn_key,
                               color: Theme.of(context).iconTheme.color,
@@ -110,19 +97,15 @@ class _SettingsState extends State<Settings> {
                               .push(const NotificationSettingsRoute());
                         },
                         child: ListTile(
-                            title: Text('Notifications',
-                                style: TextStyle(
-                                  fontFamily: 'SFCompactText',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 18,
-                                  color: Theme.of(context).iconTheme.color,
-                                )),
+                            title: const Text('Notifications',
+                                style: kSettingsLines
+                                ),
                             leading: Icon(
                               Icons.notifications,
                               color: Theme.of(context).iconTheme.color,
                             )))),
                 Divider(
-                  color: Theme.of(context).hintColor,
+                  color: Theme.of(context).dividerTheme.color,
                   height: 2.h,
                 ),
                 BlocBuilder<ThemeCubit, ThemeData>(
@@ -132,14 +115,9 @@ class _SettingsState extends State<Settings> {
                         child: InkWell(
                           child: SwitchListTile(
                             activeColor: Theme.of(context).primaryColor,
-                            title: Text(
+                            title: const Text(
                               'Dark Mode',
-                              style: TextStyle(
-                                fontFamily: 'SFCompactText',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18,
-                                color: Theme.of(context).iconTheme.color,
-                              ),
+                              style: kSettingsLines,
                             ),
                             value: theme.brightness == Brightness.dark,
                             onChanged: (bool value) {
@@ -177,15 +155,10 @@ class _SettingsState extends State<Settings> {
                             }
                           }
                         },
-                        child: ListTile(
+                        child: const ListTile(
                           title: Text(
                             'Delete Account',
-                            style: TextStyle(
-                              fontFamily: 'SFCompactText',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 18,
-                              color: Theme.of(context).iconTheme.color,
-                            ),
+                            style: kSettingsLines,
                           ),
                         ))),
                 Divider(
@@ -210,15 +183,10 @@ class _SettingsState extends State<Settings> {
                         onTap: () {
                           context.read<AppBloc>().add(AppLogoutRequested());
                         },
-                        child: const ListTile(
+                        child: ListTile(
                             title: Text(
                           'Logout',
-                          style: TextStyle(
-                            fontFamily: 'SFCompactText',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
-                            color: Colors.red,
-                          ),
+                          style: kSettingsLines.copyWith(color: Colors.red),
                         ))),
                   ),
                 ),

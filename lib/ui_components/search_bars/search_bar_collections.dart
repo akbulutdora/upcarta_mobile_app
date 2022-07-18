@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 class SearchBarCollections extends StatefulWidget {
   const SearchBarCollections({Key? key}) : super(key: key);
@@ -19,11 +20,7 @@ Widget buildSearchBarCollections() => const TextField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
         hintText: 'Search for collections',
-        hintStyle: TextStyle(
-            fontFamily: 'SFCompactText-Regular',
-            color: Color(0xff949494),
-            fontWeight: FontWeight.w400,
-            fontSize: 13),
+        hintStyle: kSearchBarTextStyle,
         prefixIcon: Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),

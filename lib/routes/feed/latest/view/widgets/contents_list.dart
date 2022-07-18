@@ -40,7 +40,10 @@ class _LatestContentListState extends State<LatestContentList> {
                       onPressed: () => context
                           .read<LatestFeedBloc>()
                           .add(LatestFeedEventContentRefreshed()),
-                      child: const Text('There are no posts to display.')));
+                      child:  Text('There are no posts to display.',
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor
+                      ),)));
             }
             return RefreshIndicator(
               onRefresh: () {

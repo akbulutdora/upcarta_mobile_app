@@ -36,7 +36,8 @@ class _NewPostScreenState extends State<NewPostScreen> {
         child: Container(
           height: 120,
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.blueAccent),
+              color: Theme.of(context).cardColor,
+              border: Border.all(color: Theme.of(context).primaryColor),
               borderRadius: BorderRadius.vertical(top: Radius.circular(15.r))),
           child: Padding(
             padding: EdgeInsets.only(top: 16.h),
@@ -146,8 +147,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         children: [
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.close,
-                                color: Theme.of(context).hintColor, size: 30.sm),
+                            icon: Icon(Icons.close, size: 30.sm),
                           ),
                         ],
                       ),
@@ -159,7 +159,6 @@ class _NewPostScreenState extends State<NewPostScreen> {
                           height: 50.h,
                           padding: const EdgeInsets.only(left: 8),
                           decoration: BoxDecoration(
-                              color: Theme.of(context).floatingActionButtonTheme.foregroundColor,
                               border: Border.all(
                                 color: Theme.of(context).primaryColor,
                                 width: 1,
@@ -196,6 +195,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
                               )
                             ],
                             hintText: 'Select Action',
+
                             borderRadius: 10.r,
                             onChanged: (val) {
                             },
@@ -205,7 +205,6 @@ class _NewPostScreenState extends State<NewPostScreen> {
                       SizedBox(height: 8.h),
                      const TitleForm(),
                       Divider(
-                        color:  Theme.of(context).primaryColor,
                         indent: 8.w,
                         height: 0.h,
                       ),
@@ -250,7 +249,7 @@ class TitleForm extends StatelessWidget {
       cursorColor:  Theme.of(context).primaryColor,
       decoration: InputDecoration(
         hintStyle: TextStyle(
-          color: Theme.of(context).hintColor,
+          color: Theme.of(context).primaryColor,
         ),
         hintText: 'Add a Title',
         enabledBorder: OutlineInputBorder(
@@ -289,7 +288,7 @@ class BodyForm extends StatelessWidget {
       cursorColor:  Theme.of(context).primaryColor,
       decoration: InputDecoration(
         hintStyle: TextStyle(
-          color: Theme.of(context).hintColor,
+          color: Theme.of(context).primaryColor,
         ),
         hintText: 'Add optional body text...',
         enabledBorder: OutlineInputBorder(

@@ -1,106 +1,108 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors.dart';
 
-final lHeadingTextStyle = TextStyle(
+
+// that was final type, fix if it causes problem
+const lHeadingTextStyle =  TextStyle(
   color: AppColors.upcartaBlue,
   fontSize: 20,
   fontWeight: FontWeight.w400,
-);
 
+);
+// Recent Popular in Collections and Asks
+const kTabBarTextStyle = TextStyle(
+    fontFamily: 'SFCompactText-SemiBold.ttf',
+    fontSize: 15,
+    fontWeight: FontWeight.w500,
+    );
+/// Used inside of search Bars
+const kSearchBarTextStyle = TextStyle(
+    fontFamily: 'SFCompactText-Regular',
+    fontWeight: FontWeight.w400,
+    fontSize: 13);
+/// Used only in Upcarta Text on the AppBar for register screen
 const kAppBarTextStyle = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.w600,
     fontSize: 20,
-    color: Colors.black);
-
-const kTextStyle1 = TextStyle(
-    fontFamily: 'SF Compact Text',
-    fontWeight: FontWeight.normal,
-    fontSize: 34,
-    color: Colors.black);
-
-const kTextStyle2 = TextStyle(
-    fontFamily: 'SF Compact Text',
-    fontWeight: FontWeight.normal,
-    fontSize: 28,
-    color: Colors.black);
-
-const kTextStyle3 = TextStyle(
-    fontFamily: 'SF Compact Text',
-    fontWeight: FontWeight.normal,
+    color: AppColors.black);
+/// ('Sign Up') text in register_view.dart
+/// Used final because of .sp and offset
+final kSignUpTextStyle = TextStyle(
+    fontSize: 26.sp,
+    fontWeight: FontWeight.w600,
+    color: Colors.transparent, // Step 2 SEE HERE
+    shadows: [
+      Shadow(
+          offset: Offset(0, -10.sp),
+          color: Colors.black)
+    ],
+    decoration: TextDecoration.underline,
+    decorationThickness: 2.sp
+);
+/// 'Edit Profile' in edit_profile_view.dart
+const kAppBarTitleTextStyle = TextStyle(
+    fontFamily: 'SFCompactText-Medium',
+    fontWeight: FontWeight.w500,
     fontSize: 22,
-    color: Colors.black);
-const kTextStyle3b = TextStyle(
-    fontFamily: 'SF Compact Text',
-    fontWeight: FontWeight.bold,
-    fontSize: 22,
-    color: Colors.black);
+);
+/// 'Credentials' in edit_profile_view.dart | Bold
+const kBoldCredentialsTextStyle = TextStyle(
+  fontFamily: 'SFCompactText',
+  fontWeight: FontWeight.w700,
+  fontSize: 20,
 
-const kTextStyle4 = TextStyle(
-    fontFamily: 'SF Compact Text',
-    fontWeight: FontWeight.normal,
-    fontSize: 20,
-    color: Colors.black);
+);
 
+
+
+
+
+/// Used for title of Cards on horizontal scroll bar in feed
 const contentCardTitleStyle = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.w600,
     fontSize: 13,
-    color: Colors.black);
+    );
 
-const kTextStyle6 = TextStyle(
-    fontFamily: 'SF Compact Text',
-    fontWeight: FontWeight.normal,
-    fontSize: 17,
-    color: Colors.black);
 
+/// self explanation
 const exploreCardsFont = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.w500,
     fontSize: 17,
-    color: Colors.black);
+);
 
-const kTextStyle7 = TextStyle(
-    fontFamily: 'SF Compact Text',
-    fontWeight: FontWeight.normal,
-    fontSize: 16,
-    color: Colors.black);
+const kSettingsLines = TextStyle(
+    fontFamily: 'SFCompactText',
+    fontWeight: FontWeight.w500,
+    fontSize: 18,
+);
 
-const kTextStyle8 = TextStyle(
-    fontFamily: 'SF Compact Text',
-    fontWeight: FontWeight.normal,
-    fontSize: 15,
-    color: Colors.black);
 
+
+/// used in Horizontal Content List ('Collections and Asks') and Top View ('Contents')
 const sectionStyle = TextStyle(
   fontFamily: 'SF Compact Text',
   fontWeight: FontWeight.w600,
   fontSize: 15,
   shadows: [
     Shadow(
-      color: Colors.black,
-      offset: Offset(0, -4),
+      offset: Offset(0, -1),
     )
   ],
-  color: Colors.transparent,
-  decoration: TextDecoration.underline,
-  decorationThickness: 2,
-  decorationColor: Colors.blue,
-  decorationStyle: TextDecorationStyle.solid,
 );
 
-const kTextStyle9 = TextStyle(
-    fontFamily: 'SF Compact Text',
-    fontWeight: FontWeight.normal,
-    fontSize: 13,
-    color: Colors.black);
 
+/// 'Search' text style
 const searchBarText = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 13,
     color: Color(0xff949494));
 
+/// 'Sort' text style
 const searchButtonText = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
@@ -112,36 +114,39 @@ const libraryTabBar = TextStyle(
   fontWeight: FontWeight.w600,
   fontSize: 16,
 );
-
+/// Splash screen title ('Upcarta')
 const splashTitleStyle = TextStyle(
   fontFamily: 'SF Compact Text',
   fontWeight: FontWeight.w600,
   fontSize: 40,
 );
-
+/// Used in collection card ('Owner')
 const kTextStyle10 = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 12,
-    color: Colors.black);
-
+);
+/// Error builder content card text when twitter image not found in
 const kTextStyle11 = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 11,
-    color: Colors.black);
-
-final contentCardDescriptionStyle = TextStyle(
+);
+/// Name of the Owner, currently has same color value for dark&light might change later
+const contentCardDescriptionStyle = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.w300,
     fontSize: 10,
-    color: AppColors.gray3ContentText);
+    );
 
+// TODO: Check if .sm is required if not convert this to const
+final kContentCard = TextStyle(
+    fontFamily: 'SF Compact Text',
+    fontWeight: FontWeight.normal,
+    fontSize: 12.sm,
+    );
+/// Horizontal Content List ('Collections and Asks')
 final outlinedButtonStyle = ButtonStyle(
-  backgroundColor: MaterialStateProperty.all(Colors.transparent),
-  // padding: MaterialStateProperty.all(
-  //   EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-  // ),
   side: MaterialStateProperty.all(
     const BorderSide(
       color: Color(0xffdedede),

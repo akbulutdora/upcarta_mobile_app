@@ -259,7 +259,7 @@ class BuildProfile extends StatelessWidget {
                 fontFamily: 'SFCompactText',
                 fontWeight: FontWeight.normal,
                 fontSize: 14.sp,
-                color: Theme.of(context).iconTheme.color,
+
               ),
             ),
             SizedBox(height: 16.h),

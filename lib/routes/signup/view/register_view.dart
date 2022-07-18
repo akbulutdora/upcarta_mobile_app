@@ -65,18 +65,8 @@ class _MyRegisterState extends State<MyRegister> {
                     alignment: Alignment.centerLeft,
                     child: Text('Sign Up',
                         textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 26.sp,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.transparent, // Step 2 SEE HERE
-                            shadows: [
-                              Shadow(
-                                  offset: Offset(0, -10.sp),
-                                  color: Colors.black)
-                            ],
-                            decoration: TextDecoration.underline,
-                            decorationColor:  Theme.of(context).primaryColor,
-                            decorationThickness: 2.sp)),
+                        style: kSignUpTextStyle,
+                    ),
                   ),
                   SizedBox(height: 32.h),
                   const SignupForm(),

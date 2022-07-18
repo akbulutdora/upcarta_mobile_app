@@ -11,6 +11,7 @@ import 'package:upcarta_mobile_app/routes/edit_profile/cubit/edit_profile_cubit.
 import 'package:upcarta_mobile_app/routes/my_profile/bloc/user_bloc.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:path/path.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 class EditProfileScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -58,11 +59,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           titleSpacing: 0.0,
           title: Text(
             'Edit Profile',
-            style: TextStyle(
-                fontFamily: 'SFCompactText-Medium',
-                color: Theme.of(context).iconTheme.color,
-                fontWeight: FontWeight.w500,
-                fontSize: 22.sp),
+            style: kAppBarTitleTextStyle,
           ),
           leading: IconButton(
             icon: Icon(

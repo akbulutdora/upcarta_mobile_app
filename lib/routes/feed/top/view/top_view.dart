@@ -28,7 +28,7 @@ class _TopViewState extends State<TopView> {
             automaticallyImplyLeading: false,
             expandedHeight: 485.h,
             // collapsedHeight: 75,
-            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
             floating: true,
             pinned: true,
@@ -49,7 +49,7 @@ class _TopViewState extends State<TopView> {
           children: [
             const SizedBox(height: 8),
             const Padding(
-              padding: EdgeInsets.only(left: 16.0),
+              padding: EdgeInsets.only(left: 16.0,bottom: 8),
               child: Text('Contents', style: sectionStyle),
             ),
             ContentList(

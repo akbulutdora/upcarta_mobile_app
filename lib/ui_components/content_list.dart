@@ -18,7 +18,7 @@ class _ContentListState extends State<ContentList> {
     return Expanded(
       child: ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(
-                height: 10,
+                height: 20,
               ),
           padding: const EdgeInsets.all(8),
           itemCount: contents.length,

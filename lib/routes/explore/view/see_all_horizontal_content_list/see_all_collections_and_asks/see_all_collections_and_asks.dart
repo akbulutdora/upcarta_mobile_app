@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:upcarta_mobile_app/ui_components/components.dart';
 import 'package:upcarta_mobile_app/routes/explore/explore.dart';
+import 'package:upcarta_mobile_app/util/styles.dart';
 
 class SeeAllCollectionsAndAsksView extends StatefulWidget {
   const SeeAllCollectionsAndAsksView({Key? key}) : super(key: key);
@@ -23,19 +24,16 @@ class _SeeAllCollectionsAndAsksViewState
           leading: IconButton(
               icon: const Icon(
                 Icons.arrow_back_ios,
-                color: Color(0xFFC4C4C4),
               ),
               onPressed: () => Navigator.of(context).pop()),
-          backgroundColor: Colors.white,
           elevation: 0,
           titleSpacing: 0.0,
           title: const Text(
             'Collections and Asks',
             style: TextStyle(
                 fontFamily: 'SFCompactText-Medium.ttf',
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-                fontSize: 18),
+                fontWeight: FontWeight.w500,
+                fontSize: 22),
           ),
           bottom: const PreferredSize(
             preferredSize: Size.fromHeight(36),
@@ -46,12 +44,12 @@ class _SeeAllCollectionsAndAsksViewState
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-          child: Column(
-            children: const [
-              PreferredSize(
-                preferredSize: Size.fromHeight(40),
-                child: Align(
+          padding: const EdgeInsets.all(8),
+
+          child: SingleChildScrollView(
+            child: Column(
+              children: const [
+                Align(
                   alignment: Alignment.centerLeft,
                   child: TabBar(
                     indicatorSize: TabBarIndicatorSize.label,
@@ -60,29 +58,21 @@ class _SeeAllCollectionsAndAsksViewState
                     indicatorPadding: EdgeInsets.all(0),
                     isScrollable: true,
                     tabs: <Widget>[Tab(text: 'Recent'), Tab(text: 'Popular')],
-                    unselectedLabelColor: Color(0xffC4C4C4),
-                    unselectedLabelStyle: TextStyle(
-                        fontFamily: 'SFCompactText-SemiBold.ttf',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500),
-                    labelColor: Color(0xff4E89FD),
-                    labelStyle: TextStyle(
-                        fontFamily: 'SFCompactText-SemiBold.ttf',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500),
+                    unselectedLabelStyle: kTabBarTextStyle,
+                    labelStyle: kTabBarTextStyle,
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 580,
-                child: TabBarView(
-                  children: <Widget>[
-                    CollectionsAndAsksRecentView(),
-                    CollectionsAndAsksPopularView()
-                  ],
-                ),
-              )
-            ],
+                SizedBox(
+                  height: 580,
+                  child: TabBarView(
+                    children: <Widget>[
+                      CollectionsAndAsksRecentView(),
+                      CollectionsAndAsksPopularView()
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

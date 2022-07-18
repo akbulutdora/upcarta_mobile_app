@@ -109,7 +109,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             const SizedBox(
                               height: 10,
                             ),
-                            const CircularProgressIndicator(),
+                              CircularProgressIndicator(valueColor:AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+                              )
                           ],
                         ),
                       );
@@ -134,7 +135,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             const SizedBox(
                               height: 10,
                             ),
-                            const CircularProgressIndicator(),
+                               CircularProgressIndicator(
+                                valueColor:AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)
+                              ),
                           ],
                         ),
                       );
@@ -171,9 +174,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return BlocBuilder<ExploreCubit, ExploreState>(
       builder: (context, state) {
         return TextField(
-          onSubmitted: ((value) {
+          onSubmitted: (value) {
             context.read<ExploreCubit>().submitSearch();
-          }),
+          },
           onChanged: (value) async {
             context.read<ExploreCubit>().searchKeyChanged(value);
             await Future.delayed(const Duration(seconds: 1));

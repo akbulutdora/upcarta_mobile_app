@@ -33,11 +33,7 @@ class HorizontalContentList extends StatelessWidget {
                     },
                     child: Text(
                       'View all',
-                      style: TextStyle(
-                          fontFamily: 'SF Compact Text',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 11,
-                          color:  Theme.of(context).primaryColor),
+                      style: kTextStyle11.copyWith(color: Theme.of(context).primaryColor),
                     ),
                   ),
                 ),
