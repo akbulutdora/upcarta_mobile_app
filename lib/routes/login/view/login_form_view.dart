@@ -119,8 +119,12 @@ class LoginForm extends StatelessWidget {
           ),
           SizedBox(height: 32.h),
           _EmailInput(),
+          SizedBox(height: 4.h),
+          _EmailError(),
           SizedBox(height: 16.h),
           _PasswordInput(),
+          SizedBox(height: 4.h),
+          _PasswordError(),
           SizedBox(height: 16.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,52 +136,54 @@ class LoginForm extends StatelessWidget {
           SizedBox(
             height: 40.h,
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextButton(
-                  onPressed: () async {
-                    await context.router.push(const ResetPasswordViewRoute());
-                  },
-                  child: Text(
-                    'Forgot password?',
-                    style: TextStyle(
-                      fontFamily: 'SFCompactText-Regular.ttf',
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.upcartaBlue,
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.upcartaBlue,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    await context.router.push(const LoginScreenRoute());
-                  },
-                  child: Text(
-                    'Resend Verification Email?',
-                    style: TextStyle(
-                      fontFamily: 'SFCompactText-Regular.ttf',
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.upcartaBlue,
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.upcartaBlue,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _ForgotPassAndVerification(),
         ],
       ),
     );
   }
 }
-
+class _EmailError extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginCubit, LoginState>(
+    builder: (context, state){
+      return Align(alignment: Alignment.centerLeft,
+        child: Padding( padding: EdgeInsets.only(left: 12.w),
+          child: Visibility(
+            child: Text('Enter a valid email', style: TextStyle(
+              fontFamily: 'SFCompactText-Regular.ttf',
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
+              color: Colors.red,
+            ), textAlign: TextAlign.start),
+           visible:!state.emailValidated && state.status != LoginStatus.initial, maintainSize: true, maintainAnimation: true, maintainState: true,),
+        ),
+      );
+  });
+  }
+}
+class _PasswordError extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginCubit, LoginState>(
+        builder: (context, state){
+          return Align(alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.only(left: 12.w),
+              child: Visibility(
+                child: Text('Enter a password with more than 8 characters', style: TextStyle(
+                  fontFamily: 'SFCompactText-Regular.ttf',
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.red,
+                ), textAlign: TextAlign.start),
+                visible: !state.passwordValidated && state.status != LoginStatus.initial , maintainSize: true, maintainAnimation: true, maintainState: true,),
+            ),
+          );
+        });
+  }
+}
+///TODO : Input text size must be defined
 class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -231,7 +237,13 @@ class _PasswordInput extends StatelessWidget {
   }
 }
 
-class _LoginButton extends StatelessWidget {
+class _LoginButton extends StatefulWidget {
+  @override
+  State<_LoginButton> createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<_LoginButton> {
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
@@ -239,25 +251,31 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status == LoginStatus.submitting
             ? const CircularProgressIndicator()
-            : OutlinedButton(
-                onPressed: () {
-                  context.read<LoginCubit>().logInWithCredential();
-                },
-                key: const Key('loginForm_continue_raisedButton'),
-                style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.r)),
-                  backgroundColor: Theme.of(context).primaryColor,
-                  padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
-                ),
-                child: Text(
-                  'Log In',
-                  style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 15.sp,
-                      fontWeight: FontWeight.w600),
-                ),
-              );
+            : IgnorePointer(
+          ignoring: state.status == LoginStatus.validationSuccess,
+              child: Opacity(
+                opacity: (state.status != LoginStatus.validationSuccess) ? 1 : 0.2,
+                child: OutlinedButton(
+                    onPressed: () {
+                      context.read<LoginCubit>().logInWithCredential();
+                    },
+                    key: const Key('loginForm_continue_raisedButton'),
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r)),
+                      backgroundColor: Theme.of(context).primaryColor,
+                      padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
+                    ),
+                    child: Text(
+                      'Log In',
+                      style: TextStyle(
+                          color: AppColors.white,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+              ),
+            );
       },
     );
   }
@@ -272,7 +290,7 @@ class _SignUpButton extends StatelessWidget {
       onPressed: () => AutoRouter.of(context).push(const MyRegisterRoute()),
       style: OutlinedButton.styleFrom(
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
         side: BorderSide(color: AppColors.upcartaBlue),
         backgroundColor: AppColors.white,
         padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
@@ -280,6 +298,51 @@ class _SignUpButton extends StatelessWidget {
       child: Text(
         'Sign Up',
         style: TextStyle(color: theme.primaryColor, fontSize: 15.sp),
+      ),
+    );
+  }
+}
+class _ForgotPassAndVerification extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextButton(
+            onPressed: () async {
+              await context.router.push(const ResetPasswordViewRoute());
+            },
+            child: Text(
+              'Forgot password?',
+              style: TextStyle(
+                fontFamily: 'SFCompactText-Regular.ttf',
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.upcartaBlue,
+                decoration: TextDecoration.underline,
+                decorationColor: AppColors.upcartaBlue,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () async {
+              await context.router.push(const LoginScreenRoute());
+            },
+            child: Text(
+              'Resend Verification Email?',
+              style: TextStyle(
+                fontFamily: 'SFCompactText-Regular.ttf',
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.upcartaBlue,
+                decoration: TextDecoration.underline,
+                decorationColor: AppColors.upcartaBlue,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
