@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:upcarta_mobile_app/core/api/data_sources/remote_data_source.dart';
 import 'package:upcarta_mobile_app/core/error/exception.dart';
+import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import '../../../fixtures/fixture_reader.dart';
 import '../../../shared_mocks.mocks.dart';
 import 'package:http/http.dart' as http;
@@ -12,6 +13,8 @@ void main() {
   MockClient mockHttpClient = MockClient();
   RemoteDataSourceImpl dataSource =
       RemoteDataSourceImpl(client: mockHttpClient);
+
+  print(Content.fromJson(json.decode(fixture('content.json'))));
 
   group('authenticate', () {
     const tEmail = 'hello@upcarta.com';
@@ -66,6 +69,41 @@ void main() {
         final call = dataSource.authenticate;
         // assert
         expect(() => call(email: tEmail, password: tPassword), throwsA(const TypeMatcher<ServerException>()));
+      },
+    );
+  });
+
+  group('getAllContents', () {
+    // TODO: TEST GET LIST OF CONTENTS, STATUSCODE = 200
+    final List<Content> tEmptyContents = [];
+
+    test(
+      'should preform a GET request on a URL with application/json header',
+          () {
+        //arrange
+        when(mockHttpClient.get(any, headers: anyNamed('headers'))).thenAnswer(
+              (_) async => http.Response(fixture('no_resource.json'), 401),
+        );
+        // act
+        dataSource.getAllContents();
+        // assert
+        verify(mockHttpClient.get(
+          Uri.parse('https://upcarta-staging.onrender.com/api/v1/contents'),
+          headers: {'Content-Type': 'application/json'},
+        ));
+      },
+    );
+    test(
+      'should return empty list of contents when the response code is 401 (unauthorized)',
+          () async {
+        // arrange
+        when(mockHttpClient.get(any, headers: anyNamed('headers'))).thenAnswer(
+              (_) async => http.Response(fixture('no_resource.json'), 401),
+        );
+        // act
+        final result = await dataSource.getAllContents();
+        // assert
+        expect(result, equals(tEmptyContents));
       },
     );
   });

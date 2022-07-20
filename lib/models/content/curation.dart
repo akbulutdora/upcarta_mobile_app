@@ -41,7 +41,7 @@ enum CurationType{
   @JsonValue('finished')
   finished,
 }
-// TODO : collectiondan sonra ac
+
 @freezed
 class Curation with _$Curation {
   const factory Curation({
