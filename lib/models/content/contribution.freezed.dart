@@ -34,10 +34,6 @@ mixin _$Contribution {
   Entity? get addedBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'added_by_id')
   int? get addedById => throw _privateConstructorUsedError;
-  @JsonKey(name: 'inserted_at')
-  DateTime? get insertedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,9 +55,7 @@ abstract class $ContributionCopyWith<$Res> {
       @JsonKey(name: 'entity_id', required: true) int entityId,
       int? pos,
       @JsonKey(name: 'added_by') Entity? addedBy,
-      @JsonKey(name: 'added_by_id') int? addedById,
-      @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      @JsonKey(name: 'added_by_id') int? addedById});
 
   $ContentCopyWith<$Res>? get content;
   $EntityCopyWith<$Res>? get entity;
@@ -87,8 +81,6 @@ class _$ContributionCopyWithImpl<$Res> implements $ContributionCopyWith<$Res> {
     Object? pos = freezed,
     Object? addedBy = freezed,
     Object? addedById = freezed,
-    Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -127,14 +119,6 @@ class _$ContributionCopyWithImpl<$Res> implements $ContributionCopyWith<$Res> {
           ? _value.addedById
           : addedById // ignore: cast_nullable_to_non_nullable
               as int?,
-      insertedAt: insertedAt == freezed
-          ? _value.insertedAt
-          : insertedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 
@@ -188,9 +172,7 @@ abstract class _$$_ContributionCopyWith<$Res>
       @JsonKey(name: 'entity_id', required: true) int entityId,
       int? pos,
       @JsonKey(name: 'added_by') Entity? addedBy,
-      @JsonKey(name: 'added_by_id') int? addedById,
-      @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      @JsonKey(name: 'added_by_id') int? addedById});
 
   @override
   $ContentCopyWith<$Res>? get content;
@@ -222,8 +204,6 @@ class __$$_ContributionCopyWithImpl<$Res>
     Object? pos = freezed,
     Object? addedBy = freezed,
     Object? addedById = freezed,
-    Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_$_Contribution(
       id: id == freezed
@@ -262,14 +242,6 @@ class __$$_ContributionCopyWithImpl<$Res>
           ? _value.addedById
           : addedById // ignore: cast_nullable_to_non_nullable
               as int?,
-      insertedAt: insertedAt == freezed
-          ? _value.insertedAt
-          : insertedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
@@ -286,9 +258,7 @@ class _$_Contribution with DiagnosticableTreeMixin implements _Contribution {
       @JsonKey(name: 'entity_id', required: true) required this.entityId,
       this.pos,
       @JsonKey(name: 'added_by') this.addedBy,
-      @JsonKey(name: 'added_by_id') this.addedById,
-      @JsonKey(name: 'inserted_at') this.insertedAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
+      @JsonKey(name: 'added_by_id') this.addedById});
 
   factory _$_Contribution.fromJson(Map<String, dynamic> json) =>
       _$$_ContributionFromJson(json);
@@ -317,16 +287,10 @@ class _$_Contribution with DiagnosticableTreeMixin implements _Contribution {
   @override
   @JsonKey(name: 'added_by_id')
   final int? addedById;
-  @override
-  @JsonKey(name: 'inserted_at')
-  final DateTime? insertedAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final DateTime? updatedAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Contribution(id: $id, role: $role, content: $content, contentId: $contentId, entity: $entity, entityId: $entityId, pos: $pos, addedBy: $addedBy, addedById: $addedById, insertedAt: $insertedAt, updatedAt: $updatedAt)';
+    return 'Contribution(id: $id, role: $role, content: $content, contentId: $contentId, entity: $entity, entityId: $entityId, pos: $pos, addedBy: $addedBy, addedById: $addedById)';
   }
 
   @override
@@ -342,9 +306,7 @@ class _$_Contribution with DiagnosticableTreeMixin implements _Contribution {
       ..add(DiagnosticsProperty('entityId', entityId))
       ..add(DiagnosticsProperty('pos', pos))
       ..add(DiagnosticsProperty('addedBy', addedBy))
-      ..add(DiagnosticsProperty('addedById', addedById))
-      ..add(DiagnosticsProperty('insertedAt', insertedAt))
-      ..add(DiagnosticsProperty('updatedAt', updatedAt));
+      ..add(DiagnosticsProperty('addedById', addedById));
   }
 
   @override
@@ -360,10 +322,7 @@ class _$_Contribution with DiagnosticableTreeMixin implements _Contribution {
             const DeepCollectionEquality().equals(other.entityId, entityId) &&
             const DeepCollectionEquality().equals(other.pos, pos) &&
             const DeepCollectionEquality().equals(other.addedBy, addedBy) &&
-            const DeepCollectionEquality().equals(other.addedById, addedById) &&
-            const DeepCollectionEquality()
-                .equals(other.insertedAt, insertedAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+            const DeepCollectionEquality().equals(other.addedById, addedById));
   }
 
   @JsonKey(ignore: true)
@@ -378,9 +337,7 @@ class _$_Contribution with DiagnosticableTreeMixin implements _Contribution {
       const DeepCollectionEquality().hash(entityId),
       const DeepCollectionEquality().hash(pos),
       const DeepCollectionEquality().hash(addedBy),
-      const DeepCollectionEquality().hash(addedById),
-      const DeepCollectionEquality().hash(insertedAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      const DeepCollectionEquality().hash(addedById));
 
   @JsonKey(ignore: true)
   @override
@@ -398,20 +355,12 @@ abstract class _Contribution implements Contribution {
       {final int? id,
       final ContributionRole? role,
       final Content? content,
-      @JsonKey(name: 'content_id', required: true)
-          required final int contentId,
+      @JsonKey(name: 'content_id', required: true) required final int contentId,
       final Entity? entity,
-      @JsonKey(name: 'entity_id', required: true)
-          required final int entityId,
+      @JsonKey(name: 'entity_id', required: true) required final int entityId,
       final int? pos,
-      @JsonKey(name: 'added_by')
-          final Entity? addedBy,
-      @JsonKey(name: 'added_by_id')
-          final int? addedById,
-      @JsonKey(name: 'inserted_at')
-          final DateTime? insertedAt,
-      @JsonKey(name: 'updated_at')
-          final DateTime? updatedAt}) = _$_Contribution;
+      @JsonKey(name: 'added_by') final Entity? addedBy,
+      @JsonKey(name: 'added_by_id') final int? addedById}) = _$_Contribution;
 
   factory _Contribution.fromJson(Map<String, dynamic> json) =
       _$_Contribution.fromJson;
@@ -438,12 +387,6 @@ abstract class _Contribution implements Contribution {
   @override
   @JsonKey(name: 'added_by_id')
   int? get addedById;
-  @override
-  @JsonKey(name: 'inserted_at')
-  DateTime? get insertedAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_ContributionCopyWith<_$_Contribution> get copyWith =>

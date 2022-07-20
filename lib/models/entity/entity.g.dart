@@ -7,7 +7,7 @@ part of 'entity.dart';
 // **************************************************************************
 
 _$_Entity _$$_EntityFromJson(Map<String, dynamic> json) => _$_Entity(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       name: json['name'] as String,
       username: json['username'] as String,
       description: json['description'] as String?,

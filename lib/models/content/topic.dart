@@ -21,7 +21,8 @@ class Topic with _$Topic {
     @JsonKey(name: 'added_by_id') int? addedById,
     String? keywords,
     @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-    @JsonKey(name: 'updated_at') DateTime? updatedAt,
+    //son semada cikarilmis
+    //@JsonKey(name: 'updated_at') DateTime? updatedAt,
   }) = _Topic;
 
   factory Topic.fromJson(Map<String, Object?> json) => _$TopicFromJson(json);

@@ -11,6 +11,7 @@ enum Provider {@JsonValue('twitter') twitter, @JsonValue('email') email}
 @freezed
 class Identity with _$Identity {
   const factory Identity({
+    int? id,
     required Provider provider,
     required String uid,
     String? email,
@@ -19,6 +20,8 @@ class Identity with _$Identity {
     String? token,
     String? secret,
     User? user,
+    //todo: realtional required tam olarak nedir anladigim gibiyse required yapmayalim mi, eger oyle ise diger kisimlarda da degistir
+    @JsonKey(name: 'user_id') int? userId,
     @JsonKey(name: 'inserted_at') DateTime? insertedAt,
     @JsonKey(name: 'updated_at') DateTime? updatedAt
 }) = _Identity;

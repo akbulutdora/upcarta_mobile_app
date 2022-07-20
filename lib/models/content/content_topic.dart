@@ -15,15 +15,15 @@ class ContentTopic with _$ContentTopic {
     int? id,
     // TODO: content topic contentin icerisinde yer aliyor(? mu) bunun nasil yapildigina bak
     Content? content,
-    // TODO: jsonkey kullanilarak required boyle mi yapiliyor
     @JsonKey(name: 'content_id',required: true) required int contentId,
     Topic? topic,
     @JsonKey(name: 'topic_id',required : true) required int topicId,
     int? pos,
     @JsonKey(name: 'added_by') User? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
-    @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-    @JsonKey(name: 'updated_at') DateTime? updatedAt,
+    //yeni semada cikarilmis
+    //@JsonKey(name: 'inserted_at') DateTime? insertedAt,
+    //@JsonKey(name: 'updated_at') DateTime? updatedAt,
 
   }) = _ContentTopic;
 

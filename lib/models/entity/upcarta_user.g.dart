@@ -7,6 +7,7 @@ part of 'upcarta_user.dart';
 // **************************************************************************
 
 _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+      id: json['id'] as int?,
       email: json['email'] as String,
       unconfirmedEmail: json['unconfirmed_email'] as String?,
       displayEmail: json['display_email'] as String?,
@@ -18,9 +19,11 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       entity: json['entity'] == null
           ? null
           : Entity.fromJson(json['entity'] as Map<String, dynamic>),
+      entityId: json['entity_id'] as int?,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+      'id': instance.id,
       'email': instance.email,
       'unconfirmed_email': instance.unconfirmedEmail,
       'display_email': instance.displayEmail,
@@ -28,6 +31,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'role': _$RoleEnumMap[instance.role],
       'identities': instance.identities,
       'entity': instance.entity,
+      'entity_id': instance.entityId,
     };
 
 const _$RoleEnumMap = {
