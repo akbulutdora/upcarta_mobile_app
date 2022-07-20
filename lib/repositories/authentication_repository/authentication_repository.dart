@@ -22,20 +22,27 @@ class AuthenticationRepository implements IAuthenticationRepository {
       required this.localDataStorage,
       required this.networkInfo});
 
+  // authenticate the user with email and password
   @override
   Future<Either<Failure, String>> authenticate(
       String email, String password) async {
+    // check connectivity
     final isConnected = await networkInfo.isConnected;
+
     if (isConnected) {
       try {
+        // authenticate the user and retrieve user information
         final userInfo = await remoteDataSource.authenticate(
             email: email, password: password);
         final userToken = userInfo[0];
         final User appUser = userInfo[1];
+
+        // cache the user information
         localDataStorage.cacheUserToken(userToken);
         localDataStorage.cacheUser(appUser);
         _appUser = appUser;
         _appUserToken = userToken;
+
         return Right(userToken);
       } on ServerException {
         return Left(ServerFailure());
@@ -51,14 +58,16 @@ class AuthenticationRepository implements IAuthenticationRepository {
   }
 
   @override
+  Future<void> logOut() {
+    // TODO: implement logOut
+    // make _appUser and _appUserToken empty or null
+    // make cached user and user token empty or null
+    throw UnimplementedError();
+  }
+
+  @override
   String get appUserToken => _appUserToken;
 
   @override
   User get appUser => _appUser;
-
-  @override
-  Future<void> logOut() {
-    // TODO: implement logOut
-    throw UnimplementedError();
-  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
@@ -156,7 +157,7 @@ class _EmailError extends StatelessWidget {
               fontWeight: FontWeight.w400,
               color: Colors.red,
             ), textAlign: TextAlign.start),
-           visible:!state.emailValidated && state.status != LoginStatus.initial, maintainSize: true, maintainAnimation: true, maintainState: true,),
+           visible:(state.email.value.isLeft() && state.status != LoginStatus.initial) && state.email.value.fold((l) => l.failedValue, (r) => r) != '', maintainSize: true, maintainAnimation: true, maintainState: true,),
         ),
       );
   });
@@ -177,7 +178,8 @@ class _PasswordError extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   color: Colors.red,
                 ), textAlign: TextAlign.start),
-                visible: !state.passwordValidated && state.status != LoginStatus.initial , maintainSize: true, maintainAnimation: true, maintainState: true,),
+                //FIXME: simplify returning textinput value
+                visible: (state.password.value.isLeft() && state.status != LoginStatus.initial) && state.password.value.fold((l) => l.failedValue, (r) => r) != '', maintainSize: true, maintainAnimation: true, maintainState: true,),
             ),
           );
         });
@@ -247,14 +249,15 @@ class _LoginButtonState extends State<_LoginButton> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return state.status == LoginStatus.submitting
+        return
+          /*state.status == LoginStatus.submitting
             ? const CircularProgressIndicator()
-            : IgnorePointer(
-          ignoring: state.status == LoginStatus.validationSuccess,
-              child: Opacity(
-                opacity: (state.status != LoginStatus.validationSuccess) ? 1 : 0.2,
+            : */
+          Opacity(
+          opacity: (state.email.value.isRight() && state.password.value.isRight()) ? 1 : 0.2,
+              child: IgnorePointer(
+          ignoring: !(state.email.value.isRight() && state.password.value.isRight()),
                 child: OutlinedButton(
                     onPressed: () {
                       context.read<LoginCubit>().logInWithCredential();

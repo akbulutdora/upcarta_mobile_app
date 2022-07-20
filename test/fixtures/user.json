@@ -1,0 +1,22 @@
+{
+  "email": "hello@upcarta.com",
+  "role": "user",
+  "confirmed_at": "2021-04-14T08:16:52.966580Z",
+  "entity": {
+    "name": "Hello",
+    "description": null,
+    "username": "helloupcarta",
+    "avatar": null,
+    "wikipedia": null,
+    "has_user": true,
+    "linkedin": null,
+    "website": null,
+    "twitter": null,
+    "twitter_id": null,
+    "followers_count": 0,
+    "followed_entities_count": 0,
+    "followed_contents_count": 0,
+    "followed_topics_count": 0
+  },
+  "identities": []
+}

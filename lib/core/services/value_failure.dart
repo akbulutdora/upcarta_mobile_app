@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
+import 'input_validation_service.dart';
 part 'value_failure.freezed.dart';
 
 @freezed

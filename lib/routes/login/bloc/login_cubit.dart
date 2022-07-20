@@ -4,8 +4,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'dart:core';
-import 'package:upcarta_mobile_app/routes/login/bloc/value_failure.dart';
+import 'package:upcarta_mobile_app/core/services/value_failure.dart';
 import 'package:upcarta_mobile_app/routes/login/login.dart';
+import 'package:upcarta_mobile_app/core/services/input_validation_service.dart';
 
 part 'login_state.dart';
 
@@ -25,7 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
       }
     else if(state.password.value.isRight() && state.email.value.isRight())
       {
-        emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationSuccess, emailValidated: true));
+        emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationSuccess, emailValidated: true, passwordValidated: true));
       }
 
       else {
@@ -42,45 +43,13 @@ class LoginCubit extends Cubit<LoginState> {
         emit(state.copyWith(password: Password(value), status: LoginStatus.validationFailure, passwordValidated: true));
       }
     else if(state.password.value.isRight() && state.email.value.isRight()){
-      emit(state.copyWith(password: Password(value), status: LoginStatus.validationSuccess, passwordValidated: true));
+      emit(state.copyWith(password: Password(value), status: LoginStatus.validationSuccess, passwordValidated: true, emailValidated: true));
     }
     else {
       emit(state.copyWith(password: Password(value), status: LoginStatus.initial));
     }
   }
 
-  /*Future<void> _onLoginSubmitted(Emitter<LoginState> emit) async {
-    final isEmailValid = state.email.value.isRight();
-    final isPasswordValid = state.password.value.isRight();
-
-    if (isEmailValid && isPasswordValid) {
-      emit(
-        state.copyWith(
-          isSubmitting: true,
-          authFailureOrSuccess: null,
-        ),
-      );
-
-      // Perform network request to get a token.
-
-      await Future.delayed(const Duration(seconds: 1));
-    }
-    emit(
-      state.copyWith(
-        isSubmitting: false,
-        showErrorMessage: true,
-
-        // Depending on the response received from the server after loggin in,
-        // emit proper authFailureOrSuccess.
-
-        // For now we will just see if the email and password were valid or not
-        // and accordingly set authFailureOrSuccess' value.
-
-        authFailureOrSuccess:
-        (isEmailValid && isPasswordValid) ? right(unit) : null,
-      ),
-    );
-  }*/
   Future<void> logInWithCredential() async {
     if (state.status == LoginStatus.submitting) {
       return;
