@@ -20,6 +20,7 @@ Identity _$IdentityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Identity {
+  int? get id => throw _privateConstructorUsedError;
   Provider get provider => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
@@ -27,7 +28,10 @@ mixin _$Identity {
   String? get phone => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
   String? get secret => throw _privateConstructorUsedError;
-  User? get user => throw _privateConstructorUsedError;
+  User? get user =>
+      throw _privateConstructorUsedError; //todo: realtional required tam olarak nedir anladigim gibiyse required yapmayalim mi, eger oyle ise diger kisimlarda da degistir
+  @JsonKey(name: 'user_id')
+  int? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'inserted_at')
   DateTime? get insertedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
@@ -44,7 +48,8 @@ abstract class $IdentityCopyWith<$Res> {
   factory $IdentityCopyWith(Identity value, $Res Function(Identity) then) =
       _$IdentityCopyWithImpl<$Res>;
   $Res call(
-      {Provider provider,
+      {int? id,
+      Provider provider,
       String uid,
       String? email,
       String? name,
@@ -52,6 +57,7 @@ abstract class $IdentityCopyWith<$Res> {
       String? token,
       String? secret,
       User? user,
+      @JsonKey(name: 'user_id') int? userId,
       @JsonKey(name: 'inserted_at') DateTime? insertedAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
 
@@ -68,6 +74,7 @@ class _$IdentityCopyWithImpl<$Res> implements $IdentityCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? provider = freezed,
     Object? uid = freezed,
     Object? email = freezed,
@@ -76,10 +83,15 @@ class _$IdentityCopyWithImpl<$Res> implements $IdentityCopyWith<$Res> {
     Object? token = freezed,
     Object? secret = freezed,
     Object? user = freezed,
+    Object? userId = freezed,
     Object? insertedAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
@@ -112,6 +124,10 @@ class _$IdentityCopyWithImpl<$Res> implements $IdentityCopyWith<$Res> {
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
       insertedAt: insertedAt == freezed
           ? _value.insertedAt
           : insertedAt // ignore: cast_nullable_to_non_nullable
@@ -142,7 +158,8 @@ abstract class _$$_IdentityCopyWith<$Res> implements $IdentityCopyWith<$Res> {
       __$$_IdentityCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Provider provider,
+      {int? id,
+      Provider provider,
       String uid,
       String? email,
       String? name,
@@ -150,6 +167,7 @@ abstract class _$$_IdentityCopyWith<$Res> implements $IdentityCopyWith<$Res> {
       String? token,
       String? secret,
       User? user,
+      @JsonKey(name: 'user_id') int? userId,
       @JsonKey(name: 'inserted_at') DateTime? insertedAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
 
@@ -169,6 +187,7 @@ class __$$_IdentityCopyWithImpl<$Res> extends _$IdentityCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? provider = freezed,
     Object? uid = freezed,
     Object? email = freezed,
@@ -177,10 +196,15 @@ class __$$_IdentityCopyWithImpl<$Res> extends _$IdentityCopyWithImpl<$Res>
     Object? token = freezed,
     Object? secret = freezed,
     Object? user = freezed,
+    Object? userId = freezed,
     Object? insertedAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_$_Identity(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       provider: provider == freezed
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
@@ -213,6 +237,10 @@ class __$$_IdentityCopyWithImpl<$Res> extends _$IdentityCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User?,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
       insertedAt: insertedAt == freezed
           ? _value.insertedAt
           : insertedAt // ignore: cast_nullable_to_non_nullable
@@ -229,7 +257,8 @@ class __$$_IdentityCopyWithImpl<$Res> extends _$IdentityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Identity with DiagnosticableTreeMixin implements _Identity {
   const _$_Identity(
-      {required this.provider,
+      {this.id,
+      required this.provider,
       required this.uid,
       this.email,
       this.name,
@@ -237,12 +266,15 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
       this.token,
       this.secret,
       this.user,
+      @JsonKey(name: 'user_id') this.userId,
       @JsonKey(name: 'inserted_at') this.insertedAt,
       @JsonKey(name: 'updated_at') this.updatedAt});
 
   factory _$_Identity.fromJson(Map<String, dynamic> json) =>
       _$$_IdentityFromJson(json);
 
+  @override
+  final int? id;
   @override
   final Provider provider;
   @override
@@ -259,6 +291,10 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
   final String? secret;
   @override
   final User? user;
+//todo: realtional required tam olarak nedir anladigim gibiyse required yapmayalim mi, eger oyle ise diger kisimlarda da degistir
+  @override
+  @JsonKey(name: 'user_id')
+  final int? userId;
   @override
   @JsonKey(name: 'inserted_at')
   final DateTime? insertedAt;
@@ -268,7 +304,7 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Identity(provider: $provider, uid: $uid, email: $email, name: $name, phone: $phone, token: $token, secret: $secret, user: $user, insertedAt: $insertedAt, updatedAt: $updatedAt)';
+    return 'Identity(id: $id, provider: $provider, uid: $uid, email: $email, name: $name, phone: $phone, token: $token, secret: $secret, user: $user, userId: $userId, insertedAt: $insertedAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -276,6 +312,7 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Identity'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('provider', provider))
       ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('email', email))
@@ -284,6 +321,7 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
       ..add(DiagnosticsProperty('token', token))
       ..add(DiagnosticsProperty('secret', secret))
       ..add(DiagnosticsProperty('user', user))
+      ..add(DiagnosticsProperty('userId', userId))
       ..add(DiagnosticsProperty('insertedAt', insertedAt))
       ..add(DiagnosticsProperty('updatedAt', updatedAt));
   }
@@ -293,6 +331,7 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Identity &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.provider, provider) &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.email, email) &&
@@ -301,6 +340,7 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
             const DeepCollectionEquality().equals(other.token, token) &&
             const DeepCollectionEquality().equals(other.secret, secret) &&
             const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality()
                 .equals(other.insertedAt, insertedAt) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
@@ -310,6 +350,7 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(provider),
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(email),
@@ -318,6 +359,7 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
       const DeepCollectionEquality().hash(token),
       const DeepCollectionEquality().hash(secret),
       const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(insertedAt),
       const DeepCollectionEquality().hash(updatedAt));
 
@@ -334,7 +376,8 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
 
 abstract class _Identity implements Identity {
   const factory _Identity(
-      {required final Provider provider,
+      {final int? id,
+      required final Provider provider,
       required final String uid,
       final String? email,
       final String? name,
@@ -342,11 +385,14 @@ abstract class _Identity implements Identity {
       final String? token,
       final String? secret,
       final User? user,
+      @JsonKey(name: 'user_id') final int? userId,
       @JsonKey(name: 'inserted_at') final DateTime? insertedAt,
       @JsonKey(name: 'updated_at') final DateTime? updatedAt}) = _$_Identity;
 
   factory _Identity.fromJson(Map<String, dynamic> json) = _$_Identity.fromJson;
 
+  @override
+  int? get id;
   @override
   Provider get provider;
   @override
@@ -363,6 +409,9 @@ abstract class _Identity implements Identity {
   String? get secret;
   @override
   User? get user;
+  @override //todo: realtional required tam olarak nedir anladigim gibiyse required yapmayalim mi, eger oyle ise diger kisimlarda da degistir
+  @JsonKey(name: 'user_id')
+  int? get userId;
   @override
   @JsonKey(name: 'inserted_at')
   DateTime? get insertedAt;

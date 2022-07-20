@@ -22,9 +22,6 @@ _$_Topic _$$_TopicFromJson(Map<String, dynamic> json) => _$_Topic(
       insertedAt: json['inserted_at'] == null
           ? null
           : DateTime.parse(json['inserted_at'] as String),
-      updatedAt: json['updated_at'] == null
-          ? null
-          : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$$_TopicToJson(_$_Topic instance) => <String, dynamic>{
@@ -35,9 +32,8 @@ Map<String, dynamic> _$$_TopicToJson(_$_Topic instance) => <String, dynamic>{
       'slug': instance.slug,
       'followers_count': instance.followersCount,
       'contents_count': instance.contentsCount,
-      'added_by': instance.addedBy,
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
       'keywords': instance.keywords,
       'inserted_at': instance.insertedAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
     };

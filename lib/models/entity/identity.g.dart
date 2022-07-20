@@ -7,6 +7,7 @@ part of 'identity.dart';
 // **************************************************************************
 
 _$_Identity _$$_IdentityFromJson(Map<String, dynamic> json) => _$_Identity(
+      id: json['id'] as int?,
       provider: $enumDecode(_$ProviderEnumMap, json['provider']),
       uid: json['uid'] as String,
       email: json['email'] as String?,
@@ -17,6 +18,7 @@ _$_Identity _$$_IdentityFromJson(Map<String, dynamic> json) => _$_Identity(
       user: json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
+      userId: json['user_id'] as int?,
       insertedAt: json['inserted_at'] == null
           ? null
           : DateTime.parse(json['inserted_at'] as String),
@@ -27,6 +29,7 @@ _$_Identity _$$_IdentityFromJson(Map<String, dynamic> json) => _$_Identity(
 
 Map<String, dynamic> _$$_IdentityToJson(_$_Identity instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'provider': _$ProviderEnumMap[instance.provider],
       'uid': instance.uid,
       'email': instance.email,
@@ -34,7 +37,8 @@ Map<String, dynamic> _$$_IdentityToJson(_$_Identity instance) =>
       'phone': instance.phone,
       'token': instance.token,
       'secret': instance.secret,
-      'user': instance.user,
+      'user': instance.user?.toJson(),
+      'user_id': instance.userId,
       'inserted_at': instance.insertedAt?.toIso8601String(),
       'updated_at': instance.updatedAt?.toIso8601String(),
     };

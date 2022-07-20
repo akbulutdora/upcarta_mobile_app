@@ -27,12 +27,6 @@ _$_Contribution _$$_ContributionFromJson(Map<String, dynamic> json) {
         ? null
         : Entity.fromJson(json['added_by'] as Map<String, dynamic>),
     addedById: json['added_by_id'] as int?,
-    insertedAt: json['inserted_at'] == null
-        ? null
-        : DateTime.parse(json['inserted_at'] as String),
-    updatedAt: json['updated_at'] == null
-        ? null
-        : DateTime.parse(json['updated_at'] as String),
   );
 }
 
@@ -40,15 +34,13 @@ Map<String, dynamic> _$$_ContributionToJson(_$_Contribution instance) =>
     <String, dynamic>{
       'id': instance.id,
       'role': _$ContributionRoleEnumMap[instance.role],
-      'content': instance.content,
+      'content': instance.content?.toJson(),
       'content_id': instance.contentId,
-      'entity': instance.entity,
+      'entity': instance.entity?.toJson(),
       'entity_id': instance.entityId,
       'pos': instance.pos,
-      'added_by': instance.addedBy,
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
-      'inserted_at': instance.insertedAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
     };
 
 const _$ContributionRoleEnumMap = {

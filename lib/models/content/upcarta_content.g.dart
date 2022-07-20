@@ -15,16 +15,20 @@ _$_Content _$$_ContentFromJson(Map<String, dynamic> json) {
     id: json['id'] as int?,
     title: json['title'] as String,
     description: json['description'] as String?,
+    slug: json['slug'] as String?,
     type: $enumDecodeNullable(_$TypeEnumMap, json['type']),
-    details: json['details'] == null
+    parent: json['parent'] == null
         ? null
-        : ContentDetails.fromJson(json['details'] as Map<String, dynamic>),
+        : Content.fromJson(json['parent'] as Map<String, dynamic>),
+    children: (json['children'] as List<dynamic>?)
+        ?.map((e) => Content.fromJson(e as Map<String, dynamic>))
+        .toList(),
     addedBy: json['added_by'] == null
         ? null
         : Entity.fromJson(json['added_by'] as Map<String, dynamic>),
     addedById: json['added_by_id'] as int?,
     contentTopics: (json['content_topics'] as List<dynamic>?)
-        ?.map((e) => Topic.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => ContentTopic.fromJson(e as Map<String, dynamic>))
         .toList(),
     contributions: (json['contributions'] as List<dynamic>?)
         ?.map((e) => Contribution.fromJson(e as Map<String, dynamic>))
@@ -35,11 +39,18 @@ _$_Content _$$_ContentFromJson(Map<String, dynamic> json) {
     contentLinksCount: json['content_links_count'] as int?,
     recommendersCount: json['recommenders_count'] as int?,
     followersCount: json['followers_count'] as int?,
+    publicCollectionsCount: json['public_collections_count'] as int?,
+    featuredRecommendersCount: json['featured_recommenders_count'] as int?,
+    contextRecommendersCount: json['context_recommenders_count'] as int?,
     createdAt: json['created_at'] == null
         ? null
         : DateTime.parse(json['created_at'] as String),
     createdAtAccuracy: $enumDecodeNullable(
         _$CreatedAtAccuracyEnumMap, json['created_at_accuracy']),
+    followable: json['followable'] as bool?,
+    personalCurations: (json['personal_curations'] as List<dynamic>?)
+        ?.map((e) => Curation.fromJson(e as Map<String, dynamic>))
+        .toList(),
     featuredAt: json['featured_at'] == null
         ? null
         : DateTime.parse(json['featured_at'] as String),
@@ -57,19 +68,27 @@ Map<String, dynamic> _$$_ContentToJson(_$_Content instance) =>
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
+      'slug': instance.slug,
       'type': _$TypeEnumMap[instance.type],
-      'details': instance.details,
-      'added_by': instance.addedBy,
+      'parent': instance.parent?.toJson(),
+      'children': instance.children?.map((e) => e.toJson()).toList(),
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
-      'content_topics': instance.contentTopics,
-      'contributions': instance.contributions,
-      'content_links': instance.contentLinks,
+      'content_topics': instance.contentTopics?.map((e) => e.toJson()).toList(),
+      'contributions': instance.contributions?.map((e) => e.toJson()).toList(),
+      'content_links': instance.contentLinks.map((e) => e.toJson()).toList(),
       'content_links_count': instance.contentLinksCount,
       'recommenders_count': instance.recommendersCount,
       'followers_count': instance.followersCount,
+      'public_collections_count': instance.publicCollectionsCount,
+      'featured_recommenders_count': instance.featuredRecommendersCount,
+      'context_recommenders_count': instance.contextRecommendersCount,
       'created_at': instance.createdAt?.toIso8601String(),
       'created_at_accuracy':
           _$CreatedAtAccuracyEnumMap[instance.createdAtAccuracy],
+      'followable': instance.followable,
+      'personal_curations':
+          instance.personalCurations?.map((e) => e.toJson()).toList(),
       'featured_at': instance.featuredAt?.toIso8601String(),
       'inserted_at': instance.insertedAt?.toIso8601String(),
       'updated_at': instance.updatedAt?.toIso8601String(),

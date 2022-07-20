@@ -5,9 +5,11 @@ import 'package:upcarta_mobile_app/models/content/contribution.dart';
 import 'package:upcarta_mobile_app/models/entity/entity.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/models/content/topic.dart';
-import 'package:upcarta_mobile_app/models/content/content_details.dart';
+import 'package:upcarta_mobile_app/models/content/details.dart';
+import 'package:upcarta_mobile_app/models/content/curation.dart';
 
 import 'content_link.dart';
+import 'content_topic.dart';
 
 part 'upcarta_content.freezed.dart';
 
@@ -74,12 +76,17 @@ class Content with _$Content {
     int? id,
     required String title,
     String? description,
+    String? slug,
     Type? type,
-    ContentDetails? details,
+    // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
+    Content? parent,
+    List<Content>? children,
+    // yeni dokumantasyonda yok content details silindi
+    // ContentDetails? details,
     // obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
     @JsonKey(name: 'added_by') Entity? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
-    @JsonKey(name: 'content_topics') List<Topic>? contentTopics,
+    @JsonKey(name: 'content_topics') List<ContentTopic>? contentTopics,
     List<Contribution>? contributions,
     // content linkler string olucak onlari string olarak mi sakliyoruz
     // TODO : * at least one link is required
@@ -90,8 +97,15 @@ class Content with _$Content {
     @JsonKey(name: 'recommenders_count')  int? recommendersCount,
     @JsonKey(name: 'followers_count')     int? followersCount,
 
+    @JsonKey(name: 'public_collections_count')int? publicCollectionsCount,
+    @JsonKey(name: 'featured_recommenders_count')int? featuredRecommendersCount,
+    @JsonKey(name: 'context_recommenders_count')int? contextRecommendersCount,
+
     @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name: 'created_at_accuracy') CreatedAtAccuracy? createdAtAccuracy,
+
+    bool? followable,
+    @JsonKey(name: 'personal_curations') List<Curation>? personalCurations,
 
     @JsonKey(name: 'featured_at') DateTime? featuredAt,
     @JsonKey(name: 'inserted_at') DateTime? insertedAt,

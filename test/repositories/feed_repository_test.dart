@@ -17,12 +17,16 @@ void main() {
       localDataStorage: mockLocalDataStorage,
       networkInfo: mockNetworkInfo);
 
-  const tEmail = 'hello@upcarta.com';
-  const tPassword = '12345678';
   const tUser = User(email: 'hello@upcarta.com');
   const tToken =
       'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzcG90YWJsZSIsImV4cCI6MTY1OTc3NTUyMiwiaWF0IjoxNjU3MzU2MzIyLCJpc3MiOiJzcG90YWJsZSIsImp0aSI6ImRhNWI1ZjQ4LWZiNzAtNDE3Mi1iYzY1LWM4YWYzNzAwNDgzNiIsIm5iZiI6MTY1NzM1NjMyMSwic3ViIjoiMSIsInR5cCI6ImFjY2VzcyJ9.yYEFOUcEjP34cbkmDy88-wKUF-2VbVO0phn7Vc3vKUtANO329rFdb5nuPvwi1ixBOn30AqZ4tZ71iKAoQTVkPQ';
   const List<Content> tAllContents = <Content>[];
+
+  void clearInteractionsWithAll() {
+    clearInteractions(mockNetworkInfo);
+    clearInteractions(mockLocalDataStorage);
+    clearInteractions(mockRemoteDataSource);
+  }
 
   void runTestsOnline(Function body) {
     group('device is online', () {
@@ -57,6 +61,8 @@ void main() {
       repository.getAllContents();
       // assert
       verify(mockNetworkInfo.isConnected);
+      //clear
+      clearInteractionsWithAll();
     });
 
     runTestsOnline(() {
@@ -70,8 +76,10 @@ void main() {
           final result = await repository.getAllContents();
           // assert
           verify(mockRemoteDataSource.getAllContents());
-          expect(result,
-              equals(Right<Failure, IList<Content>>(ilist(tAllContents))));
+          expect(result.fold((l) => l, (r) => r),
+              equals(ilist(tAllContents)));
+          //clear
+          clearInteractionsWithAll();
         },
       );
 
@@ -87,6 +95,8 @@ void main() {
           verify(mockRemoteDataSource.getAllContents());
           //TODO: UPDATE
           // verify(mockLocalDataStorage.cacheUserToken(tToken));
+          //clear
+          clearInteractionsWithAll();
         },
       );
 
@@ -102,6 +112,8 @@ void main() {
           verify(mockRemoteDataSource.getAllContents());
           // verifyZeroInteractions(mockLocalDataSource);
           expect(result, equals(Left(ServerFailure())));
+          //clear
+          clearInteractionsWithAll();
         },
       );
     });
@@ -111,14 +123,15 @@ void main() {
         'should return server failure when there is no connection',
         () async {
           // arrange
-          // when(mockLocalDataStorage.getUserToken())
-          //     .thenAnswer((_) async => tToken);
+
           // act
           final result = await repository.getAllContents();
           // assert
           verifyNoMoreInteractions(mockRemoteDataSource);
           verifyNoMoreInteractions(mockLocalDataStorage);
           expect(result, equals(Left(ServerFailure())));
+          //clear
+          clearInteractionsWithAll();
         },
       );
     });

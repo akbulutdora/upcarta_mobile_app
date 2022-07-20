@@ -20,11 +20,10 @@ Entity _$EntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Entity {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  User? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'has_user')
   bool? get hasUser => throw _privateConstructorUsedError;
   @JsonKey(name: 'followers_count')
@@ -33,26 +32,22 @@ mixin _$Entity {
   int? get followedEntitiesCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'followed_topics_count')
   int? get followedTopicsCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'added_contents_count')
-  int? get addedContentsCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'followed_contents_count')
   int? get followedContentsCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'added_by')
+  Entity? get addedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'added_by_id')
+  int? get addedById => throw _privateConstructorUsedError;
 
   /// The Twitter name of the user
   String? get twitter => throw _privateConstructorUsedError;
-
-  /// The internal ID of the user from Twitter
-  @JsonKey(name: 'twitter_id')
-  int? get twitterID => throw _privateConstructorUsedError;
-
-  /// When the user was displayed in curations, this value will be [null]
-  /// if the user was featured.
-  @JsonKey(name: 'featured_at')
-  DateTime? get featuredAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'inserted_at')
-  DateTime? get insertedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  String? get website => throw _privateConstructorUsedError;
+  String? get linkedin => throw _privateConstructorUsedError;
+  String? get wikipedia => throw _privateConstructorUsedError;
+  @JsonKey(name: 'following_entity')
+  Entity? get followingEntity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'channel_entities')
+  List<Entity>? get channelEntities => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,24 +59,26 @@ abstract class $EntityCopyWith<$Res> {
   factory $EntityCopyWith(Entity value, $Res Function(Entity) then) =
       _$EntityCopyWithImpl<$Res>;
   $Res call(
-      {int id,
+      {int? id,
       String name,
       String username,
       String? description,
-      User? user,
       @JsonKey(name: 'has_user') bool? hasUser,
       @JsonKey(name: 'followers_count') int? followersCount,
       @JsonKey(name: 'followed_entities_count') int? followedEntitiesCount,
       @JsonKey(name: 'followed_topics_count') int? followedTopicsCount,
-      @JsonKey(name: 'added_contents_count') int? addedContentsCount,
       @JsonKey(name: 'followed_contents_count') int? followedContentsCount,
+      @JsonKey(name: 'added_by') Entity? addedBy,
+      @JsonKey(name: 'added_by_id') int? addedById,
       String? twitter,
-      @JsonKey(name: 'twitter_id') int? twitterID,
-      @JsonKey(name: 'featured_at') DateTime? featuredAt,
-      @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      String? website,
+      String? linkedin,
+      String? wikipedia,
+      @JsonKey(name: 'following_entity') Entity? followingEntity,
+      @JsonKey(name: 'channel_entities') List<Entity>? channelEntities});
 
-  $UserCopyWith<$Res>? get user;
+  $EntityCopyWith<$Res>? get addedBy;
+  $EntityCopyWith<$Res>? get followingEntity;
 }
 
 /// @nodoc
@@ -98,24 +95,25 @@ class _$EntityCopyWithImpl<$Res> implements $EntityCopyWith<$Res> {
     Object? name = freezed,
     Object? username = freezed,
     Object? description = freezed,
-    Object? user = freezed,
     Object? hasUser = freezed,
     Object? followersCount = freezed,
     Object? followedEntitiesCount = freezed,
     Object? followedTopicsCount = freezed,
-    Object? addedContentsCount = freezed,
     Object? followedContentsCount = freezed,
+    Object? addedBy = freezed,
+    Object? addedById = freezed,
     Object? twitter = freezed,
-    Object? twitterID = freezed,
-    Object? featuredAt = freezed,
-    Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
+    Object? website = freezed,
+    Object? linkedin = freezed,
+    Object? wikipedia = freezed,
+    Object? followingEntity = freezed,
+    Object? channelEntities = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -128,10 +126,6 @@ class _$EntityCopyWithImpl<$Res> implements $EntityCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
       hasUser: hasUser == freezed
           ? _value.hasUser
           : hasUser // ignore: cast_nullable_to_non_nullable
@@ -148,45 +142,64 @@ class _$EntityCopyWithImpl<$Res> implements $EntityCopyWith<$Res> {
           ? _value.followedTopicsCount
           : followedTopicsCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      addedContentsCount: addedContentsCount == freezed
-          ? _value.addedContentsCount
-          : addedContentsCount // ignore: cast_nullable_to_non_nullable
-              as int?,
       followedContentsCount: followedContentsCount == freezed
           ? _value.followedContentsCount
           : followedContentsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      addedBy: addedBy == freezed
+          ? _value.addedBy
+          : addedBy // ignore: cast_nullable_to_non_nullable
+              as Entity?,
+      addedById: addedById == freezed
+          ? _value.addedById
+          : addedById // ignore: cast_nullable_to_non_nullable
               as int?,
       twitter: twitter == freezed
           ? _value.twitter
           : twitter // ignore: cast_nullable_to_non_nullable
               as String?,
-      twitterID: twitterID == freezed
-          ? _value.twitterID
-          : twitterID // ignore: cast_nullable_to_non_nullable
-              as int?,
-      featuredAt: featuredAt == freezed
-          ? _value.featuredAt
-          : featuredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      insertedAt: insertedAt == freezed
-          ? _value.insertedAt
-          : insertedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      website: website == freezed
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      linkedin: linkedin == freezed
+          ? _value.linkedin
+          : linkedin // ignore: cast_nullable_to_non_nullable
+              as String?,
+      wikipedia: wikipedia == freezed
+          ? _value.wikipedia
+          : wikipedia // ignore: cast_nullable_to_non_nullable
+              as String?,
+      followingEntity: followingEntity == freezed
+          ? _value.followingEntity
+          : followingEntity // ignore: cast_nullable_to_non_nullable
+              as Entity?,
+      channelEntities: channelEntities == freezed
+          ? _value.channelEntities
+          : channelEntities // ignore: cast_nullable_to_non_nullable
+              as List<Entity>?,
     ));
   }
 
   @override
-  $UserCopyWith<$Res>? get user {
-    if (_value.user == null) {
+  $EntityCopyWith<$Res>? get addedBy {
+    if (_value.addedBy == null) {
       return null;
     }
 
-    return $UserCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value));
+    return $EntityCopyWith<$Res>(_value.addedBy!, (value) {
+      return _then(_value.copyWith(addedBy: value));
+    });
+  }
+
+  @override
+  $EntityCopyWith<$Res>? get followingEntity {
+    if (_value.followingEntity == null) {
+      return null;
+    }
+
+    return $EntityCopyWith<$Res>(_value.followingEntity!, (value) {
+      return _then(_value.copyWith(followingEntity: value));
     });
   }
 }
@@ -197,25 +210,28 @@ abstract class _$$_EntityCopyWith<$Res> implements $EntityCopyWith<$Res> {
       __$$_EntityCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
+      {int? id,
       String name,
       String username,
       String? description,
-      User? user,
       @JsonKey(name: 'has_user') bool? hasUser,
       @JsonKey(name: 'followers_count') int? followersCount,
       @JsonKey(name: 'followed_entities_count') int? followedEntitiesCount,
       @JsonKey(name: 'followed_topics_count') int? followedTopicsCount,
-      @JsonKey(name: 'added_contents_count') int? addedContentsCount,
       @JsonKey(name: 'followed_contents_count') int? followedContentsCount,
+      @JsonKey(name: 'added_by') Entity? addedBy,
+      @JsonKey(name: 'added_by_id') int? addedById,
       String? twitter,
-      @JsonKey(name: 'twitter_id') int? twitterID,
-      @JsonKey(name: 'featured_at') DateTime? featuredAt,
-      @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      String? website,
+      String? linkedin,
+      String? wikipedia,
+      @JsonKey(name: 'following_entity') Entity? followingEntity,
+      @JsonKey(name: 'channel_entities') List<Entity>? channelEntities});
 
   @override
-  $UserCopyWith<$Res>? get user;
+  $EntityCopyWith<$Res>? get addedBy;
+  @override
+  $EntityCopyWith<$Res>? get followingEntity;
 }
 
 /// @nodoc
@@ -233,24 +249,25 @@ class __$$_EntityCopyWithImpl<$Res> extends _$EntityCopyWithImpl<$Res>
     Object? name = freezed,
     Object? username = freezed,
     Object? description = freezed,
-    Object? user = freezed,
     Object? hasUser = freezed,
     Object? followersCount = freezed,
     Object? followedEntitiesCount = freezed,
     Object? followedTopicsCount = freezed,
-    Object? addedContentsCount = freezed,
     Object? followedContentsCount = freezed,
+    Object? addedBy = freezed,
+    Object? addedById = freezed,
     Object? twitter = freezed,
-    Object? twitterID = freezed,
-    Object? featuredAt = freezed,
-    Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
+    Object? website = freezed,
+    Object? linkedin = freezed,
+    Object? wikipedia = freezed,
+    Object? followingEntity = freezed,
+    Object? channelEntities = freezed,
   }) {
     return _then(_$_Entity(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -263,10 +280,6 @@ class __$$_EntityCopyWithImpl<$Res> extends _$EntityCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
       hasUser: hasUser == freezed
           ? _value.hasUser
           : hasUser // ignore: cast_nullable_to_non_nullable
@@ -283,34 +296,42 @@ class __$$_EntityCopyWithImpl<$Res> extends _$EntityCopyWithImpl<$Res>
           ? _value.followedTopicsCount
           : followedTopicsCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      addedContentsCount: addedContentsCount == freezed
-          ? _value.addedContentsCount
-          : addedContentsCount // ignore: cast_nullable_to_non_nullable
-              as int?,
       followedContentsCount: followedContentsCount == freezed
           ? _value.followedContentsCount
           : followedContentsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      addedBy: addedBy == freezed
+          ? _value.addedBy
+          : addedBy // ignore: cast_nullable_to_non_nullable
+              as Entity?,
+      addedById: addedById == freezed
+          ? _value.addedById
+          : addedById // ignore: cast_nullable_to_non_nullable
               as int?,
       twitter: twitter == freezed
           ? _value.twitter
           : twitter // ignore: cast_nullable_to_non_nullable
               as String?,
-      twitterID: twitterID == freezed
-          ? _value.twitterID
-          : twitterID // ignore: cast_nullable_to_non_nullable
-              as int?,
-      featuredAt: featuredAt == freezed
-          ? _value.featuredAt
-          : featuredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      insertedAt: insertedAt == freezed
-          ? _value.insertedAt
-          : insertedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      website: website == freezed
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      linkedin: linkedin == freezed
+          ? _value.linkedin
+          : linkedin // ignore: cast_nullable_to_non_nullable
+              as String?,
+      wikipedia: wikipedia == freezed
+          ? _value.wikipedia
+          : wikipedia // ignore: cast_nullable_to_non_nullable
+              as String?,
+      followingEntity: followingEntity == freezed
+          ? _value.followingEntity
+          : followingEntity // ignore: cast_nullable_to_non_nullable
+              as Entity?,
+      channelEntities: channelEntities == freezed
+          ? _value._channelEntities
+          : channelEntities // ignore: cast_nullable_to_non_nullable
+              as List<Entity>?,
     ));
   }
 }
@@ -319,36 +340,36 @@ class __$$_EntityCopyWithImpl<$Res> extends _$EntityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Entity with DiagnosticableTreeMixin implements _Entity {
   const _$_Entity(
-      {required this.id,
+      {this.id,
       required this.name,
       required this.username,
       this.description,
-      this.user,
       @JsonKey(name: 'has_user') this.hasUser,
       @JsonKey(name: 'followers_count') this.followersCount,
       @JsonKey(name: 'followed_entities_count') this.followedEntitiesCount,
       @JsonKey(name: 'followed_topics_count') this.followedTopicsCount,
-      @JsonKey(name: 'added_contents_count') this.addedContentsCount,
       @JsonKey(name: 'followed_contents_count') this.followedContentsCount,
+      @JsonKey(name: 'added_by') this.addedBy,
+      @JsonKey(name: 'added_by_id') this.addedById,
       this.twitter,
-      @JsonKey(name: 'twitter_id') this.twitterID,
-      @JsonKey(name: 'featured_at') this.featuredAt,
-      @JsonKey(name: 'inserted_at') this.insertedAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
+      this.website,
+      this.linkedin,
+      this.wikipedia,
+      @JsonKey(name: 'following_entity') this.followingEntity,
+      @JsonKey(name: 'channel_entities') final List<Entity>? channelEntities})
+      : _channelEntities = channelEntities;
 
   factory _$_Entity.fromJson(Map<String, dynamic> json) =>
       _$$_EntityFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String name;
   @override
   final String username;
   @override
   final String? description;
-  @override
-  final User? user;
   @override
   @JsonKey(name: 'has_user')
   final bool? hasUser;
@@ -362,36 +383,40 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
   @JsonKey(name: 'followed_topics_count')
   final int? followedTopicsCount;
   @override
-  @JsonKey(name: 'added_contents_count')
-  final int? addedContentsCount;
-  @override
   @JsonKey(name: 'followed_contents_count')
   final int? followedContentsCount;
+  @override
+  @JsonKey(name: 'added_by')
+  final Entity? addedBy;
+  @override
+  @JsonKey(name: 'added_by_id')
+  final int? addedById;
 
   /// The Twitter name of the user
   @override
   final String? twitter;
-
-  /// The internal ID of the user from Twitter
   @override
-  @JsonKey(name: 'twitter_id')
-  final int? twitterID;
-
-  /// When the user was displayed in curations, this value will be [null]
-  /// if the user was featured.
+  final String? website;
   @override
-  @JsonKey(name: 'featured_at')
-  final DateTime? featuredAt;
+  final String? linkedin;
   @override
-  @JsonKey(name: 'inserted_at')
-  final DateTime? insertedAt;
+  final String? wikipedia;
   @override
-  @JsonKey(name: 'updated_at')
-  final DateTime? updatedAt;
+  @JsonKey(name: 'following_entity')
+  final Entity? followingEntity;
+  final List<Entity>? _channelEntities;
+  @override
+  @JsonKey(name: 'channel_entities')
+  List<Entity>? get channelEntities {
+    final value = _channelEntities;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Entity(id: $id, name: $name, username: $username, description: $description, user: $user, hasUser: $hasUser, followersCount: $followersCount, followedEntitiesCount: $followedEntitiesCount, followedTopicsCount: $followedTopicsCount, addedContentsCount: $addedContentsCount, followedContentsCount: $followedContentsCount, twitter: $twitter, twitterID: $twitterID, featuredAt: $featuredAt, insertedAt: $insertedAt, updatedAt: $updatedAt)';
+    return 'Entity(id: $id, name: $name, username: $username, description: $description, hasUser: $hasUser, followersCount: $followersCount, followedEntitiesCount: $followedEntitiesCount, followedTopicsCount: $followedTopicsCount, followedContentsCount: $followedContentsCount, addedBy: $addedBy, addedById: $addedById, twitter: $twitter, website: $website, linkedin: $linkedin, wikipedia: $wikipedia, followingEntity: $followingEntity, channelEntities: $channelEntities)';
   }
 
   @override
@@ -403,18 +428,19 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('username', username))
       ..add(DiagnosticsProperty('description', description))
-      ..add(DiagnosticsProperty('user', user))
       ..add(DiagnosticsProperty('hasUser', hasUser))
       ..add(DiagnosticsProperty('followersCount', followersCount))
       ..add(DiagnosticsProperty('followedEntitiesCount', followedEntitiesCount))
       ..add(DiagnosticsProperty('followedTopicsCount', followedTopicsCount))
-      ..add(DiagnosticsProperty('addedContentsCount', addedContentsCount))
       ..add(DiagnosticsProperty('followedContentsCount', followedContentsCount))
+      ..add(DiagnosticsProperty('addedBy', addedBy))
+      ..add(DiagnosticsProperty('addedById', addedById))
       ..add(DiagnosticsProperty('twitter', twitter))
-      ..add(DiagnosticsProperty('twitterID', twitterID))
-      ..add(DiagnosticsProperty('featuredAt', featuredAt))
-      ..add(DiagnosticsProperty('insertedAt', insertedAt))
-      ..add(DiagnosticsProperty('updatedAt', updatedAt));
+      ..add(DiagnosticsProperty('website', website))
+      ..add(DiagnosticsProperty('linkedin', linkedin))
+      ..add(DiagnosticsProperty('wikipedia', wikipedia))
+      ..add(DiagnosticsProperty('followingEntity', followingEntity))
+      ..add(DiagnosticsProperty('channelEntities', channelEntities));
   }
 
   @override
@@ -427,7 +453,6 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality().equals(other.hasUser, hasUser) &&
             const DeepCollectionEquality()
                 .equals(other.followersCount, followersCount) &&
@@ -436,16 +461,17 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
             const DeepCollectionEquality()
                 .equals(other.followedTopicsCount, followedTopicsCount) &&
             const DeepCollectionEquality()
-                .equals(other.addedContentsCount, addedContentsCount) &&
-            const DeepCollectionEquality()
                 .equals(other.followedContentsCount, followedContentsCount) &&
+            const DeepCollectionEquality().equals(other.addedBy, addedBy) &&
+            const DeepCollectionEquality().equals(other.addedById, addedById) &&
             const DeepCollectionEquality().equals(other.twitter, twitter) &&
-            const DeepCollectionEquality().equals(other.twitterID, twitterID) &&
+            const DeepCollectionEquality().equals(other.website, website) &&
+            const DeepCollectionEquality().equals(other.linkedin, linkedin) &&
+            const DeepCollectionEquality().equals(other.wikipedia, wikipedia) &&
             const DeepCollectionEquality()
-                .equals(other.featuredAt, featuredAt) &&
+                .equals(other.followingEntity, followingEntity) &&
             const DeepCollectionEquality()
-                .equals(other.insertedAt, insertedAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+                .equals(other._channelEntities, _channelEntities));
   }
 
   @JsonKey(ignore: true)
@@ -456,18 +482,19 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(user),
       const DeepCollectionEquality().hash(hasUser),
       const DeepCollectionEquality().hash(followersCount),
       const DeepCollectionEquality().hash(followedEntitiesCount),
       const DeepCollectionEquality().hash(followedTopicsCount),
-      const DeepCollectionEquality().hash(addedContentsCount),
       const DeepCollectionEquality().hash(followedContentsCount),
+      const DeepCollectionEquality().hash(addedBy),
+      const DeepCollectionEquality().hash(addedById),
       const DeepCollectionEquality().hash(twitter),
-      const DeepCollectionEquality().hash(twitterID),
-      const DeepCollectionEquality().hash(featuredAt),
-      const DeepCollectionEquality().hash(insertedAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      const DeepCollectionEquality().hash(website),
+      const DeepCollectionEquality().hash(linkedin),
+      const DeepCollectionEquality().hash(wikipedia),
+      const DeepCollectionEquality().hash(followingEntity),
+      const DeepCollectionEquality().hash(_channelEntities));
 
   @JsonKey(ignore: true)
   @override
@@ -482,11 +509,10 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
 
 abstract class _Entity implements Entity {
   const factory _Entity(
-      {required final int id,
+      {final int? id,
       required final String name,
       required final String username,
       final String? description,
-      final User? user,
       @JsonKey(name: 'has_user')
           final bool? hasUser,
       @JsonKey(name: 'followers_count')
@@ -495,32 +521,31 @@ abstract class _Entity implements Entity {
           final int? followedEntitiesCount,
       @JsonKey(name: 'followed_topics_count')
           final int? followedTopicsCount,
-      @JsonKey(name: 'added_contents_count')
-          final int? addedContentsCount,
       @JsonKey(name: 'followed_contents_count')
           final int? followedContentsCount,
+      @JsonKey(name: 'added_by')
+          final Entity? addedBy,
+      @JsonKey(name: 'added_by_id')
+          final int? addedById,
       final String? twitter,
-      @JsonKey(name: 'twitter_id')
-          final int? twitterID,
-      @JsonKey(name: 'featured_at')
-          final DateTime? featuredAt,
-      @JsonKey(name: 'inserted_at')
-          final DateTime? insertedAt,
-      @JsonKey(name: 'updated_at')
-          final DateTime? updatedAt}) = _$_Entity;
+      final String? website,
+      final String? linkedin,
+      final String? wikipedia,
+      @JsonKey(name: 'following_entity')
+          final Entity? followingEntity,
+      @JsonKey(name: 'channel_entities')
+          final List<Entity>? channelEntities}) = _$_Entity;
 
   factory _Entity.fromJson(Map<String, dynamic> json) = _$_Entity.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get name;
   @override
   String get username;
   @override
   String? get description;
-  @override
-  User? get user;
   @override
   @JsonKey(name: 'has_user')
   bool? get hasUser;
@@ -534,32 +559,30 @@ abstract class _Entity implements Entity {
   @JsonKey(name: 'followed_topics_count')
   int? get followedTopicsCount;
   @override
-  @JsonKey(name: 'added_contents_count')
-  int? get addedContentsCount;
-  @override
   @JsonKey(name: 'followed_contents_count')
   int? get followedContentsCount;
+  @override
+  @JsonKey(name: 'added_by')
+  Entity? get addedBy;
+  @override
+  @JsonKey(name: 'added_by_id')
+  int? get addedById;
   @override
 
   /// The Twitter name of the user
   String? get twitter;
   @override
-
-  /// The internal ID of the user from Twitter
-  @JsonKey(name: 'twitter_id')
-  int? get twitterID;
+  String? get website;
   @override
-
-  /// When the user was displayed in curations, this value will be [null]
-  /// if the user was featured.
-  @JsonKey(name: 'featured_at')
-  DateTime? get featuredAt;
+  String? get linkedin;
   @override
-  @JsonKey(name: 'inserted_at')
-  DateTime? get insertedAt;
+  String? get wikipedia;
   @override
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt;
+  @JsonKey(name: 'following_entity')
+  Entity? get followingEntity;
+  @override
+  @JsonKey(name: 'channel_entities')
+  List<Entity>? get channelEntities;
   @override
   @JsonKey(ignore: true)
   _$$_EntityCopyWith<_$_Entity> get copyWith =>

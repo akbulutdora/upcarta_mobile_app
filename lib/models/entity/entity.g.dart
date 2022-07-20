@@ -7,30 +7,29 @@ part of 'entity.dart';
 // **************************************************************************
 
 _$_Entity _$$_EntityFromJson(Map<String, dynamic> json) => _$_Entity(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       name: json['name'] as String,
       username: json['username'] as String,
       description: json['description'] as String?,
-      user: json['user'] == null
-          ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
       hasUser: json['has_user'] as bool?,
       followersCount: json['followers_count'] as int?,
       followedEntitiesCount: json['followed_entities_count'] as int?,
       followedTopicsCount: json['followed_topics_count'] as int?,
-      addedContentsCount: json['added_contents_count'] as int?,
       followedContentsCount: json['followed_contents_count'] as int?,
+      addedBy: json['added_by'] == null
+          ? null
+          : Entity.fromJson(json['added_by'] as Map<String, dynamic>),
+      addedById: json['added_by_id'] as int?,
       twitter: json['twitter'] as String?,
-      twitterID: json['twitter_id'] as int?,
-      featuredAt: json['featured_at'] == null
+      website: json['website'] as String?,
+      linkedin: json['linkedin'] as String?,
+      wikipedia: json['wikipedia'] as String?,
+      followingEntity: json['following_entity'] == null
           ? null
-          : DateTime.parse(json['featured_at'] as String),
-      insertedAt: json['inserted_at'] == null
-          ? null
-          : DateTime.parse(json['inserted_at'] as String),
-      updatedAt: json['updated_at'] == null
-          ? null
-          : DateTime.parse(json['updated_at'] as String),
+          : Entity.fromJson(json['following_entity'] as Map<String, dynamic>),
+      channelEntities: (json['channel_entities'] as List<dynamic>?)
+          ?.map((e) => Entity.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_EntityToJson(_$_Entity instance) => <String, dynamic>{
@@ -38,16 +37,18 @@ Map<String, dynamic> _$$_EntityToJson(_$_Entity instance) => <String, dynamic>{
       'name': instance.name,
       'username': instance.username,
       'description': instance.description,
-      'user': instance.user,
       'has_user': instance.hasUser,
       'followers_count': instance.followersCount,
       'followed_entities_count': instance.followedEntitiesCount,
       'followed_topics_count': instance.followedTopicsCount,
-      'added_contents_count': instance.addedContentsCount,
       'followed_contents_count': instance.followedContentsCount,
+      'added_by': instance.addedBy?.toJson(),
+      'added_by_id': instance.addedById,
       'twitter': instance.twitter,
-      'twitter_id': instance.twitterID,
-      'featured_at': instance.featuredAt?.toIso8601String(),
-      'inserted_at': instance.insertedAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
+      'website': instance.website,
+      'linkedin': instance.linkedin,
+      'wikipedia': instance.wikipedia,
+      'following_entity': instance.followingEntity?.toJson(),
+      'channel_entities':
+          instance.channelEntities?.map((e) => e.toJson()).toList(),
     };
