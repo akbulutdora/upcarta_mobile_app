@@ -1,10 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:upcarta_mobile_app/core/error/exception.dart';
 import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
-import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
-import 'package:upcarta_mobile_app/core/api/http_client.dart';
 import 'package:http/http.dart' as http;
 
 abstract class RemoteDataSource {
@@ -59,7 +58,9 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       uri,
       headers: {'Content-Type': 'application/json'},
     );
-    print(response.body);
+    if (kDebugMode) {
+      print('response body: ${response.body}');
+    }
     if (response.statusCode == 200) {
       List decoded = json.decode(response.body);
       List<Content> contents = List<Content>.from(decoded.map((e) => Content.fromJson(e)));
