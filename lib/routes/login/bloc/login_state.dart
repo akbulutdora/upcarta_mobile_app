@@ -50,4 +50,3 @@ class LoginState extends Equatable {
     emailValidated: emailValidated ?? this.emailValidated);
   }
 }
-///TODO: email and pw validation-> in case of error show error message & respond in ui

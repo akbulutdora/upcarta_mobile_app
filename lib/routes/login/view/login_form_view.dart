@@ -250,10 +250,9 @@ class _LoginButtonState extends State<_LoginButton> {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
-        return
-          /*state.status == LoginStatus.submitting
+        return state.status == LoginStatus.submitting
             ? const CircularProgressIndicator()
-            : */
+            :
           Opacity(
           opacity: (state.email.value.isRight() && state.password.value.isRight()) ? 1 : 0.2,
               child: IgnorePointer(

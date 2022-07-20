@@ -19,15 +19,16 @@ class LoginCubit extends Cubit<LoginState> {
     if(state.email.value.isLeft()) {
       emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationFailure, emailValidated: false));
     }
+    else if(state.password.value.isRight() && state.email.value.isRight())
+    {
+      emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationSuccess, emailValidated: true, passwordValidated: true));
+    }
     else if (state.email.value.isRight())
       {
         emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationFailure, emailValidated: true));
 
       }
-    else if(state.password.value.isRight() && state.email.value.isRight())
-      {
-        emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationSuccess, emailValidated: true, passwordValidated: true));
-      }
+
 
       else {
       emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.initial));
@@ -38,13 +39,14 @@ class LoginCubit extends Cubit<LoginState> {
     if(state.password.value.isLeft()) {
       emit(state.copyWith(password: Password(value), status: LoginStatus.validationFailure, passwordValidated: false));
     }
+    else if(state.password.value.isRight() && state.email.value.isRight()){
+      emit(state.copyWith(password: Password(value), status: LoginStatus.validationSuccess, passwordValidated: true, emailValidated: true));
+    }
     else if(state.password.value.isRight())
       {
         emit(state.copyWith(password: Password(value), status: LoginStatus.validationFailure, passwordValidated: true));
       }
-    else if(state.password.value.isRight() && state.email.value.isRight()){
-      emit(state.copyWith(password: Password(value), status: LoginStatus.validationSuccess, passwordValidated: true, emailValidated: true));
-    }
+
     else {
       emit(state.copyWith(password: Password(value), status: LoginStatus.initial));
     }
@@ -58,7 +60,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(status: LoginStatus.submitting));
     try {
       await _authRepository.logInWithEmailAndPassword(
-          email: state.email.value.getOrElse(() => ''), password: state.password.value.getOrElse(() => ''));
+          email: state.email.value.fold((l) => l.failedValue, (r) => r), password: state.password.value.fold((l) => l.failedValue, (r) => r));
       emit(state.copyWith(status: LoginStatus.success));
     } on LogInWithEmailAndPasswordFailure catch (e) {
       emit(

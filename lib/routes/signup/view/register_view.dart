@@ -35,7 +35,7 @@ class _MyRegisterState extends State<MyRegister> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: BackButton(
+          leading: const BackButton(
             color: AppColors.gray1BoxFrame,
           ),
           elevation: 0,
@@ -61,23 +61,7 @@ class _MyRegisterState extends State<MyRegister> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(height: 160.h),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('Sign Up',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 26.sp,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.transparent, // Step 2 SEE HERE
-                            shadows: [
-                              Shadow(
-                                  offset: Offset(0, -10.sp),
-                                  color: Colors.black)
-                            ],
-                            decoration: TextDecoration.underline,
-                            decorationColor: AppColors.upcartaBlue,
-                            decorationThickness: 2.sp)),
-                  ),
+                  _SignUpTitle(),
                   SizedBox(height: 32.h),
                   const SignupForm(),
                   SizedBox(height: height * 0.05),
@@ -90,7 +74,7 @@ class _MyRegisterState extends State<MyRegister> {
     );
   }
 }
-
+///TODO sized box & red widgets & button with condnitions
 class SignupForm extends StatelessWidget {
   const SignupForm({Key? key}) : super(key: key);
 
@@ -99,9 +83,7 @@ class SignupForm extends StatelessWidget {
     return BlocListener<SignupCubit, SignupState>(
       listener: (context, state) {
         if (state.status == SignupStatus.success) {
-          // AutoRouter.of(context).push(const HomeRoute());
           AutoRouter.of(context).replaceAll([const OnboardingScreenRoute()]);
-          // AutoRouter.of(context).push(const OnboardingScreenRoute());
 
         } else if (state.status == SignupStatus.submissionFailure) {
           // ERROR
@@ -117,9 +99,15 @@ class SignupForm extends StatelessWidget {
           children: [
             _EmailInput(),
             SizedBox(height: 16.h),
+            _EmailError(),
+            SizedBox(height: 16.h),
             _NameInput(),
             SizedBox(height: 16.h),
+            _NameError(),
+            SizedBox(height: 16.h),
             _PasswordInput(),
+            SizedBox(height: 16.h),
+            _PasswordError(),
             SizedBox(height: 24.h),
             // _ConfirmPasswordInput(),
 
@@ -220,7 +208,12 @@ class _PasswordInput extends StatelessWidget {
   }
 }
 
-class _SignUpButton extends StatelessWidget {
+class _SignUpButton extends StatefulWidget {
+  @override
+  State<_SignUpButton> createState() => _SignUpButtonState();
+}
+
+class _SignUpButtonState extends State<_SignUpButton> {
   @override
   Widget build(BuildContext context) {
     //final AuthService _authService = AuthService(); OLD
@@ -229,23 +222,115 @@ class _SignUpButton extends StatelessWidget {
       builder: (context, state) {
         return state.status == SignupStatus.submitting
             ? const CircularProgressIndicator()
-            : OutlinedButton(
-                key: const Key('loginForm_createAccount_flatButton'),
-                onPressed: () =>
-                    context.read<SignupCubit>().signupFormSubmitted(),
-                style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.r)),
-                  side: BorderSide(color: AppColors.upcartaBlue),
-                  backgroundColor: AppColors.upcartaBlue,
-                  padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
-                ),
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(color: AppColors.white, fontSize: 15.sp),
-                ),
-              );
+            : Opacity(
+          opacity: (state.email.value.isRight() && state.password.value.isRight() && state.name.value.isRight()) ? 1 : 0.2,
+              child: IgnorePointer(
+              ignoring: !(state.email.value.isRight() && state.password.value.isRight() && state.name.value.isRight()),
+                child: OutlinedButton(
+                    key: const Key('loginForm_createAccount_flatButton'),
+                    onPressed: () =>
+                        context.read<SignupCubit>().signupFormSubmitted(),
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r)),
+                      side: BorderSide(color: AppColors.upcartaBlue),
+                      backgroundColor: AppColors.upcartaBlue,
+                      padding: EdgeInsets.fromLTRB(46.w, 10.h, 46.w, 10.h),
+                    ),
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(color: AppColors.white, fontSize: 15.sp),
+                    ),
+                  ),
+              ),
+            );
       },
     );
+  }
+}
+class _SignUpTitle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Text('Sign Up',
+          textAlign: TextAlign.start,
+          style: TextStyle(
+              fontSize: 26.sp,
+              fontWeight: FontWeight.w600,
+              color: Colors.transparent, // Step 2 SEE HERE
+              shadows: [
+                Shadow(
+                    offset: Offset(0, -10.sp),
+                    color: Colors.black)
+              ],
+              decoration: TextDecoration.underline,
+              decorationColor: AppColors.upcartaBlue,
+              decorationThickness: 2.sp)),
+    );
+  }
+}
+class _EmailError extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+        builder: (context, state){
+          return Align(alignment: Alignment.centerLeft,
+            child: Padding( padding: EdgeInsets.only(left: 12.w),
+              child: Visibility(
+                child: Text('Enter a valid email', style: TextStyle(
+                  fontFamily: 'SFCompactText-Regular.ttf',
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.red,
+                ), textAlign: TextAlign.start),
+                visible:(state.email.value.isLeft() && state.status != SignupStatus.initial) && state.email.value.fold((l) => l.failedValue, (r) => r) != '', maintainSize: true, maintainAnimation: true, maintainState: true,),
+            ),
+          );
+        });
+  }
+}
+class _PasswordError extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+        builder: (context, state){
+          return Align(alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.only(left: 12.w),
+              child: Visibility(
+                child: Text('Enter a password with more than 8 characters', style: TextStyle(
+                  fontFamily: 'SFCompactText-Regular.ttf',
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.red,
+                ), textAlign: TextAlign.start),
+                //FIXME: simplify returning textinput value
+                visible: (state.password.value.isLeft() && state.status != SignupStatus.initial) && state.password.value.fold((l) => l.failedValue, (r) => r) != '', maintainSize: true, maintainAnimation: true, maintainState: true,),
+            ),
+          );
+        });
+  }
+}
+class _NameError extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+        builder: (context, state){
+          return Align(alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.only(left: 12.w),
+              child: Visibility(
+                child: Text(state.name.value.fold((l) => l.failedValue, (r) => r).length>50 ? 'Enter a name with maximum 50 characters' : 'Enter a name with minimum 1 character', style: TextStyle(
+                  fontFamily: 'SFCompactText-Regular.ttf',
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.red,
+                ), textAlign: TextAlign.start),
+                //FIXME: simplify returning textinput value
+                visible: state.name.value.isLeft() && state.status != SignupStatus.initial, maintainSize: true, maintainAnimation: true, maintainState: true,),
+            ),
+          );
+        });
   }
 }

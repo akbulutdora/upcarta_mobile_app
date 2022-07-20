@@ -11,4 +11,12 @@ class ValueFailure with _$ValueFailure {
   const factory ValueFailure.shortPassword({
     required String failedValue,
   }) = _Password;
+
+  const factory ValueFailure.invalidName({
+    required String failedValue,
+  }) = _InvalidName;
+
+  const factory ValueFailure.invalidUsername({
+    required String failedValue,
+  }) = _InvalidUsername;
 }

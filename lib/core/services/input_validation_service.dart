@@ -47,3 +47,43 @@ Either<ValueFailure, String> _validatePassword(String input) {
     );
   }
 }
+class Name extends Equatable {
+  factory Name(String input) => Name._(_validateName(input));
+
+  const Name._(this.value);
+
+  final Either<ValueFailure, String> value;
+
+  @override
+  List<Object?> get props => [value];
+}
+
+Either<ValueFailure, String> _validateName(String input) {
+  if (input.length > 0 && input.length<51) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.invalidName(failedValue: input),
+    );
+  }
+}
+class Username extends Equatable {
+  factory Username(String input) => Username._(_validateUsername(input));
+
+  const Username._(this.value);
+
+  final Either<ValueFailure, String> value;
+
+  @override
+  List<Object?> get props => [value];
+}
+
+Either<ValueFailure, String> _validateUsername(String input) {
+  if (input.length > 0 && input.length<101 && RegExp(r'^[a-zA-Z0-9]').hasMatch(input)) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.invalidUsername(failedValue: input),
+    );
+  }
+}
