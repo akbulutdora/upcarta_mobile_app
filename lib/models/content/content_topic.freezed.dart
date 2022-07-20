@@ -33,10 +33,6 @@ mixin _$ContentTopic {
   User? get addedBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'added_by_id')
   int? get addedById => throw _privateConstructorUsedError;
-  @JsonKey(name: 'inserted_at')
-  DateTime? get insertedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,9 +53,7 @@ abstract class $ContentTopicCopyWith<$Res> {
       @JsonKey(name: 'topic_id', required: true) int topicId,
       int? pos,
       @JsonKey(name: 'added_by') User? addedBy,
-      @JsonKey(name: 'added_by_id') int? addedById,
-      @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      @JsonKey(name: 'added_by_id') int? addedById});
 
   $ContentCopyWith<$Res>? get content;
   $TopicCopyWith<$Res>? get topic;
@@ -84,8 +78,6 @@ class _$ContentTopicCopyWithImpl<$Res> implements $ContentTopicCopyWith<$Res> {
     Object? pos = freezed,
     Object? addedBy = freezed,
     Object? addedById = freezed,
-    Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -120,14 +112,6 @@ class _$ContentTopicCopyWithImpl<$Res> implements $ContentTopicCopyWith<$Res> {
           ? _value.addedById
           : addedById // ignore: cast_nullable_to_non_nullable
               as int?,
-      insertedAt: insertedAt == freezed
-          ? _value.insertedAt
-          : insertedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 
@@ -180,9 +164,7 @@ abstract class _$$_ContentTopicCopyWith<$Res>
       @JsonKey(name: 'topic_id', required: true) int topicId,
       int? pos,
       @JsonKey(name: 'added_by') User? addedBy,
-      @JsonKey(name: 'added_by_id') int? addedById,
-      @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      @JsonKey(name: 'added_by_id') int? addedById});
 
   @override
   $ContentCopyWith<$Res>? get content;
@@ -213,8 +195,6 @@ class __$$_ContentTopicCopyWithImpl<$Res>
     Object? pos = freezed,
     Object? addedBy = freezed,
     Object? addedById = freezed,
-    Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_$_ContentTopic(
       id: id == freezed
@@ -249,14 +229,6 @@ class __$$_ContentTopicCopyWithImpl<$Res>
           ? _value.addedById
           : addedById // ignore: cast_nullable_to_non_nullable
               as int?,
-      insertedAt: insertedAt == freezed
-          ? _value.insertedAt
-          : insertedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
@@ -272,9 +244,7 @@ class _$_ContentTopic with DiagnosticableTreeMixin implements _ContentTopic {
       @JsonKey(name: 'topic_id', required: true) required this.topicId,
       this.pos,
       @JsonKey(name: 'added_by') this.addedBy,
-      @JsonKey(name: 'added_by_id') this.addedById,
-      @JsonKey(name: 'inserted_at') this.insertedAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
+      @JsonKey(name: 'added_by_id') this.addedById});
 
   factory _$_ContentTopic.fromJson(Map<String, dynamic> json) =>
       _$$_ContentTopicFromJson(json);
@@ -300,16 +270,10 @@ class _$_ContentTopic with DiagnosticableTreeMixin implements _ContentTopic {
   @override
   @JsonKey(name: 'added_by_id')
   final int? addedById;
-  @override
-  @JsonKey(name: 'inserted_at')
-  final DateTime? insertedAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final DateTime? updatedAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ContentTopic(id: $id, content: $content, contentId: $contentId, topic: $topic, topicId: $topicId, pos: $pos, addedBy: $addedBy, addedById: $addedById, insertedAt: $insertedAt, updatedAt: $updatedAt)';
+    return 'ContentTopic(id: $id, content: $content, contentId: $contentId, topic: $topic, topicId: $topicId, pos: $pos, addedBy: $addedBy, addedById: $addedById)';
   }
 
   @override
@@ -324,9 +288,7 @@ class _$_ContentTopic with DiagnosticableTreeMixin implements _ContentTopic {
       ..add(DiagnosticsProperty('topicId', topicId))
       ..add(DiagnosticsProperty('pos', pos))
       ..add(DiagnosticsProperty('addedBy', addedBy))
-      ..add(DiagnosticsProperty('addedById', addedById))
-      ..add(DiagnosticsProperty('insertedAt', insertedAt))
-      ..add(DiagnosticsProperty('updatedAt', updatedAt));
+      ..add(DiagnosticsProperty('addedById', addedById));
   }
 
   @override
@@ -341,10 +303,7 @@ class _$_ContentTopic with DiagnosticableTreeMixin implements _ContentTopic {
             const DeepCollectionEquality().equals(other.topicId, topicId) &&
             const DeepCollectionEquality().equals(other.pos, pos) &&
             const DeepCollectionEquality().equals(other.addedBy, addedBy) &&
-            const DeepCollectionEquality().equals(other.addedById, addedById) &&
-            const DeepCollectionEquality()
-                .equals(other.insertedAt, insertedAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+            const DeepCollectionEquality().equals(other.addedById, addedById));
   }
 
   @JsonKey(ignore: true)
@@ -358,9 +317,7 @@ class _$_ContentTopic with DiagnosticableTreeMixin implements _ContentTopic {
       const DeepCollectionEquality().hash(topicId),
       const DeepCollectionEquality().hash(pos),
       const DeepCollectionEquality().hash(addedBy),
-      const DeepCollectionEquality().hash(addedById),
-      const DeepCollectionEquality().hash(insertedAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      const DeepCollectionEquality().hash(addedById));
 
   @JsonKey(ignore: true)
   @override
@@ -377,20 +334,12 @@ abstract class _ContentTopic implements ContentTopic {
   const factory _ContentTopic(
       {final int? id,
       final Content? content,
-      @JsonKey(name: 'content_id', required: true)
-          required final int contentId,
+      @JsonKey(name: 'content_id', required: true) required final int contentId,
       final Topic? topic,
-      @JsonKey(name: 'topic_id', required: true)
-          required final int topicId,
+      @JsonKey(name: 'topic_id', required: true) required final int topicId,
       final int? pos,
-      @JsonKey(name: 'added_by')
-          final User? addedBy,
-      @JsonKey(name: 'added_by_id')
-          final int? addedById,
-      @JsonKey(name: 'inserted_at')
-          final DateTime? insertedAt,
-      @JsonKey(name: 'updated_at')
-          final DateTime? updatedAt}) = _$_ContentTopic;
+      @JsonKey(name: 'added_by') final User? addedBy,
+      @JsonKey(name: 'added_by_id') final int? addedById}) = _$_ContentTopic;
 
   factory _ContentTopic.fromJson(Map<String, dynamic> json) =
       _$_ContentTopic.fromJson;
@@ -415,12 +364,6 @@ abstract class _ContentTopic implements ContentTopic {
   @override
   @JsonKey(name: 'added_by_id')
   int? get addedById;
-  @override
-  @JsonKey(name: 'inserted_at')
-  DateTime? get insertedAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_ContentTopicCopyWith<_$_ContentTopic> get copyWith =>

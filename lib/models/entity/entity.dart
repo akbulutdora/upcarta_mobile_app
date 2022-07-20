@@ -13,6 +13,7 @@ class Entity with _$Entity {
     required String name,
     required String username,
     String? description,
+    //todo: user id olmasi gerekir mi
     User? user,
     @JsonKey(name: 'has_user') bool? hasUser,
     @JsonKey(name: 'followers_count') int? followersCount,

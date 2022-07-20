@@ -6,6 +6,7 @@ import 'package:upcarta_mobile_app/models/entity/entity.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import 'package:upcarta_mobile_app/models/content/platform.dart';
+import 'package:upcarta_mobile_app/models/content/collection.dart';
 
 part 'curation.freezed.dart';
 
@@ -41,7 +42,7 @@ enum CurationType{
   finished,
 }
 // TODO : collectiondan sonra ac
-// @freezed
+@freezed
 class Curation with _$Curation {
   const factory Curation({
     int? id,
@@ -61,13 +62,13 @@ class Curation with _$Curation {
     String? link,
     String? comment,
     int? pos,
-    @JsonKey(name: 'platform_id') int? platformId,
-    Platform? platform,
+    //semada cikarilmis
+    //@JsonKey(name: 'platform_id') int? platformId,
+    //Platform? platform,
     @JsonKey(name: 'collection_id')int? collectionId,
-    // TODO : collection modeli tekrar yazilacak
     Collection? collection,
     @JsonKey(name: 'source_content_id') int? sourceContentId,
-    // TODO : source content neyi tutuyor
+    //to do: birbirlerinin icinde olunca ne olacak
     @JsonKey(name: 'source_content') Content? sourceContent,
 
   }) = _Curation;

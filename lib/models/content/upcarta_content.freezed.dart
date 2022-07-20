@@ -23,9 +23,14 @@ mixin _$Content {
   int? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  Type? get type => throw _privateConstructorUsedError;
-  ContentDetails? get details =>
-      throw _privateConstructorUsedError; // obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
+  String? get slug => throw _privateConstructorUsedError;
+  Type? get type =>
+      throw _privateConstructorUsedError; // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
+  Content? get parent => throw _privateConstructorUsedError;
+  List<Content>? get children =>
+      throw _privateConstructorUsedError; // yeni dokumantasyonda yok content details silindi
+// ContentDetails? details,
+// obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
   @JsonKey(name: 'added_by')
   Entity? get addedBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'added_by_id')
@@ -44,11 +49,20 @@ mixin _$Content {
   int? get recommendersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'followers_count')
   int? get followersCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'public_collections_count')
+  int? get publicCollectionsCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'featured_recommenders_count')
+  int? get featuredRecommendersCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'context_recommenders_count')
+  int? get contextRecommendersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at_accuracy')
   CreatedAtAccuracy? get createdAtAccuracy =>
       throw _privateConstructorUsedError;
+  bool? get followable => throw _privateConstructorUsedError;
+  @JsonKey(name: 'personal_curations')
+  List<Curation>? get personalCurations => throw _privateConstructorUsedError;
   @JsonKey(name: 'featured_at')
   DateTime? get featuredAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'inserted_at')
@@ -69,8 +83,10 @@ abstract class $ContentCopyWith<$Res> {
       {int? id,
       String title,
       String? description,
+      String? slug,
       Type? type,
-      ContentDetails? details,
+      Content? parent,
+      List<Content>? children,
       @JsonKey(name: 'added_by')
           Entity? addedBy,
       @JsonKey(name: 'added_by_id')
@@ -86,10 +102,19 @@ abstract class $ContentCopyWith<$Res> {
           int? recommendersCount,
       @JsonKey(name: 'followers_count')
           int? followersCount,
+      @JsonKey(name: 'public_collections_count')
+          int? publicCollectionsCount,
+      @JsonKey(name: 'featured_recommenders_count')
+          int? featuredRecommendersCount,
+      @JsonKey(name: 'context_recommenders_count')
+          int? contextRecommendersCount,
       @JsonKey(name: 'created_at')
           DateTime? createdAt,
       @JsonKey(name: 'created_at_accuracy')
           CreatedAtAccuracy? createdAtAccuracy,
+      bool? followable,
+      @JsonKey(name: 'personal_curations')
+          List<Curation>? personalCurations,
       @JsonKey(name: 'featured_at')
           DateTime? featuredAt,
       @JsonKey(name: 'inserted_at')
@@ -97,7 +122,7 @@ abstract class $ContentCopyWith<$Res> {
       @JsonKey(name: 'updated_at')
           DateTime? updatedAt});
 
-  $ContentDetailsCopyWith<$Res>? get details;
+  $ContentCopyWith<$Res>? get parent;
   $EntityCopyWith<$Res>? get addedBy;
 }
 
@@ -114,8 +139,10 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? id = freezed,
     Object? title = freezed,
     Object? description = freezed,
+    Object? slug = freezed,
     Object? type = freezed,
-    Object? details = freezed,
+    Object? parent = freezed,
+    Object? children = freezed,
     Object? addedBy = freezed,
     Object? addedById = freezed,
     Object? contentTopics = freezed,
@@ -124,8 +151,13 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? contentLinksCount = freezed,
     Object? recommendersCount = freezed,
     Object? followersCount = freezed,
+    Object? publicCollectionsCount = freezed,
+    Object? featuredRecommendersCount = freezed,
+    Object? contextRecommendersCount = freezed,
     Object? createdAt = freezed,
     Object? createdAtAccuracy = freezed,
+    Object? followable = freezed,
+    Object? personalCurations = freezed,
     Object? featuredAt = freezed,
     Object? insertedAt = freezed,
     Object? updatedAt = freezed,
@@ -143,14 +175,22 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      slug: slug == freezed
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as Type?,
-      details: details == freezed
-          ? _value.details
-          : details // ignore: cast_nullable_to_non_nullable
-              as ContentDetails?,
+      parent: parent == freezed
+          ? _value.parent
+          : parent // ignore: cast_nullable_to_non_nullable
+              as Content?,
+      children: children == freezed
+          ? _value.children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<Content>?,
       addedBy: addedBy == freezed
           ? _value.addedBy
           : addedBy // ignore: cast_nullable_to_non_nullable
@@ -183,6 +223,18 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      publicCollectionsCount: publicCollectionsCount == freezed
+          ? _value.publicCollectionsCount
+          : publicCollectionsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      featuredRecommendersCount: featuredRecommendersCount == freezed
+          ? _value.featuredRecommendersCount
+          : featuredRecommendersCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contextRecommendersCount: contextRecommendersCount == freezed
+          ? _value.contextRecommendersCount
+          : contextRecommendersCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -191,6 +243,14 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.createdAtAccuracy
           : createdAtAccuracy // ignore: cast_nullable_to_non_nullable
               as CreatedAtAccuracy?,
+      followable: followable == freezed
+          ? _value.followable
+          : followable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      personalCurations: personalCurations == freezed
+          ? _value.personalCurations
+          : personalCurations // ignore: cast_nullable_to_non_nullable
+              as List<Curation>?,
       featuredAt: featuredAt == freezed
           ? _value.featuredAt
           : featuredAt // ignore: cast_nullable_to_non_nullable
@@ -207,13 +267,13 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
   }
 
   @override
-  $ContentDetailsCopyWith<$Res>? get details {
-    if (_value.details == null) {
+  $ContentCopyWith<$Res>? get parent {
+    if (_value.parent == null) {
       return null;
     }
 
-    return $ContentDetailsCopyWith<$Res>(_value.details!, (value) {
-      return _then(_value.copyWith(details: value));
+    return $ContentCopyWith<$Res>(_value.parent!, (value) {
+      return _then(_value.copyWith(parent: value));
     });
   }
 
@@ -239,8 +299,10 @@ abstract class _$$_ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       {int? id,
       String title,
       String? description,
+      String? slug,
       Type? type,
-      ContentDetails? details,
+      Content? parent,
+      List<Content>? children,
       @JsonKey(name: 'added_by')
           Entity? addedBy,
       @JsonKey(name: 'added_by_id')
@@ -256,10 +318,19 @@ abstract class _$$_ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
           int? recommendersCount,
       @JsonKey(name: 'followers_count')
           int? followersCount,
+      @JsonKey(name: 'public_collections_count')
+          int? publicCollectionsCount,
+      @JsonKey(name: 'featured_recommenders_count')
+          int? featuredRecommendersCount,
+      @JsonKey(name: 'context_recommenders_count')
+          int? contextRecommendersCount,
       @JsonKey(name: 'created_at')
           DateTime? createdAt,
       @JsonKey(name: 'created_at_accuracy')
           CreatedAtAccuracy? createdAtAccuracy,
+      bool? followable,
+      @JsonKey(name: 'personal_curations')
+          List<Curation>? personalCurations,
       @JsonKey(name: 'featured_at')
           DateTime? featuredAt,
       @JsonKey(name: 'inserted_at')
@@ -268,7 +339,7 @@ abstract class _$$_ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
           DateTime? updatedAt});
 
   @override
-  $ContentDetailsCopyWith<$Res>? get details;
+  $ContentCopyWith<$Res>? get parent;
   @override
   $EntityCopyWith<$Res>? get addedBy;
 }
@@ -287,8 +358,10 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? description = freezed,
+    Object? slug = freezed,
     Object? type = freezed,
-    Object? details = freezed,
+    Object? parent = freezed,
+    Object? children = freezed,
     Object? addedBy = freezed,
     Object? addedById = freezed,
     Object? contentTopics = freezed,
@@ -297,8 +370,13 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? contentLinksCount = freezed,
     Object? recommendersCount = freezed,
     Object? followersCount = freezed,
+    Object? publicCollectionsCount = freezed,
+    Object? featuredRecommendersCount = freezed,
+    Object? contextRecommendersCount = freezed,
     Object? createdAt = freezed,
     Object? createdAtAccuracy = freezed,
+    Object? followable = freezed,
+    Object? personalCurations = freezed,
     Object? featuredAt = freezed,
     Object? insertedAt = freezed,
     Object? updatedAt = freezed,
@@ -316,14 +394,22 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      slug: slug == freezed
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as Type?,
-      details: details == freezed
-          ? _value.details
-          : details // ignore: cast_nullable_to_non_nullable
-              as ContentDetails?,
+      parent: parent == freezed
+          ? _value.parent
+          : parent // ignore: cast_nullable_to_non_nullable
+              as Content?,
+      children: children == freezed
+          ? _value._children
+          : children // ignore: cast_nullable_to_non_nullable
+              as List<Content>?,
       addedBy: addedBy == freezed
           ? _value.addedBy
           : addedBy // ignore: cast_nullable_to_non_nullable
@@ -356,6 +442,18 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      publicCollectionsCount: publicCollectionsCount == freezed
+          ? _value.publicCollectionsCount
+          : publicCollectionsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      featuredRecommendersCount: featuredRecommendersCount == freezed
+          ? _value.featuredRecommendersCount
+          : featuredRecommendersCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contextRecommendersCount: contextRecommendersCount == freezed
+          ? _value.contextRecommendersCount
+          : contextRecommendersCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -364,6 +462,14 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.createdAtAccuracy
           : createdAtAccuracy // ignore: cast_nullable_to_non_nullable
               as CreatedAtAccuracy?,
+      followable: followable == freezed
+          ? _value.followable
+          : followable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      personalCurations: personalCurations == freezed
+          ? _value._personalCurations
+          : personalCurations // ignore: cast_nullable_to_non_nullable
+              as List<Curation>?,
       featuredAt: featuredAt == freezed
           ? _value.featuredAt
           : featuredAt // ignore: cast_nullable_to_non_nullable
@@ -387,8 +493,10 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
       {this.id,
       required this.title,
       this.description,
+      this.slug,
       this.type,
-      this.details,
+      this.parent,
+      final List<Content>? children,
       @JsonKey(name: 'added_by')
           this.addedBy,
       @JsonKey(name: 'added_by_id')
@@ -404,19 +512,30 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
           this.recommendersCount,
       @JsonKey(name: 'followers_count')
           this.followersCount,
+      @JsonKey(name: 'public_collections_count')
+          this.publicCollectionsCount,
+      @JsonKey(name: 'featured_recommenders_count')
+          this.featuredRecommendersCount,
+      @JsonKey(name: 'context_recommenders_count')
+          this.contextRecommendersCount,
       @JsonKey(name: 'created_at')
           this.createdAt,
       @JsonKey(name: 'created_at_accuracy')
           this.createdAtAccuracy,
+      this.followable,
+      @JsonKey(name: 'personal_curations')
+          final List<Curation>? personalCurations,
       @JsonKey(name: 'featured_at')
           this.featuredAt,
       @JsonKey(name: 'inserted_at')
           this.insertedAt,
       @JsonKey(name: 'updated_at')
           this.updatedAt})
-      : _contentTopics = contentTopics,
+      : _children = children,
+        _contentTopics = contentTopics,
         _contributions = contributions,
-        _contentLinks = contentLinks;
+        _contentLinks = contentLinks,
+        _personalCurations = personalCurations;
 
   factory _$_Content.fromJson(Map<String, dynamic> json) =>
       _$$_ContentFromJson(json);
@@ -428,9 +547,23 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
   @override
   final String? description;
   @override
-  final Type? type;
+  final String? slug;
   @override
-  final ContentDetails? details;
+  final Type? type;
+// todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
+  @override
+  final Content? parent;
+  final List<Content>? _children;
+  @override
+  List<Content>? get children {
+    final value = _children;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+// yeni dokumantasyonda yok content details silindi
+// ContentDetails? details,
 // obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
   @override
   @JsonKey(name: 'added_by')
@@ -481,11 +614,32 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
   @JsonKey(name: 'followers_count')
   final int? followersCount;
   @override
+  @JsonKey(name: 'public_collections_count')
+  final int? publicCollectionsCount;
+  @override
+  @JsonKey(name: 'featured_recommenders_count')
+  final int? featuredRecommendersCount;
+  @override
+  @JsonKey(name: 'context_recommenders_count')
+  final int? contextRecommendersCount;
+  @override
   @JsonKey(name: 'created_at')
   final DateTime? createdAt;
   @override
   @JsonKey(name: 'created_at_accuracy')
   final CreatedAtAccuracy? createdAtAccuracy;
+  @override
+  final bool? followable;
+  final List<Curation>? _personalCurations;
+  @override
+  @JsonKey(name: 'personal_curations')
+  List<Curation>? get personalCurations {
+    final value = _personalCurations;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'featured_at')
   final DateTime? featuredAt;
@@ -498,7 +652,7 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Content(id: $id, title: $title, description: $description, type: $type, details: $details, addedBy: $addedBy, addedById: $addedById, contentTopics: $contentTopics, contributions: $contributions, contentLinks: $contentLinks, contentLinksCount: $contentLinksCount, recommendersCount: $recommendersCount, followersCount: $followersCount, createdAt: $createdAt, createdAtAccuracy: $createdAtAccuracy, featuredAt: $featuredAt, insertedAt: $insertedAt, updatedAt: $updatedAt)';
+    return 'Content(id: $id, title: $title, description: $description, slug: $slug, type: $type, parent: $parent, children: $children, addedBy: $addedBy, addedById: $addedById, contentTopics: $contentTopics, contributions: $contributions, contentLinks: $contentLinks, contentLinksCount: $contentLinksCount, recommendersCount: $recommendersCount, followersCount: $followersCount, publicCollectionsCount: $publicCollectionsCount, featuredRecommendersCount: $featuredRecommendersCount, contextRecommendersCount: $contextRecommendersCount, createdAt: $createdAt, createdAtAccuracy: $createdAtAccuracy, followable: $followable, personalCurations: $personalCurations, featuredAt: $featuredAt, insertedAt: $insertedAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -509,8 +663,10 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('slug', slug))
       ..add(DiagnosticsProperty('type', type))
-      ..add(DiagnosticsProperty('details', details))
+      ..add(DiagnosticsProperty('parent', parent))
+      ..add(DiagnosticsProperty('children', children))
       ..add(DiagnosticsProperty('addedBy', addedBy))
       ..add(DiagnosticsProperty('addedById', addedById))
       ..add(DiagnosticsProperty('contentTopics', contentTopics))
@@ -519,8 +675,16 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
       ..add(DiagnosticsProperty('contentLinksCount', contentLinksCount))
       ..add(DiagnosticsProperty('recommendersCount', recommendersCount))
       ..add(DiagnosticsProperty('followersCount', followersCount))
+      ..add(
+          DiagnosticsProperty('publicCollectionsCount', publicCollectionsCount))
+      ..add(DiagnosticsProperty(
+          'featuredRecommendersCount', featuredRecommendersCount))
+      ..add(DiagnosticsProperty(
+          'contextRecommendersCount', contextRecommendersCount))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('createdAtAccuracy', createdAtAccuracy))
+      ..add(DiagnosticsProperty('followable', followable))
+      ..add(DiagnosticsProperty('personalCurations', personalCurations))
       ..add(DiagnosticsProperty('featuredAt', featuredAt))
       ..add(DiagnosticsProperty('insertedAt', insertedAt))
       ..add(DiagnosticsProperty('updatedAt', updatedAt));
@@ -535,8 +699,10 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.slug, slug) &&
             const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.details, details) &&
+            const DeepCollectionEquality().equals(other.parent, parent) &&
+            const DeepCollectionEquality().equals(other._children, _children) &&
             const DeepCollectionEquality().equals(other.addedBy, addedBy) &&
             const DeepCollectionEquality().equals(other.addedById, addedById) &&
             const DeepCollectionEquality()
@@ -551,9 +717,19 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
                 .equals(other.recommendersCount, recommendersCount) &&
             const DeepCollectionEquality()
                 .equals(other.followersCount, followersCount) &&
+            const DeepCollectionEquality()
+                .equals(other.publicCollectionsCount, publicCollectionsCount) &&
+            const DeepCollectionEquality().equals(
+                other.featuredRecommendersCount, featuredRecommendersCount) &&
+            const DeepCollectionEquality().equals(
+                other.contextRecommendersCount, contextRecommendersCount) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality()
                 .equals(other.createdAtAccuracy, createdAtAccuracy) &&
+            const DeepCollectionEquality()
+                .equals(other.followable, followable) &&
+            const DeepCollectionEquality()
+                .equals(other._personalCurations, _personalCurations) &&
             const DeepCollectionEquality()
                 .equals(other.featuredAt, featuredAt) &&
             const DeepCollectionEquality()
@@ -563,26 +739,34 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(details),
-      const DeepCollectionEquality().hash(addedBy),
-      const DeepCollectionEquality().hash(addedById),
-      const DeepCollectionEquality().hash(_contentTopics),
-      const DeepCollectionEquality().hash(_contributions),
-      const DeepCollectionEquality().hash(_contentLinks),
-      const DeepCollectionEquality().hash(contentLinksCount),
-      const DeepCollectionEquality().hash(recommendersCount),
-      const DeepCollectionEquality().hash(followersCount),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(createdAtAccuracy),
-      const DeepCollectionEquality().hash(featuredAt),
-      const DeepCollectionEquality().hash(insertedAt),
-      const DeepCollectionEquality().hash(updatedAt));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(id),
+        const DeepCollectionEquality().hash(title),
+        const DeepCollectionEquality().hash(description),
+        const DeepCollectionEquality().hash(slug),
+        const DeepCollectionEquality().hash(type),
+        const DeepCollectionEquality().hash(parent),
+        const DeepCollectionEquality().hash(_children),
+        const DeepCollectionEquality().hash(addedBy),
+        const DeepCollectionEquality().hash(addedById),
+        const DeepCollectionEquality().hash(_contentTopics),
+        const DeepCollectionEquality().hash(_contributions),
+        const DeepCollectionEquality().hash(_contentLinks),
+        const DeepCollectionEquality().hash(contentLinksCount),
+        const DeepCollectionEquality().hash(recommendersCount),
+        const DeepCollectionEquality().hash(followersCount),
+        const DeepCollectionEquality().hash(publicCollectionsCount),
+        const DeepCollectionEquality().hash(featuredRecommendersCount),
+        const DeepCollectionEquality().hash(contextRecommendersCount),
+        const DeepCollectionEquality().hash(createdAt),
+        const DeepCollectionEquality().hash(createdAtAccuracy),
+        const DeepCollectionEquality().hash(followable),
+        const DeepCollectionEquality().hash(_personalCurations),
+        const DeepCollectionEquality().hash(featuredAt),
+        const DeepCollectionEquality().hash(insertedAt),
+        const DeepCollectionEquality().hash(updatedAt)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -600,8 +784,10 @@ abstract class _Content implements Content {
       {final int? id,
       required final String title,
       final String? description,
+      final String? slug,
       final Type? type,
-      final ContentDetails? details,
+      final Content? parent,
+      final List<Content>? children,
       @JsonKey(name: 'added_by')
           final Entity? addedBy,
       @JsonKey(name: 'added_by_id')
@@ -617,10 +803,19 @@ abstract class _Content implements Content {
           final int? recommendersCount,
       @JsonKey(name: 'followers_count')
           final int? followersCount,
+      @JsonKey(name: 'public_collections_count')
+          final int? publicCollectionsCount,
+      @JsonKey(name: 'featured_recommenders_count')
+          final int? featuredRecommendersCount,
+      @JsonKey(name: 'context_recommenders_count')
+          final int? contextRecommendersCount,
       @JsonKey(name: 'created_at')
           final DateTime? createdAt,
       @JsonKey(name: 'created_at_accuracy')
           final CreatedAtAccuracy? createdAtAccuracy,
+      final bool? followable,
+      @JsonKey(name: 'personal_curations')
+          final List<Curation>? personalCurations,
       @JsonKey(name: 'featured_at')
           final DateTime? featuredAt,
       @JsonKey(name: 'inserted_at')
@@ -637,10 +832,16 @@ abstract class _Content implements Content {
   @override
   String? get description;
   @override
-  Type? get type;
+  String? get slug;
   @override
-  ContentDetails? get details;
-  @override // obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
+  Type? get type;
+  @override // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
+  Content? get parent;
+  @override
+  List<Content>? get children;
+  @override // yeni dokumantasyonda yok content details silindi
+// ContentDetails? details,
+// obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
   @JsonKey(name: 'added_by')
   Entity? get addedBy;
   @override
@@ -666,11 +867,25 @@ abstract class _Content implements Content {
   @JsonKey(name: 'followers_count')
   int? get followersCount;
   @override
+  @JsonKey(name: 'public_collections_count')
+  int? get publicCollectionsCount;
+  @override
+  @JsonKey(name: 'featured_recommenders_count')
+  int? get featuredRecommendersCount;
+  @override
+  @JsonKey(name: 'context_recommenders_count')
+  int? get contextRecommendersCount;
+  @override
   @JsonKey(name: 'created_at')
   DateTime? get createdAt;
   @override
   @JsonKey(name: 'created_at_accuracy')
   CreatedAtAccuracy? get createdAtAccuracy;
+  @override
+  bool? get followable;
+  @override
+  @JsonKey(name: 'personal_curations')
+  List<Curation>? get personalCurations;
   @override
   @JsonKey(name: 'featured_at')
   DateTime? get featuredAt;

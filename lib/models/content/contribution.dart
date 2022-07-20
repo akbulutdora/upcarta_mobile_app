@@ -37,8 +37,9 @@ class Contribution with _$Contribution {
     // iki tane entity var ?
     @JsonKey(name: 'added_by') Entity? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
-    @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-    @JsonKey(name: 'updated_at') DateTime? updatedAt,
+    //semadan cikarilmis
+    //@JsonKey(name: 'inserted_at') DateTime? insertedAt,
+    //@JsonKey(name: 'updated_at') DateTime? updatedAt,
   }) = _Contribution;
 
   factory Contribution.fromJson(Map<String, Object?> json) =>

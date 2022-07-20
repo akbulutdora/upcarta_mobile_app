@@ -21,8 +21,9 @@ class ContentTopic with _$ContentTopic {
     int? pos,
     @JsonKey(name: 'added_by') User? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
-    @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-    @JsonKey(name: 'updated_at') DateTime? updatedAt,
+    //yeni semada cikarilmis
+    //@JsonKey(name: 'inserted_at') DateTime? insertedAt,
+    //@JsonKey(name: 'updated_at') DateTime? updatedAt,
 
   }) = _ContentTopic;
 

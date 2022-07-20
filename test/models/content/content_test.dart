@@ -130,9 +130,9 @@ void main() {
               "added_by_id" : null,
               "inserted_at" : null,
               "updated_at"  : null,
-              //todo:entity id required ama jsonda yok
+              //todo: entity id required ama jsonda yok
               "entity_id" :123,
-              //todo:content id required ama jsonda yok
+              //todo: content id required ama jsonda yok
               "content_id":321,
 
               "pos": 1,

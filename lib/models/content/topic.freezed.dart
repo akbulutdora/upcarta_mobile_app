@@ -36,8 +36,6 @@ mixin _$Topic {
   String? get keywords => throw _privateConstructorUsedError;
   @JsonKey(name: 'inserted_at')
   DateTime? get insertedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,8 +57,7 @@ abstract class $TopicCopyWith<$Res> {
       @JsonKey(name: 'added_by') User? addedBy,
       @JsonKey(name: 'added_by_id') int? addedById,
       String? keywords,
-      @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      @JsonKey(name: 'inserted_at') DateTime? insertedAt});
 
   $UserCopyWith<$Res>? get addedBy;
 }
@@ -86,7 +83,6 @@ class _$TopicCopyWithImpl<$Res> implements $TopicCopyWith<$Res> {
     Object? addedById = freezed,
     Object? keywords = freezed,
     Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -133,10 +129,6 @@ class _$TopicCopyWithImpl<$Res> implements $TopicCopyWith<$Res> {
           ? _value.insertedAt
           : insertedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 
@@ -168,8 +160,7 @@ abstract class _$$_TopicCopyWith<$Res> implements $TopicCopyWith<$Res> {
       @JsonKey(name: 'added_by') User? addedBy,
       @JsonKey(name: 'added_by_id') int? addedById,
       String? keywords,
-      @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      @JsonKey(name: 'inserted_at') DateTime? insertedAt});
 
   @override
   $UserCopyWith<$Res>? get addedBy;
@@ -197,7 +188,6 @@ class __$$_TopicCopyWithImpl<$Res> extends _$TopicCopyWithImpl<$Res>
     Object? addedById = freezed,
     Object? keywords = freezed,
     Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_$_Topic(
       id: id == freezed
@@ -244,10 +234,6 @@ class __$$_TopicCopyWithImpl<$Res> extends _$TopicCopyWithImpl<$Res>
           ? _value.insertedAt
           : insertedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
@@ -266,8 +252,7 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
       @JsonKey(name: 'added_by') this.addedBy,
       @JsonKey(name: 'added_by_id') this.addedById,
       this.keywords,
-      @JsonKey(name: 'inserted_at') this.insertedAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
+      @JsonKey(name: 'inserted_at') this.insertedAt});
 
   factory _$_Topic.fromJson(Map<String, dynamic> json) =>
       _$$_TopicFromJson(json);
@@ -299,13 +284,10 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
   @override
   @JsonKey(name: 'inserted_at')
   final DateTime? insertedAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final DateTime? updatedAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Topic(id: $id, title: $title, description: $description, wikipedia: $wikipedia, slug: $slug, followersCount: $followersCount, contentsCount: $contentsCount, addedBy: $addedBy, addedById: $addedById, keywords: $keywords, insertedAt: $insertedAt, updatedAt: $updatedAt)';
+    return 'Topic(id: $id, title: $title, description: $description, wikipedia: $wikipedia, slug: $slug, followersCount: $followersCount, contentsCount: $contentsCount, addedBy: $addedBy, addedById: $addedById, keywords: $keywords, insertedAt: $insertedAt)';
   }
 
   @override
@@ -323,8 +305,7 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
       ..add(DiagnosticsProperty('addedBy', addedBy))
       ..add(DiagnosticsProperty('addedById', addedById))
       ..add(DiagnosticsProperty('keywords', keywords))
-      ..add(DiagnosticsProperty('insertedAt', insertedAt))
-      ..add(DiagnosticsProperty('updatedAt', updatedAt));
+      ..add(DiagnosticsProperty('insertedAt', insertedAt));
   }
 
   @override
@@ -346,8 +327,7 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
             const DeepCollectionEquality().equals(other.addedById, addedById) &&
             const DeepCollectionEquality().equals(other.keywords, keywords) &&
             const DeepCollectionEquality()
-                .equals(other.insertedAt, insertedAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+                .equals(other.insertedAt, insertedAt));
   }
 
   @JsonKey(ignore: true)
@@ -364,8 +344,7 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
       const DeepCollectionEquality().hash(addedBy),
       const DeepCollectionEquality().hash(addedById),
       const DeepCollectionEquality().hash(keywords),
-      const DeepCollectionEquality().hash(insertedAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      const DeepCollectionEquality().hash(insertedAt));
 
   @JsonKey(ignore: true)
   @override
@@ -390,8 +369,7 @@ abstract class _Topic implements Topic {
       @JsonKey(name: 'added_by') final User? addedBy,
       @JsonKey(name: 'added_by_id') final int? addedById,
       final String? keywords,
-      @JsonKey(name: 'inserted_at') final DateTime? insertedAt,
-      @JsonKey(name: 'updated_at') final DateTime? updatedAt}) = _$_Topic;
+      @JsonKey(name: 'inserted_at') final DateTime? insertedAt}) = _$_Topic;
 
   factory _Topic.fromJson(Map<String, dynamic> json) = _$_Topic.fromJson;
 
@@ -422,9 +400,6 @@ abstract class _Topic implements Topic {
   @override
   @JsonKey(name: 'inserted_at')
   DateTime? get insertedAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_TopicCopyWith<_$_Topic> get copyWith =>

@@ -23,7 +23,8 @@ mixin _$Entity {
   int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  String? get description =>
+      throw _privateConstructorUsedError; //todo: user id olmasi gerekir mi
   User? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'has_user')
   bool? get hasUser => throw _privateConstructorUsedError;
@@ -347,6 +348,7 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
   final String username;
   @override
   final String? description;
+//todo: user id olmasi gerekir mi
   @override
   final User? user;
   @override
@@ -519,7 +521,7 @@ abstract class _Entity implements Entity {
   String get username;
   @override
   String? get description;
-  @override
+  @override //todo: user id olmasi gerekir mi
   User? get user;
   @override
   @JsonKey(name: 'has_user')

@@ -20,6 +20,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  int? get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'unconfirmed_email')
   String? get unconfirmedEmail => throw _privateConstructorUsedError;
@@ -28,7 +29,10 @@ mixin _$User {
   String? get password => throw _privateConstructorUsedError;
   Role? get role => throw _privateConstructorUsedError;
   List<Identity>? get identities => throw _privateConstructorUsedError;
-  Entity? get entity => throw _privateConstructorUsedError;
+  Entity? get entity =>
+      throw _privateConstructorUsedError; //todo : relational required
+  @JsonKey(name: 'entity_id')
+  int? get entityId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,13 +44,15 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {String email,
+      {int? id,
+      String email,
       @JsonKey(name: 'unconfirmed_email') String? unconfirmedEmail,
       @JsonKey(name: 'display_email') String? displayEmail,
       String? password,
       Role? role,
       List<Identity>? identities,
-      Entity? entity});
+      Entity? entity,
+      @JsonKey(name: 'entity_id') int? entityId});
 
   $EntityCopyWith<$Res>? get entity;
 }
@@ -61,6 +67,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? email = freezed,
     Object? unconfirmedEmail = freezed,
     Object? displayEmail = freezed,
@@ -68,8 +75,13 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? role = freezed,
     Object? identities = freezed,
     Object? entity = freezed,
+    Object? entityId = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -98,6 +110,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
               as Entity?,
+      entityId: entityId == freezed
+          ? _value.entityId
+          : entityId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 
@@ -119,13 +135,15 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$_UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String email,
+      {int? id,
+      String email,
       @JsonKey(name: 'unconfirmed_email') String? unconfirmedEmail,
       @JsonKey(name: 'display_email') String? displayEmail,
       String? password,
       Role? role,
       List<Identity>? identities,
-      Entity? entity});
+      Entity? entity,
+      @JsonKey(name: 'entity_id') int? entityId});
 
   @override
   $EntityCopyWith<$Res>? get entity;
@@ -142,6 +160,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? email = freezed,
     Object? unconfirmedEmail = freezed,
     Object? displayEmail = freezed,
@@ -149,8 +168,13 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? role = freezed,
     Object? identities = freezed,
     Object? entity = freezed,
+    Object? entityId = freezed,
   }) {
     return _then(_$_User(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -179,6 +203,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
               as Entity?,
+      entityId: entityId == freezed
+          ? _value.entityId
+          : entityId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -187,17 +215,21 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_User with DiagnosticableTreeMixin implements _User {
   const _$_User(
-      {required this.email,
+      {this.id,
+      required this.email,
       @JsonKey(name: 'unconfirmed_email') this.unconfirmedEmail,
       @JsonKey(name: 'display_email') this.displayEmail,
       this.password,
       this.role,
       final List<Identity>? identities,
-      this.entity})
+      this.entity,
+      @JsonKey(name: 'entity_id') this.entityId})
       : _identities = identities;
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
+  @override
+  final int? id;
   @override
   final String email;
   @override
@@ -221,10 +253,14 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @override
   final Entity? entity;
+//todo : relational required
+  @override
+  @JsonKey(name: 'entity_id')
+  final int? entityId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(email: $email, unconfirmedEmail: $unconfirmedEmail, displayEmail: $displayEmail, password: $password, role: $role, identities: $identities, entity: $entity)';
+    return 'User(id: $id, email: $email, unconfirmedEmail: $unconfirmedEmail, displayEmail: $displayEmail, password: $password, role: $role, identities: $identities, entity: $entity, entityId: $entityId)';
   }
 
   @override
@@ -232,13 +268,15 @@ class _$_User with DiagnosticableTreeMixin implements _User {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('unconfirmedEmail', unconfirmedEmail))
       ..add(DiagnosticsProperty('displayEmail', displayEmail))
       ..add(DiagnosticsProperty('password', password))
       ..add(DiagnosticsProperty('role', role))
       ..add(DiagnosticsProperty('identities', identities))
-      ..add(DiagnosticsProperty('entity', entity));
+      ..add(DiagnosticsProperty('entity', entity))
+      ..add(DiagnosticsProperty('entityId', entityId));
   }
 
   @override
@@ -246,6 +284,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_User &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
                 .equals(other.unconfirmedEmail, unconfirmedEmail) &&
@@ -255,20 +294,23 @@ class _$_User with DiagnosticableTreeMixin implements _User {
             const DeepCollectionEquality().equals(other.role, role) &&
             const DeepCollectionEquality()
                 .equals(other._identities, _identities) &&
-            const DeepCollectionEquality().equals(other.entity, entity));
+            const DeepCollectionEquality().equals(other.entity, entity) &&
+            const DeepCollectionEquality().equals(other.entityId, entityId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(unconfirmedEmail),
       const DeepCollectionEquality().hash(displayEmail),
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(role),
       const DeepCollectionEquality().hash(_identities),
-      const DeepCollectionEquality().hash(entity));
+      const DeepCollectionEquality().hash(entity),
+      const DeepCollectionEquality().hash(entityId));
 
   @JsonKey(ignore: true)
   @override
@@ -283,16 +325,20 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required final String email,
+      {final int? id,
+      required final String email,
       @JsonKey(name: 'unconfirmed_email') final String? unconfirmedEmail,
       @JsonKey(name: 'display_email') final String? displayEmail,
       final String? password,
       final Role? role,
       final List<Identity>? identities,
-      final Entity? entity}) = _$_User;
+      final Entity? entity,
+      @JsonKey(name: 'entity_id') final int? entityId}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
+  @override
+  int? get id;
   @override
   String get email;
   @override
@@ -309,6 +355,9 @@ abstract class _User implements User {
   List<Identity>? get identities;
   @override
   Entity? get entity;
+  @override //todo : relational required
+  @JsonKey(name: 'entity_id')
+  int? get entityId;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
