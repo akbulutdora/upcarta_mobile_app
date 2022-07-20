@@ -67,18 +67,9 @@ void main() {
       'should return a JSON map containing the proper data',
       () async {
         // act
-        final result = tUser.toJson();
+        final result = json.encode(tUser.toJson());
         // assert
-        final expectedJsonMap = {
-          'email': 'hello@upcarta.com',
-          'unconfirmed_email': null,
-          'display_email': null,
-          'password': null,
-          'role': null,
-          'identities': null,
-          'entity': null
-        };
-        expect(result, expectedJsonMap);
+        expect(result, fixture('user.json'));
       },
     );
   });
