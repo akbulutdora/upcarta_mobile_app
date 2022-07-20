@@ -4,8 +4,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'dart:core';
-import 'package:upcarta_mobile_app/routes/login/bloc/value_failure.dart';
+import 'package:upcarta_mobile_app/core/services/value_failure.dart';
 import 'package:upcarta_mobile_app/routes/login/login.dart';
+import 'package:upcarta_mobile_app/core/services/input_validation_service.dart';
 
 part 'login_state.dart';
 
