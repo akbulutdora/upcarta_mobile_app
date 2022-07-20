@@ -13,7 +13,7 @@ part 'curation.freezed.dart';
 part 'curation.g.dart';
 
 //ayni enumlari farkli isimlendirmek lazim mi farkli bir yerde mi tutmaliydik
-enum CurationCreatedAtAccuracy {
+enum CurationCreatedAtAccuracy{
   @JsonValue('year')
   year,
   @JsonValue('month')
@@ -23,8 +23,7 @@ enum CurationCreatedAtAccuracy {
   @JsonValue('hour')
   hour,
 }
-
-enum CurationType {
+enum CurationType{
   @JsonValue('internal')
   internal,
   @JsonValue('external')
@@ -43,18 +42,16 @@ enum CurationType {
   finished,
 }
 
-// TODO : collectiondan sonra ac
 @freezed
 class Curation with _$Curation {
   const factory Curation({
     int? id,
-    @JsonKey(name: 'entity_id', required: true) required int entityId,
+    @JsonKey(name: 'entity_id',required: true)required int entityId,
     Entity? entity,
     @JsonKey(name: 'created_at') DateTime? createdAt,
-    @JsonKey(name: 'created_at_accuracy')
-        CurationCreatedAtAccuracy? createdAtAccuracy,
+    @JsonKey(name: 'created_at_accuracy') CurationCreatedAtAccuracy? createdAtAccuracy,
     @JsonKey(name: 'created_at_str') String? createdAtStr,
-    @JsonKey(name: 'content_id', required: true) required int contentId,
+    @JsonKey(name: 'content_id', required: true)required int contentId,
     Content? content,
     @JsonKey(name: 'added_by') Entity? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
@@ -68,13 +65,13 @@ class Curation with _$Curation {
     //semada cikarilmis
     //@JsonKey(name: 'platform_id') int? platformId,
     //Platform? platform,
-    @JsonKey(name: 'collection_id') int? collectionId,
+    @JsonKey(name: 'collection_id')int? collectionId,
     Collection? collection,
     @JsonKey(name: 'source_content_id') int? sourceContentId,
     //to do: birbirlerinin icinde olunca ne olacak
     @JsonKey(name: 'source_content') Content? sourceContent,
+
   }) = _Curation;
 
-  factory Curation.fromJson(Map<String, Object?> json) =>
-      _$CurationFromJson(json);
+  factory Curation.fromJson(Map<String, Object?> json) => _$CurationFromJson(json);
 }
