@@ -32,7 +32,7 @@ Map<String, dynamic> _$$_TopicToJson(_$_Topic instance) => <String, dynamic>{
       'slug': instance.slug,
       'followers_count': instance.followersCount,
       'contents_count': instance.contentsCount,
-      'added_by': instance.addedBy,
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
       'keywords': instance.keywords,
       'inserted_at': instance.insertedAt?.toIso8601String(),

@@ -59,14 +59,14 @@ Map<String, dynamic> _$$_CurationToJson(_$_Curation instance) =>
     <String, dynamic>{
       'id': instance.id,
       'entity_id': instance.entityId,
-      'entity': instance.entity,
+      'entity': instance.entity?.toJson(),
       'created_at': instance.createdAt?.toIso8601String(),
       'created_at_accuracy':
           _$CurationCreatedAtAccuracyEnumMap[instance.createdAtAccuracy],
       'created_at_str': instance.createdAtStr,
       'content_id': instance.contentId,
-      'content': instance.content,
-      'added_by': instance.addedBy,
+      'content': instance.content?.toJson(),
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
       'type': _$CurationTypeEnumMap[instance.type],
       'verified_at': instance.verifiedAt?.toIso8601String(),
@@ -76,9 +76,9 @@ Map<String, dynamic> _$$_CurationToJson(_$_Curation instance) =>
       'comment': instance.comment,
       'pos': instance.pos,
       'collection_id': instance.collectionId,
-      'collection': instance.collection,
+      'collection': instance.collection?.toJson(),
       'source_content_id': instance.sourceContentId,
-      'source_content': instance.sourceContent,
+      'source_content': instance.sourceContent?.toJson(),
     };
 
 const _$CurationCreatedAtAccuracyEnumMap = {

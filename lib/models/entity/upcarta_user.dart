@@ -25,6 +25,7 @@ class User with _$User {
     required String email,
     @JsonKey(name: 'unconfirmed_email') String? unconfirmedEmail,
     @JsonKey(name: 'display_email') String? displayEmail,
+    @JsonKey(name: 'confirmed_at') DateTime? confirmedAt,
     String? password,
     Role? role,
     List<Identity>? identities,

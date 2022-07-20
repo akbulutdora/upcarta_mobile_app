@@ -63,8 +63,8 @@ Map<String, dynamic> _$$_CollectionToJson(_$_Collection instance) =>
       'id': instance.id,
       'title': instance.title,
       'entity_id': instance.entityId,
-      'entity': instance.entity,
-      'added_by': instance.addedBy,
+      'entity': instance.entity?.toJson(),
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
       'description': instance.description,
       'slug': instance.slug,
@@ -75,14 +75,15 @@ Map<String, dynamic> _$$_CollectionToJson(_$_Collection instance) =>
       'created_at_accuracy':
           _$CollectionCreatedAtAccuracyEnumMap[instance.createdAtAccuracy],
       'link': instance.link,
-      'source_content': instance.sourceContent,
+      'source_content': instance.sourceContent?.toJson(),
       'source_content_id': instance.sourceContentId,
       'visibility': _$CollectionVisibilityEnumMap[instance.visibility],
       'verified_at': instance.verifiedAt?.toIso8601String(),
       'featured_at': instance.featuredAt?.toIso8601String(),
       'recommended': instance.recommended,
       'published_at': instance.publishedAt?.toIso8601String(),
-      'collection_topics': instance.collectionTopics,
+      'collection_topics':
+          instance.collectionTopics?.map((e) => e.toJson()).toList(),
       'inserted_at': instance.insertedAt?.toIso8601String(),
     };
 

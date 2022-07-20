@@ -28,7 +28,7 @@ Map<String, dynamic> _$$_TopicFollowingToJson(_$_TopicFollowing instance) =>
     <String, dynamic>{
       'id': instance.id,
       'entity_id': instance.entityId,
-      'entity': instance.entity,
+      'entity': instance.entity?.toJson(),
       'topic_id': instance.topicId,
-      'topic': instance.topic,
+      'topic': instance.topic?.toJson(),
     };

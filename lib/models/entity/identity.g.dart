@@ -37,7 +37,7 @@ Map<String, dynamic> _$$_IdentityToJson(_$_Identity instance) =>
       'phone': instance.phone,
       'token': instance.token,
       'secret': instance.secret,
-      'user': instance.user,
+      'user': instance.user?.toJson(),
       'user_id': instance.userId,
       'inserted_at': instance.insertedAt?.toIso8601String(),
       'updated_at': instance.updatedAt?.toIso8601String(),

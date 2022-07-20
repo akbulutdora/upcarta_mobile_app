@@ -32,11 +32,11 @@ _$_ContentTopic _$$_ContentTopicFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$$_ContentTopicToJson(_$_ContentTopic instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'content': instance.content,
+      'content': instance.content?.toJson(),
       'content_id': instance.contentId,
-      'topic': instance.topic,
+      'topic': instance.topic?.toJson(),
       'topic_id': instance.topicId,
       'pos': instance.pos,
-      'added_by': instance.addedBy,
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
     };

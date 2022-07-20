@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:upcarta_mobile_app/models/entity/entity.dart';
@@ -8,35 +7,34 @@ import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import '../../fixtures/fixture_reader.dart';
 
 void main() {
-  const tUser = User(
+  final tUser = User(
       id: null,
       email: 'hello@upcarta.com',
       unconfirmedEmail: null,
       displayEmail: null,
+      confirmedAt: DateTime.parse('2021-04-14 08:16:52.966580Z'),
       password: null,
       role: Role.user,
       identities: [],
-      entity: Entity(
+      entity: const Entity(
           id: null,
           name: 'Hello',
           username: 'helloupcarta',
           description: null,
-          user: null,
           hasUser: true,
           followersCount: 0,
           followedEntitiesCount: 0,
           followedTopicsCount: 0,
-          addedContentsCount: null,
           followedContentsCount: 0,
+          addedBy: null,
+          addedById: null,
           twitter: null,
-          twitterID: null,
-          featuredAt: null,
-          insertedAt: null,
-          updatedAt: null),
+          website: null,
+          linkedin: null,
+          wikipedia: null,
+          followingEntity: null,
+          channelEntities: null),
       entityId: null);
-
-  User tUser2 = User.fromJson(json.decode(fixture('user.json')));
-  print(tUser2.toString());
 
   test(
     'should be a subclass of User entity',
@@ -68,17 +66,10 @@ void main() {
       () async {
         // act
         final result = tUser.toJson();
+        // result.removeWhere((key, value) => value == null);
         // assert
-        final expectedJsonMap = {
-          'email': 'hello@upcarta.com',
-          'unconfirmed_email': null,
-          'display_email': null,
-          'password': null,
-          'role': null,
-          'identities': null,
-          'entity': null
-        };
-        expect(result, expectedJsonMap);
+        print(tUser.toString());
+        expect(result, json.decode(fixture('user.json')));
       },
     );
   });

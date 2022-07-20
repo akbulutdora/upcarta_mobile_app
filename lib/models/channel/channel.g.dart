@@ -19,7 +19,8 @@ Map<String, dynamic> _$$_ChannelToJson(_$_Channel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'link': instance.link,
-      'channel_entities': instance.channelEntities,
+      'channel_entities':
+          instance.channelEntities?.map((e) => e.toJson()).toList(),
       'type': _$ChannelTypeEnumMap[instance.type],
     };
 

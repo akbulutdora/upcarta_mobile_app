@@ -26,6 +26,8 @@ mixin _$User {
   String? get unconfirmedEmail => throw _privateConstructorUsedError;
   @JsonKey(name: 'display_email')
   String? get displayEmail => throw _privateConstructorUsedError;
+  @JsonKey(name: 'confirmed_at')
+  DateTime? get confirmedAt => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
   Role? get role => throw _privateConstructorUsedError;
   List<Identity>? get identities => throw _privateConstructorUsedError;
@@ -48,6 +50,7 @@ abstract class $UserCopyWith<$Res> {
       String email,
       @JsonKey(name: 'unconfirmed_email') String? unconfirmedEmail,
       @JsonKey(name: 'display_email') String? displayEmail,
+      @JsonKey(name: 'confirmed_at') DateTime? confirmedAt,
       String? password,
       Role? role,
       List<Identity>? identities,
@@ -71,6 +74,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? email = freezed,
     Object? unconfirmedEmail = freezed,
     Object? displayEmail = freezed,
+    Object? confirmedAt = freezed,
     Object? password = freezed,
     Object? role = freezed,
     Object? identities = freezed,
@@ -94,6 +98,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.displayEmail
           : displayEmail // ignore: cast_nullable_to_non_nullable
               as String?,
+      confirmedAt: confirmedAt == freezed
+          ? _value.confirmedAt
+          : confirmedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -139,6 +147,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String email,
       @JsonKey(name: 'unconfirmed_email') String? unconfirmedEmail,
       @JsonKey(name: 'display_email') String? displayEmail,
+      @JsonKey(name: 'confirmed_at') DateTime? confirmedAt,
       String? password,
       Role? role,
       List<Identity>? identities,
@@ -164,6 +173,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? email = freezed,
     Object? unconfirmedEmail = freezed,
     Object? displayEmail = freezed,
+    Object? confirmedAt = freezed,
     Object? password = freezed,
     Object? role = freezed,
     Object? identities = freezed,
@@ -187,6 +197,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.displayEmail
           : displayEmail // ignore: cast_nullable_to_non_nullable
               as String?,
+      confirmedAt: confirmedAt == freezed
+          ? _value.confirmedAt
+          : confirmedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -219,6 +233,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       required this.email,
       @JsonKey(name: 'unconfirmed_email') this.unconfirmedEmail,
       @JsonKey(name: 'display_email') this.displayEmail,
+      @JsonKey(name: 'confirmed_at') this.confirmedAt,
       this.password,
       this.role,
       final List<Identity>? identities,
@@ -238,6 +253,9 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   @JsonKey(name: 'display_email')
   final String? displayEmail;
+  @override
+  @JsonKey(name: 'confirmed_at')
+  final DateTime? confirmedAt;
   @override
   final String? password;
   @override
@@ -260,7 +278,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, email: $email, unconfirmedEmail: $unconfirmedEmail, displayEmail: $displayEmail, password: $password, role: $role, identities: $identities, entity: $entity, entityId: $entityId)';
+    return 'User(id: $id, email: $email, unconfirmedEmail: $unconfirmedEmail, displayEmail: $displayEmail, confirmedAt: $confirmedAt, password: $password, role: $role, identities: $identities, entity: $entity, entityId: $entityId)';
   }
 
   @override
@@ -272,6 +290,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('unconfirmedEmail', unconfirmedEmail))
       ..add(DiagnosticsProperty('displayEmail', displayEmail))
+      ..add(DiagnosticsProperty('confirmedAt', confirmedAt))
       ..add(DiagnosticsProperty('password', password))
       ..add(DiagnosticsProperty('role', role))
       ..add(DiagnosticsProperty('identities', identities))
@@ -290,6 +309,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
                 .equals(other.unconfirmedEmail, unconfirmedEmail) &&
             const DeepCollectionEquality()
                 .equals(other.displayEmail, displayEmail) &&
+            const DeepCollectionEquality()
+                .equals(other.confirmedAt, confirmedAt) &&
             const DeepCollectionEquality().equals(other.password, password) &&
             const DeepCollectionEquality().equals(other.role, role) &&
             const DeepCollectionEquality()
@@ -306,6 +327,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(unconfirmedEmail),
       const DeepCollectionEquality().hash(displayEmail),
+      const DeepCollectionEquality().hash(confirmedAt),
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(role),
       const DeepCollectionEquality().hash(_identities),
@@ -329,6 +351,7 @@ abstract class _User implements User {
       required final String email,
       @JsonKey(name: 'unconfirmed_email') final String? unconfirmedEmail,
       @JsonKey(name: 'display_email') final String? displayEmail,
+      @JsonKey(name: 'confirmed_at') final DateTime? confirmedAt,
       final String? password,
       final Role? role,
       final List<Identity>? identities,
@@ -347,6 +370,9 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'display_email')
   String? get displayEmail;
+  @override
+  @JsonKey(name: 'confirmed_at')
+  DateTime? get confirmedAt;
   @override
   String? get password;
   @override

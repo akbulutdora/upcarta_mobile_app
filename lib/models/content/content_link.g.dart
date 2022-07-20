@@ -29,7 +29,7 @@ Map<String, dynamic> _$$_ContentLinkToJson(_$_ContentLink instance) =>
     <String, dynamic>{
       'id': instance.id,
       'link': instance.link,
-      'content': instance.content,
+      'content': instance.content?.toJson(),
       'content_id': instance.contentId,
       'pos': instance.pos,
       'body': instance.body,
@@ -37,5 +37,5 @@ Map<String, dynamic> _$$_ContentLinkToJson(_$_ContentLink instance) =>
       'has_ratings': instance.hasRatings,
       'episode_number': instance.episodeNumber,
       'duration': instance.duration,
-      'details': instance.details,
+      'details': instance.details?.toJson(),
     };
