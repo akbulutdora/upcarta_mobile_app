@@ -12,71 +12,124 @@ import '../../fixtures/fixture_reader.dart';
 
 void main() {
   final Content tContent = Content(
-    id: null,
-    title: 'Adulting Fast and Slow',
-    description: 'We live in a society of adult-like children and childish adults. Kids have never had more information at their fingertips, so they’re growing up faster than ever. From a young age, they can watch violent war clips on YouTube, Dan Bilzerian videos on Instagram, and Shakira getting...',
-    slug: 'adulting-fast-and-slow',
-    type: Type.article,
-    parent: null,
-    children: null,
-    addedBy: null,
-    addedById: null,
-    contentTopics: [],
-    contributions: [
-      const Contribution(id: null,
-          role: ContributionRole.author,
-          content: null,
-          contentId: 1279,
-          entity: Entity(id: null,
-              name: 'David Perell',
-              username: 'david_perell',
-              description: '\"The Writing Guy\" | I tweet about writing, learning and business | My Podcast: https://t.co/1NhTBHcK8l | My writing school: https://t.co/bEFFy6bVaC',
-              user: null,
-              hasUser: false,
-              followersCount: 2,
-              followedEntitiesCount: 0,
-              followedTopicsCount: 0,
-              addedContentsCount: null,
-              followedContentsCount: 0,
-              twitter: 'david_perell',
-              twitterID: 240049622,
-              featuredAt: null,
-              insertedAt: null,
-              updatedAt: null),
-          entityId: 19,
-          pos: 1,
-          addedBy: null,
-          addedById: null)
-    ],
-    contentLinks: [
-      const ContentLink(id: null,
-          link: 'https://perell.com/essay/adulting-fast-and-slow/',
-          content: null,
-          contentId: null,
-          pos: null,
-          body: null,
-          hasEmbed: null,
-          hasRatings: null,
-          episodeNumber: null,
-          duration: null,
-          details: null)
-    ],
-    contentLinksCount: null,
-    recommendersCount: null,
-    followersCount: null,
-    publicCollectionsCount: 0,
-    featuredRecommendersCount: 0,
-    contextRecommendersCount: 0,
-    createdAt: DateTime.parse('2020-04-07T20:19:04Z'),
-    createdAtAccuracy: CreatedAtAccuracy.hour,
-    followable: null,
-    personalCurations: null,
-    featuredAt: null,
-    insertedAt: DateTime.parse('2021-03-30T20:06:25.678846Z'),
-    updatedAt: null,
+      id: null,
+      title: 'Adulting Fast and Slow',
+      description: 'We live in a society of adult-like children and childish adults. Kids have never had more information at their fingertips, so they’re growing up faster than ever. From a young age, they can watch violent war clips on YouTube, Dan Bilzerian videos on Instagram, and Shakira getting...',
+      slug: 'adulting - fast - and - slow',
+      type: Type.article,
+      parent: null,
+      children: null,
+      addedBy: null,
+      addedById: null,
+      contentTopics: [],
+      contributions:
+      [
+        Contribution(
+            id: null,
+            role: ContributionRole.author,
+            content: null,
+            contentId: 1279,
+            entity: Entity(
+                id: null,
+                name: 'David Perell',
+                username: 'david_perell',
+                description: '\"The Writing Guy\" | I tweet about writing, learning and business | My Podcast: https://t.co/1NhTBHcK8l | My writing school: https://t.co/bEFFy6bVaC',
+                hasUser: false,
+                followersCount: 2,
+                followedEntitiesCount: 0,
+                followedTopicsCount: 0,
+                followedContentsCount: 0,
+                addedBy: null,
+                addedById: null,
+                twitter: 'david_perell',
+                website: null,
+                linkedin: null,
+                wikipedia: null,
+                followingEntity: null,
+                channelEntities: null),
+            entityId: 19,
+            pos: 1,
+            addedBy: null,
+            addedById: null)
+      ],
+      contentLinks: [
+        ContentLink(id: null,
+            link: 'https://perell.com/essay/adulting-fast-and-slow/',
+            content: null,
+            contentId: null,
+            pos: null,
+            body: null,
+            hasEmbed: null,
+            hasRatings: null,
+            episodeNumber: null,
+            duration: null,
+            details: null)
+      ],
+      contentLinksCount: null,
+      recommendersCount: null,
+      followersCount: null,
+      publicCollectionsCount: 0,
+      featuredRecommendersCount: 0,
+      contextRecommendersCount: 0,
+      createdAt: DateTime.parse('2020-04-07 20:19:04.000Z'),
+      createdAtAccuracy: CreatedAtAccuracy.hour,
+      followable: null,
+      personalCurations: null,
+      featuredAt: null,
+      insertedAt: DateTime.parse('2021-03-30 20:06:25.678846Z'),
+      updatedAt: null
   );
 
   Content tContent2 = Content.fromJson(json.decode(fixture('content.json')));
   print(tContent2.toString());
+
   if(tContent2.toString() == tContent.toString()) print('olmus');
+  group('fromJson',(){
+    test(
+    'should return a valid Content model when JSON is proper Content',
+    () async{
+        // arrange
+        String contentFixture = fixture('content.json');
+
+        final Map<String, dynamic> jsonMap = json.decode(contentFixture);
+        // act
+        final result = Content.fromJson(jsonMap);
+        // assert
+        expect(result, tContent);
+      },
+    );
+
+  });
+  group('toJson', (){
+    test('should return a JSON map containing the proper data',
+      () async {
+        // act
+        final result = tContent.toJson();
+        // result.removeWhere((key, value) => value == null);
+        // assert
+        final real = json.decode(fixture('content.json'));
+        result.forEach((k,v){
+          if(real[k] != v){
+              if(v == DateTime){
+                if(DateTime.parse(real[k]) == v){
+                  print('patlican===');
+                  print(k);
+                }
+              }
+            print('---------------------');
+            print(k);
+            print('real ==');
+            print(real[k]);
+            print('result==');
+            print(v);
+            print('---------------------');
+          }
+        });
+
+        expect(result, real);
+      },
+    );
+
+  });
+
 }

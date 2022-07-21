@@ -11,6 +11,9 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       email: json['email'] as String,
       unconfirmedEmail: json['unconfirmed_email'] as String?,
       displayEmail: json['display_email'] as String?,
+      confirmedAt: json['confirmed_at'] == null
+          ? null
+          : DateTime.parse(json['confirmed_at'] as String),
       password: json['password'] as String?,
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']),
       identities: (json['identities'] as List<dynamic>?)
@@ -27,6 +30,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'email': instance.email,
       'unconfirmed_email': instance.unconfirmedEmail,
       'display_email': instance.displayEmail,
+      'confirmed_at': instance.confirmedAt?.toIso8601String(),
       'password': instance.password,
       'role': _$RoleEnumMap[instance.role],
       'identities': instance.identities,
