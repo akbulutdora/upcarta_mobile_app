@@ -31,16 +31,52 @@ class _ContentCardState extends State<ContentCard> {
     return isTweet
         ? Card(
             elevation: 0,
+            margin: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                side: BorderSide(color: Theme.of(context).hintColor)),
+            side: BorderSide(color: Theme.of(context).appBarTheme.backgroundColor!),),
             child: Padding(
-              padding: EdgeInsets.fromLTRB(12.w, 14.h, 12.w, 14.h),
+              padding: EdgeInsets.fromLTRB(12.w, 18.h, 12.w, 18.h),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.thumb_up),
+                          SizedBox(width: 8,),
+                          Text('Recommended by Person A'),
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        dense: true,
+                        leading: CircleAvatar(radius: 20,),
+                        title: Text('Person A'),
+                        subtitle: Text('This is a great movie. I highly recommend it.'
+                            'This is a great movie. I highly recommend it.'
+                            'This is a great movie. I highly recommend it.'
+                            'This is a great movie. I highly recommend it.'),
+                      ),
+                      /*ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        dense: true,
+                        leading: CircleAvatar(radius: 20,),
+                        title: Text('Person BD'),
+                        subtitle: Text('This is a great movie. I highly recommend it.'
+                            'This is a great movie. I highly recommend it.'
+                            'This is a great movie. I highly recommend it.'
+                            'This is a great movie. I highly recommend it.'
+                            'This is a great movie. I highly recommend it.'),
+                      ),*/
+
+                    ],
+
+                  ),
+                  SizedBox(height: 10,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -240,11 +276,7 @@ class _ContentCardState extends State<ContentCard> {
                       'color': '0xFF5322E6'
                     },
                   ]),
-                  // ListTile(
-                  //   title: Text(content.title, style: Theme.of(context).textTheme.bodyText1,),
-                  //   subtitle: Text('Lorem ipsum dolor sit amet'),
-                  //   trailing: Text("Type: " + content.contentType.getString()),
-                  // ),
+
                 ],
               ),
             ),

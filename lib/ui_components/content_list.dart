@@ -16,15 +16,14 @@ class _ContentListState extends State<ContentList> {
     final List<Content> contents = widget.contentList;
 
     return Expanded(
-      child: ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(
-                height: 20,
-              ),
-          padding: const EdgeInsets.all(8),
-          itemCount: contents.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ContentCard(content: contents[index]);
-          }),
+      child: Align(
+        child: ListView.separated(
+            separatorBuilder: (context, index) => const Divider(thickness: 1.5,),
+            itemCount: contents.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ContentCard(content: contents[index]);
+            }),
+      ),
     );
   }
 }
