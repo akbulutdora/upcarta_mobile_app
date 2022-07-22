@@ -15,15 +15,15 @@ class _CollectionsAndAsksRecentViewState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
+      body: ListView(
+          children: [
         SingleChildScrollView(
           child: SizedBox(
             height: 580,
             child: Expanded(
               child: ListView.builder(
-                // shrinkWrap: true,
+                //shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 itemCount: contents.length,
                 itemBuilder: (BuildContext context, int index) {

@@ -63,7 +63,7 @@ const kBoldCredentialsTextStyle = TextStyle(
 const contentCardTitleStyle = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.w600,
-    fontSize: 13,
+    fontSize: 18,
     );
 
 
@@ -121,11 +121,12 @@ const splashTitleStyle = TextStyle(
   fontSize: 40,
 );
 /// Used in collection card ('Owner')
-const kTextStyle10 = TextStyle(
+const kTextStyle12 = TextStyle(
     fontFamily: 'SF Compact Text',
     fontWeight: FontWeight.normal,
     fontSize: 12,
 );
+
 /// Error builder content card text when twitter image not found in
 const kTextStyle11 = TextStyle(
     fontFamily: 'SF Compact Text',
@@ -155,7 +156,7 @@ final outlinedButtonStyle = ButtonStyle(
   ),
   shape: MaterialStateProperty.all(
     RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(10),
     ),
   ),
 );

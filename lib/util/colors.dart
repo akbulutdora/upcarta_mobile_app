@@ -10,9 +10,10 @@ class AppColors {
   static const Color gray3ContentText =  Color(0xff949494);
   static const Color black = Colors.black;
   static const Color lightCardInside = Color(0xfff1f1f1);
-  static const Color lightDivider = Color(0xff949494);
+  static const Color lightDivider = Color(0xffC4C4C4);
   //BLUES
   static const Color upcartaBlue =  Color(0xff4e89fd);
+  static const Color followBlue = Color(0xff007BFF);
   static const Color darkBlue =  Color(0xff0e1e4e);
 
 

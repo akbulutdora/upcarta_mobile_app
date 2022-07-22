@@ -24,13 +24,10 @@ class _DateRangePickerChipsState extends State<DateRangePickerChips> {
           dateRangeNames.length,
           (int index) {
             return ChoiceChip(
-              selectedColor: Theme.of(context).chipTheme.backgroundColor,
-              side: Theme.of(context).chipTheme.side,
               label: Text(
-                dateRangeNames[index],
-                style: TextStyle(
-                  color: _dateRangeValue == index ? Theme.of(context).chipTheme.selectedColor : Theme.of(context).chipTheme.disabledColor,
-                ),
+                dateRangeNames[index]),
+              labelStyle: TextStyle(
+                color: _dateRangeValue == index ? Theme.of(context).chipTheme.disabledColor : Colors.black,
               ),
               selected: _dateRangeValue == index,
               onSelected: (bool selected) {

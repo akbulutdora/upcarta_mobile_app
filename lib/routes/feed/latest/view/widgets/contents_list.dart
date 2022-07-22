@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/bloc/latest_feed_bloc.dart';
 import 'package:upcarta_mobile_app/routes/feed/latest/view/widgets/content_list_item.dart';
+import 'package:upcarta_mobile_app/ui_components/profile_card.dart';
+import 'package:upcarta_mobile_app/ui_components/profile_page.dart';
 
 class LatestContentList extends StatefulWidget {
   const LatestContentList({Key? key}) : super(key: key);
@@ -32,7 +34,7 @@ class _LatestContentListState extends State<LatestContentList> {
                           .read<LatestFeedBloc>()
                           .add(LatestFeedEventContentRefreshed());
                     },
-                    child: const Text('Failed to fetch posts!')));
+                    child: const ProfileCard()));
           case LatestFeedStatus.success:
             if (state.contents.isEmpty) {
               return Center(

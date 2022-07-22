@@ -32,15 +32,14 @@ class _ContentTypePickerChipsState extends State<ContentTypePickerChips> {
           contentTypeDict.length,
           (int index) {
             return ChoiceChip(
-              selectedColor: Theme.of(context).chipTheme.backgroundColor,
-              side: Theme.of(context).chipTheme.side,
+
               avatar: Icon(contentTypeDict[index]['icon'],
-              color: _contentTypeValue == index ? Theme.of(context).chipTheme.selectedColor : Theme.of(context).chipTheme.disabledColor,),
+              color: _contentTypeValue == index ? Theme.of(context).chipTheme.backgroundColor: Colors.black,),
               label: Text(
                 contentTypeDict[index]['name'],
               ),
               labelStyle: TextStyle(
-                color: _contentTypeValue == index ? Theme.of(context).chipTheme.selectedColor : Theme.of(context).chipTheme.disabledColor,
+                color: _contentTypeValue == index ? Theme.of(context).chipTheme.disabledColor : Colors.black,
               ),
               selected: _contentTypeValue == index,
               onSelected: (bool selected) {

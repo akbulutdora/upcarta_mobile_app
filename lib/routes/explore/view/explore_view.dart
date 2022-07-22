@@ -64,15 +64,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
         ),
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
-        elevation: 0,
+        elevation: 0.8,
         titleSpacing: 0.0,
         title: Text(
           'Explore',
-          style: TextStyle(
-              fontFamily: 'SFCompactText-Medium',
-              color: Theme.of(context).iconTheme.color,
-              fontWeight: FontWeight.w500,
-              fontSize: 22),
+          style: kAppBarTitleTextStyle,
         ),
       ),
       body: SingleChildScrollView(

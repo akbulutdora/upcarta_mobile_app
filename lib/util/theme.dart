@@ -5,8 +5,10 @@ import 'package:upcarta_mobile_app/util/colors.dart';
 
 
 ThemeData lightTheme = ThemeData(
-
+  scaffoldBackgroundColor: AppColors.white,
   primaryColor: AppColors.upcartaBlue,
+  primaryColorLight: AppColors.followBlue,
+
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     foregroundColor: Colors.white,
     backgroundColor: AppColors.upcartaBlue,
@@ -17,16 +19,21 @@ ThemeData lightTheme = ThemeData(
     foregroundColor: AppColors.black,
     shadowColor: AppColors.gray1BoxFrame
   ),
-  cardColor: AppColors.lightCardInside,
+  cardTheme: CardTheme(
+    shape: RoundedRectangleBorder(
+      side: BorderSide(color: AppColors.lightDivider)
+    )
+  ),
   hintColor: AppColors.gray3ContentText,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     selectedItemColor: AppColors.black,
     unselectedItemColor: AppColors.gray3ContentText,
     backgroundColor: AppColors.white,
   ),
+
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(Colors.transparent),
+      backgroundColor: MaterialStateProperty.all(AppColors.upcartaBlue),
       side: MaterialStateProperty.all(
         const BorderSide(
           color: AppColors.upcartaBlue,
@@ -34,7 +41,7 @@ ThemeData lightTheme = ThemeData(
       ),
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(6),
         ),
       ),
     ),
@@ -60,9 +67,9 @@ ThemeData lightTheme = ThemeData(
 
 
   chipTheme: const ChipThemeData(
-    disabledColor: AppColors.black,
-    selectedColor: AppColors.white,
-    backgroundColor: AppColors.upcartaBlue,
+    disabledColor: AppColors.white,
+    selectedColor: AppColors.upcartaBlue,
+    backgroundColor: AppColors.white,
     shadowColor: AppColors.gray1BoxFrame,
     side: BorderSide(color: AppColors.gray1BoxFrame),
   ),
@@ -74,7 +81,10 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
+
   primaryColor: AppColors.darkPrimary,
+  primaryColorLight: AppColors.darkCardInside,
+    primaryColorDark: AppColors.white,
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     foregroundColor: Colors.white,
     backgroundColor: AppColors.darkPrimary,
@@ -102,7 +112,7 @@ ThemeData darkTheme = ThemeData(
       ),
     ),
   ),
-  indicatorColor: AppColors.lightDivider,
+  indicatorColor: AppColors.darkPrimary,
 
   dividerTheme: const DividerThemeData(
     color: AppColors.darkDivider,

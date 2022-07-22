@@ -44,35 +44,34 @@ class _SeeAllCollectionsAndAsksViewState
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(0),
 
-          child: SingleChildScrollView(
-            child: Column(
-              children: const [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: TabBar(
-                    indicatorSize: TabBarIndicatorSize.label,
-                    indicatorWeight: 2.25,
-                    labelPadding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                    indicatorPadding: EdgeInsets.all(0),
-                    isScrollable: true,
-                    tabs: <Widget>[Tab(text: 'Recent'), Tab(text: 'Popular')],
-                    unselectedLabelStyle: kTabBarTextStyle,
-                    labelStyle: kTabBarTextStyle,
-                  ),
+          child: ListView(
+
+            children: const [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TabBar(
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicatorWeight: 2.25,
+                  labelPadding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                  indicatorPadding: EdgeInsets.all(0),
+                  isScrollable: true,
+                  tabs: <Widget>[Tab(text: 'Recent'), Tab(text: 'Popular')],
+                  unselectedLabelStyle: kTabBarTextStyle,
+                  labelStyle: kTabBarTextStyle,
                 ),
-                SizedBox(
-                  height: 580,
-                  child: TabBarView(
-                    children: <Widget>[
-                      CollectionsAndAsksRecentView(),
-                      CollectionsAndAsksPopularView()
-                    ],
-                  ),
-                )
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 580,
+                child: TabBarView(
+                  children: <Widget>[
+                    CollectionsAndAsksRecentView(),
+                    CollectionsAndAsksPopularView()
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),
