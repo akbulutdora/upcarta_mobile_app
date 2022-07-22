@@ -16,7 +16,7 @@ _$_Content _$$_ContentFromJson(Map<String, dynamic> json) {
     title: json['title'] as String,
     description: json['description'] as String?,
     slug: json['slug'] as String?,
-    type: $enumDecodeNullable(_$TypeEnumMap, json['type']),
+    type: $enumDecodeNullable(_$ContentTypeEnumMap, json['type']),
     parent: json['parent'] == null
         ? null
         : Content.fromJson(json['parent'] as Map<String, dynamic>),
@@ -47,19 +47,20 @@ _$_Content _$$_ContentFromJson(Map<String, dynamic> json) {
         : DateTime.parse(json['created_at'] as String),
     createdAtAccuracy: $enumDecodeNullable(
         _$CreatedAtAccuracyEnumMap, json['created_at_accuracy']),
+    createdAtStr: json['created_at_str'] as String?,
     followable: json['followable'] as bool?,
     personalCurations: (json['personal_curations'] as List<dynamic>?)
         ?.map((e) => Curation.fromJson(e as Map<String, dynamic>))
         .toList(),
-    featuredAt: json['featured_at'] == null
+    personalCollections: (json['personal_collections'] as List<dynamic>?)
+        ?.map((e) => Collection.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    contentFollowing: json['content_following'] == null
         ? null
-        : DateTime.parse(json['featured_at'] as String),
+        : User.fromJson(json['content_following'] as Map<String, dynamic>),
     insertedAt: json['inserted_at'] == null
         ? null
         : DateTime.parse(json['inserted_at'] as String),
-    updatedAt: json['updated_at'] == null
-        ? null
-        : DateTime.parse(json['updated_at'] as String),
   );
 }
 
@@ -69,14 +70,14 @@ Map<String, dynamic> _$$_ContentToJson(_$_Content instance) =>
       'title': instance.title,
       'description': instance.description,
       'slug': instance.slug,
-      'type': _$TypeEnumMap[instance.type],
-      'parent': instance.parent,
-      'children': instance.children,
-      'added_by': instance.addedBy,
+      'type': _$ContentTypeEnumMap[instance.type],
+      'parent': instance.parent?.toJson(),
+      'children': instance.children?.map((e) => e.toJson()).toList(),
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
-      'content_topics': instance.contentTopics,
-      'contributions': instance.contributions,
-      'content_links': instance.contentLinks,
+      'content_topics': instance.contentTopics?.map((e) => e.toJson()).toList(),
+      'contributions': instance.contributions?.map((e) => e.toJson()).toList(),
+      'content_links': instance.contentLinks.map((e) => e.toJson()).toList(),
       'content_links_count': instance.contentLinksCount,
       'recommenders_count': instance.recommendersCount,
       'followers_count': instance.followersCount,
@@ -86,35 +87,38 @@ Map<String, dynamic> _$$_ContentToJson(_$_Content instance) =>
       'created_at': instance.createdAt?.toIso8601String(),
       'created_at_accuracy':
           _$CreatedAtAccuracyEnumMap[instance.createdAtAccuracy],
+      'created_at_str': instance.createdAtStr,
       'followable': instance.followable,
-      'personal_curations': instance.personalCurations,
-      'featured_at': instance.featuredAt?.toIso8601String(),
+      'personal_curations':
+          instance.personalCurations?.map((e) => e.toJson()).toList(),
+      'personal_collections':
+          instance.personalCollections?.map((e) => e.toJson()).toList(),
+      'content_following': instance.contentFollowing?.toJson(),
       'inserted_at': instance.insertedAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
     };
 
-const _$TypeEnumMap = {
-  Type.video: 'video',
-  Type.article: 'article',
-  Type.podcastEpisode: 'podcast_episode',
-  Type.book: 'book',
-  Type.course: 'course',
-  Type.tweet: 'tweet',
-  Type.presentation: 'presentation',
-  Type.paper: 'paper',
-  Type.audio: 'audio',
-  Type.documentary: 'documentary',
-  Type.website: 'website',
-  Type.report: 'report',
-  Type.transcript: 'transcript',
-  Type.forumPost: 'forum_post',
-  Type.movie: 'movie',
-  Type.series: 'series',
-  Type.channel: 'channel',
-  Type.blog: 'blog',
-  Type.newsletter: 'newsletter',
-  Type.podcast: 'podcast',
-  Type.tvEpisode: 'tv_episode',
+const _$ContentTypeEnumMap = {
+  ContentType.video: 'video',
+  ContentType.article: 'article',
+  ContentType.podcastEpisode: 'podcast_episode',
+  ContentType.book: 'book',
+  ContentType.course: 'course',
+  ContentType.tweet: 'tweet',
+  ContentType.presentation: 'presentation',
+  ContentType.paper: 'paper',
+  ContentType.audio: 'audio',
+  ContentType.documentary: 'documentary',
+  ContentType.website: 'website',
+  ContentType.report: 'report',
+  ContentType.transcript: 'transcript',
+  ContentType.forumPost: 'forum_post',
+  ContentType.movie: 'movie',
+  ContentType.series: 'series',
+  ContentType.channel: 'channel',
+  ContentType.blog: 'blog',
+  ContentType.newsletter: 'newsletter',
+  ContentType.podcast: 'podcast',
+  ContentType.tvEpisode: 'tv_episode',
 };
 
 const _$CreatedAtAccuracyEnumMap = {

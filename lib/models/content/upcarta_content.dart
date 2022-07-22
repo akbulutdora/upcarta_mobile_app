@@ -7,6 +7,8 @@ import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/models/content/topic.dart';
 import 'package:upcarta_mobile_app/models/content/details.dart';
 import 'package:upcarta_mobile_app/models/content/curation.dart';
+import 'package:upcarta_mobile_app/models/content/collection.dart';
+
 
 import 'content_link.dart';
 import 'content_topic.dart';
@@ -15,7 +17,7 @@ part 'upcarta_content.freezed.dart';
 
 part 'upcarta_content.g.dart';
 
-enum Type {
+enum ContentType {
   @JsonValue('video')
   video,
   @JsonValue('article')
@@ -77,7 +79,7 @@ class Content with _$Content {
     required String title,
     String? description,
     String? slug,
-    Type? type,
+    ContentType? type,
     // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
     Content? parent,
     List<Content>? children,
@@ -103,13 +105,15 @@ class Content with _$Content {
 
     @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name: 'created_at_accuracy') CreatedAtAccuracy? createdAtAccuracy,
+    @JsonKey(name: 'created_at_str') String? createdAtStr,
 
     bool? followable,
     @JsonKey(name: 'personal_curations') List<Curation>? personalCurations,
 
-    @JsonKey(name: 'featured_at') DateTime? featuredAt,
+    @JsonKey(name: 'personal_collections') List<Collection>? personalCollections,
+
+    @JsonKey(name: 'content_following') User? contentFollowing,
     @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-    @JsonKey(name: 'updated_at') DateTime? updatedAt,
 
   }) = _Content;
 

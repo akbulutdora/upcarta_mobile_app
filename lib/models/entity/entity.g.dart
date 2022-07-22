@@ -42,12 +42,13 @@ Map<String, dynamic> _$$_EntityToJson(_$_Entity instance) => <String, dynamic>{
       'followed_entities_count': instance.followedEntitiesCount,
       'followed_topics_count': instance.followedTopicsCount,
       'followed_contents_count': instance.followedContentsCount,
-      'added_by': instance.addedBy,
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
       'twitter': instance.twitter,
       'website': instance.website,
       'linkedin': instance.linkedin,
       'wikipedia': instance.wikipedia,
-      'following_entity': instance.followingEntity,
-      'channel_entities': instance.channelEntities,
+      'following_entity': instance.followingEntity?.toJson(),
+      'channel_entities':
+          instance.channelEntities?.map((e) => e.toJson()).toList(),
     };

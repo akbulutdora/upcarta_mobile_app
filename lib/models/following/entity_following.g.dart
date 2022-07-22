@@ -28,7 +28,7 @@ Map<String, dynamic> _$$_EntityFollowingToJson(_$_EntityFollowing instance) =>
     <String, dynamic>{
       'id': instance.id,
       'followed_entity_id': instance.followedEntityId,
-      'followed_entity': instance.followedEntity,
+      'followed_entity': instance.followedEntity?.toJson(),
       'following_entity_id': instance.followingEntityId,
-      'following_entity': instance.followingEntity,
+      'following_entity': instance.followingEntity?.toJson(),
     };

@@ -34,12 +34,12 @@ Map<String, dynamic> _$$_ContributionToJson(_$_Contribution instance) =>
     <String, dynamic>{
       'id': instance.id,
       'role': _$ContributionRoleEnumMap[instance.role],
-      'content': instance.content,
+      'content': instance.content?.toJson(),
       'content_id': instance.contentId,
-      'entity': instance.entity,
+      'entity': instance.entity?.toJson(),
       'entity_id': instance.entityId,
       'pos': instance.pos,
-      'added_by': instance.addedBy,
+      'added_by': instance.addedBy?.toJson(),
       'added_by_id': instance.addedById,
     };
 

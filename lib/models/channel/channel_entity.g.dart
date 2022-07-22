@@ -30,9 +30,9 @@ Map<String, dynamic> _$$_ChannelEntityToJson(_$_ChannelEntity instance) =>
       'id': instance.id,
       'role': _$ChannelRoleEnumMap[instance.role],
       'entity_id': instance.entityId,
-      'entity': instance.entity,
+      'entity': instance.entity?.toJson(),
       'channel_id': instance.channelId,
-      'channel': instance.channel,
+      'channel': instance.channel?.toJson(),
     };
 
 const _$ChannelRoleEnumMap = {

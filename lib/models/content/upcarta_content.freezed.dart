@@ -24,7 +24,7 @@ mixin _$Content {
   String get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get slug => throw _privateConstructorUsedError;
-  Type? get type =>
+  ContentType? get type =>
       throw _privateConstructorUsedError; // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
   Content? get parent => throw _privateConstructorUsedError;
   List<Content>? get children =>
@@ -60,15 +60,18 @@ mixin _$Content {
   @JsonKey(name: 'created_at_accuracy')
   CreatedAtAccuracy? get createdAtAccuracy =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at_str')
+  String? get createdAtStr => throw _privateConstructorUsedError;
   bool? get followable => throw _privateConstructorUsedError;
   @JsonKey(name: 'personal_curations')
   List<Curation>? get personalCurations => throw _privateConstructorUsedError;
-  @JsonKey(name: 'featured_at')
-  DateTime? get featuredAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'personal_collections')
+  List<Collection>? get personalCollections =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'content_following')
+  User? get contentFollowing => throw _privateConstructorUsedError;
   @JsonKey(name: 'inserted_at')
   DateTime? get insertedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -84,7 +87,7 @@ abstract class $ContentCopyWith<$Res> {
       String title,
       String? description,
       String? slug,
-      Type? type,
+      ContentType? type,
       Content? parent,
       List<Content>? children,
       @JsonKey(name: 'added_by')
@@ -112,18 +115,21 @@ abstract class $ContentCopyWith<$Res> {
           DateTime? createdAt,
       @JsonKey(name: 'created_at_accuracy')
           CreatedAtAccuracy? createdAtAccuracy,
+      @JsonKey(name: 'created_at_str')
+          String? createdAtStr,
       bool? followable,
       @JsonKey(name: 'personal_curations')
           List<Curation>? personalCurations,
-      @JsonKey(name: 'featured_at')
-          DateTime? featuredAt,
+      @JsonKey(name: 'personal_collections')
+          List<Collection>? personalCollections,
+      @JsonKey(name: 'content_following')
+          User? contentFollowing,
       @JsonKey(name: 'inserted_at')
-          DateTime? insertedAt,
-      @JsonKey(name: 'updated_at')
-          DateTime? updatedAt});
+          DateTime? insertedAt});
 
   $ContentCopyWith<$Res>? get parent;
   $EntityCopyWith<$Res>? get addedBy;
+  $UserCopyWith<$Res>? get contentFollowing;
 }
 
 /// @nodoc
@@ -156,11 +162,12 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? contextRecommendersCount = freezed,
     Object? createdAt = freezed,
     Object? createdAtAccuracy = freezed,
+    Object? createdAtStr = freezed,
     Object? followable = freezed,
     Object? personalCurations = freezed,
-    Object? featuredAt = freezed,
+    Object? personalCollections = freezed,
+    Object? contentFollowing = freezed,
     Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -182,7 +189,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as Type?,
+              as ContentType?,
       parent: parent == freezed
           ? _value.parent
           : parent // ignore: cast_nullable_to_non_nullable
@@ -243,6 +250,10 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.createdAtAccuracy
           : createdAtAccuracy // ignore: cast_nullable_to_non_nullable
               as CreatedAtAccuracy?,
+      createdAtStr: createdAtStr == freezed
+          ? _value.createdAtStr
+          : createdAtStr // ignore: cast_nullable_to_non_nullable
+              as String?,
       followable: followable == freezed
           ? _value.followable
           : followable // ignore: cast_nullable_to_non_nullable
@@ -251,17 +262,17 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.personalCurations
           : personalCurations // ignore: cast_nullable_to_non_nullable
               as List<Curation>?,
-      featuredAt: featuredAt == freezed
-          ? _value.featuredAt
-          : featuredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      personalCollections: personalCollections == freezed
+          ? _value.personalCollections
+          : personalCollections // ignore: cast_nullable_to_non_nullable
+              as List<Collection>?,
+      contentFollowing: contentFollowing == freezed
+          ? _value.contentFollowing
+          : contentFollowing // ignore: cast_nullable_to_non_nullable
+              as User?,
       insertedAt: insertedAt == freezed
           ? _value.insertedAt
           : insertedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
@@ -287,6 +298,17 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
       return _then(_value.copyWith(addedBy: value));
     });
   }
+
+  @override
+  $UserCopyWith<$Res>? get contentFollowing {
+    if (_value.contentFollowing == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.contentFollowing!, (value) {
+      return _then(_value.copyWith(contentFollowing: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -300,7 +322,7 @@ abstract class _$$_ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       String title,
       String? description,
       String? slug,
-      Type? type,
+      ContentType? type,
       Content? parent,
       List<Content>? children,
       @JsonKey(name: 'added_by')
@@ -328,20 +350,24 @@ abstract class _$$_ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
           DateTime? createdAt,
       @JsonKey(name: 'created_at_accuracy')
           CreatedAtAccuracy? createdAtAccuracy,
+      @JsonKey(name: 'created_at_str')
+          String? createdAtStr,
       bool? followable,
       @JsonKey(name: 'personal_curations')
           List<Curation>? personalCurations,
-      @JsonKey(name: 'featured_at')
-          DateTime? featuredAt,
+      @JsonKey(name: 'personal_collections')
+          List<Collection>? personalCollections,
+      @JsonKey(name: 'content_following')
+          User? contentFollowing,
       @JsonKey(name: 'inserted_at')
-          DateTime? insertedAt,
-      @JsonKey(name: 'updated_at')
-          DateTime? updatedAt});
+          DateTime? insertedAt});
 
   @override
   $ContentCopyWith<$Res>? get parent;
   @override
   $EntityCopyWith<$Res>? get addedBy;
+  @override
+  $UserCopyWith<$Res>? get contentFollowing;
 }
 
 /// @nodoc
@@ -375,11 +401,12 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? contextRecommendersCount = freezed,
     Object? createdAt = freezed,
     Object? createdAtAccuracy = freezed,
+    Object? createdAtStr = freezed,
     Object? followable = freezed,
     Object? personalCurations = freezed,
-    Object? featuredAt = freezed,
+    Object? personalCollections = freezed,
+    Object? contentFollowing = freezed,
     Object? insertedAt = freezed,
-    Object? updatedAt = freezed,
   }) {
     return _then(_$_Content(
       id: id == freezed
@@ -401,7 +428,7 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as Type?,
+              as ContentType?,
       parent: parent == freezed
           ? _value.parent
           : parent // ignore: cast_nullable_to_non_nullable
@@ -462,6 +489,10 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.createdAtAccuracy
           : createdAtAccuracy // ignore: cast_nullable_to_non_nullable
               as CreatedAtAccuracy?,
+      createdAtStr: createdAtStr == freezed
+          ? _value.createdAtStr
+          : createdAtStr // ignore: cast_nullable_to_non_nullable
+              as String?,
       followable: followable == freezed
           ? _value.followable
           : followable // ignore: cast_nullable_to_non_nullable
@@ -470,17 +501,17 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value._personalCurations
           : personalCurations // ignore: cast_nullable_to_non_nullable
               as List<Curation>?,
-      featuredAt: featuredAt == freezed
-          ? _value.featuredAt
-          : featuredAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      personalCollections: personalCollections == freezed
+          ? _value._personalCollections
+          : personalCollections // ignore: cast_nullable_to_non_nullable
+              as List<Collection>?,
+      contentFollowing: contentFollowing == freezed
+          ? _value.contentFollowing
+          : contentFollowing // ignore: cast_nullable_to_non_nullable
+              as User?,
       insertedAt: insertedAt == freezed
           ? _value.insertedAt
           : insertedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: updatedAt == freezed
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
@@ -522,20 +553,23 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
           this.createdAt,
       @JsonKey(name: 'created_at_accuracy')
           this.createdAtAccuracy,
+      @JsonKey(name: 'created_at_str')
+          this.createdAtStr,
       this.followable,
       @JsonKey(name: 'personal_curations')
           final List<Curation>? personalCurations,
-      @JsonKey(name: 'featured_at')
-          this.featuredAt,
+      @JsonKey(name: 'personal_collections')
+          final List<Collection>? personalCollections,
+      @JsonKey(name: 'content_following')
+          this.contentFollowing,
       @JsonKey(name: 'inserted_at')
-          this.insertedAt,
-      @JsonKey(name: 'updated_at')
-          this.updatedAt})
+          this.insertedAt})
       : _children = children,
         _contentTopics = contentTopics,
         _contributions = contributions,
         _contentLinks = contentLinks,
-        _personalCurations = personalCurations;
+        _personalCurations = personalCurations,
+        _personalCollections = personalCollections;
 
   factory _$_Content.fromJson(Map<String, dynamic> json) =>
       _$$_ContentFromJson(json);
@@ -549,7 +583,7 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
   @override
   final String? slug;
   @override
-  final Type? type;
+  final ContentType? type;
 // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
   @override
   final Content? parent;
@@ -629,6 +663,9 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
   @JsonKey(name: 'created_at_accuracy')
   final CreatedAtAccuracy? createdAtAccuracy;
   @override
+  @JsonKey(name: 'created_at_str')
+  final String? createdAtStr;
+  @override
   final bool? followable;
   final List<Curation>? _personalCurations;
   @override
@@ -640,19 +677,26 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<Collection>? _personalCollections;
   @override
-  @JsonKey(name: 'featured_at')
-  final DateTime? featuredAt;
+  @JsonKey(name: 'personal_collections')
+  List<Collection>? get personalCollections {
+    final value = _personalCollections;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'content_following')
+  final User? contentFollowing;
   @override
   @JsonKey(name: 'inserted_at')
   final DateTime? insertedAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final DateTime? updatedAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Content(id: $id, title: $title, description: $description, slug: $slug, type: $type, parent: $parent, children: $children, addedBy: $addedBy, addedById: $addedById, contentTopics: $contentTopics, contributions: $contributions, contentLinks: $contentLinks, contentLinksCount: $contentLinksCount, recommendersCount: $recommendersCount, followersCount: $followersCount, publicCollectionsCount: $publicCollectionsCount, featuredRecommendersCount: $featuredRecommendersCount, contextRecommendersCount: $contextRecommendersCount, createdAt: $createdAt, createdAtAccuracy: $createdAtAccuracy, followable: $followable, personalCurations: $personalCurations, featuredAt: $featuredAt, insertedAt: $insertedAt, updatedAt: $updatedAt)';
+    return 'Content(id: $id, title: $title, description: $description, slug: $slug, type: $type, parent: $parent, children: $children, addedBy: $addedBy, addedById: $addedById, contentTopics: $contentTopics, contributions: $contributions, contentLinks: $contentLinks, contentLinksCount: $contentLinksCount, recommendersCount: $recommendersCount, followersCount: $followersCount, publicCollectionsCount: $publicCollectionsCount, featuredRecommendersCount: $featuredRecommendersCount, contextRecommendersCount: $contextRecommendersCount, createdAt: $createdAt, createdAtAccuracy: $createdAtAccuracy, createdAtStr: $createdAtStr, followable: $followable, personalCurations: $personalCurations, personalCollections: $personalCollections, contentFollowing: $contentFollowing, insertedAt: $insertedAt)';
   }
 
   @override
@@ -683,11 +727,12 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
           'contextRecommendersCount', contextRecommendersCount))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('createdAtAccuracy', createdAtAccuracy))
+      ..add(DiagnosticsProperty('createdAtStr', createdAtStr))
       ..add(DiagnosticsProperty('followable', followable))
       ..add(DiagnosticsProperty('personalCurations', personalCurations))
-      ..add(DiagnosticsProperty('featuredAt', featuredAt))
-      ..add(DiagnosticsProperty('insertedAt', insertedAt))
-      ..add(DiagnosticsProperty('updatedAt', updatedAt));
+      ..add(DiagnosticsProperty('personalCollections', personalCollections))
+      ..add(DiagnosticsProperty('contentFollowing', contentFollowing))
+      ..add(DiagnosticsProperty('insertedAt', insertedAt));
   }
 
   @override
@@ -727,14 +772,17 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
             const DeepCollectionEquality()
                 .equals(other.createdAtAccuracy, createdAtAccuracy) &&
             const DeepCollectionEquality()
+                .equals(other.createdAtStr, createdAtStr) &&
+            const DeepCollectionEquality()
                 .equals(other.followable, followable) &&
             const DeepCollectionEquality()
                 .equals(other._personalCurations, _personalCurations) &&
             const DeepCollectionEquality()
-                .equals(other.featuredAt, featuredAt) &&
+                .equals(other._personalCollections, _personalCollections) &&
             const DeepCollectionEquality()
-                .equals(other.insertedAt, insertedAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+                .equals(other.contentFollowing, contentFollowing) &&
+            const DeepCollectionEquality()
+                .equals(other.insertedAt, insertedAt));
   }
 
   @JsonKey(ignore: true)
@@ -761,11 +809,12 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
         const DeepCollectionEquality().hash(contextRecommendersCount),
         const DeepCollectionEquality().hash(createdAt),
         const DeepCollectionEquality().hash(createdAtAccuracy),
+        const DeepCollectionEquality().hash(createdAtStr),
         const DeepCollectionEquality().hash(followable),
         const DeepCollectionEquality().hash(_personalCurations),
-        const DeepCollectionEquality().hash(featuredAt),
-        const DeepCollectionEquality().hash(insertedAt),
-        const DeepCollectionEquality().hash(updatedAt)
+        const DeepCollectionEquality().hash(_personalCollections),
+        const DeepCollectionEquality().hash(contentFollowing),
+        const DeepCollectionEquality().hash(insertedAt)
       ]);
 
   @JsonKey(ignore: true)
@@ -785,7 +834,7 @@ abstract class _Content implements Content {
       required final String title,
       final String? description,
       final String? slug,
-      final Type? type,
+      final ContentType? type,
       final Content? parent,
       final List<Content>? children,
       @JsonKey(name: 'added_by')
@@ -813,15 +862,17 @@ abstract class _Content implements Content {
           final DateTime? createdAt,
       @JsonKey(name: 'created_at_accuracy')
           final CreatedAtAccuracy? createdAtAccuracy,
+      @JsonKey(name: 'created_at_str')
+          final String? createdAtStr,
       final bool? followable,
       @JsonKey(name: 'personal_curations')
           final List<Curation>? personalCurations,
-      @JsonKey(name: 'featured_at')
-          final DateTime? featuredAt,
+      @JsonKey(name: 'personal_collections')
+          final List<Collection>? personalCollections,
+      @JsonKey(name: 'content_following')
+          final User? contentFollowing,
       @JsonKey(name: 'inserted_at')
-          final DateTime? insertedAt,
-      @JsonKey(name: 'updated_at')
-          final DateTime? updatedAt}) = _$_Content;
+          final DateTime? insertedAt}) = _$_Content;
 
   factory _Content.fromJson(Map<String, dynamic> json) = _$_Content.fromJson;
 
@@ -834,7 +885,7 @@ abstract class _Content implements Content {
   @override
   String? get slug;
   @override
-  Type? get type;
+  ContentType? get type;
   @override // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
   Content? get parent;
   @override
@@ -882,19 +933,22 @@ abstract class _Content implements Content {
   @JsonKey(name: 'created_at_accuracy')
   CreatedAtAccuracy? get createdAtAccuracy;
   @override
+  @JsonKey(name: 'created_at_str')
+  String? get createdAtStr;
+  @override
   bool? get followable;
   @override
   @JsonKey(name: 'personal_curations')
   List<Curation>? get personalCurations;
   @override
-  @JsonKey(name: 'featured_at')
-  DateTime? get featuredAt;
+  @JsonKey(name: 'personal_collections')
+  List<Collection>? get personalCollections;
+  @override
+  @JsonKey(name: 'content_following')
+  User? get contentFollowing;
   @override
   @JsonKey(name: 'inserted_at')
   DateTime? get insertedAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$_ContentCopyWith<_$_Content> get copyWith =>

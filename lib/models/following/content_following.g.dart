@@ -28,7 +28,7 @@ Map<String, dynamic> _$$_ContentFollowingToJson(_$_ContentFollowing instance) =>
     <String, dynamic>{
       'id': instance.id,
       'entity_id': instance.entityId,
-      'entity': instance.entity,
+      'entity': instance.entity?.toJson(),
       'content_id': instance.contentId,
-      'content': instance.content,
+      'content': instance.content?.toJson(),
     };

@@ -33,8 +33,8 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'confirmed_at': instance.confirmedAt?.toIso8601String(),
       'password': instance.password,
       'role': _$RoleEnumMap[instance.role],
-      'identities': instance.identities,
-      'entity': instance.entity,
+      'identities': instance.identities?.map((e) => e.toJson()).toList(),
+      'entity': instance.entity?.toJson(),
       'entity_id': instance.entityId,
     };
 
