@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:upcarta_mobile_app/models/content/topic.dart';
 import 'package:upcarta_mobile_app/models/entity/entity.dart';
-import 'package:upcarta_mobile_app/models/models.dart';
 
 part 'topic_following.freezed.dart';
 

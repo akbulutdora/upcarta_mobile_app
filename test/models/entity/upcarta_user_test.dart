@@ -38,7 +38,7 @@ void main() {
 
   test(
     'should be a subclass of User entity',
-    () async {
+        () async {
       // assert
       expect(tUser, isA<User>());
     },
@@ -47,7 +47,7 @@ void main() {
   group('fromJson', () {
     test(
       'should return a valid User model when the JSON is a proper User',
-      () async {
+          () async {
         // arrange
         String userFixture = fixture('user.json');
 
@@ -63,7 +63,7 @@ void main() {
   group('toJson', () {
     test(
       'should return a JSON map containing the proper data',
-      () async {
+          () async {
         // act
         final result = tUser.toJson();
         // result.removeWhere((key, value) => value == null);

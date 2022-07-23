@@ -1,0 +1,817 @@
+{
+  "data": [
+    {
+      "title": "Adulting Fast and Slow",
+      "slug": "adulting-fast-and-slow",
+      "description": "We live in a society of adult-like children and childish adults. Kids have never had more information at their fingertips, so they’re growing up faster than ever. From a young age, they can watch violent war clips on YouTube, Dan Bilzerian videos on Instagram, and Shakira getting...",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "David Perell",
+            "description": "\"The Writing Guy\" | I tweet about writing, learning and business | My Podcast: https://t.co/1NhTBHcK8l | My writing school: https://t.co/bEFFy6bVaC",
+            "username": "david_perell",
+            "avatar": {
+              "file_name": "Cxxf4Uf5.jpg",
+              "updated_at": "2021-03-28T06:54:32"
+            },
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": "david_perell",
+            "twitter_id": 240049622,
+            "followers_count": 2,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://perell.com/essay/adulting-fast-and-slow/",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2020-04-07T20:19:04Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-03-30T20:06:25.678846Z"
+    },
+    {
+      "title": "Four Apple charts",
+      "slug": "four-apple-charts",
+      "description": "Slowing growth. Poor comparables. Intensifying cyclicality. Gross margin. For context, see here. (Click on the charts to see them larger)View fullsize\nView fullsize\nView fullsize\nView fullsize",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "Ben Evans",
+            "description": null,
+            "username": "BenEvans",
+            "avatar": null,
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": null,
+            "twitter_id": null,
+            "followers_count": 0,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://www.ben-evans.com/benedictevans/2013/4/24/four-apple-charts",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2013-04-24T09:00:42Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-05-02T18:20:59.081221Z"
+    },
+    {
+      "title": "The Demand Side Of A Crypto-Network",
+      "slug": "the-demand-side-of-a-crypto-network",
+      "description": "I was purchasing some domains with Ethereum yesterday and ran out of funds in my wallet and went to Coinbase to buy some more ETH. The price was approaching $3000 and I thought to myself, “the demand side of this network is exploding.” The way crypto-networks work is that the supp...",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "Fred Wilson",
+            "description": "I am a VC",
+            "username": "fredwilson",
+            "avatar": {
+              "file_name": "82c873940343750638b7caa04b4652fe.jpeg",
+              "updated_at": "2021-05-06T08:56:27"
+            },
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": "http://avc.com",
+            "twitter": "fredwilson",
+            "twitter_id": 1000591,
+            "followers_count": 0,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://avc.com/2021/05/the-demand-side-of-a-crypto-network/",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2021-05-03T10:15:33Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-05-06T08:57:03.203991Z"
+    },
+    {
+      "title": "Trotting ahead of Malthus",
+      "slug": "trotting-ahead-of-malthus",
+      "description": "Progress in the Malthusian isocline in England from the 13th through 19th centuries, as, among many other factors, horses slowly replaced oxen for farm work and transport, the ratio of draft animals to people increased, and more arable land was devoted to fodder relative to food.(...",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "Nick Szabo",
+            "description": "Blockchain, cryptocurrency, and smart contracts pioneer. (RT/Fav/Follow does not imply endorsement). Blog: https://t.co/zZ7lTyOrtS",
+            "username": "nickszabo4",
+            "avatar": {
+              "file_name": "2WBy5DJd.jpg",
+              "updated_at": "2021-03-16T19:02:15"
+            },
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": "nickszabo4",
+            "twitter_id": 2568108282,
+            "followers_count": 0,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://unenumerated.blogspot.com/2011/06/trotting-ahead-of-malthus.html",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2011-06-11T13:43:00Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2022-01-16T13:11:29.778301Z"
+    },
+    {
+      "title": "@_evelynrae So true, sadly. So true.",
+      "slug": "evelynrae-so-true-sadly-so-true",
+      "description": "@_evelynrae So true, sadly. So true.",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "Sd",
+            "description": null,
+            "username": "Sd",
+            "avatar": null,
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": null,
+            "twitter_id": null,
+            "followers_count": 0,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://twitter.com/PRMNDAVE/status/1442244462336430080",
+          "pos": null
+        }
+      ],
+      "content_topics": [
+        {
+          "pos": 1,
+          "topic": {
+            "title": "Decision Making",
+            "wikipedia": "https://en.wikipedia.org/wiki/Decision-making",
+            "id": 3,
+            "description": "In psychology, decision-making (also spelled decision making and decisionmaking) is regarded as the cognitive process resulting in the selection of a belief or a course of action among several possible alternative options. It could be either rational or irrational. The decision-making process is a reasoning process based on assumptions of values, preferences and beliefs of the decision-maker. Every decision-making process produces a final choice, which may or may not prompt action.\nResearch about decision-making is also published under the label problem solving, particularly in European psychological research.",
+            "slug": "decision-making",
+            "contents_count": 25,
+            "contributors_count": 0,
+            "followers_count": 1,
+            "image": {
+              "file_name": "fa310ff5-6f06-438f-9320-84c0df3b9fce.jpg",
+              "updated_at": "2021-05-22T17:00:34"
+            }
+          }
+        }
+      ],
+      "created_at": "2021-09-26T21:47:30Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "tweet",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": {
+        "name": "Alican Vergin",
+        "description": "Upcarta Founder https://www.upcarta.com",
+        "username": "alicanvergin",
+        "avatar": {
+          "file_name": "264b9820-3c70-4056-81ab-ed3b4726f49c.jpg",
+          "updated_at": "2021-10-30T09:43:22"
+        },
+        "wikipedia": null,
+        "has_user": true,
+        "linkedin": null,
+        "website": null,
+        "twitter": "alicanvergin",
+        "twitter_id": 180385040,
+        "followers_count": 3,
+        "followed_entities_count": 8,
+        "followed_contents_count": 2,
+        "followed_topics_count": 4
+      },
+      "added_by_id": 1,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-09-27T09:59:49.094149Z"
+    },
+    {
+      "title": "Gelernter",
+      "slug": "gelernter",
+      "description": "The best scientists are often the ones who are plainest about their non-scientific interests. Feynman's intro physics books are the best of all physics intros in part because he talks freely about beauty: Here's a beautiful theorem. Here's a beautiful fact. My own small contributi...",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "Eugene Wei",
+            "description": null,
+            "username": "EugeneWei",
+            "avatar": null,
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": null,
+            "twitter_id": null,
+            "followers_count": 0,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://www.eugenewei.com/blog/2017/3/23/gelernter",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2017-04-30T07:48:00Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-05-02T18:03:36.102480Z"
+    },
+    {
+      "title": "Amazing progress on longstanding open problems",
+      "slug": "amazing-progress-on-longstanding-open-problems",
+      "description": "For those who haven’t seen it: Aubrey de Grey, better known to the world as a radical life extension researcher, on Sunday posted a preprint on the arXiv claiming to prove that the chromatic number of the plane is at least 5—the first significant progress on the Hadwiger-Nelson pr...",
+      "contributions": [],
+      "content_links": [
+        {
+          "link": "https://www.scottaaronson.com/blog/?p=3697",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2018-04-11T15:09:41Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-06-01T20:01:45.016652Z"
+    },
+    {
+      "title": "#421: Dr. Jane Goodall — The Legend, The Lessons, The Hope",
+      "slug": "421-dr-jane-goodall-the-legend-the-lessons-the-hope",
+      "description": "Dr. Jane Goodall — The Legend, The Lessons, The Hope | Brought to you by ExpressVPN and LinkedIn Marketing Solutions.\n\r“The greatest danger to our future is apathy.” — Dr. Jane Goodall\n\rDr. Jane Goodall (@JaneGoodallInst) was born on April 3rd, 1934, in London England. At the young age of 26, she fo",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "host",
+          "entity": {
+            "name": "Tim Ferriss",
+            "description": "Author of 5 #1 NYT/WSJ bestsellers, investor (FB, Uber, Twitter, 50+ more: https://t.co/tBnbIBz2ar), host of The Tim Ferriss Show podcast (600M+ downloads)",
+            "username": "tferriss",
+            "avatar": {
+              "file_name": "half-face-ice.jpg",
+              "updated_at": "2021-02-23T20:26:42"
+            },
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": "tferriss",
+            "twitter_id": 11740902,
+            "followers_count": 2,
+            "followed_entities_count": 1,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://open.spotify.com/episode/1mmURxnHtGdN2UPorlyU7S",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2020-04-16T00:00:00Z",
+      "created_at_accuracy": "day",
+      "created_at_str": null,
+      "type": "podcast_episode",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-03-31T19:22:48.032019Z"
+    },
+    {
+      "title": "Lebanon's Financial Crisis & Bitcoin",
+      "slug": "lebanons-financial-crisis-bitcoin",
+      "description": "In the second part of Bitcoin Magazine's series on Lebanon and Bitcoin, Dave Hollerith talks with a Lebanese Bitcoiner, Mark Saroufim, about how Bitcoin is ultimately fitting into Lebanon's downturned economy.",
+      "contributions": [],
+      "content_links": [
+        {
+          "link": "https://www.youtube.com/watch?v=hjf1g0aTFQQ",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2020-02-19T20:48:43Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "video",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-08-19T15:41:29.580617Z"
+    },
+    {
+      "title": "An update on a pre-registered result about the coronavirus",
+      "slug": "an-update-on-a-pre-registered-result-about-the-coronavirus",
+      "description": "A history of an anomaly in the 2020 Coronavirus Pandemic, an independent research project about it, and what we need to learn about our next steps.",
+      "contributions": [],
+      "content_links": [
+        {
+          "link": "https://www.kalzumeus.com/2020/04/21/japan-coronavirus/",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2020-04-21T13:00:00Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-08-19T13:26:58.575869Z"
+    },
+    {
+      "title": "How Many Tablets Are In The USA? And Does It Matter?",
+      "slug": "how-many-tablets-are-in-the-usa-and-does-it-matter",
+      "description": "Another day, another number for tablet market share. Pew has released its latest survey for the US market, suggesting (amongst many other things) that Apple now has ‘just’ 52% share of the US tablet install base.So, do we believe this? And what might it mean?The tablet market is p...",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "Ben Evans",
+            "description": null,
+            "username": "BenEvans",
+            "avatar": null,
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": null,
+            "twitter_id": null,
+            "followers_count": 0,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://www.ben-evans.com/benedictevans/2012/10/2/how-many-tablets-are-in-the-usa-and-does-it-matter",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2012-10-02T13:51:57Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-05-02T18:21:04.949958Z"
+    },
+    {
+      "title": "Technology is not Factored into GDP | Jeff Booth | Bitcoin 2021 Clips",
+      "slug": "technology-is-not-factored-into-gdp-jeff-booth-bitcoin-2021-clips",
+      "description": "In this clip from the Bitcoin 2021 Conference in Miami, Jeff Booth talks about global debt and what is not factored into a nation's GDP.\n\nWatch the full panel with Jeff Booth, Mark Yusko, Greg Foss, and Trey Lockerbie: https://youtu.be/d7iZiJuAsSE\n\nFor more compelling video content from Bitcoin's or",
+      "contributions": [],
+      "content_links": [
+        {
+          "link": "https://www.youtube.com/watch?v=u3tm8g87_0Q",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2021-06-30T17:50:39Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "video",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-08-11T15:01:47.341325Z"
+    },
+    {
+      "title": "Lev R.’s question answered at last; fate of humanity revealed",
+      "slug": "lev-rs-question-answered-at-last-fate-of-humanity-revealed",
+      "description": "Almost two years ago, a reader named Lev R. won my Best Anthropicism Contest with the following gem: why aren’t physicists too interested in computational complexity? because if they were, they’d be computer scientists. As the champion, Lev won the right to ask any question and ha...",
+      "contributions": [],
+      "content_links": [
+        {
+          "link": "https://www.scottaaronson.com/blog/?p=286",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2008-04-01T16:35:44Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "blog",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-08-06T18:51:54.551586Z"
+    },
+    {
+      "title": "#475: Mr. Money Mustache — Living Beautifully on $25-27K Per Year (Repost) ",
+      "slug": "475-mr-money-mustache-living-beautifully-on-25-27k-per-year-repost-",
+      "description": "Mr. Money Mustache — Living Beautifully on $25-27K Per Year (Repost) | Brought to you by Athletic Greens, 99designs, and The Ready State\n\rMr. Money Mustache (@mrmoneymustache — Pete Adeney in real life) grew up in Canada in a family of mostly eccentric musicians. He graduated with a degree in comput",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "host",
+          "entity": {
+            "name": "Tim Ferriss",
+            "description": "Author of 5 #1 NYT/WSJ bestsellers, investor (FB, Uber, Twitter, 50+ more: https://t.co/tBnbIBz2ar), host of The Tim Ferriss Show podcast (600M+ downloads)",
+            "username": "tferriss",
+            "avatar": {
+              "file_name": "half-face-ice.jpg",
+              "updated_at": "2021-02-23T20:26:42"
+            },
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": "tferriss",
+            "twitter_id": 11740902,
+            "followers_count": 2,
+            "followed_entities_count": 1,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://open.spotify.com/episode/4cgNCa4I6FjUijazJPVHVs",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2020-10-23T00:00:00Z",
+      "created_at_accuracy": "day",
+      "created_at_str": null,
+      "type": "podcast_episode",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-03-31T19:08:09.082915Z"
+    },
+    {
+      "title": "How can we fight online shaming campaigns?",
+      "slug": "how-can-we-fight-online-shaming-campaigns",
+      "description": "Longtime friend and colleague Boaz Barak sent me a fascinating New York Times Magazine article that profiles people who lost their jobs or otherwise had their lives ruined, because of a single remark that then got amplified a trillionfold in importance by social media.  (The autho...",
+      "contributions": [],
+      "content_links": [
+        {
+          "link": "https://www.scottaaronson.com/blog/?p=2221",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2015-02-25T13:15:51Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-06-01T20:02:10.654468Z"
+    },
+    {
+      "title": "Does Elon Musk Hate Bitcoin?",
+      "slug": "does-elon-musk-hate-bitcoin",
+      "description": "[Note that I’ll be doing the Q&A today! Go here to ask questions.][I listened to this song while writing] Background Bitcoin has no leader, no king, no overlord. In 2017, wealthy billionaires (Ex: Roger Ver) and a substantial percentage of all crypto",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "Dan Held",
+            "description": "Follow me to learn about #Bitcoin. Growth @Krakenfx | Prior @InterchangeHQ (acq by @Krakenfx), Growth @Uber, PM @Blockchain, @ZeroBlock (acq by @Blockchain)",
+            "username": "danheld",
+            "avatar": {
+              "file_name": "b_ViQHZi.jpg",
+              "updated_at": "2021-05-29T17:42:03"
+            },
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": "danheld",
+            "twitter_id": 1598709350,
+            "followers_count": 0,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://www.theheldreport.com/p/does-elon-musk-hate-bitcoin",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2021-05-21T00:12:29Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-08-19T15:14:11.661620Z"
+    },
+    {
+      "title": "Web3 vs Web2",
+      "slug": "web3-vs-web2",
+      "description": "Now that we are beginning to see what consumer applications are like in the decentralized web (web3), it is interesting to compare that to what consumer applications are like in the centralized web (web2). It became clear early in the 2000s that the big opportunity in the web woul...",
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "Fred Wilson",
+            "description": "I am a VC",
+            "username": "fredwilson",
+            "avatar": {
+              "file_name": "82c873940343750638b7caa04b4652fe.jpeg",
+              "updated_at": "2021-05-06T08:56:27"
+            },
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": "http://avc.com",
+            "twitter": "fredwilson",
+            "twitter_id": 1000591,
+            "followers_count": 0,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://avc.com/2021/10/web3-vs-web2/",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2021-10-27T11:50:59Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-11-15T16:45:26.882455Z"
+    },
+    {
+      "title": "Quadratic Payments: A Primer",
+      "slug": "quadratic-payments-a-primer",
+      "description": null,
+      "contributions": [
+        {
+          "pos": 1,
+          "role": "author",
+          "entity": {
+            "name": "Vitalik Buterin",
+            "description": null,
+            "username": "VitalikButerin",
+            "avatar": null,
+            "wikipedia": null,
+            "has_user": false,
+            "linkedin": null,
+            "website": null,
+            "twitter": null,
+            "twitter_id": null,
+            "followers_count": 0,
+            "followed_entities_count": 0,
+            "followed_contents_count": 0,
+            "followed_topics_count": 0
+          }
+        }
+      ],
+      "content_links": [
+        {
+          "link": "https://vitalik.ca/general/2019/12/07/quadratic.html",
+          "pos": null
+        }
+      ],
+      "content_topics": [],
+      "created_at": "2019-12-07T00:00:00Z",
+      "created_at_accuracy": "hour",
+      "created_at_str": null,
+      "type": "article",
+      "followers_count": null,
+      "public_collections_count": 0,
+      "featured_recommenders_count": 0,
+      "context_recommenders_count": 0,
+      "added_by": null,
+      "added_by_id": null,
+      "parent": null,
+      "parent_id": null,
+      "personal_collections": [],
+      "content_following": null,
+      "inserted_at": "2021-05-02T18:31:45.761848Z"
+    }
+  ]
+}
