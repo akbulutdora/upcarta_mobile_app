@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
-import 'package:upcarta_mobile_app/models/entity/upcarta_content.dart';
+import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 
 abstract class IFeedRepository {
 

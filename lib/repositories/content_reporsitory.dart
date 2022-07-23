@@ -9,7 +9,7 @@ import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository_interface.dart';
 
-class ContentRepository{
+class ContentRepository {
   final RemoteDataSource remoteDataSource;
   final LocalDataStorage localDataStorage;
   final NetworkInfo networkInfo;
@@ -17,24 +17,28 @@ class ContentRepository{
   late String userId;
 
   ContentRepository(
-  { required this.remoteDataSource,
-    required this.localDataStorage,
-    required this.networkInfo});
-  Future<Either<Failure,IList<Content>>> getAllContents() async{
+      {required this.remoteDataSource,
+      required this.localDataStorage,
+      required this.networkInfo});
+
+  Future<Either<Failure, IList<Content>>> getAllContents() async {
     final isConnected = await networkInfo.isConnected;
 
-    if(isConnected){
-     try{
-       final contents = await remoteDataSource.getAllContents();
-       print(IList.from(contents).toString());
+    if (isConnected) {
+      try {
+        final decoded = await remoteDataSource.getAllContents();
 
-       return( Right( IList.from(contents) ) );
-     } on ServerException{
-       return Left(ServerFailure());
-     }
-    }else{
+        List<Content> contents =
+            List<Content>.from(decoded!.map((e) => Content.fromJson(e)));
+
+        print(IList.from(contents).toString());
+
+        return Right(IList.from(contents));
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
       return Left(ServerFailure());
     }
   }
-
 }

@@ -1,0 +1,27 @@
+{
+  "data": {
+    "jwt": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzcG90YWJsZSIsImV4cCI6MTY2MDQ1ODIwNywiaWF0IjoxNjU4MDM5MDA3LCJpc3MiOiJzcG90YWJsZSIsImp0aSI6IjFmNTAzNDIyLWQyMGYtNDRkYi05YzRmLTk2NzUwZTU0OTI4MiIsIm5iZiI6MTY1ODAzOTAwNiwic3ViIjoiNyIsInR5cCI6ImFjY2VzcyJ9.9ipsKqevXrl4lhsGksHxPckwvXi5CF1-wmbgYBSzxjob5Cpnku_voS55aUEvPn8D7lLJZPlqHA4cWSum185QNw",
+    "user": {
+      "email": "hello@upcarta.com",
+      "role": "user",
+      "confirmed_at": "2021-04-14T08:16:52.966580Z",
+      "entity": {
+        "name": "Hello",
+        "description": null,
+        "username": "helloupcarta",
+        "avatar": null,
+        "wikipedia": null,
+        "has_user": true,
+        "linkedin": null,
+        "website": null,
+        "twitter": null,
+        "twitter_id": null,
+        "followers_count": 0,
+        "followed_entities_count": 0,
+        "followed_contents_count": 0,
+        "followed_topics_count": 0
+      },
+      "identities": []
+    }
+  }
+}

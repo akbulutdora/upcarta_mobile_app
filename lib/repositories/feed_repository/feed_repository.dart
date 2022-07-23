@@ -5,10 +5,11 @@ import 'package:upcarta_mobile_app/core/api/data_sources/remote_data_source.dart
 import 'package:upcarta_mobile_app/core/error/exception.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
 import 'package:upcarta_mobile_app/core/platform/network_info.dart';
+import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
-import 'package:upcarta_mobile_app/models/repositories/feed_repository/feed_repository_interface.dart';
+import 'package:upcarta_mobile_app/repositories/feed_repository/feed_repository_interface.dart';
 
-class FeedRepository implements IFeedRepository{
+class FeedRepository implements IFeedRepository {
   final RemoteDataSource remoteDataSource;
   final LocalDataStorage localDataStorage;
   final NetworkInfo networkInfo;
@@ -17,21 +18,22 @@ class FeedRepository implements IFeedRepository{
 
   FeedRepository(
       {required this.remoteDataSource,
-        required this.localDataStorage,
-        required this.networkInfo});
+      required this.localDataStorage,
+      required this.networkInfo});
+
   @override
-  Future<Either<Failure,List<Content>>> getAllContents()async{
+  Future<Either<Failure, List<Content>>> getAllContents() async {
     // check connectivity
     final isConnected = await networkInfo.isConnected;
-    if(isConnected){
-      try{
+    if (isConnected) {
+      try {
         //devam edilecek
-      } on ServerException{
+      } on ServerException {
         return Left(ServerFailure());
       }
-    }else {
+    } else {
       return Left(ServerFailure());
     }
+    throw UnimplementedError();
   }
-
 }

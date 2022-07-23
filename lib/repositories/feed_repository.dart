@@ -27,6 +27,7 @@ class FeedRepository {
     if (isConnected) {
       try {
         final contents = await remoteDataSource.getAllContents();
+        print(contents);
         // localDataStorage.cacheUserToken(userToken);
         //
         // return Right(userToken);
