@@ -8,7 +8,7 @@ abstract class IEntityRepository {
   const IEntityRepository();
 
   /// get the entity with given id
-  Future<Either<Failure, Entity>> getEntityWithId({required int id});
+  Future<Either<Failure, Entity>> getEntityWithId(int id);
 
   /// follow the entity with given id
   Future<Either<Failure, void>> followEntityWithId(int id);

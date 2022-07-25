@@ -20,7 +20,7 @@ class EntityRepository implements IEntityRepository {
       required this.networkInfo});
 
   @override
-  Future<Either<Failure, Entity>> getEntityWithId({required int id}) async {
+  Future<Either<Failure, Entity>> getEntityWithId(int id) async {
     final isConnected = await networkInfo.isConnected;
 
     if (isConnected) {
@@ -70,7 +70,7 @@ class EntityRepository implements IEntityRepository {
 
     if (isConnected) {
       try {
-        // get the entity from the remote data source
+        // get the entities from the remote data source
         final data = await remoteDataSource.getAllEntities();
         final entities = List<Entity>.from(data!.map((model)=> Entity.fromJson(model)));
         return Right(entities);
@@ -82,9 +82,20 @@ class EntityRepository implements IEntityRepository {
   }
 
   @override
-  Future<Either<Failure, List<Entity>>> getEntityFollowers(int id) {
-    // TODO: implement getEntityFollowers
-    throw UnimplementedError();
+  Future<Either<Failure, List<Entity>>> getEntityFollowers(int id) async {
+    final isConnected = await networkInfo.isConnected;
+
+    if (isConnected) {
+      try {
+        // get the entity from the remote data source
+        final data = await remoteDataSource.getEntityFollowers(id);
+        final entities = List<Entity>.from(data!.map((model)=> Entity.fromJson(model)));
+        return Right(entities);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    }
+    return Left(ServerFailure());
   }
 
   @override

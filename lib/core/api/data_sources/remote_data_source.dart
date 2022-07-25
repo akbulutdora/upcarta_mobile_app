@@ -245,4 +245,25 @@ class RemoteDataSource {
     }
     return null;
   }
+
+  Future<List?> getEntityFollowers(int id) async {
+    try {
+      final response = await _dioClient.get(
+        '$baseURL/entities/$id/followers',
+      );
+      if (response.statusCode == 200) {
+        if (response.data != null) {
+          print(response.data);
+          return response.data['data'];
+        }
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+    return null;
+  }
+
 }

@@ -2,27 +2,26 @@
 // in upcarta_mobile_app/test/shared_mocks.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i9;
+import 'dart:async' as _i8;
 
 import 'package:dartz/dartz.dart' as _i6;
 import 'package:dio/dio.dart' as _i7;
-import 'package:fresh_dio/fresh_dio.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:shared_preferences/shared_preferences.dart' as _i10;
+import 'package:shared_preferences/shared_preferences.dart' as _i9;
 import 'package:upcarta_mobile_app/core/api/data_sources/local_data_storage.dart'
     as _i4;
 import 'package:upcarta_mobile_app/core/api/data_sources/remote_data_source.dart'
     as _i3;
-import 'package:upcarta_mobile_app/core/error/failures.dart' as _i12;
+import 'package:upcarta_mobile_app/core/error/failures.dart' as _i11;
 import 'package:upcarta_mobile_app/core/platform/network_info.dart' as _i5;
-import 'package:upcarta_mobile_app/models/content/upcarta_content.dart' as _i13;
-import 'package:upcarta_mobile_app/models/entity/entity.dart' as _i15;
+import 'package:upcarta_mobile_app/models/content/upcarta_content.dart' as _i12;
+import 'package:upcarta_mobile_app/models/entity/entity.dart' as _i14;
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart' as _i2;
 import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository.dart'
-    as _i16;
+    as _i15;
 import 'package:upcarta_mobile_app/repositories/entity_repository/entity_repository.dart'
-    as _i14;
-import 'package:upcarta_mobile_app/repositories/feed_repository.dart' as _i11;
+    as _i13;
+import 'package:upcarta_mobile_app/repositories/feed_repository.dart' as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -55,7 +54,7 @@ class _FakeTransformer_7 extends _i1.Fake implements _i7.Transformer {}
 
 class _FakeInterceptors_8 extends _i1.Fake implements _i7.Interceptors {}
 
-class _FakeResponse_9<T> extends _i1.Fake implements _i8.Response<T> {}
+class _FakeResponse_9<T> extends _i1.Fake implements _i7.Response<T> {}
 
 /// A class which mocks [NetworkInfo].
 ///
@@ -66,9 +65,9 @@ class MockNetworkInfo extends _i1.Mock implements _i5.NetworkInfo {
   }
 
   @override
-  _i9.Future<bool> get isConnected =>
+  _i8.Future<bool> get isConnected =>
       (super.noSuchMethod(Invocation.getter(#isConnected),
-          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
 }
 
 /// A class which mocks [RemoteDataSource].
@@ -96,34 +95,34 @@ class MockRemoteDataSource extends _i1.Mock implements _i3.RemoteDataSource {
       super.noSuchMethod(Invocation.setter(#baseURL, _baseURL),
           returnValueForMissingStub: null);
   @override
-  _i9.Future<List<dynamic>?> login({String? email, String? password}) =>
+  _i8.Future<List<dynamic>?> login({String? email, String? password}) =>
       (super.noSuchMethod(
           Invocation.method(#login, [], {#email: email, #password: password}),
           returnValue:
-              Future<List<dynamic>?>.value()) as _i9.Future<List<dynamic>?>);
+              Future<List<dynamic>?>.value()) as _i8.Future<List<dynamic>?>);
   @override
-  _i9.Future<_i2.User> authenticate({String? email, String? password}) =>
+  _i8.Future<_i2.User> authenticate({String? email, String? password}) =>
       (super.noSuchMethod(
               Invocation.method(
                   #authenticate, [], {#email: email, #password: password}),
               returnValue: Future<_i2.User>.value(_FakeUser_0()))
-          as _i9.Future<_i2.User>);
+          as _i8.Future<_i2.User>);
   @override
-  _i9.Future<String> register({String? email, String? password}) =>
+  _i8.Future<String> register({String? email, String? password}) =>
       (super.noSuchMethod(
           Invocation.method(
               #register, [], {#email: email, #password: password}),
-          returnValue: Future<String>.value('')) as _i9.Future<String>);
+          returnValue: Future<String>.value('')) as _i8.Future<String>);
   @override
-  _i9.Future<List<dynamic>?> getAllContents() =>
+  _i8.Future<List<dynamic>?> getAllContents() =>
       (super.noSuchMethod(Invocation.method(#getAllContents, []),
               returnValue: Future<List<dynamic>?>.value())
-          as _i9.Future<List<dynamic>?>);
+          as _i8.Future<List<dynamic>?>);
   @override
-  _i9.Future<Map<String, dynamic>?> getEntityWithId(int? id) =>
+  _i8.Future<Map<String, dynamic>?> getEntityWithId(int? id) =>
       (super.noSuchMethod(Invocation.method(#getEntityWithId, [id]),
               returnValue: Future<Map<String, dynamic>?>.value())
-          as _i9.Future<Map<String, dynamic>?>);
+          as _i8.Future<Map<String, dynamic>?>);
   @override
   dynamic followEntityWithId(int? id) =>
       super.noSuchMethod(Invocation.method(#followEntityWithId, [id]));
@@ -131,10 +130,15 @@ class MockRemoteDataSource extends _i1.Mock implements _i3.RemoteDataSource {
   dynamic unfollowEntityWithId(int? id) =>
       super.noSuchMethod(Invocation.method(#unfollowEntityWithId, [id]));
   @override
-  _i9.Future<List<dynamic>?> getAllEntities() =>
+  _i8.Future<List<dynamic>?> getAllEntities() =>
       (super.noSuchMethod(Invocation.method(#getAllEntities, []),
               returnValue: Future<List<dynamic>?>.value())
-          as _i9.Future<List<dynamic>?>);
+          as _i8.Future<List<dynamic>?>);
+  @override
+  _i8.Future<List<dynamic>?> getEntityFollowers(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getEntityFollowers, [id]),
+              returnValue: Future<List<dynamic>?>.value())
+          as _i8.Future<List<dynamic>?>);
 }
 
 /// A class which mocks [LocalDataStorage].
@@ -146,30 +150,30 @@ class MockLocalDataStorage extends _i1.Mock implements _i4.LocalDataStorage {
   }
 
   @override
-  _i9.Future<String> getUserToken() =>
+  _i8.Future<String> getUserToken() =>
       (super.noSuchMethod(Invocation.method(#getUserToken, []),
-          returnValue: Future<String>.value('')) as _i9.Future<String>);
+          returnValue: Future<String>.value('')) as _i8.Future<String>);
   @override
-  _i9.Future<_i2.User> getUser() =>
+  _i8.Future<_i2.User> getUser() =>
       (super.noSuchMethod(Invocation.method(#getUser, []),
               returnValue: Future<_i2.User>.value(_FakeUser_0()))
-          as _i9.Future<_i2.User>);
+          as _i8.Future<_i2.User>);
   @override
-  _i9.Future<void> cacheUserToken(String? token) =>
+  _i8.Future<void> cacheUserToken(String? token) =>
       (super.noSuchMethod(Invocation.method(#cacheUserToken, [token]),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i8.Future<void>);
   @override
-  _i9.Future<void> cacheUser(_i2.User? user) =>
+  _i8.Future<void> cacheUser(_i2.User? user) =>
       (super.noSuchMethod(Invocation.method(#cacheUser, [user]),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i8.Future<void>);
 }
 
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i10.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i9.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }
@@ -201,47 +205,47 @@ class MockSharedPreferences extends _i1.Mock implements _i10.SharedPreferences {
       (super.noSuchMethod(Invocation.method(#getStringList, [key]))
           as List<String>?);
   @override
-  _i9.Future<bool> setBool(String? key, bool? value) =>
+  _i8.Future<bool> setBool(String? key, bool? value) =>
       (super.noSuchMethod(Invocation.method(#setBool, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
   @override
-  _i9.Future<bool> setInt(String? key, int? value) =>
+  _i8.Future<bool> setInt(String? key, int? value) =>
       (super.noSuchMethod(Invocation.method(#setInt, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
   @override
-  _i9.Future<bool> setDouble(String? key, double? value) =>
+  _i8.Future<bool> setDouble(String? key, double? value) =>
       (super.noSuchMethod(Invocation.method(#setDouble, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
   @override
-  _i9.Future<bool> setString(String? key, String? value) =>
+  _i8.Future<bool> setString(String? key, String? value) =>
       (super.noSuchMethod(Invocation.method(#setString, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
   @override
-  _i9.Future<bool> setStringList(String? key, List<String>? value) =>
+  _i8.Future<bool> setStringList(String? key, List<String>? value) =>
       (super.noSuchMethod(Invocation.method(#setStringList, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
   @override
-  _i9.Future<bool> remove(String? key) =>
+  _i8.Future<bool> remove(String? key) =>
       (super.noSuchMethod(Invocation.method(#remove, [key]),
-          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
   @override
-  _i9.Future<bool> commit() =>
+  _i8.Future<bool> commit() =>
       (super.noSuchMethod(Invocation.method(#commit, []),
-          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
   @override
-  _i9.Future<bool> clear() => (super.noSuchMethod(Invocation.method(#clear, []),
-      returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
+  _i8.Future<bool> clear() => (super.noSuchMethod(Invocation.method(#clear, []),
+      returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
   @override
-  _i9.Future<void> reload() =>
+  _i8.Future<void> reload() =>
       (super.noSuchMethod(Invocation.method(#reload, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i8.Future<void>);
 }
 
 /// A class which mocks [FeedRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFeedRepository extends _i1.Mock implements _i11.FeedRepository {
+class MockFeedRepository extends _i1.Mock implements _i10.FeedRepository {
   MockFeedRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -267,19 +271,19 @@ class MockFeedRepository extends _i1.Mock implements _i11.FeedRepository {
       super.noSuchMethod(Invocation.setter(#userId, _userId),
           returnValueForMissingStub: null);
   @override
-  _i9.Future<_i6.Either<_i12.Failure, _i6.IList<_i13.Content>>>
+  _i8.Future<_i6.Either<_i11.Failure, _i6.IList<_i12.Content>>>
       getAllContents() => (super.noSuchMethod(
               Invocation.method(#getAllContents, []),
               returnValue: Future<
-                      _i6.Either<_i12.Failure, _i6.IList<_i13.Content>>>.value(
-                  _FakeEither_4<_i12.Failure, _i6.IList<_i13.Content>>()))
-          as _i9.Future<_i6.Either<_i12.Failure, _i6.IList<_i13.Content>>>);
+                      _i6.Either<_i11.Failure, _i6.IList<_i12.Content>>>.value(
+                  _FakeEither_4<_i11.Failure, _i6.IList<_i12.Content>>()))
+          as _i8.Future<_i6.Either<_i11.Failure, _i6.IList<_i12.Content>>>);
 }
 
 /// A class which mocks [EntityRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockEntityRepository extends _i1.Mock implements _i14.EntityRepository {
+class MockEntityRepository extends _i1.Mock implements _i13.EntityRepository {
   MockEntityRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -297,54 +301,53 @@ class MockEntityRepository extends _i1.Mock implements _i14.EntityRepository {
       (super.noSuchMethod(Invocation.getter(#networkInfo),
           returnValue: _FakeNetworkInfo_3()) as _i5.NetworkInfo);
   @override
-  _i9.Future<_i6.Either<_i12.Failure, _i15.Entity>> getEntityWithId(
-          {int? id}) =>
-      (super.noSuchMethod(Invocation.method(#getEntityWithId, [], {#id: id}),
-              returnValue: Future<_i6.Either<_i12.Failure, _i15.Entity>>.value(
-                  _FakeEither_4<_i12.Failure, _i15.Entity>()))
-          as _i9.Future<_i6.Either<_i12.Failure, _i15.Entity>>);
+  _i8.Future<_i6.Either<_i11.Failure, _i14.Entity>> getEntityWithId(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getEntityWithId, [id]),
+              returnValue: Future<_i6.Either<_i11.Failure, _i14.Entity>>.value(
+                  _FakeEither_4<_i11.Failure, _i14.Entity>()))
+          as _i8.Future<_i6.Either<_i11.Failure, _i14.Entity>>);
   @override
-  _i9.Future<_i6.Either<_i12.Failure, void>> followEntityWithId(int? id) =>
+  _i8.Future<_i6.Either<_i11.Failure, void>> followEntityWithId(int? id) =>
       (super.noSuchMethod(Invocation.method(#followEntityWithId, [id]),
-              returnValue: Future<_i6.Either<_i12.Failure, void>>.value(
-                  _FakeEither_4<_i12.Failure, void>()))
-          as _i9.Future<_i6.Either<_i12.Failure, void>>);
+              returnValue: Future<_i6.Either<_i11.Failure, void>>.value(
+                  _FakeEither_4<_i11.Failure, void>()))
+          as _i8.Future<_i6.Either<_i11.Failure, void>>);
   @override
-  _i9.Future<_i6.Either<_i12.Failure, void>> unfollowEntityWithId(int? id) =>
+  _i8.Future<_i6.Either<_i11.Failure, void>> unfollowEntityWithId(int? id) =>
       (super.noSuchMethod(Invocation.method(#unfollowEntityWithId, [id]),
-              returnValue: Future<_i6.Either<_i12.Failure, void>>.value(
-                  _FakeEither_4<_i12.Failure, void>()))
-          as _i9.Future<_i6.Either<_i12.Failure, void>>);
+              returnValue: Future<_i6.Either<_i11.Failure, void>>.value(
+                  _FakeEither_4<_i11.Failure, void>()))
+          as _i8.Future<_i6.Either<_i11.Failure, void>>);
   @override
-  _i9.Future<_i6.Either<_i12.Failure, List<_i15.Entity>>> getAllEntities() =>
+  _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>> getAllEntities() =>
       (super.noSuchMethod(Invocation.method(#getAllEntities, []),
               returnValue:
-                  Future<_i6.Either<_i12.Failure, List<_i15.Entity>>>.value(
-                      _FakeEither_4<_i12.Failure, List<_i15.Entity>>()))
-          as _i9.Future<_i6.Either<_i12.Failure, List<_i15.Entity>>>);
+                  Future<_i6.Either<_i11.Failure, List<_i14.Entity>>>.value(
+                      _FakeEither_4<_i11.Failure, List<_i14.Entity>>()))
+          as _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>>);
   @override
-  _i9.Future<_i6.Either<_i12.Failure, List<_i15.Entity>>> getEntityFollowers(
+  _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>> getEntityFollowers(
           int? id) =>
       (super.noSuchMethod(Invocation.method(#getEntityFollowers, [id]),
               returnValue:
-                  Future<_i6.Either<_i12.Failure, List<_i15.Entity>>>.value(
-                      _FakeEither_4<_i12.Failure, List<_i15.Entity>>()))
-          as _i9.Future<_i6.Either<_i12.Failure, List<_i15.Entity>>>);
+                  Future<_i6.Either<_i11.Failure, List<_i14.Entity>>>.value(
+                      _FakeEither_4<_i11.Failure, List<_i14.Entity>>()))
+          as _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>>);
   @override
-  _i9.Future<_i6.Either<_i12.Failure, List<_i15.Entity>>> getEntityFollowings(
+  _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>> getEntityFollowings(
           int? id) =>
       (super.noSuchMethod(Invocation.method(#getEntityFollowings, [id]),
               returnValue:
-                  Future<_i6.Either<_i12.Failure, List<_i15.Entity>>>.value(
-                      _FakeEither_4<_i12.Failure, List<_i15.Entity>>()))
-          as _i9.Future<_i6.Either<_i12.Failure, List<_i15.Entity>>>);
+                  Future<_i6.Either<_i11.Failure, List<_i14.Entity>>>.value(
+                      _FakeEither_4<_i11.Failure, List<_i14.Entity>>()))
+          as _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>>);
 }
 
 /// A class which mocks [AuthenticationRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthenticationRepository extends _i1.Mock
-    implements _i16.AuthenticationRepository {
+    implements _i15.AuthenticationRepository {
   MockAuthenticationRepository() {
     _i1.throwOnMissingStub(this);
   }
@@ -369,30 +372,30 @@ class MockAuthenticationRepository extends _i1.Mock
   _i2.User get appUser => (super.noSuchMethod(Invocation.getter(#appUser),
       returnValue: _FakeUser_0()) as _i2.User);
   @override
-  _i9.Future<_i6.Either<_i12.Failure, _i2.User>> authenticate(
+  _i8.Future<_i6.Either<_i11.Failure, _i2.User>> authenticate(
           String? email, String? password) =>
       (super.noSuchMethod(Invocation.method(#authenticate, [email, password]),
-              returnValue: Future<_i6.Either<_i12.Failure, _i2.User>>.value(
-                  _FakeEither_4<_i12.Failure, _i2.User>()))
-          as _i9.Future<_i6.Either<_i12.Failure, _i2.User>>);
+              returnValue: Future<_i6.Either<_i11.Failure, _i2.User>>.value(
+                  _FakeEither_4<_i11.Failure, _i2.User>()))
+          as _i8.Future<_i6.Either<_i11.Failure, _i2.User>>);
   @override
-  _i9.Future<_i6.Either<_i12.Failure, String>> register(
+  _i8.Future<_i6.Either<_i11.Failure, String>> register(
           String? username, String? password) =>
       (super.noSuchMethod(Invocation.method(#register, [username, password]),
-              returnValue: Future<_i6.Either<_i12.Failure, String>>.value(
-                  _FakeEither_4<_i12.Failure, String>()))
-          as _i9.Future<_i6.Either<_i12.Failure, String>>);
+              returnValue: Future<_i6.Either<_i11.Failure, String>>.value(
+                  _FakeEither_4<_i11.Failure, String>()))
+          as _i8.Future<_i6.Either<_i11.Failure, String>>);
   @override
-  _i9.Future<void> logOut() =>
+  _i8.Future<void> logOut() =>
       (super.noSuchMethod(Invocation.method(#logOut, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i8.Future<void>);
 }
 
 /// A class which mocks [Dio].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDio extends _i1.Mock implements _i8.Dio {
+class MockDio extends _i1.Mock implements _i7.Dio {
   MockDio() {
     _i1.throwOnMissingStub(this);
   }
@@ -430,7 +433,7 @@ class MockDio extends _i1.Mock implements _i8.Dio {
       super.noSuchMethod(Invocation.method(#close, [], {#force: force}),
           returnValueForMissingStub: null);
   @override
-  _i9.Future<_i8.Response<T>> get<T>(String? path,
+  _i8.Future<_i7.Response<T>> get<T>(String? path,
           {Map<String, dynamic>? queryParameters,
           _i7.Options? options,
           _i7.CancelToken? cancelToken,
@@ -444,10 +447,10 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #cancelToken: cancelToken,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> getUri<T>(Uri? uri,
+  _i8.Future<_i7.Response<T>> getUri<T>(Uri? uri,
           {_i7.Options? options,
           _i7.CancelToken? cancelToken,
           _i7.ProgressCallback? onReceiveProgress}) =>
@@ -459,10 +462,10 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #cancelToken: cancelToken,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> post<T>(String? path,
+  _i8.Future<_i7.Response<T>> post<T>(String? path,
           {dynamic data,
           Map<String, dynamic>? queryParameters,
           _i7.Options? options,
@@ -480,10 +483,10 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #onSendProgress: onSendProgress,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> postUri<T>(Uri? uri,
+  _i8.Future<_i7.Response<T>> postUri<T>(Uri? uri,
           {dynamic data,
           _i7.Options? options,
           _i7.CancelToken? cancelToken,
@@ -499,10 +502,10 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #onSendProgress: onSendProgress,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> put<T>(String? path,
+  _i8.Future<_i7.Response<T>> put<T>(String? path,
           {dynamic data,
           Map<String, dynamic>? queryParameters,
           _i7.Options? options,
@@ -520,10 +523,10 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #onSendProgress: onSendProgress,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> putUri<T>(Uri? uri,
+  _i8.Future<_i7.Response<T>> putUri<T>(Uri? uri,
           {dynamic data,
           _i7.Options? options,
           _i7.CancelToken? cancelToken,
@@ -539,10 +542,10 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #onSendProgress: onSendProgress,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> head<T>(String? path,
+  _i8.Future<_i7.Response<T>> head<T>(String? path,
           {dynamic data,
           Map<String, dynamic>? queryParameters,
           _i7.Options? options,
@@ -556,18 +559,18 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #options: options,
                 #cancelToken: cancelToken
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> headUri<T>(Uri? uri,
+  _i8.Future<_i7.Response<T>> headUri<T>(Uri? uri,
           {dynamic data, _i7.Options? options, _i7.CancelToken? cancelToken}) =>
       (super.noSuchMethod(
               Invocation.method(#headUri, [uri],
                   {#data: data, #options: options, #cancelToken: cancelToken}),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> delete<T>(String? path,
+  _i8.Future<_i7.Response<T>> delete<T>(String? path,
           {dynamic data,
           Map<String, dynamic>? queryParameters,
           _i7.Options? options,
@@ -581,18 +584,18 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #options: options,
                 #cancelToken: cancelToken
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> deleteUri<T>(Uri? uri,
+  _i8.Future<_i7.Response<T>> deleteUri<T>(Uri? uri,
           {dynamic data, _i7.Options? options, _i7.CancelToken? cancelToken}) =>
       (super.noSuchMethod(
               Invocation.method(#deleteUri, [uri],
                   {#data: data, #options: options, #cancelToken: cancelToken}),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> patch<T>(String? path,
+  _i8.Future<_i7.Response<T>> patch<T>(String? path,
           {dynamic data,
           Map<String, dynamic>? queryParameters,
           _i7.Options? options,
@@ -610,10 +613,10 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #onSendProgress: onSendProgress,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> patchUri<T>(Uri? uri,
+  _i8.Future<_i7.Response<T>> patchUri<T>(Uri? uri,
           {dynamic data,
           _i7.Options? options,
           _i7.CancelToken? cancelToken,
@@ -629,8 +632,8 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #onSendProgress: onSendProgress,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
   void lock() => super.noSuchMethod(Invocation.method(#lock, []),
       returnValueForMissingStub: null);
@@ -641,7 +644,7 @@ class MockDio extends _i1.Mock implements _i8.Dio {
   void clear() => super.noSuchMethod(Invocation.method(#clear, []),
       returnValueForMissingStub: null);
   @override
-  _i9.Future<_i8.Response<dynamic>> download(String? urlPath, dynamic savePath,
+  _i8.Future<_i7.Response<dynamic>> download(String? urlPath, dynamic savePath,
           {_i7.ProgressCallback? onReceiveProgress,
           Map<String, dynamic>? queryParameters,
           _i7.CancelToken? cancelToken,
@@ -662,11 +665,11 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #data: data,
                 #options: options
               }),
-              returnValue: Future<_i8.Response<dynamic>>.value(
+              returnValue: Future<_i7.Response<dynamic>>.value(
                   _FakeResponse_9<dynamic>()))
-          as _i9.Future<_i8.Response<dynamic>>);
+          as _i8.Future<_i7.Response<dynamic>>);
   @override
-  _i9.Future<_i8.Response<dynamic>> downloadUri(Uri? uri, dynamic savePath,
+  _i8.Future<_i7.Response<dynamic>> downloadUri(Uri? uri, dynamic savePath,
           {_i7.ProgressCallback? onReceiveProgress,
           _i7.CancelToken? cancelToken,
           bool? deleteOnError = true,
@@ -685,11 +688,11 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #data: data,
                 #options: options
               }),
-              returnValue: Future<_i8.Response<dynamic>>.value(
+              returnValue: Future<_i7.Response<dynamic>>.value(
                   _FakeResponse_9<dynamic>()))
-          as _i9.Future<_i8.Response<dynamic>>);
+          as _i8.Future<_i7.Response<dynamic>>);
   @override
-  _i9.Future<_i8.Response<T>> request<T>(String? path,
+  _i8.Future<_i7.Response<T>> request<T>(String? path,
           {dynamic data,
           Map<String, dynamic>? queryParameters,
           _i7.CancelToken? cancelToken,
@@ -707,10 +710,10 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #onSendProgress: onSendProgress,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> requestUri<T>(Uri? uri,
+  _i8.Future<_i7.Response<T>> requestUri<T>(Uri? uri,
           {dynamic data,
           _i7.CancelToken? cancelToken,
           _i7.Options? options,
@@ -726,11 +729,11 @@ class MockDio extends _i1.Mock implements _i8.Dio {
                 #onSendProgress: onSendProgress,
                 #onReceiveProgress: onReceiveProgress
               }),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
   @override
-  _i9.Future<_i8.Response<T>> fetch<T>(_i7.RequestOptions? requestOptions) =>
+  _i8.Future<_i7.Response<T>> fetch<T>(_i7.RequestOptions? requestOptions) =>
       (super.noSuchMethod(Invocation.method(#fetch, [requestOptions]),
-              returnValue: Future<_i8.Response<T>>.value(_FakeResponse_9<T>()))
-          as _i9.Future<_i8.Response<T>>);
+              returnValue: Future<_i7.Response<T>>.value(_FakeResponse_9<T>()))
+          as _i8.Future<_i7.Response<T>>);
 }
