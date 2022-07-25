@@ -9,6 +9,7 @@ enum LoginStatus {
   validationFailure,
   validationSuccess
 }
+
 class LoginState extends Equatable {
   final EmailAddress email;
   final Password password;
@@ -16,7 +17,6 @@ class LoginState extends Equatable {
   final String? errorMessage;
   final bool passwordValidated;
   final bool emailValidated;
-
 
   const LoginState(
       {required this.email,
@@ -28,25 +28,29 @@ class LoginState extends Equatable {
 
   factory LoginState.initial() {
     return LoginState(
-        email: EmailAddress(''), password: Password(''), status: LoginStatus.initial, emailValidated: false, passwordValidated: false);
+        email: EmailAddress(''),
+        password: Password(''),
+        status: LoginStatus.initial,
+        emailValidated: false,
+        passwordValidated: false);
   }
   @override
-  List<Object> get props => [email, password, status,emailValidated,passwordValidated];
+  List<Object> get props =>
+      [email, password, status, emailValidated, passwordValidated];
 
-  LoginState copyWith({
-    EmailAddress? email,
-    Password? password,
-    LoginStatus? status,
-    String? errorMessage,
-    bool? passwordValidated,
-    bool? emailValidated
-  }) {
+  LoginState copyWith(
+      {EmailAddress? email,
+      Password? password,
+      LoginStatus? status,
+      String? errorMessage,
+      bool? passwordValidated,
+      bool? emailValidated}) {
     return LoginState(
         email: email ?? this.email,
         password: password ?? this.password,
         status: status ?? this.status,
         errorMessage: errorMessage ?? this.errorMessage,
-    passwordValidated: passwordValidated ?? this.passwordValidated,
-    emailValidated: emailValidated ?? this.emailValidated);
+        passwordValidated: passwordValidated ?? this.passwordValidated,
+        emailValidated: emailValidated ?? this.emailValidated);
   }
 }
