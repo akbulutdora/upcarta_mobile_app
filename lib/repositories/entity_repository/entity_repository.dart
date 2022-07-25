@@ -20,14 +20,13 @@ class EntityRepository implements IEntityRepository {
       required this.networkInfo});
 
   @override
-  Future<Either<Failure, Entity>> getEntityWithId(
-      {required String token, required int id}) async {
+  Future<Either<Failure, Entity>> getEntityWithId({required int id}) async {
     final isConnected = await networkInfo.isConnected;
 
     if (isConnected) {
       try {
         // get the entity from the remote data source
-        final data = await remoteDataSource.getEntityById(id);
+        final data = await remoteDataSource.getEntityWithId(id);
         final entity = Entity.fromJson(data!);
         return Right(entity);
       } on ServerException {
@@ -38,20 +37,59 @@ class EntityRepository implements IEntityRepository {
   }
 
   @override
-  Future<Either<Failure, void>> followEntityWithId(int id) {
-    // TODO: implement followEntityWithId
+  Future<Either<Failure, void>> followEntityWithId(int id) async {
+    final isConnected = await networkInfo.isConnected;
+
+    if (isConnected) {
+      try {
+        await remoteDataSource.followEntityWithId(id);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    }
+    return Left(ServerFailure());
+  }
+
+  @override
+  Future<Either<Failure, void>> unfollowEntityWithId(int id) async {
+    final isConnected = await networkInfo.isConnected;
+
+    if (isConnected) {
+      try {
+        await remoteDataSource.unfollowEntityWithId(id);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    }
+    return Left(ServerFailure());
+  }
+
+  @override
+  Future<Either<Failure, List<Entity>>> getAllEntities() async {
+    final isConnected = await networkInfo.isConnected;
+
+    if (isConnected) {
+      try {
+        // get the entity from the remote data source
+        final data = await remoteDataSource.getAllEntities();
+        final entities = List<Entity>.from(data!.map((model)=> Entity.fromJson(model)));
+        return Right(entities);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    }
+    return Left(ServerFailure());
+  }
+
+  @override
+  Future<Either<Failure, List<Entity>>> getEntityFollowers(int id) {
+    // TODO: implement getEntityFollowers
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, void>> unfollowEntityWithId(int id) {
-    // TODO: implement unfollowEntityWithId
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, List<Entity>>> getAllEntities() {
-    // TODO: implement getAllEntities
+  Future<Either<Failure, List<Entity>>> getEntityFollowings(int id) {
+    // TODO: implement getEntityFollowings
     throw UnimplementedError();
   }
 }

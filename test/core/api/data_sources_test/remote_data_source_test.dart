@@ -11,16 +11,16 @@ import '../../../fixtures/fixture_reader.dart';
 import '../../../shared_mocks.mocks.dart';
 
 void main() {
-  // The mock Http Client.
-
+  /// The mock Dio Client.
   MockDio mockDio = MockDio();
   when(mockDio.interceptors).thenAnswer((_) => Interceptors());
 
   RemoteDataSource dataSource = RemoteDataSource(dioClient: mockDio);
   String baseURL = 'https://upcarta-staging.onrender.com/api/v1';
 
-  // FIXME: Error in next line
-  // print(Content.fromJson(json.decode(fixture('content.json'))));
+  void clearInteractionsWithAll() {
+    clearInteractions(mockDio);
+  }
 
   group('reqs with dio', () {
     RemoteDataSource dataSource2 = RemoteDataSource(dioClient: Dio());
@@ -33,13 +33,30 @@ void main() {
     });
 
     test('should call getEntityByID', () async {
-      await dataSource2.getEntityById(2);
+      await dataSource2.getEntityWithId(2);
     });
 
     test('should call getAllContents', () async {
-      await dataSource2.getAllContents();
+      final l = await dataSource2.getAllContents();
+      // print(List<Content>.from(l!.map((model)=> Content.fromJson(model))));
     });
 
+    test('should call unfollowEntityWithId', () async {
+      await dataSource2.unfollowEntityWithId(2);
+    });
+
+    test('should call followEntityWithId', () async {
+      await dataSource2.followEntityWithId(2);
+    });
+
+
+
+    test('should call getAllEntities', () async {
+
+      final l = await dataSource2.getAllEntities();
+      // print(List<Entity>.from(l!.map((model) => Entity.fromJson(model))));
+    });
+    clearInteractionsWithAll();
   });
 
   group('authenticate', () {
@@ -101,6 +118,7 @@ void main() {
             'session': {'email': tEmail, 'password': tPassword}
           },
         ));
+        clearInteractionsWithAll();
       },
     );
 
@@ -125,6 +143,7 @@ void main() {
         // assert
         expect(result![0], equals(tToken));
         expect(User.fromJson(result[1]), equals(tUser));
+        clearInteractionsWithAll();
       },
     );
 
@@ -148,21 +167,18 @@ void main() {
         // assert
         expect(() => call(email: tEmail, password: tPassword),
             throwsA(const TypeMatcher<ServerException>()));
+        clearInteractionsWithAll();
       },
     );
   });
 
   group('getAllContents', () {
-    // TODO: TEST GET LIST OF CONTENTS, STATUSCODE = 200
-    final List<Content> tEmptyContents = [];
-
     test(
       'should preform a GET request on a URL with application/json header',
       () {
         // arrange
-        when(mockDio.get<Map<String, dynamic>>('$baseURL/contents/'))
-            .thenAnswer(
-              (_) async => Response(
+        when(mockDio.get<Map<String, dynamic>>('$baseURL/contents')).thenAnswer(
+          (_) async => Response(
               statusCode: 200,
               data: json.decode(fixture('content_list.json')),
               requestOptions: RequestOptions(path: '')),
@@ -171,20 +187,7 @@ void main() {
         dataSource.getAllContents();
         // assert
         verify(mockDio.get<Map<String, dynamic>>('$baseURL/contents'));
-      },
-    );
-
-    test(
-      'should return empty list of contents when the response code is 401 (unauthorized)',
-          () async {
-        // // arrange
-        // when(mockHttpClient.get(any, headers: anyNamed('headers'))).thenAnswer(
-        //   (_) async => http.Response(fixture('no_resource.json'), 401),
-        // );
-        // // act
-        // final result = await dataSource.getAllContents();
-        // // assert
-        // expect(result, equals(tEmptyContents));
+        clearInteractionsWithAll();
       },
     );
   });
@@ -223,9 +226,10 @@ void main() {
               requestOptions: RequestOptions(path: '')),
         );
         // act
-        dataSource.getEntityById(tId);
+        dataSource.getEntityWithId(tId);
         // assert
         verify(mockDio.get<Map<String, dynamic>>('$baseURL/entities/$tId'));
+        clearInteractionsWithAll();
       },
     );
 
@@ -240,9 +244,10 @@ void main() {
             requestOptions: RequestOptions(path: '')),
       );
       // act
-      final result = await dataSource.getEntityById(tId);
+      final result = await dataSource.getEntityWithId(tId);
       // assert
       expect(Entity.fromJson(result!), equals(tEntity));
+      clearInteractionsWithAll();
     });
 
     test(
@@ -257,9 +262,90 @@ void main() {
             requestOptions: RequestOptions(path: '')),
       );
       // act
-      final call = dataSource.getEntityById(tId);
+      final call = dataSource.getEntityWithId(tId);
       // assert
       expect(() => call, throwsA(const TypeMatcher<ServerException>()));
     });
+    clearInteractionsWithAll();
   });
+
+  group('followEntityWithId', () {
+    const tId = 2;
+    test(
+      'should preform a POST request on a URL with application/json header',
+      () {
+        // arrange
+        when(mockDio.post<Map<String, dynamic>>(
+          '$baseURL/entities/$tId/follows',
+        )).thenAnswer(
+          (_) async => Response(
+              statusCode: 201, requestOptions: RequestOptions(path: '')),
+        );
+        // act
+        dataSource.followEntityWithId(2);
+        // assert
+        verify(mockDio.post<Map<String, dynamic>>(
+          '$baseURL/entities/$tId/follows',
+        ));
+        clearInteractionsWithAll();
+      },
+    );
+
+    test('should throw a [ServerException] when the response code is not 204',
+        () {
+      // arrange
+      when(mockDio.post<Map<String, dynamic>>(
+        '$baseURL/entities/$tId/follows',
+      )).thenAnswer(
+        (_) async =>
+            Response(statusCode: 401, requestOptions: RequestOptions(path: '')),
+      );
+      // act
+      final call = dataSource.followEntityWithId;
+      // assert
+      expect(() => call(2), throwsA(const TypeMatcher<ServerException>()));
+      clearInteractionsWithAll();
+    });
+  });
+
+  group('unfollowEntityWithId', () {
+    const tId = 2;
+    test(
+      'should preform a DELETE request on a URL with application/json header',
+      () {
+        // arrange
+        when(mockDio.delete<Map<String, dynamic>>(
+          '$baseURL/entities/$tId/follows',
+        )).thenAnswer(
+          (_) async => Response(
+              statusCode: 204, requestOptions: RequestOptions(path: '')),
+        );
+        // act
+        dataSource.unfollowEntityWithId(2);
+        // assert
+        verify(mockDio.delete<Map<String, dynamic>>(
+          '$baseURL/entities/$tId/follows',
+        ));
+        clearInteractionsWithAll();
+      },
+    );
+
+    test('should throw a [ServerException] when the response code is not 204',
+        () {
+      // arrange
+      when(mockDio.delete<Map<String, dynamic>>(
+        '$baseURL/entities/$tId/follows',
+      )).thenAnswer(
+        (_) async =>
+            Response(statusCode: 401, requestOptions: RequestOptions(path: '')),
+      );
+      // act
+      final call = dataSource.unfollowEntityWithId;
+      // assert
+      expect(() => call(2), throwsA(const TypeMatcher<ServerException>()));
+      clearInteractionsWithAll();
+    });
+  });
+
+  group('description', () { });
 }

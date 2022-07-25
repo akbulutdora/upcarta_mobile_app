@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:upcarta_mobile_app/models/following/entity_following.dart';
 
 part 'entity.freezed.dart';
 
@@ -25,7 +26,7 @@ class Entity with _$Entity {
     String? website,
     String? linkedin,
     String? wikipedia,
-    @JsonKey(name: 'following_entity') Entity? followingEntity,
+    @JsonKey(name: 'following_entity') EntityFollowing? followingEntity,
     @JsonKey(name: 'channel_entities') List<Entity>? channelEntities,
   }) = _Entity;
 

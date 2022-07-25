@@ -1,16 +1,11 @@
-import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fresh_dio/fresh_dio.dart';
 import 'package:logger/logger.dart';
 import 'package:upcarta_mobile_app/core/api/data_sources/token_storage.dart';
 import 'package:upcarta_mobile_app/core/error/exception.dart';
-import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
-import 'package:upcarta_mobile_app/models/entity/entity.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
-import 'package:http/http.dart' as http;
 
 class RemoteDataSource {
   RemoteDataSource({Dio? dioClient})
@@ -44,7 +39,7 @@ class RemoteDataSource {
               onResponse: (Response<dynamic> response,
                   ResponseInterceptorHandler handler) {
                 Logger().v(
-                    '(${response.statusCode}) - ${response.requestOptions.uri}');
+                    '(${response.statusCode}, ${response.statusMessage}) - ${response.requestOptions.uri}');
                 Logger().i(response.data);
 
                 return handler.next(response);
@@ -78,6 +73,10 @@ class RemoteDataSource {
       return false;
     },
   );
+
+  /// *************************************************************************
+  ///
+  ///                        *****  AUTHENTICATION REQUESTS  *****
 
   Future<List?> login({required String email, required String password}) async {
     try {
@@ -149,24 +148,36 @@ class RemoteDataSource {
     throw UnimplementedError();
   }
 
-  Future<List<Map<String, dynamic>>?> getAllContents() async {
-    final response =
-    await _dioClient.get<Map<String, dynamic>>('$baseURL/contents/');
-    if (kDebugMode) {
-      print('response body: ${response.data}');
-    }
-    if (response.statusCode == 200) {
-      if (response.data != null) {
-        return response.data!['data'];
+  /// *************************************************************************
+  ///
+  ///                        *****  CONTENT REQUESTS  *****
+
+  Future<List?> getAllContents() async {
+    try {
+      final response =
+          await _dioClient.get<Map<String, dynamic>>('$baseURL/contents');
+      if (kDebugMode) {
+        print('response body: ${response.data}');
       }
-    }
-    else {
-      throw ServerException();
+      if (response.statusCode == 200) {
+        if (response.data != null) {
+          return response.data!['data'];
+        }
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
     }
     return null;
   }
 
-  Future<Map<String, dynamic>?> getEntityById(int id) async {
+  /// *************************************************************************
+  ///
+  ///                        *****  ENTITY REQUESTS  *****
+
+  Future<Map<String, dynamic>?> getEntityWithId(int id) async {
     try {
       final response =
           await _dioClient.get<Map<String, dynamic>>('$baseURL/entities/$id');
@@ -174,8 +185,58 @@ class RemoteDataSource {
         if (response.data != null) {
           return response.data!['data'];
         }
+      } else {
+        throw ServerException();
       }
-      else {
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+    return null;
+  }
+
+  followEntityWithId(int id) async {
+    try {
+      final response = await _dioClient.post<Map<String, dynamic>>(
+        '$baseURL/entities/$id/follows',
+      );
+      if (response.statusCode == 201) {
+        return;
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+  unfollowEntityWithId(int id) async {
+    try {
+      final response = await _dioClient.delete(
+        '$baseURL/entities/$id/follows',
+      );
+      if (response.statusCode == 204) {
+        return;
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<List?> getAllEntities() async {
+    try {
+      final response = await _dioClient.get(
+        '$baseURL/entities',
+      );
+      if (response.statusCode == 200) {
+        if (response.data != null) {
+          return response.data!['data'];
+        }
+      } else {
         throw ServerException();
       }
     } catch (e) {
