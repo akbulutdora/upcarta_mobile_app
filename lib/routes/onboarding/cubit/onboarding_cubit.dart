@@ -8,6 +8,7 @@ part 'onboarding_state.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
   final UserRepository _userRepository;
+
   OnboardingCubit(this._userRepository) : super(OnboardingState.initial());
 
   void bioChanged(String bio) {
@@ -23,7 +24,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     } else if (Username(value).value.isRight()) {
       emit(state.copyWith(
           username: Username(value),
-          status: OnboardingStatus.validationFailure,
+          status: OnboardingStatus.validationSuccess,
           usernameValidated: true));
     } else {
       emit(state.copyWith(
