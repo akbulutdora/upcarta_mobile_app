@@ -187,14 +187,14 @@ void main() {
   group('getEntityFollowers', () {
     const tId = 2;
     final tResponse =
-        json.decode(fixture('follower_entity_success_response.json'))['data'];
+    json.decode(fixture('follower_entity_success_response.json'))['data'];
     final tEntities =
-        List<Entity>.from(tResponse!.map((model) => Entity.fromJson(model)));
+    List<Entity>.from(tResponse!.map((model) => Entity.fromJson(model)));
 
     runTestsOnline(() {
       test(
         'should make the call to remote data source successfully',
-        () async {
+            () async {
           // arrange
           when(mockRemoteDataSource.getEntityFollowers(tId))
               .thenAnswer((_) async => tResponse);
@@ -208,7 +208,7 @@ void main() {
 
       test(
         'should return remote data when the call to remote data source is successful',
-        () async {
+            () async {
           // arrange
           when(mockRemoteDataSource.getEntityFollowers(tId))
               .thenAnswer((_) async => tResponse);
@@ -243,9 +243,82 @@ void main() {
     runTestsOffline(() {
       test(
         'should return server failure when there is no connection',
-        () async {
+            () async {
           // act
           final result = await repository.getEntityFollowers(tId);
+          // assert
+          verifyNoMoreInteractions(mockRemoteDataSource);
+          verifyNoMoreInteractions(mockLocalDataStorage);
+          expect(result, equals(Left(ServerFailure())));
+
+          clearInteractionsWithAll();
+        },
+      );
+    });
+  });
+
+  group('getEntityFollowings', () {
+    const tId = 2;
+    final tResponse =
+    json.decode(fixture('following_entity_success_response.json'))['data'];
+    final tEntities =
+    List<Entity>.from(tResponse!.map((model) => Entity.fromJson(model)));
+
+    runTestsOnline(() {
+      test(
+        'should make the call to remote data source successfully',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getEntityFollowing(tId))
+              .thenAnswer((_) async => tResponse);
+          // act
+          await repository.getEntityFollowing(tId);
+          // assert
+          verify(mockRemoteDataSource.getEntityFollowing(tId));
+          clearInteractionsWithAll();
+        },
+      );
+
+      test(
+        'should return remote data when the call to remote data source is successful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getEntityFollowing(tId))
+              .thenAnswer((_) async => tResponse);
+          // act
+          final result = await repository.getEntityFollowing(tId);
+          // assert
+          expect(result.fold((l) => l, (r) => r), equals(tEntities));
+
+          clearInteractionsWithAll();
+        },
+      );
+
+      test(
+        'should return server failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getEntityFollowing(tId))
+              .thenThrow(ServerException());
+          // act
+          final result = await repository.getEntityFollowing(tId);
+          // assert
+          verify(mockRemoteDataSource.getEntityFollowing(tId));
+          // verifyZeroInteractions(mockLocalDataSource);
+          expect(result, equals(Left(ServerFailure())));
+
+          clearInteractionsWithAll();
+        },
+      );
+    });
+
+    // ??
+    runTestsOffline(() {
+      test(
+        'should return server failure when there is no connection',
+            () async {
+          // act
+          final result = await repository.getEntityFollowing(tId);
           // assert
           verifyNoMoreInteractions(mockRemoteDataSource);
           verifyNoMoreInteractions(mockLocalDataStorage);

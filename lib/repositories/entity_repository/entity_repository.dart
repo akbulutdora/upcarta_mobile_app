@@ -99,8 +99,19 @@ class EntityRepository implements IEntityRepository {
   }
 
   @override
-  Future<Either<Failure, List<Entity>>> getEntityFollowings(int id) {
-    // TODO: implement getEntityFollowings
-    throw UnimplementedError();
+  Future<Either<Failure, List<Entity>>> getEntityFollowing(int id) async {
+    final isConnected = await networkInfo.isConnected;
+
+    if (isConnected) {
+      try {
+        // get the entity from the remote data source
+        final data = await remoteDataSource.getEntityFollowing(id);
+        final entities = List<Entity>.from(data!.map((model)=> Entity.fromJson(model)));
+        return Right(entities);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    }
+    return Left(ServerFailure());
   }
 }

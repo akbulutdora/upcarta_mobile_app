@@ -334,7 +334,7 @@ class MockEntityRepository extends _i1.Mock implements _i13.EntityRepository {
                       _FakeEither_4<_i11.Failure, List<_i14.Entity>>()))
           as _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>>);
   @override
-  _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>> getEntityFollowings(
+  _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>> getEntityFollowing(
           int? id) =>
       (super.noSuchMethod(Invocation.method(#getEntityFollowings, [id]),
               returnValue:

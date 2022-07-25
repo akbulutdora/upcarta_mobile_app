@@ -89,7 +89,6 @@ class RemoteDataSource {
 
       if (response.statusCode == 200) {
         final token = response.data!['data']['jwt'];
-        print(token);
         await _fresh.setToken(token);
         final user = response.data!['data']['user'];
         return [token, user];
@@ -156,9 +155,6 @@ class RemoteDataSource {
     try {
       final response =
           await _dioClient.get<Map<String, dynamic>>('$baseURL/contents');
-      if (kDebugMode) {
-        print('response body: ${response.data}');
-      }
       if (response.statusCode == 200) {
         if (response.data != null) {
           return response.data!['data'];
@@ -253,7 +249,25 @@ class RemoteDataSource {
       );
       if (response.statusCode == 200) {
         if (response.data != null) {
-          print(response.data);
+          return response.data['data'];
+        }
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+    return null;
+  }
+
+  Future<List?> getEntityFollowing(int id) async {
+    try {
+      final response = await _dioClient.get(
+        '$baseURL/entities/$id/following',
+      );
+      if (response.statusCode == 200) {
+        if (response.data != null) {
           return response.data['data'];
         }
       } else {

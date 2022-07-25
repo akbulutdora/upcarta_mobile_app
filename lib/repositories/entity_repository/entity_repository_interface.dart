@@ -24,5 +24,5 @@ abstract class IEntityRepository {
 
 
   /// get the list of entity followings
-  Future<Either<Failure, List<Entity>>> getEntityFollowings(int id);
+  Future<Either<Failure, List<Entity>>> getEntityFollowing(int id);
 }
