@@ -21,18 +21,29 @@ Topic _$TopicFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Topic {
   int? get id => throw _privateConstructorUsedError;
+
+  /// max 50 characters
   String get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get wikipedia => throw _privateConstructorUsedError;
+
+  /// auto-generated on the back-end (used for generating the SEO friendly URL of the topic)
   String? get slug => throw _privateConstructorUsedError;
+
+  /// counter for the number of followers of that topic
   @JsonKey(name: 'followers_count')
   int? get followersCount => throw _privateConstructorUsedError;
+
+  /// counter for the number of contents curated under that topic
   @JsonKey(name: 'contents_count')
   int? get contentsCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'added_by')
   User? get addedBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'added_by_id')
   int? get addedById => throw _privateConstructorUsedError;
+
+  /// Used for better search
+  /// Keywords, seperated by ",".
   String? get keywords => throw _privateConstructorUsedError;
   @JsonKey(name: 'inserted_at')
   DateTime? get insertedAt => throw _privateConstructorUsedError;
@@ -259,17 +270,25 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
 
   @override
   final int? id;
+
+  /// max 50 characters
   @override
   final String title;
   @override
   final String? description;
   @override
   final String? wikipedia;
+
+  /// auto-generated on the back-end (used for generating the SEO friendly URL of the topic)
   @override
   final String? slug;
+
+  /// counter for the number of followers of that topic
   @override
   @JsonKey(name: 'followers_count')
   final int? followersCount;
+
+  /// counter for the number of contents curated under that topic
   @override
   @JsonKey(name: 'contents_count')
   final int? contentsCount;
@@ -279,6 +298,9 @@ class _$_Topic with DiagnosticableTreeMixin implements _Topic {
   @override
   @JsonKey(name: 'added_by_id')
   final int? addedById;
+
+  /// Used for better search
+  /// Keywords, seperated by ",".
   @override
   final String? keywords;
   @override
@@ -376,17 +398,25 @@ abstract class _Topic implements Topic {
   @override
   int? get id;
   @override
+
+  /// max 50 characters
   String get title;
   @override
   String? get description;
   @override
   String? get wikipedia;
   @override
+
+  /// auto-generated on the back-end (used for generating the SEO friendly URL of the topic)
   String? get slug;
   @override
+
+  /// counter for the number of followers of that topic
   @JsonKey(name: 'followers_count')
   int? get followersCount;
   @override
+
+  /// counter for the number of contents curated under that topic
   @JsonKey(name: 'contents_count')
   int? get contentsCount;
   @override
@@ -396,6 +426,9 @@ abstract class _Topic implements Topic {
   @JsonKey(name: 'added_by_id')
   int? get addedById;
   @override
+
+  /// Used for better search
+  /// Keywords, seperated by ",".
   String? get keywords;
   @override
   @JsonKey(name: 'inserted_at')

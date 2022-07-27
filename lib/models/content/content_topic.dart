@@ -18,12 +18,15 @@ class ContentTopic with _$ContentTopic {
     @JsonKey(name: 'content_id',required: true) required int contentId,
     Topic? topic,
     @JsonKey(name: 'topic_id',required : true) required int topicId,
+
+    /// position of appearance
     int? pos,
+
+    /// the profile who added the content topic
     @JsonKey(name: 'added_by') User? addedBy,
+
+    /// the profile id who added the content topic
     @JsonKey(name: 'added_by_id') int? addedById,
-    //yeni semada cikarilmis
-    //@JsonKey(name: 'inserted_at') DateTime? insertedAt,
-    //@JsonKey(name: 'updated_at') DateTime? updatedAt,
 
   }) = _ContentTopic;
 

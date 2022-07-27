@@ -21,9 +21,16 @@ Channel _$ChannelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Channel {
   int? get id => throw _privateConstructorUsedError;
+
+  /// URL for the channel
   String get link => throw _privateConstructorUsedError;
+
+  /// List of Channel Entity objects.
   @JsonKey(name: 'channel_entities')
   List<Entity>? get channelEntities => throw _privateConstructorUsedError;
+
+  /// video, article, podcast_episode, book, course, tweet, presentation, paper, audio, documentary
+  /// website, report, transcript, forum_post, movie, series, channel ,blog, newsletter, podcast, tv_episode
   ChannelType? get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -143,9 +150,15 @@ class _$_Channel with DiagnosticableTreeMixin implements _Channel {
 
   @override
   final int? id;
+
+  /// URL for the channel
   @override
   final String link;
+
+  /// List of Channel Entity objects.
   final List<Entity>? _channelEntities;
+
+  /// List of Channel Entity objects.
   @override
   @JsonKey(name: 'channel_entities')
   List<Entity>? get channelEntities {
@@ -155,6 +168,8 @@ class _$_Channel with DiagnosticableTreeMixin implements _Channel {
     return EqualUnmodifiableListView(value);
   }
 
+  /// video, article, podcast_episode, book, course, tweet, presentation, paper, audio, documentary
+  /// website, report, transcript, forum_post, movie, series, channel ,blog, newsletter, podcast, tv_episode
   @override
   final ChannelType? type;
 
@@ -218,11 +233,18 @@ abstract class _Channel implements Channel {
   @override
   int? get id;
   @override
+
+  /// URL for the channel
   String get link;
   @override
+
+  /// List of Channel Entity objects.
   @JsonKey(name: 'channel_entities')
   List<Entity>? get channelEntities;
   @override
+
+  /// video, article, podcast_episode, book, course, tweet, presentation, paper, audio, documentary
+  /// website, report, transcript, forum_post, movie, series, channel ,blog, newsletter, podcast, tv_episode
   ChannelType? get type;
   @override
   @JsonKey(ignore: true)

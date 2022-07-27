@@ -21,17 +21,36 @@ Collection _$CollectionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Collection {
   int? get id => throw _privateConstructorUsedError;
+
+  /// Title of the collection.
+  /// Max 180 characters.
   String get title => throw _privateConstructorUsedError;
+
+  /// Entity object id who originally created the collection.
   @JsonKey(name: 'entity_id', required: true)
   int get entityId => throw _privateConstructorUsedError;
+
+  /// Entity object who originally created the collection.
   Entity? get entity => throw _privateConstructorUsedError;
+
+  /// Entity object who added the collection.
   @JsonKey(name: 'added_by')
   Entity? get addedBy => throw _privateConstructorUsedError;
+
+  /// Entity object id who added the collection.
   @JsonKey(name: 'added_by_id')
   int? get addedById => throw _privateConstructorUsedError;
+
+  /// Description of the collection
   String? get description => throw _privateConstructorUsedError;
+
+  /// Auto-generated on back-end. Can be used to generate the link.
   String? get slug => throw _privateConstructorUsedError;
+
+  /// later, finished, internal, external, internal_ask, external_ask
   CollectionType get type => throw _privateConstructorUsedError;
+
+  /// manual, recently_added, creation_asc, creation_desc, popularity
   CollectionSort? get sort => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at_str')
   String? get createdAtStr => throw _privateConstructorUsedError;
@@ -39,20 +58,38 @@ mixin _$Collection {
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at_accuracy')
   CollectionCreatedAtAccuracy? get createdAtAccuracy =>
-      throw _privateConstructorUsedError; //todo: external ise required
+      throw _privateConstructorUsedError;
+
+  /// If the collection is external (type is external or external_ask) then a link is required.
   String? get link => throw _privateConstructorUsedError;
+
+  /// Content object that indicates the source of the collection.
   @JsonKey(name: 'source_content')
   Content? get sourceContent => throw _privateConstructorUsedError;
+
+  /// Content object id that indicates the source of the collection.
   @JsonKey(name: 'source_content_id')
   int? get sourceContentId => throw _privateConstructorUsedError;
+
+  /// private, public
   CollectionVisibility? get visibility => throw _privateConstructorUsedError;
+
+  /// Indicates whether the collection/ask is verified.
   @JsonKey(name: 'verified_at')
   DateTime? get verifiedAt => throw _privateConstructorUsedError;
+
+  /// Indicates whether the collection/ask is featured.
   @JsonKey(name: 'featured_at')
   DateTime? get featuredAt => throw _privateConstructorUsedError;
+
+  /// If TRUE, all the curations under the collection also appear as recommendations.
   bool? get recommended => throw _privateConstructorUsedError;
+
+  /// Indicates whether the collection is published.
   @JsonKey(name: 'published_at')
   DateTime? get publishedAt => throw _privateConstructorUsedError;
+
+  /// List of topics associated with the collection
   @JsonKey(name: 'collection_topics')
   List<Topic>? get collectionTopics => throw _privateConstructorUsedError;
   @JsonKey(name: 'inserted_at')
@@ -482,25 +519,44 @@ class _$_Collection with DiagnosticableTreeMixin implements _Collection {
 
   @override
   final int? id;
+
+  /// Title of the collection.
+  /// Max 180 characters.
   @override
   final String title;
+
+  /// Entity object id who originally created the collection.
   @override
   @JsonKey(name: 'entity_id', required: true)
   final int entityId;
+
+  /// Entity object who originally created the collection.
   @override
   final Entity? entity;
+
+  /// Entity object who added the collection.
   @override
   @JsonKey(name: 'added_by')
   final Entity? addedBy;
+
+  /// Entity object id who added the collection.
   @override
   @JsonKey(name: 'added_by_id')
   final int? addedById;
+
+  /// Description of the collection
   @override
   final String? description;
+
+  /// Auto-generated on back-end. Can be used to generate the link.
   @override
   final String? slug;
+
+  /// later, finished, internal, external, internal_ask, external_ask
   @override
   final CollectionType type;
+
+  /// manual, recently_added, creation_asc, creation_desc, popularity
   @override
   final CollectionSort? sort;
   @override
@@ -512,29 +568,48 @@ class _$_Collection with DiagnosticableTreeMixin implements _Collection {
   @override
   @JsonKey(name: 'created_at_accuracy')
   final CollectionCreatedAtAccuracy? createdAtAccuracy;
-//todo: external ise required
+
+  /// If the collection is external (type is external or external_ask) then a link is required.
   @override
   final String? link;
+
+  /// Content object that indicates the source of the collection.
   @override
   @JsonKey(name: 'source_content')
   final Content? sourceContent;
+
+  /// Content object id that indicates the source of the collection.
   @override
   @JsonKey(name: 'source_content_id')
   final int? sourceContentId;
+
+  /// private, public
   @override
   final CollectionVisibility? visibility;
+
+  /// Indicates whether the collection/ask is verified.
   @override
   @JsonKey(name: 'verified_at')
   final DateTime? verifiedAt;
+
+  /// Indicates whether the collection/ask is featured.
   @override
   @JsonKey(name: 'featured_at')
   final DateTime? featuredAt;
+
+  /// If TRUE, all the curations under the collection also appear as recommendations.
   @override
   final bool? recommended;
+
+  /// Indicates whether the collection is published.
   @override
   @JsonKey(name: 'published_at')
   final DateTime? publishedAt;
+
+  /// List of topics associated with the collection
   final List<Topic>? _collectionTopics;
+
+  /// List of topics associated with the collection
   @override
   @JsonKey(name: 'collection_topics')
   List<Topic>? get collectionTopics {
@@ -710,25 +785,44 @@ abstract class _Collection implements Collection {
   @override
   int? get id;
   @override
+
+  /// Title of the collection.
+  /// Max 180 characters.
   String get title;
   @override
+
+  /// Entity object id who originally created the collection.
   @JsonKey(name: 'entity_id', required: true)
   int get entityId;
   @override
+
+  /// Entity object who originally created the collection.
   Entity? get entity;
   @override
+
+  /// Entity object who added the collection.
   @JsonKey(name: 'added_by')
   Entity? get addedBy;
   @override
+
+  /// Entity object id who added the collection.
   @JsonKey(name: 'added_by_id')
   int? get addedById;
   @override
+
+  /// Description of the collection
   String? get description;
   @override
+
+  /// Auto-generated on back-end. Can be used to generate the link.
   String? get slug;
   @override
+
+  /// later, finished, internal, external, internal_ask, external_ask
   CollectionType get type;
   @override
+
+  /// manual, recently_added, creation_asc, creation_desc, popularity
   CollectionSort? get sort;
   @override
   @JsonKey(name: 'created_at_str')
@@ -739,28 +833,46 @@ abstract class _Collection implements Collection {
   @override
   @JsonKey(name: 'created_at_accuracy')
   CollectionCreatedAtAccuracy? get createdAtAccuracy;
-  @override //todo: external ise required
+  @override
+
+  /// If the collection is external (type is external or external_ask) then a link is required.
   String? get link;
   @override
+
+  /// Content object that indicates the source of the collection.
   @JsonKey(name: 'source_content')
   Content? get sourceContent;
   @override
+
+  /// Content object id that indicates the source of the collection.
   @JsonKey(name: 'source_content_id')
   int? get sourceContentId;
   @override
+
+  /// private, public
   CollectionVisibility? get visibility;
   @override
+
+  /// Indicates whether the collection/ask is verified.
   @JsonKey(name: 'verified_at')
   DateTime? get verifiedAt;
   @override
+
+  /// Indicates whether the collection/ask is featured.
   @JsonKey(name: 'featured_at')
   DateTime? get featuredAt;
   @override
+
+  /// If TRUE, all the curations under the collection also appear as recommendations.
   bool? get recommended;
   @override
+
+  /// Indicates whether the collection is published.
   @JsonKey(name: 'published_at')
   DateTime? get publishedAt;
   @override
+
+  /// List of topics associated with the collection
   @JsonKey(name: 'collection_topics')
   List<Topic>? get collectionTopics;
   @override

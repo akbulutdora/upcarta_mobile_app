@@ -56,8 +56,15 @@ enum ChannelType {
 class Channel with _$Channel {
   const factory Channel({
     int? id,
+
+    /// URL for the channel
     required String link,
+
+    /// List of Channel Entity objects.
     @JsonKey(name: 'channel_entities') List<Entity>? channelEntities,
+
+    /// video, article, podcast_episode, book, course, tweet, presentation, paper, audio, documentary
+    /// website, report, transcript, forum_post, movie, series, channel ,blog, newsletter, podcast, tv_episode
     ChannelType? type,
 
   }) = _Channel;

@@ -42,24 +42,18 @@ enum ContentLinkCreatedAtAccuracy{
 class ContentLink with _$ContentLink {
   const factory ContentLink({
     int? id,
+
+    /// URL of the resource
     required String link,
-    //yeni semada cikarilmis
-    //String? title,
-    //String? description,
-    //String? slug,
-    //@JsonKey(name: 'status_code')   int? statusCode,
-    //@JsonKey(name: 'source_id')     String? sourceId,
-    //@JsonKey(name: 'alt_source_id') String? altSourceId,
-    //@JsonKey(name: 'platform_id')     int? platformId,
-    //Platform? platform,
-    //LinkType? type,
+
+    /// relational content
     Content? content,
+    /// relational content id
     @JsonKey(name: 'content_id') int? contentId,
-    //yeni semada silinmis
-    //@JsonKey(name: 'created_at') DateTime? createdAt,
-    //@JsonKey(name: 'created_at_accuracy') ContentLinkCreatedAtAccuracy? createdAtAccuracy,
-    //@JsonKey(name: 'created_at_str') String? createdAtStr,
+
+    /// position for appearance
     int? pos,
+
     String? body,
     @JsonKey(name: 'has_embed') bool? hasEmbed,
     @JsonKey(name: 'has_ratings') bool? hasRatings,
@@ -68,8 +62,7 @@ class ContentLink with _$ContentLink {
     //todo: details
     Details? details
 
-    //yeni semada silinmis
-    //@JsonKey(name: 'synced_at') DateTime? syncedAt,
+
   }) = _ContentLink;
 
   factory ContentLink.fromJson(Map<String, Object?> json) => _$ContentLinkFromJson(json);

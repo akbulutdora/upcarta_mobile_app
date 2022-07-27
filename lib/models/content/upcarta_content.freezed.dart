@@ -23,14 +23,21 @@ mixin _$Content {
   int? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+
+  /// auto-generated on the back-end (used for generating the SEO friendly URL of the content)
   String? get slug => throw _privateConstructorUsedError;
-  ContentType? get type =>
-      throw _privateConstructorUsedError; // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
+
+  /// video, article, podcast_episode, book, course, tweet, presentation, paper, audio, documentary
+  /// website, report, transcript, forum_post, movie, series, channel ,blog, newsletter, podcast, tv_episode
+  ContentType? get type => throw _privateConstructorUsedError;
+
+  ///  Content object (used for assigning podcast show to podcast episodes).
   Content? get parent => throw _privateConstructorUsedError;
-  List<Content>? get children =>
-      throw _privateConstructorUsedError; // yeni dokumantasyonda yok content details silindi
-// ContentDetails? details,
-// obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
+
+  /// array of content objects (used for assigning podcast show to podcast episodes).
+  List<Content>? get children => throw _privateConstructorUsedError;
+
+  /// The entity object who added this content. Null if added automatically
   @JsonKey(name: 'added_by')
   Entity? get addedBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'added_by_id')
@@ -38,36 +45,59 @@ mixin _$Content {
   @JsonKey(name: 'content_topics')
   List<ContentTopic>? get contentTopics => throw _privateConstructorUsedError;
   List<Contribution>? get contributions =>
-      throw _privateConstructorUsedError; // content linkler string olucak onlari string olarak mi sakliyoruz
-// TODO : * at least one link is required
+      throw _privateConstructorUsedError; // * at least one link is required documantasyonda
 // liste gonderilmesini zorunlu kilarak ici bos olmasini kontrol edemiyoruz
   @JsonKey(name: 'content_links', required: true)
   List<ContentLink> get contentLinks => throw _privateConstructorUsedError;
+
+  /// counter for the number of links related to this content
   @JsonKey(name: 'content_links_count')
   int? get contentLinksCount => throw _privateConstructorUsedError;
+
+  /// counter for the number of different recommending entities
   @JsonKey(name: 'recommenders_count')
   int? get recommendersCount => throw _privateConstructorUsedError;
+
+  /// counter for the number of entities following this content (podcast show, blog, newsletter, channel).
   @JsonKey(name: 'followers_count')
   int? get followersCount => throw _privateConstructorUsedError;
+
+  /// counter for the number of public collections that include this content
   @JsonKey(name: 'public_collections_count')
   int? get publicCollectionsCount => throw _privateConstructorUsedError;
+
+  /// counter for the number of featured recommenders that appear under the content count related to user's followings.
   @JsonKey(name: 'featured_recommenders_count')
   int? get featuredRecommendersCount => throw _privateConstructorUsedError;
+
+  /// counter for the number of recommenders that appear on the context (ask, top feed, etc.)
   @JsonKey(name: 'context_recommenders_count')
   int? get contextRecommendersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime? get createdAt => throw _privateConstructorUsedError;
+
+  /// year, month, day, hour
   @JsonKey(name: 'created_at_accuracy')
   CreatedAtAccuracy? get createdAtAccuracy =>
       throw _privateConstructorUsedError;
+
+  /// Nullable. Required formats: "YYYY" "YYYY-MM" "YYYY-MM-DD" "YYYY-MM-DD HH:MM:SS"
   @JsonKey(name: 'created_at_str')
   String? get createdAtStr => throw _privateConstructorUsedError;
+
+  /// true if the content is followable (like a podcast show, newsletter, etc.)
   bool? get followable => throw _privateConstructorUsedError;
+
+  /// Indicates a list of personal curation objects for the authenticated user
   @JsonKey(name: 'personal_curations')
   List<Curation>? get personalCurations => throw _privateConstructorUsedError;
+
+  ///  Indicates a list of personal collection objects for the authenticated user
   @JsonKey(name: 'personal_collections')
   List<Collection>? get personalCollections =>
       throw _privateConstructorUsedError;
+
+  /// Indicates whether this content is followed by the authenticated user.
   @JsonKey(name: 'content_following')
   User? get contentFollowing => throw _privateConstructorUsedError;
   @JsonKey(name: 'inserted_at')
@@ -580,14 +610,24 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
   final String title;
   @override
   final String? description;
+
+  /// auto-generated on the back-end (used for generating the SEO friendly URL of the content)
   @override
   final String? slug;
+
+  /// video, article, podcast_episode, book, course, tweet, presentation, paper, audio, documentary
+  /// website, report, transcript, forum_post, movie, series, channel ,blog, newsletter, podcast, tv_episode
   @override
   final ContentType? type;
-// todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
+
+  ///  Content object (used for assigning podcast show to podcast episodes).
   @override
   final Content? parent;
+
+  /// array of content objects (used for assigning podcast show to podcast episodes).
   final List<Content>? _children;
+
+  /// array of content objects (used for assigning podcast show to podcast episodes).
   @override
   List<Content>? get children {
     final value = _children;
@@ -596,9 +636,7 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
     return EqualUnmodifiableListView(value);
   }
 
-// yeni dokumantasyonda yok content details silindi
-// ContentDetails? details,
-// obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
+  /// The entity object who added this content. Null if added automatically
   @override
   @JsonKey(name: 'added_by')
   final Entity? addedBy;
@@ -624,12 +662,10 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
     return EqualUnmodifiableListView(value);
   }
 
-// content linkler string olucak onlari string olarak mi sakliyoruz
-// TODO : * at least one link is required
+// * at least one link is required documantasyonda
 // liste gonderilmesini zorunlu kilarak ici bos olmasini kontrol edemiyoruz
   final List<ContentLink> _contentLinks;
-// content linkler string olucak onlari string olarak mi sakliyoruz
-// TODO : * at least one link is required
+// * at least one link is required documantasyonda
 // liste gonderilmesini zorunlu kilarak ici bos olmasini kontrol edemiyoruz
   @override
   @JsonKey(name: 'content_links', required: true)
@@ -638,36 +674,57 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
     return EqualUnmodifiableListView(_contentLinks);
   }
 
+  /// counter for the number of links related to this content
   @override
   @JsonKey(name: 'content_links_count')
   final int? contentLinksCount;
+
+  /// counter for the number of different recommending entities
   @override
   @JsonKey(name: 'recommenders_count')
   final int? recommendersCount;
+
+  /// counter for the number of entities following this content (podcast show, blog, newsletter, channel).
   @override
   @JsonKey(name: 'followers_count')
   final int? followersCount;
+
+  /// counter for the number of public collections that include this content
   @override
   @JsonKey(name: 'public_collections_count')
   final int? publicCollectionsCount;
+
+  /// counter for the number of featured recommenders that appear under the content count related to user's followings.
   @override
   @JsonKey(name: 'featured_recommenders_count')
   final int? featuredRecommendersCount;
+
+  /// counter for the number of recommenders that appear on the context (ask, top feed, etc.)
   @override
   @JsonKey(name: 'context_recommenders_count')
   final int? contextRecommendersCount;
   @override
   @JsonKey(name: 'created_at')
   final DateTime? createdAt;
+
+  /// year, month, day, hour
   @override
   @JsonKey(name: 'created_at_accuracy')
   final CreatedAtAccuracy? createdAtAccuracy;
+
+  /// Nullable. Required formats: "YYYY" "YYYY-MM" "YYYY-MM-DD" "YYYY-MM-DD HH:MM:SS"
   @override
   @JsonKey(name: 'created_at_str')
   final String? createdAtStr;
+
+  /// true if the content is followable (like a podcast show, newsletter, etc.)
   @override
   final bool? followable;
+
+  /// Indicates a list of personal curation objects for the authenticated user
   final List<Curation>? _personalCurations;
+
+  /// Indicates a list of personal curation objects for the authenticated user
   @override
   @JsonKey(name: 'personal_curations')
   List<Curation>? get personalCurations {
@@ -677,7 +734,10 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
     return EqualUnmodifiableListView(value);
   }
 
+  ///  Indicates a list of personal collection objects for the authenticated user
   final List<Collection>? _personalCollections;
+
+  ///  Indicates a list of personal collection objects for the authenticated user
   @override
   @JsonKey(name: 'personal_collections')
   List<Collection>? get personalCollections {
@@ -687,6 +747,7 @@ class _$_Content with DiagnosticableTreeMixin implements _Content {
     return EqualUnmodifiableListView(value);
   }
 
+  /// Indicates whether this content is followed by the authenticated user.
   @override
   @JsonKey(name: 'content_following')
   final User? contentFollowing;
@@ -883,16 +944,25 @@ abstract class _Content implements Content {
   @override
   String? get description;
   @override
+
+  /// auto-generated on the back-end (used for generating the SEO friendly URL of the content)
   String? get slug;
   @override
+
+  /// video, article, podcast_episode, book, course, tweet, presentation, paper, audio, documentary
+  /// website, report, transcript, forum_post, movie, series, channel ,blog, newsletter, podcast, tv_episode
   ContentType? get type;
-  @override // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
+  @override
+
+  ///  Content object (used for assigning podcast show to podcast episodes).
   Content? get parent;
   @override
+
+  /// array of content objects (used for assigning podcast show to podcast episodes).
   List<Content>? get children;
-  @override // yeni dokumantasyonda yok content details silindi
-// ContentDetails? details,
-// obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
+  @override
+
+  /// The entity object who added this content. Null if added automatically
   @JsonKey(name: 'added_by')
   Entity? get addedBy;
   @override
@@ -903,47 +973,70 @@ abstract class _Content implements Content {
   List<ContentTopic>? get contentTopics;
   @override
   List<Contribution>? get contributions;
-  @override // content linkler string olucak onlari string olarak mi sakliyoruz
-// TODO : * at least one link is required
+  @override // * at least one link is required documantasyonda
 // liste gonderilmesini zorunlu kilarak ici bos olmasini kontrol edemiyoruz
   @JsonKey(name: 'content_links', required: true)
   List<ContentLink> get contentLinks;
   @override
+
+  /// counter for the number of links related to this content
   @JsonKey(name: 'content_links_count')
   int? get contentLinksCount;
   @override
+
+  /// counter for the number of different recommending entities
   @JsonKey(name: 'recommenders_count')
   int? get recommendersCount;
   @override
+
+  /// counter for the number of entities following this content (podcast show, blog, newsletter, channel).
   @JsonKey(name: 'followers_count')
   int? get followersCount;
   @override
+
+  /// counter for the number of public collections that include this content
   @JsonKey(name: 'public_collections_count')
   int? get publicCollectionsCount;
   @override
+
+  /// counter for the number of featured recommenders that appear under the content count related to user's followings.
   @JsonKey(name: 'featured_recommenders_count')
   int? get featuredRecommendersCount;
   @override
+
+  /// counter for the number of recommenders that appear on the context (ask, top feed, etc.)
   @JsonKey(name: 'context_recommenders_count')
   int? get contextRecommendersCount;
   @override
   @JsonKey(name: 'created_at')
   DateTime? get createdAt;
   @override
+
+  /// year, month, day, hour
   @JsonKey(name: 'created_at_accuracy')
   CreatedAtAccuracy? get createdAtAccuracy;
   @override
+
+  /// Nullable. Required formats: "YYYY" "YYYY-MM" "YYYY-MM-DD" "YYYY-MM-DD HH:MM:SS"
   @JsonKey(name: 'created_at_str')
   String? get createdAtStr;
   @override
+
+  /// true if the content is followable (like a podcast show, newsletter, etc.)
   bool? get followable;
   @override
+
+  /// Indicates a list of personal curation objects for the authenticated user
   @JsonKey(name: 'personal_curations')
   List<Curation>? get personalCurations;
   @override
+
+  ///  Indicates a list of personal collection objects for the authenticated user
   @JsonKey(name: 'personal_collections')
   List<Collection>? get personalCollections;
   @override
+
+  /// Indicates whether this content is followed by the authenticated user.
   @JsonKey(name: 'content_following')
   User? get contentFollowing;
   @override

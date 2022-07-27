@@ -78,41 +78,69 @@ class Content with _$Content {
     int? id,
     required String title,
     String? description,
+
+    /// auto-generated on the back-end (used for generating the SEO friendly URL of the content)
     String? slug,
+
+    /// video, article, podcast_episode, book, course, tweet, presentation, paper, audio, documentary
+    /// website, report, transcript, forum_post, movie, series, channel ,blog, newsletter, podcast, tv_episode
     ContentType? type,
-    // todo : content content mi tutacak bunu pointer ile yapmak gerekmez mi
+
+    ///  Content object (used for assigning podcast show to podcast episodes).
     Content? parent,
+
+    /// array of content objects (used for assigning podcast show to podcast episodes).
     List<Content>? children,
-    // yeni dokumantasyonda yok content details silindi
-    // ContentDetails? details,
-    // obje olarak addedBy da ne tutuluyor sadece isim mi user mı ?
+
+    /// The entity object who added this content. Null if added automatically
     @JsonKey(name: 'added_by') Entity? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
+
     @JsonKey(name: 'content_topics') List<ContentTopic>? contentTopics,
     List<Contribution>? contributions,
-    // content linkler string olucak onlari string olarak mi sakliyoruz
-    // TODO : * at least one link is required
+
+    // * at least one link is required documantasyonda
     // liste gonderilmesini zorunlu kilarak ici bos olmasini kontrol edemiyoruz
     @JsonKey(name: 'content_links', required: true) required List<ContentLink> contentLinks,
+
+    /// counter for the number of links related to this content
     @JsonKey(name: 'content_links_count') int? contentLinksCount,
 
+    /// counter for the number of different recommending entities
     @JsonKey(name: 'recommenders_count')  int? recommendersCount,
+
+    /// counter for the number of entities following this content (podcast show, blog, newsletter, channel).
     @JsonKey(name: 'followers_count')     int? followersCount,
 
+    /// counter for the number of public collections that include this content
     @JsonKey(name: 'public_collections_count')int? publicCollectionsCount,
+
+    /// counter for the number of featured recommenders that appear under the content count related to user's followings.
     @JsonKey(name: 'featured_recommenders_count')int? featuredRecommendersCount,
+
+    /// counter for the number of recommenders that appear on the context (ask, top feed, etc.)
     @JsonKey(name: 'context_recommenders_count')int? contextRecommendersCount,
 
     @JsonKey(name: 'created_at') DateTime? createdAt,
+
+    /// year, month, day, hour
     @JsonKey(name: 'created_at_accuracy') CreatedAtAccuracy? createdAtAccuracy,
+
+    /// Nullable. Required formats: "YYYY" "YYYY-MM" "YYYY-MM-DD" "YYYY-MM-DD HH:MM:SS"
     @JsonKey(name: 'created_at_str') String? createdAtStr,
 
+    /// true if the content is followable (like a podcast show, newsletter, etc.)
     bool? followable,
+
+    /// Indicates a list of personal curation objects for the authenticated user
     @JsonKey(name: 'personal_curations') List<Curation>? personalCurations,
 
+    ///  Indicates a list of personal collection objects for the authenticated user
     @JsonKey(name: 'personal_collections') List<Collection>? personalCollections,
 
+    /// Indicates whether this content is followed by the authenticated user.
     @JsonKey(name: 'content_following') User? contentFollowing,
+
     @JsonKey(name: 'inserted_at') DateTime? insertedAt,
 
   }) = _Content;

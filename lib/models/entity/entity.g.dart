@@ -29,7 +29,7 @@ _$_Entity _$$_EntityFromJson(Map<String, dynamic> json) => _$_Entity(
           : EntityFollowing.fromJson(
               json['following_entity'] as Map<String, dynamic>),
       channelEntities: (json['channel_entities'] as List<dynamic>?)
-          ?.map((e) => Entity.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ChannelEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

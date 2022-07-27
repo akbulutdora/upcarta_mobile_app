@@ -27,7 +27,10 @@ enum ChannelRole {
 class ChannelEntity with _$ChannelEntity {
   const factory ChannelEntity({
     int? id,
+
+    /// (author, creator, speaker, host, guest, instructor)
     ChannelRole? role,
+
     @JsonKey(name: 'entity_id', required: true) required int entityId,
     Entity? entity,
     @JsonKey(name:'channel_id', required: true) required int channelId,

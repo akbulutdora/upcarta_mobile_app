@@ -21,17 +21,29 @@ Entity _$EntityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Entity {
   int? get id => throw _privateConstructorUsedError;
+
+  /// max 50 characters
   String get name => throw _privateConstructorUsedError;
+
+  /// alphanumeric username
   String get username => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'has_user')
   bool? get hasUser => throw _privateConstructorUsedError;
+
+  /// counter for the number of followers
   @JsonKey(name: 'followers_count')
   int? get followersCount => throw _privateConstructorUsedError;
+
+  /// counter for the number of followed entities
   @JsonKey(name: 'followed_entities_count')
   int? get followedEntitiesCount => throw _privateConstructorUsedError;
+
+  /// counter for the number of followed topics
   @JsonKey(name: 'followed_topics_count')
   int? get followedTopicsCount => throw _privateConstructorUsedError;
+
+  /// counter for the number of followed contents
   @JsonKey(name: 'followed_contents_count')
   int? get followedContentsCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'added_by')
@@ -39,15 +51,26 @@ mixin _$Entity {
   @JsonKey(name: 'added_by_id')
   int? get addedById => throw _privateConstructorUsedError;
 
-  /// The Twitter name of the user
+  /// The Twitter name of the user ( min 1, max 15 characters )
   String? get twitter => throw _privateConstructorUsedError;
+
+  /// Website URL
   String? get website => throw _privateConstructorUsedError;
+
+  /// Linkedin URL
   String? get linkedin => throw _privateConstructorUsedError;
+
+  /// Wikipedia URL
   String? get wikipedia => throw _privateConstructorUsedError;
+
+  /// Following Entity object. Indicates whether the entity is followed by the authenticated user.
   @JsonKey(name: 'following_entity')
   EntityFollowing? get followingEntity => throw _privateConstructorUsedError;
+
+  /// List of Channel Entity objects.
   @JsonKey(name: 'channel_entities')
-  List<Entity>? get channelEntities => throw _privateConstructorUsedError;
+  List<ChannelEntity>? get channelEntities =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,7 +98,7 @@ abstract class $EntityCopyWith<$Res> {
       String? linkedin,
       String? wikipedia,
       @JsonKey(name: 'following_entity') EntityFollowing? followingEntity,
-      @JsonKey(name: 'channel_entities') List<Entity>? channelEntities});
+      @JsonKey(name: 'channel_entities') List<ChannelEntity>? channelEntities});
 
   $EntityCopyWith<$Res>? get addedBy;
   $EntityFollowingCopyWith<$Res>? get followingEntity;
@@ -177,7 +200,7 @@ class _$EntityCopyWithImpl<$Res> implements $EntityCopyWith<$Res> {
       channelEntities: channelEntities == freezed
           ? _value.channelEntities
           : channelEntities // ignore: cast_nullable_to_non_nullable
-              as List<Entity>?,
+              as List<ChannelEntity>?,
     ));
   }
 
@@ -226,7 +249,7 @@ abstract class _$$_EntityCopyWith<$Res> implements $EntityCopyWith<$Res> {
       String? linkedin,
       String? wikipedia,
       @JsonKey(name: 'following_entity') EntityFollowing? followingEntity,
-      @JsonKey(name: 'channel_entities') List<Entity>? channelEntities});
+      @JsonKey(name: 'channel_entities') List<ChannelEntity>? channelEntities});
 
   @override
   $EntityCopyWith<$Res>? get addedBy;
@@ -331,7 +354,7 @@ class __$$_EntityCopyWithImpl<$Res> extends _$EntityCopyWithImpl<$Res>
       channelEntities: channelEntities == freezed
           ? _value._channelEntities
           : channelEntities // ignore: cast_nullable_to_non_nullable
-              as List<Entity>?,
+              as List<ChannelEntity>?,
     ));
   }
 }
@@ -344,19 +367,28 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
       required this.name,
       required this.username,
       this.description,
-      @JsonKey(name: 'has_user') this.hasUser,
-      @JsonKey(name: 'followers_count') this.followersCount,
-      @JsonKey(name: 'followed_entities_count') this.followedEntitiesCount,
-      @JsonKey(name: 'followed_topics_count') this.followedTopicsCount,
-      @JsonKey(name: 'followed_contents_count') this.followedContentsCount,
-      @JsonKey(name: 'added_by') this.addedBy,
-      @JsonKey(name: 'added_by_id') this.addedById,
+      @JsonKey(name: 'has_user')
+          this.hasUser,
+      @JsonKey(name: 'followers_count')
+          this.followersCount,
+      @JsonKey(name: 'followed_entities_count')
+          this.followedEntitiesCount,
+      @JsonKey(name: 'followed_topics_count')
+          this.followedTopicsCount,
+      @JsonKey(name: 'followed_contents_count')
+          this.followedContentsCount,
+      @JsonKey(name: 'added_by')
+          this.addedBy,
+      @JsonKey(name: 'added_by_id')
+          this.addedById,
       this.twitter,
       this.website,
       this.linkedin,
       this.wikipedia,
-      @JsonKey(name: 'following_entity') this.followingEntity,
-      @JsonKey(name: 'channel_entities') final List<Entity>? channelEntities})
+      @JsonKey(name: 'following_entity')
+          this.followingEntity,
+      @JsonKey(name: 'channel_entities')
+          final List<ChannelEntity>? channelEntities})
       : _channelEntities = channelEntities;
 
   factory _$_Entity.fromJson(Map<String, dynamic> json) =>
@@ -364,8 +396,12 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
 
   @override
   final int? id;
+
+  /// max 50 characters
   @override
   final String name;
+
+  /// alphanumeric username
   @override
   final String username;
   @override
@@ -373,15 +409,23 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
   @override
   @JsonKey(name: 'has_user')
   final bool? hasUser;
+
+  /// counter for the number of followers
   @override
   @JsonKey(name: 'followers_count')
   final int? followersCount;
+
+  /// counter for the number of followed entities
   @override
   @JsonKey(name: 'followed_entities_count')
   final int? followedEntitiesCount;
+
+  /// counter for the number of followed topics
   @override
   @JsonKey(name: 'followed_topics_count')
   final int? followedTopicsCount;
+
+  /// counter for the number of followed contents
   @override
   @JsonKey(name: 'followed_contents_count')
   final int? followedContentsCount;
@@ -392,22 +436,34 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
   @JsonKey(name: 'added_by_id')
   final int? addedById;
 
-  /// The Twitter name of the user
+  /// The Twitter name of the user ( min 1, max 15 characters )
   @override
   final String? twitter;
+
+  /// Website URL
   @override
   final String? website;
+
+  /// Linkedin URL
   @override
   final String? linkedin;
+
+  /// Wikipedia URL
   @override
   final String? wikipedia;
+
+  /// Following Entity object. Indicates whether the entity is followed by the authenticated user.
   @override
   @JsonKey(name: 'following_entity')
   final EntityFollowing? followingEntity;
-  final List<Entity>? _channelEntities;
+
+  /// List of Channel Entity objects.
+  final List<ChannelEntity>? _channelEntities;
+
+  /// List of Channel Entity objects.
   @override
   @JsonKey(name: 'channel_entities')
-  List<Entity>? get channelEntities {
+  List<ChannelEntity>? get channelEntities {
     final value = _channelEntities;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
@@ -534,15 +590,19 @@ abstract class _Entity implements Entity {
       @JsonKey(name: 'following_entity')
           final EntityFollowing? followingEntity,
       @JsonKey(name: 'channel_entities')
-          final List<Entity>? channelEntities}) = _$_Entity;
+          final List<ChannelEntity>? channelEntities}) = _$_Entity;
 
   factory _Entity.fromJson(Map<String, dynamic> json) = _$_Entity.fromJson;
 
   @override
   int? get id;
   @override
+
+  /// max 50 characters
   String get name;
   @override
+
+  /// alphanumeric username
   String get username;
   @override
   String? get description;
@@ -550,15 +610,23 @@ abstract class _Entity implements Entity {
   @JsonKey(name: 'has_user')
   bool? get hasUser;
   @override
+
+  /// counter for the number of followers
   @JsonKey(name: 'followers_count')
   int? get followersCount;
   @override
+
+  /// counter for the number of followed entities
   @JsonKey(name: 'followed_entities_count')
   int? get followedEntitiesCount;
   @override
+
+  /// counter for the number of followed topics
   @JsonKey(name: 'followed_topics_count')
   int? get followedTopicsCount;
   @override
+
+  /// counter for the number of followed contents
   @JsonKey(name: 'followed_contents_count')
   int? get followedContentsCount;
   @override
@@ -569,20 +637,30 @@ abstract class _Entity implements Entity {
   int? get addedById;
   @override
 
-  /// The Twitter name of the user
+  /// The Twitter name of the user ( min 1, max 15 characters )
   String? get twitter;
   @override
+
+  /// Website URL
   String? get website;
   @override
+
+  /// Linkedin URL
   String? get linkedin;
   @override
+
+  /// Wikipedia URL
   String? get wikipedia;
   @override
+
+  /// Following Entity object. Indicates whether the entity is followed by the authenticated user.
   @JsonKey(name: 'following_entity')
   EntityFollowing? get followingEntity;
   @override
+
+  /// List of Channel Entity objects.
   @JsonKey(name: 'channel_entities')
-  List<Entity>? get channelEntities;
+  List<ChannelEntity>? get channelEntities;
   @override
   @JsonKey(ignore: true)
   _$$_EntityCopyWith<_$_Entity> get copyWith =>

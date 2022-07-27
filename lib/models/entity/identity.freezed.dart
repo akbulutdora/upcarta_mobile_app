@@ -21,15 +21,28 @@ Identity _$IdentityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Identity {
   int? get id => throw _privateConstructorUsedError;
+
+  /// Authentication provider twitter/email
   Provider get provider => throw _privateConstructorUsedError;
+
+  /// source user id from the external oauth provider
   String get uid => throw _privateConstructorUsedError;
+
+  /// source email from the external oauth provider
   String? get email => throw _privateConstructorUsedError;
+
+  /// source name from the external oauth provider
   String? get name => throw _privateConstructorUsedError;
+
+  /// source phone from the external oauth provider
   String? get phone => throw _privateConstructorUsedError;
+
+  /// token returned from the oauth provider
   String? get token => throw _privateConstructorUsedError;
+
+  /// secret returned from the oauth provider
   String? get secret => throw _privateConstructorUsedError;
-  User? get user =>
-      throw _privateConstructorUsedError; //todo: realtional required tam olarak nedir anladigim gibiyse required yapmayalim mi, eger oyle ise diger kisimlarda da degistir
+  User? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id')
   int? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'inserted_at')
@@ -275,23 +288,36 @@ class _$_Identity with DiagnosticableTreeMixin implements _Identity {
 
   @override
   final int? id;
+
+  /// Authentication provider twitter/email
   @override
   final Provider provider;
+
+  /// source user id from the external oauth provider
   @override
   final String uid;
+
+  /// source email from the external oauth provider
   @override
   final String? email;
+
+  /// source name from the external oauth provider
   @override
   final String? name;
+
+  /// source phone from the external oauth provider
   @override
   final String? phone;
+
+  /// token returned from the oauth provider
   @override
   final String? token;
+
+  /// secret returned from the oauth provider
   @override
   final String? secret;
   @override
   final User? user;
-//todo: realtional required tam olarak nedir anladigim gibiyse required yapmayalim mi, eger oyle ise diger kisimlarda da degistir
   @override
   @JsonKey(name: 'user_id')
   final int? userId;
@@ -394,22 +420,36 @@ abstract class _Identity implements Identity {
   @override
   int? get id;
   @override
+
+  /// Authentication provider twitter/email
   Provider get provider;
   @override
+
+  /// source user id from the external oauth provider
   String get uid;
   @override
+
+  /// source email from the external oauth provider
   String? get email;
   @override
+
+  /// source name from the external oauth provider
   String? get name;
   @override
+
+  /// source phone from the external oauth provider
   String? get phone;
   @override
+
+  /// token returned from the oauth provider
   String? get token;
   @override
+
+  /// secret returned from the oauth provider
   String? get secret;
   @override
   User? get user;
-  @override //todo: realtional required tam olarak nedir anladigim gibiyse required yapmayalim mi, eger oyle ise diger kisimlarda da degistir
+  @override
   @JsonKey(name: 'user_id')
   int? get userId;
   @override

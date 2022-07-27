@@ -21,17 +21,25 @@ Contribution _$ContributionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Contribution {
   int? get id => throw _privateConstructorUsedError;
-  ContributionRole? get role =>
-      throw _privateConstructorUsedError; // TODO : contentin icinde Contribution bu ic ice giren classlara bak
+
+  /// (author, creator, speaker, host, guest, instructor)
+  ContributionRole? get role => throw _privateConstructorUsedError;
   Content? get content => throw _privateConstructorUsedError;
+
+  /// related content id
   @JsonKey(name: 'content_id', required: true)
   int get contentId => throw _privateConstructorUsedError;
   Entity? get entity => throw _privateConstructorUsedError;
   @JsonKey(name: 'entity_id', required: true)
   int get entityId => throw _privateConstructorUsedError;
+
+  /// position of appearance
   int? get pos => throw _privateConstructorUsedError; // iki tane entity var ?
+  /// Entity object (profile) who added the contribution
   @JsonKey(name: 'added_by')
   Entity? get addedBy => throw _privateConstructorUsedError;
+
+  /// Entity object (profile) id who added the contribution
   @JsonKey(name: 'added_by_id')
   int? get addedById => throw _privateConstructorUsedError;
 
@@ -265,11 +273,14 @@ class _$_Contribution with DiagnosticableTreeMixin implements _Contribution {
 
   @override
   final int? id;
+
+  /// (author, creator, speaker, host, guest, instructor)
   @override
   final ContributionRole? role;
-// TODO : contentin icinde Contribution bu ic ice giren classlara bak
   @override
   final Content? content;
+
+  /// related content id
   @override
   @JsonKey(name: 'content_id', required: true)
   final int contentId;
@@ -278,12 +289,17 @@ class _$_Contribution with DiagnosticableTreeMixin implements _Contribution {
   @override
   @JsonKey(name: 'entity_id', required: true)
   final int entityId;
+
+  /// position of appearance
   @override
   final int? pos;
 // iki tane entity var ?
+  /// Entity object (profile) who added the contribution
   @override
   @JsonKey(name: 'added_by')
   final Entity? addedBy;
+
+  /// Entity object (profile) id who added the contribution
   @override
   @JsonKey(name: 'added_by_id')
   final int? addedById;
@@ -368,10 +384,14 @@ abstract class _Contribution implements Contribution {
   @override
   int? get id;
   @override
+
+  /// (author, creator, speaker, host, guest, instructor)
   ContributionRole? get role;
-  @override // TODO : contentin icinde Contribution bu ic ice giren classlara bak
+  @override
   Content? get content;
   @override
+
+  /// related content id
   @JsonKey(name: 'content_id', required: true)
   int get contentId;
   @override
@@ -380,11 +400,16 @@ abstract class _Contribution implements Contribution {
   @JsonKey(name: 'entity_id', required: true)
   int get entityId;
   @override
+
+  /// position of appearance
   int? get pos;
   @override // iki tane entity var ?
+  /// Entity object (profile) who added the contribution
   @JsonKey(name: 'added_by')
   Entity? get addedBy;
   @override
+
+  /// Entity object (profile) id who added the contribution
   @JsonKey(name: 'added_by_id')
   int? get addedById;
   @override

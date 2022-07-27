@@ -38,24 +38,31 @@ mixin _$Curation {
   Entity? get addedBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'added_by_id')
   int? get addedById => throw _privateConstructorUsedError;
+
+  /// internal, external, internal_collection, external_collection, internal_ask, external_ask, later, finished
   CurationType get type => throw _privateConstructorUsedError;
+
+  /// Indicates whether the curation is verified
   @JsonKey(name: 'verified_at')
   DateTime? get verifiedAt => throw _privateConstructorUsedError;
+
+  /// Indicated whether the curation is featured.
   @JsonKey(name: 'featured_at')
   DateTime? get featuredAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'undecided_at')
   DateTime? get undecidedAt => throw _privateConstructorUsedError;
+
+  /// Source URL of the curation
   String? get link => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
-  int? get pos => throw _privateConstructorUsedError; //semada cikarilmis
-//@JsonKey(name: 'platform_id') int? platformId,
-//Platform? platform,
+
+  /// order of appearance
+  int? get pos => throw _privateConstructorUsedError;
   @JsonKey(name: 'collection_id')
   int? get collectionId => throw _privateConstructorUsedError;
   Collection? get collection => throw _privateConstructorUsedError;
   @JsonKey(name: 'source_content_id')
-  int? get sourceContentId =>
-      throw _privateConstructorUsedError; //to do: birbirlerinin icinde olunca ne olacak
+  int? get sourceContentId => throw _privateConstructorUsedError;
   @JsonKey(name: 'source_content')
   Content? get sourceContent => throw _privateConstructorUsedError;
 
@@ -521,26 +528,33 @@ class _$_Curation with DiagnosticableTreeMixin implements _Curation {
   @override
   @JsonKey(name: 'added_by_id')
   final int? addedById;
+
+  /// internal, external, internal_collection, external_collection, internal_ask, external_ask, later, finished
   @override
   final CurationType type;
+
+  /// Indicates whether the curation is verified
   @override
   @JsonKey(name: 'verified_at')
   final DateTime? verifiedAt;
+
+  /// Indicated whether the curation is featured.
   @override
   @JsonKey(name: 'featured_at')
   final DateTime? featuredAt;
   @override
   @JsonKey(name: 'undecided_at')
   final DateTime? undecidedAt;
+
+  /// Source URL of the curation
   @override
   final String? link;
   @override
   final String? comment;
+
+  /// order of appearance
   @override
   final int? pos;
-//semada cikarilmis
-//@JsonKey(name: 'platform_id') int? platformId,
-//Platform? platform,
   @override
   @JsonKey(name: 'collection_id')
   final int? collectionId;
@@ -549,7 +563,6 @@ class _$_Curation with DiagnosticableTreeMixin implements _Curation {
   @override
   @JsonKey(name: 'source_content_id')
   final int? sourceContentId;
-//to do: birbirlerinin icinde olunca ne olacak
   @override
   @JsonKey(name: 'source_content')
   final Content? sourceContent;
@@ -729,25 +742,33 @@ abstract class _Curation implements Curation {
   @JsonKey(name: 'added_by_id')
   int? get addedById;
   @override
+
+  /// internal, external, internal_collection, external_collection, internal_ask, external_ask, later, finished
   CurationType get type;
   @override
+
+  /// Indicates whether the curation is verified
   @JsonKey(name: 'verified_at')
   DateTime? get verifiedAt;
   @override
+
+  /// Indicated whether the curation is featured.
   @JsonKey(name: 'featured_at')
   DateTime? get featuredAt;
   @override
   @JsonKey(name: 'undecided_at')
   DateTime? get undecidedAt;
   @override
+
+  /// Source URL of the curation
   String? get link;
   @override
   String? get comment;
   @override
+
+  /// order of appearance
   int? get pos;
-  @override //semada cikarilmis
-//@JsonKey(name: 'platform_id') int? platformId,
-//Platform? platform,
+  @override
   @JsonKey(name: 'collection_id')
   int? get collectionId;
   @override
@@ -755,7 +776,7 @@ abstract class _Curation implements Curation {
   @override
   @JsonKey(name: 'source_content_id')
   int? get sourceContentId;
-  @override //to do: birbirlerinin icinde olunca ne olacak
+  @override
   @JsonKey(name: 'source_content')
   Content? get sourceContent;
   @override

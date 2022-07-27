@@ -53,22 +53,31 @@ class Curation with _$Curation {
     @JsonKey(name: 'created_at_str') String? createdAtStr,
     @JsonKey(name: 'content_id', required: true)required int contentId,
     Content? content,
+
     @JsonKey(name: 'added_by') Entity? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
+
+    /// internal, external, internal_collection, external_collection, internal_ask, external_ask, later, finished
     required CurationType type,
+
+    /// Indicates whether the curation is verified
     @JsonKey(name: 'verified_at') DateTime? verifiedAt,
+
+    /// Indicated whether the curation is featured.
     @JsonKey(name: 'featured_at') DateTime? featuredAt,
+
     @JsonKey(name: 'undecided_at') DateTime? undecidedAt,
+
+    /// Source URL of the curation
     String? link,
     String? comment,
+
+    /// order of appearance
     int? pos,
-    //semada cikarilmis
-    //@JsonKey(name: 'platform_id') int? platformId,
-    //Platform? platform,
+
     @JsonKey(name: 'collection_id')int? collectionId,
     Collection? collection,
     @JsonKey(name: 'source_content_id') int? sourceContentId,
-    //to do: birbirlerinin icinde olunca ne olacak
     @JsonKey(name: 'source_content') Content? sourceContent,
 
   }) = _Curation;

@@ -12,15 +12,21 @@ enum Provider {@JsonValue('twitter') twitter, @JsonValue('email') email}
 class Identity with _$Identity {
   const factory Identity({
     int? id,
+    /// Authentication provider twitter/email
     required Provider provider,
+    /// source user id from the external oauth provider
     required String uid,
+    /// source email from the external oauth provider
     String? email,
+    /// source name from the external oauth provider
     String? name,
+    /// source phone from the external oauth provider
     String? phone,
+    /// token returned from the oauth provider
     String? token,
+    /// secret returned from the oauth provider
     String? secret,
     User? user,
-    //todo: realtional required tam olarak nedir anladigim gibiyse required yapmayalim mi, eger oyle ise diger kisimlarda da degistir
     @JsonKey(name: 'user_id') int? userId,
     @JsonKey(name: 'inserted_at') DateTime? insertedAt,
     @JsonKey(name: 'updated_at') DateTime? updatedAt

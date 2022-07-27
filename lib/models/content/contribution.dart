@@ -27,19 +27,24 @@ enum ContributionRole {
 class Contribution with _$Contribution {
   const factory Contribution({
     int? id,
+
+    /// (author, creator, speaker, host, guest, instructor)
     ContributionRole? role,
-    // TODO : contentin icinde Contribution bu ic ice giren classlara bak
     Content? content,
+    /// related content id
     @JsonKey(name: 'content_id', required: true) required int contentId,
     Entity? entity,
     @JsonKey(name: 'entity_id', required: true) required int entityId,
+
+    /// position of appearance
     int? pos,
     // iki tane entity var ?
+    /// Entity object (profile) who added the contribution
     @JsonKey(name: 'added_by') Entity? addedBy,
+
+    /// Entity object (profile) id who added the contribution
     @JsonKey(name: 'added_by_id') int? addedById,
-    //semadan cikarilmis
-    //@JsonKey(name: 'inserted_at') DateTime? insertedAt,
-    //@JsonKey(name: 'updated_at') DateTime? updatedAt,
+
   }) = _Contribution;
 
   factory Contribution.fromJson(Map<String, Object?> json) =>

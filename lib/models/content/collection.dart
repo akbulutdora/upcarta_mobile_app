@@ -14,7 +14,7 @@ enum CollectionType {
   saved,
   @JsonValue('finished')
   finished,
-  // personal replaced with internal yaziyor
+  // documantasyonda personal olarak geciyor ama internal ile degistirilecek diyor
   @JsonValue('internal')
   internal,
   @JsonValue('external')
@@ -59,28 +59,66 @@ enum CollectionCreatedAtAccuracy{
 class Collection with _$Collection {
   const factory Collection({
     int? id,
+
+    /// Title of the collection.
+    /// Max 180 characters.
     required String title,
+
+    /// Entity object id who originally created the collection.
     @JsonKey(name: 'entity_id',required: true) required int entityId,
+
+    /// Entity object who originally created the collection.
     Entity? entity,
+
+    /// Entity object who added the collection.
     @JsonKey(name: 'added_by') Entity? addedBy,
+
+    /// Entity object id who added the collection.
     @JsonKey(name: 'added_by_id') int? addedById,
+
+    /// Description of the collection
     String? description,
+
+    /// Auto-generated on back-end. Can be used to generate the link.
     String? slug,
+
+    /// later, finished, internal, external, internal_ask, external_ask
     required CollectionType type,
+
+    /// manual, recently_added, creation_asc, creation_desc, popularity
     CollectionSort? sort,
+
     @JsonKey(name: 'created_at_str') String? createdAtStr,
     @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name:'created_at_accuracy')CollectionCreatedAtAccuracy? createdAtAccuracy,
-    //todo: external ise required
+
+    /// If the collection is external (type is external or external_ask) then a link is required.
     String? link,
+
+    /// Content object that indicates the source of the collection.
     @JsonKey(name: 'source_content') Content? sourceContent,
+
+    /// Content object id that indicates the source of the collection.
     @JsonKey(name: 'source_content_id') int? sourceContentId,
+
+    /// private, public
     CollectionVisibility? visibility,
+
+    /// Indicates whether the collection/ask is verified.
     @JsonKey(name: 'verified_at') DateTime? verifiedAt,
+
+    /// Indicates whether the collection/ask is featured.
     @JsonKey(name: 'featured_at') DateTime? featuredAt,
+
+    /// If TRUE, all the curations under the collection also appear as recommendations.
     bool? recommended,
+
+    /// Indicates whether the collection is published.
     @JsonKey(name: 'published_at') DateTime? publishedAt,
+
+    /// List of topics associated with the collection
     @JsonKey(name: 'collection_topics') List<Topic>? collectionTopics,
+
     @JsonKey(name: 'inserted_at') DateTime? insertedAt,
 
   }) = _Collection;

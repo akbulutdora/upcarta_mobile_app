@@ -21,24 +21,18 @@ ContentLink _$ContentLinkFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ContentLink {
   int? get id => throw _privateConstructorUsedError;
-  String get link =>
-      throw _privateConstructorUsedError; //yeni semada cikarilmis
-//String? title,
-//String? description,
-//String? slug,
-//@JsonKey(name: 'status_code')   int? statusCode,
-//@JsonKey(name: 'source_id')     String? sourceId,
-//@JsonKey(name: 'alt_source_id') String? altSourceId,
-//@JsonKey(name: 'platform_id')     int? platformId,
-//Platform? platform,
-//LinkType? type,
+
+  /// URL of the resource
+  String get link => throw _privateConstructorUsedError;
+
+  /// relational content
   Content? get content => throw _privateConstructorUsedError;
+
+  /// relational content id
   @JsonKey(name: 'content_id')
-  int? get contentId =>
-      throw _privateConstructorUsedError; //yeni semada silinmis
-//@JsonKey(name: 'created_at') DateTime? createdAt,
-//@JsonKey(name: 'created_at_accuracy') ContentLinkCreatedAtAccuracy? createdAtAccuracy,
-//@JsonKey(name: 'created_at_str') String? createdAtStr,
+  int? get contentId => throw _privateConstructorUsedError;
+
+  /// position for appearance
   int? get pos => throw _privateConstructorUsedError;
   String? get body => throw _privateConstructorUsedError;
   @JsonKey(name: 'has_embed')
@@ -291,27 +285,21 @@ class _$_ContentLink with DiagnosticableTreeMixin implements _ContentLink {
 
   @override
   final int? id;
+
+  /// URL of the resource
   @override
   final String link;
-//yeni semada cikarilmis
-//String? title,
-//String? description,
-//String? slug,
-//@JsonKey(name: 'status_code')   int? statusCode,
-//@JsonKey(name: 'source_id')     String? sourceId,
-//@JsonKey(name: 'alt_source_id') String? altSourceId,
-//@JsonKey(name: 'platform_id')     int? platformId,
-//Platform? platform,
-//LinkType? type,
+
+  /// relational content
   @override
   final Content? content;
+
+  /// relational content id
   @override
   @JsonKey(name: 'content_id')
   final int? contentId;
-//yeni semada silinmis
-//@JsonKey(name: 'created_at') DateTime? createdAt,
-//@JsonKey(name: 'created_at_accuracy') ContentLinkCreatedAtAccuracy? createdAtAccuracy,
-//@JsonKey(name: 'created_at_str') String? createdAtStr,
+
+  /// position for appearance
   @override
   final int? pos;
   @override
@@ -421,25 +409,21 @@ abstract class _ContentLink implements ContentLink {
   @override
   int? get id;
   @override
+
+  /// URL of the resource
   String get link;
-  @override //yeni semada cikarilmis
-//String? title,
-//String? description,
-//String? slug,
-//@JsonKey(name: 'status_code')   int? statusCode,
-//@JsonKey(name: 'source_id')     String? sourceId,
-//@JsonKey(name: 'alt_source_id') String? altSourceId,
-//@JsonKey(name: 'platform_id')     int? platformId,
-//Platform? platform,
-//LinkType? type,
+  @override
+
+  /// relational content
   Content? get content;
   @override
+
+  /// relational content id
   @JsonKey(name: 'content_id')
   int? get contentId;
-  @override //yeni semada silinmis
-//@JsonKey(name: 'created_at') DateTime? createdAt,
-//@JsonKey(name: 'created_at_accuracy') ContentLinkCreatedAtAccuracy? createdAtAccuracy,
-//@JsonKey(name: 'created_at_str') String? createdAtStr,
+  @override
+
+  /// position for appearance
   int? get pos;
   @override
   String? get body;

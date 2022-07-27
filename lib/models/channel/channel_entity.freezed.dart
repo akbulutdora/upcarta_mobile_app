@@ -21,6 +21,8 @@ ChannelEntity _$ChannelEntityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChannelEntity {
   int? get id => throw _privateConstructorUsedError;
+
+  /// (author, creator, speaker, host, guest, instructor)
   ChannelRole? get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'entity_id', required: true)
   int get entityId => throw _privateConstructorUsedError;
@@ -207,6 +209,8 @@ class _$_ChannelEntity with DiagnosticableTreeMixin implements _ChannelEntity {
 
   @override
   final int? id;
+
+  /// (author, creator, speaker, host, guest, instructor)
   @override
   final ChannelRole? role;
   @override
@@ -288,6 +292,8 @@ abstract class _ChannelEntity implements ChannelEntity {
   @override
   int? get id;
   @override
+
+  /// (author, creator, speaker, host, guest, instructor)
   ChannelRole? get role;
   @override
   @JsonKey(name: 'entity_id', required: true)

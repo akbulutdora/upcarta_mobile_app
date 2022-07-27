@@ -28,9 +28,15 @@ mixin _$ContentTopic {
   Topic? get topic => throw _privateConstructorUsedError;
   @JsonKey(name: 'topic_id', required: true)
   int get topicId => throw _privateConstructorUsedError;
+
+  /// position of appearance
   int? get pos => throw _privateConstructorUsedError;
+
+  /// the profile who added the content topic
   @JsonKey(name: 'added_by')
   User? get addedBy => throw _privateConstructorUsedError;
+
+  /// the profile id who added the content topic
   @JsonKey(name: 'added_by_id')
   int? get addedById => throw _privateConstructorUsedError;
 
@@ -262,11 +268,17 @@ class _$_ContentTopic with DiagnosticableTreeMixin implements _ContentTopic {
   @override
   @JsonKey(name: 'topic_id', required: true)
   final int topicId;
+
+  /// position of appearance
   @override
   final int? pos;
+
+  /// the profile who added the content topic
   @override
   @JsonKey(name: 'added_by')
   final User? addedBy;
+
+  /// the profile id who added the content topic
   @override
   @JsonKey(name: 'added_by_id')
   final int? addedById;
@@ -357,11 +369,17 @@ abstract class _ContentTopic implements ContentTopic {
   @JsonKey(name: 'topic_id', required: true)
   int get topicId;
   @override
+
+  /// position of appearance
   int? get pos;
   @override
+
+  /// the profile who added the content topic
   @JsonKey(name: 'added_by')
   User? get addedBy;
   @override
+
+  /// the profile id who added the content topic
   @JsonKey(name: 'added_by_id')
   int? get addedById;
   @override
