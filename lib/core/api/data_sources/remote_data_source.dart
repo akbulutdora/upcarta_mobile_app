@@ -5,6 +5,7 @@ import 'package:fresh_dio/fresh_dio.dart';
 import 'package:logger/logger.dart';
 import 'package:upcarta_mobile_app/core/api/data_sources/token_storage.dart';
 import 'package:upcarta_mobile_app/core/error/exception.dart';
+import 'package:upcarta_mobile_app/models/content/collection.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 
 class RemoteDataSource {
@@ -280,4 +281,66 @@ class RemoteDataSource {
     return null;
   }
 
+  /// *************************************************************************
+  ///
+  ///                        *****  COLLECTION REQUESTS  *****
+
+  Future<List?> getAllCollections() async {
+    try {
+      final response = await _dioClient.get(
+        '$baseURL/collections',
+      );
+      if (response.statusCode == 200) {
+        if (response.data != null) {
+          return response.data['data'];
+        }
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+    return null;
+  }
+
+  Future<Map<String, dynamic>?> getCollectionWithId(int id) async {
+    try {
+      final response = await _dioClient.get(
+        '$baseURL/collections/$id',
+      );
+      if (response.statusCode == 200) {
+        if (response.data != null) {
+          return response.data!['data'];
+        }
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+    return null;
+  }
+
+  Future<Map<String, dynamic>?> createCollection(
+      Map<String, dynamic> collection) async {
+    try {
+      final response = await _dioClient.post(
+        '$baseURL/collections',
+        data: {'collection': collection},
+      );
+      if (response.statusCode == 201) {
+        if (response.data != null) {
+          return response.data!['data'];
+        }
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+    return null;
+  }
 }

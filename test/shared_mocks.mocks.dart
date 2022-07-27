@@ -139,6 +139,27 @@ class MockRemoteDataSource extends _i1.Mock implements _i3.RemoteDataSource {
       (super.noSuchMethod(Invocation.method(#getEntityFollowers, [id]),
               returnValue: Future<List<dynamic>?>.value())
           as _i8.Future<List<dynamic>?>);
+  @override
+  _i8.Future<List<dynamic>?> getEntityFollowing(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getEntityFollowing, [id]),
+              returnValue: Future<List<dynamic>?>.value())
+          as _i8.Future<List<dynamic>?>);
+  @override
+  _i8.Future<List<dynamic>?> getAllCollections() =>
+      (super.noSuchMethod(Invocation.method(#getAllCollections, []),
+              returnValue: Future<List<dynamic>?>.value())
+          as _i8.Future<List<dynamic>?>);
+  @override
+  _i8.Future<Map<String, dynamic>?> getCollectionWithId(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getCollectionWithId, [id]),
+              returnValue: Future<Map<String, dynamic>?>.value())
+          as _i8.Future<Map<String, dynamic>?>);
+  @override
+  _i8.Future<Map<String, dynamic>?> createCollection(
+          Map<String, dynamic>? collection) =>
+      (super.noSuchMethod(Invocation.method(#createCollection, [collection]),
+              returnValue: Future<Map<String, dynamic>?>.value())
+          as _i8.Future<Map<String, dynamic>?>);
 }
 
 /// A class which mocks [LocalDataStorage].
@@ -336,7 +357,7 @@ class MockEntityRepository extends _i1.Mock implements _i13.EntityRepository {
   @override
   _i8.Future<_i6.Either<_i11.Failure, List<_i14.Entity>>> getEntityFollowing(
           int? id) =>
-      (super.noSuchMethod(Invocation.method(#getEntityFollowings, [id]),
+      (super.noSuchMethod(Invocation.method(#getEntityFollowing, [id]),
               returnValue:
                   Future<_i6.Either<_i11.Failure, List<_i14.Entity>>>.value(
                       _FakeEither_4<_i11.Failure, List<_i14.Entity>>()))

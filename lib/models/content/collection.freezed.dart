@@ -22,8 +22,10 @@ Collection _$CollectionFromJson(Map<String, dynamic> json) {
 mixin _$Collection {
   int? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'entity_id', required: true)
-  int get entityId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'entity_id')
+  int? get entityId => throw _privateConstructorUsedError;
+
+  /// The entity that owns the collection
   Entity? get entity => throw _privateConstructorUsedError;
   @JsonKey(name: 'added_by')
   Entity? get addedBy => throw _privateConstructorUsedError;
@@ -72,8 +74,8 @@ abstract class $CollectionCopyWith<$Res> {
   $Res call(
       {int? id,
       String title,
-      @JsonKey(name: 'entity_id', required: true)
-          int entityId,
+      @JsonKey(name: 'entity_id')
+          int? entityId,
       Entity? entity,
       @JsonKey(name: 'added_by')
           Entity? addedBy,
@@ -157,7 +159,7 @@ class _$CollectionCopyWithImpl<$Res> implements $CollectionCopyWith<$Res> {
       entityId: entityId == freezed
           ? _value.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       entity: entity == freezed
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
@@ -274,8 +276,8 @@ abstract class _$$_CollectionCopyWith<$Res>
   $Res call(
       {int? id,
       String title,
-      @JsonKey(name: 'entity_id', required: true)
-          int entityId,
+      @JsonKey(name: 'entity_id')
+          int? entityId,
       Entity? entity,
       @JsonKey(name: 'added_by')
           Entity? addedBy,
@@ -363,7 +365,7 @@ class __$$_CollectionCopyWithImpl<$Res> extends _$CollectionCopyWithImpl<$Res>
       entityId: entityId == freezed
           ? _value.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       entity: entity == freezed
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
@@ -454,7 +456,7 @@ class _$_Collection with DiagnosticableTreeMixin implements _Collection {
   const _$_Collection(
       {this.id,
       required this.title,
-      @JsonKey(name: 'entity_id', required: true) required this.entityId,
+      @JsonKey(name: 'entity_id') this.entityId,
       this.entity,
       @JsonKey(name: 'added_by') this.addedBy,
       @JsonKey(name: 'added_by_id') this.addedById,
@@ -485,8 +487,10 @@ class _$_Collection with DiagnosticableTreeMixin implements _Collection {
   @override
   final String title;
   @override
-  @JsonKey(name: 'entity_id', required: true)
-  final int entityId;
+  @JsonKey(name: 'entity_id')
+  final int? entityId;
+
+  /// The entity that owns the collection
   @override
   final Entity? entity;
   @override
@@ -669,8 +673,8 @@ abstract class _Collection implements Collection {
   const factory _Collection(
       {final int? id,
       required final String title,
-      @JsonKey(name: 'entity_id', required: true)
-          required final int entityId,
+      @JsonKey(name: 'entity_id')
+          final int? entityId,
       final Entity? entity,
       @JsonKey(name: 'added_by')
           final Entity? addedBy,
@@ -712,9 +716,11 @@ abstract class _Collection implements Collection {
   @override
   String get title;
   @override
-  @JsonKey(name: 'entity_id', required: true)
-  int get entityId;
+  @JsonKey(name: 'entity_id')
+  int? get entityId;
   @override
+
+  /// The entity that owns the collection
   Entity? get entity;
   @override
   @JsonKey(name: 'added_by')
