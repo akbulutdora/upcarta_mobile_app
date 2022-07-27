@@ -1,0 +1,35 @@
+{
+  "data": {
+    "added_by_id": null,
+    "contents_count": 3,
+    "created_at": "2022-07-09T08:28:37Z",
+    "created_at_accuracy": "hour",
+    "created_at_str": "2022-07-09 08:28:37",
+    "description": null,
+    "entity": {
+      "added_by_id": null,
+      "description": null,
+      "followed_contents_count": 0,
+      "followed_entities_count": 1,
+      "followed_topics_count": 0,
+      "followers_count": 0,
+      "following_entity": null,
+      "has_user": true,
+      "id": 1,
+      "linkedin": null,
+      "name": "hello",
+      "twitter": null,
+      "username": "hello",
+      "website": null,
+      "wikipedia": null
+    },
+    "entity_id": 1,
+    "followers_count": 0,
+    "id": 1,
+    "inserted_at": "2022-07-09T08:28:37.720780Z",
+    "link": null,
+    "slug": "saved-for-later",
+    "title": "Saved For Later",
+    "type": "later"
+  }
+}

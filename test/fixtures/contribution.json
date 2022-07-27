@@ -1,0 +1,29 @@
+{
+  "id": 1254,
+  "pos": 1,
+  "role": "author",
+  "content": null,
+  "entity": {
+    "added_by_id": 1,
+    "added_by" : null,
+    "description": "\"The Writing Guy\" | I tweet about writing, learning and business | My Podcast: https://t.co/1NhTBHcK8l | My writing school: https://t.co/bEFFy6bVaC",
+    "followed_contents_count": 0,
+    "followed_entities_count": 0,
+    "followed_topics_count": 0,
+    "followers_count": 2,
+    "has_user": false,
+    "id": 19,
+    "linkedin": null,
+    "name": "David Perell",
+    "twitter": "david_perell",
+    "username": "david_perell",
+    "following_entity": null,
+    "channel_entities": null,
+    "website": null,
+    "wikipedia": null
+  },
+  "entity_id": 19,
+  "content_id": 1279,
+  "added_by": null,
+  "added_by_id": null
+}

@@ -1,6 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'dart:core';
+import 'package:upcarta_mobile_app/core/services/value_failure.dart';
+import 'package:upcarta_mobile_app/routes/login/login.dart';
+import 'package:upcarta_mobile_app/core/services/input_validation_service.dart';
 
 part 'login_state.dart';
 
@@ -10,21 +16,51 @@ class LoginCubit extends Cubit<LoginState> {
   final AuthenticationRepository _authRepository;
 
   void emailChanged(String value) {
-    emit(state.copyWith(email: value, status: LoginStatus.initial));
+    if(state.email.value.isLeft()) {
+      emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationFailure, emailValidated: false));
+    }
+    else if(state.password.value.isRight() && state.email.value.isRight())
+    {
+      emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationSuccess, emailValidated: true, passwordValidated: true));
+    }
+    else if (state.email.value.isRight())
+      {
+        emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationFailure, emailValidated: true));
+
+      }
+
+
+      else {
+      emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.initial));
+    }
   }
 
   void passwordChanged(String value) {
-    emit(state.copyWith(password: value, status: LoginStatus.initial));
+    if(state.password.value.isLeft()) {
+      emit(state.copyWith(password: Password(value), status: LoginStatus.validationFailure, passwordValidated: false));
+    }
+    else if(state.password.value.isRight() && state.email.value.isRight()){
+      emit(state.copyWith(password: Password(value), status: LoginStatus.validationSuccess, passwordValidated: true, emailValidated: true));
+    }
+    else if(state.password.value.isRight())
+      {
+        emit(state.copyWith(password: Password(value), status: LoginStatus.validationFailure, passwordValidated: true));
+      }
+
+    else {
+      emit(state.copyWith(password: Password(value), status: LoginStatus.initial));
+    }
   }
 
   Future<void> logInWithCredential() async {
     if (state.status == LoginStatus.submitting) {
       return;
     } //to avoid sending multiple reqs at the same time
+
     emit(state.copyWith(status: LoginStatus.submitting));
     try {
       await _authRepository.logInWithEmailAndPassword(
-          email: state.email, password: state.password);
+          email: state.email.value.fold((l) => l.failedValue, (r) => r), password: state.password.value.fold((l) => l.failedValue, (r) => r));
       emit(state.copyWith(status: LoginStatus.success));
     } on LogInWithEmailAndPasswordFailure catch (e) {
       emit(

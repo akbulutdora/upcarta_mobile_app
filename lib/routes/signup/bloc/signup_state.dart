@@ -1,13 +1,17 @@
 part of 'signup_cubit.dart';
 
-enum SignupStatus { initial, submitting, success, submissionFailure }
+enum SignupStatus { initial, submitting, success, submissionFailure, validationFailure,
+  validationSuccess }
 
 class SignupState extends Equatable {
-  final String email;
-  final String password;
+  final EmailAddress email;
+  final Password password;
   final SignupStatus status;
-  final String name;
+  final Name name;
   final String? errorMessage;
+  final bool passwordValidated;
+  final bool emailValidated;
+  final bool nameValidated;
 
   const SignupState({
     required this.email,
@@ -15,33 +19,45 @@ class SignupState extends Equatable {
     required this.status,
     required this.name,
     this.errorMessage,
+    required this.emailValidated,
+    required this.passwordValidated,
+    required this.nameValidated
   });
 
   factory SignupState.initial() {
-    return const SignupState(
-      email: '',
-      password: '',
+    return SignupState(
+      email: EmailAddress(''),
+      password: Password(''),
       status: SignupStatus.initial,
-      name: '',
+      name: Name(''),
+      emailValidated: false,
+      passwordValidated: false,
+      nameValidated: false
     );
   }
 
   SignupState copyWith({
-    String? email,
-    String? password,
+    EmailAddress? email,
+    Password? password,
     String? username,
-    String? name,
+    Name? name,
     SignupStatus? status,
     String? errorMessage,
+    bool? passwordValidated,
+    bool? emailValidated,
+    bool? nameValidated
   }) {
     return SignupState(
       email: email ?? this.email,
       password: password ?? this.password,
       status: status ?? this.status,
       name: name ?? this.name,
+      passwordValidated: passwordValidated ?? this.passwordValidated,
+      emailValidated: emailValidated ?? this.emailValidated,
+      nameValidated: nameValidated ?? this.nameValidated,
     );
   }
 
   @override
-  List<Object> get props => [email, password, name, status];
+  List<Object> get props => [email, password, name, status, emailValidated,passwordValidated, nameValidated];
 }

@@ -9,6 +9,7 @@ part 'user.g.dart';
 /// [AppUser.empty] represents an unauthenticated user.
 /// {@endtemplate}
 ///
+
 @JsonSerializable()
 class AppUser extends Equatable {
   /// {@macro user}

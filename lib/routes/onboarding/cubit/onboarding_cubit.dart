@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
+import 'package:upcarta_mobile_app/core/services/input_validation_service.dart';
 
 part 'onboarding_state.dart';
 
@@ -13,7 +15,17 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   void usernameChanged(String value) {
-    emit(state.copyWith(username: value, status: OnboardingStatus.initial));
+    if(state.username.value.isLeft()) {
+      emit(state.copyWith(username: Username(value), status: OnboardingStatus.validationFailure, usernameValidated: false));
+    }
+    else if(state.username.value.isRight())
+    {
+      emit(state.copyWith(username: Username(value), status: OnboardingStatus.validationFailure, usernameValidated: true));
+    }
+
+    else {
+      emit(state.copyWith(username: Username(value), status: OnboardingStatus.initial));
+    }
   }
 
   void photoChanged(String value) {
@@ -28,7 +40,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     try {
       await _userRepository.changeBio(state.bio);
       await _userRepository.changePhoto(state.photoURL);
-      await _userRepository.changeUsername(state.username);
+      await _userRepository.changeUsername(state.username.value.fold((l) => l.failedValue, (r) => r));
       emit(state.copyWith(status: OnboardingStatus.success));
     } catch (e) {
       emit(
