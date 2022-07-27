@@ -159,6 +159,28 @@ class RemoteDataSource {
           await _dioClient.get<Map<String, dynamic>>('$baseURL/contents');
       if (response.statusCode == 200) {
         if (response.data != null) {
+          return List<Map<String,dynamic>>.from(response.data!['data']);
+        }
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+    return null;
+  }
+
+  Future<Map<String,dynamic>?> getContentWithId(int id) async {
+    try {
+      final response =
+      await _dioClient.get<Map<String, dynamic>>('$baseURL/contents/$id');
+      if (response.statusCode == 200) {
+        if (response.data != null) {
+          print('bengirdim');
+          print(response.data);
+          print('------');
+          print(response.data!['data']);
           return response.data!['data'];
         }
       } else {
@@ -171,28 +193,10 @@ class RemoteDataSource {
     return null;
   }
 
-  Future<Map<String,dynamic>> getContentWithId(int id) async {
-    try {
-      final response =
-      await _dioClient.get<Map<String, dynamic>>('$baseURL/contents{{$id}}');
-      if (response.statusCode == 200) {
-        if (response.data != null) {
-          return response.data!['data'];
-        }
-      } else {
-        throw ServerException();
-      }
-    } catch (e) {
-      log(e.toString());
-      rethrow;
-    }
-    return null;
-  }
-  // dondugu tur ne olmali void mi dondurmeli
   Future<Map<String,dynamic>?> createContent( Map<String,dynamic> contentJson) async {
     try {
       final response =
-      await _dioClient.post('$baseURL/contents',data : contentJson);
+      await _dioClient.post('$baseURL/contents',data : {"content" : contentJson});
       if (response.statusCode == 201) {
         if (response.data != null) {
           return response.data!['data'];
@@ -210,9 +214,8 @@ class RemoteDataSource {
   deleteContent (int id) async {
     try {
       final response =
-      await _dioClient.delete('$baseURL/contents{{$id}}');
-      // deletecontentden status kod olarak ne donecek ? documantasyonda yazmiyor
-      if (response.statusCode == 200) {
+      await _dioClient.delete('$baseURL/contents/$id');
+      if (response.statusCode == 204) {
         return;
       } else {
         throw ServerException();
@@ -227,9 +230,8 @@ class RemoteDataSource {
   saveContent (int id) async {
     try {
       final response =
-      await _dioClient.post('$baseURL/contents{{$id}}/saves');
-      // savecontentten sonra status kod olarak ne donecek ? documantasyonda yazmiyor
-      if (response.statusCode == 200) {
+      await _dioClient.post('$baseURL/contents/$id/saves');
+      if (response.statusCode == 201) {
         return;
       } else {
         throw ServerException();
@@ -243,9 +245,8 @@ class RemoteDataSource {
   deleteContentSave (int id) async {
     try {
       final response =
-      await _dioClient.delete('$baseURL/contents{{$id}}/saves');
-      // deleteContentSaveden sonra status kod olarak ne donecek ? documantasyonda yazmiyor
-      if (response.statusCode == 200) {
+      await _dioClient.delete('$baseURL/contents/$id/saves');
+      if (response.statusCode == 204) {
         return;
       } else {
         throw ServerException();
@@ -259,9 +260,8 @@ class RemoteDataSource {
   markContentAsFinished (int id) async {
     try {
       final response =
-      await _dioClient.post('$baseURL/contents{{$id}}/finishes');
-      // deleteContentSaveden sonra status kod olarak ne donecek ? documantasyonda yazmiyor
-      if (response.statusCode == 200) {
+      await _dioClient.post('$baseURL/contents/$id/finishes');
+      if (response.statusCode == 201) {
         return;
       } else {
         throw ServerException();
@@ -275,9 +275,8 @@ class RemoteDataSource {
   unmarkContentAsFinished (int id) async {
     try {
       final response =
-      await _dioClient.delete('$baseURL/contents{{$id}}/finishes');
-      // deleteContentSaveden sonra status kod olarak ne donecek ? documantasyonda yazmiyor
-      if (response.statusCode == 200) {
+      await _dioClient.delete('$baseURL/contents/$id/finishes');
+      if (response.statusCode == 204) {
         return;
       } else {
         throw ServerException();
@@ -292,9 +291,8 @@ class RemoteDataSource {
   addContentToCollection (int contentId) async {
     try {
       final response =
-      await _dioClient.post('$baseURL/contents{{$contentId}}/collections/');
-      //  status kod olarak ne donecek ? documantasyonda yazmiyor
-      if (response.statusCode == 200) {
+      await _dioClient.post('$baseURL/contents/$contentId/collections/');
+      if (response.statusCode == 201) {
         return;
       } else {
         throw ServerException();
@@ -309,9 +307,9 @@ class RemoteDataSource {
   deleteCollectionContent (int contentId) async {
     try {
       final response =
-      await _dioClient.delete('$baseURL/contents{{$contentId}}/collections/');
+      await _dioClient.delete('$baseURL/contents/$contentId/collections/');
       //  status kod olarak ne donecek ? documantasyonda yazmiyor
-      if (response.statusCode == 200) {
+      if (response.statusCode == 204) {
         return;
       } else {
         throw ServerException();
@@ -333,6 +331,10 @@ class RemoteDataSource {
           await _dioClient.get<Map<String, dynamic>>('$baseURL/entities/$id');
       if (response.statusCode == 200) {
         if (response.data != null) {
+          print('entityim ben');
+          print(response.data);
+          print('------');
+          print(response.data!['data']);
           return response.data!['data'];
         }
       } else {

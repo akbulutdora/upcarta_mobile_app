@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
 import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 
-abstract class IFeedRepository {
+abstract class IContentRepository {
 
-  const IFeedRepository();
+  const IContentRepository();
   /// get a list of Contents
   Future<Either<Failure,List<Content>>> getAllContents();
 

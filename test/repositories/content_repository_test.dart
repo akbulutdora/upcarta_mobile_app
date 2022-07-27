@@ -7,7 +7,11 @@ import 'package:upcarta_mobile_app/core/error/exception.dart';
 import 'package:upcarta_mobile_app/core/error/failures.dart';
 import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
-import 'package:upcarta_mobile_app/repositories/feed_repository.dart';
+import 'package:upcarta_mobile_app/repositories/content_repository/content_repository.dart';
+import 'package:upcarta_mobile_app/models/content/content_link.dart';
+import 'package:upcarta_mobile_app/models/content/contribution.dart';
+import 'package:upcarta_mobile_app/models/entity/entity.dart';
+
 import '../fixtures/fixture_reader.dart';
 import '../shared_mocks.mocks.dart';
 
@@ -15,7 +19,7 @@ void main() {
   MockRemoteDataSource mockRemoteDataSource = MockRemoteDataSource();
   MockLocalDataStorage mockLocalDataStorage = MockLocalDataStorage();
   MockNetworkInfo mockNetworkInfo = MockNetworkInfo();
-  FeedRepository repository = FeedRepository(
+  ContentRepository repository = ContentRepository(
       remoteDataSource: mockRemoteDataSource,
       localDataStorage: mockLocalDataStorage,
       networkInfo: mockNetworkInfo);
@@ -23,9 +27,11 @@ void main() {
   const tUser = User(email: 'hello@upcarta.com');
   const tToken =
       'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzcG90YWJsZSIsImV4cCI6MTY1OTc3NTUyMiwiaWF0IjoxNjU3MzU2MzIyLCJpc3MiOiJzcG90YWJsZSIsImp0aSI6ImRhNWI1ZjQ4LWZiNzAtNDE3Mi1iYzY1LWM4YWYzNzAwNDgzNiIsIm5iZiI6MTY1NzM1NjMyMSwic3ViIjoiMSIsInR5cCI6ImFjY2VzcyJ9.yYEFOUcEjP34cbkmDy88-wKUF-2VbVO0phn7Vc3vKUtANO329rFdb5nuPvwi1ixBOn30AqZ4tZ71iKAoQTVkPQ';
-  const List<Content> tAllContents = <Content>[];
-  final tContentsResponse =
-      json.decode(fixture('content_list.json'))['data'];
+  //final List<Content> tAllContents = <Content>[];
+  final tContentsResponse = json.decode(fixture('content_list.json'))['data'];
+
+  final tAllContents = List<Content>.from(tContentsResponse!.map((model)=>Content.fromJson(model)));
+
 
   void clearInteractionsWithAll() {
     clearInteractions(mockNetworkInfo);
@@ -78,10 +84,11 @@ void main() {
           when(mockRemoteDataSource.getAllContents())
               .thenAnswer((_) async => tContentsResponse);
           // act
+
           final result = await repository.getAllContents();
           // assert
           verify(mockRemoteDataSource.getAllContents());
-          expect(result.fold((l) => l, (r) => r), equals(ilist(tAllContents)));
+          expect(result, equals(Right(tAllContents)));
           //clear
           clearInteractionsWithAll();
         },

@@ -1,11 +1,15 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:upcarta_mobile_app/core/api/data_sources/remote_data_source.dart';
 import 'package:upcarta_mobile_app/core/error/exception.dart';
+import 'package:upcarta_mobile_app/models/content/content_link.dart';
+import 'package:upcarta_mobile_app/models/content/contribution.dart';
 import 'package:upcarta_mobile_app/models/entity/entity.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
+import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import '../../../fixtures/fixture_reader.dart';
 import '../../../shared_mocks.mocks.dart';
 
@@ -38,6 +42,7 @@ void main() {
     test('should call getAllContents', () async {
       final l = await dataSource2.getAllContents();
       // print(List<Content>.from(l!.map((model)=> Content.fromJson(model))));
+      print(List<Content>.from(l!.map((model)=> Content.fromJson(model)))[0]);
     });
 
     test('should call unfollowEntityWithId', () async {
@@ -58,6 +63,11 @@ void main() {
     test('should call getEntityFollowings', () async {
       final l = await dataSource2.getEntityFollowing(1);
       // print(List<Entity>.from(l!.map((model) => Entity.fromJson(model))));
+    });
+    test('should call createContent',()async{
+      final tContentJson = json.decode(fixture('content.json'));
+      final res = await dataSource2.createContent(tContentJson);
+      print(res);
     });
     clearInteractionsWithAll();
   });
@@ -174,25 +184,214 @@ void main() {
       },
     );
   });
-
-  group('getAllContents', () {
-    test(
-      'should preform a GET request on a URL',
-      () async {
-        // arrange
-        when(mockDio.get<Map<String, dynamic>>('$baseURL/contents')).thenAnswer(
+  /*
+  group('getAllContents', (){
+    test('should perform a GET request on a URL',()async{
+      //arrange
+      when(mockDio.get<Map<String, dynamic>>('$baseURL/contents')).thenAnswer(
           (_) async => Response(
-              statusCode: 200,
-              data: json.decode(fixture('content_list.json')),
-              requestOptions: RequestOptions(path: '')),
-        );
-        // act
-        await dataSource.getAllContents();
-        // assert
-        verify(mockDio.get<Map<String, dynamic>>('$baseURL/contents'));
-        clearInteractionsWithAll();
-      },
+            statusCode: 200,
+            data: json.decode(fixture('content_list')),
+            requestOptions: RequestOptions(path: '' )
+          )
+      );
+      //act
+      await dataSource.getAllContents();
+      //assert
+      verify(mockDio.get<Map<String, dynamic>>('$baseURL/contents'));
+      clearInteractionsWithAll();
+
+    });
+  });
+  */
+  group('content',(){
+    final Content tContent = Content(
+      id: 450,
+      title: 'Content1',
+      description: 'We live in a society of adult-like children and childish adults. Kids have never had more information at their fingertips, so they’re growing up faster than ever. From a young age, they can watch violent war clips on YouTube, Dan Bilzerian videos on Instagram, and Shakira getting...',
+      slug: 'adulting-fast-and-slow',
+      type: ContentType.article,
+      parent: null,
+      children: null,
+      addedBy: null,
+      addedById: null,
+      contentTopics: [],
+      contributions: [const Contribution(id: null,
+          role: ContributionRole.author,
+          content: null,
+          contentId: 1279,
+          entity: Entity(id: null,
+              name: 'David Perell',
+              username: 'david_perell',
+              description: "\"The Writing Guy\" | I tweet about writing, learning and business | My Podcast: https://t.co/1NhTBHcK8l | My writing school: https://t.co/bEFFy6bVaC",
+              hasUser: false,
+              followersCount: 2,
+              followedEntitiesCount: 0,
+              followedTopicsCount: 0,
+              followedContentsCount: 0,
+              addedBy: null,
+              addedById: null,
+              twitter: 'david_perell',
+              website: null,
+              linkedin: null,
+              wikipedia: null,
+              followingEntity: null,
+              channelEntities: null),
+          entityId: 19,
+          pos: 1,
+          addedBy: null,
+          addedById: null)
+      ],
+      contentLinks: [
+        const ContentLink(id: null,
+            link: '''https://perell.com/essay/adulting-fast-and-slow/''',
+            content: null,
+            contentId: null,
+            pos: null,
+            body: null,
+            hasEmbed: null,
+            hasRatings: null,
+            episodeNumber: null,
+            duration: null,
+            details: null)
+      ],
+      contentLinksCount: null,
+      recommendersCount: null,
+      followersCount: null,
+      publicCollectionsCount: 0,
+      featuredRecommendersCount: 0,
+      contextRecommendersCount: 0,
+      createdAt: DateTime.parse('2020-04-07 20:19:04.000Z'),
+      createdAtAccuracy: CreatedAtAccuracy.hour,
+      createdAtStr : null,
+      followable: null,
+      personalCurations: null,
+      personalCollections:null,
+      insertedAt: DateTime.parse('2021-03-30 20:06:25.678846Z'),
     );
+    List<Map<String,dynamic>> tContentMapList = [tContent.toJson(),tContent.toJson()];
+    final tContentJson = json.decode(fixture('content_with_id_response.json'));
+    int tId = 450;
+    group('getAllContentsEasy', () {
+
+      test(
+        'should perform a GET request on a URL',
+            () async {
+          // arrange
+          when(mockDio.get<Map<String, dynamic>>('$baseURL/contents')).thenAnswer(
+                (_) async => Response(
+                statusCode: 200,
+                data: json.decode(fixture('easy_content_list.json')),
+                requestOptions: RequestOptions(path: '')),
+          );
+          // act
+          await dataSource.getAllContents();
+          // assert
+          verify(mockDio.get<Map<String, dynamic>>('$baseURL/contents'));
+          clearInteractionsWithAll();
+        },
+      );
+      test(
+          'should return ContentList when the response code is 200 (success)',
+              ()async{
+            //arrange
+            when(mockDio.get<Map<String, dynamic>>('$baseURL/contents'))
+                .thenAnswer(
+                    (_)async => Response(
+                    statusCode: 200,
+                    data : json.decode(fixture('easy_content_list.json')),
+                    requestOptions: RequestOptions(path:'')
+                ));
+            //act
+            final result = await dataSource.getAllContents();
+            //print(result);
+            //assert
+            expect(result, equals(tContentMapList));
+            clearInteractionsWithAll();
+          });
+      test(
+          'should return ServerError when the response code is 404',
+              ()async{
+            //arrange
+            when(mockDio.get<Map<String,dynamic>>('$baseURL/contents'))
+                .thenAnswer(
+                    (_)async => Response(
+                    statusCode: 404,
+                    data: json.decode(fixture('no_resource.json')),
+                    requestOptions: RequestOptions(path : '')
+                ));
+            //act
+            print('2');
+            final call = dataSource.getAllContents();
+            print('1');
+            //assert
+            expect(() => call, throwsA(const TypeMatcher<ServerException>()));
+            clearInteractionsWithAll();
+          }
+      );
+
+    });
+    group('getContentWithId',() {
+      test(
+        'should preform a GET request on a URL with number being the endpoint and with application/json header',
+          ()async{
+          //arrange
+          when(mockDio.get<Map<String,dynamic>>('$baseURL/contents/$tId')).thenAnswer(
+              (_) async => Response(
+                statusCode: 200,
+                data: json.decode(fixture('content_with_id_response.json')),
+                requestOptions: RequestOptions(path: '')
+              )
+          );
+          //act
+            await dataSource.getContentWithId(tId);
+          //assert
+            verify(mockDio.get<Map<String,dynamic>>('$baseURL/contents/$tId'));
+            clearInteractionsWithAll();
+          }
+      );
+      test('should return Content when the response code is 200 (success)',
+          ()async{
+          //arrange
+            when(mockDio.get<Map<String,dynamic>>('$baseURL/contents/$tId')).thenAnswer(
+                    (_) async => Response(
+                    statusCode: 200,
+                    data: json.decode(fixture('content_with_id_response.json')),
+                    requestOptions: RequestOptions(path: ''),
+                )
+            );
+          //act
+            final result = await dataSource.getContentWithId(tId);
+          //assert
+            expect(Content.fromJson(result!),equals(tContent));
+            clearInteractionsWithAll();
+        }
+      );
+      test(
+          'should throw a ServerException when the response code is 404 or other',
+              () async {
+            //arrange
+            when(mockDio.get<Map<String, dynamic>>('$baseURL/contents/$tId'))
+                .thenAnswer(
+                  (_) async => Response(
+                  statusCode: 404,
+                  data: json.decode(fixture('no_resource.json')),
+                  requestOptions: RequestOptions(path: '')),
+            );
+            // act
+            final call = dataSource.getContentWithId(tId);
+            // assert
+            expect(() => call, throwsA(const TypeMatcher<ServerException>()));
+          });
+    });
+    group('createContent',(){
+      test('should preform a POST request on a URL with number being the endpoint and with application/json header',
+          ()async{
+          //arrange
+
+          }
+      );
+    });
   });
 
   group('getEntityById', () {

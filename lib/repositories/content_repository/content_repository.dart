@@ -7,16 +7,16 @@ import 'package:upcarta_mobile_app/core/error/failures.dart';
 import 'package:upcarta_mobile_app/core/platform/network_info.dart';
 import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
-import 'package:upcarta_mobile_app/repositories/feed_repository/content_repository_interface.dart';
+import 'package:upcarta_mobile_app/repositories/content_repository/content_repository_interface.dart';
 
-class FeedRepository implements IFeedRepository {
+class ContentRepository implements IContentRepository {
   final RemoteDataSource remoteDataSource;
   final LocalDataStorage localDataStorage;
   final NetworkInfo networkInfo;
   late String _appUserToken;
   late User _appUser;
 
-  FeedRepository(
+  ContentRepository(
       {
       required this.remoteDataSource,
       required this.localDataStorage,
@@ -62,12 +62,13 @@ class FeedRepository implements IFeedRepository {
     }
 
   }
-  /*
+
   // todo : api endpoint gelince implement edilecek
   @override
   Future<Either<Failure, void>> followContent(int id)async{
-
-    //check connectivity
+    // TODO: implement followContent
+    throw UnimplementedError();
+    /*//check connectivity
     final isConnected = await networkInfo.isConnected;
     if (isConnected) {
       try {
@@ -78,13 +79,14 @@ class FeedRepository implements IFeedRepository {
       }
     } else {
       return Left(ServerFailure());
-    }
+    } */
 
   }
   //todo: api endpoint geldigi zaman implemente edilecek
   @override
   Future<Either<Failure, void>> unfollowContent(int id)async{
-
+         // TODO: implement unfollowContent
+    throw UnimplementedError();/*
     //check connectivity
     final isConnected = await networkInfo.isConnected;
     if (isConnected) {
@@ -96,10 +98,10 @@ class FeedRepository implements IFeedRepository {
       }
     } else {
       return Left(ServerFailure());
-    }
+    }*/
 
   }
-  */
+
 
   @override
   Future<Either<Failure, Content?>> createContent(Content content)async{
@@ -112,7 +114,7 @@ class FeedRepository implements IFeedRepository {
         // content mi donmeli yoksa json hali mi onun ?
         // bir sey dondurmeli mi yoksa void fonksiyon mu yapiyim aynisi api request icin de gecerli
         final response = await remoteDataSource.createContent(content.toJson());
-        return Right(Content.fromJson(response));
+        return Right(Content.fromJson(response!));
       } on ServerException {
         return Left(ServerFailure());
       }
@@ -212,6 +214,7 @@ class FeedRepository implements IFeedRepository {
     }
 
   }
+
   @override
   Future<Either<Failure, void>> addContentToCollection(int id)async{
     //check connectivity
@@ -244,4 +247,5 @@ class FeedRepository implements IFeedRepository {
     }
 
   }
+
 }
