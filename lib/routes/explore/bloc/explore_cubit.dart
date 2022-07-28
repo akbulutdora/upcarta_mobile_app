@@ -24,7 +24,6 @@ class ExploreCubit extends Cubit<ExploreState> {
     if (state.status == ExploreStatus.submitting) {
       return;
     }
-    Timer(Duration(seconds: 1), () {});
     emit(state.copyWith(status: ExploreStatus.submitting));
     try {
       var searchPersons = await _queryRepository.fetchSearch(state.searchKey);
