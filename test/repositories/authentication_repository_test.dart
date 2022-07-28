@@ -49,7 +49,6 @@ void main() {
       });
 
       body();
-
     });
   }
 
@@ -72,15 +71,13 @@ void main() {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(mockRemoteDataSource.authenticate(
               email: tEmail, password: tPassword))
-          .thenAnswer(
-              (_) async => [tToken, const User(email: 'hello@upcarta.com')]);
+          .thenAnswer((_) async => const User(email: 'hello@upcarta.com'));
       // act
       repository.authenticate(tEmail, tPassword);
       // assert
       verify(mockNetworkInfo.isConnected);
 
       clearInteractionsWithAll();
-
     });
 
     runTestsOnline(() {
@@ -90,7 +87,7 @@ void main() {
           // arrange
           when(mockRemoteDataSource.authenticate(
                   email: tEmail, password: tPassword))
-              .thenAnswer((_) async => [tToken, tUser]);
+              .thenAnswer((_) async => tUser);
           // act
           final result = await repository.authenticate(tEmail, tPassword);
           // assert
@@ -99,7 +96,6 @@ void main() {
           expect(result, equals(const Right(tToken)));
 
           clearInteractionsWithAll();
-
         },
       );
 
@@ -109,7 +105,7 @@ void main() {
           // arrange
           when(mockRemoteDataSource.authenticate(
                   email: anyNamed('email'), password: anyNamed('password')))
-              .thenAnswer((_) async => [tToken, tUser]);
+              .thenAnswer((_) async => tUser);
           // act
           await repository.authenticate(tEmail, tPassword);
           // assert
@@ -119,7 +115,6 @@ void main() {
           verify(mockLocalDataStorage.cacheUser(tUser));
 
           clearInteractionsWithAll();
-
         },
       );
 

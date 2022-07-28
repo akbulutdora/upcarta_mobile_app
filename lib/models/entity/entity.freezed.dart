@@ -45,7 +45,7 @@ mixin _$Entity {
   String? get linkedin => throw _privateConstructorUsedError;
   String? get wikipedia => throw _privateConstructorUsedError;
   @JsonKey(name: 'following_entity')
-  Entity? get followingEntity => throw _privateConstructorUsedError;
+  EntityFollowing? get followingEntity => throw _privateConstructorUsedError;
   @JsonKey(name: 'channel_entities')
   List<Entity>? get channelEntities => throw _privateConstructorUsedError;
 
@@ -74,11 +74,11 @@ abstract class $EntityCopyWith<$Res> {
       String? website,
       String? linkedin,
       String? wikipedia,
-      @JsonKey(name: 'following_entity') Entity? followingEntity,
+      @JsonKey(name: 'following_entity') EntityFollowing? followingEntity,
       @JsonKey(name: 'channel_entities') List<Entity>? channelEntities});
 
   $EntityCopyWith<$Res>? get addedBy;
-  $EntityCopyWith<$Res>? get followingEntity;
+  $EntityFollowingCopyWith<$Res>? get followingEntity;
 }
 
 /// @nodoc
@@ -173,7 +173,7 @@ class _$EntityCopyWithImpl<$Res> implements $EntityCopyWith<$Res> {
       followingEntity: followingEntity == freezed
           ? _value.followingEntity
           : followingEntity // ignore: cast_nullable_to_non_nullable
-              as Entity?,
+              as EntityFollowing?,
       channelEntities: channelEntities == freezed
           ? _value.channelEntities
           : channelEntities // ignore: cast_nullable_to_non_nullable
@@ -193,12 +193,12 @@ class _$EntityCopyWithImpl<$Res> implements $EntityCopyWith<$Res> {
   }
 
   @override
-  $EntityCopyWith<$Res>? get followingEntity {
+  $EntityFollowingCopyWith<$Res>? get followingEntity {
     if (_value.followingEntity == null) {
       return null;
     }
 
-    return $EntityCopyWith<$Res>(_value.followingEntity!, (value) {
+    return $EntityFollowingCopyWith<$Res>(_value.followingEntity!, (value) {
       return _then(_value.copyWith(followingEntity: value));
     });
   }
@@ -225,13 +225,13 @@ abstract class _$$_EntityCopyWith<$Res> implements $EntityCopyWith<$Res> {
       String? website,
       String? linkedin,
       String? wikipedia,
-      @JsonKey(name: 'following_entity') Entity? followingEntity,
+      @JsonKey(name: 'following_entity') EntityFollowing? followingEntity,
       @JsonKey(name: 'channel_entities') List<Entity>? channelEntities});
 
   @override
   $EntityCopyWith<$Res>? get addedBy;
   @override
-  $EntityCopyWith<$Res>? get followingEntity;
+  $EntityFollowingCopyWith<$Res>? get followingEntity;
 }
 
 /// @nodoc
@@ -327,7 +327,7 @@ class __$$_EntityCopyWithImpl<$Res> extends _$EntityCopyWithImpl<$Res>
       followingEntity: followingEntity == freezed
           ? _value.followingEntity
           : followingEntity // ignore: cast_nullable_to_non_nullable
-              as Entity?,
+              as EntityFollowing?,
       channelEntities: channelEntities == freezed
           ? _value._channelEntities
           : channelEntities // ignore: cast_nullable_to_non_nullable
@@ -403,7 +403,7 @@ class _$_Entity with DiagnosticableTreeMixin implements _Entity {
   final String? wikipedia;
   @override
   @JsonKey(name: 'following_entity')
-  final Entity? followingEntity;
+  final EntityFollowing? followingEntity;
   final List<Entity>? _channelEntities;
   @override
   @JsonKey(name: 'channel_entities')
@@ -532,7 +532,7 @@ abstract class _Entity implements Entity {
       final String? linkedin,
       final String? wikipedia,
       @JsonKey(name: 'following_entity')
-          final Entity? followingEntity,
+          final EntityFollowing? followingEntity,
       @JsonKey(name: 'channel_entities')
           final List<Entity>? channelEntities}) = _$_Entity;
 
@@ -579,7 +579,7 @@ abstract class _Entity implements Entity {
   String? get wikipedia;
   @override
   @JsonKey(name: 'following_entity')
-  Entity? get followingEntity;
+  EntityFollowing? get followingEntity;
   @override
   @JsonKey(name: 'channel_entities')
   List<Entity>? get channelEntities;

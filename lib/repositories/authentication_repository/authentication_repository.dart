@@ -24,7 +24,7 @@ class AuthenticationRepository implements IAuthenticationRepository {
 
   // authenticate the user with email and password
   @override
-  Future<Either<Failure, String>> authenticate(
+  Future<Either<Failure, User>> authenticate(
       String email, String password) async {
     // check connectivity
     final isConnected = await networkInfo.isConnected;
@@ -32,18 +32,15 @@ class AuthenticationRepository implements IAuthenticationRepository {
     if (isConnected) {
       try {
         // authenticate the user and retrieve user information
-        final userInfo = await remoteDataSource.authenticate(
+        final user = await remoteDataSource.authenticate(
             email: email, password: password);
-        final userToken = userInfo[0];
-        final User appUser = userInfo[1];
+        final User appUser = user;
 
         // cache the user information
-        localDataStorage.cacheUserToken(userToken);
         localDataStorage.cacheUser(appUser);
         _appUser = appUser;
-        _appUserToken = userToken;
 
-        return Right(userToken);
+        return Right(user);
       } on ServerException {
         return Left(ServerFailure());
       }

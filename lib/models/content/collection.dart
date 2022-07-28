@@ -10,13 +10,13 @@ part 'collection.freezed.dart';
 part 'collection.g.dart';
 
 enum CollectionType {
-  @JsonValue('saved')
-  saved,
+  @JsonValue('later')
+  later,
   @JsonValue('finished')
   finished,
   // personal replaced with internal yaziyor
-  @JsonValue('internal')
-  internal,
+  @JsonValue('personal')
+  personal,
   @JsonValue('external')
   contributor,
   @JsonValue('internal_ask')
@@ -24,6 +24,7 @@ enum CollectionType {
   @JsonValue('external_ask')
   externalAsk
 }
+
 enum CollectionSort {
   @JsonValue('manual')
   manual,
@@ -38,14 +39,14 @@ enum CollectionSort {
   popularity
 }
 
-enum CollectionVisibility{
+enum CollectionVisibility {
   @JsonValue('private')
   private,
   @JsonValue('public')
   public
 }
 
-enum CollectionCreatedAtAccuracy{
+enum CollectionCreatedAtAccuracy {
   @JsonValue('year')
   year,
   @JsonValue('month')
@@ -55,12 +56,15 @@ enum CollectionCreatedAtAccuracy{
   @JsonValue('hour')
   hour,
 }
+
 @freezed
 class Collection with _$Collection {
   const factory Collection({
     int? id,
     required String title,
-    @JsonKey(name: 'entity_id',required: true) required int entityId,
+    @JsonKey(name: 'entity_id') int? entityId,
+
+    /// The entity that owns the collection
     Entity? entity,
     @JsonKey(name: 'added_by') Entity? addedBy,
     @JsonKey(name: 'added_by_id') int? addedById,
@@ -70,7 +74,8 @@ class Collection with _$Collection {
     CollectionSort? sort,
     @JsonKey(name: 'created_at_str') String? createdAtStr,
     @JsonKey(name: 'created_at') DateTime? createdAt,
-    @JsonKey(name:'created_at_accuracy')CollectionCreatedAtAccuracy? createdAtAccuracy,
+    @JsonKey(name: 'created_at_accuracy')
+        CollectionCreatedAtAccuracy? createdAtAccuracy,
     //todo: external ise required
     String? link,
     @JsonKey(name: 'source_content') Content? sourceContent,
@@ -82,8 +87,8 @@ class Collection with _$Collection {
     @JsonKey(name: 'published_at') DateTime? publishedAt,
     @JsonKey(name: 'collection_topics') List<Topic>? collectionTopics,
     @JsonKey(name: 'inserted_at') DateTime? insertedAt,
-
   }) = _Collection;
 
-  factory Collection.fromJson(Map<String, Object?> json) => _$CollectionFromJson(json);
+  factory Collection.fromJson(Map<String, Object?> json) =>
+      _$CollectionFromJson(json);
 }

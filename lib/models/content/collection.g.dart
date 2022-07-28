@@ -6,57 +6,52 @@ part of 'collection.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Collection _$$_CollectionFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    requiredKeys: const ['entity_id'],
-  );
-  return _$_Collection(
-    id: json['id'] as int?,
-    title: json['title'] as String,
-    entityId: json['entity_id'] as int,
-    entity: json['entity'] == null
-        ? null
-        : Entity.fromJson(json['entity'] as Map<String, dynamic>),
-    addedBy: json['added_by'] == null
-        ? null
-        : Entity.fromJson(json['added_by'] as Map<String, dynamic>),
-    addedById: json['added_by_id'] as int?,
-    description: json['description'] as String?,
-    slug: json['slug'] as String?,
-    type: $enumDecode(_$CollectionTypeEnumMap, json['type']),
-    sort: $enumDecodeNullable(_$CollectionSortEnumMap, json['sort']),
-    createdAtStr: json['created_at_str'] as String?,
-    createdAt: json['created_at'] == null
-        ? null
-        : DateTime.parse(json['created_at'] as String),
-    createdAtAccuracy: $enumDecodeNullable(
-        _$CollectionCreatedAtAccuracyEnumMap, json['created_at_accuracy']),
-    link: json['link'] as String?,
-    sourceContent: json['source_content'] == null
-        ? null
-        : Content.fromJson(json['source_content'] as Map<String, dynamic>),
-    sourceContentId: json['source_content_id'] as int?,
-    visibility:
-        $enumDecodeNullable(_$CollectionVisibilityEnumMap, json['visibility']),
-    verifiedAt: json['verified_at'] == null
-        ? null
-        : DateTime.parse(json['verified_at'] as String),
-    featuredAt: json['featured_at'] == null
-        ? null
-        : DateTime.parse(json['featured_at'] as String),
-    recommended: json['recommended'] as bool?,
-    publishedAt: json['published_at'] == null
-        ? null
-        : DateTime.parse(json['published_at'] as String),
-    collectionTopics: (json['collection_topics'] as List<dynamic>?)
-        ?.map((e) => Topic.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    insertedAt: json['inserted_at'] == null
-        ? null
-        : DateTime.parse(json['inserted_at'] as String),
-  );
-}
+_$_Collection _$$_CollectionFromJson(Map<String, dynamic> json) =>
+    _$_Collection(
+      id: json['id'] as int?,
+      title: json['title'] as String,
+      entityId: json['entity_id'] as int?,
+      entity: json['entity'] == null
+          ? null
+          : Entity.fromJson(json['entity'] as Map<String, dynamic>),
+      addedBy: json['added_by'] == null
+          ? null
+          : Entity.fromJson(json['added_by'] as Map<String, dynamic>),
+      addedById: json['added_by_id'] as int?,
+      description: json['description'] as String?,
+      slug: json['slug'] as String?,
+      type: $enumDecode(_$CollectionTypeEnumMap, json['type']),
+      sort: $enumDecodeNullable(_$CollectionSortEnumMap, json['sort']),
+      createdAtStr: json['created_at_str'] as String?,
+      createdAt: json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
+      createdAtAccuracy: $enumDecodeNullable(
+          _$CollectionCreatedAtAccuracyEnumMap, json['created_at_accuracy']),
+      link: json['link'] as String?,
+      sourceContent: json['source_content'] == null
+          ? null
+          : Content.fromJson(json['source_content'] as Map<String, dynamic>),
+      sourceContentId: json['source_content_id'] as int?,
+      visibility: $enumDecodeNullable(
+          _$CollectionVisibilityEnumMap, json['visibility']),
+      verifiedAt: json['verified_at'] == null
+          ? null
+          : DateTime.parse(json['verified_at'] as String),
+      featuredAt: json['featured_at'] == null
+          ? null
+          : DateTime.parse(json['featured_at'] as String),
+      recommended: json['recommended'] as bool?,
+      publishedAt: json['published_at'] == null
+          ? null
+          : DateTime.parse(json['published_at'] as String),
+      collectionTopics: (json['collection_topics'] as List<dynamic>?)
+          ?.map((e) => Topic.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      insertedAt: json['inserted_at'] == null
+          ? null
+          : DateTime.parse(json['inserted_at'] as String),
+    );
 
 Map<String, dynamic> _$$_CollectionToJson(_$_Collection instance) =>
     <String, dynamic>{
@@ -88,9 +83,9 @@ Map<String, dynamic> _$$_CollectionToJson(_$_Collection instance) =>
     };
 
 const _$CollectionTypeEnumMap = {
-  CollectionType.saved: 'saved',
+  CollectionType.later: 'later',
   CollectionType.finished: 'finished',
-  CollectionType.internal: 'internal',
+  CollectionType.personal: 'personal',
   CollectionType.contributor: 'external',
   CollectionType.internalAsk: 'internal_ask',
   CollectionType.externalAsk: 'external_ask',

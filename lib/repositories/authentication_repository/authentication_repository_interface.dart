@@ -7,7 +7,7 @@ abstract class IAuthenticationRepository {
   const IAuthenticationRepository();
 
   /// Login with username and password
-  Future<Either<Failure, String>> authenticate(
+  Future<Either<Failure, User>> authenticate(
       String username, String password);
 
   /// Registration with username and password

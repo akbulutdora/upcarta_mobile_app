@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "added_by_id": null,
+      "description": null,
+      "followed_contents_count": null,
+      "followed_entities_count": 1,
+      "followed_topics_count": 0,
+      "followers_count": 0,
+      "following_entity": null,
+      "has_user": true,
+      "id": 1,
+      "linkedin": null,
+      "name": "hello",
+      "twitter": null,
+      "username": "hello",
+      "website": null,
+      "wikipedia": null
+    },
+    {
+      "added_by_id": null,
+      "description": null,
+      "followed_contents_count": null,
+      "followed_entities_count": 0,
+      "followed_topics_count": 0,
+      "followers_count": 1,
+      "following_entity": {
+        "followed_entity_id": 2,
+        "following_entity_id": 1,
+        "id": 22,
+        "inserted_at": "2022-07-25T12:21:36.727970Z"
+      },
+      "has_user": true,
+      "id": 2,
+      "linkedin": null,
+      "name": "Dora Testbulut",
+      "twitter": null,
+      "username": "testassault",
+      "website": null,
+      "wikipedia": null
+    },
+    {
+      "added_by_id": null,
+      "description": null,
+      "followed_contents_count": null,
+      "followed_entities_count": 0,
+      "followed_topics_count": 0,
+      "followers_count": 0,
+      "following_entity": null,
+      "has_user": true,
+      "id": 5,
+      "linkedin": null,
+      "name": "Dora Testbulut",
+      "twitter": null,
+      "username": "Testassault_",
+      "website": null,
+      "wikipedia": null
+    }
+  ]
+}

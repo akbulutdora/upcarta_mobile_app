@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -6,6 +8,7 @@ import 'package:upcarta_mobile_app/core/error/failures.dart';
 import 'package:upcarta_mobile_app/models/content/upcarta_content.dart';
 import 'package:upcarta_mobile_app/models/entity/upcarta_user.dart';
 import 'package:upcarta_mobile_app/repositories/feed_repository.dart';
+import '../fixtures/fixture_reader.dart';
 import '../shared_mocks.mocks.dart';
 
 void main() {
@@ -21,6 +24,8 @@ void main() {
   const tToken =
       'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzcG90YWJsZSIsImV4cCI6MTY1OTc3NTUyMiwiaWF0IjoxNjU3MzU2MzIyLCJpc3MiOiJzcG90YWJsZSIsImp0aSI6ImRhNWI1ZjQ4LWZiNzAtNDE3Mi1iYzY1LWM4YWYzNzAwNDgzNiIsIm5iZiI6MTY1NzM1NjMyMSwic3ViIjoiMSIsInR5cCI6ImFjY2VzcyJ9.yYEFOUcEjP34cbkmDy88-wKUF-2VbVO0phn7Vc3vKUtANO329rFdb5nuPvwi1ixBOn30AqZ4tZ71iKAoQTVkPQ';
   const List<Content> tAllContents = <Content>[];
+  final tContentsResponse =
+      json.decode(fixture('content_list.json'))['data'];
 
   void clearInteractionsWithAll() {
     clearInteractions(mockNetworkInfo);
@@ -56,7 +61,7 @@ void main() {
       //arrange
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
       when(mockRemoteDataSource.getAllContents())
-          .thenAnswer((_) async => tAllContents);
+          .thenAnswer((_) async => tContentsResponse);
       // act
       repository.getAllContents();
       // assert
@@ -71,13 +76,12 @@ void main() {
         () async {
           // arrange
           when(mockRemoteDataSource.getAllContents())
-              .thenAnswer((_) async => tAllContents);
+              .thenAnswer((_) async => tContentsResponse);
           // act
           final result = await repository.getAllContents();
           // assert
           verify(mockRemoteDataSource.getAllContents());
-          expect(result.fold((l) => l, (r) => r),
-              equals(ilist(tAllContents)));
+          expect(result.fold((l) => l, (r) => r), equals(ilist(tAllContents)));
           //clear
           clearInteractionsWithAll();
         },
@@ -88,7 +92,7 @@ void main() {
         () async {
           // arrange
           when(mockRemoteDataSource.getAllContents())
-              .thenAnswer((_) async => tAllContents);
+              .thenAnswer((_) async => tContentsResponse);
           // act
           await repository.getAllContents();
           // assert

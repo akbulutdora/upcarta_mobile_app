@@ -26,7 +26,8 @@ _$_Entity _$$_EntityFromJson(Map<String, dynamic> json) => _$_Entity(
       wikipedia: json['wikipedia'] as String?,
       followingEntity: json['following_entity'] == null
           ? null
-          : Entity.fromJson(json['following_entity'] as Map<String, dynamic>),
+          : EntityFollowing.fromJson(
+              json['following_entity'] as Map<String, dynamic>),
       channelEntities: (json['channel_entities'] as List<dynamic>?)
           ?.map((e) => Entity.fromJson(e as Map<String, dynamic>))
           .toList(),
