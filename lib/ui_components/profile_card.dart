@@ -16,13 +16,13 @@ class _ProfileCardState extends State<ProfileCard> {
 
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        alignment: Alignment.center,
+      child: SizedBox(
         height: 185.h,
         child: Expanded(
           child: Padding(
             padding:  EdgeInsets.fromLTRB(12.0.w,20.w,12.w,20.w),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ///Circle Avatar (profile photo)
                 Column(
