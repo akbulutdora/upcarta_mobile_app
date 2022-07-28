@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/repositories/query_repository.dart';
 import 'package:upcarta_mobile_app/repositories/user_repository.dart';
@@ -16,10 +20,11 @@ class ExploreCubit extends Cubit<ExploreState> {
     emit(state.copyWith(searchKey: value, status: ExploreStatus.typing));
   }
 
-  Future<void> submitSearch() async {
+  Future<void> submitSearchPerson() async {
     if (state.status == ExploreStatus.submitting) {
       return;
-    } //to avoid sending multiple reqs at the same time
+    }
+    Timer(Duration(seconds: 1), () {});
     emit(state.copyWith(status: ExploreStatus.submitting));
     try {
       var searchPersons = await _queryRepository.fetchSearch(state.searchKey);

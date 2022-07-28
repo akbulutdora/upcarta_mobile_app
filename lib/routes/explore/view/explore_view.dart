@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:upcarta_mobile_app/core/services/debouncer.dart';
 import 'package:upcarta_mobile_app/models/models.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/repositories/query_repository.dart';
@@ -29,9 +30,7 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-  final List<Widget> cardsList = const <Widget>[
-
-  ];
+  final List<Widget> cardsList = const <Widget>[];
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +71,26 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   child: buildSearchBar(),
                 ),
                 const SizedBox(height: 10),
+                /* SizedBox(
+                  child: SeeAllCollectionsAndAsksView(),
+                  height: 350.h,
+                  width: 150.w,
+                ),
+                SizedBox(
+                  child: SeeAllInspiringPeople(),
+                  height: 350.h,
+                  width: 150.w,
+                ),
+                SizedBox(
+                  child: SeeAllPopularTopics(),
+                  height: 350.h,
+                  width: 150.w,
+                ),
+                SizedBox(
+                  child: SeeAllContentArchiveView(),
+                  height: 350.h,
+                  width: 150.w,
+                ),*/
                 BlocBuilder<ExploreCubit, ExploreState>(
                   buildWhen: (previous, current) =>
                       previous.status != current.status ||
@@ -149,19 +168,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 
   Widget buildSearchBar() {
+    final _debouncer = Debouncer(milliseconds: 500);
     return BlocBuilder<ExploreCubit, ExploreState>(
       builder: (context, state) {
         return TextField(
           onSubmitted: ((value) {
-            context.read<ExploreCubit>().submitSearch();
+            context.read<ExploreCubit>().submitSearchPerson();
           }),
           onChanged: (value) async {
             context.read<ExploreCubit>().searchKeyChanged(value);
-            await Future.delayed(const Duration(seconds: 1));
-            context.read<ExploreCubit>().submitSearch();
+            _debouncer.run(() {
+              context.read<ExploreCubit>().submitSearchPerson();
+            });
+            //await Future.delayed(const Duration(seconds: 3));
           },
           onEditingComplete: () {
-            context.read<ExploreCubit>().submitSearch();
+            context.read<ExploreCubit>().submitSearchPerson();
           },
           decoration: const InputDecoration(
             contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
@@ -184,6 +206,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
 class SearchResultList extends StatelessWidget {
   final List searchResult;
+
   const SearchResultList({
     Key? key,
     required this.searchResult,
@@ -199,10 +222,11 @@ class SearchResultList extends StatelessWidget {
             height: 500,
             child: Expanded(
               child: BlocListener<OtherProfileBloc, OtherProfileState>(
-                listener: ((context, state) {
+                listener: (context, state) {
                   switch (state.status) {
                     case OtherProfileStatus.success:
-                      AutoRouter.of(context).push(const OtherProfileScreenRoute());
+                      AutoRouter.of(context)
+                          .push(const OtherProfileScreenRoute());
                       // .push(OtherProfileScreenRoute(uid: state.user.id));
                       // context
                       //     .read<OtherProfileBloc>()
@@ -211,7 +235,7 @@ class SearchResultList extends StatelessWidget {
                     default:
                       break;
                   }
-                }),
+                },
                 child: ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
@@ -226,7 +250,7 @@ class SearchResultList extends StatelessWidget {
                                   !currentUser.followingIDs!.contains(item.id);
                           if (kDebugMode) {
                             print(
-                              'FIRST IS  ${state.user.id} AND SECOND IS ${item.id}');
+                                'FIRST IS  ${state.user.id} AND SECOND IS ${item.id}');
                           }
 
                           return ListTile(
@@ -307,6 +331,7 @@ class ExploreCardsGrid extends StatelessWidget {
 class ExploreCard extends StatelessWidget {
   final String text;
   final PageRouteInfo<dynamic> route;
+
   const ExploreCard({
     Key? key,
     required this.text,
@@ -321,7 +346,7 @@ class ExploreCard extends StatelessWidget {
       onTap: () {
         // AutoRouter.of(context).push(route);
         context.read<ExploreCubit>().searchKeyChanged(text);
-        context.read<ExploreCubit>().submitSearch();
+        context.read<ExploreCubit>().submitSearchPerson();
       },
       child: Card(
         elevation: 0,
