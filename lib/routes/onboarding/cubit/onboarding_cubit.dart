@@ -8,6 +8,7 @@ part 'onboarding_state.dart';
 
 class OnboardingCubit extends Cubit<OnboardingState> {
   final UserRepository _userRepository;
+
   OnboardingCubit(this._userRepository) : super(OnboardingState.initial());
 
   void bioChanged(String bio) {
@@ -15,16 +16,19 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   }
 
   void usernameChanged(String value) {
-    if(state.username.value.isLeft()) {
-      emit(state.copyWith(username: Username(value), status: OnboardingStatus.validationFailure, usernameValidated: false));
-    }
-    else if(state.username.value.isRight())
-    {
-      emit(state.copyWith(username: Username(value), status: OnboardingStatus.validationFailure, usernameValidated: true));
-    }
-
-    else {
-      emit(state.copyWith(username: Username(value), status: OnboardingStatus.initial));
+    if (Username(value).value.isLeft()) {
+      emit(state.copyWith(
+          username: Username(value),
+          status: OnboardingStatus.validationFailure,
+          usernameValidated: false));
+    } else if (Username(value).value.isRight()) {
+      emit(state.copyWith(
+          username: Username(value),
+          status: OnboardingStatus.validationSuccess,
+          usernameValidated: true));
+    } else {
+      emit(state.copyWith(
+          username: Username(value), status: OnboardingStatus.initial));
     }
   }
 
@@ -40,7 +44,8 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     try {
       await _userRepository.changeBio(state.bio);
       await _userRepository.changePhoto(state.photoURL);
-      await _userRepository.changeUsername(state.username.value.fold((l) => l.failedValue, (r) => r));
+      await _userRepository.changeUsername(
+          state.username.value.fold((l) => l.failedValue, (r) => r));
       emit(state.copyWith(status: OnboardingStatus.success));
     } catch (e) {
       emit(

@@ -16,39 +16,49 @@ class LoginCubit extends Cubit<LoginState> {
   final AuthenticationRepository _authRepository;
 
   void emailChanged(String value) {
-    if(state.email.value.isLeft()) {
-      emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationFailure, emailValidated: false));
-    }
-    else if(state.password.value.isRight() && state.email.value.isRight())
-    {
-      emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationSuccess, emailValidated: true, passwordValidated: true));
-    }
-    else if (state.email.value.isRight())
-      {
-        emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.validationFailure, emailValidated: true));
-
-      }
-
-
-      else {
-      emit(state.copyWith(email: EmailAddress(value), status: LoginStatus.initial));
+    if (EmailAddress(value).value.isLeft()) {
+      emit(state.copyWith(
+          email: EmailAddress(value),
+          status: LoginStatus.validationFailure,
+          emailValidated: false));
+    } else if (state.password.value.isRight() &&
+        EmailAddress(value).value.isRight()) {
+      emit(state.copyWith(
+          email: EmailAddress(value),
+          status: LoginStatus.validationSuccess,
+          emailValidated: true,
+          passwordValidated: true));
+    } else if (EmailAddress(value).value.isRight()) {
+      emit(state.copyWith(
+          email: EmailAddress(value),
+          status: LoginStatus.validationFailure,
+          emailValidated: true));
+    } else {
+      emit(state.copyWith(
+          email: EmailAddress(value), status: LoginStatus.initial));
     }
   }
 
   void passwordChanged(String value) {
-    if(state.password.value.isLeft()) {
-      emit(state.copyWith(password: Password(value), status: LoginStatus.validationFailure, passwordValidated: false));
-    }
-    else if(state.password.value.isRight() && state.email.value.isRight()){
-      emit(state.copyWith(password: Password(value), status: LoginStatus.validationSuccess, passwordValidated: true, emailValidated: true));
-    }
-    else if(state.password.value.isRight())
-      {
-        emit(state.copyWith(password: Password(value), status: LoginStatus.validationFailure, passwordValidated: true));
-      }
-
-    else {
-      emit(state.copyWith(password: Password(value), status: LoginStatus.initial));
+    if (Password(value).value.isLeft()) {
+      emit(state.copyWith(
+          password: Password(value),
+          status: LoginStatus.validationFailure,
+          passwordValidated: false));
+    } else if (Password(value).value.isRight() && state.email.value.isRight()) {
+      emit(state.copyWith(
+          password: Password(value),
+          status: LoginStatus.validationSuccess,
+          passwordValidated: true,
+          emailValidated: true));
+    } else if (Password(value).value.isRight()) {
+      emit(state.copyWith(
+          password: Password(value),
+          status: LoginStatus.validationFailure,
+          passwordValidated: true));
+    } else {
+      emit(state.copyWith(
+          password: Password(value), status: LoginStatus.initial));
     }
   }
 
@@ -60,7 +70,8 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(status: LoginStatus.submitting));
     try {
       await _authRepository.logInWithEmailAndPassword(
-          email: state.email.value.fold((l) => l.failedValue, (r) => r), password: state.password.value.fold((l) => l.failedValue, (r) => r));
+          email: state.email.value.fold((l) => l.failedValue, (r) => r),
+          password: state.password.value.fold((l) => l.failedValue, (r) => r));
       emit(state.copyWith(status: LoginStatus.success));
     } on LogInWithEmailAndPasswordFailure catch (e) {
       emit(
