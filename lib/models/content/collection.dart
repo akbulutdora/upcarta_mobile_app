@@ -15,14 +15,16 @@ enum CollectionType {
   @JsonValue('finished')
   finished,
   // documantasyonda personal olarak geciyor ama internal ile degistirilecek diyor
-  @JsonValue('internal')
-  internal,
+  @JsonValue('personal')
+  personal,
   @JsonValue('external')
   contributor,
   @JsonValue('internal_ask')
   internalAsk,
   @JsonValue('external_ask')
-  externalAsk
+  externalAsk,
+  @JsonValue('later')
+  later
 }
 enum CollectionSort {
   @JsonValue('manual')

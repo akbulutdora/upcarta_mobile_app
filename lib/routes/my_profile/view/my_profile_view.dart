@@ -158,7 +158,7 @@ class BuildProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserBloc, UserState>(builder: ((context, state) {
+    return BlocBuilder<UserBloc, UserState>(builder: (context, state) {
       bool isMyProfile = true;
 
       return Container(
@@ -404,7 +404,7 @@ class BuildProfile extends StatelessWidget {
           ],
         ),
       );
-    }));
+    });
   }
 }
 

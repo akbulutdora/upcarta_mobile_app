@@ -18,7 +18,7 @@ abstract class IContentRepository {
   Future<Either<Failure, void>> unfollowContent(int id);
 
   /// creates new content
-  Future<Either<Failure, void>> createContent(Content content);
+  Future<Either<Failure, Content>> createContent(Content content);
 
   /// deletes the content with id
   Future<Either<Failure, void>> deleteContent(int id);
@@ -35,9 +35,9 @@ abstract class IContentRepository {
   ///remove content from finished
   Future<Either<Failure, void>> unmarkContentAsFinished(int id);
 
-  Future<Either<Failure, void>> addContentToCollection(int id);
+  Future<Either<Failure, void>> addContentToCollection(int id,int collectionId);
 
-  Future<Either<Failure, void>> deleteCollectionContent(int id);
+  Future<Either<Failure, void>> deleteCollectionContent(int id,int collectionId);
 
 
 }

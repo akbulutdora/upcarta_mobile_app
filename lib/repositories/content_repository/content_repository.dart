@@ -104,7 +104,7 @@ class ContentRepository implements IContentRepository {
 
 
   @override
-  Future<Either<Failure, Content?>> createContent(Content content)async{
+  Future<Either<Failure, Content>> createContent(Content content)async{
 
     //check connectivity
     final isConnected = await networkInfo.isConnected;
@@ -216,12 +216,12 @@ class ContentRepository implements IContentRepository {
   }
 
   @override
-  Future<Either<Failure, void>> addContentToCollection(int id)async{
+  Future<Either<Failure, void>> addContentToCollection(int id,int collectionId)async{
     //check connectivity
     final isConnected = await networkInfo.isConnected;
     if (isConnected) {
       try {
-        await remoteDataSource.addContentToCollection(id);
+        await remoteDataSource.addContentToCollection(id,collectionId);
         return const Right(null);
       } on ServerException {
         return Left(ServerFailure());
@@ -232,12 +232,12 @@ class ContentRepository implements IContentRepository {
   }
 
   @override
-  Future<Either<Failure, void>> deleteCollectionContent(int id)async{
+  Future<Either<Failure, void>> deleteCollectionContent(int id,int collectionId)async{
     //check connectivity
     final isConnected = await networkInfo.isConnected;
     if (isConnected) {
       try {
-        await remoteDataSource.deleteCollectionContent(id);
+        await remoteDataSource.deleteCollectionContent(id,collectionId);
         return const Right(null);
       } on ServerException {
         return Left(ServerFailure());

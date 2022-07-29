@@ -120,11 +120,10 @@ class MockRemoteDataSource extends _i1.Mock implements _i3.RemoteDataSource {
               returnValue: Future<List<dynamic>?>.value())
           as _i9.Future<List<dynamic>?>);
   @override
-  _i9.Future<Map<String, dynamic>> getContentWithId(int? id) =>
+  _i9.Future<Map<String, dynamic>?> getContentWithId(int? id) =>
       (super.noSuchMethod(Invocation.method(#getContentWithId, [id]),
-              returnValue:
-                  Future<Map<String, dynamic>>.value(<String, dynamic>{}))
-          as _i9.Future<Map<String, dynamic>>);
+              returnValue: Future<Map<String, dynamic>?>.value())
+          as _i9.Future<Map<String, dynamic>?>);
   @override
   _i9.Future<Map<String, dynamic>?> createContent(
           Map<String, dynamic>? contentJson) =>
@@ -146,6 +145,14 @@ class MockRemoteDataSource extends _i1.Mock implements _i3.RemoteDataSource {
   @override
   dynamic unmarkContentAsFinished(int? id) =>
       super.noSuchMethod(Invocation.method(#unmarkContentAsFinished, [id]));
+  @override
+  dynamic addContentToCollection(int? contentId, int? collectionId) =>
+      super.noSuchMethod(Invocation.method(
+          #addContentToCollection, [contentId, collectionId]));
+  @override
+  dynamic deleteCollectionContent(int? contentId, int? collectionId) =>
+      super.noSuchMethod(Invocation.method(
+          #deleteCollectionContent, [contentId, collectionId]));
   @override
   _i9.Future<Map<String, dynamic>?> getEntityWithId(int? id) =>
       (super.noSuchMethod(Invocation.method(#getEntityWithId, [id]),
@@ -172,6 +179,22 @@ class MockRemoteDataSource extends _i1.Mock implements _i3.RemoteDataSource {
       (super.noSuchMethod(Invocation.method(#getEntityFollowing, [id]),
               returnValue: Future<List<dynamic>?>.value())
           as _i9.Future<List<dynamic>?>);
+  @override
+  _i9.Future<List<dynamic>?> getAllCollections() =>
+      (super.noSuchMethod(Invocation.method(#getAllCollections, []),
+              returnValue: Future<List<dynamic>?>.value())
+          as _i9.Future<List<dynamic>?>);
+  @override
+  _i9.Future<Map<String, dynamic>?> getCollectionWithId(int? id) =>
+      (super.noSuchMethod(Invocation.method(#getCollectionWithId, [id]),
+              returnValue: Future<Map<String, dynamic>?>.value())
+          as _i9.Future<Map<String, dynamic>?>);
+  @override
+  _i9.Future<Map<String, dynamic>?> createCollection(
+          Map<String, dynamic>? collection) =>
+      (super.noSuchMethod(Invocation.method(#createCollection, [collection]),
+              returnValue: Future<Map<String, dynamic>?>.value())
+          as _i9.Future<Map<String, dynamic>?>);
 }
 
 /// A class which mocks [LocalDataStorage].

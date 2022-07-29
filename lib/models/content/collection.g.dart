@@ -90,10 +90,11 @@ Map<String, dynamic> _$$_CollectionToJson(_$_Collection instance) =>
 const _$CollectionTypeEnumMap = {
   CollectionType.saved: 'saved',
   CollectionType.finished: 'finished',
-  CollectionType.internal: 'internal',
+  CollectionType.personal: 'personal',
   CollectionType.contributor: 'external',
   CollectionType.internalAsk: 'internal_ask',
   CollectionType.externalAsk: 'external_ask',
+  CollectionType.later: 'later',
 };
 
 const _$CollectionSortEnumMap = {
