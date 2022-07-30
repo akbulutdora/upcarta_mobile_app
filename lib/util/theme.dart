@@ -8,7 +8,7 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.white,
   primaryColor: AppColors.upcartaBlue,
   primaryColorLight: AppColors.followBlue,
-
+  primaryColorDark: AppColors.black,
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     foregroundColor: Colors.white,
     backgroundColor: AppColors.upcartaBlue,
@@ -74,6 +74,7 @@ ThemeData lightTheme = ThemeData(
     side: BorderSide(color: AppColors.gray1BoxFrame),
   ),
   brightness: Brightness.light,
+
   accentColor: AppColors.upcartaBlue,
     tabBarTheme: const TabBarTheme(
         labelColor: AppColors.upcartaBlue,

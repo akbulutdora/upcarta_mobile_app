@@ -71,7 +71,11 @@ const contentCardTitleStyle = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 18,
     );
-
+const topicHeaderTitleStyle = TextStyle(
+  fontFamily: 'SF Compact Text',
+  fontWeight: FontWeight.w600,
+  fontSize: 22,
+);
 
 /// self explanation
 const exploreCardsFont = TextStyle(
