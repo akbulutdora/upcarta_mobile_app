@@ -145,14 +145,49 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       // else if (state.status == ExploreStatus.success &&
                       //     state.searchKey != "") {
                       return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             alignment: Alignment.topLeft,
                             child: const WrappedSingleChip(),
                           ),
+
+                          Text('People',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontFamily: 'SF Compact Text',
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
                           SearchResultList(
                             searchResult: state.searchPeople,
                           ),
+
+                          Text('Collections',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontFamily: 'SF Compact Text',
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          SearchResultList(
+                            searchResult: state.searchPeople,
+                          ),
+
+                          Text('Contents',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontFamily: 'SF Compact Text',
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          SearchResultList(
+                            searchResult: state.searchPeople,
+                          ),
+
                         ],
                       );
                     }
@@ -210,11 +245,12 @@ class SearchResultList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppUser currentUser = context.read<UserBloc>().state.user;
+    bool isAll = true;
     return Center(
       child: Column(
         children: [
           SizedBox(
-            height: 500,
+            height: 230,
             child: Expanded(
               child: BlocListener<OtherProfileBloc, OtherProfileState>(
                 listener: ((context, state) {
@@ -239,6 +275,7 @@ class SearchResultList extends StatelessWidget {
                           if (state.status == ExploreStatus.followRequested) {
                             return const CircularProgressIndicator();
                           }
+
                           bool isNotFollowing =
                               currentUser.followingIDs != null &&
                                   !currentUser.followingIDs!.contains(item.id);
@@ -282,12 +319,14 @@ class SearchResultList extends StatelessWidget {
                             subtitle: Text('@' + item.username!),
                             dense: true,
                           );
+
                         },
                       );
                     },
-                    itemCount: searchResult.length),
+                    itemCount: isAll ? 3 : searchResult.length,
               ),
             ),
+          ),
           ),
         ],
       ),

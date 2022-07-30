@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class WrappedSingleChip extends StatefulWidget {
   const WrappedSingleChip({Key? key}) : super(key: key);
 
+
+
   @override
   State<WrappedSingleChip> createState() => _WrappedSingleChipState();
 }
@@ -19,8 +21,10 @@ class _WrappedSingleChipState extends State<WrappedSingleChip> {
     'Contents',
   ];
 
+
   @override
   Widget build(BuildContext context) {
+
     return ChipsChoice.single(
       value: tag,
       onChanged: (int val) => setState(() => tag = val),
@@ -47,8 +51,8 @@ class _WrappedSingleChipState extends State<WrappedSingleChip> {
         padding: const EdgeInsets.fromLTRB(-3, 0, -3, 0),
         showCheckmark: false,
         color: Colors.white,
-        backgroundColor: Colors.blueAccent,
-        borderColor: Colors.grey[300],
+        backgroundColor: Theme.of(context).primaryColor,
+        borderColor: Theme.of(context).primaryColorLight,
       ),
     );
   }

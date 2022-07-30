@@ -16,6 +16,12 @@ const kTabBarTextStyle = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w500,
     );
+
+const topicHeaderTitleStyle = TextStyle(
+  fontFamily: 'SF Compact Text',
+  fontWeight: FontWeight.w600,
+  fontSize: 22,
+);
 /// Used inside of search Bars
 const kSearchBarTextStyle = TextStyle(
     fontFamily: 'SFCompactText-Regular',
