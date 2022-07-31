@@ -343,6 +343,10 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   Map<String, dynamic> toJson() {
     return _$$_UserToJson(this);
   }
+
+  @override
+  // TODO: implement isNotEmpty
+  bool get isNotEmpty => throw UnimplementedError();
 }
 
 abstract class _User implements User {

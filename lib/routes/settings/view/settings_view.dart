@@ -10,6 +10,8 @@ import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
 import 'package:upcarta_mobile_app/util/colors.dart';
 
+import '../../../repositories/authentication_repository/authentication_repository.dart';
+
 class Settings extends StatefulWidget {
   static MaterialPage page() {
     return const MaterialPage(
@@ -195,7 +197,8 @@ class _SettingsState extends State<Settings> {
                 BlocListener<AppBloc, AppState>(
                   listener: (context, state) {
                     // TODO: implement listener
-                    if (state.status == AppStatus.unauthenticated) {
+                    // FIXME: auth repository was blindly imported here, this might cause errors, idk
+                    if (state.status == AuthenticationStatus.unauthenticated) {
                       // FIXME: LOGOUT DOESN'T NAVIGATE HOME
                       // AutoRouter.of(context)
                       //     .replaceAll([const LoginScreenRoute()]);

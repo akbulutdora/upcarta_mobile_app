@@ -4,7 +4,6 @@ import 'package:upcarta_mobile_app/models/entity/entity.dart';
 import 'package:upcarta_mobile_app/models/entity/identity.dart';
 
 part 'upcarta_user.freezed.dart';
-
 part 'upcarta_user.g.dart';
 
 enum Role {
@@ -33,6 +32,10 @@ class User with _$User {
     //todo : relational required
     @JsonKey(name: 'entity_id') int? entityId
   }) = _User;
+
+  static const empty = User(email: '');
+
+  bool get isNotEmpty => this != User.empty;
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }

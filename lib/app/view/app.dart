@@ -8,7 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/app/app.dart';
 import 'package:upcarta_mobile_app/app/theme_cubit/theme_cubit.dart';
 import 'package:upcarta_mobile_app/navigation/routes.gr.dart';
-import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+//import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/query_repository.dart';
 import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 import 'package:upcarta_mobile_app/routes/other_profile/bloc/other_profile_bloc.dart';
@@ -16,7 +17,7 @@ import 'package:upcarta_mobile_app/routes/other_profile/bloc/other_profile_bloc.
 // import 'package:upcarta_mobile_app/repositories/auth_repository.dart';
 import 'package:upcarta_mobile_app/util/view_paths.dart';
 
-import '../../repositories/user_repository.dart';
+import '../../repositories/user_repository/user_repository.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -61,7 +62,7 @@ class App extends StatelessWidget {
             create: (_) => AppBloc(
               authRepository: _authRepository,
               analyticsRepository: _analyticsRepository,
-              sharedPrefs: sharedPreferences,
+              sharedPrefs: sharedPreferences, userRepository: _userRepository,
             ),
           ),
           BlocProvider(create: (_) => ThemeCubit(sharedPreferences)),
@@ -125,14 +126,14 @@ class EntryPoint extends StatelessWidget {
               print('listening ${state.status}');
             }
             switch (state.status) {
-              case AppStatus.authenticated:
+              case AuthenticationStatus.authenticated:
                 // print("\n\n\nAUTHENTICATED");
                 AutoRouter.of(context).replace(const HomeRoute());
                 break;
-              case AppStatus.prelanded:
+              case AuthenticationStatus.prelanded:
                 AutoRouter.of(context).replace(const LandingRoute());
                 break;
-              case AppStatus.unauthenticated:
+              case AuthenticationStatus.unauthenticated:
                 // print("\n\n\nNOT AUTHENTICATED");
                 AutoRouter.of(context).replace(const LoginScreenRoute());
                 break;

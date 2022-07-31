@@ -1,31 +1,33 @@
 part of 'app_bloc.dart';
 
-enum AppStatus { authenticated, unauthenticated, uninitialized, prelanded }
+//This was changed to AuthenticationStatus, found in auth repository
+//The states are same, however
+//enum AppStatus { authenticated, unauthenticated, uninitialized, prelanded }
 
 class AppState extends Equatable {
-  final AppStatus status;
-  final AppUser user;
+  final AuthenticationStatus status;
+  final User user;
 
   const AppState._({
     required this.status,
-    this.user = AppUser.empty,
+    this.user = User.empty,
   });
 
-  const AppState.uninitialized() : this._(status: AppStatus.uninitialized);
+  const AppState.uninitialized() : this._(status: AuthenticationStatus.uninitialized);
 
-  const AppState.authenticated(AppUser user)
+  const AppState.authenticated(User user)
       : this._(
-          status: AppStatus.authenticated,
+          status: AuthenticationStatus.authenticated,
           user: user,
         );
 
   const AppState.unauthenticated()
       : this._(
-          status: AppStatus.unauthenticated,
+          status: AuthenticationStatus.unauthenticated,
         );
   const AppState.prelanded()
       : this._(
-          status: AppStatus.prelanded,
+          status: AuthenticationStatus.prelanded,
         );
 
   @override

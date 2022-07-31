@@ -1,10 +1,13 @@
-import 'package:upcarta_mobile_app/repositories/authentication_repository.dart';
+import 'package:upcarta_mobile_app/core/api/data_sources/local_data_storage.dart';
+import 'package:upcarta_mobile_app/core/api/data_sources/remote_data_source.dart';
+import 'package:upcarta_mobile_app/core/platform/network_info.dart';
+import 'package:upcarta_mobile_app/repositories/authentication_repository/authentication_repository.dart';
 import 'package:upcarta_mobile_app/repositories/analytics_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upcarta_mobile_app/repositories/query_repository.dart';
-import 'package:upcarta_mobile_app/repositories/user_repository.dart';
+import 'package:upcarta_mobile_app/repositories/user_repository/user_repository.dart';
 import 'firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app/app.dart';
@@ -23,11 +26,15 @@ Future<void> main() async {
       FlutterError.onError =
           FirebaseCrashlytics.instance.recordFlutterFatalError;
 
+      final localDataStorage = LocalDataStorageImpl(sharedPreferences: sharedPreferences);
+      final networkInfo = NetworkInfoImpl();
+      final remoteDataSource = RemoteDataSource();
+
       final authenticationRepository =
-          AuthenticationRepository();
-      await authenticationRepository.user.first;
+          AuthenticationRepository(localDataStorage: localDataStorage, networkInfo: networkInfo, remoteDataSource: remoteDataSource);
+      await authenticationRepository.status.first;
       final userRepository =
-          UserRepository(sharedPreferences: sharedPreferences);
+          UserRepository(localDataStorage: localDataStorage);
       final queryRepository = QueryRepository();
       final analyticsRepository = AnalyticsRepository();
 
